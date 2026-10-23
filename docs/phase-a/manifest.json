@@ -1,0 +1,137 @@
+{
+  "package_version": "1.2",
+  "created_date": "2026-10-22",
+  "scope": [
+    "NF-A01",
+    "NF-A04",
+    "NF-A05",
+    "CR001",
+    "NF-A01 F01-F03 isolation repair"
+  ],
+  "approval": "design_package_not_runtime_acceptance",
+  "counts": {
+    "entities": 69,
+    "queries": 100,
+    "corpus_sources": 120,
+    "acceptance_cases": 32,
+    "outline_chapters": 100
+  },
+  "files": [
+    {
+      "path": "A01_BASELINE.md",
+      "sha256": "297727b1772c9287625c92257b3caa6279cf8eed99956fa68bd5f75c6a7e3450",
+      "bytes": 6288
+    },
+    {
+      "path": "A01_ISOLATION_FIX.md",
+      "sha256": "ad63cb331c8ff9f3aca3152636fb93f0f48af46b2660647a4e63ff5e441a7be9",
+      "bytes": 5841
+    },
+    {
+      "path": "A04_API.md",
+      "sha256": "ec55e579826b73612d5de6708026f095944512c911594f4962d8e4c1b1111644",
+      "bytes": 5074
+    },
+    {
+      "path": "A04_CONTRACTS.md",
+      "sha256": "19069cbd1dbe5aa1280fc00099cf2ccadff1b4c487aee78fd675994ad1d7fb31",
+      "bytes": 14072
+    },
+    {
+      "path": "A05_ACCEPTANCE.md",
+      "sha256": "ba7de691f990c13f025f3852b469d595cc7defbfb315ec33b62e10013fc6d8c4",
+      "bytes": 5499
+    },
+    {
+      "path": "CR001_PRIORITY_CHANGE.md",
+      "sha256": "620ecadbfe90ca1fd3a5e1349572fee37f5bc5726007238d2923fe90d43bc968",
+      "bytes": 1931
+    },
+    {
+      "path": "DATA_DICTIONARY_NOTES.md",
+      "sha256": "d8e16237082853516263605fcc1522caef881d481c7c063b0fe99ae510c13c1c",
+      "bytes": 1952
+    },
+    {
+      "path": "DECISIONS.md",
+      "sha256": "3a89b9efb14761b9e53404553e2083a574b9691540788d838cca60f812cbac56",
+      "bytes": 2421
+    },
+    {
+      "path": "README.md",
+      "sha256": "09ef72f82ac1c55455a829c1217fb0368a1318cee6d20176da557cc8bbef3cec",
+      "bytes": 2580
+    },
+    {
+      "path": "VALIDATION.md",
+      "sha256": "c5f3e7767570c7b09c77fa0c2cc2032e909313b11ec7363f1235cb500be64193",
+      "bytes": 2152
+    },
+    {
+      "path": "acceptance_cases.csv",
+      "sha256": "a2ee626e73ee1165e4edde1185cd6dd09cbc9aab285fbc1887982b033fc2781e",
+      "bytes": 7851
+    },
+    {
+      "path": "commit.schema.json",
+      "sha256": "4c7ad5471b5b6e52ef7fae0c1f94ce28c8069cf8c2a784be8356a7f1f0e9e141",
+      "bytes": 1334
+    },
+    {
+      "path": "contract_examples.json",
+      "sha256": "0f9ff4b93baa8e3280509d1519c70bd7398016bd11bd13527ffd20dde42be234",
+      "bytes": 2391
+    },
+    {
+      "path": "data_dictionary.csv",
+      "sha256": "8431127b9b918f4f37e35b69706fb7ef8d9a745c274245e63a26cedf85425e55",
+      "bytes": 15119
+    },
+    {
+      "path": "fault_fixtures.json",
+      "sha256": "63de3e10f706af17567b090f9c0021e4e5ba2d9f8a9a26e4e5fcc20796bcc9c9",
+      "bytes": 3586
+    },
+    {
+      "path": "forms/chapter_review.csv",
+      "sha256": "07759ec509449fe91e50f5d5b6eb0d0ca0d5fd9e1fd917086e9b034c97ecb8a2",
+      "bytes": 1725
+    },
+    {
+      "path": "forms/execution_records.csv",
+      "sha256": "cd2569e560ccd5c65a625d590089aca51b96d5b6f8d0334d221b576206f9b790",
+      "bytes": 821
+    },
+    {
+      "path": "forms/foreshadow_review.csv",
+      "sha256": "d6072d95675fc99180e77b6b4a3e48ad70799ec8b2833a227763339320a882c9",
+      "bytes": 517
+    },
+    {
+      "path": "hundred_chapter_outline.csv",
+      "sha256": "d13b9d97f3b147d42f07bdb789f0ab3182fc348d40d29cf704cb51b9021fade1",
+      "bytes": 14323
+    },
+    {
+      "path": "novel_contract.json",
+      "sha256": "9ce7828424dde40af2ca84c0e3e1b858e68b3179d1adada3318a1bcd0eab1b71",
+      "bytes": 4493
+    },
+    {
+      "path": "retrieval_corpus.jsonl",
+      "sha256": "254724479bf4dcb28a6b91be23d0651cbba3e8cdaf75791e16452ca4f9dfcee0",
+      "bytes": 54403
+    },
+    {
+      "path": "retrieval_queries.jsonl",
+      "sha256": "cd09b5316d1d922cbfc07bdc50648b65870ff6a85d50dc268f707121c8e3b811",
+      "bytes": 43823
+    },
+    {
+      "path": "ten_chapter_plan.csv",
+      "sha256": "7ec2e16c70a72378b1360810c8e44d14abc44cf875c5350b88fa6fcf348e00a3",
+      "bytes": 1679
+    }
+  ],
+  "updated_date": "2026-10-23"
+}

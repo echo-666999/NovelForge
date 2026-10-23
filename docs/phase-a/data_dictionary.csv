@@ -1,0 +1,70 @@
+entity,key_fields_and_types,references,constraints_indexes,implementation_task
+novels,id bigint; title varchar; premise_raw text; target_chapters int; chapter_length_policy jsonb; status varchar; row_version bigint; state_version bigint; active_canonical_revision_id bigint?,style_versions; budget_policies; canonical_revisions,title非空；target>0；state_version单调；活动FK后加,NF-B01
+requirement_items,source_version bigint; source_quote text; category/strength/decision_status varchar,novels; evidence_spans?,硬约束不可自动waive；原始来源只读,NF-B01
+requirement_coverages,requirement_id bigint; plan_node_version_id bigint; evidence jsonb,requirement_items; plan_nodes,"UNIQUE(requirement_id,plan_node_version_id)",NF-B01/NF-B05
+blueprint_versions,version int; content jsonb; content_hash char64; status varchar; approved_at timestamptz?,novels,"UNIQUE(novel_id,version)；批准后不可变",NF-B04
+ending_contracts,version int; target_start/end int; required_outcomes/open_items jsonb; status varchar,blueprint_versions,start<=end；版本不可覆盖,NF-B04
+volumes,parent_id bigint; sequence int; title varchar; objective text; row_version bigint; status varchar,novels,"复合FK(novel_id,parent_id)；UNIQUE(novel_id,sequence)；sequence>0",NF-B02
+story_arcs,parent_id bigint; sequence int; title varchar; objective text; row_version bigint; status varchar,volumes,"复合FK(novel_id,parent_id)；UNIQUE(volume_id,sequence)；sequence>0",NF-B02
+chapters,parent_id bigint; sequence int; title varchar; objective text; row_version bigint; status varchar,story_arcs,"复合FK(novel_id,parent_id)；UNIQUE(novel_id,sequence)；sequence>0",NF-B02
+scenes,parent_id bigint; sequence int; title varchar; objective text; row_version bigint; status varchar,chapters,"复合FK(novel_id,parent_id)；UNIQUE(chapter_id,sequence)；sequence>0",NF-B02
+outline_versions,version int; blueprint_version_id bigint; content_hash char64; status varchar,novels; blueprint_versions,"UNIQUE(novel_id,version)",NF-B02/NF-B05
+plan_nodes,outline_version_id bigint; node_type varchar; stable_node_id bigint; parent_plan_node_id bigint?; details jsonb; content_hash char64,outline_versions; 稳定节点；同版本父plan_node,"UNIQUE(outline_version_id,node_type,stable_node_id)；类型与稳定节点由受控服务/分类型关联验证，不使用无校验多态FK",NF-B02/NF-B05
+chapter_versions,node_id bigint; version int; parent_version_id bigint?; body text; body_hash char64; character_count int; source_artifact_id bigint?,chapters; generation_artifacts,"UNIQUE(node_id,version)；正文不可变；原文哈希",NF-E02
+scene_versions,node_id bigint; version int; parent_version_id bigint?; body text; body_hash char64; character_count int; source_artifact_id bigint?,scenes; generation_artifacts,"UNIQUE(node_id,version)；正文不可变；原文哈希",NF-E02
+chapter_scene_versions,chapter_version_id bigint; scene_version_id bigint; sequence int,chapter_versions; scene_versions,"UNIQUE(chapter_version_id,sequence)；同章/同小说；冻结拼接顺序",NF-E02
+entities,type/name varchar; approval_status varchar; row_version bigint,novels,"UNIQUE(novel_id,id)；别名查重按策略非强制全球唯一",NF-B03
+entity_definition_versions,entity_id bigint; version int; definition jsonb; content_hash char64; approved_at timestamptz?,entities,"UNIQUE(entity_id,version)；批准不可变",NF-B03
+entity_aliases,entity_id bigint; alias/normalized_alias varchar,entities,"UNIQUE(entity_id,normalized_alias)；B-tree；trgm GIN",NF-B03/NF-D05
+world_rules,entity_definition_version_id bigint; scope/type varchar; constraint jsonb,entity_definition_versions,批准规则版本不可覆盖,NF-B03
+character_profiles,entity_definition_version_id bigint; stable_traits/voice/goals jsonb,entity_definition_versions,UNIQUE(entity_definition_version_id),NF-B03
+relationships,from_entity/to_entity bigint; relation_type varchar; revision_id bigint; state_version bigint; state jsonb; source_event_id bigint,entities; canonical_revisions; story_events,复合归属；历史版本唯一；禁止覆盖正式关系,NF-D02
+knowledge_facts,knower_id/fact_id/acquired_event_id bigint; knowledge_type varchar; revealed_chapter int; revision_id bigint,entities; story_events(事实与获取证据); canonical_revisions,"索引(knower_id,revealed_chapter)；事实/信念分开",NF-D02
+story_events,revision_id/commit_id/chapter_version_id/evidence_id bigint; event_type varchar; story_time jsonb; narrative_order int; payload jsonb; supersedes_id bigint?,canonical_revisions; canonical_commits; chapter_versions; evidence_spans,"追加不可变；索引(novel_id,revision_id,narrative_order)；撤销也为事件",NF-D01/NF-E06
+event_dependencies,predecessor_id/successor_id bigint; relation_type varchar,story_events,"UNIQUE(predecessor_id,successor_id,relation_type)；服务验证无环",NF-D02
+entity_state_versions,entity_id/revision_id/state_version/source_event_id bigint; valid_range/attributes jsonb,entities; canonical_revisions; story_events,"UNIQUE(entity_id,revision_id,state_version)；索引(entity_id,state_version)",NF-D01
+state_snapshots,revision_id bigint; chapter_sequence int; local_state_version bigint; payload jsonb; payload_hash char64,canonical_revisions,"UNIQUE(revision_id,chapter_sequence)；可重建",NF-D01
+foreshadows,lineage_id bigint; plan_version int; surface/hidden_meaning text; plant/strengthen/payoff_range jsonb; payoff_target int; required bool; status varchar; overdue bool,novels; blueprint_versions; entities通过关联表,"UNIQUE(lineage_id,plan_version)；索引(novel_id,payoff_target)；状态由提交驱动",NF-D03
+foreshadow_occurrences,foreshadow_id/chapter_version_id/event_id/evidence_id/commit_id bigint; kind varchar,foreshadows; chapter_versions; story_events; evidence_spans; canonical_commits,"UNIQUE(foreshadow_id,event_id,kind)；正式证据必需",NF-D03/NF-E06
+threads,blueprint_version_id bigint; kind varchar; objective text; status varchar; required bool,novels; blueprint_versions,计划与正式进度分区；当前进度有事件来源,NF-B04/NF-G04
+thread_arc_links,thread_id/story_arc_id bigint,threads; story_arcs,"UNIQUE(thread_id,story_arc_id)；同书",NF-B02
+memory_items,revision_id/source_version_id bigint; kind varchar; introduced_chapter int; visibility jsonb; summary text; parent_memory_id bigint?; status varchar,"source_documents以(novel_id,source_version_id)复合FK；revision_id另连canonical_revisions（适用时）",同基线有效来源；未提交草稿隔离branch_id；源注册表限制类型；来源正式性由提交链重验,NF-D04
+memory_chunks,memory_id bigint; chunk_no int; text text; hash char64,memory_items,"UNIQUE(memory_id,chunk_no)",NF-D04
+embedding_profiles,model_profile_version_id bigint; dimensions int; distance_metric varchar; version int,model_profile_versions,维度>0；模型/维度/距离冻结，不混索引,NF-D05
+memory_embeddings,chunk_id/profile_id/index_generation_id bigint; embedding vector(D); status varchar,memory_chunks; embedding_profiles; index_builds,"UNIQUE(chunk_id,profile_id,index_generation_id)；D在profile选定后建物理表/分区",NF-D05
+search_documents,source_type varchar; source_version_id/revision_id/index_generation_id bigint; body text; search_vector tsvector?; parser_version/dictionary_version varchar?; visibility jsonb,"source_documents以(novel_id,source_version_id)复合FK；revision_id另连canonical_revisions（适用时）",复合过滤索引；P0先精确/别名/向量/trgm；tsvector与分词列后期启用；源注册表限制类型；来源正式性由提交链重验,NF-D05；分词NF-A03(后期)
+generation_runs,scope/frozen_config jsonb; status varchar; expected_state_version bigint; parent_run_id bigint?; heartbeat/cancel_requested_at timestamptz?,novels; generation_runs,状态/更新时间索引；配置冻结,NF-C01
+generation_steps,run_id bigint; stage varchar; dependency_hash char64; attempt_no int; status varchar; lease_until timestamptz?; fencing_token bigint; checkpoint_artifact_id bigint?; error_code varchar?,generation_runs; generation_artifacts,"UNIQUE(run_id,stage,scope_key,attempt_no)；租约索引；scope_key区分场景",NF-C01/NF-C02
+generation_artifacts,step_id bigint; type varchar; storage_ref text; content_hash char64; schema_version varchar; source_artifact_id bigint?,generation_steps; generation_artifacts,不可变；私有存储；阶段环FK分批添加,NF-C01
+ai_requests,step_id/route_version_id/price_version_id bigint; provider_request_id varchar?; request_hash char64; response_ref text?; usage jsonb?; status/cost_status varchar,generation_steps; route_versions; price_versions,供应商请求身份有唯一性域；同逻辑请求重试保持尝试记录,NF-C03/NF-C05
+reviews,chapter_version_id bigint; body_hash/context_hash char64; policy_version_id bigint; verdict varchar; scores jsonb; reviewer_type varchar,chapter_versions; style_versions,"评审不可移绑新正文；索引(章版本,有效性)",NF-E04
+review_issues,review_id/evidence_id bigint; severity/category varchar; suggested_fix text; resolution varchar,reviews; evidence_spans,硬错误不可人工标文学豁免,NF-E04
+revision_tasks,source_version_id/target_version_id bigint; scope jsonb; status varchar; issue_ids jsonb,chapter_versions; review_issues通过关联表,范围冻结；采纳不等于commit,NF-E05
+evidence_spans,source_type varchar; source_version_id bigint; source_hash char64; start_offset/end_offset bigint; quote text; offset_unit varchar,"source_documents以(novel_id,source_version_id)复合FK；revision_id另连canonical_revisions（适用时）",码点左闭右开；start<end；切片/hash复核；源注册表限制类型；来源正式性由提交链重验,NF-D01
+canonical_revisions,base_revision_id bigint?; status varchar; cursor int; local_state_version bigint; validation_hash char64?,novels; canonical_revisions,每书最多一个active；候选与活动隔离,NF-E06/NF-G01
+canonical_chapters,revision_id/chapter_id/chapter_version_id/commit_id bigint; sequence int,canonical_revisions; chapters; chapter_versions; canonical_commits,"UNIQUE(revision_id,sequence)；UNIQUE(revision_id,chapter_id)；同书复合FK",NF-E06
+canonical_commits,revision_id/chapter_version_id/review_id bigint; previous_state_version/new_state_version bigint; idempotency_key varchar; request_hash char64; status varchar,novels; canonical_revisions; chapter_versions; reviews,"UNIQUE(novel_id,idempotency_key)；同基线章序唯一；不可变",NF-E06
+outbox_events,event_key varchar; aggregate_type/id; payload jsonb; published_at timestamptz?; attempts int,相关聚合/commit,UNIQUE(event_key)；待投递索引,NF-C02
+consumer_receipts,consumer varchar; event_key varchar; processed_at timestamptz,outbox_events,"UNIQUE(consumer,event_key)；与业务写入同事务",NF-C02
+idempotency_requests,actor_id/novel_id bigint?; command/key varchar; request_hash char64; response_ref text?; status varchar,users; novels；任务/提交结果,"UNIQUE(actor_scope,novel_scope,command,key)；空域使用非空scope值，避免NULL绕过去重",NF-C01/NF-E06
+prompt_templates,key/purpose/language varchar,全局,UNIQUE(key),NF-C04
+prompt_versions,template_id bigint; version int; body text; variable_schema/output_schema jsonb; status varchar; content_hash char64,prompt_templates,"UNIQUE(template_id,version)；发布不可变",NF-C04
+providers,name/interface_type varchar; allowed_hosts jsonb; secret_ref text; limits jsonb; status varchar,密钥存储,密钥引用不可返回前端,NF-C03
+model_profiles,provider_id bigint; provider_model_id varchar; active_version_id bigint?,providers; model_profile_versions,"UNIQUE(provider_id,provider_model_id)",NF-C03
+model_profile_versions,profile_id bigint; version int; capacity/capabilities jsonb; verified_at timestamptz?,model_profiles,"UNIQUE(profile_id,version)；unknown与已验证分开",NF-C03
+model_routes,stage/key varchar; default_version_id bigint?,route_versions,UNIQUE(key),NF-C04
+route_versions,route_id bigint; version int; primary_model_version_id bigint; fallback jsonb; parameters jsonb; status varchar,model_routes; model_profile_versions; prompt_versions,"UNIQUE(route_id,version)；批准备用列表",NF-C04
+style_profiles,name varchar; active_version_id bigint?,style_versions,稳定对象,NF-C04
+style_versions,profile_id bigint; version int; voice/rubric/thresholds jsonb; status varchar,style_profiles,"UNIQUE(profile_id,version)；冻结评分政策",NF-C04
+price_versions,model_version_id bigint; currency varchar; unit_prices jsonb; effective_at timestamptz; evidence_ref text,model_profile_versions,费率字符串/decimal；类别计量不重叠,NF-C05
+budget_policies,scope_type/scope_key varchar; currency varchar; limits jsonb; version int,novels或全局日期桶,版本化策略；不修改旧结算,NF-C05
+budget_reservations,"request_id/policy_id bigint; amount numeric(24,10); status varchar; expires_at timestamptz?",ai_requests; budget_policies,"UNIQUE(request_id,policy_id)；unknown不自动释放",NF-C05
+cost_ledger,"request_id/price_version_id bigint; category varchar; amount numeric(24,10)?; currency varchar; confidence varchar; evidence_ref text?",ai_requests; price_versions,"UNIQUE(request_id,settlement_revision,category)；更正追加冲正，不重复累计",NF-C05
+export_jobs,revision_id bigint; range/format/options jsonb; manifest_hash char64; storage_ref text?; status varchar,novels; canonical_revisions,冻结范围；私有下载,NF-E08
+export_items,export_id/chapter_version_id bigint; sequence int; body_hash char64,export_jobs; chapter_versions,"UNIQUE(export_id,sequence)",NF-E08
+audit_logs,actor_id bigint?; action/object_type varchar; object_id bigint?; before_ref/after_ref/reason text; trace_id varchar,users及相关对象,只追加；敏感字段脱敏,NF-C07
+backup_jobs,scope/status varchar; storage_ref text; checksum char64; encrypted bool; restore_evidence_ref text?,独立备份配置,校验与演练状态分开,NF-H04
+index_builds,kind/status varchar; generation bigint; profile_snapshot jsonb; watermark bigint; metrics jsonb,embedding_profiles；后期parser/dictionary,每活动profile/书范围唯一active；影子追赶后切换,NF-D05/NF-G02
+acceptance_runs,contract_hash char64; kind/status varchar; frozen_config jsonb; evidence_root text,novels; canonical_revisions,旧失败不可改写；人工签署单列,NF-F02
+acceptance_observations,run_id bigint; case_id varchar; machine_result/human_result varchar; evidence_refs jsonb; reviewer_id bigint?,acceptance_runs; users,追加尝试；未执行与跳过不等于通过,NF-F02
+source_documents,kind varchar; chapter_version_id/scene_version_id/event_id/rule_version_id/artifact_id/blueprint_version_id bigint nullable; content_hash char64,"每个非空字段以(novel_id,target_id)复合FK连接对应版本表",CHECK恰有一个具体源FK非空；UNIQUE每种源FK；kind匹配；source_version_id在证据/记忆中指此表id,NF-D01

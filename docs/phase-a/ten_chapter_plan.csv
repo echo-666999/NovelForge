@@ -1,0 +1,11 @@
+chapter,title,objective,conflict,change,pov,foreshadow_task,status
+1,雨夜门缝里的铜钥匙,收到钥匙与残信,是否交给巡夜人,保留遗物并记下来源,沈砚,F01埋设,candidate_not_approved
+2,盐水洇开的第一行字,安全检查黑墨信,邻居要求火烘,拒绝火烘，留下少量显字证据,沈砚,F02埋设,candidate_not_approved
+3,印章缺的是哪一角,许灯辨认半星印,两份手续印记不同,记录差异，不提前判定真伪,许灯,F03埋设；F01保留,candidate_not_approved
+4,关门前最后一份借阅单,取得合法借阅记录,档案馆拒绝无凭据请求,陆衡提供受限查阅而非内幕,沈砚,F02强化疑问,candidate_not_approved
+5,桥头没有归还的收据,核实信的转交路线,证人与记录矛盾,只确认递送路径，不知最终秘密,许灯,三条伏笔来源复核,candidate_not_approved
+6,慢了三刻的仓钟,排查不可靠时间证词,钟声与船票不符,将证词降为待确认而非删除,沈砚,知识检查点6,candidate_not_approved
+7,灰册上被刮掉的日期,观察旧出库册,保护隐私与追查冲突,取得合法抄件并保留缺损记录,陆衡,主线证据,candidate_not_approved
+8,灰烬里找不到的修刀,住处遭毁,救人和抢工具不能兼得,救人，工具永久失去,沈砚,不可逆状态,candidate_not_approved
+9,许灯提出的交换条件,争取码头合作,家人安全与冒险追查,明确保护承诺与行动边界,许灯,人物关系变化,candidate_not_approved
+10,清晨封存的第二只匣子,阶段性封存证据,公示可能惊动对手,将证据交受控保管并决定继续,沈砚,前10章阶段转折,candidate_not_approved

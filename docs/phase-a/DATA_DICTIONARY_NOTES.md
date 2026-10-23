@@ -1,0 +1,11 @@
+# 数据字典读取约定
+
+每行描述拟建逻辑实体，不是现有表。除关联表明确使用复合主键的未来决定外，各表统一id bigint主键、created_at timestamptz；可变聚合另有updated_at和row_version，不可变记录不做原地内容更新。所有小说范围表增加novel_id bigint NOT NULL及UNIQUE(novel_id,id)，书内引用使用复合FK。全局provider/model/prompt/style/price配置不加虚假novel_id；运行冻结引用其版本。
+
+CSV的key_fields_and_types列为业务必需关键字段，加上本约定构成设计字典；未列全部审计展示字段。JSONB内内容在所属实现任务补输出Schema，不允许只因JSON可存就绕过结构验证。枚举值与A04状态表保持一致。
+
+source_documents是本设计补充的强类型来源注册表：chapter/scene正文版本、正式event、rule版本、artifact、blueprint中恰有一个非空FK，kind与字段匹配；hash指该源冻结内容。evidence_spans/memory_items/search_documents的source_version_id统一指注册表主键，避免多态数字指针没有数据库引用约束。旧PRD中source_version_id的逻辑来源语义不变；API如同时返回chapter_version_id，必须与注册表解析结果一致。
+
+新增辅助实体（chapter_scene_versions、entity_definition_versions、embedding_profiles、model_profile_versions、budget_policies、canonical_chapters、consumer_receipts、idempotency_requests、source_documents）用于落实PRD已经要求的版本、提交、来源和预算规则，不扩大产品业务范围。关系/伏笔涉及实体列表在实施时使用明确关联表，不能用未校验JSON ID绕过同书约束。
+
+price/budget/provider/model/route/style/prompt等与小说范围的界限应按实际聚合范围决定；任何允许跨书共享的配置不允许带入另一书正文或事实。候选基线的state版本和活动小说全局state_version分离，详见A04。

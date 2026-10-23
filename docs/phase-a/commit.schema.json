@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NovelForge CommitCommand v1 (design)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "novel_id",
+    "chapter_id",
+    "chapter_version_id",
+    "review_id",
+    "expected_revision_id",
+    "expected_state_version",
+    "plan_node_version_id",
+    "event_artifact_id",
+    "validation_artifact_id",
+    "reason"
+  ],
+  "properties": {
+    "novel_id": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$"
+    },
+    "chapter_id": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$"
+    },
+    "chapter_version_id": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$"
+    },
+    "review_id": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$"
+    },
+    "expected_revision_id": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$"
+    },
+    "expected_state_version": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "plan_node_version_id": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$"
+    },
+    "event_artifact_id": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$"
+    },
+    "validation_artifact_id": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$"
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    }
+  }
+}

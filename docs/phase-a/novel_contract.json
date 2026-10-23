@@ -1,0 +1,157 @@
+{
+  "kind": "candidate_acceptance_contract",
+  "version": "1.0",
+  "approval_status": "awaiting_author_decision",
+  "synthetic_plan_only": true,
+  "candidate_id": "candidate-fog-city",
+  "title": "雾城旧档",
+  "genre": "架空悬疑",
+  "premise": "档案修复师沈砚收到一封会显字的旧信，追查十二年前的码头事故。他发现失踪档案员与被替换的证据有关，必须在公开审理前找回有来源链的原始档案。",
+  "characters": [
+    {
+      "name": "沈砚",
+      "role": "主角，修复师",
+      "voice": "谨慎，先问来源再作判断",
+      "goal": "查明父亲被诬陷的原因",
+      "boundary": "不能凭直觉知道未接触秘密"
+    },
+    {
+      "name": "许灯",
+      "role": "码头跑腿，配角",
+      "voice": "短句、具体行动与实物判断",
+      "goal": "保护仍在码头工作的家人"
+    },
+    {
+      "name": "陆衡",
+      "role": "档案官，配角",
+      "voice": "克制，习惯区分可证与推测",
+      "goal": "保存档案来源链，即使证据对自己不利"
+    }
+  ],
+  "world_rule": "没有读心或复活能力；证据的来源链必须由实际取得和核验建立，不能靠临时出现的超能力解决案件。",
+  "irreversible_change": "第8章原住处被烧毁，失去旧工具，后续不能无解释取回。",
+  "knowledge_secret": "旧案关键封记被替换的最终判定只有在第100章完成铜钥匙缺口与有来源的原档封记比对后才能公开成立。早期只可怀疑。",
+  "target_chapters": 100,
+  "ending_window": [
+    100,
+    100
+  ],
+  "chapter_visible_character_range": [
+    2500,
+    3500
+  ],
+  "ending_contract": {
+    "required": [
+      "第100章以合法来源链完成铜钥匙因果回收",
+      "沈砚选择公开包含父亲过错的完整证据，而非只洗清罪名",
+      "许灯家人的安全处置有正文交代",
+      "主要旧案冲突闭合"
+    ],
+    "open_items": [
+      "雾城其他档案失踪案可保留为系列余韵"
+    ],
+    "forbidden": [
+      "新角色突然提供全知答案",
+      "新能力无铺垫解决案件",
+      "只重复道具名称就宣称回收"
+    ]
+  },
+  "foreshadows": [
+    {
+      "id": "F01",
+      "name": "缺齿铜钥匙",
+      "plant_range": [
+        1,
+        3
+      ],
+      "payoff_range": [
+        100,
+        100
+      ],
+      "required": true,
+      "reinforce_chapters": [
+        30,
+        60,
+        80,
+        95
+      ],
+      "surface": "不能开门的遗物",
+      "hidden": "缺口与原封记的非对称边缘对应，证明替换",
+      "causal_payoff": "主角在审理中拒绝伪档并公开完整证据"
+    },
+    {
+      "id": "F02",
+      "name": "黑墨信",
+      "plant_range": [
+        2,
+        4
+      ],
+      "payoff_range": [
+        40,
+        40
+      ],
+      "required": true,
+      "reinforce_chapters": [
+        12,
+        25
+      ],
+      "surface": "被雨浸坏的信",
+      "hidden": "盐水显字揭示交货时刻",
+      "causal_payoff": "排除错误嫌疑人并改变查证方向"
+    },
+    {
+      "id": "F03",
+      "name": "半星印",
+      "plant_range": [
+        3,
+        5
+      ],
+      "payoff_range": [
+        70,
+        70
+      ],
+      "required": true,
+      "reinforce_chapters": [
+        20,
+        50
+      ],
+      "surface": "普通旧印章",
+      "hidden": "断口方向识别复制印章",
+      "causal_payoff": "识别伪造通行手续并获得原档追索机会"
+    }
+  ],
+  "quality_policy": {
+    "chapter_dimensions": [
+      "情节推进",
+      "人物一致性",
+      "因果连贯",
+      "节奏",
+      "对白与声音",
+      "自然度",
+      "章节吸引力"
+    ],
+    "foreshadow_dimensions": [
+      "可识别联系",
+      "铺垫公平",
+      "人物知情合法",
+      "因果作用",
+      "情绪回报"
+    ],
+    "minimum_each": 3,
+    "minimum_average": 3.8,
+    "severe_conflicts_allowed": 0
+  },
+  "provider": null,
+  "model_routes": null,
+  "embedding_profile": null,
+  "currency": null,
+  "budget_limits": null,
+  "freeze_requirements": [
+    "作者确认候选故事与评分政策",
+    "批准模型/外部数据范围",
+    "确认币种和预算上限",
+    "细化并验证前10章Scene计划",
+    "生成前固定全部版本哈希"
+  ],
+  "warning": "不是已生成小说，不能作为AC01–08通过证据；检索fixture-book-a为独立合成语料，不代表本小说已发生事实。"
+}

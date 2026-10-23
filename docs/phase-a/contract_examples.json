@@ -1,0 +1,90 @@
+{
+  "design_only": true,
+  "schema_version": "nf-contract-v1",
+  "commit_request": {
+    "novel_id": "1",
+    "chapter_id": "10",
+    "chapter_version_id": "24",
+    "review_id": "31",
+    "expected_revision_id": "1",
+    "expected_state_version": 9,
+    "plan_node_version_id": "45",
+    "event_artifact_id": "52",
+    "validation_artifact_id": "53",
+    "reason": "作者确认候选版本"
+  },
+  "idempotency_header": "fixture-commit-10-v1",
+  "commit_response": {
+    "data": {
+      "commit_id": "10",
+      "canonical_revision_id": "1",
+      "state_version": 10
+    },
+    "request_id": "fixture-request-1",
+    "version": "v1"
+  },
+  "evidence_span": {
+    "source_version_id": "24",
+    "source_hash": "bed1236d07024f3a56de39f278f5b39def0d5f4ec2c61356e78a3eec36105389",
+    "start_offset": 1,
+    "end_offset": 2,
+    "offset_unit": "unicode_codepoint",
+    "quote": "😀"
+  },
+  "event_candidate": {
+    "novel_id": "1",
+    "chapter_version_id": "24",
+    "fact_type": "belief",
+    "event_type": "belief_changed",
+    "subject_entity_id": "2",
+    "payload": {
+      "attribute": "believes_target_dead",
+      "from": false,
+      "to": true
+    },
+    "evidence_span_index": 0,
+    "story_time": {
+      "kind": "unknown"
+    },
+    "narrative_chapter": 10,
+    "visible_to_entity_ids": [
+      "2"
+    ],
+    "validation_status": "pending"
+  },
+  "context_manifest": {
+    "novel_id": "1",
+    "revision_id": "1",
+    "chapter_cutoff": 9,
+    "pov_id": "2",
+    "state_version": 9,
+    "input_tokens": 5000,
+    "max_output_tokens": 4000,
+    "separate_reasoning_reserve": 0,
+    "safety_margin": 1000,
+    "capacity": 16000,
+    "items": [
+      {
+        "source_type": "world_rule",
+        "source_id": "5",
+        "source_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "mandatory": true,
+        "tokens": 100,
+        "reason": "能力边界",
+        "order": 1
+      }
+    ],
+    "excluded_items": [],
+    "status": "assembled"
+  },
+  "uncertain_usage": {
+    "request_id": "18",
+    "price_version_id": "3",
+    "currency": "TBD",
+    "estimated_cost": "0.2500000000",
+    "actual_cost": null,
+    "status": "unknown",
+    "reservation_status": "uncertain"
+  },
+  "warning": "示例ID、金额、Token不是实际请求或供应商规格；currency=TBD不能进入真实计费请求；证据单独用来测试Unicode定位。"
+}
