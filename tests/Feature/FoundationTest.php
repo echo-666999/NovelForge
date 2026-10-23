@@ -64,10 +64,13 @@ class FoundationTest extends TestCase
         $this->assertTrue((bool) $result->matched);
     }
 
-    public function test_only_authorized_b01_business_schema_is_installed(): void
+    public function test_only_authorized_b01_b02_b03_schema_is_installed(): void
     {
         $this->assertTrue(Schema::hasTable('novels'));
-        $this->assertFalse(Schema::hasTable('chapters'));
+        $this->assertTrue(Schema::hasTable('chapters'));
+        $this->assertTrue(Schema::hasTable('entities'));
+        $this->assertFalse(Schema::hasTable('story_events'));
+        $this->assertFalse(Schema::hasTable('chapter_versions'));
         $this->assertFalse(Schema::hasTable('generation_runs'));
         $this->get('/admin/novels')->assertRedirect('/admin/login');
     }

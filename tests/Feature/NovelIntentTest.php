@@ -73,7 +73,7 @@ class NovelIntentTest extends TestCase
         $this->assertSame($this->input()['background'], $book['sources'][0]['input']['background']);
         $this->assertCount(4, $book['unresolved_requirements']);
         $this->assertSame(hash('sha256', NovelIntentService::canonical($book['sources'][0]['input'])), $book['sources'][0]['content_hash']);
-        $this->assertFalse(Schema::hasTable('chapters'));
+        $this->assertFalse(Schema::hasTable('chapter_versions'));
         $this->assertFalse(Schema::hasTable('generation_runs'));
     }
 
@@ -255,8 +255,8 @@ class NovelIntentTest extends TestCase
     {
         $b = $this->createBook();
         $novel = Novel::find($b['novel']['id']);
-        $this->service->execute($this->author,'update',$novel->id,['expected_version' => 1, 'title' => '较新标题'],'new-title');
+        $this->service->execute($this->author, 'update', $novel->id, ['expected_version' => 1, 'title' => '较新标题'], 'new-title');
         Livewire::test(ListNovels::class)->mountAction(TestAction::make('metadata')->table($novel))->fillForm(['expected_version' => 1, 'title' => '旧标题', 'genre' => '悬疑'])->callMountedAction()->assertNotified('内容已更新，请刷新后重新操作。');
-        $this->assertSame('较新标题',$novel->fresh()->title);
+        $this->assertSame('较新标题', $novel->fresh()->title);
     }
 }

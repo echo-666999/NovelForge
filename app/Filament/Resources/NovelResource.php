@@ -72,6 +72,8 @@ class NovelResource extends Resource
             TernaryFilter::make('archived')->label('归档')->queries(true: fn (Builder $q) => $q->where('status', 'archived'), false: fn (Builder $q) => $q->where('status', '!=', 'archived')),
             Filter::make('updated')->label('更新时间')->schema([DatePicker::make('from')->label('起始日期'), DatePicker::make('until')->label('截止日期')])->query(fn (Builder $q, array $data) => $q->when($data['from'] ?? null, fn ($q, $v) => $q->whereDate('updated_at', '>=', $v))->when($data['until'] ?? null, fn ($q, $v) => $q->whereDate('updated_at', '<=', $v))),
         ])->recordActions([
+            Action::make('world')->label('世界与人物')->url(fn (Novel $record) => static::getUrl('world', ['record' => $record])),
+            Action::make('structure')->label('五层结构')->url(fn (Novel $record) => static::getUrl('structure', ['record' => $record])),
             Action::make('intent')->label('原始要求')->url(fn (Novel $record) => static::getUrl('intent', ['record' => $record])),
             Action::make('metadata')->label('修改书名/题材')->visible(fn (Novel $record) => $record->status !== 'archived')->schema([TextInput::make('title')->label('书名')->required(), TextInput::make('genre')->label('题材')->required(), Hidden::make('expected_version')])->fillForm(fn (Novel $record) => ['title' => $record->title, 'genre' => $record->genre, 'expected_version' => $record->row_version])->action(fn (Novel $record, array $data) => IntentUi::run('update', $record->id, $data)),
             Action::make('copy')->label('复制设定为新书')->schema([TextInput::make('title')->label('新书名')->required()->maxLength(255), Hidden::make('expected_version')])->fillForm(fn (Novel $record) => ['title' => $record->title.'（新书）', 'expected_version' => $record->row_version])->action(function (Novel $record, array $data) {
@@ -86,6 +88,6 @@ class NovelResource extends Resource
 
     public static function getPages(): array
     {
-        return ['index' => Pages\ListNovels::route('/'), 'create' => Pages\CreateNovel::route('/create'), 'intent' => Pages\NovelIntent::route('/{record}/intent')];
+        return ['world' => Pages\WorldLibrary::route('/{record}/world'), 'structure' => Pages\Structure::route('/{record}/structure'), 'index' => Pages\ListNovels::route('/'), 'create' => Pages\CreateNovel::route('/create'), 'intent' => Pages\NovelIntent::route('/{record}/intent')];
     }
 }

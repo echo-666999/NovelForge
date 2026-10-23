@@ -1,6 +1,6 @@
 # API v1 设计契约
 
-本文保留A04设计基线。2026-10-23已实现NF-B01的创建/元数据接口及所属页面CRUD，精确范围见 [NF-B01验收](../phase-b/NF-B01_ACCEPTANCE.md)；其余接口仍为待实现设计，不得宣称已存在。
+本文保留A04设计基线。2026-10-23已实现NF-B01的创建/元数据接口及所属页面CRUD，精确范围见 [NF-B01验收](../phase-b/NF-B01_ACCEPTANCE.md)；NF-B02同步结构CRUD及版本读取也已实现，见文末；其他核心接口仍为待实现设计，不得宣称已存在。
 
 ## 通用协议
 
@@ -51,3 +51,11 @@
 | 401/403/404/422 | AUTH_REQUIRED / FORBIDDEN / NOT_FOUND / VALIDATION_FAILED | 统一输入与授权处理 |
 
 HTTP错误是新接口设计选择；具体供应商错误通过适配器映射，不能直接透传供应商认证头或原始堆栈。
+
+## NF-B02 已实现页面接口（2026-10-23）
+
+前缀 `/api/v1/novels/{novel}/structure`：GET根路径读取完整工作树；GET `/versions` 游标分页；GET `/versions/{outline}` 读取历史；POST `/node`、`/thread` 保存工作节点/线索（200）；POST `/snapshot` 保存不可变结构版本（201）。写入遵循会话/CSRF、Idempotency-Key、expected_version和reason规则。完整字段见[NF-B02验收记录](../phase-b/NF-B02_ACCEPTANCE.md)。结构版本不代表生成审批，所有结构读取generation_eligible=false。
+
+## NF-B03 已实现页面接口（2026-10-23）
+
+前缀 `/api/v1/novels/{novel}/world`：GET根列表、`/entities/{entity}`详情、`/versions/{definition}`历史及`/versions/{definition}/reference`引用资格；POST `/definition`、`/approve`、`/accept-minor`、`/policy`、`/merge-aliases`、`/retire`，全部同步200。列表遵循cursor默认20/最大100；写入遵循会话/CSRF、Idempotency-Key、expected_version、reason。具体字段与状态见[NF-B03记录](../phase-b/NF-B03_ACCEPTANCE.md)。本接口不写正式动态状态，`canonical_state=null`不是事实值。

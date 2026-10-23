@@ -9,3 +9,11 @@ source_documents是本设计补充的强类型来源注册表：chapter/scene正
 新增辅助实体（chapter_scene_versions、entity_definition_versions、embedding_profiles、model_profile_versions、budget_policies、canonical_chapters、consumer_receipts、idempotency_requests、source_documents）用于落实PRD已经要求的版本、提交、来源和预算规则，不扩大产品业务范围。关系/伏笔涉及实体列表在实施时使用明确关联表，不能用未校验JSON ID绕过同书约束。
 
 price/budget/provider/model/route/style/prompt等与小说范围的界限应按实际聚合范围决定；任何允许跨书共享的配置不允许带入另一书正文或事实。候选基线的state版本和活动小说全局state_version分离，详见A04。
+
+## NF-B02 实际结构映射（2026-10-23）
+
+data_dictionary.csv保留完整目标设计，不作为所有表已落地的证明。B02实施：卷根父级使用novel_id；弧/章/场景用parent_id；plan_nodes稳定引用拆为四个具体外键并检查类型；outline_versions增加building/sealed结构快照状态，不是批准状态。blueprint_version_id待B04/B05真实版本表及门禁建立后迁移加入；Thread仅完成B02关联字段。完整实际表/索引和延期依赖见../phase-b/NF-B02_ACCEPTANCE.md。
+
+## NF-B03 实际结构映射（2026-10-23）
+
+entities批准资格由current/approved_version_id及独立entity_approvals表达，替代在不可变内容中原地修改approved_at；entity_aliases按具体设定版本唯一，保留历史。world_rules存版本化规则原文与scope；可执行状态验证仍在D01/E03。character_profiles按版本不可变；entity_initial_relations绑定目标具体版本，不能代替正式relationships。新增entity_introduction_policies固化minor-v1完整限制/范围/数量/hash，默认关闭；审批审计单独保存。别名合并来源以同书alias_origin_version_id复合FK保存。完整实际表和延期边界见../phase-b/NF-B03_ACCEPTANCE.md；原CSV仍是全系统目标设计，非全部已落地证明。

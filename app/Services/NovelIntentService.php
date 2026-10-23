@@ -8,6 +8,7 @@ use App\Models\PremiseVersion;
 use App\Models\RequirementItem;
 use App\Models\RequirementVersion;
 use App\Models\User;
+use App\Models\Volume;
 use Illuminate\Pagination\Cursor;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -176,6 +177,9 @@ final class NovelIntentService
     {
         $reason = Validator::make($data, ['reason' => 'required|string|max:2000'])->validate()['reason'];
         $input = $this->input($data);
+        if (Volume::where('novel_id', $novel->id)->where('end_chapter', '>', $input['target_chapters'])->exists()) {
+            throw new NovelProblem('STRUCTURE_CONFLICT', '目标章数不能排除已有卷范围；请先调整结构。');
+        }
         $this->appendSource($novel, $input, $reason);
         $novel->fill(['premise_raw' => $input['premise_raw'], 'settings' => $input, 'target_chapters' => $input['target_chapters'], 'chapter_length_policy' => $input['length_policy'], 'title' => $input['title'], 'genre' => $input['genre']]);
         $novel->row_version++;

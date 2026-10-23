@@ -128,3 +128,21 @@ B-tree覆盖书内顺序、事件章位、状态版本、角色获得知识章�
 ## 9. 评审边界
 
 本轮完成PRD逻辑实体覆盖、接口/状态/数据字典交叉一致性、自检与样例引用检查；未执行Schema迁移、并发提交、提供商结构化输出或业务接口测试。模型/嵌入参数保留待决；设计不是人工文学验收或生产兼容性证明。
+
+## NF-B02 实施补充（2026-10-23）
+
+本节细化结构快照，不替代上文批准规划状态机。工作节点skeleton/detailed为成熟度；不可变结构快照在同一事务内building→sealed，generation_eligible=false。sealed不等于approved/frozen。B04/B05审批、覆盖与预算门禁仍待实施，不能将历史快照原地升级为生成批准。
+
+稳定卷以novel_id直接连接根；其他层使用parent_id与novel_id复合FK。plan_nodes以四个具体类型FK实现stable_node_id逻辑角色，恰有一个且与node_type匹配；父节点必须同书、同版本、正确层级并匹配稳定父级。来源source_version_id当前指premise_versions。blueprint_versions尚未建立，蓝图FK及审批记录由B04/B05补充；旧版本保持不可变。
+
+Thread仅实现B02同书身份、标题/目标和arc_thread关系，主支线审批和终局仍属于B04。详细字段、约束、接口、页面及实际验收见[记录](../phase-b/NF-B02_ACCEPTANCE.md)。
+
+## NF-B03 实施补充（2026-10-23）
+
+实体稳定ID保留current_version_id与approved_version_id；设定从首次保存就不可变，批准另写不可变entity_approvals，不改旧definition/hash。候选/批准/停用是资格与界面投影，sealed仅是存储封存，不是批准。初始关系绑定同书具体设定版本，独立于未来正式relationships。
+
+别名合并创建目标新候选并以alias_origin_version_id保存来源，不删除实体或重绑旧证据；别名唯一性作用于具体设定版本。同名跨实体只作为歧义候选。引用检查要求具体设定版本已批准且实体未停用，历史内容仍可读取；正式正文证据与状态变更仍由D/E模块负责。
+
+核心实体人工批准。非关键路人引入默认关闭，作者明确批准不可变策略后才可执行确定性接纳命令。minor-v1及完整限制快照随策略保存：仅character/minor/extra、无能力/初始关系/规则/主线影响、章窗口和每策略版本累计数量限制。新调用必须使用最新启用策略；修改规则语义须新schema/策略版本，旧批准记录保留。基于作者字段的分类不替代正文语义校验。
+
+字段、数据库约束与验收证据见[NF-B03记录](../phase-b/NF-B03_ACCEPTANCE.md)。世界规则当前保留原文与范围，不宣称已完成自动规则推理；AC12/AC13完整验收未执行。
