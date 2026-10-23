@@ -1,10 +1,11 @@
 <x-filament-panels::page>
+@include('filament.novel-navigation')
     @php($snapshot = $this->snapshot())
     <x-filament::section>
         <h2>{{ $snapshot['novel']['title'] }}</h2>
         <p>当前状态：{{ $snapshot['novel']['status'] }} · 正式基线：尚未建立</p>
         <p>{{ $snapshot['freeze_gate']['message'] }}</p>
-        <p>本页只管理创作意图。规划工作台尚未接入。</p>
+        <p>本页管理创作意图；可从上方导航查看工作台与承接计划。</p>
         <div class="flex gap-3">{{ $this->sourceAction }} {{ $this->requirementAction }}</div>
     </x-filament::section>
     <x-filament::section heading="原始输入（历史只读）">

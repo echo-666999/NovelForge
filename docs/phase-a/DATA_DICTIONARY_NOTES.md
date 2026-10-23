@@ -25,3 +25,7 @@ entities批准资格由current/approved_version_id及独立entity_approvals表�
 ### NF-B05 实际数据库补充
 
 新增rolling_plans、requirement_coverages、plan_validations、plan_freezes四表，plan_nodes(novel_id,id)唯一索引，scenes.retired。B02 outline_versions保持不变，由rolling_plans承载蓝图和新结构快照的双向聚合关联；覆盖指向该快照内plan_nodes，同书复合FK、码点偏移/quote/字段hash。封存与子记录不可变，冻结窗口及祖先数据库写保护。旧场景退休但不删除，完整说明见../phase-b/NF-B05_ACCEPTANCE.md；字典其他待建表仍是设计，不因B05交付视为已存在。
+
+## NF-C01 实际数据库补充（2026-10-23）
+
+generation_runs/steps/artifacts 已落地，新增 generation_dependencies 保存同运行产物引用；scope 位于冻结 DAG 的节点 key，实际尝试使用 scope_key。检查点指向本步骤产物；新尝试的 resume_artifact_id 指向同运行旧产物。内容暂为私有 DB JSONB，storage_ref=db:UUID。命令幂等复用 novel_commands，不重复建设 idempotency_requests。租约/心跳/fencing、parent_run、预算/供应商请求等 CSV 目标字段不代表本轮已实现；分别随 C02/C03/C05/C06 的真实需求加入。全部实际字段/索引/约束见 ../phase-c/NF-C01_ACCEPTANCE.md；CSV 保持完整目标设计含义。

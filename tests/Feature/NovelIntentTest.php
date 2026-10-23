@@ -74,7 +74,8 @@ class NovelIntentTest extends TestCase
         $this->assertCount(4, $book['unresolved_requirements']);
         $this->assertSame(hash('sha256', NovelIntentService::canonical($book['sources'][0]['input'])), $book['sources'][0]['content_hash']);
         $this->assertFalse(Schema::hasTable('chapter_versions'));
-        $this->assertFalse(Schema::hasTable('generation_runs'));
+        // C01 已建编排表，但本操作不能创建运行。
+        $this->assertDatabaseCount('generation_runs', 0);
     }
 
     public function test_creation_validation_and_key_are_required(): void

@@ -67,3 +67,11 @@ HTTP错误是新接口设计选择；具体供应商错误通过适配器映射�
 ## NF-B05 已注册接口（2026-10-23）
 
 `/api/v1/novels/{novel}/plans`：GET列表（limit≤100、before降序游标、status全局派生状态筛选）、GET/{plan}；POST save/validate/freeze/split/merge/reorder。同源会话/CSRF、Idempotency-Key、expected_version、reason及统一响应沿用现有协议。save同时捕获新结构快照和覆盖证据；freeze须rolling_plan_id/validation_id/report_hash，重验后追加。具体载荷、错误码和后台动作见../phase-b/NF-B05_ACCEPTANCE.md。B01 intent/requirements已返回真实覆盖证据、计划链接及规划门禁，generation_eligible仍false。
+
+## NF-B06 已注册接口（2026-10-23）
+
+GET /api/v1/novels/{novel} 已实现为只读工作台摘要，支持章范围、规划状态、issues_only、page及limit=10/25/50/100。共享小说行锁下复用B05报告，返回真实缺项、最新计划和当前有效冻结窗口，不创建审计或命令。未接入的正式章数/费用/下一章/运行等返回null，generation_eligible=false。响应字段和页面契约见../phase-b/NF-B06_ACCEPTANCE.md。
+
+### NF-C01 接口落地边界（2026-10-23）
+
+新增 PHP 应用服务 GenerationService::start/read/advance 与 StageExecutor::execute(array): StageResult。start/advance 强制 testing，read 验证管理员及本书归属；所有输出业务 ID 为十进制字符串。start 的首次响应以 generation.test.start 命令域幂等保存，重试通过明确 retryOf 尝试号去重。没有新 HTTP 路由；POST /generation-runs 属于 F01，运行查询页面/API 属于 C07，暂停/取消/迁移属于 C06。不能将内部测试入口视为生产生成资格。

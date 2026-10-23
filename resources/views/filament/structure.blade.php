@@ -1,4 +1,5 @@
 <x-filament-panels::page>
+@include('filament.novel-navigation')
 @php($state=$this->state())
 <x-filament::section>
 <h2>{{ $state['novel']['title'] }}</h2><p>Novel → Volume → Story Arc → Chapter → Scene。正式基线尚未建立。</p>

@@ -1,4 +1,5 @@
 <x-filament-panels::page>
+@include('filament.novel-navigation')
 @php($list=$this->listing())
 <x-filament::section heading="世界实体与人物设定">
 <p>候选设定与已批准版本分别保存。正式存亡、位置、知识、经历及关系变化尚未接入，不由本页编辑。</p>

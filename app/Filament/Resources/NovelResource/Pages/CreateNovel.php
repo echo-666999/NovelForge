@@ -51,6 +51,6 @@ class CreateNovel extends CreateRecord
 
     protected function getRedirectUrl(): string
     {
-        return NovelResource::getUrl('intent', ['record' => $this->record]);
+        return NovelResource::getUrl('workspace', ['record' => $this->record]);
     }
 }

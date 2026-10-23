@@ -1,4 +1,5 @@
 <x-filament-panels::page>
+@include('filament.novel-navigation')
 @php($selected=$this->selected())
 <x-filament::section heading="滚动细化与计划门禁">
 <p>首窗为前十章，后续每窗五至十章。未来骨架不等于可生成计划；正文生成、正式历史及伏笔生命周期尚未接入。</p>

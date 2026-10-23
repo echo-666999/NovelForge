@@ -1,4 +1,5 @@
 <x-filament-panels::page>
+@include('filament.novel-navigation')
 @php($list=$this->listing())
 <x-filament::section heading="蓝图与终局契约规划">
 <p>先手工规划、检查，再批准冻结。历史内容始终只读；批准记录不等于当前依赖仍有效，生成前仍需后续门禁。</p>

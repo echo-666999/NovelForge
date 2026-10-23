@@ -20,6 +20,9 @@ use Illuminate\Database\Eloquent\Builder;
 
 class NovelResource extends Resource
 {
+    // 只将已实现的创作入口放入导航，不显示不存在的生产页面。
+    protected static string|\UnitEnum|null $navigationGroup = '创作工作台';
+
     protected static ?string $model = Novel::class;
 
     protected static ?string $modelLabel = '小说';
@@ -59,7 +62,7 @@ class NovelResource extends Resource
     public static function table(Table $table): Table
     {
         return $table->columns([
-            TextColumn::make('title')->label('书名')->searchable()->sortable()->url(fn (Novel $record) => static::getUrl('intent', ['record' => $record])),
+            TextColumn::make('title')->label('书名')->searchable()->sortable()->url(fn (Novel $record) => static::getUrl('workspace', ['record' => $record])),
             TextColumn::make('genre')->label('题材')->searchable(),
             TextColumn::make('status')->label('状态')->formatStateUsing(fn ($state) => ['draft' => '草稿', 'planning' => '规划中', 'ready' => '就绪', 'generating' => '生成中', 'paused' => '暂停', 'completed' => '完成', 'archived' => '已归档'][$state] ?? $state)->badge(),
             TextColumn::make('formal_chapters')->label('正式章数')->state('尚未接入'),
@@ -72,6 +75,7 @@ class NovelResource extends Resource
             TernaryFilter::make('archived')->label('归档')->queries(true: fn (Builder $q) => $q->where('status', 'archived'), false: fn (Builder $q) => $q->where('status', '!=', 'archived')),
             Filter::make('updated')->label('更新时间')->schema([DatePicker::make('from')->label('起始日期'), DatePicker::make('until')->label('截止日期')])->query(fn (Builder $q, array $data) => $q->when($data['from'] ?? null, fn ($q, $v) => $q->whereDate('updated_at', '>=', $v))->when($data['until'] ?? null, fn ($q, $v) => $q->whereDate('updated_at', '<=', $v))),
         ])->recordActions([
+            Action::make('workspace')->label('打开工作台')->url(fn (Novel $record) => static::getUrl('workspace', ['record' => $record])),
             Action::make('plans')->label('章节场景计划')->url(fn (Novel $record) => static::getUrl('plans', ['record' => $record])),
             Action::make('blueprints')->label('蓝图与终局')->url(fn (Novel $record) => static::getUrl('blueprints', ['record' => $record])),
             Action::make('world')->label('世界与人物')->url(fn (Novel $record) => static::getUrl('world', ['record' => $record])),
@@ -81,7 +85,7 @@ class NovelResource extends Resource
             Action::make('copy')->label('复制设定为新书')->schema([TextInput::make('title')->label('新书名')->required()->maxLength(255), Hidden::make('expected_version')])->fillForm(fn (Novel $record) => ['title' => $record->title.'（新书）', 'expected_version' => $record->row_version])->action(function (Novel $record, array $data) {
                 $result = IntentUi::run('copy', $record->id, $data);
 
-                return redirect(static::getUrl('intent', ['record' => $result['novel']['id']]));
+                return redirect(static::getUrl('workspace', ['record' => $result['novel']['id']]));
             }),
             Action::make('archive')->label('归档')->requiresConfirmation()->visible(fn (Novel $record) => in_array($record->status, ['draft', 'planning', 'ready', 'paused', 'completed']))->schema([Hidden::make('expected_version')])->fillForm(fn (Novel $record) => ['expected_version' => $record->row_version])->action(fn (Novel $record, array $data) => IntentUi::run('archive', $record->id, $data)),
             Action::make('restore')->label('恢复')->requiresConfirmation()->visible(fn (Novel $record) => $record->status === 'archived')->schema([Hidden::make('expected_version')])->fillForm(fn (Novel $record) => ['expected_version' => $record->row_version])->action(fn (Novel $record, array $data) => IntentUi::run('restore', $record->id, $data)),
@@ -90,6 +94,6 @@ class NovelResource extends Resource
 
     public static function getPages(): array
     {
-        return ['plans' => Pages\RollingPlans::route('/{record}/plans'), 'blueprints' => Pages\Blueprints::route('/{record}/blueprints'), 'world' => Pages\WorldLibrary::route('/{record}/world'), 'structure' => Pages\Structure::route('/{record}/structure'), 'index' => Pages\ListNovels::route('/'), 'create' => Pages\CreateNovel::route('/create'), 'intent' => Pages\NovelIntent::route('/{record}/intent')];
+        return ['workspace' => Pages\Workspace::route('/{record}/workspace'), 'plans' => Pages\RollingPlans::route('/{record}/plans'), 'blueprints' => Pages\Blueprints::route('/{record}/blueprints'), 'world' => Pages\WorldLibrary::route('/{record}/world'), 'structure' => Pages\Structure::route('/{record}/structure'), 'index' => Pages\ListNovels::route('/'), 'create' => Pages\CreateNovel::route('/create'), 'intent' => Pages\NovelIntent::route('/{record}/intent')];
     }
 }

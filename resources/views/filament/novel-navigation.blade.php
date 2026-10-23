@@ -1,0 +1,15 @@
+@php
+try { $context=app(\App\Services\WorkspaceService::class)->navigation(auth()->user(),$novelId); }
+catch (\Illuminate\Database\QueryException $e) { report($e); $context=null; }
+@endphp
+@if($context)
+<x-filament::section>
+<p><strong>当前小说：{{ $context['title'] }}</strong> · #{{ $context['id'] }} @if($context['status']==='archived') · 已归档 @endif</p>
+<p>正式基线：尚未接入</p>
+<nav aria-label="当前小说创作导航" class="flex flex-wrap gap-3">
+@foreach($context['links'] as $link)<a href="{{ $link['url'] }}" @if(request()->is(ltrim($link['url'],'/'))) aria-current="page" @endif>{{ $link['label'] }}</a>@endforeach
+<a href="/admin/novels">切换小说</a><a href="/admin">创作总览</a>
+</nav>
+</x-filament::section>
+
+@else <p role="alert">当前小说信息读取失败，请重试。</p> @endif

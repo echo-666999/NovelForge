@@ -99,7 +99,8 @@ class StructureTest extends TestCase
         $this->assertSame($old['nodes'][2]['id'], $old['nodes'][3]['parent_plan_node_id']);
         $this->assertSame($tree['s']['id'], $old['nodes'][3]['scene_id']);
         $this->assertNotSame($old['nodes'][3]['id'], $two['nodes'][3]['id']);
-        $this->assertFalse(Schema::hasTable('generation_runs'));
+        // C01 已建编排表，但本操作不能创建运行。
+        $this->assertDatabaseCount('generation_runs', 0);
         $this->assertTrue(Schema::hasTable('blueprint_versions'));
     }
 

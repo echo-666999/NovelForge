@@ -4,6 +4,7 @@ use App\Http\Controllers\BlueprintController;
 use App\Http\Controllers\NovelIntentController;
 use App\Http\Controllers\RollingPlanController;
 use App\Http\Controllers\StructureController;
+use App\Http\Controllers\WorkspaceController;
 use App\Http\Controllers\WorldController;
 use Illuminate\Support\Facades\Route;
 
@@ -54,3 +55,6 @@ Route::prefix('api/v1/novels/{novel}/plans')->whereNumber('novel')->group(functi
         Route::post('/'.$command, RollingPlanController::class)->defaults('planCommand', $command);
     }
 });
+
+// B06 工作台摘要为只读接口，不触发生成或修改规划状态。
+Route::get('api/v1/novels/{novel}', WorkspaceController::class)->whereNumber('novel');
