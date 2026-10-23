@@ -25,7 +25,7 @@ final class StructureService
 
     public const PARENTS = ['story_arc' => 'volume', 'chapter' => 'story_arc', 'scene' => 'chapter'];
 
-    public const DETAIL_FIELDS = ['turning_point', 'climax', 'ending_state', 'pov', 'story_time', 'location', 'conflict', 'character_change', 'foreshadow_tasks', 'participants', 'transition_in', 'transition_out', 'forbidden_changes', 'required_events', 'dependencies', 'target_words'];
+    public const DETAIL_FIELDS = ['turning_point', 'climax', 'ending_state', 'pov', 'story_time', 'location', 'conflict', 'character_change', 'foreshadow_tasks', 'participants', 'transition_in', 'transition_out', 'forbidden_changes', 'required_events', 'dependencies', 'narration_mode', 'time_end', 'emotion_start', 'emotion_end', 'min_words', 'max_words', 'pov_version_id', 'target_words'];
 
     public function execute(User $actor, string $novelId, string $command, array $data, string $key): array
     {
@@ -83,8 +83,8 @@ final class StructureService
             'summary' => 'nullable|string|max:20000', 'status' => ['required', Rule::in(['skeleton', 'detailed'])],
             'start_chapter' => 'nullable|integer|min:1|max:100000', 'end_chapter' => 'nullable|integer|gte:start_chapter|max:100000',
             'details' => 'sometimes|array:'.implode(',', self::DETAIL_FIELDS),
-            ...array_fill_keys(array_map(fn ($k) => 'details.'.$k, array_diff(self::DETAIL_FIELDS, ['target_words'])), 'nullable|string|max:20000'),
-            'details.target_words' => 'nullable|integer|min:1|max:1000000', 'thread_ids' => 'sometimes|array', 'thread_ids.*' => 'required|integer|min:1|distinct',
+            ...array_fill_keys(array_map(fn ($k) => 'details.'.$k, array_diff(self::DETAIL_FIELDS, ['target_words', 'min_words', 'max_words', 'pov_version_id'])), 'nullable|string|max:20000'),
+            'details.min_words' => 'nullable|integer|min:1|max:1000000', 'details.max_words' => 'nullable|integer|min:1|max:1000000', 'details.pov_version_id' => 'nullable|integer|min:1', 'details.target_words' => 'nullable|integer|min:1|max:1000000', 'thread_ids' => 'sometimes|array', 'thread_ids.*' => 'required|integer|min:1|distinct',
             'reason' => 'required|string|max:2000',
         ])->validate();
         $type = $v['type'];
@@ -99,9 +99,16 @@ final class StructureService
         $values = array_intersect_key($v, array_flip(['source_version_id', 'sequence', 'title', 'objective', 'summary', 'status', 'reason']));
         $values['summary'] = $values['summary'] ?? '';
         $values['details'] = $v['details'] ?? [];
-        if (isset($values['details']['target_words'])) {
-            $values['details']['target_words'] = (int) $values['details']['target_words'];
+        foreach (['target_words', 'min_words', 'max_words'] as $field) {
+            if (isset($values['details'][$field])) {
+                $values['details'][$field] = (int) $values['details'][$field];
+            }
         }
+        if (isset($values['details']['pov_version_id'])) {
+            $values['details']['pov_version_id'] = (string) $values['details']['pov_version_id'];
+        }
+        // 冻结窗口不得从旧编辑接口绕过；已有正式历史时交由历史变更流程。
+        app(RollingPlanService::class)->assertEditable($novel, $type, $node->exists ? $node->toArray() : null, $v);
         if (isset(self::PARENTS[$type])) {
             $parent = self::MODELS[self::PARENTS[$type]];
             if (empty($v['parent_id']) || ! $parent::where('novel_id', $novel->id)->whereKey($v['parent_id'])->exists()) {
@@ -162,7 +169,7 @@ final class StructureService
         $novel = app(NovelIntentService::class)->novel($actor, $id);
         $nodes = [];
         foreach (self::MODELS as $type => $model) {
-            foreach ($model::where('novel_id', $id)->orderBy('sequence')->orderBy('id')->get() as $node) {
+            foreach ($model::where('novel_id', $id)->when($type === 'scene', fn ($q) => $q->where('retired', false))->orderBy('sequence')->orderBy('id')->get() as $node) {
                 $row = $node->toArray();
                 $row['type'] = $type;
                 if ($type === 'story_arc') {
@@ -175,7 +182,8 @@ final class StructureService
         return ['novel' => $novel->toArray(), 'nodes' => $nodes, 'threads' => Thread::where('novel_id', $id)->orderBy('id')->get()->toArray(), 'generation_eligible' => false];
     }
 
-    private function snapshot(User $actor, Novel $novel, array $data): array
+    // 仅供同事务的规划服务捕获不可变结构，HTTP 仍经 execute 检查。
+    public function snapshot(User $actor, Novel $novel, array $data): array
     {
         $content = $this->working($actor, $novel->id);
         if (! $content['nodes']) {
@@ -234,9 +242,9 @@ final class StructureService
                 throw new \InvalidArgumentException;
             }
         } catch (\Throwable) {
-            throw new NovelProblem('VALIDATION_FAILED','无效游标。',422);
+            throw new NovelProblem('VALIDATION_FAILED', '无效游标。', 422);
         }
-        $page = OutlineVersion::where('novel_id',$id)->where('status','sealed')->select(['id', 'novel_id', 'version', 'status', 'content_hash', 'reason', 'created_at'])->orderBy('id')->cursorPaginate($v['limit'] ?? 20,['*'],'cursor',$cursor);
+        $page = OutlineVersion::where('novel_id', $id)->where('status', 'sealed')->select(['id', 'novel_id', 'version', 'status', 'content_hash', 'reason', 'created_at'])->orderBy('id')->cursorPaginate($v['limit'] ?? 20, ['*'], 'cursor', $cursor);
 
         return ['items' => $page->items(), 'next_cursor' => $page->nextCursor()?->encode()];
     }

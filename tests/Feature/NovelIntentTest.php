@@ -210,7 +210,7 @@ class NovelIntentTest extends TestCase
         Livewire::test(CreateNovel::class)->fillForm($this->input() + ['acknowledged' => true])->call('create')->assertHasNoFormErrors();
         $novel = Novel::firstOrFail();
         $this->get('/admin/novels')->assertOk();
-        $this->get('/admin/novels/'.$novel->id.'/intent')->assertOk()->assertSee('覆盖矩阵')->assertSee('计划模块尚未接入');
+        $this->get('/admin/novels/'.$novel->id.'/intent')->assertOk()->assertSee('覆盖矩阵')->assertSee('无覆盖证据')->assertDontSee('查看承接计划与证据');
         Livewire::test(ListNovels::class)->assertCanSeeTableRecords([$novel])->filterTable('genre', '不存在')->assertCanNotSeeTableRecords([$novel]);
         $book = $this->service->snapshot($this->author, $novel);
         $data = $this->revision($book);

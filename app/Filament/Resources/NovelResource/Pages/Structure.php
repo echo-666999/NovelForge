@@ -68,7 +68,7 @@ class Structure extends Page
 
     public const LABELS = ['volume' => '卷', 'story_arc' => '故事弧', 'chapter' => '章', 'scene' => '场景'];
 
-    public const DETAILS = ['turning_point' => '转折', 'climax' => '高潮', 'ending_state' => '结束状态', 'pov' => 'POV / 视角', 'story_time' => '故事时间', 'location' => '地点', 'conflict' => '冲突', 'character_change' => '角色变化', 'foreshadow_tasks' => '伏笔计划任务', 'participants' => '参与者', 'transition_in' => '前场衔接', 'transition_out' => '后场衔接', 'forbidden_changes' => '禁止变更', 'required_events' => '必要事件', 'dependencies' => '前置依赖说明', 'target_words' => '目标字数'];
+    public const DETAILS = ['min_words' => '字数下限', 'max_words' => '字数上限', 'pov_version_id' => '已批准 POV 人物版本 ID', 'narration_mode' => '叙事人称 / 模式', 'time_end' => '时间区间结束', 'emotion_start' => '情绪起点', 'emotion_end' => '情绪终点', 'turning_point' => '转折', 'climax' => '高潮', 'ending_state' => '结束状态', 'pov' => 'POV / 视角', 'story_time' => '故事时间', 'location' => '地点', 'conflict' => '冲突', 'character_change' => '角色变化', 'foreshadow_tasks' => '伏笔计划任务', 'participants' => '参与者', 'transition_in' => '前场衔接', 'transition_out' => '后场衔接', 'forbidden_changes' => '禁止变更', 'required_events' => '必要事件', 'dependencies' => '前置依赖说明', 'target_words' => '目标字数'];
 
     public function mount(string $record): void
     {
@@ -180,7 +180,7 @@ class Structure extends Page
             Select::make('thread_ids')->label('关联全书线索')->multiple()->visible(fn (Get $get) => $get('type') === 'story_arc')->options(fn () => collect(app(StructureService::class)->working(auth()->user(), $this->novelId)['threads'])->pluck('title', 'id')->all()),
         ];
         foreach (self::DETAILS as $key => $label) {
-            $fields[] = $key === 'target_words' ? TextInput::make('details.'.$key)->label($label)->integer()->minValue(1) : Textarea::make('details.'.$key)->label($label)->maxLength(20000);
+            $fields[] = in_array($key, ['target_words', 'min_words', 'max_words', 'pov_version_id']) ? TextInput::make('details.'.$key)->label($label)->integer()->minValue(1) : Textarea::make('details.'.$key)->label($label)->maxLength(20000);
         }
 
         return Action::make('node')->label('新增 / 修改结构节点')->visible(fn () => $this->editable())->schema([...$fields, Textarea::make('reason')->label('本次变更原因')->required()])->fillForm(function (array $arguments) {
@@ -205,12 +205,12 @@ class Structure extends Page
                 $data = array_replace($data, $row, ['thread_id' => $row['id'], 'reason' => '']);
             }
 
-return $data;
+            return $data;
         })->action(fn (array $data) => $this->command('thread', $data));
     }
 
     public function snapshotAction(): Action
     {
-        return Action::make('snapshot')->label('保存不可变结构版本')->visible(fn () => $this->editable())->modalDescription('固定当前结构及线索快照，旧版本不再改变。这不是批准规划，也不开放生成。')->schema([Hidden::make('expected_version'), Hidden::make('command_key'), Textarea::make('reason')->label('版本原因')->required()])->fillForm(fn () => $this->base())->action(fn (array $data) => $this->command('snapshot',$data));
+        return Action::make('snapshot')->label('保存不可变结构版本')->visible(fn () => $this->editable())->modalDescription('固定当前结构及线索快照，旧版本不再改变。这不是批准规划，也不开放生成。')->schema([Hidden::make('expected_version'), Hidden::make('command_key'), Textarea::make('reason')->label('版本原因')->required()])->fillForm(fn () => $this->base())->action(fn (array $data) => $this->command('snapshot', $data));
     }
 }

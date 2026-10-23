@@ -17,3 +17,11 @@ data_dictionary.csv保留完整目标设计，不作为所有表已落地的证�
 ## NF-B03 实际结构映射（2026-10-23）
 
 entities批准资格由current/approved_version_id及独立entity_approvals表达，替代在不可变内容中原地修改approved_at；entity_aliases按具体设定版本唯一，保留历史。world_rules存版本化规则原文与scope；可执行状态验证仍在D01/E03。character_profiles按版本不可变；entity_initial_relations绑定目标具体版本，不能代替正式relationships。新增entity_introduction_policies固化minor-v1完整限制/范围/数量/hash，默认关闭；审批审计单独保存。别名合并来源以同书alias_origin_version_id复合FK保存。完整实际表和延期边界见../phase-b/NF-B03_ACCEPTANCE.md；原CSV仍是全系统目标设计，非全部已落地证明。
+
+## NF-B04 实际结构映射（2026-10-23）
+
+新增blueprint_versions、ending_contracts、blueprint_thread_versions、blueprint_entity_refs、blueprint_requirement_coverages、blueprint_validations、blueprint_approvals；requirement_versions补(novel_id,id)唯一索引。蓝图sealed和批准分离；批准及检查为追加审计。终局结构存于不可变JSON内容，范围/结局门禁由共用服务验证。主支线引用B02稳定Thread并保存身份快照；实体引用B03具体版本。蓝图覆盖按要求版本/字段/准确原文保存，不提前实现B05的场景覆盖。完整字段、约束与延期事项见../phase-b/NF-B04_ACCEPTANCE.md；原CSV仍为全系统目标设计。
+
+### NF-B05 实际数据库补充
+
+新增rolling_plans、requirement_coverages、plan_validations、plan_freezes四表，plan_nodes(novel_id,id)唯一索引，scenes.retired。B02 outline_versions保持不变，由rolling_plans承载蓝图和新结构快照的双向聚合关联；覆盖指向该快照内plan_nodes，同书复合FK、码点偏移/quote/字段hash。封存与子记录不可变，冻结窗口及祖先数据库写保护。旧场景退休但不删除，完整说明见../phase-b/NF-B05_ACCEPTANCE.md；字典其他待建表仍是设计，不因B05交付视为已存在。

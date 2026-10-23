@@ -146,3 +146,17 @@ Thread仅实现B02同书身份、标题/目标和arc_thread关系，主支线审
 核心实体人工批准。非关键路人引入默认关闭，作者明确批准不可变策略后才可执行确定性接纳命令。minor-v1及完整限制快照随策略保存：仅character/minor/extra、无能力/初始关系/规则/主线影响、章窗口和每策略版本累计数量限制。新调用必须使用最新启用策略；修改规则语义须新schema/策略版本，旧批准记录保留。基于作者字段的分类不替代正文语义校验。
 
 字段、数据库约束与验收证据见[NF-B03记录](../phase-b/NF-B03_ACCEPTANCE.md)。世界规则当前保留原文与范围，不宣称已完成自动规则推理；AC12/AC13完整验收未执行。
+
+## NF-B04 实施补充（2026-10-23）
+
+blueprint_versions在事务内building→sealed，保存后不可变；审批资格通过不可变blueprint_validations/blueprint_approvals表达。display_status为draft/needs_changes/approved/superseded历史投影，sealed不等于批准。检查记录固定blueprint-check-v1、内容hash、依赖hash、操作者及原因；批准重跑检查并验证validation_id/report_hash，同时要求确认变更影响。批准不设小说ready、不改正式state_version，generation_eligible=false。
+
+每个蓝图版本同事务生成独立ending_contracts及主支线、实体引用、蓝图专用要求覆盖；要求引用通过新增(novel_id,id)唯一索引建立同书FK。blueprint_requirement_coverages是蓝图字段原文证据，不替代B05的requirement_coverages→plan_nodes。outline_versions由B02封存后被B04引用，B05添加反向蓝图引用时不得改旧结构版本。
+
+核心人物结局、反转、最终关系及答案变化追加新契约；影响范围保守包含新旧结构卷章并集和规划伏笔承诺，未接入的正式正文/账本影响为null。作者六项内容检查与精确引用不等于自动语义或文学验收。详见[NF-B04记录](../phase-b/NF-B04_ACCEPTANCE.md)。
+
+## NF-B05 实施补充（2026-10-23）
+
+新 rolling_plans 以同书真实 FK 绑定新 outline_versions 与批准 blueprint_versions；不原地改旧结构版本。requirement_coverages 引用同一计划的 plan_nodes 与当前 requirement_versions，采用 Unicode 码点左闭右开偏移和字段 SHA-256，数据库校验引文。plan_validations / plan_freezes 是只追加审计，冻结重验完整报告hash。
+
+首窗前十章，后续5–10章（尾窗可短）；全书骨架与详细窗口分离，场景三项字数预算逐项求和等于章节。B05允许章场景细化而不复用B04完整树hash；仍验证卷弧/Thread/输入要求/实体批准/终局。冻结窗口不能直接修改，正式state_version>0保守导向尚未接入的历史流程。未冻结候选跟踪完整树；冻结版本跟踪窗口与覆盖节点，后续正常细化不污染前窗。规划ready/frozen不授予generation_eligible。详见../phase-b/NF-B05_ACCEPTANCE.md。

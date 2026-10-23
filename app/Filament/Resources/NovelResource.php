@@ -72,6 +72,8 @@ class NovelResource extends Resource
             TernaryFilter::make('archived')->label('归档')->queries(true: fn (Builder $q) => $q->where('status', 'archived'), false: fn (Builder $q) => $q->where('status', '!=', 'archived')),
             Filter::make('updated')->label('更新时间')->schema([DatePicker::make('from')->label('起始日期'), DatePicker::make('until')->label('截止日期')])->query(fn (Builder $q, array $data) => $q->when($data['from'] ?? null, fn ($q, $v) => $q->whereDate('updated_at', '>=', $v))->when($data['until'] ?? null, fn ($q, $v) => $q->whereDate('updated_at', '<=', $v))),
         ])->recordActions([
+            Action::make('plans')->label('章节场景计划')->url(fn (Novel $record) => static::getUrl('plans', ['record' => $record])),
+            Action::make('blueprints')->label('蓝图与终局')->url(fn (Novel $record) => static::getUrl('blueprints', ['record' => $record])),
             Action::make('world')->label('世界与人物')->url(fn (Novel $record) => static::getUrl('world', ['record' => $record])),
             Action::make('structure')->label('五层结构')->url(fn (Novel $record) => static::getUrl('structure', ['record' => $record])),
             Action::make('intent')->label('原始要求')->url(fn (Novel $record) => static::getUrl('intent', ['record' => $record])),
@@ -88,6 +90,6 @@ class NovelResource extends Resource
 
     public static function getPages(): array
     {
-        return ['world' => Pages\WorldLibrary::route('/{record}/world'), 'structure' => Pages\Structure::route('/{record}/structure'), 'index' => Pages\ListNovels::route('/'), 'create' => Pages\CreateNovel::route('/create'), 'intent' => Pages\NovelIntent::route('/{record}/intent')];
+        return ['plans' => Pages\RollingPlans::route('/{record}/plans'), 'blueprints' => Pages\Blueprints::route('/{record}/blueprints'), 'world' => Pages\WorldLibrary::route('/{record}/world'), 'structure' => Pages\Structure::route('/{record}/structure'), 'index' => Pages\ListNovels::route('/'), 'create' => Pages\CreateNovel::route('/create'), 'intent' => Pages\NovelIntent::route('/{record}/intent')];
     }
 }

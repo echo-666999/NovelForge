@@ -3,8 +3,11 @@
 namespace Tests\Feature;
 
 use App\Exceptions\NovelProblem;
+use App\Models\Novel;
 use App\Models\User;
+use App\Services\BlueprintService;
 use App\Services\NovelIntentService;
+use App\Services\RollingPlanService;
 use App\Services\StructureService;
 use App\Services\WorldService;
 use Illuminate\Support\Facades\Artisan;
@@ -12,6 +15,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Symfony\Component\Process\Process;
+use Tests\Support\BlueprintFixture;
+use Tests\Support\RollingPlanFixture;
 use Tests\TestCase;
 
 class NovelConcurrencyTest extends TestCase
@@ -121,7 +126,7 @@ class NovelConcurrencyTest extends TestCase
                     $results[] = json_decode($child->getOutput(), true, flags: JSON_THROW_ON_ERROR);
                 }
 
-return $results;
+                return $results;
             };
             $data = ['type' => 'character', 'name' => '守门人', 'description' => '普通路人', 'criticality' => 'minor', 'source_version_id' => $book['sources'][0]['id'], 'source_quote' => '守门人只开门', 'introduced_chapter' => 1, 'affects_main_plot' => false, 'profile' => ['role' => 'extra', 'identity' => '门卫', 'voice' => '简短回应', 'limitations' => '普通人'], 'expected_version' => 1, 'reason' => '测试'];
             $results = $run([['definition', $data, 'same'], ['definition', $data, 'same']]);
@@ -153,18 +158,111 @@ return $results;
         }
     }
 
-    public function test_empty_b01_b02_b03_schema_can_roll_back_and_reapply(): void
+    public function test_blueprint_concurrent_saves_and_approvals_are_unique(): void
+    {
+        $this->assertSame('novel_forge_test', DB::selectOne('SELECT current_database() AS name')->name);
+        Artisan::call('migrate:fresh', ['--force' => true]);
+        $children = [];
+        try {
+            $f = BlueprintFixture::create();
+            $actor = $f['actor'];
+            $id = $f['book']['novel']['id'];
+            $service = app(BlueprintService::class);
+            $run = function (string $command, array $data, array $keys) use ($actor, $id, &$children) {
+                $children = [];
+                foreach ($keys as $key) {
+                    $child = new Process([PHP_BINARY, base_path('tests/Support/blueprint-command-worker.php'), (string) $actor->id, $id, $command, json_encode($data, JSON_THROW_ON_ERROR), $key], base_path(), ['APP_ENV' => 'testing']);
+                    $child->start();
+                    $children[] = $child;
+                }
+                $results = [];
+                foreach ($children as $child) {
+                    $child->wait();
+                    $this->assertSame(0, $child->getExitCode(), $child->getErrorOutput());
+                    $results[] = json_decode($child->getOutput(), true, flags: JSON_THROW_ON_ERROR);
+                }
+
+                return $results;
+            };
+            $data = $f['payload'] + ['expected_version' => Novel::find($id)->row_version, 'reason' => '并发候选'];
+            $results = $run('save', $data, ['same-save', 'same-save']);
+            $this->assertTrue($results[0]['ok']);
+            $this->assertEquals($results[0], $results[1]);
+            $this->assertDatabaseCount('blueprint_versions', 1);
+            $this->assertDatabaseCount('ending_contracts', 1);
+            $v = $results[0]['result']['blueprint'];
+            $check = $service->execute($actor, $id, 'validate', ['blueprint_version_id' => $v['id'], 'expected_version' => Novel::find($id)->row_version, 'reason' => '检查'], 'check')['validation'];
+            $this->assertTrue($check['report']['passed']);
+            $approve = ['blueprint_version_id' => $v['id'], 'validation_id' => $check['id'], 'report_hash' => $check['report_hash'], 'acknowledge_impact' => true, 'expected_version' => Novel::find($id)->row_version, 'reason' => '批准'];
+            $results = $run('approve', $approve, ['approve-a', 'approve-b']);
+            $this->assertCount(1, array_filter($results, fn ($v) => $v['ok']));
+            $this->assertDatabaseCount('blueprint_approvals', 1);
+        } finally {
+            foreach ($children as $child) {
+                if ($child->isRunning()) {
+                    $child->stop();
+                }
+            }Artisan::call('migrate:fresh', ['--force' => true]);
+        }
+    }
+
+    public function test_rolling_plan_concurrent_save_and_freeze_are_serialized(): void
+    {
+        $this->assertSame('novel_forge_test', DB::selectOne('SELECT current_database() AS name')->name);
+        Artisan::call('migrate:fresh', ['--force' => true]);
+        $children = [];
+        try {
+            $f = RollingPlanFixture::create();
+            $actor = $f['actor'];
+            $id = $f['book']['novel']['id'];
+            $run = function ($command, $data, $keys) use ($actor, $id, &$children) {
+                $children = [];
+                foreach ($keys as $key) {
+                    $process = new Process([PHP_BINARY, base_path('tests/Support/plan-command-worker.php'), (string) $actor->id, $id, $command, json_encode($data, JSON_THROW_ON_ERROR), $key], base_path(), ['APP_ENV' => 'testing']);
+                    $process->start();
+                    $children[] = $process;
+                }
+                $results = [];
+                foreach ($children as $process) {
+                    $process->wait();
+                    $this->assertSame(0, $process->getExitCode(), $process->getErrorOutput());
+                    $results[] = json_decode($process->getOutput(), true, flags: JSON_THROW_ON_ERROR);
+                }
+
+                return $results;
+            };
+            $data = $f['plan_payload'] + ['expected_version' => Novel::find($id)->row_version, 'reason' => '并发计划'];
+            $results = $run('save', $data, ['same', 'same']);
+            $this->assertTrue($results[0]['ok']);
+            $this->assertEquals($results[0], $results[1]);
+            $this->assertDatabaseCount('rolling_plans', 1);
+            $p = $results[0]['result']['plan'];
+            $c = app(RollingPlanService::class)->execute($actor, $id, 'validate', ['rolling_plan_id' => $p['id'], 'expected_version' => Novel::find($id)->row_version, 'reason' => '检查'], 'check')['validation'];
+            $data = ['rolling_plan_id' => $p['id'], 'validation_id' => $c['id'], 'report_hash' => $c['report_hash'], 'expected_version' => Novel::find($id)->row_version, 'reason' => '并发冻结'];
+            $results = $run('freeze', $data, ['freeze-a', 'freeze-b']);
+            $this->assertCount(1, array_filter($results, fn ($r) => $r['ok']));
+            $this->assertDatabaseCount('plan_freezes', 1);
+        } finally {
+            foreach ($children as $child) {
+                if ($child->isRunning()) {
+                    $child->stop();
+                }
+            } Artisan::call('migrate:fresh', ['--force' => true]);
+        }
+    }
+
+    public function test_empty_b01_b02_b03_b04_b05_schema_can_roll_back_and_reapply(): void
     {
         $this->assertSame('novel_forge_test', DB::selectOne('SELECT current_database() AS name')->name);
         Artisan::call('migrate:fresh', ['--force' => true]);
         try {
-            $this->assertSame(0, Artisan::call('migrate:rollback', ['--step' => 3, '--force' => true]));
+            $this->assertSame(0, Artisan::call('migrate:rollback', ['--step' => 5, '--force' => true]));
             $this->assertFalse(Schema::hasTable('novels'));
             $this->assertTrue(Schema::hasTable('users'));
             $this->assertSame(0, Artisan::call('migrate', ['--force' => true]));
             $this->assertTrue(Schema::hasTable('novels'));
         } finally {
-            Artisan::call('migrate',['--force' => true]);
+            Artisan::call('migrate', ['--force' => true]);
         }
     }
 }

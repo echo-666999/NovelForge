@@ -64,11 +64,17 @@ class FoundationTest extends TestCase
         $this->assertTrue((bool) $result->matched);
     }
 
-    public function test_only_authorized_b01_b02_b03_schema_is_installed(): void
+    public function test_only_authorized_b01_b02_b03_b04_b05_schema_is_installed(): void
     {
         $this->assertTrue(Schema::hasTable('novels'));
         $this->assertTrue(Schema::hasTable('chapters'));
         $this->assertTrue(Schema::hasTable('entities'));
+        // B05 仅加入计划和审计，不能提前出现生成或正式状态业务表。
+        $this->assertTrue(Schema::hasTable('blueprint_versions'));
+        $this->assertTrue(Schema::hasTable('rolling_plans'));
+        $this->assertTrue(Schema::hasTable('requirement_coverages'));
+        $this->assertTrue(Schema::hasTable('plan_validations'));
+        $this->assertTrue(Schema::hasTable('plan_freezes'));
         $this->assertFalse(Schema::hasTable('story_events'));
         $this->assertFalse(Schema::hasTable('chapter_versions'));
         $this->assertFalse(Schema::hasTable('generation_runs'));

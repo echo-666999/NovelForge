@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BlueprintController;
 use App\Http\Controllers\NovelIntentController;
+use App\Http\Controllers\RollingPlanController;
 use App\Http\Controllers\StructureController;
 use App\Http\Controllers\WorldController;
 use Illuminate\Support\Facades\Route;
@@ -33,5 +35,22 @@ Route::prefix('api/v1/novels/{novel}/world')->whereNumber('novel')->group(functi
     Route::get('/versions/{definition}/reference', WorldController::class)->whereNumber('definition')->defaults('worldCommand', 'reference');
     foreach (['definition', 'approve', 'accept-minor', 'policy', 'merge-aliases', 'retire'] as $command) {
         Route::post('/'.$command, WorldController::class)->defaults('worldCommand', $command);
+    }
+});
+
+Route::prefix('api/v1/novels/{novel}/blueprints')->whereNumber('novel')->group(function (): void {
+    Route::get('/', BlueprintController::class)->defaults('blueprintCommand', 'list');
+    Route::get('/{blueprint}', BlueprintController::class)->whereNumber('blueprint')->defaults('blueprintCommand', 'read');
+    foreach (['save', 'validate', 'approve'] as $command) {
+        Route::post('/'.$command, BlueprintController::class)->defaults('blueprintCommand', $command);
+    }
+});
+
+// 同源会话与 CSRF 沿用现有接口策略，后台和 HTTP 共用规划服务。
+Route::prefix('api/v1/novels/{novel}/plans')->whereNumber('novel')->group(function (): void {
+    Route::get('/', RollingPlanController::class)->defaults('planCommand', 'list');
+    Route::get('/{plan}', RollingPlanController::class)->whereNumber('plan')->defaults('planCommand', 'read');
+    foreach (['save', 'validate', 'freeze', 'split', 'merge', 'reorder'] as $command) {
+        Route::post('/'.$command, RollingPlanController::class)->defaults('planCommand', $command);
     }
 });

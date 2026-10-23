@@ -7,6 +7,7 @@ use App\Models\Novel;
 use App\Models\PremiseVersion;
 use App\Models\RequirementItem;
 use App\Models\RequirementVersion;
+use App\Models\RollingPlan;
 use App\Models\User;
 use App\Models\Volume;
 use Illuminate\Pagination\Cursor;
@@ -302,14 +303,20 @@ final class NovelIntentService
         }
         $page = $query->orderBy('requirement_versions.requirement_id')->cursorPaginate($filters['limit'] ?? 20, ['*'], 'cursor', $cursor);
 
-        return ['items' => $page->items(), 'next_cursor' => $page->nextCursor()?->encode(), 'previous_cursor' => $page->previousCursor()?->encode()];
+        // 分页接口也返回当前计划证据，但不污染蓝图的原始要求快照。
+        $enriched = collect(app(RollingPlanService::class)->coverage($actor, $novel, $this->requirements($novel)))->keyBy('id');
+
+        return ['items' => array_map(fn ($r) => $enriched->get($r->id, $r->toArray()), $page->items()), 'next_cursor' => $page->nextCursor()?->encode(), 'previous_cursor' => $page->previousCursor()?->encode()];
     }
 
     public function snapshot(User $actor, Novel $novel): array
     {
         $this->novel($actor, $novel->id);
-        $requirements = $this->requirements($novel);
-        $blockers = [['code' => 'PLAN_MODULE_UNAVAILABLE', 'requirement_id' => null]];
+        // 原始要求保持纯数据；仅展示层附加计划证据，避免蓝图依赖哈希循环引用。
+        $requirements = app(RollingPlanService::class)->coverage($actor, $novel, $this->requirements($novel));
+        $latestPlan = RollingPlan::where('novel_id', $novel->id)->where('status', 'sealed')->latest('version')->first();
+        $planReport = $latestPlan ? app(RollingPlanService::class)->report($actor, $novel, $latestPlan) : null;
+        $blockers = $planReport['blockers'] ?? [['code' => 'PLAN_REQUIRED', 'requirement_id' => null]];
         $latestSource = (string) PremiseVersion::where('novel_id', $novel->id)->latest('version')->value('id');
         foreach ($requirements as $requirement) {
             if ($requirement['strength'] === 'hard' && $requirement['coverage_status'] !== 'covered') {
@@ -325,6 +332,6 @@ final class NovelIntentService
 
         return ['novel' => $novel->toArray(), 'sources' => PremiseVersion::where('novel_id', $novel->id)->orderBy('version')->get()->toArray(), 'requirements' => $requirements,
             'unresolved_requirements' => array_values(array_filter($requirements, fn ($r) => in_array($r['decision_status'], ['unresolved', 'conflict']))),
-            'freeze_gate' => ['allowed' => false, 'blockers' => $blockers, 'code' => 'DEPENDENCY_NOT_READY', 'message' => '计划模块尚未实施；未覆盖的硬约束和未决定的关键歧义不能冻结。']];
+            'generation_eligible' => false, 'freeze_gate' => ['allowed' => $planReport['passed'] ?? false, 'blockers' => $blockers, 'code' => ($planReport['passed'] ?? false) ? 'PLAN_READY' : 'PLAN_BLOCKED', 'message' => '此门禁仅针对规划冻结；真实模型生成与正式提交尚未接入。']];
     }
 }

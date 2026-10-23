@@ -100,7 +100,7 @@ class StructureTest extends TestCase
         $this->assertSame($tree['s']['id'], $old['nodes'][3]['scene_id']);
         $this->assertNotSame($old['nodes'][3]['id'], $two['nodes'][3]['id']);
         $this->assertFalse(Schema::hasTable('generation_runs'));
-        $this->assertFalse(Schema::hasTable('blueprint_versions'));
+        $this->assertTrue(Schema::hasTable('blueprint_versions'));
     }
 
     public function test_overlap_parent_shrink_and_duplicate_sequences_fail_atomically(): void
@@ -293,10 +293,10 @@ class StructureTest extends TestCase
         $this->assertSame('修订卷名', $volume->fresh()->title);
         $page->mountAction('snapshot')->fillForm($this->base() + ['command_key' => 'ui-snapshot'])->callMountedAction()->assertHasNoActionErrors();
         $v = OutlineVersion::firstOrFail();
-        $this->assertSame('sealed',$v->status);
+        $this->assertSame('sealed', $v->status);
         $this->get('/admin/novels/'.$this->book['novel']['id'].'/structure')->assertOk()->assertSee('修订卷名');
-        $page->set('versionId',$v->id)->assertActionHidden('node')->assertActionHidden('snapshot');
-        $page->set('type','scene');
-        $this->assertCount(0,$page->instance()->rows()->items());
+        $page->set('versionId', $v->id)->assertActionHidden('node')->assertActionHidden('snapshot');
+        $page->set('type', 'scene');
+        $this->assertCount(0, $page->instance()->rows()->items());
     }
 }

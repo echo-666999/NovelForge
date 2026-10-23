@@ -59,3 +59,11 @@ HTTP错误是新接口设计选择；具体供应商错误通过适配器映射�
 ## NF-B03 已实现页面接口（2026-10-23）
 
 前缀 `/api/v1/novels/{novel}/world`：GET根列表、`/entities/{entity}`详情、`/versions/{definition}`历史及`/versions/{definition}/reference`引用资格；POST `/definition`、`/approve`、`/accept-minor`、`/policy`、`/merge-aliases`、`/retire`，全部同步200。列表遵循cursor默认20/最大100；写入遵循会话/CSRF、Idempotency-Key、expected_version、reason。具体字段与状态见[NF-B03记录](../phase-b/NF-B03_ACCEPTANCE.md)。本接口不写正式动态状态，`canonical_state=null`不是事实值。
+
+## NF-B04 已实现页面接口（2026-10-23）
+
+前缀 `/api/v1/novels/{novel}/blueprints`：GET根列表（status、cursor、limit），GET `/{blueprint}`历史；POST `/save`追加候选（201），`/validate`检查（200），`/approve`批准（200）。所有写操作需要expected_version、reason和Idempotency-Key；批准另需blueprint_version_id、validation_id、report_hash及acknowledge_impact=true。此处将原设计中的coverage_hash细化为包含覆盖内容及所有依赖的检查报告hash，批准时重算；未宣称原示意路径已注册。具体字段见[NF-B04记录](../phase-b/NF-B04_ACCEPTANCE.md)。蓝图批准不改变生成资格或正式事实。
+
+## NF-B05 已注册接口（2026-10-23）
+
+`/api/v1/novels/{novel}/plans`：GET列表（limit≤100、before降序游标、status全局派生状态筛选）、GET/{plan}；POST save/validate/freeze/split/merge/reorder。同源会话/CSRF、Idempotency-Key、expected_version、reason及统一响应沿用现有协议。save同时捕获新结构快照和覆盖证据；freeze须rolling_plan_id/validation_id/report_hash，重验后追加。具体载荷、错误码和后台动作见../phase-b/NF-B05_ACCEPTANCE.md。B01 intent/requirements已返回真实覆盖证据、计划链接及规划门禁，generation_eligible仍false。
