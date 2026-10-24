@@ -153,7 +153,7 @@ class ProviderGatewayTest extends TestCase
     public function test_http_failures_are_recorded_without_automatic_retries(): void
     {
         $f = ProviderFixture::create();
-        foreach ([302 => 'REDIRECT_BLOCKED', 401 => 'PROVIDER_AUTH_FAILED', 429 => 'PROVIDER_RATE_LIMITED', 500 => 'PROVIDER_HTTP_ERROR'] as $status => $code) {
+        foreach ([302 => 'REDIRECT_BLOCKED', 401 => 'PROVIDER_AUTH_FAILED', 429 => 'PROVIDER_RATE_LIMITED', 500 => 'PROVIDER_HTTP_500'] as $status => $code) {
             $fake = new FakeProvider(new ProviderReply($status, '离线错误原文'));
             $r = $this->send($f, 'status'.$status, $fake);
             $this->assertSame($code, $r['error_code']);

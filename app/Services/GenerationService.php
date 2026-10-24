@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Exceptions\NovelProblem;
+use App\Generation\RecoveryPolicy;
 use App\Generation\StageExecutor;
 use App\Generation\StageResult;
 use App\Models\OutlineVersion;
@@ -40,8 +41,12 @@ final class GenerationService
             'outline_version_id' => 'required|string|regex:/^[1-9][0-9]{0,18}$/D',
             'expected_version' => 'required|integer|min:1',
             'configuration' => 'sometimes|array:route_version_id,route_key,variables',
+            'billing' => 'sometimes|array',
             'nodes' => 'required|array|min:1|max:100',
-            'nodes.*' => 'required|array:key,stage,depends_on,input',
+            'nodes.*' => 'required|array:key,stage,depends_on,input,billing_scope',
+            'nodes.*.billing_scope' => 'sometimes|required|array:chapter_id,category',
+            'nodes.*.billing_scope.chapter_id' => 'nullable|integer|min:1',
+            'nodes.*.billing_scope.category' => 'required_with:nodes.*.billing_scope|in:generation,review,revision,summary,embedding,planning',
             'nodes.*.key' => 'required|string|regex:/^[a-z][a-z0-9_]{0,79}$/D|distinct',
             'nodes.*.stage' => 'required|in:test.echo',
             'nodes.*.depends_on' => 'present|array|max:100',
@@ -49,7 +54,7 @@ final class GenerationService
             'nodes.*.input' => 'required|array:text',
             'nodes.*.input.text' => 'required|string|max:10000',
         ])->validate();
-        if (array_diff(array_keys($payload), ['outline_version_id', 'expected_version', 'nodes', 'configuration'])) {
+        if (array_diff(array_keys($payload), ['outline_version_id', 'expected_version', 'nodes', 'configuration', 'billing'])) {
             throw new NovelProblem('INVALID_GRAPH', '测试运行不接受未知配置。', 422);
         }
         // 图必须显式拓扑排序；拒绝循环、未知依赖及重复边，不默默改写调用者顺序。
@@ -84,12 +89,32 @@ final class GenerationService
             if (! $outline || ! hash_equals($outline->content_hash, $this->hash($outline->content))) {
                 throw new NovelProblem('INVALID_SOURCE', '必须使用本书完整封存的规划版本。');
             }
+            // 同一运行可包含多个章节和用途；节点级计费归属也纳入冻结图。
+            foreach ($payload['nodes'] as $node) {
+                if (isset($node['billing_scope']['chapter_id']) && ! DB::table('chapters')->where('novel_id', $novelId)->where('id', $node['billing_scope']['chapter_id'])->exists()) {
+                    throw new NovelProblem('NOT_FOUND', '节点计费章节不属于本书。', 404);
+                }
+            }
             $frozen = ['schema_version' => 'test-dag-v1', 'executor_version' => 'test.echo-v1', 'goal' => 'all_nodes_succeeded',
                 'outline_version_id' => $outline->id, 'outline_hash' => $outline->content_hash,
                 'expected_state_version' => (string) $novel->state_version, 'nodes' => $payload['nodes']];
             // C04 配置只在启动时解析一次；后续默认版本变化不参与既有运行。
             if (isset($payload['configuration'])) {
                 $frozen['configuration'] = app(AuthoringConfigurationService::class)->freeze($actor, $payload['configuration'], 'test.echo');
+            }
+            // C05 预算政策和价格版本只在启动时冻结；无预算的纯编排支架不能调用网关。
+            if (isset($payload['billing'])) {
+                $frozen['billing'] = app(BudgetService::class)->freeze($actor, $novelId, $payload['billing'], $frozen['configuration'] ?? null);
+                if (isset($frozen['configuration'])) {
+                    foreach ($frozen['configuration']['models'] as &$entry) {
+                        $entry['price_version_id'] = $frozen['billing']['prices'][$entry['model_version_id']]['id'];
+                        $entry['price_status'] = 'configured_simulation';
+                    }
+                    unset($entry);
+                    $frozen['configuration']['price_version_id'] = $frozen['configuration']['models'][0]['price_version_id'];
+                    $frozen['configuration']['price_status'] = 'configured_simulation';
+                    $frozen['configuration']['token_measurement'] = 'declared_capacity_upper_bound';
+                }
             }
             $id = DB::table('generation_runs')->insertGetId($identity + [
                 'configuration_route_version_id' => $frozen['configuration']['route']['id'] ?? null,
@@ -199,15 +224,28 @@ final class GenerationService
                 $dependencies[] = ['step_id' => (string) $source->id, 'artifact_id' => (string) $artifact->id, 'content_hash' => $artifact->content_hash];
             }
             $previous = DB::table('generation_steps')->where('run_id', $runId)->where('scope_key', $scopeKey)->orderByDesc('attempt_no')->first();
+            // 队列只带持久意图；批准模型切换从不可变人工决定解析。
+            if ($retryOf !== null && $modelVersionId === null) {
+                $decision = DB::table('recovery_decisions')->where('run_id', $runId)->where('action', 'retry')->orderByDesc('id')->get()->first(function ($d) use ($scopeKey, $retryOf) {
+                    $p = $this->json($d->payload);
+                    $row = collect($p['preview']['rows'])->firstWhere('scope', $scopeKey);
+
+                    return ($p['request']['scope'] ?? null) === $scopeKey && ($row['technical_attempts'] ?? null) === $retryOf;
+                });
+                if ($decision) {
+                    $modelVersionId = $this->json($decision->payload)['request']['model_version_id'] ?? null;
+                    $switchReason = $decision->reason;
+                }
+            }
             // 重试通知不能在首尝试出现前偷偷创建首尝试。
             if (! $previous && $retryOf !== null) {
                 return null;
             }
             // 显式切换必须新建尝试；有效租约或未知结果不能被静默替换。
-            if ($modelVersionId !== null && (! $previous || ! in_array($previous->status, ['failed', 'deferred', 'blocked'], true) || $retryOf !== (int) $previous->attempt_no || ! is_string($switchReason) || trim($switchReason) === '' || mb_strlen($switchReason) > 1000)) {
+            if ($modelVersionId !== null && (! $previous || ! in_array($previous->status, ['failed', 'deferred', 'blocked', 'quarantined'], true) || $retryOf !== (int) $previous->attempt_no || ! is_string($switchReason) || trim($switchReason) === '' || mb_strlen($switchReason) > 1000)) {
                 throw new NovelProblem('INVALID_MODEL_SWITCH', '模型切换须引用已结束的旧尝试并说明原因。');
             }
-            if ($previous && $retryOf !== null && isset($frozen['configuration']) && DB::table('ai_requests')->where('step_id', $previous->id)->whereIn('status', ['pending', 'unknown'])->exists()) {
+            if ($previous && $previous->status !== 'succeeded' && $this->hasUncertainRequest((string) $previous->id)) {
                 throw new NovelProblem('UNKNOWN_REQUEST_OUTCOME', '旧请求结果未知，禁止创建替代请求。');
             }
             $input = ['run_input_hash' => $run->input_hash, 'node' => $node, 'dependencies' => $dependencies];
@@ -246,7 +284,7 @@ final class GenerationService
                 if ($retryOf !== (int) $previous->attempt_no) {
                     return null;
                 }
-                if (! in_array($previous->status, ['failed', 'deferred', 'blocked'], true) || $previous->attempt_no >= 3) {
+                if (! in_array($previous->status, ['failed', 'deferred', 'blocked', 'quarantined'], true) || $previous->attempt_no >= 3) {
                     throw new NovelProblem('RETRY_LIMIT', '当前尝试不可重试或已达到三次上限。');
                 }
             }
@@ -295,6 +333,10 @@ final class GenerationService
         }
         try {
             $result = $executor->execute($claim['input']);
+        } catch (NovelProblem $e) {
+            // 保存稳定错误码及分类建议，不持久化未脱敏异常正文。
+            $policy = RecoveryPolicy::classify($e->errorCode);
+            $result = new StageResult($policy['status'], ['text' => $policy['advice']], $e->errorCode);
         } catch (Throwable) {
             // 不持久化未脱敏的异常正文，避免意外泄漏调用方上下文。
             $result = new StageResult('failed', ['text' => '测试阶段执行或输出校验失败'], 'STAGE_EXECUTION_FAILED');
@@ -315,6 +357,16 @@ final class GenerationService
             // 过期或被新 Worker 替代的令牌不可写入产物、状态或消费回执。
             if (! $step || $step->status !== 'running' || (string) $step->fencing_token !== (string) $claim['token'] || $step->lease_owner !== $claim['owner']
                 || ! DB::table('generation_steps')->where('id', $step->id)->whereRaw('lease_until > clock_timestamp()')->exists()) {
+                // 迟到输出仅作证据；绝不占用唯一有效产物或改变新尝试状态。
+                if ($step && preg_match('/^[1-9][0-9]*$/D', (string) $claim['token']) && Str::isUuid($claim['owner'])) {
+                    $safe = $this->validatedResult($result);
+                    DB::table('generation_late_evidence')->insertOrIgnore([
+                        'novel_id' => $novelId, 'run_id' => $runId, 'step_id' => $step->id,
+                        'fencing_token' => $claim['token'], 'lease_owner' => $claim['owner'],
+                        'content' => NovelIntentService::canonical($safe->content), 'content_hash' => $this->hash($safe->content), 'reason' => 'LEASE_LOST_OR_CONTROLLED',
+                    ]);
+                }
+
                 return false;
             }
             $result = $this->validatedResult($result);
@@ -352,9 +404,23 @@ final class GenerationService
             if ($eventId !== null) {
                 app(OutboxService::class)->acknowledge($eventId);
             }
+            // 仅已知技术错误允许自动退避；请求未知、业务失败和修订不进入此计数。
+            if ($status === 'failed' && RecoveryPolicy::classify($error)['kind'] === 'retryable' && $step->attempt_no < 3 && ! $this->hasUncertainRequest((string) $step->id)) {
+                $next = app(OutboxService::class)->enqueue($actor, $novelId, $runId, $step->scope_key, $step->attempt_no);
+                $delay = RecoveryPolicy::delay($step->attempt_no, (int) DB::table('ai_requests')->where('step_id', $step->id)->max('retry_after_seconds'));
+                DB::table('outbox_events')->where('id', $next)->update(['next_delivery_at' => DB::raw("clock_timestamp() + interval '{$delay} seconds'")]);
+            }
 
             return true;
         });
+    }
+
+    /** 请求或费用未决时，租约到期也不能默认再发一次。 */
+    public function hasUncertainRequest(string $stepId): bool
+    {
+        return DB::table('ai_requests')->where('step_id', $stepId)->where(function ($q) {
+            $q->whereIn('status', ['pending', 'unknown'])->orWhereIn('id', DB::table('budget_reservations')->whereIn('status', ['reserved', 'unknown'])->select('request_id'));
+        })->exists();
     }
 
     private function validatedResult(StageResult $result): StageResult

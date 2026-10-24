@@ -1,6 +1,6 @@
 # NovelForge
 
-单人 AI 长篇小说系统。已按逐项授权完成 B01–B06 规划基础及 C01–C04 持久编排、队列、离线供应商网关及创作配置版本；具体范围与证据见 docs/DEVELOPMENT_TASKS.md 和各阶段验收记录。生产生成尚未开放。
+单人 AI 长篇小说系统。已按逐项授权完成 B01–B06 规划基础及 C01–C05 持久编排、队列、离线供应商网关及创作配置版本；具体范围与证据见 docs/DEVELOPMENT_TASKS.md 和各阶段验收记录。生产生成尚未开放。
 
 ## 当前环境
 
@@ -67,11 +67,15 @@ npm run build
 - app/Providers/Filament：后台基础配置。
 - app/Console/Commands：管理员创建、依赖诊断。
 - config/novelforge.php：检索配置及预留队列名称。
-- database/migrations：系统表及逐项授权的规划、编排、供应商配置和请求证据表；新增 C03/C04 表及字段均有中文备注。
+- database/migrations：系统表及逐项授权的规划、编排、供应商配置和请求证据表；新增 C03–C05 表及字段均有中文备注。
 - scripts/queue-probe.php：真实队列基础验证。
 
-已实现模块不能代表完整小说生产可用：正式状态引擎、Canonical Commit、上下文/记忆、伏笔、生成评审修订、Prompt/路由、费用与导出等仍待各自任务。A02部署条件、C05预算门禁和真实调用授权尚未齐备，因此真实模型及能力探测继续关闭。前十章成品与百章伏笔验收仍未执行。
+已实现模块不能代表完整小说生产可用：正式状态引擎、Canonical Commit、上下文/记忆、伏笔、生成评审修订及正文导出仍待各自任务。C05预算门禁已离线验证，但A02部署条件、真实能力验证和外部调用授权仍未齐备，真实模型及能力探测继续关闭。前十章成品与百章伏笔验收仍未执行。
 
 ## 重新部署
 
 安装 composer.lock 与 package-lock.json 指定依赖；复制 .env.example 为 .env 并填写本机数据库/Redis 凭据；生成 APP_KEY；准备 PostgreSQL 18 和所需扩展后执行 `php artisan migrate`、`npm run build`、`php artisan novelforge:admin`。部署目录必须指向 public，持久目录为 storage，禁止公开 .env、.local 和私有日志。生产环境关闭 APP_DEBUG，启用 HTTPS 并配置安全 Cookie。
+
+NF-C05 价格版本、Token计量、原子预算、对账及费用导出：docs/phase-c/NF-C05_ACCEPTANCE.md。
+
+NF-C06 恢复台：`/admin/recovery-desk`，支持恢复预览、暂停/取消及人工决定。生产生成入口仍关闭；事件提取/配置变更登记不等于业务执行完成。验证边界见 [NF-C06 验收](docs/phase-c/NF-C06_ACCEPTANCE.md)。

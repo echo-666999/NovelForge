@@ -92,7 +92,8 @@ class FoundationTest extends TestCase
         foreach (['prompt_templates', 'prompt_versions', 'model_routes', 'route_versions', 'style_profiles', 'style_versions', 'configuration_regressions', 'configuration_commands'] as $table) {
             $this->assertTrue(Schema::hasTable($table));
         }
-        $this->assertFalse(Schema::hasTable('cost_ledger'));
+        // C05 新增价格、预算及追加式费用流水。
+        $this->assertTrue(Schema::hasTable('cost_ledger'));
         $this->get('/admin/novels')->assertRedirect('/admin/login');
     }
 }

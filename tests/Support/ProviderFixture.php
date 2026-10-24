@@ -17,6 +17,9 @@ final class ProviderFixture
         $f['model_payload'] = ['provider_id' => $f['provider']['id'], 'provider_model_id' => 'fixture-model', 'expected_version' => 0,
             'declared_capabilities' => ['context_tokens' => 8192, 'max_output_tokens' => 1000, 'structured_output' => 'supported', 'streaming' => 'unknown', 'reasoning_metering' => 'unknown', 'source_note' => '仅测试声明，无实际供应商验证'], 'reason' => '离线模型'];
         $f['model'] = $service->execute($f['actor'], 'model', $f['model_payload'], 'model');
+        // C05 所有网关测试也必须经过真实持久预算门禁。
+        $f['payload']['billing'] = BillingFixture::create($f['actor'], $f['model']['version_id']);
+        $f['runId'] = app(GenerationService::class)->start($f['actor'], $f['novelId'], $f['payload'], 'billable-fixture')['run']['id'];
         $f['claim'] = app(GenerationService::class)->claim($f['actor'], $f['novelId'], $f['runId'], 'first');
         $f['input'] = ['prompt' => '仅离线验证', 'output_schema' => ['type' => 'object', 'properties' => ['text' => ['type' => 'string', 'maxLength' => 200]], 'required' => ['text'], 'additionalProperties' => false]];
 

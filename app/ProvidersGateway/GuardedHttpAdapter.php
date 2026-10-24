@@ -26,6 +26,13 @@ final class GuardedHttpAdapter implements ProviderAdapter
             ->withToken($this->key)->post($this->config['endpoint'], $request);
         // 不跟随重定向，但把原状态/正文交给网关分类并保存证据。
 
-        return new ProviderReply($response->status(), $response->body());
+        // 支持秒数及HTTP日期；无有效提示时不虚构供应商退避值。
+        $header = $response->header('Retry-After');
+        $delay = null;
+        if (is_string($header) && strlen($header) <= 100) {
+            $delay = ctype_digit($header) ? (int) min(2147483647, (float) $header) : (($date = strtotime($header)) !== false ? min(2147483647, max(0, $date - time())) : null);
+        }
+
+        return new ProviderReply($response->status(), $response->body(), $delay);
     }
 }

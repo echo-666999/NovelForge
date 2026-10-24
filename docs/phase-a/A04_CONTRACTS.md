@@ -190,3 +190,19 @@ Prompt/route/style 采用稳定身份 + 不可变版本，草稿编辑也派生�
 测试运行 configuration 支持 route_key（启动时解析默认）或 route_version_id，变量必须符合 Schema；Prompt 只允许 JSON 转义占位符。冻结 Prompt/路由/文风、真实模型标识、供应商/能力版本及声明容量；请求绑定冻结内容。主备切换必须创建新尝试、有原因、命中冻结批准名单且旧请求无 pending/unknown；不复用换模型前的检查点。
 
 费率引用暂为 null/unknown，真实预算和 Token 实测等待 C05；production 路由不能以未验证能力发布。旧无配置 test.echo 支架仍仅用于 testing。详见 ../phase-c/NF-C04_ACCEPTANCE.md。
+
+## NF-C05 实施补充（2026-10-24）
+
+运行冻结预算政策、显式已生效价格集合及输出/独立推理上界；C04新配置快照补入真实录入的价格版本引用（当前仅离线模拟）。冻结节点可声明同书计费章节与用途，未关联章节共用unassigned章桶。请求、章、运行、书、UTC日预算统一检查，桶身份不含政策版本，因此更换政策不能重置余额。
+
+预留+请求+请求证据同事务，传输在提交后执行。预算不足返回DEFERRED_BUDGET且不发送，测试阶段驱动将其持久化为deferred；unknown保留风险预留。缓存包含/独立与推理包含/独立规则随价格冻结，金额numeric(24,10)，独立类别向上舍入、阈值向下舍入。Usage可核销失败/隔离响应，费用状态独立于生成成功状态；重复供应商计费身份不重复结算，冲突待对账。
+
+核销和更正追加不可变结算/分类流水；更正先冲正旧分类再记新费用。凭证账单可提供实际金额，Token缺失保持null。账单超过预留停止相关桶新请求。真实供应商、部署和外部调用授权仍未满足，C05不开放真实模型。见 ../phase-c/NF-C05_ACCEPTANCE.md。
+
+## NF-C06 实施补充（2026-10-24）
+
+恢复控制以不可变 recovery_decisions 记录动作、原因、操作人、冻结预览及首次响应。preview_hash 是恢复比较条件，不能用旧预览覆盖后续步骤/费用/决定；键重放优先于过期检查。暂停/取消/人工控制终止活动步骤但不改写终态历史，迟到输出存 generation_late_evidence，仅供审查。取消不可续跑；暂停恢复不自动接受隔离输出。
+
+pending/unknown 请求或未核销风险阻止自动重领与重试。技术重试默认最多3次，指数退避+抖动并尊重 Retry-After；已知401/403等业务配置故障转人工。文学修订执行器尚未注册，显示0及未接入，与技术 attempt_no 区分。有效检查点沿用 C01 哈希验证，变化节点及下游在预览中 stale，旧运行冻结配置不被默认指针变化改写。
+
+reextract 决定固定原 artifact/hash，禁止默认改写正文；testing-only replayEvidence 追加 recovery_outputs，使用独立 test.extract-v1 契约。实际事件提取和配置迁移生产执行器尚未接入，后台只登记 awaiting_stage_implementation，不伪装为生产提取/新运行成功。详见 ../phase-c/NF-C06_ACCEPTANCE.md。

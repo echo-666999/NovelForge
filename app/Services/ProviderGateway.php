@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Throwable;
 
-/** 单次网关请求：不重试、不核算价格、不触发正式状态提交。 */
+/** 单次网关请求：统一预算预留与Usage核销，不自动重试或触发正式状态提交。 */
 final class ProviderGateway
 {
     public function execute(User $actor, string $novelId, string $stepId, string $modelVersionId, array $input, string $key, ?ProviderAdapter $adapter = null): array
@@ -69,7 +69,7 @@ final class ProviderGateway
                 $provider = DB::table('provider_versions')->find($selectedConfig['provider_version_id']);
             }
             if ($provider->interface_type !== 'fake' || ! app()->environment('testing')) {
-                throw new NovelProblem('BUDGET_GATE_REQUIRED', '真实调用及能力探测尚未获准，需部署条件和预算门禁。', 403);
+                throw new NovelProblem('BUDGET_GATE_REQUIRED', '真实调用及能力探测尚未获准；仍需部署条件、能力验证及外部调用授权，当前仅允许离线测试。', 403);
             }
             if ($step->status !== 'running' || ! DB::table('generation_steps')->where('id', $stepId)->whereRaw('lease_until > clock_timestamp()')->exists()) {
                 throw new NovelProblem('LEASE_LOST', '阶段没有有效租约。');
@@ -87,14 +87,22 @@ final class ProviderGateway
                 throw new NovelProblem('RATE_LIMITED', '供应商速率或并发额度不足。', 429);
             }
             $secret = $provider->secret_id ? Crypt::decryptString(DB::table('provider_secrets')->where('id', $provider->secret_id)->value('ciphertext')) : '';
+            $billing = json_decode($run->frozen_config, true)['billing'] ?? null;
+            if (! $billing || ! isset($billing['prices'][$modelVersionId])) {
+                throw new NovelProblem('BUDGET_CONFIGURATION_REQUIRED', '请求缺少冻结的预算与价格。');
+            }
             $id = DB::table('ai_requests')->insertGetId(['novel_id' => $novelId, 'run_id' => $step->run_id, 'step_id' => $stepId,
                 'provider_id' => $provider->provider_id, 'provider_version_id' => $provider->id, 'model_profile_version_id' => $modelVersionId,
                 'route_version_id' => $runConfig['route']['id'] ?? null, 'prompt_version_id' => $runConfig['prompt']['id'] ?? null, 'style_version_id' => $runConfig['style']['id'] ?? null, 'configuration_hash' => $runConfig ? app(AuthoringConfigurationService::class)->hash($runConfig) : null,
+                'price_version_id' => $billing['prices'][$modelVersionId]['id'],
                 'logical_key' => $key, 'request_hash' => $hash, 'lease_token' => $step->fencing_token, 'status' => 'pending']);
             $body = ['model' => DB::table('model_profiles')->where('id', $model->model_profile_id)->value('provider_model_id')] + $input;
             if ($runConfig) {
                 $body['parameters'] = $runConfig['parameters'];
             }
+            // 预留、请求和请求证据在同一事务提交；失败即整体回滚，网络尚未执行。
+            $budget = app(BudgetService::class)->reserve(DB::table('ai_requests')->find($id), $run, $modelVersionId);
+            $body['parameters'] = ($body['parameters'] ?? []) + ['max_output_tokens' => $budget['max_output_tokens'], 'max_reasoning_tokens' => $budget['max_reasoning_tokens']];
             $this->evidence((string) $id, 'request', NovelIntentService::canonical($body), $secret);
 
             return ['id' => (string) $id, 'body' => $body, 'secret' => $secret, 'token' => $step->fencing_token];
@@ -110,13 +118,21 @@ final class ProviderGateway
         $usage = null;
         try {
             $reply = ($adapter ?? new FakeProvider)->send($admission['body']);
+            // HTTP错误或结构错误仍可能收费；从任何有界JSON响应独立提取计量。
+            if (strlen($reply->body) <= 1048576) {
+                $metered = json_decode($reply->body);
+                if ($metered instanceof \stdClass) {
+                    $requestId = isset($metered->request_id) && is_string($metered->request_id) ? mb_substr($this->redact($metered->request_id, $admission['secret']), 0, 200) : null;
+                    $usage = isset($metered->usage) && $metered->usage instanceof \stdClass ? json_decode($this->redact(json_encode($metered->usage, JSON_THROW_ON_ERROR), $admission['secret']), true) : null;
+                }
+            }
             if (strlen($reply->body) > 1048576) {
                 $error = 'RESPONSE_TOO_LARGE';
             } elseif ($reply->status >= 300 && $reply->status < 400) {
                 $error = 'REDIRECT_BLOCKED';
             } elseif ($reply->status !== 200) {
                 $error = match ($reply->status) {
-                    401, 403 => 'PROVIDER_AUTH_FAILED', 429 => 'PROVIDER_RATE_LIMITED', default => 'PROVIDER_HTTP_ERROR'
+                    401, 403 => 'PROVIDER_AUTH_FAILED', 429 => 'PROVIDER_RATE_LIMITED', 500, 502, 503, 504 => 'PROVIDER_HTTP_'.$reply->status, default => 'PROVIDER_HTTP_ERROR'
                 };
             } else {
                 $decoded = json_decode($reply->body, false, 32, JSON_THROW_ON_ERROR);
@@ -154,7 +170,9 @@ final class ProviderGateway
                 $this->evidence($admission['id'], 'response', $reply->body, $admission['secret']);
             }
             DB::table('ai_requests')->where('id', $admission['id'])->update(['status' => $status, 'error_code' => $error,
-                'issues' => $this->redact(json_encode($issues, JSON_UNESCAPED_UNICODE), $admission['secret']), 'provider_request_id' => $requestId, 'http_status' => $reply?->status, 'usage' => $usage === null ? null : json_encode($usage), 'completed_at' => now()]);
+                'issues' => $this->redact(json_encode($issues, JSON_UNESCAPED_UNICODE), $admission['secret']), 'provider_request_id' => $requestId, 'http_status' => $reply?->status, 'retry_after_seconds' => $reply?->retryAfterSeconds === null ? null : max(0, min(2147483647, $reply->retryAfterSeconds)), 'usage' => $usage === null ? null : json_encode($usage), 'completed_at' => now()]);
+            // 隔离或失败响应仍结算费用；缺失Usage转待对账并保留全部预留。
+            app(BudgetService::class)->settle($admission['id'], $usage, $requestId, 'gateway-response:'.$admission['id']);
         });
 
         return $this->read($actor, $novelId, $admission['id']);
@@ -201,6 +219,8 @@ final class ProviderGateway
             'prompt_version_id' => $r->prompt_version_id === null ? null : (string) $r->prompt_version_id,
             'style_version_id' => $r->style_version_id === null ? null : (string) $r->style_version_id,
             'configuration_hash' => $r->configuration_hash,
+            'price_version_id' => $r->price_version_id === null ? null : (string) $r->price_version_id,
+            'billing' => app(BudgetService::class)->read($requestId),
             'status' => $r->status, 'error_code' => $r->error_code, 'issues' => json_decode($r->issues ?? '[]', true), 'usage' => $r->usage === null ? null : json_decode($r->usage, true),
             'provider_request_id' => $r->provider_request_id, 'cost_status' => $r->cost_status, 'evidence_kind' => 'fake', 'capability_status' => 'unverified',
             'evidence' => DB::table('ai_request_evidence')->where('request_id', $r->id)->select('id', 'kind', 'content_hash', 'redacted')->get()->map(fn ($e) => ['id' => (string) $e->id, 'kind' => $e->kind, 'content_hash' => $e->content_hash, 'redacted' => $e->redacted])->all()];

@@ -45,3 +45,22 @@ generation_runs/steps/artifacts 已落地，新增 generation_dependencies 保�
 每个身份 key 唯一，版本 parent_id+version 唯一，默认指针采用 parent_id+id 复合外键；版本状态索引支持后台筛选。configuration_regressions 保存 kind/version_id/content_hash/passed/report/actor_id/created_at，由触发器校验所属版本摘要，索引 kind+version_id+id；configuration_commands 对 actor_id+command_key 唯一，保存请求摘要与首次响应。
 
 generation_runs 新增 configuration_route_version_id 外键；ai_requests 新增 route_version_id/prompt_version_id/style_version_id 外键及 configuration_hash。旧测试记录允许空引用；新绑定运行由网关验证完整快照及尝试选择。上述新表和新字段均有中文 PostgreSQL COMMENT，版本/回归/命令历史不可覆盖删除。价格版本未在 C04 创建，快照显式 null/unknown。
+
+## NF-C05 实际结构（2026-10-24）
+
+price_versions保存model_version_id/version唯一、币种、五类单价JSONB、缓存/推理计量方式、生效时间与凭证；budget_policies保存key/version唯一、币种、五级limits、warning/stop百分比、UTC时区及原因。新表均有管理员和创建时间。
+
+budget_buckets按scope_type/scope_key/currency唯一共享余额身份；budget_reservations每request唯一，冻结policy/price、用途、币种、numeric(24,10)最坏amount及bounds，actual_cost未知为null，状态reserved/unknown/settled。budget_allocations关联预留和四类桶，复合主键并索引bucket_id。请求上限直接按冻结policy检查。
+
+usage_settlements按request/revision唯一保存归一化计费数量、各类金额、实际总额、输入摘要与凭证。billing_identities按provider/external_charge_id唯一指向原请求。cost_ledger按settlement/category/entry_kind唯一，保存价格、币种、bigint Token（账单未提供时可空）、有符号numeric金额和模拟证据性质；更正使用reversal与charge追加，不删除历史。billing_commands按actor/command_key唯一保存首次响应。ai_requests新增price_version_id外键。
+
+关键约束/索引包含价格版本唯一、政策版本唯一、预算桶唯一、请求预留唯一、预留状态时间、桶分配反向索引、计费身份唯一、核销修订唯一和请求流水索引。全部新增表/字段具有中文数据库COMMENT。最终目标CSV的预算expires_at不在当前实现中：unknown预留无自动过期释放，防止风险费用消失。
+
+## NF-C06 实际增量
+
+- recovery_decisions：运行内人工动作、原因、规范化请求哈希、冻结预览和首次响应；actor/run/command_key 唯一，run/id 索引，记录不可变。
+- generation_late_evidence：绑定同书同运行步骤及旧租约，content/hash/reason 留证；step/token/owner/hash 去重，记录不可变。
+- recovery_outputs：同书同运行决定及来源产物复合外键、来源哈希、离线重提取内容及 schema_version；每个决定只产生一个结果，记录不可变。
+- ai_requests.retry_after_seconds：供应商最短等待秒数，pending完成时记录，非负或NULL，终态不可修改。
+
+所有新增表/字段实际添加中文 COMMENT，实测数量见 NF-C06_MIGRATION_RESULT.json。目标全量数据字典仍不是所有模块已实施的声明。

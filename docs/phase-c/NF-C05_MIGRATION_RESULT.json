@@ -1,0 +1,65 @@
+{
+    "database": "novel_forge",
+    "migration_exit": 0,
+    "users_before": 1,
+    "users_after": 1,
+    "novels_before": 0,
+    "novels_after": 0,
+    "providers_count": 0,
+    "model_profiles_count": 0,
+    "ai_requests_count": 0,
+    "backup": "\/Users\/webb\/Herd\/NovelForge\/.local\/backups\/nf-c05-before-20261024-053626.dump",
+    "backup_sha256": "9684d4c3754302dcc667ae17a28b91ca8325153eb283108fed45557a9eb97347",
+    "archive_list_verified": true,
+    "restoration_tested": false,
+    "comments": {
+        "price_versions": {
+            "columns": 11,
+            "commented_columns": 11,
+            "table_comment": "模型不可变价格版本（每百万Token原币单价）"
+        },
+        "budget_policies": {
+            "columns": 11,
+            "commented_columns": 11,
+            "table_comment": "不可变多层预算政策版本"
+        },
+        "budget_buckets": {
+            "columns": 5,
+            "commented_columns": 5,
+            "table_comment": "跨政策共享的预算作用域身份"
+        },
+        "budget_reservations": {
+            "columns": 12,
+            "commented_columns": 12,
+            "table_comment": "单请求最坏费用预留及当前结算投影"
+        },
+        "budget_allocations": {
+            "columns": 2,
+            "commented_columns": 2,
+            "table_comment": "预留关联的多层预算桶"
+        },
+        "usage_settlements": {
+            "columns": 12,
+            "commented_columns": 12,
+            "table_comment": "追加式Usage核销及对账历史"
+        },
+        "billing_identities": {
+            "columns": 3,
+            "commented_columns": 3,
+            "table_comment": "供应商计费身份去重归属"
+        },
+        "cost_ledger": {
+            "columns": 11,
+            "commented_columns": 11,
+            "table_comment": "独立计费类别的追加流水及冲正"
+        },
+        "billing_commands": {
+            "columns": 6,
+            "commented_columns": 6,
+            "table_comment": "预算与价格命令幂等记录"
+        }
+    },
+    "added_column_comments": {
+        "ai_requests.price_version_id": "发出请求前冻结的价格版本，历史无预算请求可为空"
+    }
+}

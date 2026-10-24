@@ -2,6 +2,8 @@
 
 namespace App\ProvidersGateway;
 
+use Illuminate\Support\Str;
+
 /** 确定性离线协议支架，与真实供应商能力和质量证据分离。 */
 final class FakeProvider implements ProviderAdapter
 {
@@ -19,6 +21,6 @@ final class FakeProvider implements ProviderAdapter
             throw new \RuntimeException('模拟响应结果未知');
         }
 
-        return $this->reply ?? new ProviderReply(200, json_encode(['output' => ['text' => '离线生成结果'], 'request_id' => 'fake-request', 'usage' => ['input_tokens' => 3, 'output_tokens' => 4]], JSON_UNESCAPED_UNICODE));
+        return $this->reply ?? new ProviderReply(200, json_encode(['output' => ['text' => '离线生成结果'], 'request_id' => 'fake-'.Str::uuid(), 'usage' => ['input_tokens' => 3, 'output_tokens' => 4]], JSON_UNESCAPED_UNICODE));
     }
 }

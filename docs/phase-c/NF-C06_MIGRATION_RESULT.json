@@ -1,0 +1,35 @@
+{
+    "database": "novel_forge",
+    "migration_exit": 0,
+    "users_before": 1,
+    "users_after": 1,
+    "novels_before": 0,
+    "novels_after": 0,
+    "providers_count": 0,
+    "model_profiles_count": 0,
+    "ai_requests_count": 0,
+    "backup": "\/Users\/webb\/Herd\/NovelForge\/.local\/backups\/nf-c06-before-20261024-055802.dump",
+    "backup_sha256": "00030bf3c6efecdd3cc220be7ef7234bf066601932fe432ef8734c8b48394637",
+    "archive_list_verified": true,
+    "restoration_tested": false,
+    "comments": {
+        "recovery_decisions": {
+            "columns": 11,
+            "commented_columns": 11,
+            "table_comment": "恢复操作及人工决策不可变记录"
+        },
+        "generation_late_evidence": {
+            "columns": 10,
+            "commented_columns": 10,
+            "table_comment": "过期或撤销租约的隔离响应证据"
+        },
+        "recovery_outputs": {
+            "columns": 10,
+            "commented_columns": 10,
+            "table_comment": "基于原证据重提取的隔离结果"
+        }
+    },
+    "added_column_comments": {
+        "ai_requests.retry_after_seconds": "供应商要求的最短重试等待秒数"
+    }
+}

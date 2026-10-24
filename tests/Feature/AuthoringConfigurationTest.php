@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
+use Tests\Support\BillingFixture;
 use Tests\Support\ProviderFixture;
 use Tests\TestCase;
 
@@ -50,6 +51,8 @@ class AuthoringConfigurationTest extends TestCase
         $m['provider_model_id'] = 'backup-model';
         $backup = app(ProviderConfigurationService::class)->execute($f['actor'], 'model', $m, 'backup');
         $f['backup'] = $backup;
+        $backupPrice = BillingFixture::price($f['actor'], $backup['id'], 'backup-price');
+        $f['payload']['billing']['price_version_ids'][] = $backupPrice['id'];
         $route = $samples['route'];
         $route['content']['prompt_version_id'] = $f['prompt']['id'];
         $route['content']['style_version_id'] = $f['style']['id'];
@@ -151,7 +154,7 @@ class AuthoringConfigurationTest extends TestCase
         $this->assertSame($old['input_hash'], $actual['input_hash']);
         $cfg = $actual['frozen_config']['configuration'];
         $this->assertSame(70, $cfg['style']['content']['rubric']['voice']['threshold']);
-        $this->assertNull($cfg['price_version_id']);
+        $this->assertNotNull($cfg['price_version_id']);
         $this->assertFalse($cfg['real_model_eligible']);
         $this->assertSame($new['id'], DB::table('prompt_templates')->value('default_version_id').'');
         $this->problem('UNPUBLISHED_REFERENCE', fn () => app(GenerationService::class)->start($f['actor'], $f['novelId'], $f['configured_payload'], 'after-retirement'));

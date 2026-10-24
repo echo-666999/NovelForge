@@ -93,3 +93,21 @@ ProviderGateway::execute/read/evidenceText为内部接口，不新增真实调�
 - POST 同路径加 `/test`、`/publish`、`/retire`：仅 `version_id`。需要 Idempotency-Key；后台原生表单使用 command_key。所有状态变化共用应用服务。回归失败正常返回 draft + report.passed=false；直接发布返回 REGRESSION_REQUIRED。后台表单通过 payload_json 传完整配置，错误不回显提交正文。
 - 错误包括 STALE_VERSION、IDEMPOTENCY_CONFLICT、UNSAFE_TEMPLATE、INVALID_VARIABLES、CONTRACT_MISMATCH、UNPUBLISHED_REFERENCE、CAPABILITY_UNVERIFIED、CAPABILITY_MISMATCH；保持 A04 错误 envelope。
 - 运行冻结与主备切换接在既有 testing-only 服务接口，没有新增生产生成 HTTP 路由。运行中心与生产控制等待 C06。
+
+## NF-C05 已实现接口（2026-10-24）
+
+GET `/api/v1/billing` 支持novel_id/run_id/model_profile_version_id/date_from/date_to/category/currency/request_status/status/page，25笔请求/页；按原币列已核销金额、风险预留和未知笔数。GET `/api/v1/billing/export` 同筛选导出最多一万笔CSV费用摘要，未知实际费用为空。
+
+POST `/api/v1/billing/price`：model_version_id、expected_version、currency、unit_prices（input/output/cache_read/cache_write/reasoning，每百万Token十进制字符串）、cache_mode/reasoning_mode（none/included/separate）、effective_at（带时区ISO时间）、evidence_ref。
+
+POST `/api/v1/billing/policy`：key、expected_version、currency、limits（request/chapter/run/book/day十进制字符串）、warning_percent/stop_percent、timezone=UTC、reason。
+
+POST `/api/v1/billing/reconcile`：request_id、external_charge_id、evidence_ref，另提供usage或amounts；amounts必须含全部五种独立类别十进制金额。只有金额的账单可传usage=null，Token保留未知。操作使用Idempotency-Key；不允许对仍pending的请求人工结算。更正追加历史而非修改原始响应。
+
+同源管理员、CSRF及A04错误格式不变；没有新增真实调用或生产运行控制接口。后台原生POST支持command_key和payload_json。配置响应仅保留录入的费用信息，没有供应商密钥。
+
+## NF-C06 已实现恢复接口
+
+`GET /api/v1/novels/{novel}/runs/{run}/recovery` 返回节点恢复范围、原产物、分类、费用风险、决定和隔离证据；可选 `changed_scopes[]` 预览变更节点及下游。
+
+`POST .../recovery/{pause|resume|cancel|manual|retry|reextract|change_plan}` 必须提供 `Idempotency-Key`、`reason`、`preview_hash`；`retry/reextract` 指定 `scope`，`retry` 可选冻结批准清单中的 `model_version_id`；`change_plan` 指定 `changed_scopes`。沿用同源管理员会话/CSRF/小说归属；409用于陈旧预览、运行不可执行、未知结果或已有重试意图。没有强制通过、真实模型调用、直接正文编辑或费用清零接口。reextract/change_plan 登记结果明确标为 awaiting_stage_implementation，离线重放适配点没有生产HTTP入口。

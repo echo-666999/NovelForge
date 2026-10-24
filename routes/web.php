@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthoringConfigurationController;
+use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BlueprintController;
 use App\Http\Controllers\NovelIntentController;
 use App\Http\Controllers\ProviderConfigurationController;
+use App\Http\Controllers\RecoveryController;
 use App\Http\Controllers\RollingPlanController;
 use App\Http\Controllers\StructureController;
 use App\Http\Controllers\WorkspaceController;
@@ -74,3 +76,20 @@ foreach (['prompt', 'route', 'style'] as $kind) {
         Route::post('api/v1/configurations/'.$kind.'/'.$action, AuthoringConfigurationController::class)->defaults('configurationKind', $kind)->defaults('configurationAction', $action);
     }
 }
+
+// C05 预算配置与凭证对账共用服务，沿用同源会话及CSRF保护。
+Route::get('api/v1/billing', BillingController::class);
+foreach (['price', 'policy', 'reconcile'] as $action) {
+    Route::post('api/v1/billing/'.$action, BillingController::class)->defaults('billingAction', $action);
+}
+
+// 费用摘要导出为只读鉴权操作，不包含密钥或请求正文。
+Route::get('api/v1/billing/export', BillingController::class)->defaults('billingAction', 'export');
+
+// C06 仅恢复控制和证据决策；不开放真实生成入口。
+Route::prefix('api/v1/novels/{novel}/runs/{run}/recovery')->whereNumber(['novel', 'run'])->group(function (): void {
+    Route::get('/', RecoveryController::class);
+    foreach (['pause', 'resume', 'cancel', 'manual', 'retry', 'reextract', 'change_plan'] as $action) {
+        Route::post('/'.$action, RecoveryController::class)->defaults('recoveryAction', $action);
+    }
+});
