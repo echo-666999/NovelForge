@@ -121,3 +121,20 @@ GET `/api/v1/runs`（novel_id/status/error/trace_id/date_from/date_to/page）；
 ## NF-D02 候选时间线接口
 
 `/api/v1/novels/{novel}/story-contexts`：GET 最近50个版本；POST 使用 Idempotency-Key、expected_version、reason、entries/dependencies/knowledge/relationships/rules 保存新版本并检测。GET `/{context}` 读取封存配置、证据与报告；GET `/{context}/pov?knower_id=…&chapter=…` 返回该章候选知识与可用状态。全部沿用同源会话、CSRF、管理员和同书授权，输出 ID 为十进制字符串。报告 consistent/ambiguous/conflict 与 HTTP 成功保存分开；均为 candidate，不开放正式提交。字段及边界见 ../phase-d/NF-D02_ACCEPTANCE.md。
+
+## NF-D03 伏笔账本（2026-10-24）
+
+同源会话、CSRF、管理员和小说归属检查；所有ID响应为十进制字符串，响应沿用data/request_id/version与private,no-store。
+
+| 方法 / 路径（前缀 `/api/v1/novels/{novel}/foreshadows`） | 参数 / 结果 |
+| --- | --- |
+| GET `/` | 可选chapter、required、due、overdue、no_evidence、entity_id、from、to、lifecycle、blueprint_version_id、thread_kind。布尔查询用0/1。返回items、threads、ending、row_version及author_preview/unspecified |
+| GET `/{plan}` | 任意同书历史版本、同谱系history/freezes/proposals和明确为空的正式occurrences |
+| POST `/create` | plan完整白名单载荷；返回plan |
+| POST `/freeze` | plan_id；须最新有效版本及蓝图已批准；返回freeze_id/plan |
+| POST `/propose` | plan_id、kind=reschedule/abandon；改期传完整plan且仅窗口/强化允许变化，放弃必传alternative；返回proposal_id/effective_plan_id |
+| POST `/decide` | proposal_id、decision=approve/reject；批准生成新plan，拒绝plan=null |
+
+写命令均要求Idempotency-Key、expected_version=novels.row_version、reason；返回最新row_version。未知字段、直接生命周期或正式来源注入拒绝。关键冲突：STALE_STATE、STALE_PLAN、IDEMPOTENCY_CONFLICT、ALREADY_DECIDED、ALREADY_FROZEN、BLUEPRINT_NOT_APPROVED、INVALID_WINDOW、INVALID_REVISION、INVALID_REFERENCE。无正式occurrence写接口。
+
+plan字段、SQL映射、状态和UI边界见 ../phase-d/NF-D03_ACCEPTANCE.md。预期知情不是实际知识，前置候选不是正式满足，未指定chapter不会猜测due/overdue。

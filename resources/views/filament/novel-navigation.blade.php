@@ -8,6 +8,8 @@ catch (\Illuminate\Database\QueryException $e) { report($e); $context=null; }
 <p>正式基线：尚未接入</p>
 <nav aria-label="当前小说创作导航" class="flex flex-wrap gap-3">
 @foreach($context['links'] as $link)<a href="{{ $link['url'] }}" @if(request()->is(ltrim($link['url'],'/'))) aria-current="page" @endif>{{ $link['label'] }}</a>@endforeach
+{{-- 账本只展示本书规划承诺，正式证据由后续提交链提供。 --}}
+<a href="/admin/foreshadow-ledger?novel={{ $context['id'] }}">伏笔与主支线账本</a>
 <a href="/admin/novels">切换小说</a><a href="/admin">创作总览</a>
 </nav>
 </x-filament::section>

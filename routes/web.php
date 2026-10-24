@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthoringConfigurationController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BlueprintController;
+use App\Http\Controllers\ForeshadowLedgerController;
 use App\Http\Controllers\NovelIntentController;
 use App\Http\Controllers\ProviderConfigurationController;
 use App\Http\Controllers\RecoveryController;
@@ -110,4 +111,13 @@ Route::prefix('api/v1/novels/{novel}/story-contexts')->whereNumber('novel')->gro
     Route::post('/', StoryConsistencyController::class);
     Route::get('/{context}', StoryConsistencyController::class)->whereNumber('context');
     Route::get('/{context}/pov', StoryConsistencyController::class)->whereNumber('context')->defaults('consistencyAction', 'pov');
+});
+
+// D03 伏笔版本与作者变更决策；正式 occurrence 不开放 HTTP 写入。
+Route::prefix('api/v1/novels/{novel}/foreshadows')->whereNumber('novel')->group(function (): void {
+    Route::get('/', ForeshadowLedgerController::class);
+    Route::get('/{plan}', ForeshadowLedgerController::class)->whereNumber('plan');
+    foreach (['create', 'freeze', 'propose', 'decide'] as $command) {
+        Route::post('/'.$command, ForeshadowLedgerController::class)->defaults('ledgerCommand', $command);
+    }
 });

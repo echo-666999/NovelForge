@@ -222,3 +222,7 @@ UI11/UI12/UI28/UI31已联通真实持久事实。正式章数与基础设施在�
 新增不可变候选时间线版本，实际 UTC/相对秒序与叙述章位分离；未知、混合时钟或区间不足以比较时返回 ambiguous，确定违反规则才 conflict。知识必须带内容事件、获得事件和合法目击/转述/推测路径；转述不把推测升级事实。隐藏真相可参与作者侧一致性检查，但不自动赋予角色知识。POV 按目标章前缀重验，冲突或待确认时 usable=false，不提供可用知识。
 
 生命、位置、旅行、能力和物品校验仅针对显式结构化事件与作者确认、绑定批准版本的规则；不宣称自动解释世界规则原文。关系及知识当前归属候选 context_id，正式 revision/story_events 写入仍待 E06。所有操作不推进 novels.state_version。接口、UI17/UI19 衔接与验收见 ../phase-d/NF-D02_ACCEPTANCE.md。
+
+## NF-D03 实施补充（2026-10-24）
+
+伏笔以 foreshadow_lineages / foreshadow_plans 保存稳定身份及不可变版本；关联实体、预期知情者、前置候选事件均以同书复合FK固定。冻结须已批准蓝图，保存旧承诺哈希；改期/放弃先提候选，明确作者批准后才生成新版本，原冻结不追认。调度chapter为作者预览，due/overdue独立于planned/abandoned，正式进度仍未知。主支线复用B04具体蓝图线程版本与终局契约，不推测闭合。foreshadow_occurrences预备结构以CHECK(false)封闭，E06补齐正式FK及证据验证后才可开放。详见 ../phase-d/NF-D03_ACCEPTANCE.md。

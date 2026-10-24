@@ -76,3 +76,7 @@ run_traces(run_id主键外键, trace_id唯一UUID, origin, created_at)只追加�
 ## D02 当前物理实现（2026-10-24）
 
 新增 story_context_versions/story_time_entries/consistency_rules；event_dependencies、knowledge_facts、relationships 在本阶段全部以候选 context_id 和 proposed_events 复合 FK 归属。不得将候选知识或动态关系当作已提交状态，最终正式 revision/commit 归属在 E06 接入。未知时间存 NULL，实际 UTC/相对秒序与创建审计时刻分离。见 ../phase-d/NF-D02_ACCEPTANCE.md。
+
+## NF-D03 物理映射（2026-10-24）
+
+逻辑foreshadows分拆为foreshadow_lineages（稳定身份）与foreshadow_plans（不可变版本），增加foreshadow_entity_refs、foreshadow_prerequisites、foreshadow_proposals、foreshadow_decisions、foreshadow_freezes。主支线复用B04的threads/blueprint_thread_versions/ending_contracts。foreshadow_occurrences正式来源结构已建但硬禁写；commit/chapter_version/revision最终FK等待E06，不存在可写的松散正式事实。当前due/overdue只作指定章节预览，不持久化冒充正式生命周期。8表全部中文备注，验证及字段语义见 ../phase-d/NF-D03_ACCEPTANCE.md。

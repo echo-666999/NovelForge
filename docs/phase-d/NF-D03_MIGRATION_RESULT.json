@@ -1,0 +1,58 @@
+{
+  "database": "novel_forge",
+  "migration_exit": 0,
+  "users_before": 1,
+  "users_after": 1,
+  "novels_before": 0,
+  "novels_after": 0,
+  "providers_count": 0,
+  "model_profiles_count": 0,
+  "ai_requests_count": 0,
+  "backup": "/Users/webb/Herd/NovelForge/.local/backups/nf-d03-before-20261024-081302.dump",
+  "backup_sha256": "01324ffa29817617677eefa0942db4dff9b1a31ff4a773dc67c3066988724f82",
+  "archive_list_verified": true,
+  "restoration_tested": false,
+  "comments": {
+    "foreshadow_lineages": {
+      "columns": 4,
+      "commented_columns": 4,
+      "table_comment": "伏笔稳定谱系"
+    },
+    "foreshadow_plans": {
+      "columns": 20,
+      "commented_columns": 20,
+      "table_comment": "不可变伏笔规划版本"
+    },
+    "foreshadow_entity_refs": {
+      "columns": 6,
+      "commented_columns": 6,
+      "table_comment": "计划关联实体及预期知情者，非已知事实"
+    },
+    "foreshadow_prerequisites": {
+      "columns": 4,
+      "commented_columns": 4,
+      "table_comment": "计划前置候选事件，不等同正式满足"
+    },
+    "foreshadow_proposals": {
+      "columns": 9,
+      "commented_columns": 9,
+      "table_comment": "改期或放弃候选，不直接改变有效计划"
+    },
+    "foreshadow_decisions": {
+      "columns": 8,
+      "commented_columns": 8,
+      "table_comment": "作者对变更候选的不可变决定"
+    },
+    "foreshadow_freezes": {
+      "columns": 7,
+      "commented_columns": 7,
+      "table_comment": "冻结原始伏笔承诺，不因改期追认旧验收"
+    },
+    "foreshadow_occurrences": {
+      "columns": 12,
+      "commented_columns": 12,
+      "table_comment": "正式伏笔正文证据预备结构，E06前禁止写入"
+    }
+  },
+  "added_column_comments": []
+}
