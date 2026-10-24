@@ -1,0 +1,63 @@
+{
+  "database": "novel_forge",
+  "migration_exit": 0,
+  "users_before": 1,
+  "users_after": 1,
+  "novels_before": 0,
+  "novels_after": 0,
+  "providers_count": 0,
+  "model_profiles_count": 0,
+  "ai_requests_count": 0,
+  "backup": "/Users/webb/Herd/NovelForge/.local/backups/nf-d04-before-20261024-083356.dump",
+  "backup_sha256": "c9d5383403cd07f9e82759b3ae907b385880c8c63be8ed459c891ef093f6f659",
+  "archive_list_verified": true,
+  "restoration_tested": false,
+  "comments": {
+    "memory_collections": {
+      "columns": 7,
+      "commented_columns": 7,
+      "table_comment": "分支内分层记忆稳定身份"
+    },
+    "memory_facts": {
+      "columns": 11,
+      "commented_columns": 11,
+      "table_comment": "证据支持的不可变事实清单"
+    },
+    "memory_items": {
+      "columns": 20,
+      "commented_columns": 20,
+      "table_comment": "候选分支的不可变记忆摘要版本"
+    },
+    "memory_sources": {
+      "columns": 6,
+      "commented_columns": 6,
+      "table_comment": "摘要展开后的完整来源链"
+    },
+    "memory_item_facts": {
+      "columns": 5,
+      "commented_columns": 5,
+      "table_comment": "摘要版本与事实清单关联"
+    },
+    "memory_parents": {
+      "columns": 6,
+      "commented_columns": 6,
+      "table_comment": "摘要压缩父版本与哈希链"
+    },
+    "memory_chunks": {
+      "columns": 8,
+      "commented_columns": 8,
+      "table_comment": "按Unicode码点定位的记忆分块"
+    },
+    "memory_activations": {
+      "columns": 7,
+      "commented_columns": 7,
+      "table_comment": "候选分支内验证通过版本的追加激活记录"
+    },
+    "memory_invalidations": {
+      "columns": 8,
+      "commented_columns": 8,
+      "table_comment": "来源或错误派生记忆的不可逆停用依据"
+    }
+  },
+  "added_column_comments": []
+}

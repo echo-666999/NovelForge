@@ -67,10 +67,10 @@ npm run build
 - app/Providers/Filament：后台基础配置。
 - app/Console/Commands：管理员创建、依赖诊断。
 - config/novelforge.php：检索配置及预留队列名称。
-- database/migrations：系统表及逐项授权的规划、编排、供应商配置和请求证据表；新增 C03–D03 表及字段均有中文备注。
+- database/migrations：系统表及逐项授权的规划、编排、供应商配置和请求证据表；新增 C03–D04 表及字段均有中文备注。
 - scripts/queue-probe.php：真实队列基础验证。
 
-已实现模块不能代表完整小说生产可用：正式状态提交、Canonical Commit、上下文/记忆、伏笔正式证据与长程验收、生成评审修订及正文导出仍待各自任务。C05预算门禁已离线验证，但A02部署条件、真实能力验证和外部调用授权仍未齐备，真实模型及能力探测继续关闭。前十章成品与百章伏笔验收仍未执行。
+已实现模块不能代表完整小说生产可用：正式状态提交、Canonical Commit、上下文/正式记忆消费、伏笔正式证据与长程验收、生成评审修订及正文导出仍待各自任务。C05预算门禁已离线验证，但A02部署条件、真实能力验证和外部调用授权仍未齐备，真实模型及能力探测继续关闭。前十章成品与百章伏笔验收仍未执行。
 
 ## 重新部署
 
@@ -87,3 +87,5 @@ NF-D01：已提供候选事件、Unicode 证据与可回放状态内部服务；
 NF-D02：`/admin/story-timeline` 管理候选双时间轴、知识来源、动态关系和一致性报告；可查看某章 POV。未知与冲突均阻止候选知识作为可用信息，正式提交继续关闭。详见 [NF-D02验收](docs/phase-d/NF-D02_ACCEPTANCE.md)。
 
 NF-D03：`/admin/foreshadow-ledger` 管理不可变伏笔计划、冻结、改期/放弃候选与作者决定，并查看蓝图主支线承诺。章位提示是作者预览，正式埋设/回收证据写入仍关闭。详见 [NF-D03验收](docs/phase-d/NF-D03_ACCEPTANCE.md)。
+
+NF-D04：`/admin/memory-library` 管理分层候选记忆、证据事实清单、压缩版本、失败重试和来源失效链。正式基线读取不回退草稿；索引未请求，不调用模型。详见 [NF-D04验收](docs/phase-d/NF-D04_ACCEPTANCE.md)。

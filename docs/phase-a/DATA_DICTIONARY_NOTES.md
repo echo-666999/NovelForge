@@ -80,3 +80,7 @@ run_traces(run_id主键外键, trace_id唯一UUID, origin, created_at)只追加�
 ## NF-D03 物理映射（2026-10-24）
 
 逻辑foreshadows分拆为foreshadow_lineages（稳定身份）与foreshadow_plans（不可变版本），增加foreshadow_entity_refs、foreshadow_prerequisites、foreshadow_proposals、foreshadow_decisions、foreshadow_freezes。主支线复用B04的threads/blueprint_thread_versions/ending_contracts。foreshadow_occurrences正式来源结构已建但硬禁写；commit/chapter_version/revision最终FK等待E06，不存在可写的松散正式事实。当前due/overdue只作指定章节预览，不持久化冒充正式生命周期。8表全部中文备注，验证及字段语义见 ../phase-d/NF-D03_ACCEPTANCE.md。
+
+## NF-D04 物理映射（2026-10-24）
+
+新增memory_collections、memory_facts、memory_items、memory_sources、memory_item_facts、memory_parents、memory_chunks、memory_activations、memory_invalidations。逻辑memory_items的父来源拆成多父强关联，完整源链展开保存；证据事实清单单独不可变。branch_id强FK持久运行，source_documents增加同书/运行/ID唯一键，evidence_spans增加同书/来源/ID唯一键，以支持强类型复合来源FK。当前仅candidate，revision_id空；正式基线FK待E07来源表存在后接入，不造松散正式记录。index_status与内容派生状态分离，D05前not_requested。全部新增表/列中文备注，详见 ../phase-d/NF-D04_ACCEPTANCE.md。

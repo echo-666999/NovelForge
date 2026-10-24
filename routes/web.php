@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthoringConfigurationController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BlueprintController;
 use App\Http\Controllers\ForeshadowLedgerController;
+use App\Http\Controllers\LayeredMemoryController;
 use App\Http\Controllers\NovelIntentController;
 use App\Http\Controllers\ProviderConfigurationController;
 use App\Http\Controllers\RecoveryController;
@@ -119,5 +120,14 @@ Route::prefix('api/v1/novels/{novel}/foreshadows')->whereNumber('novel')->group(
     Route::get('/{plan}', ForeshadowLedgerController::class)->whereNumber('plan');
     foreach (['create', 'freeze', 'propose', 'decide'] as $command) {
         Route::post('/'.$command, ForeshadowLedgerController::class)->defaults('ledgerCommand', $command);
+    }
+});
+
+// D04 记忆只接受离线输入，正式基线和嵌入执行均保持关闭。
+Route::prefix('api/v1/novels/{novel}/memories')->whereNumber('novel')->group(function (): void {
+    Route::get('/', LayeredMemoryController::class);
+    Route::get('/{memory}', LayeredMemoryController::class)->whereNumber('memory');
+    foreach (['fact', 'save', 'activate', 'invalidate'] as $command) {
+        Route::post('/'.$command, LayeredMemoryController::class)->defaults('memoryCommand', $command);
     }
 });

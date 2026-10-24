@@ -138,3 +138,18 @@ GET `/api/v1/runs`（novel_id/status/error/trace_id/date_from/date_to/page）；
 写命令均要求Idempotency-Key、expected_version=novels.row_version、reason；返回最新row_version。未知字段、直接生命周期或正式来源注入拒绝。关键冲突：STALE_STATE、STALE_PLAN、IDEMPOTENCY_CONFLICT、ALREADY_DECIDED、ALREADY_FROZEN、BLUEPRINT_NOT_APPROVED、INVALID_WINDOW、INVALID_REVISION、INVALID_REFERENCE。无正式occurrence写接口。
 
 plan字段、SQL映射、状态和UI边界见 ../phase-d/NF-D03_ACCEPTANCE.md。预期知情不是实际知识，前置候选不是正式满足，未指定chapter不会猜测due/overdue。
+
+## NF-D04 分层记忆接口（2026-10-24）
+
+前缀 `/api/v1/novels/{novel}/memories`，同源会话/CSRF、管理员与小说归属检查，响应data/request_id/version及private,no-store。ID为十进制字符串。
+
+| 方法/路径 | 输入与结果 |
+| --- | --- |
+| GET `/` | 必填scope=candidate、branch_id；可选kind/status/index_status/chapter/character_id/page；50条一页，返回items/total/next_page。formal明确返回FORMAL_MEMORY_UNAVAILABLE，不回退 |
+| GET `/{memory}` | 同上明确范围；返回原文来源、精确证据、事实、父摘要、分块与分支失效记录；允许作者审计stale历史 |
+| POST `/fact` | source_version_id、evidence_id、category、statement、introduced_chapter；statement必须为同来源引文片段 |
+| POST `/save` | kind/name/summary/introduced_chapter/visibility/importance、source_ids/fact_ids/parent_ids；可选collection_id/retry_of_id/chunk_size；失败也保存不可变报告，旧活动版保留 |
+| POST `/activate` | memory_id；重验来源链、校验结果、最新版本；仅候选分支激活 |
+| POST `/invalidate` | source_version_id与memory_id二选一；保留理由，依赖派生记忆立即stale |
+
+所有写命令必带branch_id、expected_version=novels.row_version、reason与Idempotency-Key。索引和正式scope不能由客户端写入。关键错误：STALE_STATE、IDEMPOTENCY_CONFLICT、INVALID_SOURCE、INVALID_EVIDENCE、STALE_SOURCE、STALE_MEMORY、MEMORY_VALIDATION_FAILED、VISIBILITY_WIDENED、INVALID_RETRY、FORMAL_MEMORY_UNAVAILABLE。具体字段、状态与未开放边界见 ../phase-d/NF-D04_ACCEPTANCE.md。

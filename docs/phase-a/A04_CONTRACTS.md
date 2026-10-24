@@ -226,3 +226,7 @@ UI11/UI12/UI28/UI31已联通真实持久事实。正式章数与基础设施在�
 ## NF-D03 实施补充（2026-10-24）
 
 伏笔以 foreshadow_lineages / foreshadow_plans 保存稳定身份及不可变版本；关联实体、预期知情者、前置候选事件均以同书复合FK固定。冻结须已批准蓝图，保存旧承诺哈希；改期/放弃先提候选，明确作者批准后才生成新版本，原冻结不追认。调度chapter为作者预览，due/overdue独立于planned/abandoned，正式进度仍未知。主支线复用B04具体蓝图线程版本与终局契约，不推测闭合。foreshadow_occurrences预备结构以CHECK(false)封闭，E06补齐正式FK及证据验证后才可开放。详见 ../phase-d/NF-D03_ACCEPTANCE.md。
+
+## NF-D04 实施补充（2026-10-24）
+
+四层记忆按同书持久运行branch_id隔离；正式scope读取拒绝回退，revision_id当前必须为空。人工/离线摘要形成不可变版本、完整来源/父哈希、证据事实清单与Unicode分块。压缩自动继承当前活动版本和显式父版本全部事实；逐字保留检查失败只保存失败候选，不替换旧活动版本。失败重试另建版本，激活与停用均追加。来源/父记忆停用及分支取消在活动读取时即时复核，过期不进活动结果。可见范围不等于角色知识证明，pov_usable/formal_usable均false。索引独立为not_requested；正式来源与提交消费等待E07，嵌入等待D05。详见 ../phase-d/NF-D04_ACCEPTANCE.md。
