@@ -1,6 +1,6 @@
 <x-filament-panels::page>
     {{-- 来源和摘要均为不可信文本，始终转义；角色范围仅供作者核对。 --}}
-    <p>候选记忆库：正式基线尚未接入。摘要不能代替正式事实；角色范围声明不等于人物已知。嵌入与模型摘要执行未开放。</p>
+    <p>候选记忆库：正式基线尚未接入。摘要不能代替正式事实；角色范围声明不等于人物已知。索引可在检索实验室使用离线编码构建；真实嵌入与模型摘要执行未开放。</p>
     <label>小说<select wire:model.live="novel"><option value="">请选择</option>@foreach($this->books() as $b)<option value="{{ $b->id }}">{{ $b->title }}</option>@endforeach</select></label>
     <label>候选分支<select wire:model.live="branch"><option value="">请选择持久运行分支</option>@foreach($this->branches() as $b)<option value="{{ $b->id }}">#{{ $b->id }} / {{ $b->status }}</option>@endforeach</select></label>
     @if($novel==='' || $branch==='')<p>请先选择小说和候选分支。没有来源时不能创建无依据摘要。</p>@else
@@ -8,7 +8,7 @@
     <div class="grid gap-4 md:grid-cols-3">
         <label>类别<select wire:model.live="kind"><option value="">全部</option>@foreach(['working'=>'工作','episodic'=>'情节','semantic'=>'语义','event'=>'事件'] as $k=>$label)<option value="{{ $k }}">{{ $label }}</option>@endforeach</select></label>
         <label>内容状态<select wire:model.live="status"><option value="">全部</option>@foreach(['pending'=>'候选/非当前版本','active'=>'分支活动','stale'=>'来源失效','failed'=>'摘要校验失败'] as $k=>$label)<option value="{{ $k }}">{{ $label }}</option>@endforeach</select></label>
-        <label>索引状态<select wire:model.live="indexStatus"><option value="">全部</option><option value="not_requested">尚未请求嵌入</option><option value="failed">索引失败（当前未接入）</option></select></label>
+        <label>索引状态<select wire:model.live="indexStatus"><option value="">全部</option><option value="not_requested">尚未请求嵌入</option><option value="pending">未活动索引</option><option value="partial">部分分块已索引</option><option value="indexed">已有活动索引</option><option value="stale">索引来源已过期</option></select></label>
         <label>截至章位<input type="number" min="1" wire:model.live="chapter"></label><label>声明可见角色<select wire:model.live="character"><option value="">全部</option>@foreach($options['characters'] as $c)<option value="{{ $c->id }}">{{ $c->name }}</option>@endforeach</select></label>
         <label>页码<input type="number" min="1" wire:model.live="page"></label>
     </div>
@@ -45,7 +45,7 @@
         <pre class="whitespace-pre-wrap">{{ $detail['summary'] }}</pre>
         @foreach($detail['report']['issues'] as $issue)<p>问题 {{ $issue['code'] }} / 事实 #{{ $issue['fact_id'] ?? '无' }}</p>@endforeach
         <x-filament::button wire:click="loadRevision">载入为修订或失败重试</x-filament::button><x-filament::button wire:click="activate">激活分支候选</x-filament::button><x-filament::button color="danger" wire:click="disableMemory" wire:confirm="停用会使依赖此摘要的派生记忆失效，确认继续？">停用错误派生记忆</x-filament::button>
-        <p>重建嵌入待D05；自动提取与正式提交消费待E07，当前没有可执行按钮。</p>
+        <p>离线索引请前往检索实验室构建；自动提取与正式提交消费待E07。</p>
         @foreach($detail['parents'] as $parent)<details><summary>父版本 #{{ $parent['id'] }} / {{ $parent['content_status'] }} / {{ $parent['content_hash'] }}</summary><pre class="whitespace-pre-wrap">{{ $parent['summary'] }}</pre></details>@endforeach
         @foreach($detail['facts'] as $f)<p>事实 #{{ $f['id'] }} / {{ $f['category'] }} / 第{{ $f['introduced_chapter'] }}章：{{ $f['statement'] }}</p>@endforeach
         @foreach($detail['sources'] as $s)<details><summary>原文来源 #{{ $s['id'] }} / {{ $s['source_hash'] }}</summary><pre class="whitespace-pre-wrap">{{ $s['body'] }}</pre><x-filament::button color="danger" wire:click="disableSource('{{ $s['id'] }}')" wire:confirm="停用来源会使所有派生摘要失效，确认继续？">标记此来源失效</x-filament::button></details>@endforeach

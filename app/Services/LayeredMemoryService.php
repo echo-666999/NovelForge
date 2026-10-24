@@ -102,6 +102,48 @@ final class LayeredMemoryService
     }
 
     // 每次读取/激活重验源文本和产物哈希，不能只相信旧摘要的状态字段。
+    // 检索派生层复用同一来源有效性检查，不能复制后放宽失效门禁。
+    public function verifiedSource(User $actor, string $novel, string $branch, string $source): array
+    {
+        return DB::transaction(function () use ($actor, $novel, $branch, $source) {
+            app(NovelIntentService::class)->novel($actor, $novel, true);
+            $this->branch($novel, $branch);
+
+            return (array) $this->source($novel, $branch, $source);
+        });
+    }
+
+    /** 同一事务内批量核验来源，避免检索每个候选反复锁小说及逐条读取产物。 */
+    public function verifiedSources(User $actor, string $novel, string $branch, array $ids): array
+    {
+        return DB::transaction(function () use ($actor, $novel, $branch, $ids) {
+            app(NovelIntentService::class)->novel($actor, $novel, true);
+            if ($this->branch($novel, $branch)->status === 'canceled') {
+                return [];
+            }
+            $sources = DB::table('source_documents')->where('novel_id', $novel)->where('run_id', $branch)->whereIn('id', $ids)->get();
+            $artifacts = DB::table('generation_artifacts')->where('novel_id', $novel)->where('run_id', $branch)->whereIn('id', $sources->pluck('artifact_id'))->get()->keyBy('id');
+            $invalid = DB::table('memory_invalidations')->whereIn('source_version_id', $sources->pluck('id'))->pluck('source_version_id')->flip();
+            $valid = [];
+            foreach ($sources as $source) {
+                $artifact = $artifacts->get($source->artifact_id);
+                if (! $invalid->has($source->id) && $this->sourceMatchesArtifact($source, $artifact)) {
+                    $valid[(string) $source->id] = (array) $source;
+                }
+            }
+
+            return $valid;
+        });
+    }
+
+    /** 单条写入核验与批量检索核验使用相同正文/产物哈希规则。 */
+    private function sourceMatchesArtifact(object $source, ?object $artifact): bool
+    {
+        $body = $artifact ? json_decode($artifact->content, true, flags: JSON_THROW_ON_ERROR) : null;
+
+        return $artifact && is_string($body['text'] ?? null) && $this->hash($body) === $artifact->content_hash && StoryStateService::normalize($body['text']) === $source->body && hash('sha256', $source->body) === $source->source_hash;
+    }
+
     private function source(string $novel, string $branch, mixed $id): object
     {
         Validator::make(['id' => $id], ['id' => 'required|integer|min:1|max:9223372036854775807'])->validate();
@@ -110,8 +152,7 @@ final class LayeredMemoryService
             throw new NovelProblem('INVALID_SOURCE', '来源不属于同书候选分支。', 422);
         }
         $artifact = DB::table('generation_artifacts')->where('novel_id', $novel)->where('run_id', $branch)->where('id', $s->artifact_id)->first();
-        $body = $artifact ? json_decode($artifact->content, true, flags: JSON_THROW_ON_ERROR) : null;
-        if (! $artifact || ! is_string($body['text'] ?? null) || $this->hash($body) !== $artifact->content_hash || StoryStateService::normalize($body['text']) !== $s->body || hash('sha256', $s->body) !== $s->source_hash) {
+        if (! $this->sourceMatchesArtifact($s, $artifact)) {
             throw new NovelProblem('SOURCE_HASH_MISMATCH', '来源正文与冻结产物哈希不一致。');
         }
         if (DB::table('memory_invalidations')->where('source_version_id', $s->id)->exists() || $this->branch($novel, $branch)->status === 'canceled') {
@@ -324,6 +365,12 @@ final class LayeredMemoryService
         $active = $this->activeId($item['collection_id']) === $item['id'];
         $item['content_status'] = $problem ? 'stale' : (! $item['report']['passed'] ? 'failed' : ($active ? 'active' : 'pending'));
         $item['source_issue'] = $problem;
+        // 索引状态是派生投影，不改写不可变记忆内容及历史状态。
+        $totalChunks = DB::table('memory_chunks')->where('memory_id', $item['id'])->count();
+        $indexedChunks = DB::table('search_documents as d')->join('index_builds as b', 'b.id', '=', 'd.index_build_id')->where('d.memory_id', $item['id'])->where('b.status', 'active')->distinct()->count('d.chunk_id');
+        $pendingIndex = DB::table('search_documents')->where('memory_id', $item['id'])->exists();
+        $item['index_coverage'] = ['indexed_chunks' => $indexedChunks, 'total_chunks' => $totalChunks];
+        $item['index_status'] = $indexedChunks > 0 ? ($item['content_status'] === 'active' ? ($indexedChunks === $totalChunks ? 'indexed' : 'partial') : 'stale') : ($pendingIndex ? 'pending' : 'not_requested');
         $collection = $this->row('memory_collections', $novel, $branch, $item['collection_id']);
         $item['kind'] = $collection['kind'];
         $item['name'] = $collection['name'];
@@ -356,7 +403,7 @@ final class LayeredMemoryService
     private function listingLocked(User $actor, string $novel, array $filters): array
     {
         $branch = $this->readScope($actor, $novel, $filters);
-        $v = Validator::make($filters, ['kind' => ['sometimes', Rule::in(self::KINDS)], 'status' => ['sometimes', Rule::in(['pending', 'active', 'stale', 'failed'])], 'index_status' => ['sometimes', Rule::in(['not_requested', 'failed'])], 'chapter' => 'sometimes|integer|min:1|max:100000', 'character_id' => 'sometimes|integer|min:1', 'page' => 'sometimes|integer|min:1|max:100000'])->validate();
+        $v = Validator::make($filters, ['kind' => ['sometimes', Rule::in(self::KINDS)], 'status' => ['sometimes', Rule::in(['pending', 'active', 'stale', 'failed'])], 'index_status' => ['sometimes', Rule::in(['not_requested', 'pending', 'partial', 'indexed', 'stale', 'failed'])], 'chapter' => 'sometimes|integer|min:1|max:100000', 'character_id' => 'sometimes|integer|min:1', 'page' => 'sometimes|integer|min:1|max:100000'])->validate();
         $rows = DB::table('memory_items')->where('novel_id', $novel)->where('branch_id', $branch)->where('status', 'sealed')->orderByDesc('id')->get();
         $items = [];
         foreach ($rows as $row) {

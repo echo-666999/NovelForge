@@ -1,0 +1,53 @@
+{
+    "database": "novel_forge",
+    "migration_exit": 0,
+    "users_before": 1,
+    "users_after": 1,
+    "novels_before": 0,
+    "novels_after": 0,
+    "providers_count": 0,
+    "model_profiles_count": 0,
+    "ai_requests_count": 0,
+    "backup": "\/Users\/webb\/Herd\/NovelForge\/.local\/backups\/nf-d05-before-20261024-092130.dump",
+    "backup_sha256": "c9e6e1c0659ac5228782517615df834306426e65bc9f45cc811ae49cdb356be2",
+    "archive_list_verified": true,
+    "restoration_tested": false,
+    "extensions": [
+        {
+            "extname": "vector",
+            "extversion": "0.8.1"
+        },
+        {
+            "extname": "pg_trgm",
+            "extversion": "1.6"
+        }
+    ],
+    "comments": {
+        "embedding_profiles": {
+            "columns": 11,
+            "commented_columns": 11,
+            "table_comment": "不可变模型维度距离档案"
+        },
+        "index_builds": {
+            "columns": 13,
+            "commented_columns": 13,
+            "table_comment": "按小说与候选分支隔离的索引代次"
+        },
+        "search_documents": {
+            "columns": 17,
+            "commented_columns": 17,
+            "table_comment": "绑定精确证据或记忆块的检索文档"
+        },
+        "memory_embeddings": {
+            "columns": 8,
+            "commented_columns": 8,
+            "table_comment": "隔离档案与代次的离线检索向量"
+        },
+        "search_evaluations": {
+            "columns": 9,
+            "commented_columns": 9,
+            "table_comment": "固定语料与标注查询的不可变评测报告"
+        }
+    },
+    "added_column_comments": []
+}

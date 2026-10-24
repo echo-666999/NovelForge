@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthoringConfigurationController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BlueprintController;
 use App\Http\Controllers\ForeshadowLedgerController;
+use App\Http\Controllers\HybridSearchController;
 use App\Http\Controllers\LayeredMemoryController;
 use App\Http\Controllers\NovelIntentController;
 use App\Http\Controllers\ProviderConfigurationController;
@@ -131,3 +132,13 @@ Route::prefix('api/v1/novels/{novel}/memories')->whereNumber('novel')->group(fun
         Route::post('/'.$command, LayeredMemoryController::class)->defaults('memoryCommand', $command);
     }
 });
+
+// D05 只开放候选检索与离线索引操作，不调用模型或中文分词。
+Route::get('api/v1/novels/{novel}/search-indexes', HybridSearchController::class)->whereNumber('novel');
+foreach (['profile', 'build', 'document', 'validate', 'activate'] as $command) {
+    Route::post('api/v1/novels/{novel}/search-indexes/'.$command, HybridSearchController::class)->whereNumber('novel')->defaults('searchCommand', $command);
+}
+Route::post('api/v1/novels/{novel}/search', HybridSearchController::class)->whereNumber('novel')->defaults('searchCommand', 'query');
+
+// 评测报告沿用小说归属与会话鉴权。
+Route::get('api/v1/novels/{novel}/search-evaluations/{evaluation}', HybridSearchController::class)->defaults('searchCommand', 'evaluation');

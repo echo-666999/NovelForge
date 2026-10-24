@@ -204,7 +204,7 @@ class LayeredMemoryTest extends TestCase
         $this->sqlReject(fn () => DB::table('memory_sources')->insert(['novel_id' => $f['novelId'], 'branch_id' => $f['branch'], 'memory_id' => $m['id'], 'source_version_id' => $f['sources'][1], 'source_hash' => hash('sha256', $f['text'])]));
         $bad = F::command($f, 'save', array_replace($f['memory'], ['summary' => '遗漏']))['memory'];
         $this->sqlReject(fn () => DB::table('memory_activations')->insert(['novel_id' => $f['novelId'], 'branch_id' => $f['branch'], 'memory_id' => $bad['id'], 'reason' => '绕过服务', 'actor_id' => $f['actor']->id]));
-        $tables = DB::select("SELECT c.relname,obj_description(c.oid) AS remark FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace WHERE n.nspname='public' AND c.relkind='r' AND c.relname LIKE 'memory_%'");
+        $tables = DB::select("SELECT c.relname,obj_description(c.oid) AS remark FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace WHERE n.nspname='public' AND c.relkind='r' AND c.relname LIKE 'memory_%' AND c.relname <> 'memory_embeddings'");
         $this->assertCount(9, $tables);
         foreach ($tables as $t) {
             $this->assertMatchesRegularExpression('/[\x{4e00}-\x{9fff}]/u', $t->remark);

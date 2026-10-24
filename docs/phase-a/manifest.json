@@ -1,12 +1,13 @@
 {
-  "package_version": "1.2",
+  "package_version": "1.3",
   "created_date": "2026-10-22",
   "scope": [
     "NF-A01",
     "NF-A04",
     "NF-A05",
     "CR001",
-    "NF-A01 F01-F03 isolation repair"
+    "NF-A01 F01-F03 isolation repair",
+    "NF-D05 implementation notes"
   ],
   "approval": "design_package_not_runtime_acceptance",
   "counts": {
@@ -29,13 +30,13 @@
     },
     {
       "path": "A04_API.md",
-      "sha256": "25d897de72961afa20829a0710c2d8072f004bd9d215e89fe197ba8833f5e7d6",
-      "bytes": 17999
+      "sha256": "71edbedea626d9fe81cd140f881b3c3fe8c36e29618fa4d367a83a1c1ae17891",
+      "bytes": 18955
     },
     {
       "path": "A04_CONTRACTS.md",
-      "sha256": "3ca512e07e9fa1b3590f35d39286579c7c6ba08ba3b65cc5cd66b433c808c639",
-      "bytes": 29571
+      "sha256": "bf64ab9426acc90dc2d9b9052ef358a3da141c14989fe4d6cdda824d77fa67df",
+      "bytes": 30461
     },
     {
       "path": "A05_ACCEPTANCE.md",
@@ -49,23 +50,23 @@
     },
     {
       "path": "DATA_DICTIONARY_NOTES.md",
-      "sha256": "1e20c45de8d46a7aeecc7830f41bffb50e91909fd59a359ad5dd10774f8d073e",
-      "bytes": 13216
+      "sha256": "925b7e31279036e9dbeb650057d81c31547fdf27546e94865de402ca689513ae",
+      "bytes": 14178
     },
     {
       "path": "DECISIONS.md",
-      "sha256": "0ffea76121298d923c84a4d889362e9e591688d4791ce97a42e5a712157ea93e",
-      "bytes": 12537
+      "sha256": "d676e77c7d4144dc79e63b73479792ec0e4464d6c1e09909bf56559b7d0a6ea2",
+      "bytes": 13218
     },
     {
       "path": "README.md",
-      "sha256": "ba6ef13cc1abc65611faed322e725a1bd924853b7804a8bbed2cb9c27b917882",
-      "bytes": 2817
+      "sha256": "69199394284bcd05042b7a3ab3abc21d018a92c008343cc93218445631a9b72f",
+      "bytes": 3021
     },
     {
       "path": "VALIDATION.md",
-      "sha256": "c5f3e7767570c7b09c77fa0c2cc2032e909313b11ec7363f1235cb500be64193",
-      "bytes": 2152
+      "sha256": "dbd9ba161d08b234e41ec8ed6d87727c271163a5c58d1ad7642bee2f993e9b23",
+      "bytes": 2448
     },
     {
       "path": "acceptance_cases.csv",

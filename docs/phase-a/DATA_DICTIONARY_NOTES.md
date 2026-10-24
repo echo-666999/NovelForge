@@ -84,3 +84,9 @@ run_traces(run_id主键外键, trace_id唯一UUID, origin, created_at)只追加�
 ## NF-D04 物理映射（2026-10-24）
 
 新增memory_collections、memory_facts、memory_items、memory_sources、memory_item_facts、memory_parents、memory_chunks、memory_activations、memory_invalidations。逻辑memory_items的父来源拆成多父强关联，完整源链展开保存；证据事实清单单独不可变。branch_id强FK持久运行，source_documents增加同书/运行/ID唯一键，evidence_spans增加同书/来源/ID唯一键，以支持强类型复合来源FK。当前仅candidate，revision_id空；正式基线FK待E07来源表存在后接入，不造松散正式记录。index_status与内容派生状态分离，D05前not_requested。全部新增表/列中文备注，详见 ../phase-d/NF-D04_ACCEPTANCE.md。
+
+## NF-D05 物理表映射（2026-10-24）
+
+新增embedding_profiles、index_builds、search_documents、memory_embeddings、search_evaluations。memory_embeddings通过document_id→search_documents.chunk_id连接记忆分块，也允许精确证据原文。index_build_id与profile_id组合FK阻止错档案，vector_dims/非零向量与input_hash触发器阻止错维度和错输入。vector为可变维度物理列，逐行固定档案；首期精确搜索没有混合维度ANN索引。文档同书分支、来源、证据、事件与记忆均有强FK。
+
+revision_id只能NULL，scope只能candidate；tsvector/parser/dictionary不提前建设。GIN用于normalized_text gin_trgm_ops，B-tree支持书/分支/代次/章位及来源定位。5表字段中文COMMENT由迁移实际写入并测试核验。D04 index_status为活动代次分块覆盖投影，不修改immutable memory_items历史值。见[数据库与验收](../phase-d/NF-D05_ACCEPTANCE.md)。

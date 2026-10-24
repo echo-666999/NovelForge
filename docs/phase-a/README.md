@@ -33,3 +33,5 @@
 NF-D03 规划账本及正式证据边界已落地，见 [验收记录](../phase-d/NF-D03_ACCEPTANCE.md)。
 
 NF-D04 分层候选记忆、压缩保留和来源失效链已落地，详见 [验收记录](../phase-d/NF-D04_ACCEPTANCE.md)。
+
+NF-D05 核心混合检索及离线索引隔离见[验收记录](../phase-d/NF-D05_ACCEPTANCE.md)。冻结A05语料与查询不改写，结果另存phase-d；正式基线和真实模型不冒充完成。

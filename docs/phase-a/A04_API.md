@@ -153,3 +153,9 @@ plan字段、SQL映射、状态和UI边界见 ../phase-d/NF-D03_ACCEPTANCE.md。
 | POST `/invalidate` | source_version_id与memory_id二选一；保留理由，依赖派生记忆立即stale |
 
 所有写命令必带branch_id、expected_version=novels.row_version、reason与Idempotency-Key。索引和正式scope不能由客户端写入。关键错误：STALE_STATE、IDEMPOTENCY_CONFLICT、INVALID_SOURCE、INVALID_EVIDENCE、STALE_SOURCE、STALE_MEMORY、MEMORY_VALIDATION_FAILED、VISIBILITY_WIDENED、INVALID_RETRY、FORMAL_MEMORY_UNAVAILABLE。具体字段、状态与未开放边界见 ../phase-d/NF-D04_ACCEPTANCE.md。
+
+## NF-D05 检索接口（2026-10-24）
+
+GET `/api/v1/novels/{novel}/search-indexes` 获取档案、代次及评测摘要；POST其下 `/profile`、`/build`、`/document`、`/validate`、`/activate`，均要求Idempotency-Key、expected_version=novels.row_version和reason。写入幂等先于版本比较。GET `/api/v1/novels/{novel}/search-evaluations/{evaluation}` 读取同书完整报告。
+
+POST `/api/v1/novels/{novel}/search` 为只读查询：scope、branch_id、build_id、profile_id、query、chapter、audience必填，POV另须pov_id/context_id；limit默认20、最大100，vector默认true，可显式关闭并返回降级原因。不同分支/活动代次/档案请求报INDEX_PROFILE_MISMATCH；formal报FORMAL_SEARCH_UNAVAILABLE；超10000候选报SEARCH_SCOPE_TOO_LARGE。响应含来源/证据/事件/记忆块、范围与每通道排名，均private/no-store。完整字段与UI24见[验收报告](../phase-d/NF-D05_ACCEPTANCE.md)。

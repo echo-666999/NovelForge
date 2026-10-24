@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-24",
+  "result": "incomplete_memory_exhaustion",
+  "php_memory_limit": "128M",
+  "passed_before_abort": 217,
+  "assertion_failures_before_abort": 0,
+  "aborted_test": "Tests\\Feature\\StoryConsistencyTest::test_filament_empty_state_editing_filters_and_historical_versions",
+  "retrieval_corpus_test_passed_before_abort": true,
+  "action": "Run SearchCorpusTest in a separate PHP process with global-state preservation disabled; keep application memory settings unchanged; rerun the suite."
+}

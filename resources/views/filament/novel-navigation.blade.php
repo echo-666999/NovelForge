@@ -11,6 +11,7 @@ catch (\Illuminate\Database\QueryException $e) { report($e); $context=null; }
 {{-- 账本只展示本书规划承诺，正式证据由后续提交链提供。 --}}
 <a href="/admin/foreshadow-ledger?novel={{ $context['id'] }}">伏笔与主支线账本</a>
 <a href="/admin/memory-library?novel={{ $context['id'] }}">分层记忆库</a>
+<a href="/admin/search-lab?novel={{ $context['id'] }}">检索实验室</a>
 <a href="/admin/novels">切换小说</a><a href="/admin">创作总览</a>
 </nav>
 </x-filament::section>
