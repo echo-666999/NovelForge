@@ -256,7 +256,9 @@ class NovelConcurrencyTest extends TestCase
         $this->assertSame('novel_forge_test', DB::selectOne('SELECT current_database() AS name')->name);
         Artisan::call('migrate:fresh', ['--force' => true]);
         try {
-            $this->assertSame(0, Artisan::call('migrate:rollback', ['--step' => 17, '--force' => true]));
+            // D06 起按实际已应用的业务迁移数量回滚，避免新增迁移使旧固定步数漏掉小说表。
+            $steps = DB::table('migrations')->where('migration', '>=', '2026_10_23_000001_create_novel_intent_tables')->count();
+            $this->assertSame(0, Artisan::call('migrate:rollback', ['--step' => $steps, '--force' => true]));
             $this->assertFalse(Schema::hasTable('novels'));
             $this->assertTrue(Schema::hasTable('users'));
             $this->assertSame(0, Artisan::call('migrate', ['--force' => true]));

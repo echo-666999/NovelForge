@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthoringConfigurationController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BlueprintController;
+use App\Http\Controllers\ContextAssemblyController;
 use App\Http\Controllers\ForeshadowLedgerController;
 use App\Http\Controllers\HybridSearchController;
 use App\Http\Controllers\LayeredMemoryController;
@@ -142,3 +143,7 @@ Route::post('api/v1/novels/{novel}/search', HybridSearchController::class)->wher
 
 // 评测报告沿用小说归属与会话鉴权。
 Route::get('api/v1/novels/{novel}/search-evaluations/{evaluation}', HybridSearchController::class)->defaults('searchCommand', 'evaluation');
+
+// D06 组装只追加离线清单，正式发送接线仍由 E 阶段实施。
+Route::get('api/v1/generation-steps/{step}/context', ContextAssemblyController::class)->whereNumber('step');
+Route::post('api/v1/generation-steps/{step}/context', ContextAssemblyController::class)->whereNumber('step');

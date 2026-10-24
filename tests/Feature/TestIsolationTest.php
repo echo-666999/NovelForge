@@ -92,19 +92,84 @@ class TestIsolationTest extends TestCase
 
     public function test_cached_configuration_is_rejected_without_loading_it(): void
     {
-        $file = storage_path('cached-config-probe.php');
-        file_put_contents($file, '<?php throw new RuntimeException("CACHE_WAS_LOADED");');
+        // 用实际副作用证明缓存 PHP 没有执行，不能仅凭报错字符串推断门禁顺序。
+        $token = (string) Str::uuid();
+        $file = storage_path('cached-config-'.$token.'.php');
+        $marker = storage_path('cached-config-loaded-'.$token);
+        file_put_contents($file, '<?php file_put_contents('.var_export($marker, true).', "loaded"); throw new RuntimeException("CACHE_WAS_LOADED");');
         try {
-            $process = new Process([PHP_BINARY, 'artisan', 'list', '--env', 'testing'], base_path(), [
-                'APP_CONFIG_CACHE' => $file, 'APP_ENV' => 'local',
-            ]);
-            $process->run();
-            $output = $process->getOutput().$process->getErrorOutput();
-            $this->assertFalse($process->isSuccessful());
-            $this->assertStringContainsString('Testing refuses cached configuration', $output);
-            $this->assertStringNotContainsString('CACHE_WAS_LOADED', $output);
+            foreach ([['local', ['--env', 'testing']], ['local', ['--env=testing']], ['testing', []]] as [$environment, $arguments]) {
+                // 参数栈即使完全截短，用户也应读到完整拒绝原因，而不是 config 的二次异常。
+                $process = new Process([PHP_BINARY, '-d', 'zend.exception_string_param_max_len=0', 'artisan', 'list', ...$arguments], base_path(), [
+                    'APP_CONFIG_CACHE' => $file, 'APP_ENV' => $environment,
+                ]);
+                $process->run();
+                $output = $process->getOutput().$process->getErrorOutput();
+                $this->assertSame(1, $process->getExitCode(), $output);
+                $this->assertStringContainsString('Testing refuses cached configuration', $output);
+                $this->assertStringNotContainsString('CACHE_WAS_LOADED', $output);
+                $this->assertStringNotContainsString('Target class [config]', $output);
+                $this->assertStringNotContainsString('Fatal error', $output);
+                $this->assertFileDoesNotExist($marker);
+            }
         } finally {
             unlink($file);
+            if (file_exists($marker)) {
+                unlink($marker);
+            }
+        }
+    }
+
+    public function test_normal_console_command_still_runs_termination_callbacks(): void
+    {
+        $marker = storage_path('normal-termination-'.Str::uuid());
+        $code = sprintf(<<<'PHP'
+        require 'vendor/autoload.php';
+        $app = require 'bootstrap/app.php';
+        $app->terminating(fn () => file_put_contents(%s, 'terminated'));
+        exit($app->handleCommand(new \Symfony\Component\Console\Input\ArgvInput(['artisan', 'list', '--raw'])));
+        PHP, var_export($marker, true));
+        try {
+            $process = new Process([PHP_BINARY, '-r', $code], base_path(), ['APP_ENV' => 'testing', 'DB_URL' => '']);
+            $process->run();
+            $this->assertSame(0, $process->getExitCode(), $process->getOutput().$process->getErrorOutput());
+            $this->assertStringContainsString('novelforge:dispatch', $process->getOutput());
+            $this->assertStringContainsString('novelforge:doctor', $process->getOutput());
+            $this->assertFileExists($marker);
+            $this->assertSame('terminated', file_get_contents($marker));
+        } finally {
+            if (file_exists($marker)) {
+                unlink($marker);
+            }
+        }
+    }
+
+    public function test_early_storage_symlink_gate_still_rejects_without_config_errors(): void
+    {
+        // 临时空目录模拟不安全的 storage，不移动或替换项目实际目录。
+        $root = base_path('.local/isolation-probe-'.Str::uuid());
+        mkdir($root.'/base', 0700, true);
+        mkdir($root.'/target', 0700);
+        symlink($root.'/target', $root.'/base/storage');
+        $code = sprintf(<<<'PHP'
+        require 'vendor/autoload.php';
+        $app = require 'bootstrap/app.php';
+        $app->setBasePath(%s);
+        exit($app->handleCommand(new \Symfony\Component\Console\Input\ArgvInput(['artisan', 'list'])));
+        PHP, var_export($root.'/base', true));
+        try {
+            $process = new Process([PHP_BINARY, '-r', $code], base_path(), ['APP_ENV' => 'testing']);
+            $process->run();
+            $output = $process->getOutput().$process->getErrorOutput();
+            $this->assertSame(1, $process->getExitCode(), $output);
+            $this->assertStringContainsString('Testing storage must not be a symbolic link', $output);
+            $this->assertStringNotContainsString('Target class [config]', $output);
+            $this->assertSame(['.', '..'], scandir($root.'/target'));
+        } finally {
+            unlink($root.'/base/storage');
+            rmdir($root.'/base');
+            rmdir($root.'/target');
+            rmdir($root);
         }
     }
 

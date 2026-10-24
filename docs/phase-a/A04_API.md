@@ -159,3 +159,8 @@ plan字段、SQL映射、状态和UI边界见 ../phase-d/NF-D03_ACCEPTANCE.md。
 GET `/api/v1/novels/{novel}/search-indexes` 获取档案、代次及评测摘要；POST其下 `/profile`、`/build`、`/document`、`/validate`、`/activate`，均要求Idempotency-Key、expected_version=novels.row_version和reason。写入幂等先于版本比较。GET `/api/v1/novels/{novel}/search-evaluations/{evaluation}` 读取同书完整报告。
 
 POST `/api/v1/novels/{novel}/search` 为只读查询：scope、branch_id、build_id、profile_id、query、chapter、audience必填，POV另须pov_id/context_id；limit默认20、最大100，vector默认true，可显式关闭并返回降级原因。不同分支/活动代次/档案请求报INDEX_PROFILE_MISMATCH；formal报FORMAL_SEARCH_UNAVAILABLE；超10000候选报SEARCH_SCOPE_TOO_LARGE。响应含来源/证据/事件/记忆块、范围与每通道排名，均private/no-store。完整字段与UI24见[验收报告](../phase-d/NF-D05_ACCEPTANCE.md)。
+
+
+## NF-D06 上下文清单接口落地（2026-10-24）
+
+GET `/api/v1/generation-steps/{step}/context` 读取最新冻结清单；`manifest` 选择历史，`compare` 比较同阶段另一清单。POST 同路径使用 Idempotency-Key 追加组装清单，输入 scope=candidate、plan_id、scene_id、pov_id、configuration、billing、safety_margin、expected_version、reason；context_id/search 可选。沿用同源会话、CSRF、管理员及小说所有权，响应 private/no-store。formal 返回 FORMAL_CONTEXT_UNAVAILABLE，不回退候选。清单返回 assembled/over_capacity/missing_required，另以 current_status=stale 表示当前依赖过期，冻结文本不变。接口没有发送模型请求或写正式剧情的副作用。完整字段、估算限制及 UI23 见 [NF-D06 验收](../phase-d/NF-D06_ACCEPTANCE.md)。

@@ -1,5 +1,7 @@
 <?php
 
+use App\Console\Kernel;
+use App\Exceptions\TestIsolationBootstrapException;
 use App\Http\Middleware\OperationTrace;
 use App\Support\NovelApiErrors;
 use App\Support\TestIsolation;
@@ -31,6 +33,9 @@ $app = Application::configure(basePath: dirname(__DIR__))
         );
     })->create();
 
+// 保留框架正常命令生命周期，仅处理配置尚不存在的早期测试拒绝。
+$app->singleton(Illuminate\Contracts\Console\Kernel::class, Kernel::class);
+
 $app->beforeBootstrapping(LoadConfiguration::class, function (Application $app): void {
     $testing = Env::get('APP_ENV') === 'testing'
         || (new ArgvInput)->getParameterOption('--env') === 'testing';
@@ -39,16 +44,16 @@ $app->beforeBootstrapping(LoadConfiguration::class, function (Application $app):
         return;
     }
     if ($app->configurationIsCached()) {
-        throw new RuntimeException('Testing refuses cached configuration; clear it outside the test run.');
+        throw new TestIsolationBootstrapException('Testing refuses cached configuration; clear it outside the test run.');
     }
     $root = $app->basePath('storage/testing');
     foreach (['', '/app', '/app/private', '/app/public', '/framework', '/framework/cache', '/framework/cache/data', '/framework/cache/locks', '/framework/sessions', '/framework/views', '/logs'] as $suffix) {
         $path = $root.$suffix;
         if (is_link($app->basePath('storage')) || is_link($path)) {
-            throw new RuntimeException('Testing storage must not be a symbolic link.');
+            throw new TestIsolationBootstrapException('Testing storage must not be a symbolic link.');
         }
         if (! is_dir($path) && ! mkdir($path, 0700, true) && ! is_dir($path)) {
-            throw new RuntimeException('Cannot prepare isolated testing storage.');
+            throw new TestIsolationBootstrapException('Cannot prepare isolated testing storage.');
         }
     }
     $app->useStoragePath($root);
