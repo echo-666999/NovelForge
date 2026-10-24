@@ -50,8 +50,8 @@ final class TestIsolation
         $config->set('queue.default', 'sync');
         $config->set('queue.connections', [
             'sync' => ['driver' => 'sync'],
-            'redis' => ['driver' => 'redis', 'connection' => 'default', 'queue' => 'testing', 'retry_after' => 90, 'block_for' => null, 'after_commit' => false],
-            'database' => ['driver' => 'database', 'connection' => 'pgsql', 'table' => 'jobs', 'queue' => 'testing', 'retry_after' => 90, 'after_commit' => false],
+            'redis' => ['driver' => 'redis', 'connection' => 'default', 'queue' => 'testing', 'retry_after' => 120, 'block_for' => null, 'after_commit' => false],
+            'database' => ['driver' => 'database', 'connection' => 'pgsql', 'table' => 'jobs', 'queue' => 'testing', 'retry_after' => 120, 'after_commit' => false],
         ]);
         $config->set('queue.batching.database', 'pgsql');
         $config->set('queue.failed', ['driver' => 'database-uuids', 'database' => 'pgsql', 'table' => 'failed_jobs']);

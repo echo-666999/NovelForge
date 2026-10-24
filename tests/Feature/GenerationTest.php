@@ -137,7 +137,7 @@ class GenerationTest extends TestCase
                 $this->assertSame($status, $repaired['steps'][0]['status']);
                 $this->assertSame('succeeded', $repaired['steps'][1]['status']);
             } else {
-                $this->problem('RETRY_LIMIT', fn () => $this->advance($f, $r, 'first', new FakeStageExecutor, 1));
+                $this->problem('RUN_NOT_EXECUTABLE', fn () => $this->advance($f, $r, 'first', new FakeStageExecutor, 1));
             }
         }
     }

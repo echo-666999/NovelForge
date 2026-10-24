@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if ($this->app->environment('testing')) {
+            // 全测试环境阻断未显式伪造的HTTP，避免网关测试意外产生真实费用。
+            Http::preventStrayRequests();
             try {
                 $database = $this->app['db']->connection('pgsql')->selectOne('SELECT current_database() AS name')->name;
             } catch (\Throwable) {

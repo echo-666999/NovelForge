@@ -106,7 +106,7 @@ final class GenerationService
         }
         // 与规划/正式状态写入保持小说在前、运行在后的统一锁顺序。
         if ($lock) {
-            DB::table('novels')->where('id', $novelId)->sharedLock()->first();
+            DB::table('novels')->where('id', $novelId)->lockForUpdate()->first();
         }
         $query = DB::table('generation_runs')->where('novel_id', $novelId)->where('id', $runId);
         $run = ($lock ? $query->lockForUpdate() : $query)->first();
@@ -123,7 +123,7 @@ final class GenerationService
         $serialize = function (object $row): array {
             $data = (array) $row;
             foreach ($data as $key => $value) {
-                if ($value !== null && ($key === 'id' || str_ends_with($key, '_id') || $key === 'expected_state_version')) {
+                if ($value !== null && ($key === 'id' || str_ends_with($key, '_id') || in_array($key, ['expected_state_version', 'fencing_token'], true))) {
                     $data[$key] = (string) $value;
                 }
                 if (in_array($key, ['frozen_config', 'frozen_input', 'content'], true)) {
@@ -166,13 +166,17 @@ final class GenerationService
         return $artifact;
     }
 
-    /** 一次只领取一个阶段。数据库锁仅保护领取/落盘，执行阶段位于事务之外。 */
-    public function advance(User $actor, string $novelId, string $runId, string $scopeKey, StageExecutor $executor, ?int $retryOf = null): array
+    /** 认领可恢复的测试阶段；令牌及时间均来自持久数据库。 */
+    public function claim(User $actor, string $novelId, string $runId, string $scopeKey, ?int $retryOf = null): ?array
     {
         $this->harness();
-        $claim = DB::transaction(function () use ($actor, $novelId, $runId, $scopeKey, $retryOf) {
+
+        return DB::transaction(function () use ($actor, $novelId, $runId, $scopeKey, $retryOf) {
             $run = $this->run($actor, $novelId, $runId, true);
             $frozen = $this->verifyRun($run);
+            if (in_array($run->status, ['canceled', 'paused', 'needs_attention'], true)) {
+                throw new NovelProblem('RUN_NOT_EXECUTABLE', '运行当前不可执行。');
+            }
             $node = collect($frozen['nodes'])->firstWhere('key', $scopeKey);
             if (! $node) {
                 throw new NovelProblem('INVALID_STAGE', '阶段不在冻结依赖图中。', 422);
@@ -189,6 +193,10 @@ final class GenerationService
                 $dependencies[] = ['step_id' => (string) $source->id, 'artifact_id' => (string) $artifact->id, 'content_hash' => $artifact->content_hash];
             }
             $previous = DB::table('generation_steps')->where('run_id', $runId)->where('scope_key', $scopeKey)->orderByDesc('attempt_no')->first();
+            // 重试通知不能在首尝试出现前偷偷创建首尝试。
+            if (! $previous && $retryOf !== null) {
+                return null;
+            }
             $input = ['run_input_hash' => $run->input_hash, 'node' => $node, 'dependencies' => $dependencies];
             if ($previous) {
                 $previousInput = $this->json($previous->frozen_input);
@@ -202,7 +210,24 @@ final class GenerationService
                     return null;
                 }
                 if (in_array($previous->status, ['queued', 'running'], true)) {
-                    return null;
+                    if ((int) $previous->attempt_no !== ($retryOf ?? 0) + 1) {
+                        return null;
+                    }
+                    if (DB::table('generation_steps')->where('id', $previous->id)->whereRaw('lease_until > clock_timestamp()')->exists()) {
+                        return null;
+                    }
+                    if ($previous->fencing_token >= config('orchestration.max_claims')) {
+                        DB::table('generation_steps')->where('id', $previous->id)->update(['status' => 'failed', 'error_code' => 'LEASE_EXHAUSTED', 'updated_at' => now()]);
+                        $this->aggregate($run);
+
+                        return null;
+                    }
+                    // 仅测试阶段允许自动重领；真实请求未知结果不能自动重复调用。
+                    $saved = $this->json($previous->frozen_input);
+                    $resume = $previous->resume_artifact_id ? DB::table('generation_artifacts')->find($previous->resume_artifact_id) : null;
+                    $saved['checkpoint'] = $resume ? ['artifact_id' => (string) $resume->id, 'content' => $this->json($resume->content)] : null;
+
+                    return $this->reserveQueuedRun($novelId, $runId) ? $this->lease((string) $previous->id, $saved) : null;
                 }
                 // 重试必须指明旧尝试号，重复调度不会再创建下一次尝试。
                 if ($retryOf !== (int) $previous->attempt_no) {
@@ -214,6 +239,9 @@ final class GenerationService
             }
             if (in_array($run->status, ['canceled', 'paused', 'needs_attention'], true)) {
                 throw new NovelProblem('RUN_NOT_EXECUTABLE', '运行当前不可执行。');
+            }
+            if (! $this->reserveQueuedRun($novelId, $runId)) {
+                return null;
             }
             $checkpoint = $previous?->checkpoint_artifact_id ? $this->artifact($previous) : null;
             // 续跑来源也冻结到尝试输入，重启后仍能追溯具体检查点。
@@ -229,31 +257,48 @@ final class GenerationService
             }
             DB::table('generation_runs')->where('id', $runId)->update(['status' => 'running', 'error_code' => null, 'updated_at' => now()]);
 
-            return ['id' => $stepId, 'input' => $input + ['checkpoint' => $checkpoint ? ['artifact_id' => (string) $checkpoint->id, 'content' => $this->json($checkpoint->content)] : null]];
+            return $this->lease((string) $stepId, $input + ['checkpoint' => $checkpoint ? ['artifact_id' => (string) $checkpoint->id, 'content' => $this->json($checkpoint->content)] : null]);
         });
+    }
+
+    /** 领取与提交分开，任何执行器都不能跨租约提交结果。 */
+    public function advance(User $actor, string $novelId, string $runId, string $scopeKey, StageExecutor $executor, ?int $retryOf = null, ?string $eventId = null): array
+    {
+        $claim = $this->claim($actor, $novelId, $runId, $scopeKey, $retryOf);
         if (! $claim) {
             return $this->read($actor, $novelId, $runId);
         }
         try {
             $result = $executor->execute($claim['input']);
-            // 测试输出是明确的版本化结构；非法输出保留失败记录而非成功产物。
-            Validator::make(['status' => $result->status, 'content' => $result->content, 'error_code' => $result->errorCode], [
-                'status' => 'required|in:succeeded,deferred,blocked,failed,canceled',
-                'content' => 'required|array:text', 'content.text' => 'required|string|max:20000',
-                'error_code' => ['nullable', 'string', 'max:80', 'regex:/^[A-Z][A-Z0-9_]*$/D'],
-            ])->validate();
-            if ($result->status !== 'succeeded' && ! $result->errorCode) {
-                throw new \InvalidArgumentException('非成功结果必须说明原因。');
-            }
         } catch (Throwable) {
             // 不持久化未脱敏的异常正文，避免意外泄漏调用方上下文。
             $result = new StageResult('failed', ['text' => '测试阶段执行或输出校验失败'], 'STAGE_EXECUTION_FAILED');
         }
-        DB::transaction(function () use ($actor, $novelId, $runId, $claim, $result) {
+        $this->complete($actor, $novelId, $runId, $claim, $result, $eventId);
+
+        return $this->read($actor, $novelId, $runId);
+    }
+
+    /** 完成必须匹配当前租约；拒绝迟到 Worker，不覆盖新产物。 */
+    public function complete(User $actor, string $novelId, string $runId, array $claim, StageResult $result, ?string $eventId = null): bool
+    {
+        $this->harness();
+
+        return DB::transaction(function () use ($actor, $novelId, $runId, $claim, $result, $eventId) {
             $run = $this->run($actor, $novelId, $runId, true);
-            $step = DB::table('generation_steps')->find($claim['id']);
+            $step = DB::table('generation_steps')->where('run_id', $runId)->where('id', $claim['id'])->lockForUpdate()->first();
+            // 过期或被新 Worker 替代的令牌不可写入产物、状态或消费回执。
+            if (! $step || $step->status !== 'running' || (string) $step->fencing_token !== (string) $claim['token'] || $step->lease_owner !== $claim['owner']
+                || ! DB::table('generation_steps')->where('id', $step->id)->whereRaw('lease_until > clock_timestamp()')->exists()) {
+                return false;
+            }
+            $result = $this->validatedResult($result);
             $status = $result->status;
             $error = $result->errorCode;
+            if (in_array($run->status, ['paused', 'canceled'], true)) {
+                $status = 'quarantined';
+                $error = 'RUN_NOT_EXECUTABLE';
+            }
             try {
                 $this->verifyRun($run);
             } catch (NovelProblem) {
@@ -267,12 +312,80 @@ final class GenerationService
                 'content' => NovelIntentService::canonical($result->content), 'content_hash' => $this->hash($result->content),
                 'source_hash' => $step->dependency_hash, 'storage_ref' => 'db:'.Str::uuid(), 'created_at' => now(),
             ]);
-            DB::table('generation_steps')->where('id', $step->id)->update(['status' => $status, 'error_code' => $error,
-                'checkpoint_artifact_id' => $status === 'deferred' ? $artifactId : null, 'updated_at' => now()]);
-            $this->aggregate($run);
-        });
+            $updated = DB::table('generation_steps')->where('id', $step->id)->where('fencing_token', $claim['token'])->where('lease_owner', $claim['owner'])
+                ->whereRaw('lease_until > clock_timestamp()')->update(['status' => $status, 'error_code' => $error,
+                    'checkpoint_artifact_id' => $status === 'deferred' ? $artifactId : null, 'updated_at' => now()]);
+            if ($updated !== 1) {
+                // 校验期间到期也必须回滚刚写入的产物，不能留下半份提交。
+                throw new NovelProblem('LEASE_LOST', '提交期间租约已失效。');
+            }
+            if (! in_array($run->status, ['paused', 'canceled'], true)) {
+                $this->aggregate($run);
+            } elseif ($run->status === 'canceled' && ! DB::table('generation_steps')->where('run_id', $runId)->where('status', 'running')->exists()) {
+                DB::table('generation_book_slots')->where('run_id', $run->id)->delete();
+            }
+            if ($eventId !== null) {
+                app(OutboxService::class)->acknowledge($eventId);
+            }
 
-        return $this->read($actor, $novelId, $runId);
+            return true;
+        });
+    }
+
+    private function validatedResult(StageResult $result): StageResult
+    {
+        try {
+            Validator::make(['status' => $result->status, 'content' => $result->content, 'error_code' => $result->errorCode], [
+                'status' => 'required|in:succeeded,deferred,blocked,failed,canceled',
+                'content' => 'required|array:text', 'content.text' => 'required|string|max:20000',
+                'error_code' => ['nullable', 'string', 'max:80', 'regex:/^[A-Z][A-Z0-9_]*$/D'],
+            ])->validate();
+            if ($result->status !== 'succeeded' && ! $result->errorCode) {
+                throw new \InvalidArgumentException('非成功结果必须说明原因。');
+            }
+
+            return $result;
+        } catch (Throwable) {
+            return new StageResult('failed', ['text' => '测试阶段输出校验失败'], 'STAGE_EXECUTION_FAILED');
+        }
+    }
+
+    /** 只在真正领取步骤时占用整书槽，等待依赖或重放消息不能抢回槽位。 */
+    private function reserveQueuedRun(string $novelId, string $runId): bool
+    {
+        if (! DB::table('outbox_events')->where('run_id', $runId)->exists()) {
+            return true;
+        }
+        $slot = DB::table('generation_book_slots')->where('novel_id', $novelId)->first();
+        if ($slot && (string) $slot->run_id !== $runId) {
+            return false;
+        }
+        DB::table('generation_book_slots')->insertOrIgnore(['novel_id' => $novelId, 'run_id' => $runId]);
+
+        return true;
+    }
+
+    private function lease(string $stepId, array $input): array
+    {
+        $owner = (string) Str::uuid();
+        DB::table('generation_steps')->where('id', $stepId)->update([
+            'fencing_token' => DB::raw('fencing_token + 1'), 'lease_owner' => $owner,
+            'lease_until' => DB::raw("clock_timestamp() + interval '90 seconds'"),
+            'heartbeat_at' => DB::raw('clock_timestamp()'), 'updated_at' => now(),
+        ]);
+        $token = (string) DB::table('generation_steps')->where('id', $stepId)->value('fencing_token');
+        $input['_lease'] = ['id' => $stepId, 'token' => $token, 'owner' => $owner];
+
+        return ['id' => $stepId, 'token' => $token, 'owner' => $owner, 'input' => $input];
+    }
+
+    /** 心跳不能复活已过期租约，也不能续期其他 Worker 的令牌。 */
+    public function heartbeat(string $stepId, string $token, string $owner): bool
+    {
+        return DB::table('generation_steps')->where('id', $stepId)->where('fencing_token', $token)->where('lease_owner', $owner)
+            ->where('status', 'running')->whereRaw('lease_until > clock_timestamp()')->update([
+                'lease_until' => DB::raw("clock_timestamp() + interval '90 seconds'"), 'heartbeat_at' => DB::raw('clock_timestamp()'),
+            ]) === 1;
     }
 
     private function aggregate(object $run): void
@@ -288,5 +401,8 @@ final class GenerationService
         }
         $error = $latest->first(fn ($step) => $step->error_code !== null)?->error_code;
         DB::table('generation_runs')->where('id', $run->id)->update(['status' => $status, 'error_code' => $error, 'updated_at' => now()]);
+        if (in_array($status, ['succeeded', 'failed', 'canceled'], true) && ! in_array('running', $states, true)) {
+            DB::table('generation_book_slots')->where('run_id', $run->id)->delete();
+        }
     }
 }

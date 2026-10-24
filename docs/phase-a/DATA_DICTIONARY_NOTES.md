@@ -29,3 +29,11 @@ entities批准资格由current/approved_version_id及独立entity_approvals表�
 ## NF-C01 实际数据库补充（2026-10-23）
 
 generation_runs/steps/artifacts 已落地，新增 generation_dependencies 保存同运行产物引用；scope 位于冻结 DAG 的节点 key，实际尝试使用 scope_key。检查点指向本步骤产物；新尝试的 resume_artifact_id 指向同运行旧产物。内容暂为私有 DB JSONB，storage_ref=db:UUID。命令幂等复用 novel_commands，不重复建设 idempotency_requests。租约/心跳/fencing、parent_run、预算/供应商请求等 CSV 目标字段不代表本轮已实现；分别随 C02/C03/C05/C06 的真实需求加入。全部实际字段/索引/约束见 ../phase-c/NF-C01_ACCEPTANCE.md；CSV 保持完整目标设计含义。
+
+## NF-C02 实际数据库补充（2026-10-23）
+
+新增 outbox_events、consumer_receipts、generation_book_slots，generation_steps 加 fencing_token/lease_owner/lease_until/heartbeat_at。租约时间以 PostgreSQL clock_timestamp() 判定；意图字段与回执不可变，书槽按同书复合FK约束。字典中的其他目标字段（真实请求、预算、完整人工控制等）仍未落地；完整字段/索引与实际恢复测试见 ../phase-c/NF-C02_ACCEPTANCE.md。
+
+## NF-C03 实际数据库补充（2026-10-24）
+
+新增providers/provider_secrets/provider_versions、model_profiles/model_profile_versions、ai_requests/ai_request_evidence、provider_commands八表，每表及每字段均有中文COMMENT。provider_versions.secret_id为同供应商加密密钥版本引用，前端只返回has_key。model能力保留声明与来源，unverified不能通过配置升级。ai_requests实际包含C02令牌与同书阶段复合FK，原始证据分表加密脱敏；route_version_id/price_version_id与预算账本尚待C04/C05，未填虚构外键。字典仍为全系统目标设计；本轮字段/索引/约束实测见 ../phase-c/NF-C03_ACCEPTANCE.md。

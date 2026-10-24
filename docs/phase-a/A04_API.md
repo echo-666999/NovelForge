@@ -75,3 +75,13 @@ GET /api/v1/novels/{novel} 已实现为只读工作台摘要，支持章范围�
 ### NF-C01 接口落地边界（2026-10-23）
 
 新增 PHP 应用服务 GenerationService::start/read/advance 与 StageExecutor::execute(array): StageResult。start/advance 强制 testing，read 验证管理员及本书归属；所有输出业务 ID 为十进制字符串。start 的首次响应以 generation.test.start 命令域幂等保存，重试通过明确 retryOf 尝试号去重。没有新 HTTP 路由；POST /generation-runs 属于 F01，运行查询页面/API 属于 C07，暂停/取消/迁移属于 C06。不能将内部测试入口视为生产生成资格。
+
+### NF-C02 内部接口（2026-10-23）
+
+OutboxService::startQueued/enqueue/publish/recover/consume 和 GenerationService::claim/complete/heartbeat 是内部服务接口；新增 novelforge:dispatch CLI 与 Redis Job。没有新 HTTP 入口，生产 start/pause/resume/cancel 与运行中心仍按 F01/C06/C07 实施。重试意图用 run+scope+retryOf 唯一键，正常完成回执与产物同事务。CLI 操作和消费者更新流程见 ../phase-c/NF-C02_OPERATIONS.md。
+
+### NF-C03 配置接口（2026-10-24）
+
+新增 GET /api/v1/providers，以及 POST /api/v1/providers/provider、/model，均要求管理员同源会话，写接口沿用CSRF。配置命令独立provider_commands幂等，actor+key唯一；含敏感输入只存HMAC，响应不含密钥/secret_ref。字段、筛选和分页见 ../phase-c/NF-C03_ACCEPTANCE.md。原生后台表单以command_key提交相同幂等身份，成功重定向；错误不闪存旧密钥。
+
+ProviderGateway::execute/read/evidenceText为内部接口，不新增真实调用、能力探测或证据下载路由。模型声明状态不能写为verified/available；所有真实请求仍被BUDGET_GATE_REQUIRED拒绝。

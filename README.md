@@ -1,11 +1,11 @@
 # NovelForge
 
-单人 AI 长篇小说系统的基础工程。当前范围仅为基础架构，尚未进行具体业务开发。
+单人 AI 长篇小说系统。已按逐项授权完成 B01–B06 规划基础及 C01–C03 持久编排、队列和离线供应商网关；具体范围与证据见 docs/DEVELOPMENT_TASKS.md 和各阶段验收记录。生产生成尚未开放。
 
 ## 当前环境
 
 - Laravel 13.38.0、Filament 5.10.3、Livewire 4.4.8，实际版本锁定于 composer.lock。
-- PHP 8.5.12；Node.js 22.23.3；前端依赖锁定于 package-lock.json。
+- 2026-10-24 当前 CLI 实测 PHP 8.5.7；Herd Web 运行时未在本轮复核。前端依赖锁定于 package-lock.json，其他初始环境记录见 docs/FOUNDATION.md。
 - PostgreSQL 18.6：127.0.0.1:5432 / novel_forge，使用用户提供的连接；实际数据库服务运行于 Linux。
 - 测试库：novel_forge_test。测试引导会检查目标库，禁止在业务库执行 RefreshDatabase。
 - Redis 8.10.2：127.0.0.1:56379，项目独立实例、认证和 AOF；Predis 3.7.0 客户端。
@@ -24,7 +24,7 @@ cd /Users/webb/Herd/NovelForge
 php artisan novelforge:admin
 ```
 
-后台仅提供登录、默认仪表盘和基础实施状态页。未开放注册；非管理员禁止访问。新管理员操作采用数据库唯一约束保证单管理员。
+后台包含创作总览、小说规划工作台与供应商/模型配置页。未开放注册，非管理员禁止访问；数据库唯一约束保证单管理员。密钥不回填页面，保存配置不触发真实模型请求。
 
 PostgreSQL 使用用户已有服务，本项目不控制该服务。项目 Redis 启动命令：
 
@@ -40,9 +40,9 @@ Redis 配置保存在 .local/redis.conf（本机专用、不入库）。未设�
 php artisan queue:work redis --queue=maintenance,planning,generation,review,memory,export --timeout=60 --tries=1
 ```
 
-当前没有业务队列任务。以上队列名称仅为 PRD 预留。默认 retry_after=90 秒大于 worker timeout=60 秒；未来模型调用接入前须按实际最长执行时间同时配置。发布代码后运行 `php artisan queue:restart`。
+C02 已有持久 outbox 通知与幂等消费者，当前只注册测试环境阶段。默认 retry_after=120 秒、租约90秒、worker timeout=60秒；真实模型仍关闭。更新消费者使用 `php artisan queue:restart`，完整步骤和共享缓存要求见 docs/phase-c/NF-C02_OPERATIONS.md。
 
-调度入口遵循 Laravel `routes/console.php`；当前未注册业务定时任务。部署时可配置每分钟 `php artisan schedule:run`，本次未修改系统计划任务。
+调度入口 `routes/console.php` 已注册每分钟 `novelforge:dispatch` 补投与租约扫描。识别过期任务依赖调度器持续运行；本项目没有自动安装系统守护进程。
 
 ## 验证
 
@@ -61,14 +61,15 @@ npm run build
 ## 文件与边界
 
 - docs/PRD-V1.1.md、docs/PRD-V1.1.docx：完整产品需求，包含未来业务范围。
-- docs/FOUNDATION.md：本轮实际交付及验证记录。
+- docs/FOUNDATION.md：初始基础工程的历史交付记录。
+- docs/phase-c/NF-C03_ACCEPTANCE.md：供应商网关、安全配置、中文数据库备注与离线验收。
 - app/Providers/Filament：后台基础配置。
 - app/Console/Commands：管理员创建、依赖诊断。
 - config/novelforge.php：检索配置及预留队列名称。
-- database/migrations：Laravel 系统表、管理员权限及数据库扩展；无小说业务表。
+- database/migrations：系统表及逐项授权的规划、编排、供应商配置和请求证据表；新增C03表/字段带中文备注。
 - scripts/queue-probe.php：真实队列基础验证。
 
-小说规划、状态引擎、Canonical Commit、上下文与记忆、伏笔、生成评审修订、模型与 Prompt 管理、费用、导出、API 等均未实现。没有接入任何模型密钥或产生模型调用费用。PRD 中的十章成品、百章伏笔验收不属于本轮基础架构验收。
+已实现模块不能代表完整小说生产可用：正式状态引擎、Canonical Commit、上下文/记忆、伏笔、生成评审修订、Prompt/路由、费用与导出等仍待各自任务。A02部署条件、C05预算门禁和真实调用授权尚未齐备，因此真实模型及能力探测继续关闭。前十章成品与百章伏笔验收仍未执行。
 
 ## 重新部署
 

@@ -251,12 +251,12 @@ class NovelConcurrencyTest extends TestCase
         }
     }
 
-    public function test_empty_b01_b02_b03_b04_b05_c01_schema_can_roll_back_and_reapply(): void
+    public function test_empty_b01_b02_b03_b04_b05_c01_c02_schema_can_roll_back_and_reapply(): void
     {
         $this->assertSame('novel_forge_test', DB::selectOne('SELECT current_database() AS name')->name);
         Artisan::call('migrate:fresh', ['--force' => true]);
         try {
-            $this->assertSame(0, Artisan::call('migrate:rollback', ['--step' => 6, '--force' => true]));
+            $this->assertSame(0, Artisan::call('migrate:rollback', ['--step' => 8, '--force' => true]));
             $this->assertFalse(Schema::hasTable('novels'));
             $this->assertTrue(Schema::hasTable('users'));
             $this->assertSame(0, Artisan::call('migrate', ['--force' => true]));

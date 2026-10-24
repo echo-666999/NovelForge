@@ -170,3 +170,15 @@ blueprint_versions在事务内building→sealed，保存后不可变；审批资
 持久编排使用 generation_runs/steps/artifacts 与 generation_dependencies。DAG 冻结在 run JSON；实际消费的产物边以同运行复合 FK 保存。创建响应复用 novel_commands 的 generation.test.start 命令域；尝试号及活动节点有数据库唯一性约束，产物/历史尝试不可变。test-dag-v1 仅冻结真实规划 ID/hash、state_version、测试图和测试执行版本；不得冒充生产全套 fingerprint。
 
 当前 StageExecutor 只由 testing 环境的 test.echo 支架驱动，输出 schema=test.echo-v1。status 的 canceled 为 A04 规范拼写，任务清单 cancelled 同义；增加显式 blocked，保持与 deferred/failed 的区分。暂停状态仅保留，leased/fencing/outbox 待 C02；不宣称在途 Worker 自动恢复。生产路由、Prompt、预算、上下文等身份须后续模块真实实现后扩展。详见 ../phase-c/NF-C01_ACCEPTANCE.md。
+
+### NF-C02 已实施边界（2026-10-23）
+
+新增持久 outbox 意图、消费回执、数据库租约与每书队列运行串行槽。startQueued 的运行与意图同事务，发布不依赖 Redis 持久性；无回执通知可再次发送。C01 claim/complete 现均检查 owner/fencing_token/lease_until，旧令牌不能续期或提交。认领原子进入 running，租约字段表达已认领，不额外保存 leased 短暂状态。重新认领同一测试尝试递增 fencing_token，显式 retryOf 才递增 attempt_no；乱序通知不得错认尝试。
+
+timeout=60秒、租约=90秒、Redis retry_after 默认120秒、重投60秒、每分钟扫描。paused/canceled 在结果落盘前复查。回执与产物/状态共事务；跨 Worker 恰好一次有效结果不等于消息恰好一次。仍仅测试阶段可执行；真实供应商未知请求处理须后续模块完成，不能据此宣称无重复外部费用。详见 ../phase-c/NF-C02_ACCEPTANCE.md 与 NF-C02_OPERATIONS.md。
+
+### NF-C03 已实施边界（2026-10-24）
+
+供应商安全配置与密钥分版本保存，模型能力声明不可变但verification_status固定unverified；声明不等于实测。ai_requests绑定同书run/step及供应商/模型版本，step+logical_key唯一，冻结C02令牌；原始请求/响应证据仅以加密脱敏形式保存，完整错误原文不入日志。unknown保留在途占用，不自动重发，缺Usage为null。测试结果标为fake/not_billable_fake，不虚构价格和真实能力。
+
+当前网关与通用JSON HTTP支架仅测试环境可用，真实供应商/探测在A02部署条件、C05预算门禁和外部授权前硬拒绝。端点精确白名单、公网DNS全量核验、NAT64/内网拒绝、curl固定IP、无代理/重定向均有离线反例；并未实测真实公网传输。所有新增表/字段带中文数据库备注。详见 ../phase-c/NF-C03_ACCEPTANCE.md。

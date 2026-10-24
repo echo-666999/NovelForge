@@ -21,6 +21,8 @@ $app = Application::configure(basePath: dirname(__DIR__))
         $middleware->convertEmptyStringsToNull(except: [fn (Request $request) => $request->is('api/v1/*', 'livewire/*')]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
+        // 供应商密钥不进入验证失败的会话旧输入。
+        $exceptions->dontFlash(['api_key']);
         $exceptions->render(fn (Throwable $e, Request $request) => NovelApiErrors::render($e, $request));
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),

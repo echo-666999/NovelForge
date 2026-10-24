@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlueprintController;
 use App\Http\Controllers\NovelIntentController;
+use App\Http\Controllers\ProviderConfigurationController;
 use App\Http\Controllers\RollingPlanController;
 use App\Http\Controllers\StructureController;
 use App\Http\Controllers\WorkspaceController;
@@ -58,3 +59,9 @@ Route::prefix('api/v1/novels/{novel}/plans')->whereNumber('novel')->group(functi
 
 // B06 工作台摘要为只读接口，不触发生成或修改规划状态。
 Route::get('api/v1/novels/{novel}', WorkspaceController::class)->whereNumber('novel');
+
+// C03 只开放管理配置；没有真实模型调用、探测或密钥读取路由。
+Route::get('api/v1/providers', ProviderConfigurationController::class);
+foreach (['provider', 'model'] as $command) {
+    Route::post('api/v1/providers/'.$command, ProviderConfigurationController::class)->defaults('providerCommand', $command);
+}

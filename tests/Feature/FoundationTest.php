@@ -80,8 +80,15 @@ class FoundationTest extends TestCase
         foreach (['generation_runs', 'generation_steps', 'generation_artifacts', 'generation_dependencies'] as $table) {
             $this->assertTrue(Schema::hasTable($table));
         }
-        $this->assertFalse(Schema::hasTable('outbox_events'));
-        $this->assertFalse(Schema::hasTable('ai_requests'));
+        // C02 已授权投递意图、消费回执与每书串行槽。
+        foreach (['outbox_events', 'consumer_receipts', 'generation_book_slots'] as $table) {
+            $this->assertTrue(Schema::hasTable($table));
+        }
+        // C03 已加入网关记录，但尚无价格和预算业务。
+        foreach (['providers', 'provider_secrets', 'provider_versions', 'model_profiles', 'model_profile_versions', 'ai_requests', 'ai_request_evidence', 'provider_commands'] as $table) {
+            $this->assertTrue(Schema::hasTable($table));
+        }
+        $this->assertFalse(Schema::hasTable('cost_ledger'));
         $this->get('/admin/novels')->assertRedirect('/admin/login');
     }
 }
