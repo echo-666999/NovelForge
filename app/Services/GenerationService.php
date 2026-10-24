@@ -39,6 +39,7 @@ final class GenerationService
             'key' => ['required', 'string', 'max:128', 'regex:/^[\x20-\x7E]+$/D'],
             'outline_version_id' => 'required|string|regex:/^[1-9][0-9]{0,18}$/D',
             'expected_version' => 'required|integer|min:1',
+            'configuration' => 'sometimes|array:route_version_id,route_key,variables',
             'nodes' => 'required|array|min:1|max:100',
             'nodes.*' => 'required|array:key,stage,depends_on,input',
             'nodes.*.key' => 'required|string|regex:/^[a-z][a-z0-9_]{0,79}$/D|distinct',
@@ -48,7 +49,7 @@ final class GenerationService
             'nodes.*.input' => 'required|array:text',
             'nodes.*.input.text' => 'required|string|max:10000',
         ])->validate();
-        if (array_diff(array_keys($payload), ['outline_version_id', 'expected_version', 'nodes'])) {
+        if (array_diff(array_keys($payload), ['outline_version_id', 'expected_version', 'nodes', 'configuration'])) {
             throw new NovelProblem('INVALID_GRAPH', '测试运行不接受未知配置。', 422);
         }
         // 图必须显式拓扑排序；拒绝循环、未知依赖及重复边，不默默改写调用者顺序。
@@ -86,7 +87,12 @@ final class GenerationService
             $frozen = ['schema_version' => 'test-dag-v1', 'executor_version' => 'test.echo-v1', 'goal' => 'all_nodes_succeeded',
                 'outline_version_id' => $outline->id, 'outline_hash' => $outline->content_hash,
                 'expected_state_version' => (string) $novel->state_version, 'nodes' => $payload['nodes']];
+            // C04 配置只在启动时解析一次；后续默认版本变化不参与既有运行。
+            if (isset($payload['configuration'])) {
+                $frozen['configuration'] = app(AuthoringConfigurationService::class)->freeze($actor, $payload['configuration'], 'test.echo');
+            }
             $id = DB::table('generation_runs')->insertGetId($identity + [
+                'configuration_route_version_id' => $frozen['configuration']['route']['id'] ?? null,
                 'outline_version_id' => $outline->id, 'expected_state_version' => $novel->state_version,
                 'request_hash' => $hash, 'frozen_config' => NovelIntentService::canonical($frozen), 'input_hash' => $this->hash($frozen),
                 'created_at' => now(), 'updated_at' => now(),
@@ -167,11 +173,11 @@ final class GenerationService
     }
 
     /** 认领可恢复的测试阶段；令牌及时间均来自持久数据库。 */
-    public function claim(User $actor, string $novelId, string $runId, string $scopeKey, ?int $retryOf = null): ?array
+    public function claim(User $actor, string $novelId, string $runId, string $scopeKey, ?int $retryOf = null, ?string $modelVersionId = null, ?string $switchReason = null): ?array
     {
         $this->harness();
 
-        return DB::transaction(function () use ($actor, $novelId, $runId, $scopeKey, $retryOf) {
+        return DB::transaction(function () use ($actor, $novelId, $runId, $scopeKey, $retryOf, $modelVersionId, $switchReason) {
             $run = $this->run($actor, $novelId, $runId, true);
             $frozen = $this->verifyRun($run);
             if (in_array($run->status, ['canceled', 'paused', 'needs_attention'], true)) {
@@ -197,10 +203,17 @@ final class GenerationService
             if (! $previous && $retryOf !== null) {
                 return null;
             }
+            // 显式切换必须新建尝试；有效租约或未知结果不能被静默替换。
+            if ($modelVersionId !== null && (! $previous || ! in_array($previous->status, ['failed', 'deferred', 'blocked'], true) || $retryOf !== (int) $previous->attempt_no || ! is_string($switchReason) || trim($switchReason) === '' || mb_strlen($switchReason) > 1000)) {
+                throw new NovelProblem('INVALID_MODEL_SWITCH', '模型切换须引用已结束的旧尝试并说明原因。');
+            }
+            if ($previous && $retryOf !== null && isset($frozen['configuration']) && DB::table('ai_requests')->where('step_id', $previous->id)->whereIn('status', ['pending', 'unknown'])->exists()) {
+                throw new NovelProblem('UNKNOWN_REQUEST_OUTCOME', '旧请求结果未知，禁止创建替代请求。');
+            }
             $input = ['run_input_hash' => $run->input_hash, 'node' => $node, 'dependencies' => $dependencies];
             if ($previous) {
                 $previousInput = $this->json($previous->frozen_input);
-                unset($previousInput['resume_checkpoint']);
+                unset($previousInput['resume_checkpoint'], $previousInput['configuration_selection']);
                 if ($this->hash($previousInput) !== $this->hash($input)) {
                     throw new NovelProblem('DEPENDENCY_MISMATCH', '依赖身份改变，禁止复用既有尝试。');
                 }
@@ -243,7 +256,19 @@ final class GenerationService
             if (! $this->reserveQueuedRun($novelId, $runId)) {
                 return null;
             }
-            $checkpoint = $previous?->checkpoint_artifact_id ? $this->artifact($previous) : null;
+            // 选择只能来自运行启动时冻结的主备清单，重试默认继续原模型。
+            if (isset($frozen['configuration'])) {
+                $cfg = $frozen['configuration'];
+                $priorSelection = $previous ? ($this->json($previous->frozen_input)['configuration_selection'] ?? null) : null;
+                $selected = $modelVersionId ?? ($priorSelection['model_version_id'] ?? $cfg['models'][0]['model_version_id']);
+                if (! in_array($selected, array_column($cfg['models'], 'model_version_id'), true)) {
+                    throw new NovelProblem('UNAPPROVED_FALLBACK', '模型不在冻结批准清单中。');
+                }
+                $input['configuration_selection'] = ['model_version_id' => $selected, 'reason' => $switchReason ?? '沿用冻结主模型或上一尝试', 'configuration_hash' => $this->hash($cfg)];
+            } elseif ($modelVersionId !== null) {
+                throw new NovelProblem('UNAPPROVED_FALLBACK', '无路由快照的旧支架不能切换模型。');
+            }
+            $checkpoint = $modelVersionId === null && $previous?->checkpoint_artifact_id ? $this->artifact($previous) : null;
             // 续跑来源也冻结到尝试输入，重启后仍能追溯具体检查点。
             $input['resume_checkpoint'] = $checkpoint ? ['artifact_id' => (string) $checkpoint->id, 'content_hash' => $checkpoint->content_hash] : null;
             $stepId = DB::table('generation_steps')->insertGetId([

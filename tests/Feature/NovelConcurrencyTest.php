@@ -256,7 +256,7 @@ class NovelConcurrencyTest extends TestCase
         $this->assertSame('novel_forge_test', DB::selectOne('SELECT current_database() AS name')->name);
         Artisan::call('migrate:fresh', ['--force' => true]);
         try {
-            $this->assertSame(0, Artisan::call('migrate:rollback', ['--step' => 8, '--force' => true]));
+            $this->assertSame(0, Artisan::call('migrate:rollback', ['--step' => 9, '--force' => true]));
             $this->assertFalse(Schema::hasTable('novels'));
             $this->assertTrue(Schema::hasTable('users'));
             $this->assertSame(0, Artisan::call('migrate', ['--force' => true]));

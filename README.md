@@ -1,6 +1,6 @@
 # NovelForge
 
-单人 AI 长篇小说系统。已按逐项授权完成 B01–B06 规划基础及 C01–C03 持久编排、队列和离线供应商网关；具体范围与证据见 docs/DEVELOPMENT_TASKS.md 和各阶段验收记录。生产生成尚未开放。
+单人 AI 长篇小说系统。已按逐项授权完成 B01–B06 规划基础及 C01–C04 持久编排、队列、离线供应商网关及创作配置版本；具体范围与证据见 docs/DEVELOPMENT_TASKS.md 和各阶段验收记录。生产生成尚未开放。
 
 ## 当前环境
 
@@ -24,7 +24,7 @@ cd /Users/webb/Herd/NovelForge
 php artisan novelforge:admin
 ```
 
-后台包含创作总览、小说规划工作台与供应商/模型配置页。未开放注册，非管理员禁止访问；数据库唯一约束保证单管理员。密钥不回填页面，保存配置不触发真实模型请求。
+后台包含创作总览、小说规划工作台、供应商/模型、Prompt 模板、主备路由及文风评分策略配置页。未开放注册，非管理员禁止访问；数据库唯一约束保证单管理员。密钥不回填页面，保存配置不触发真实模型请求。
 
 PostgreSQL 使用用户已有服务，本项目不控制该服务。项目 Redis 启动命令：
 
@@ -63,10 +63,11 @@ npm run build
 - docs/PRD-V1.1.md、docs/PRD-V1.1.docx：完整产品需求，包含未来业务范围。
 - docs/FOUNDATION.md：初始基础工程的历史交付记录。
 - docs/phase-c/NF-C03_ACCEPTANCE.md：供应商网关、安全配置、中文数据库备注与离线验收。
+- docs/phase-c/NF-C04_ACCEPTANCE.md：Prompt/路由/文风版本、发布回归、运行冻结及主备尝试验收。
 - app/Providers/Filament：后台基础配置。
 - app/Console/Commands：管理员创建、依赖诊断。
 - config/novelforge.php：检索配置及预留队列名称。
-- database/migrations：系统表及逐项授权的规划、编排、供应商配置和请求证据表；新增C03表/字段带中文备注。
+- database/migrations：系统表及逐项授权的规划、编排、供应商配置和请求证据表；新增 C03/C04 表及字段均有中文备注。
 - scripts/queue-probe.php：真实队列基础验证。
 
 已实现模块不能代表完整小说生产可用：正式状态引擎、Canonical Commit、上下文/记忆、伏笔、生成评审修订、Prompt/路由、费用与导出等仍待各自任务。A02部署条件、C05预算门禁和真实调用授权尚未齐备，因此真实模型及能力探测继续关闭。前十章成品与百章伏笔验收仍未执行。

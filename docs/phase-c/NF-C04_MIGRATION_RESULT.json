@@ -1,0 +1,64 @@
+{
+    "database": "novel_forge",
+    "migration_exit": 0,
+    "users_before": 1,
+    "users_after": 1,
+    "novels_before": 0,
+    "novels_after": 0,
+    "providers_count": 0,
+    "model_profiles_count": 0,
+    "ai_requests_count": 0,
+    "backup": "\/Users\/webb\/Herd\/NovelForge\/.local\/backups\/nf-c04-before-20261024-041505.dump",
+    "backup_sha256": "83e406eb536d9be542779d11601daa6c8fadda69cfb683720736325699c22a94",
+    "archive_list_verified": true,
+    "restoration_tested": false,
+    "comments": {
+        "prompt_templates": {
+            "columns": 6,
+            "commented_columns": 6,
+            "table_comment": "提示词模板身份"
+        },
+        "prompt_versions": {
+            "columns": 9,
+            "commented_columns": 9,
+            "table_comment": "不可变提示词版本"
+        },
+        "model_routes": {
+            "columns": 6,
+            "commented_columns": 6,
+            "table_comment": "模型路由身份"
+        },
+        "route_versions": {
+            "columns": 11,
+            "commented_columns": 11,
+            "table_comment": "不可变主备路由版本"
+        },
+        "style_profiles": {
+            "columns": 6,
+            "commented_columns": 6,
+            "table_comment": "文风与评审策略身份"
+        },
+        "style_versions": {
+            "columns": 9,
+            "commented_columns": 9,
+            "table_comment": "不可变文风评分策略版本"
+        },
+        "configuration_regressions": {
+            "columns": 8,
+            "commented_columns": 8,
+            "table_comment": "离线配置回归证据（非模型实测）"
+        },
+        "configuration_commands": {
+            "columns": 6,
+            "commented_columns": 6,
+            "table_comment": "配置命令幂等结果"
+        }
+    },
+    "added_column_comments": {
+        "generation_runs.configuration_route_version_id": "运行冻结路由版本，旧支架运行可为空",
+        "ai_requests.route_version_id": "实际请求冻结路由版本",
+        "ai_requests.prompt_version_id": "实际请求冻结提示词版本",
+        "ai_requests.style_version_id": "实际请求冻结文风评审策略版本",
+        "ai_requests.configuration_hash": "运行配置及渲染输入快照摘要"
+    }
+}

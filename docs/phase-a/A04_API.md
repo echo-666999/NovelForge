@@ -85,3 +85,11 @@ OutboxService::startQueued/enqueue/publish/recover/consume 和 GenerationService
 新增 GET /api/v1/providers，以及 POST /api/v1/providers/provider、/model，均要求管理员同源会话，写接口沿用CSRF。配置命令独立provider_commands幂等，actor+key唯一；含敏感输入只存HMAC，响应不含密钥/secret_ref。字段、筛选和分页见 ../phase-c/NF-C03_ACCEPTANCE.md。原生后台表单以command_key提交相同幂等身份，成功重定向；错误不闪存旧密钥。
 
 ProviderGateway::execute/read/evidenceText为内部接口，不新增真实调用、能力探测或证据下载路由。模型声明状态不能写为verified/available；所有真实请求仍被BUDGET_GATE_REQUIRED拒绝。
+
+## NF-C04 已实现接口（2026-10-24）
+
+- GET `/api/v1/configurations/{prompt|route|style}`：管理员、同源会话；q/stage/language/status/page 筛选，20项/页，含版本正文、最后回归、默认指针及引用运行数。
+- POST 同路径加 `/save`：`key,stage,language,expected_version,reason,content`。键/阶段/语言为稳定身份；所有编辑产生下一版本。content 按类型严格白名单；示例由 `App\Support\ConfigurationExamples` 提供。
+- POST 同路径加 `/test`、`/publish`、`/retire`：仅 `version_id`。需要 Idempotency-Key；后台原生表单使用 command_key。所有状态变化共用应用服务。回归失败正常返回 draft + report.passed=false；直接发布返回 REGRESSION_REQUIRED。后台表单通过 payload_json 传完整配置，错误不回显提交正文。
+- 错误包括 STALE_VERSION、IDEMPOTENCY_CONFLICT、UNSAFE_TEMPLATE、INVALID_VARIABLES、CONTRACT_MISMATCH、UNPUBLISHED_REFERENCE、CAPABILITY_UNVERIFIED、CAPABILITY_MISMATCH；保持 A04 错误 envelope。
+- 运行冻结与主备切换接在既有 testing-only 服务接口，没有新增生产生成 HTTP 路由。运行中心与生产控制等待 C06。

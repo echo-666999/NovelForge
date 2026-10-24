@@ -182,3 +182,11 @@ timeout=60秒、租约=90秒、Redis retry_after 默认120秒、重投60秒、�
 供应商安全配置与密钥分版本保存，模型能力声明不可变但verification_status固定unverified；声明不等于实测。ai_requests绑定同书run/step及供应商/模型版本，step+logical_key唯一，冻结C02令牌；原始请求/响应证据仅以加密脱敏形式保存，完整错误原文不入日志。unknown保留在途占用，不自动重发，缺Usage为null。测试结果标为fake/not_billable_fake，不虚构价格和真实能力。
 
 当前网关与通用JSON HTTP支架仅测试环境可用，真实供应商/探测在A02部署条件、C05预算门禁和外部授权前硬拒绝。端点精确白名单、公网DNS全量核验、NAT64/内网拒绝、curl固定IP、无代理/重定向均有离线反例；并未实测真实公网传输。所有新增表/字段带中文数据库备注。详见 ../phase-c/NF-C03_ACCEPTANCE.md。
+
+## NF-C04 实施补充（2026-10-24）
+
+Prompt/route/style 采用稳定身份 + 不可变版本，草稿编辑也派生新版本。生命周期 draft→tested→published→retired，配置命令串行锁、expected_version 与幂等键保证版本竞争不覆盖历史。回归结果是不可变离线证据，不能宣称实际模型能力或质量验证。默认指针只供新运行解析；引用退役阻止新冻结，旧快照保留。
+
+测试运行 configuration 支持 route_key（启动时解析默认）或 route_version_id，变量必须符合 Schema；Prompt 只允许 JSON 转义占位符。冻结 Prompt/路由/文风、真实模型标识、供应商/能力版本及声明容量；请求绑定冻结内容。主备切换必须创建新尝试、有原因、命中冻结批准名单且旧请求无 pending/unknown；不复用换模型前的检查点。
+
+费率引用暂为 null/unknown，真实预算和 Token 实测等待 C05；production 路由不能以未验证能力发布。旧无配置 test.echo 支架仍仅用于 testing。详见 ../phase-c/NF-C04_ACCEPTANCE.md。

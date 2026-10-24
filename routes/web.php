@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthoringConfigurationController;
 use App\Http\Controllers\BlueprintController;
 use App\Http\Controllers\NovelIntentController;
 use App\Http\Controllers\ProviderConfigurationController;
@@ -64,4 +65,12 @@ Route::get('api/v1/novels/{novel}', WorkspaceController::class)->whereNumber('no
 Route::get('api/v1/providers', ProviderConfigurationController::class);
 foreach (['provider', 'model'] as $command) {
     Route::post('api/v1/providers/'.$command, ProviderConfigurationController::class)->defaults('providerCommand', $command);
+}
+
+// C04 同源配置接口：无生成、真实模型测试或跨环境调用入口。
+foreach (['prompt', 'route', 'style'] as $kind) {
+    Route::get('api/v1/configurations/'.$kind, AuthoringConfigurationController::class)->defaults('configurationKind', $kind);
+    foreach (['save', 'test', 'publish', 'retire'] as $action) {
+        Route::post('api/v1/configurations/'.$kind.'/'.$action, AuthoringConfigurationController::class)->defaults('configurationKind', $kind)->defaults('configurationAction', $action);
+    }
 }

@@ -42,6 +42,19 @@ final class ProviderGateway
 
                 return ['existing' => (string) $old->id];
             }
+            // 已绑定运行禁止调用者绕过冻结模板、模型与输出契约。
+            $runConfig = json_decode(DB::table('generation_runs')->where('id', $step->run_id)->value('frozen_config'), true)['configuration'] ?? null;
+            $selectedConfig = null;
+            if ($runConfig) {
+                $selection = json_decode($step->frozen_input, true)['configuration_selection'] ?? [];
+                if (($selection['model_version_id'] ?? null) !== $modelVersionId || ($selection['configuration_hash'] ?? null) !== app(AuthoringConfigurationService::class)->hash($runConfig) || app(AuthoringConfigurationService::class)->hash($input) !== app(AuthoringConfigurationService::class)->hash(['prompt' => $runConfig['rendered_prompt'], 'output_schema' => $runConfig['prompt']['content']['output_schema']])) {
+                    throw new NovelProblem('CONFIGURATION_MISMATCH', '请求必须符合当前尝试冻结配置。');
+                }
+                $selectedConfig = collect($runConfig['models'])->firstWhere('model_version_id', $modelVersionId);
+                if (! $selectedConfig) {
+                    throw new NovelProblem('UNAPPROVED_FALLBACK', '实际模型未获冻结路由批准。');
+                }
+            }
             $model = DB::table('model_profile_versions')->find($modelVersionId);
             if (! $model) {
                 throw new NovelProblem('NOT_FOUND', '模型版本不存在。', 404);
@@ -50,6 +63,10 @@ final class ProviderGateway
             $provider = DB::table('provider_versions')->where('provider_id', $model->provider_id)->orderByDesc('version')->first();
             if (! $provider->enabled) {
                 throw new NovelProblem('PROVIDER_DISABLED', '供应商已停用。');
+            }
+            // 最新版本仅提供停用开关；实际请求仍使用启动时冻结的供应商版本。
+            if ($selectedConfig) {
+                $provider = DB::table('provider_versions')->find($selectedConfig['provider_version_id']);
             }
             if ($provider->interface_type !== 'fake' || ! app()->environment('testing')) {
                 throw new NovelProblem('BUDGET_GATE_REQUIRED', '真实调用及能力探测尚未获准，需部署条件和预算门禁。', 403);
@@ -72,8 +89,12 @@ final class ProviderGateway
             $secret = $provider->secret_id ? Crypt::decryptString(DB::table('provider_secrets')->where('id', $provider->secret_id)->value('ciphertext')) : '';
             $id = DB::table('ai_requests')->insertGetId(['novel_id' => $novelId, 'run_id' => $step->run_id, 'step_id' => $stepId,
                 'provider_id' => $provider->provider_id, 'provider_version_id' => $provider->id, 'model_profile_version_id' => $modelVersionId,
+                'route_version_id' => $runConfig['route']['id'] ?? null, 'prompt_version_id' => $runConfig['prompt']['id'] ?? null, 'style_version_id' => $runConfig['style']['id'] ?? null, 'configuration_hash' => $runConfig ? app(AuthoringConfigurationService::class)->hash($runConfig) : null,
                 'logical_key' => $key, 'request_hash' => $hash, 'lease_token' => $step->fencing_token, 'status' => 'pending']);
             $body = ['model' => DB::table('model_profiles')->where('id', $model->model_profile_id)->value('provider_model_id')] + $input;
+            if ($runConfig) {
+                $body['parameters'] = $runConfig['parameters'];
+            }
             $this->evidence((string) $id, 'request', NovelIntentService::canonical($body), $secret);
 
             return ['id' => (string) $id, 'body' => $body, 'secret' => $secret, 'token' => $step->fencing_token];
@@ -175,6 +196,11 @@ final class ProviderGateway
         }
 
         return ['id' => (string) $r->id, 'step_id' => (string) $r->step_id, 'provider_version_id' => (string) $r->provider_version_id, 'model_profile_version_id' => (string) $r->model_profile_version_id,
+            // 对外只返回不可变引用，不暴露配置中的密钥资料。
+            'route_version_id' => $r->route_version_id === null ? null : (string) $r->route_version_id,
+            'prompt_version_id' => $r->prompt_version_id === null ? null : (string) $r->prompt_version_id,
+            'style_version_id' => $r->style_version_id === null ? null : (string) $r->style_version_id,
+            'configuration_hash' => $r->configuration_hash,
             'status' => $r->status, 'error_code' => $r->error_code, 'issues' => json_decode($r->issues ?? '[]', true), 'usage' => $r->usage === null ? null : json_decode($r->usage, true),
             'provider_request_id' => $r->provider_request_id, 'cost_status' => $r->cost_status, 'evidence_kind' => 'fake', 'capability_status' => 'unverified',
             'evidence' => DB::table('ai_request_evidence')->where('request_id', $r->id)->select('id', 'kind', 'content_hash', 'redacted')->get()->map(fn ($e) => ['id' => (string) $e->id, 'kind' => $e->kind, 'content_hash' => $e->content_hash, 'redacted' => $e->redacted])->all()];

@@ -37,3 +37,11 @@ generation_runs/steps/artifacts 已落地，新增 generation_dependencies 保�
 ## NF-C03 实际数据库补充（2026-10-24）
 
 新增providers/provider_secrets/provider_versions、model_profiles/model_profile_versions、ai_requests/ai_request_evidence、provider_commands八表，每表及每字段均有中文COMMENT。provider_versions.secret_id为同供应商加密密钥版本引用，前端只返回has_key。model能力保留声明与来源，unverified不能通过配置升级。ai_requests实际包含C02令牌与同书阶段复合FK，原始证据分表加密脱敏；route_version_id/price_version_id与预算账本尚待C04/C05，未填虚构外键。字典仍为全系统目标设计；本轮字段/索引/约束实测见 ../phase-c/NF-C03_ACCEPTANCE.md。
+
+## NF-C04 实际结构（2026-10-24）
+
+目标 CSV 仍描述最终设计。当前新增 prompt_templates/model_routes/style_profiles（id,key,stage,language,default_version_id,created_at）和对应 prompt_versions/route_versions/style_versions（id,parent_id,version,content,content_hash,status,actor_id,reason,created_at）。具体配置字段存于严格校验的 content JSONB；route_versions 另有 prompt_version_id/style_version_id 外键且须与 JSON 引用一致。
+
+每个身份 key 唯一，版本 parent_id+version 唯一，默认指针采用 parent_id+id 复合外键；版本状态索引支持后台筛选。configuration_regressions 保存 kind/version_id/content_hash/passed/report/actor_id/created_at，由触发器校验所属版本摘要，索引 kind+version_id+id；configuration_commands 对 actor_id+command_key 唯一，保存请求摘要与首次响应。
+
+generation_runs 新增 configuration_route_version_id 外键；ai_requests 新增 route_version_id/prompt_version_id/style_version_id 外键及 configuration_hash。旧测试记录允许空引用；新绑定运行由网关验证完整快照及尝试选择。上述新表和新字段均有中文 PostgreSQL COMMENT，版本/回归/命令历史不可覆盖删除。价格版本未在 C04 创建，快照显式 null/unknown。

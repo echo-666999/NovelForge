@@ -88,6 +88,10 @@ class FoundationTest extends TestCase
         foreach (['providers', 'provider_secrets', 'provider_versions', 'model_profiles', 'model_profile_versions', 'ai_requests', 'ai_request_evidence', 'provider_commands'] as $table) {
             $this->assertTrue(Schema::hasTable($table));
         }
+        // C04 配置版本已实现，价格账本仍属于后续 C05。
+        foreach (['prompt_templates', 'prompt_versions', 'model_routes', 'route_versions', 'style_profiles', 'style_versions', 'configuration_regressions', 'configuration_commands'] as $table) {
+            $this->assertTrue(Schema::hasTable($table));
+        }
         $this->assertFalse(Schema::hasTable('cost_ledger'));
         $this->get('/admin/novels')->assertRedirect('/admin/login');
     }

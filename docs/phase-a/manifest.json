@@ -29,13 +29,13 @@
     },
     {
       "path": "A04_API.md",
-      "sha256": "f022e89cff22c434b82f3cea90e761f7ab4522ae182fe9d7b1d5fffcef51af6f",
-      "bytes": 9818
+      "sha256": "25447b976178c81130a4304f0ea19dfbbcf8ceb4c566721a0969157c3aeb5e6f",
+      "bytes": 11020
     },
     {
       "path": "A04_CONTRACTS.md",
-      "sha256": "0fdc3e08f172230ad420c9f3b429c2970898134ad8d47dcbf0d01b867293686a",
-      "bytes": 22203
+      "sha256": "eeb25d02da9197e01d00b4a38d5c6a8cafeadaae8bc056b88bfefbd7abe77060",
+      "bytes": 23291
     },
     {
       "path": "A05_ACCEPTANCE.md",
@@ -49,13 +49,13 @@
     },
     {
       "path": "DATA_DICTIONARY_NOTES.md",
-      "sha256": "5e9a9fd0064967a8cd35f30bfcbdb841ae38ca4eaf6a7280f866e50ad077b325",
-      "bytes": 6436
+      "sha256": "4768c1b677f455ab01858424de0b392d181d48af8fc2718725e3d20eb341e29c",
+      "bytes": 7746
     },
     {
       "path": "DECISIONS.md",
-      "sha256": "6778a4e4b350823988d6f3e07e6b5e5c86a843b898606b777fdee814a91c4291",
-      "bytes": 6718
+      "sha256": "56aa8799f96831a50dcda0bf077aaa1cd63e680fb7165530969751e0747385a4",
+      "bytes": 7344
     },
     {
       "path": "README.md",
