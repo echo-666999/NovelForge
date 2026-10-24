@@ -1,0 +1,30 @@
+{
+  "tool": "phpunit",
+  "result": "failed",
+  "tests": 247,
+  "passed": 243,
+  "assertions": 1961,
+  "duration_ms": 262675,
+  "failed": 3,
+  "failures": [
+    {
+      "test": "Tests\\Feature\\FoundationTest::test_only_authorized_b01_b02_b03_b04_b05_c01_schema_is_installed",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/FoundationTest.php",
+      "line": 78,
+      "message": "Failed asserting that true is false."
+    },
+    {
+      "test": "Tests\\Feature\\RunCenterConcurrencyTest::test_independent_worker_progress_and_honest_historical_trace_backfill",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/RunCenterConcurrencyTest.php",
+      "line": 36,
+      "message": "Failed asserting that two strings are identical.\n--- Expected\n+++ Actual\n@@ @@\n-'historical_backfill'\n+'live'"
+    },
+    {
+      "test": "Tests\\Feature\\WorldTest::test_candidate_approval_and_revision_preserve_approved_history",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/WorldTest.php",
+      "line": 99,
+      "message": "Failed asserting that true is false."
+    }
+  ],
+  "skipped": 1
+}

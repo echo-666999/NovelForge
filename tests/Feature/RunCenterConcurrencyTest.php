@@ -30,7 +30,10 @@ class RunCenterConcurrencyTest extends TestCase
             $this->assertSame($before['trace_id'], $after['artifacts'][0]['trace_id']);
             $this->assertTrue(DB::table('audit_events')->where('trace_id', $before['trace_id'])->where('object_type', 'generation_artifacts')->exists());
             // 只在隔离测试库验证有历史运行时的迁移；不伪造升级前审计时间。
-            $this->assertSame(0, Artisan::call('migrate:rollback', ['--step' => 1, '--force' => true]));
+            // 回滚到 C07 之前，而不是假设 C07 永远是最后一条迁移。
+            $steps = DB::table('migrations')->where('migration', '>=', '2026_10_24_000012_create_run_observability')->count();
+            $this->assertGreaterThanOrEqual(1, $steps);
+            $this->assertSame(0, Artisan::call('migrate:rollback', ['--step' => $steps, '--force' => true]));
             $this->assertSame(0, Artisan::call('migrate', ['--force' => true]));
             $backfill = app(RunCenterService::class)->detail($f['actor'], $f['novelId'], $f['runId']);
             $this->assertSame('historical_backfill', $backfill['trace_origin']);
@@ -40,7 +43,7 @@ class RunCenterConcurrencyTest extends TestCase
             if ($process?->isRunning()) {
                 $process->stop();
             }
-            Artisan::call('migrate:fresh',['--force' => true]);
+            Artisan::call('migrate:fresh', ['--force' => true]);
         }
     }
 }

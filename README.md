@@ -1,6 +1,6 @@
 # NovelForge
 
-单人 AI 长篇小说系统。已按逐项授权完成 B01–B06 规划基础及 C01–C05 持久编排、队列、离线供应商网关及创作配置版本；具体范围与证据见 docs/DEVELOPMENT_TASKS.md 和各阶段验收记录。生产生成尚未开放。
+单人 AI 长篇小说系统。已按逐项授权完成 B01–B06 规划基础、C01–C07 离线运行底座及 D01 候选事件与状态回放服务；具体范围与证据见 docs/DEVELOPMENT_TASKS.md 和各阶段验收记录。生产生成尚未开放。
 
 ## 当前环境
 
@@ -81,3 +81,5 @@ NF-C05 价格版本、Token计量、原子预算、对账及费用导出：docs/
 NF-C06 恢复台：`/admin/recovery-desk`，支持恢复预览、暂停/取消及人工决定。生产生成入口仍关闭；事件提取/配置变更登记不等于业务执行完成。验证边界见 [NF-C06 验收](docs/phase-c/NF-C06_ACCEPTANCE.md)。
 
 NF-C07：`/admin/run-center` 查看运行、请求、心跳、产物与账本；`/admin/audit-center` 查看追加审计与数据库健康。完整证据下载需鉴权。详见 [NF-C07验收](docs/phase-c/NF-C07_ACCEPTANCE.md)。
+
+NF-D01：已提供候选事件、Unicode 证据与可回放状态内部服务；无新增页面或 HTTP 入口，正式事实写入仍关闭。范围及验收见 [NF-D01](docs/phase-d/NF-D01_ACCEPTANCE.md)。

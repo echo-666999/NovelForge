@@ -1,0 +1,53 @@
+{
+  "database": "novel_forge",
+  "migration_exit": 0,
+  "users_before": 1,
+  "users_after": 1,
+  "novels_before": 0,
+  "novels_after": 0,
+  "providers_count": 0,
+  "model_profiles_count": 0,
+  "ai_requests_count": 0,
+  "backup": "/Users/webb/Herd/NovelForge/.local/backups/nf-d01-before-20261024-071722.dump",
+  "backup_sha256": "d6c2d9c4de5fb7874867f646e43cdc4f9eb0faaf2950a8e6c6484a36d5875f6b",
+  "archive_list_verified": true,
+  "restoration_tested": false,
+  "comments": {
+    "source_documents": {
+      "columns": 9,
+      "commented_columns": 9,
+      "table_comment": "不可变正文来源注册表，当前仅接入运行产物"
+    },
+    "evidence_spans": {
+      "columns": 9,
+      "commented_columns": 9,
+      "table_comment": "按 Unicode 码点定位的不可变原文证据"
+    },
+    "proposed_events": {
+      "columns": 19,
+      "commented_columns": 19,
+      "table_comment": "不可变候选事件，不能视为正式事实"
+    },
+    "proposed_state_patches": {
+      "columns": 5,
+      "commented_columns": 5,
+      "table_comment": "候选事件对应的不可变状态补丁"
+    },
+    "story_events": {
+      "columns": 11,
+      "commented_columns": 11,
+      "table_comment": "正式事件预备结构，E06 接入前禁止插入"
+    },
+    "state_snapshots": {
+      "columns": 10,
+      "commented_columns": 10,
+      "table_comment": "候选回放快照，可从事件重建"
+    },
+    "entity_state_versions": {
+      "columns": 5,
+      "commented_columns": 5,
+      "table_comment": "候选实体状态投影，可从事件重建"
+    }
+  },
+  "added_column_comments": []
+}

@@ -212,3 +212,7 @@ reextract 决定固定原 artifact/hash，禁止默认改写正文；testing-onl
 run_traces为运行分配不可变根trace_id，HTTP另用operation_trace_id并在响应头返回；数据库审计触发器在业务事务内追加元数据。历史运行只补建带origin的关联，不伪造旧审计。失败HTTP命令记录独立拒绝事件；业务回滚无成功审计。正文/密钥/原始请求不进入审计快照，供应商完整证据仍加密私存。
 
 UI11/UI12/UI28/UI31已联通真实持久事实。正式章数与基础设施在线状态在未接入时保持null/unknown，不从阶段成功推断。产物摘要500字符，truncated明确，完整证据下载复核归属和哈希。审计仅追加，下载当前页明确页码；完整实现及验证边界见 ../phase-c/NF-C07_ACCEPTANCE.md。
+
+## NF-D01 实施补充（2026-10-24）
+
+候选事件、证据、补丁及六类状态回放已按 D01 服务范围落地。source_documents 当前只注册现有不可变 artifact 完整文本，证据双重校验 Unicode 码点、换行规范化哈希及引文；后续正文等来源必须补强类型 FK。候选快照以 stream_hash/章序定位，scope=candidate，不推进正式 state_version。story_events 为不可变预备结构，数据库 CHECK(false) 禁止插入；E06 补正式基线/提交/正文复合 FK 后才可通过唯一提交入口开放。字典中的最终正式实体不是本阶段已开放功能。具体服务、物理映射与验证见 ../phase-d/NF-D01_ACCEPTANCE.md。

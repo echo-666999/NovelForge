@@ -64,7 +64,7 @@ class FoundationTest extends TestCase
         $this->assertTrue((bool) $result->matched);
     }
 
-    public function test_only_authorized_b01_b02_b03_b04_b05_c01_schema_is_installed(): void
+    public function test_only_authorized_schema_through_d01_is_installed(): void
     {
         $this->assertTrue(Schema::hasTable('novels'));
         $this->assertTrue(Schema::hasTable('chapters'));
@@ -75,7 +75,11 @@ class FoundationTest extends TestCase
         $this->assertTrue(Schema::hasTable('requirement_coverages'));
         $this->assertTrue(Schema::hasTable('plan_validations'));
         $this->assertTrue(Schema::hasTable('plan_freezes'));
-        $this->assertFalse(Schema::hasTable('story_events'));
+        // D01 已授权候选状态及关闭写入的正式预备结构，正文版本仍未授权。
+        foreach (['source_documents', 'evidence_spans', 'proposed_events', 'proposed_state_patches', 'story_events', 'state_snapshots', 'entity_state_versions'] as $table) {
+            $this->assertTrue(Schema::hasTable($table));
+        }
+        $this->assertSame('CHECK (false)', DB::selectOne("SELECT pg_get_constraintdef(oid) AS definition FROM pg_constraint WHERE conrelid='story_events'::regclass AND conname='d01_formal_entry_closed'")->definition);
         $this->assertFalse(Schema::hasTable('chapter_versions'));
         foreach (['generation_runs', 'generation_steps', 'generation_artifacts', 'generation_dependencies'] as $table) {
             $this->assertTrue(Schema::hasTable($table));

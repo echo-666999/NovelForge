@@ -68,3 +68,7 @@ usage_settlements按request/revision唯一保存归一化计费数量、各类�
 ## NF-C07 实际增量
 
 run_traces(run_id主键外键, trace_id唯一UUID, origin, created_at)只追加，历史补建与实时产生明确区分。audit_events保存根/操作追踪、所属书/运行/操作人、对象及动作、结果、高风险标记、原因、前后白名单快照、数据库时间；trace/operation/run及时间分别建索引，同书运行复合外键，UPDATE/DELETE被数据库拒绝。新增表及字段均有中文COMMENT。原始供应商证据沿用C03加密存储，没有新增公开文件或复制密钥字段。
+
+## D01 当前物理实现（2026-10-24）
+
+候选层新增 proposed_events/proposed_state_patches；source_documents 当前仅 artifact 一种强类型来源。state_snapshots 与 entity_state_versions 当前属于 candidate 快照，不能将其 local_state_version 用作小说正式状态令牌。story_events 仅预备结构，CHECK(false) 阻止写入；正式 revision/commit/chapter_version 的复合 FK 需 E06 表存在后补齐。上表保留最终设计目标，不意味着未来来源和正式状态现已开放。具体列、约束及验收见 ../phase-d/NF-D01_ACCEPTANCE.md。

@@ -20,7 +20,6 @@ use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
 use Tests\TestCase;
@@ -96,7 +95,8 @@ class WorldTest extends TestCase
         $this->assertSame($one['definition']['content_hash'], $this->service->readVersion($this->actor, $this->book['novel']['id'], $id)['content_hash']);
         $this->assertSame('短句，先问证据', CharacterProfile::where('entity_definition_version_id', $id)->first()->profile['voice']);
         $this->assertSame(0, Novel::find($this->book['novel']['id'])->state_version);
-        $this->assertFalse(Schema::hasTable('story_events'));
+        // D01 已建立预备表；批准设定仍不能产生正式事件。
+        $this->assertDatabaseCount('story_events', 0);
     }
 
     public function test_initial_relationships_require_approved_exact_version_and_preserve_reference(): void
