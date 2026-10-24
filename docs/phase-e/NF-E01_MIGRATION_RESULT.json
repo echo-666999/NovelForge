@@ -1,0 +1,39 @@
+{
+    "database": "novel_forge",
+    "migration": "2026_10_24_000019_create_planning_pipeline",
+    "exit_code": 0,
+    "backup": ".local/backups/nf-e01-before-20261024-200324.dump",
+    "backup_sha256": "0ada66b5e2e3fb90d3bc86252397d99f9d121f4708c70f9b1021909cc76cc41a",
+    "backup_archive_list_verified": true,
+    "restore_drill": false,
+    "before": {
+        "users": 1,
+        "novels": 0,
+        "providers": 0,
+        "model_profiles": 0,
+        "ai_requests": 0
+    },
+    "after": {
+        "users": 1,
+        "novels": 0,
+        "providers": 0,
+        "model_profiles": 0,
+        "ai_requests": 0
+    },
+    "tables": {
+        "planning_stages": {
+            "table_comment": "离线规划五阶段有向无环依赖与运行引用",
+            "columns": 7,
+            "commented_columns": 7,
+            "rows": 0
+        },
+        "planning_adoptions": {
+            "table_comment": "作者采纳规划候选的不可变来源和结果",
+            "columns": 11,
+            "commented_columns": 11,
+            "rows": 0
+        }
+    },
+    "outline_reference": "YES",
+    "outline_reference_comment": "冻结大纲版本；E01前置规划允许为空，其他运行必须有大纲"
+}

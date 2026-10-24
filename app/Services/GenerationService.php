@@ -8,17 +8,20 @@ use App\Generation\StageExecutor;
 use App\Generation\StageResult;
 use App\Models\OutlineVersion;
 use App\Models\User;
+use App\Planning\PlanningContract;
+use App\ProvidersGateway\StructuredOutput;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Throwable;
 
-/** C01 持久编排基础；目前只有测试支架可驱动，尚未开放生产调度。 */
+/** 持久编排与恢复；支持 test.echo 和 E01 明确注册的离线规划，不开放真实模型或正文阶段。 */
 final class GenerationService
 {
-    private function harness(): void
+    private function harness(?string $runId = null): void
     {
-        if (! app()->environment('testing')) {
+        $planning = $runId && DB::table('generation_runs')->where('id', $runId)->where('frozen_config->schema_version', 'planning-v1')->exists();
+        if (! app()->environment('testing') && ! $planning) {
             throw new NovelProblem('STAGE_NOT_AVAILABLE', '测试阶段仅允许在测试环境执行。', 403);
         }
     }
@@ -173,6 +176,11 @@ final class GenerationService
     private function verifyRun(object $run): array
     {
         $frozen = $this->json($run->frozen_config);
+        if (($frozen['schema_version'] ?? null) === 'planning-v1') {
+            app(PlanningPipelineService::class)->verifyFrozen($run, $frozen);
+
+            return $frozen;
+        }
         $outline = OutlineVersion::find($run->outline_version_id);
         $novel = DB::table('novels')->find($run->novel_id);
         if (! hash_equals($run->input_hash, $this->hash($frozen)) || ! $outline
@@ -190,17 +198,17 @@ final class GenerationService
         if (! $artifact || ! hash_equals($artifact->source_hash, $step->dependency_hash)
             || ! hash_equals($artifact->content_hash, $this->hash($this->json($artifact->content)))
             || ! hash_equals($step->dependency_hash, $this->hash($this->json($step->frozen_input)))
-            || $artifact->schema_version !== 'test.echo-v1') {
+            || $artifact->schema_version !== (str_starts_with($step->stage, 'planning.') ? $step->stage.'-v1' : 'test.echo-v1')) {
             throw new NovelProblem('DEPENDENCY_MISMATCH', '产物来源或内容哈希不匹配。');
         }
 
         return $artifact;
     }
 
-    /** 认领可恢复的测试阶段；令牌及时间均来自持久数据库。 */
+    /** 认领已注册的可恢复阶段；令牌及时间均来自持久数据库。 */
     public function claim(User $actor, string $novelId, string $runId, string $scopeKey, ?int $retryOf = null, ?string $modelVersionId = null, ?string $switchReason = null): ?array
     {
-        $this->harness();
+        $this->harness($runId);
 
         return DB::transaction(function () use ($actor, $novelId, $runId, $scopeKey, $retryOf, $modelVersionId, $switchReason) {
             $run = $this->run($actor, $novelId, $runId, true);
@@ -349,7 +357,7 @@ final class GenerationService
     /** 完成必须匹配当前租约；拒绝迟到 Worker，不覆盖新产物。 */
     public function complete(User $actor, string $novelId, string $runId, array $claim, StageResult $result, ?string $eventId = null): bool
     {
-        $this->harness();
+        $this->harness($runId);
 
         return DB::transaction(function () use ($actor, $novelId, $runId, $claim, $result, $eventId) {
             $run = $this->run($actor, $novelId, $runId, true);
@@ -359,7 +367,7 @@ final class GenerationService
                 || ! DB::table('generation_steps')->where('id', $step->id)->whereRaw('lease_until > clock_timestamp()')->exists()) {
                 // 迟到输出仅作证据；绝不占用唯一有效产物或改变新尝试状态。
                 if ($step && preg_match('/^[1-9][0-9]*$/D', (string) $claim['token']) && Str::isUuid($claim['owner'])) {
-                    $safe = $this->validatedResult($result);
+                    $safe = $this->validatedResult($result, $step->stage);
                     DB::table('generation_late_evidence')->insertOrIgnore([
                         'novel_id' => $novelId, 'run_id' => $runId, 'step_id' => $step->id,
                         'fencing_token' => $claim['token'], 'lease_owner' => $claim['owner'],
@@ -369,7 +377,7 @@ final class GenerationService
 
                 return false;
             }
-            $result = $this->validatedResult($result);
+            $result = $this->validatedResult($result, $step->stage);
             $status = $result->status;
             $error = $result->errorCode;
             if (in_array($run->status, ['paused', 'canceled'], true)) {
@@ -385,7 +393,7 @@ final class GenerationService
             // 产物与检查点及阶段状态在同一事务落盘，不留下半个成功阶段。
             $artifactId = DB::table('generation_artifacts')->insertGetId([
                 'novel_id' => $novelId, 'run_id' => $runId, 'step_id' => $step->id,
-                'type' => $status === 'succeeded' ? 'test_result' : 'test_evidence', 'schema_version' => 'test.echo-v1',
+                'type' => str_starts_with($step->stage, 'planning.') ? ($status === 'succeeded' ? 'planning_candidate' : 'planning_evidence') : ($status === 'succeeded' ? 'test_result' : 'test_evidence'), 'schema_version' => str_starts_with($step->stage, 'planning.') ? $step->stage.'-v1' : 'test.echo-v1',
                 'content' => NovelIntentService::canonical($result->content), 'content_hash' => $this->hash($result->content),
                 'source_hash' => $step->dependency_hash, 'storage_ref' => 'db:'.Str::uuid(), 'created_at' => now(),
             ]);
@@ -423,9 +431,17 @@ final class GenerationService
         })->exists();
     }
 
-    private function validatedResult(StageResult $result): StageResult
+    private function validatedResult(StageResult $result, string $stage): StageResult
     {
         try {
+            if (str_starts_with($stage, 'planning.') && $result->status === 'succeeded') {
+                $schema = PlanningContract::schema(substr($stage, 9));
+                if (app(StructuredOutput::class)->issues(json_decode(NovelIntentService::canonical($result->content)), $schema)) {
+                    throw new \InvalidArgumentException('规划输出不符合冻结协议。');
+                }
+
+                return $result;
+            }
             Validator::make(['status' => $result->status, 'content' => $result->content, 'error_code' => $result->errorCode], [
                 'status' => 'required|in:succeeded,deferred,blocked,failed,canceled',
                 'content' => 'required|array:text', 'content.text' => 'required|string|max:20000',

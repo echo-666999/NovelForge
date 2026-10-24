@@ -17,3 +17,6 @@ catch (\Illuminate\Database\QueryException $e) { report($e); $context=null; }
 </x-filament::section>
 
 @else <p role="alert">当前小说信息读取失败，请重试。</p> @endif
+
+{{-- E01 从要求、蓝图和层级规划共用入口查看离线候选与来源。 --}}
+<a href="{{ \App\Filament\Resources\NovelResource::getUrl('planning-candidates', ['record' => $novelId]) }}">离线规划候选</a>

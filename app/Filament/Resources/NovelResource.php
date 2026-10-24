@@ -94,6 +94,6 @@ class NovelResource extends Resource
 
     public static function getPages(): array
     {
-        return ['workspace' => Pages\Workspace::route('/{record}/workspace'), 'plans' => Pages\RollingPlans::route('/{record}/plans'), 'blueprints' => Pages\Blueprints::route('/{record}/blueprints'), 'world' => Pages\WorldLibrary::route('/{record}/world'), 'structure' => Pages\Structure::route('/{record}/structure'), 'index' => Pages\ListNovels::route('/'), 'create' => Pages\CreateNovel::route('/create'), 'intent' => Pages\NovelIntent::route('/{record}/intent')];
+        return ['planning-candidates' => Pages\PlanningCandidates::route('/{record}/planning-candidates'), 'workspace' => Pages\Workspace::route('/{record}/workspace'), 'plans' => Pages\RollingPlans::route('/{record}/plans'), 'blueprints' => Pages\Blueprints::route('/{record}/blueprints'), 'world' => Pages\WorldLibrary::route('/{record}/world'), 'structure' => Pages\Structure::route('/{record}/structure'), 'index' => Pages\ListNovels::route('/'), 'create' => Pages\CreateNovel::route('/create'), 'intent' => Pages\NovelIntent::route('/{record}/intent')];
     }
 }

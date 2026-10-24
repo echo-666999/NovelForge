@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Exceptions\NovelProblem;
 use App\Models\User;
+use App\Planning\PlanningReplayAdapter;
 use App\ProvidersGateway\FakeProvider;
 use App\ProvidersGateway\ProviderAdapter;
 use App\ProvidersGateway\StructuredOutput;
@@ -18,16 +19,18 @@ final class ProviderGateway
     public function execute(User $actor, string $novelId, string $stepId, string $modelVersionId, array $input, string $key, ?ProviderAdapter $adapter = null): array
     {
         app(NovelIntentService::class)->novel($actor, $novelId);
+        // 规划包含完整原始输入和结构证据，单独采用有界容量；旧网关限制保持原值。
+        $planningInput = ctype_digit($stepId) && strlen($stepId) < 19 && DB::table('generation_steps as s')->join('generation_runs as r', 'r.id', '=', 's.run_id')->where('s.id', $stepId)->where('s.novel_id', $novelId)->where('r.frozen_config->schema_version', 'planning-v1')->exists();
         Validator::make(['key' => $key, 'step' => $stepId, 'model' => $modelVersionId, 'input' => $input], [
             'key' => ['required', 'string', 'max:128', 'regex:/^[\x20-\x7E]+$/D'], 'step' => 'required|integer|min:1', 'model' => 'required|integer|min:1',
-            'input' => 'required|array:prompt,output_schema', 'input.prompt' => 'required|string|max:50000', 'input.output_schema' => 'required|array',
+            'input' => 'required|array:prompt,output_schema', 'input.prompt' => 'required|string|max:'.($planningInput ? 200000 : 50000), 'input.output_schema' => 'required|array',
         ])->validate();
-        if (strlen(NovelIntentService::canonical($input)) > 200000) {
+        if (strlen(NovelIntentService::canonical($input)) > ($planningInput ? 400000 : 200000)) {
             throw new NovelProblem('REQUEST_TOO_LARGE', '请求结构超过本轮支持的大小。', 422);
         }
         app(StructuredOutput::class)->schema($input['output_schema']);
         $hash = hash('sha256', NovelIntentService::canonical([$modelVersionId, $input]));
-        $admission = DB::transaction(function () use ($actor, $novelId, $stepId, $modelVersionId, $input, $key, $hash) {
+        $admission = DB::transaction(function () use ($actor, $novelId, $stepId, $modelVersionId, $input, $key, $hash, $adapter) {
             // 与编排保持相同锁顺序，外部执行不持有这些锁。
             app(NovelIntentService::class)->novel($actor, $novelId, true);
             $step = DB::table('generation_steps')->where('novel_id', $novelId)->where('id', $stepId)->first();
@@ -68,7 +71,14 @@ final class ProviderGateway
             if ($selectedConfig) {
                 $provider = DB::table('provider_versions')->find($selectedConfig['provider_version_id']);
             }
-            if ($provider->interface_type !== 'fake' || ! app()->environment('testing')) {
+            $planningReplay = $adapter ?? null;
+            if ($planningReplay instanceof PlanningReplayAdapter) {
+                $planningFrozen = json_decode(DB::table('generation_runs')->where('id', $step->run_id)->value('frozen_config'), true);
+                if (($planningFrozen['schema_version'] ?? null) !== 'planning-v1' || $planningReplay->outputHash() !== hash('sha256', NovelIntentService::canonical($planningFrozen['nodes'][0]['input']['offline_output']))) {
+                    throw new NovelProblem('PLANNING_REPLAY_MISMATCH', '离线响应必须是启动时冻结的回放资料。');
+                }
+            }
+            if ($provider->interface_type !== 'fake' || (! app()->environment('testing') && ! ($planningReplay instanceof PlanningReplayAdapter && DB::table('generation_runs')->where('id', $step->run_id)->where('frozen_config->schema_version', 'planning-v1')->exists()))) {
                 throw new NovelProblem('BUDGET_GATE_REQUIRED', '真实调用及能力探测尚未获准；仍需部署条件、能力验证及外部调用授权，当前仅允许离线测试。', 403);
             }
             if ($step->status !== 'running' || ! DB::table('generation_steps')->where('id', $stepId)->whereRaw('lease_until > clock_timestamp()')->exists()) {

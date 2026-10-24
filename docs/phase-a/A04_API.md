@@ -164,3 +164,8 @@ POST `/api/v1/novels/{novel}/search` 为只读查询：scope、branch_id、build
 ## NF-D06 上下文清单接口落地（2026-10-24）
 
 GET `/api/v1/generation-steps/{step}/context` 读取最新冻结清单；`manifest` 选择历史，`compare` 比较同阶段另一清单。POST 同路径使用 Idempotency-Key 追加组装清单，输入 scope=candidate、plan_id、scene_id、pov_id、configuration、billing、safety_margin、expected_version、reason；context_id/search 可选。沿用同源会话、CSRF、管理员及小说所有权，响应 private/no-store。formal 返回 FORMAL_CONTEXT_UNAVAILABLE，不回退候选。清单返回 assembled/over_capacity/missing_required，另以 current_status=stale 表示当前依赖过期，冻结文本不变。接口没有发送模型请求或写正式剧情的副作用。完整字段、估算限制及 UI23 见 [NF-D06 验收](../phase-d/NF-D06_ACCEPTANCE.md)。
+
+
+## NF-E01 离线规划接口落地（2026-10-24）
+
+统一阶段入口 GET/POST `/api/v1/novels/{novel}/planning-runs`、GET `/{planning}`、POST `/{planning}/adopt` 细化原blueprint-runs/outline-runs示意，原示意路径未注册。phase为intake/blueprint/outline/chapter_plan/scene_plan；前驱parent_id绑定作者采纳回执，章/场景须start_chapter/end_chapter且每次最多十章。route_version_id、planning类别billing、明确离线offline_output、expected_version、reason均须提供。启动202附run_id/status_url；采纳须artifact_id、expected_version、reason。写入Idempotency-Key按actor+novel+command精确重放原响应，异载荷409；管理员/同书/CSRF/private-no-store沿用。只有fake供应商和冻结回放适配器可执行，无真实AI调用。候选编辑/比较/采纳入口联通UI05–08；批准与冻结仍走原B01–B05服务。字段、Schema和边界见[NF-E01验收](../phase-e/NF-E01_ACCEPTANCE.md)。

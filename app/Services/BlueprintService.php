@@ -353,7 +353,7 @@ final class BlueprintService
         $check = BlueprintValidation::where('blueprint_version_id', $id)->latest('id')->first();
         $latestApproved = BlueprintApproval::where('novel_id', $novel)->latest('id')->value('blueprint_version_id');
 
-        return $v->toArray() + ['ending_contract' => EndingContract::where('blueprint_version_id', $id)->first()->toArray(), 'approval' => $approval?->toArray(), 'validation' => $check?->toArray(), 'display_status' => $approval ? ($latestApproved === $v->id ? 'approved' : 'superseded') : ($check && ! $check->report['passed'] ? 'needs_changes' : 'draft'), 'generation_eligible' => false];
+        return $v->toArray() + ['origin' => DB::table('planning_adoptions')->where('novel_id', $novel)->where('result->blueprint_id', $id)->exists() ? 'offline_planning_candidate' : 'author', 'ending_contract' => EndingContract::where('blueprint_version_id', $id)->first()->toArray(), 'approval' => $approval?->toArray(), 'validation' => $check?->toArray(), 'display_status' => $approval ? ($latestApproved === $v->id ? 'approved' : 'superseded') : ($check && ! $check->report['passed'] ? 'needs_changes' : 'draft'), 'generation_eligible' => false];
     }
 
     public function listing(User $actor, string $novel, array $filters = []): array

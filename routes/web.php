@@ -8,6 +8,7 @@ use App\Http\Controllers\ForeshadowLedgerController;
 use App\Http\Controllers\HybridSearchController;
 use App\Http\Controllers\LayeredMemoryController;
 use App\Http\Controllers\NovelIntentController;
+use App\Http\Controllers\PlanningPipelineController;
 use App\Http\Controllers\ProviderConfigurationController;
 use App\Http\Controllers\RecoveryController;
 use App\Http\Controllers\RollingPlanController;
@@ -147,3 +148,11 @@ Route::get('api/v1/novels/{novel}/search-evaluations/{evaluation}', HybridSearch
 // D06 组装只追加离线清单，正式发送接线仍由 E 阶段实施。
 Route::get('api/v1/generation-steps/{step}/context', ContextAssemblyController::class)->whereNumber('step');
 Route::post('api/v1/generation-steps/{step}/context', ContextAssemblyController::class)->whereNumber('step');
+
+// E01 只有明确离线响应回放；候选采纳不替代 B01–B05 的作者决定、批准和冻结。
+Route::prefix('api/v1/novels/{novel}/planning-runs')->whereNumber('novel')->group(function (): void {
+    Route::get('/', PlanningPipelineController::class);
+    Route::post('/', PlanningPipelineController::class);
+    Route::get('/{planning}', PlanningPipelineController::class)->whereNumber('planning');
+    Route::post('/{planning}/adopt', PlanningPipelineController::class)->whereNumber('planning');
+});

@@ -1,5 +1,7 @@
 <?php
 
+use App\Planning\PlanningContract;
+
 // 超时 < 租约 < Redis 可见性超时；扫描器每分钟运行，通知丢失可据库补投。
 return [
     'connection' => 'redis',
@@ -9,5 +11,6 @@ return [
     'redelivery_seconds' => 60,
     'max_claims' => 3,
     'queues' => ['planning', 'generation', 'review', 'memory', 'export', 'maintenance'],
-    'stage_queues' => ['test.echo' => 'generation'],
+    // E01 仅注册离线规划，其他业务阶段仍不可执行。
+    'stage_queues' => ['test.echo' => 'generation', ...array_fill_keys(array_map(fn ($phase) => 'planning.'.$phase, PlanningContract::PHASES), 'planning')],
 ];

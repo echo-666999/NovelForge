@@ -22,6 +22,13 @@ final class RecoveryService
         }
         $novel = app(NovelIntentService::class)->novel($actor, $novelId);
         $stale = (string) $novel->state_version !== $run['expected_state_version'] || $novel->status === 'archived';
+        if (($run['frozen_config']['schema_version'] ?? null) === 'planning-v1') {
+            try {
+                app(PlanningPipelineService::class)->verifyFrozen((object) $run, $run['frozen_config']);
+            } catch (NovelProblem) {
+                $stale = true;
+            }
+        }
         $latest = collect($data['steps'])->sortByDesc('attempt_no')->unique('scope_key')->keyBy('scope_key');
         $artifacts = collect($data['artifacts'])->keyBy('step_id');
         $invalid = $stale ? array_column($nodes, 'key') : $changedScopes;
@@ -55,7 +62,7 @@ final class RecoveryService
             'late_evidence' => DB::table('generation_late_evidence')->where('run_id', $runId)->orderBy('id')->get(['id', 'step_id', 'reason', 'content', 'content_hash'])->map(fn ($e) => ['id' => (string) $e->id, 'step_id' => (string) $e->step_id, 'reason' => $e->reason, 'content' => json_decode($e->content, true), 'content_hash' => $e->content_hash])->all(),
             'decisions' => DB::table('recovery_decisions')->where('run_id', $runId)->orderBy('id')->get(['id', 'actor_id', 'action', 'reason', 'created_at'])->map(fn ($d) => ['id' => (string) $d->id, 'actor_id' => (string) $d->actor_id, 'action' => $d->action, 'reason' => $d->reason, 'created_at' => $d->created_at])->all(),
             'configuration_rule' => '默认配置变化不改变旧运行；显式变更须新运行。变更节点及下游重验，原产物永久保留。',
-            'execution_boundary' => '当前仅有离线 test.echo；事件提取、正文编辑和文学修订执行器尚未实现。'];
+            'execution_boundary' => '支持离线 test.echo 与 E01 规划回放；正文、提取和文学修订执行器尚未实现。'];
         $result['preview_hash'] = $this->hash($result);
 
         return $result;
