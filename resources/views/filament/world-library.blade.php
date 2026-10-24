@@ -38,6 +38,8 @@
 <label>比较版本<select wire:model.live="compareId"><option value="">不比较</option>@foreach($detail['versions'] as $v)<option value="{{ $v['id'] }}">v{{ $v['version'] }}</option>@endforeach</select></label>
 @if($compareId)@php($before=$this->comparison())<p>所选比较版本 v{{ $before['version'] }} → 当前查看 v{{ $selected['version'] }}；{{ $before['content_hash']===$selected['content_hash']?'内容相同':'内容不同' }}</p><pre class="whitespace-pre-wrap">{{ json_encode($before['definition'],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE) }}</pre>@endif
 <p>正式动态状态、知识与经历：未建立，不能从初始设定推断。</p>
+{{-- D02 候选知识使用独立版本，不改写此页批准的人物卡或正式状态。 --}}
+<a href="{{ \App\Filament\Pages\StoryTimeline::getUrl(['novel' => $novelId]) }}">查看候选时间线、人物知识与关系变化</a>
 </x-filament::section>
 @endif
 <x-filament::section heading="冻结的引入策略历史">

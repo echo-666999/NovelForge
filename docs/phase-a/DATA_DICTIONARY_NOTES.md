@@ -72,3 +72,7 @@ run_traces(run_id主键外键, trace_id唯一UUID, origin, created_at)只追加�
 ## D01 当前物理实现（2026-10-24）
 
 候选层新增 proposed_events/proposed_state_patches；source_documents 当前仅 artifact 一种强类型来源。state_snapshots 与 entity_state_versions 当前属于 candidate 快照，不能将其 local_state_version 用作小说正式状态令牌。story_events 仅预备结构，CHECK(false) 阻止写入；正式 revision/commit/chapter_version 的复合 FK 需 E06 表存在后补齐。上表保留最终设计目标，不意味着未来来源和正式状态现已开放。具体列、约束及验收见 ../phase-d/NF-D01_ACCEPTANCE.md。
+
+## D02 当前物理实现（2026-10-24）
+
+新增 story_context_versions/story_time_entries/consistency_rules；event_dependencies、knowledge_facts、relationships 在本阶段全部以候选 context_id 和 proposed_events 复合 FK 归属。不得将候选知识或动态关系当作已提交状态，最终正式 revision/commit 归属在 E06 接入。未知时间存 NULL，实际 UTC/相对秒序与创建审计时刻分离。见 ../phase-d/NF-D02_ACCEPTANCE.md。

@@ -1,0 +1,48 @@
+{
+  "database": "novel_forge",
+  "migration_exit": 0,
+  "users_before": 1,
+  "users_after": 1,
+  "novels_before": 0,
+  "novels_after": 0,
+  "providers_count": 0,
+  "model_profiles_count": 0,
+  "ai_requests_count": 0,
+  "backup": "/Users/webb/Herd/NovelForge/.local/backups/nf-d02-before-20261024-075050.dump",
+  "backup_sha256": "43ca0fa66cdb47db46f6bdf1a4b6b896b77f2b8be0d96c425ad1cdabb4985990",
+  "archive_list_verified": true,
+  "restoration_tested": false,
+  "comments": {
+    "story_context_versions": {
+      "columns": 12,
+      "commented_columns": 12,
+      "table_comment": "不可变候选时间线与一致性验证版本"
+    },
+    "story_time_entries": {
+      "columns": 14,
+      "commented_columns": 14,
+      "table_comment": "事件实际时间与叙述来源关联"
+    },
+    "event_dependencies": {
+      "columns": 6,
+      "commented_columns": 6,
+      "table_comment": "候选事件有向时间及因果约束"
+    },
+    "knowledge_facts": {
+      "columns": 8,
+      "commented_columns": 8,
+      "table_comment": "带获得事件与知情途径的候选知识"
+    },
+    "relationships": {
+      "columns": 8,
+      "commented_columns": 8,
+      "table_comment": "事件驱动的候选动态关系"
+    },
+    "consistency_rules": {
+      "columns": 8,
+      "commented_columns": 8,
+      "table_comment": "作者确认并绑定批准规则版本的结构化限制"
+    }
+  },
+  "added_column_comments": []
+}

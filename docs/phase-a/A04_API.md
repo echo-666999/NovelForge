@@ -117,3 +117,7 @@ POST `/api/v1/billing/reconcile`：request_id、external_charge_id、evidence_re
 GET `/api/v1/runs`（novel_id/status/error/trace_id/date_from/date_to/page）；GET `/api/v1/novels/{novel}/runs/{run}`（request_page）；GET `/api/v1/audit` 和 `/api/v1/audit/export`（novel_id/run_id/trace_id/action/object_type/status/high_risk/date_from/date_to/page）；GET `/api/v1/operations/health`。
 
 受控附件：GET `/api/v1/novels/{novel}/runs/{run}/artifacts/{object}`；GET `/api/v1/novels/{novel}/runs/{run}/requests/{object}/evidence/{request|response}`。必须管理员且同书同运行，校验完整哈希，附件no-store/nosniff，无任意路径参数。审计导出为当前25条筛选页，不表示完整历史。服务端HTTP追踪号通过X-Trace-Id返回；API错误含trace_id。没有生产启动或新增写审计接口。
+
+## NF-D02 候选时间线接口
+
+`/api/v1/novels/{novel}/story-contexts`：GET 最近50个版本；POST 使用 Idempotency-Key、expected_version、reason、entries/dependencies/knowledge/relationships/rules 保存新版本并检测。GET `/{context}` 读取封存配置、证据与报告；GET `/{context}/pov?knower_id=…&chapter=…` 返回该章候选知识与可用状态。全部沿用同源会话、CSRF、管理员和同书授权，输出 ID 为十进制字符串。报告 consistent/ambiguous/conflict 与 HTTP 成功保存分开；均为 candidate，不开放正式提交。字段及边界见 ../phase-d/NF-D02_ACCEPTANCE.md。

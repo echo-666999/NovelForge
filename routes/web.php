@@ -8,6 +8,7 @@ use App\Http\Controllers\ProviderConfigurationController;
 use App\Http\Controllers\RecoveryController;
 use App\Http\Controllers\RollingPlanController;
 use App\Http\Controllers\RunCenterController;
+use App\Http\Controllers\StoryConsistencyController;
 use App\Http\Controllers\StructureController;
 use App\Http\Controllers\WorkspaceController;
 use App\Http\Controllers\WorldController;
@@ -102,3 +103,11 @@ foreach (['runs' => 'list', 'audit' => 'audit', 'audit/export' => 'audit-export'
 Route::get('api/v1/novels/{novel}/runs/{run}', RunCenterController::class)->whereNumber(['novel', 'run'])->defaults('centerAction', 'detail');
 Route::get('api/v1/novels/{novel}/runs/{run}/artifacts/{object}', RunCenterController::class)->whereNumber(['novel', 'run', 'object'])->defaults('centerAction', 'artifact');
 Route::get('api/v1/novels/{novel}/runs/{run}/requests/{object}/evidence/{kind}', RunCenterController::class)->whereNumber(['novel', 'run', 'object'])->whereIn('kind', ['request', 'response'])->defaults('centerAction', 'evidence');
+
+// D02 候选时间线、知识与一致性接口，继续使用会话、CSRF和管理员归属检查。
+Route::prefix('api/v1/novels/{novel}/story-contexts')->whereNumber('novel')->group(function (): void {
+    Route::get('/', StoryConsistencyController::class);
+    Route::post('/', StoryConsistencyController::class);
+    Route::get('/{context}', StoryConsistencyController::class)->whereNumber('context');
+    Route::get('/{context}/pov', StoryConsistencyController::class)->whereNumber('context')->defaults('consistencyAction', 'pov');
+});

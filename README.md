@@ -1,6 +1,6 @@
 # NovelForge
 
-单人 AI 长篇小说系统。已按逐项授权完成 B01–B06 规划基础、C01–C07 离线运行底座及 D01 候选事件与状态回放服务；具体范围与证据见 docs/DEVELOPMENT_TASKS.md 和各阶段验收记录。生产生成尚未开放。
+单人 AI 长篇小说系统。已按逐项授权完成 B01–B06 规划基础、C01–C07 离线运行底座及 D01–D02 候选事件、状态回放与一致性服务；具体范围与证据见 docs/DEVELOPMENT_TASKS.md 和各阶段验收记录。生产生成尚未开放。
 
 ## 当前环境
 
@@ -83,3 +83,5 @@ NF-C06 恢复台：`/admin/recovery-desk`，支持恢复预览、暂停/取消�
 NF-C07：`/admin/run-center` 查看运行、请求、心跳、产物与账本；`/admin/audit-center` 查看追加审计与数据库健康。完整证据下载需鉴权。详见 [NF-C07验收](docs/phase-c/NF-C07_ACCEPTANCE.md)。
 
 NF-D01：已提供候选事件、Unicode 证据与可回放状态内部服务；无新增页面或 HTTP 入口，正式事实写入仍关闭。范围及验收见 [NF-D01](docs/phase-d/NF-D01_ACCEPTANCE.md)。
+
+NF-D02：`/admin/story-timeline` 管理候选双时间轴、知识来源、动态关系和一致性报告；可查看某章 POV。未知与冲突均阻止候选知识作为可用信息，正式提交继续关闭。详见 [NF-D02验收](docs/phase-d/NF-D02_ACCEPTANCE.md)。
