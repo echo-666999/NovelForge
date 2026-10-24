@@ -111,3 +111,9 @@ POST `/api/v1/billing/reconcile`：request_id、external_charge_id、evidence_re
 `GET /api/v1/novels/{novel}/runs/{run}/recovery` 返回节点恢复范围、原产物、分类、费用风险、决定和隔离证据；可选 `changed_scopes[]` 预览变更节点及下游。
 
 `POST .../recovery/{pause|resume|cancel|manual|retry|reextract|change_plan}` 必须提供 `Idempotency-Key`、`reason`、`preview_hash`；`retry/reextract` 指定 `scope`，`retry` 可选冻结批准清单中的 `model_version_id`；`change_plan` 指定 `changed_scopes`。沿用同源管理员会话/CSRF/小说归属；409用于陈旧预览、运行不可执行、未知结果或已有重试意图。没有强制通过、真实模型调用、直接正文编辑或费用清零接口。reextract/change_plan 登记结果明确标为 awaiting_stage_implementation，离线重放适配点没有生产HTTP入口。
+
+## NF-C07 运行观测接口
+
+GET `/api/v1/runs`（novel_id/status/error/trace_id/date_from/date_to/page）；GET `/api/v1/novels/{novel}/runs/{run}`（request_page）；GET `/api/v1/audit` 和 `/api/v1/audit/export`（novel_id/run_id/trace_id/action/object_type/status/high_risk/date_from/date_to/page）；GET `/api/v1/operations/health`。
+
+受控附件：GET `/api/v1/novels/{novel}/runs/{run}/artifacts/{object}`；GET `/api/v1/novels/{novel}/runs/{run}/requests/{object}/evidence/{request|response}`。必须管理员且同书同运行，校验完整哈希，附件no-store/nosniff，无任意路径参数。审计导出为当前25条筛选页，不表示完整历史。服务端HTTP追踪号通过X-Trace-Id返回；API错误含trace_id。没有生产启动或新增写审计接口。

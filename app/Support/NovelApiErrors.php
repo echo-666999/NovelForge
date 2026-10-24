@@ -24,7 +24,7 @@ final class NovelApiErrors
         return response()->json([
             'error' => ['code' => $code, 'message' => $e instanceof NovelProblem ? $e->getMessage() : ($status === 500 ? '内部错误，请提供请求编号。' : '请求未通过校验或访问检查。'),
                 'fields' => $e instanceof ValidationException ? $e->errors() : (object) [], 'retryable' => false, 'suggested_action' => $status === 409 ? '刷新内容并检查版本或操作键。' : '检查输入和登录状态。'],
-            'request_id' => (string) Str::uuid(), 'version' => 'v1',
+            'trace_id' => $request->attributes->get('trace_id'), 'request_id' => (string) Str::uuid(), 'version' => 'v1',
         ], $status);
     }
 }

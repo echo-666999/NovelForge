@@ -1,0 +1,6 @@
+{
+  "result": "interrupted",
+  "reason": "长时间无进展，客户端PDO等待但服务端测试库会话idle in transaction且无阻塞者；原因未确认，主动停止本轮测试进程后带逐用例事件日志重跑。",
+  "final_test_summary_available": false,
+  "database": "novel_forge_test"
+}

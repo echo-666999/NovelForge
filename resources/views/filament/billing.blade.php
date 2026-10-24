@@ -1,4 +1,6 @@
 <x-filament-panels::page>
+    {{-- 跨页只传同书运行标识，详情页再次鉴权。 --}}
+    @if($novel !== '' && $run !== '')<a href="{{ '/admin/run-center?novel='.$novel.'&run='.$run }}">返回运行、请求与审计详情</a>@endif
     {{-- 金额按十进制字符串展示，不在浏览器用浮点数汇总。 --}}
     @php
         $data=$this->catalog(); $json=fn($v)=>json_encode($v,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);

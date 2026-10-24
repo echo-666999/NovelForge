@@ -64,3 +64,7 @@ usage_settlements按request/revision唯一保存归一化计费数量、各类�
 - ai_requests.retry_after_seconds：供应商最短等待秒数，pending完成时记录，非负或NULL，终态不可修改。
 
 所有新增表/字段实际添加中文 COMMENT，实测数量见 NF-C06_MIGRATION_RESULT.json。目标全量数据字典仍不是所有模块已实施的声明。
+
+## NF-C07 实际增量
+
+run_traces(run_id主键外键, trace_id唯一UUID, origin, created_at)只追加，历史补建与实时产生明确区分。audit_events保存根/操作追踪、所属书/运行/操作人、对象及动作、结果、高风险标记、原因、前后白名单快照、数据库时间；trace/operation/run及时间分别建索引，同书运行复合外键，UPDATE/DELETE被数据库拒绝。新增表及字段均有中文COMMENT。原始供应商证据沿用C03加密存储，没有新增公开文件或复制密钥字段。

@@ -79,3 +79,5 @@ npm run build
 NF-C05 价格版本、Token计量、原子预算、对账及费用导出：docs/phase-c/NF-C05_ACCEPTANCE.md。
 
 NF-C06 恢复台：`/admin/recovery-desk`，支持恢复预览、暂停/取消及人工决定。生产生成入口仍关闭；事件提取/配置变更登记不等于业务执行完成。验证边界见 [NF-C06 验收](docs/phase-c/NF-C06_ACCEPTANCE.md)。
+
+NF-C07：`/admin/run-center` 查看运行、请求、心跳、产物与账本；`/admin/audit-center` 查看追加审计与数据库健康。完整证据下载需鉴权。详见 [NF-C07验收](docs/phase-c/NF-C07_ACCEPTANCE.md)。

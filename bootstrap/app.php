@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\OperationTrace;
 use App\Support\NovelApiErrors;
 use App\Support\TestIsolation;
 use Illuminate\Foundation\Application;
@@ -17,6 +18,7 @@ $app = Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->appendToGroup('web', OperationTrace::class);
         $middleware->trimStrings(except: [fn (Request $request) => $request->is('api/v1/*', 'livewire/*')]);
         $middleware->convertEmptyStringsToNull(except: [fn (Request $request) => $request->is('api/v1/*', 'livewire/*')]);
     })

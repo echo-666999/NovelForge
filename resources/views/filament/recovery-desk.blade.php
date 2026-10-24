@@ -1,4 +1,6 @@
 <x-filament-panels::page>
+    {{-- 跨页只传同书运行标识，详情页再次鉴权。 --}}
+    @if($novel !== '' && $run !== '')<a href="{{ '/admin/run-center?novel='.$novel.'&run='.$run }}">返回运行、请求与审计详情</a>@endif
     {{-- 恢复台明确区分证据、执行状态与尚未实现的业务阶段。 --}}
     <p>暂停和取消不会抹掉费用；迟到响应仅留证，不能自动提交。</p>
     <section class="space-y-3">

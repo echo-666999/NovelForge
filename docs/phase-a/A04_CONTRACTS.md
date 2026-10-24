@@ -206,3 +206,9 @@ Prompt/route/style 采用稳定身份 + 不可变版本，草稿编辑也派生�
 pending/unknown 请求或未核销风险阻止自动重领与重试。技术重试默认最多3次，指数退避+抖动并尊重 Retry-After；已知401/403等业务配置故障转人工。文学修订执行器尚未注册，显示0及未接入，与技术 attempt_no 区分。有效检查点沿用 C01 哈希验证，变化节点及下游在预览中 stale，旧运行冻结配置不被默认指针变化改写。
 
 reextract 决定固定原 artifact/hash，禁止默认改写正文；testing-only replayEvidence 追加 recovery_outputs，使用独立 test.extract-v1 契约。实际事件提取和配置迁移生产执行器尚未接入，后台只登记 awaiting_stage_implementation，不伪装为生产提取/新运行成功。详见 ../phase-c/NF-C06_ACCEPTANCE.md。
+
+## NF-C07 实施补充（2026-10-24）
+
+run_traces为运行分配不可变根trace_id，HTTP另用operation_trace_id并在响应头返回；数据库审计触发器在业务事务内追加元数据。历史运行只补建带origin的关联，不伪造旧审计。失败HTTP命令记录独立拒绝事件；业务回滚无成功审计。正文/密钥/原始请求不进入审计快照，供应商完整证据仍加密私存。
+
+UI11/UI12/UI28/UI31已联通真实持久事实。正式章数与基础设施在线状态在未接入时保持null/unknown，不从阶段成功推断。产物摘要500字符，truncated明确，完整证据下载复核归属和哈希。审计仅追加，下载当前页明确页码；完整实现及验证边界见 ../phase-c/NF-C07_ACCEPTANCE.md。

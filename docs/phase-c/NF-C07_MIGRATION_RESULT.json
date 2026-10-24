@@ -1,0 +1,28 @@
+{
+    "database": "novel_forge",
+    "migration_exit": 0,
+    "users_before": 1,
+    "users_after": 1,
+    "novels_before": 0,
+    "novels_after": 0,
+    "providers_count": 0,
+    "model_profiles_count": 0,
+    "ai_requests_count": 0,
+    "backup": "\/Users\/webb\/Herd\/NovelForge\/.local\/backups\/nf-c07-before-20261024-062336.dump",
+    "backup_sha256": "2875b3a0b67444e9c8ce4ef6a355cee8f2a06d41c9b645081f0b7a341a582d2d",
+    "archive_list_verified": true,
+    "restoration_tested": false,
+    "comments": {
+        "run_traces": {
+            "columns": 4,
+            "commented_columns": 4,
+            "table_comment": "运行根追踪标识及历史补建来源"
+        },
+        "audit_events": {
+            "columns": 15,
+            "commented_columns": 15,
+            "table_comment": "只追加且不含正文密钥的操作审计"
+        }
+    },
+    "added_column_comments": []
+}

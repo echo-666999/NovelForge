@@ -7,6 +7,7 @@ use App\Http\Controllers\NovelIntentController;
 use App\Http\Controllers\ProviderConfigurationController;
 use App\Http\Controllers\RecoveryController;
 use App\Http\Controllers\RollingPlanController;
+use App\Http\Controllers\RunCenterController;
 use App\Http\Controllers\StructureController;
 use App\Http\Controllers\WorkspaceController;
 use App\Http\Controllers\WorldController;
@@ -93,3 +94,11 @@ Route::prefix('api/v1/novels/{novel}/runs/{run}/recovery')->whereNumber(['novel'
         Route::post('/'.$action, RecoveryController::class)->defaults('recoveryAction', $action);
     }
 });
+
+// C07 只读运行中心、审计和受控证据下载；不提供真实生成启动入口。
+foreach (['runs' => 'list', 'audit' => 'audit', 'audit/export' => 'audit-export', 'operations/health' => 'health'] as $path => $action) {
+    Route::get('api/v1/'.$path, RunCenterController::class)->defaults('centerAction', $action);
+}
+Route::get('api/v1/novels/{novel}/runs/{run}', RunCenterController::class)->whereNumber(['novel', 'run'])->defaults('centerAction', 'detail');
+Route::get('api/v1/novels/{novel}/runs/{run}/artifacts/{object}', RunCenterController::class)->whereNumber(['novel', 'run', 'object'])->defaults('centerAction', 'artifact');
+Route::get('api/v1/novels/{novel}/runs/{run}/requests/{object}/evidence/{kind}', RunCenterController::class)->whereNumber(['novel', 'run', 'object'])->whereIn('kind', ['request', 'response'])->defaults('centerAction', 'evidence');
