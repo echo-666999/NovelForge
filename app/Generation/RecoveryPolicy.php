@@ -14,6 +14,7 @@ final class RecoveryPolicy
             'DEPENDENCY_MISMATCH', 'STALE_STATE' => ['kind' => 'stale', 'status' => 'blocked', 'advice' => '来源发生变化，先预览失效范围并创建新运行。'],
             'PROVIDER_OUTCOME_UNKNOWN', 'UNKNOWN_REQUEST_OUTCOME', 'BUDGET_RECONCILIATION_REQUIRED' => ['kind' => 'unknown', 'status' => 'blocked', 'advice' => '请求结果或费用不明，保留风险预留，人工核实，禁止自动重发。'],
             'EVIDENCE_NOT_FOUND', 'EVIDENCE_UNLOCATABLE' => ['kind' => 'evidence', 'status' => 'blocked', 'advice' => '优先基于原产物重新提取；不得改写原文制造证据。'],
+            'HARD_CONSTRAINT_BLOCKED' => ['kind' => 'hard_constraint', 'status' => 'blocked', 'advice' => '核对原文与冲突事实；若只是误提取，保持正文版本并提供修正响应重新提取，不走技术重试。'],
             'LITERARY_REVIEW_FAILED' => ['kind' => 'literary', 'status' => 'blocked', 'advice' => '文学修订与技术重试分别计数；修订执行器尚未接入。'],
             default => ['kind' => 'blocked', 'status' => 'blocked', 'advice' => '检查错误证据和配置后人工决定；没有强制通过入口。'],
         };

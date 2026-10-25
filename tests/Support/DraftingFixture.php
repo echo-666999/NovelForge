@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
 /** 真实 PostgreSQL 冻结计划与虚构离线模型，正文仅作协议测试资料。 */
 final class DraftingFixture
 {
-    public static function create(bool $twoScenes = false): array
+    public static function create(bool $twoScenes = false, ?\Closure $prepare = null): array
     {
         $provider = ProviderFixture::create();
         $f = RollingPlanFixture::create(owner: $provider['actor']);
@@ -32,6 +32,10 @@ final class DraftingFixture
             $structure(array_replace($row, ['type' => 'scene', 'node_id' => $row['id']]));
             unset($row['id']);
             $f['second'] = $structure(array_replace($row, ['type' => 'scene', 'sequence' => 2, 'title' => '册页的日期', 'objective' => '比对册页日期并决定公开证据']))['node'];
+        }
+        // E03可在计划冻结前准备作者批准设定，不在冻结后放宽测试来源门禁。
+        if ($prepare) {
+            $f = $prepare($f);
         }
         $cmd = fn ($action, $d) => app(RollingPlanService::class)->execute($f['actor'], $f['novel'], $action, $d + ['expected_version' => Novel::find($f['novel'])->row_version, 'reason' => '正文验收计划'], (string) Str::uuid());
         $f['plan'] = $cmd('save', $f['plan_payload'])['plan'];

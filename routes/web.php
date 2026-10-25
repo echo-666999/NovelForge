@@ -5,6 +5,7 @@ use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BlueprintController;
 use App\Http\Controllers\ContextAssemblyController;
 use App\Http\Controllers\DraftingController;
+use App\Http\Controllers\ExtractionController;
 use App\Http\Controllers\ForeshadowLedgerController;
 use App\Http\Controllers\HybridSearchController;
 use App\Http\Controllers\LayeredMemoryController;
@@ -165,4 +166,12 @@ Route::prefix('api/v1/novels/{novel}/drafts')->whereNumber('novel')->group(funct
     Route::post('/chapters/{object}/assemble', DraftingController::class)->whereNumber('object')->defaults('draftAction', 'assemble');
     Route::get('/{kind}/versions/{object}', DraftingController::class)->whereIn('kind', ['scene', 'chapter'])->whereNumber('object')->defaults('draftAction', 'read');
     Route::post('/{kind}/{object}/versions', DraftingController::class)->whereIn('kind', ['scene', 'chapter'])->whereNumber('object')->defaults('draftAction', 'save');
+});
+
+// E03 显式离线提取、同正文重提取与硬约束结果；不注册真实模型或正式提交。
+Route::prefix('api/v1/novels/{novel}/extractions')->whereNumber('novel')->group(function (): void {
+    Route::get('/', ExtractionController::class);
+    Route::post('/', ExtractionController::class);
+    Route::post('/runs', ExtractionController::class)->defaults('extractionAction', 'start');
+    Route::get('/{extraction}', ExtractionController::class)->whereNumber('extraction');
 });

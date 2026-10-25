@@ -91,6 +91,12 @@ run_traces(run_id主键外键, trace_id唯一UUID, origin, created_at)只追加�
 
 revision_id只能NULL，scope只能candidate；tsvector/parser/dictionary不提前建设。GIN用于normalized_text gin_trgm_ops，B-tree支持书/分支/代次/章位及来源定位。5表字段中文COMMENT由迁移实际写入并测试核验。D04 index_status为活动代次分块覆盖投影，不修改immutable memory_items历史值。见[数据库与验收](../phase-d/NF-D05_ACCEPTANCE.md)。
 
+## NF-E03 实施映射（2026-10-25）
+
+新增不可变extraction_attempts（冻结输入、原始输出、报告、正文/基线/规则上下文及可选运行产物绑定）、extraction_events（局部键与真实候选事件映射）、extraction_foreshadows（候选伏笔变化）。同书复合外键与触发器验证来源、正文哈希、父子版本、事件证据及注册运行产物的精确输出，不写正式伏笔occurrences。
+
+source_documents新增chapter_version_id；artifact来源继续要求run_id/artifact_id，chapter来源只能绑定真实章节且这两字段为空，两种来源严格互斥。原来源哈希触发器扩展到真实章节正文，既有证据与不可变门禁保留。三表30字段及新增来源字段均有中文COMMENT；备注和开发库迁移实际结果见[NF-E03验收](../phase-e/NF-E03_ACCEPTANCE.md)。
+
 ## NF-E02 实施映射（2026-10-24）
 
 `scene_versions` / `chapter_versions` 使用设计中的 `node_id`，另保存 `novel_id、plan_id、title、raw_body、status、report、sources、run_id、actor_id、reason、created_at`。`body` 仅规范换行，`raw_body` 保留输入，body_hash 不包含标题。`chapter_scene_versions` 将设计示意的 `sequence` 落为 `position`（从1开始），含义仍为冻结拼接顺序；复合外键与插入触发器校验同书、同章、同计划及实际位置，不能用JSON来源替代受约束关联。所有新增表/字段有中文备注，三个表均不可变。正式正文指针/提交映射尚未添加，详见 [NF-E02验收](../phase-e/NF-E02_ACCEPTANCE.md)。

@@ -37,6 +37,14 @@ final class RecoveryService
                 $stale = true;
             }
         }
+        // E03 恢复必须重验同一正文和前章候选提取，不重绑定旧证据。
+        if (($run['frozen_config']['schema_version'] ?? null) === 'extraction-v1') {
+            try {
+                app(ExtractionPipelineService::class)->verifyFrozen((object) $run, $run['frozen_config']);
+            } catch (NovelProblem) {
+                $stale = true;
+            }
+        }
         $latest = collect($data['steps'])->sortByDesc('attempt_no')->unique('scope_key')->keyBy('scope_key');
         $artifacts = collect($data['artifacts'])->keyBy('step_id');
         $invalid = $stale ? array_column($nodes, 'key') : $changedScopes;
@@ -57,7 +65,7 @@ final class RecoveryService
             $rows[] = ['scope' => $node['key'], 'step_id' => $step['id'] ?? null, 'status' => $step['status'] ?? 'not_started', 'technical_attempts' => $step['attempt_no'] ?? 0,
                 'automatic_revision_rounds' => 0, 'revision_executor_available' => false, 'disposition' => $disposition, 'artifact_id' => $artifact['id'] ?? null,
                 'next_retry_at' => $step ? DB::table('outbox_events')->where('run_id', $runId)->where('scope_key', $node['key'])->where('retry_of', $step['attempt_no'])->value('next_delivery_at') : null, 'artifact_content' => $artifact['content'] ?? null, 'artifact_hash' => $artifact['content_hash'] ?? null, 'unknown_request' => $unknown, 'error_code' => $step['error_code'] ?? null, 'classification' => $classification,
-                'retry_allowed' => ! $unknown && $disposition !== 'stale' && $step && in_array($step['status'], ['failed', 'deferred', 'blocked', 'quarantined'], true) && $step['attempt_no'] < 3];
+                'retry_allowed' => $classification['kind'] !== 'hard_constraint' && ! $unknown && $disposition !== 'stale' && $step && in_array($step['status'], ['failed', 'deferred', 'blocked', 'quarantined'], true) && $step['attempt_no'] < 3];
         }
         $requests = DB::table('ai_requests')->where('run_id', $runId)->orderBy('id')->get(['id', 'status', 'error_code'])->map(function ($r) {
             // 未知费用原样展示，不与已知费用相加，也不把核销当成请求完成。
@@ -70,7 +78,7 @@ final class RecoveryService
             'late_evidence' => DB::table('generation_late_evidence')->where('run_id', $runId)->orderBy('id')->get(['id', 'step_id', 'reason', 'content', 'content_hash'])->map(fn ($e) => ['id' => (string) $e->id, 'step_id' => (string) $e->step_id, 'reason' => $e->reason, 'content' => json_decode($e->content, true), 'content_hash' => $e->content_hash])->all(),
             'decisions' => DB::table('recovery_decisions')->where('run_id', $runId)->orderBy('id')->get(['id', 'actor_id', 'action', 'reason', 'created_at'])->map(fn ($d) => ['id' => (string) $d->id, 'actor_id' => (string) $d->actor_id, 'action' => $d->action, 'reason' => $d->reason, 'created_at' => $d->created_at])->all(),
             'configuration_rule' => '默认配置变化不改变旧运行；显式变更须新运行。变更节点及下游重验，原产物永久保留。',
-            'execution_boundary' => '支持离线 test.echo、E01 规划及 E02 正文回放；事件提取和文学修订尚未实现。'];
+            'execution_boundary' => '支持离线 test.echo、E01 规划及 E02 正文与 E03 事件提取回放；文学修订尚未实现。'];
         $result['preview_hash'] = $this->hash($result);
 
         return $result;
@@ -98,6 +106,9 @@ final class RecoveryService
                 throw new NovelProblem('RUN_NOT_EXECUTABLE', '当前运行不能重提取。');
             }
             $source = json_decode($decision->payload, true)['source'];
+            if (! isset($source['artifact_id'])) {
+                throw new NovelProblem('REGISTERED_EXTRACTION_REQUIRED', '章节正文须使用E03绑定原文的提取入口，不能回退到测试提取器。');
+            }
             $artifact = DB::table('generation_artifacts')->where('novel_id', $novelId)->where('run_id', $runId)->where('id', $source['artifact_id'])->first();
             if (! $artifact || ! hash_equals($source['content_hash'], $this->hash(json_decode($artifact->content, true)))) {
                 throw new NovelProblem('DEPENDENCY_MISMATCH', '原证据不完整，不能重提取。');
@@ -185,14 +196,24 @@ final class RecoveryService
             } else {
                 // 下游业务执行器未注册时，只保存可审查的决定，不伪造提取或迁移成功。
                 if ($action === 'reextract') {
-                    if (! $row || ! $row['artifact_id'] || $row['disposition'] !== 'reuse') {
-                        throw new NovelProblem('INVALID_SOURCE', '重新提取必须引用完整且校验通过的成功原产物。');
+                    if (($data['run']['frozen_config']['schema_version'] ?? null) === 'extraction-v1') {
+                        if (! $row || ! $row['artifact_id'] || $row['disposition'] === 'stale' || $row['unknown_request']) {
+                            throw new NovelProblem('INVALID_SOURCE', '来源过期或请求未决时不能准备重新提取。');
+                        }
+                        app(ExtractionPipelineService::class)->verifyFrozen((object) $data['run'], $data['run']['frozen_config']);
+                        $cfg = $data['run']['frozen_config'];
+                        $attempt = DB::table('extraction_attempts')->where('run_id', $runId)->orderByDesc('id')->value('id');
+                        $source = ['chapter_version_id' => $cfg['chapter_version_id'], 'body_hash' => $cfg['body_hash'], 'parent_extraction_id' => $attempt ? (string) $attempt : null, 'rewrite_source' => false, 'editor_url' => '/admin/extraction-ledger?'.http_build_query(['novel' => $novelId, 'version' => $cfg['chapter_version_id'], 'parent' => $attempt, 'baseline' => $cfg['baseline_id']])];
+                    } else {
+                        if (! $row || ! $row['artifact_id'] || $row['disposition'] !== 'reuse') {
+                            throw new NovelProblem('INVALID_SOURCE', '重新提取必须引用完整且校验通过的成功原产物。');
+                        }
+                        $source = ['artifact_id' => $row['artifact_id'], 'content_hash' => $row['artifact_hash'], 'rewrite_source' => false];
                     }
-                    $source = ['artifact_id' => $row['artifact_id'], 'content_hash' => $row['artifact_hash'], 'rewrite_source' => false];
                 } elseif (empty($payload['changed_scopes'])) {
                     throw new NovelProblem('INVALID_RECOVERY', '配置变更必须明确受影响的节点范围。', 422);
                 }
-                $outcome = 'awaiting_stage_implementation';
+                $outcome = $action === 'reextract' && ($data['run']['frozen_config']['schema_version'] ?? null) === 'extraction-v1' ? 'awaiting_offline_response' : 'awaiting_stage_implementation';
             }
             $response = ['run_id' => $runId, 'action' => $action, 'status' => $status, 'outcome' => $outcome, 'event_id' => $eventId, 'source' => $source, 'decision_version' => $preview['decision_version'] + 1];
             DB::table('recovery_decisions')->insert($identity + ['novel_id' => $novelId, 'action' => $action, 'reason' => $payload['reason'], 'request_hash' => $hash,

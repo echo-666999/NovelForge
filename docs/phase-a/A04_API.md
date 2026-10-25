@@ -170,6 +170,12 @@ GET `/api/v1/generation-steps/{step}/context` 读取最新冻结清单；`manife
 
 统一阶段入口 GET/POST `/api/v1/novels/{novel}/planning-runs`、GET `/{planning}`、POST `/{planning}/adopt` 细化原blueprint-runs/outline-runs示意，原示意路径未注册。phase为intake/blueprint/outline/chapter_plan/scene_plan；前驱parent_id绑定作者采纳回执，章/场景须start_chapter/end_chapter且每次最多十章。route_version_id、planning类别billing、明确离线offline_output、expected_version、reason均须提供。启动202附run_id/status_url；采纳须artifact_id、expected_version、reason。写入Idempotency-Key按actor+novel+command精确重放原响应，异载荷409；管理员/同书/CSRF/private-no-store沿用。只有fake供应商和冻结回放适配器可执行，无真实AI调用。候选编辑/比较/采纳入口联通UI05–08；批准与冻结仍走原B01–B05服务。字段、Schema和边界见[NF-E01验收](../phase-e/NF-E01_ACCEPTANCE.md)。
 
+## NF-E03 实施接口（2026-10-25）
+
+实际入口 GET/POST `/api/v1/novels/{novel}/extractions`、GET `/{extraction}`、POST `/runs`。POST根路径为同步离线响应验证（201）；runs为冻结配置、预算与明确fake响应的注册提取阶段（202）。写入要求Idempotency-Key，同源会话、CSRF、管理员同书授权与private/no-store保持。正文版本/哈希、书级输入及正式状态版本必须显式绑定；可指定同正文parent_id、前章baseline_id、作者rule_context_id，响应不得提供规则。接纳后的内容错误保存为blocked记录；来源或并发准入错误直接拒绝。
+
+UI16入口 `/admin/extraction-ledger` 支持原文、候选事件、补丁、冲突定位、历史、候选回放/重建和仅重提取。C06对注册E03运行返回awaiting_offline_response与精确原文入口，尚需提交修正响应，不表示已调用模型。完整字段及候选资格见[NF-E03验收](../phase-e/NF-E03_ACCEPTANCE.md)。
+
 ## NF-E02 已实施接口细化（2026-10-24）
 
 正文候选实际入口为 `/api/v1/novels/{novel}/drafts`，细化上文设计示意；未注册的示意接口不应视为可用。GET 根列表；POST `/runs` 启动场景离线回放（202）；POST `/chapters/{chapter}/assemble` 组装（201）；GET `/{kind}/versions/{version}` 读取；POST `/{kind}/{node}/versions` 编辑（201），kind仅scene/chapter。所有写入要求 Idempotency-Key，保留同源会话、CSRF、管理员同书授权与 private/no-store。

@@ -23,3 +23,6 @@ catch (\Illuminate\Database\QueryException $e) { report($e); $context=null; }
 
 {{-- E02 候选正文独立于正式提交。 --}}
 <a href="{{ \App\Filament\Resources\NovelResource::getUrl('draft-editor', ['record' => $novelId]) }}">候选正文</a>
+
+{{-- E03 的候选账本不能更新正式剧情。 --}}
+<a href="/admin/extraction-ledger?novel={{ $novelId }}">正文提取与硬约束</a>

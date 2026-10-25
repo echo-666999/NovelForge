@@ -1,0 +1,48 @@
+{
+    "database": "novel_forge",
+    "migration": "2026_10_25_000021_create_extraction_validation",
+    "exit_code": 0,
+    "backup": ".local/backups/nf-e03-before-20261025-170624.dump",
+    "backup_sha256": "b474bdd8194c524970f28b04cdb80817dec7709b4dc25dda80f992a1df311435",
+    "backup_archive_list_verified": true,
+    "restore_drill": false,
+    "before": {
+        "users": 1,
+        "novels": 0,
+        "providers": 0,
+        "model_profiles": 0,
+        "ai_requests": 0
+    },
+    "after": {
+        "users": 1,
+        "novels": 0,
+        "providers": 0,
+        "model_profiles": 0,
+        "ai_requests": 0
+    },
+    "tables": {
+        "extraction_attempts": {
+            "table_comment": "绑定实际候选正文的不可变离线提取与硬约束验证记录",
+            "columns": 20,
+            "commented_columns": 20,
+            "rows": 0
+        },
+        "extraction_events": {
+            "table_comment": "提取局部键与同来源候选事件的受约束映射",
+            "columns": 4,
+            "commented_columns": 4,
+            "rows": 0
+        },
+        "extraction_foreshadows": {
+            "table_comment": "仅候选伏笔变化证据，不更新正式伏笔状态",
+            "columns": 6,
+            "commented_columns": 6,
+            "rows": 0
+        }
+    },
+    "chapter_source": {
+        "is_nullable": "YES",
+        "comment": "不可变章节候选正文版本；与旧产物来源互斥"
+    },
+    "source_rows": 0
+}

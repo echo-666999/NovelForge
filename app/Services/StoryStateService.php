@@ -40,7 +40,7 @@ final class StoryStateService
         return NovelIntentService::canonical($value);
     }
 
-    // 来源注册严格绑定现有不可变产物；正文版本等新来源由对应后续任务扩展外键。
+    // 旧产物仍严格绑定不可变文本；E03章节正文使用下方独立的registerChapter来源入口。
     public function registerArtifact(User $actor, string $novel, string $artifact): string
     {
         return DB::transaction(function () use ($actor, $novel, $artifact) {
@@ -57,6 +57,20 @@ final class StoryStateService
             $body = self::normalize($content['text']);
 
             return (string) DB::table('source_documents')->insertGetId(['novel_id' => $novel, 'run_id' => $a->run_id, 'artifact_id' => $artifact, 'kind' => 'artifact', 'body' => $body, 'source_hash' => hash('sha256', $body), 'normalization' => 'body-lf-utf8-sha256-v1']);
+        });
+    }
+
+    /** E03 绑定实际章节候选，绝不把摘要或重新生成的文本充作原文。 */
+    public function registerChapter(User $actor, string $novel, string $version): string
+    {
+        return DB::transaction(function () use ($actor, $novel, $version) {
+            app(NovelIntentService::class)->novel($actor, $novel, true);
+            $v = app(DraftingService::class)->read($actor, $novel, 'chapter', $version);
+            if ($id = DB::table('source_documents')->where('novel_id', $novel)->where('chapter_version_id', $version)->value('id')) {
+                return (string) $id;
+            }
+
+            return (string) DB::table('source_documents')->insertGetId(['novel_id' => $novel, 'chapter_version_id' => $version, 'kind' => 'chapter', 'body' => $v['body'], 'source_hash' => $v['body_hash'], 'normalization' => 'body-lf-utf8-sha256-v1']);
         });
     }
 
