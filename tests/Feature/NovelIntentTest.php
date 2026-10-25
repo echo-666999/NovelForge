@@ -73,7 +73,11 @@ class NovelIntentTest extends TestCase
         $this->assertSame($this->input()['background'], $book['sources'][0]['input']['background']);
         $this->assertCount(4, $book['unresolved_requirements']);
         $this->assertSame(hash('sha256', NovelIntentService::canonical($book['sources'][0]['input'])), $book['sources'][0]['content_hash']);
-        $this->assertFalse(Schema::hasTable('chapter_versions'));
+        // E02 已授权候选表，创意创建仍不得生成正文或正式状态。
+        $this->assertTrue(Schema::hasTable('chapter_versions'));
+        $this->assertDatabaseCount('chapter_versions', 0);
+        $this->assertDatabaseCount('scene_versions', 0);
+        $this->assertFalse(Schema::hasTable('canonical_commits'));
         // C01 已建编排表，但本操作不能创建运行。
         $this->assertDatabaseCount('generation_runs', 0);
     }

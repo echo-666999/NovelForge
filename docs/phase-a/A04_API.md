@@ -169,3 +169,9 @@ GET `/api/v1/generation-steps/{step}/context` 读取最新冻结清单；`manife
 ## NF-E01 离线规划接口落地（2026-10-24）
 
 统一阶段入口 GET/POST `/api/v1/novels/{novel}/planning-runs`、GET `/{planning}`、POST `/{planning}/adopt` 细化原blueprint-runs/outline-runs示意，原示意路径未注册。phase为intake/blueprint/outline/chapter_plan/scene_plan；前驱parent_id绑定作者采纳回执，章/场景须start_chapter/end_chapter且每次最多十章。route_version_id、planning类别billing、明确离线offline_output、expected_version、reason均须提供。启动202附run_id/status_url；采纳须artifact_id、expected_version、reason。写入Idempotency-Key按actor+novel+command精确重放原响应，异载荷409；管理员/同书/CSRF/private-no-store沿用。只有fake供应商和冻结回放适配器可执行，无真实AI调用。候选编辑/比较/采纳入口联通UI05–08；批准与冻结仍走原B01–B05服务。字段、Schema和边界见[NF-E01验收](../phase-e/NF-E01_ACCEPTANCE.md)。
+
+## NF-E02 已实施接口细化（2026-10-24）
+
+正文候选实际入口为 `/api/v1/novels/{novel}/drafts`，细化上文设计示意；未注册的示意接口不应视为可用。GET 根列表；POST `/runs` 启动场景离线回放（202）；POST `/chapters/{chapter}/assemble` 组装（201）；GET `/{kind}/versions/{version}` 读取；POST `/{kind}/{node}/versions` 编辑（201），kind仅scene/chapter。所有写入要求 Idempotency-Key，保留同源会话、CSRF、管理员同书授权与 private/no-store。
+
+启动字段：plan_id、scene_id、pov_id、route_version_id、billing、offline_output.body、expected_version（书级）、expected_candidate_version（节点级）、reason；billing须category=generation且chapter_id精确匹配。组装字段：plan_id、scene_version_ids（完整有序）、title、expected_version（章节候选版号，首次0）、reason。编辑字段：plan_id、source_version_id（当前候选）、body、title、expected_version（节点版号）、reason。未知字段拒绝。原始正文不trim，换行规范后计算body_hash；自动保存只追加候选版本。无真实模型、评审或正式写入能力。详情见 [NF-E02验收](../phase-e/NF-E02_ACCEPTANCE.md)。

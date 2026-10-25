@@ -246,3 +246,9 @@ context_manifests 以同书/同运行/同阶段复合外键和不可变触发器
 ## NF-E01 规划流水线实现补充（2026-10-24）
 
 五个planning.*阶段各有固定Schema和独立C01运行；planning_stages以同书前驱及作者planning_adoptions回执构成跨运行DAG，阶段序严格递增；C01/C02/C06继续负责阶段内租约、fencing、outbox、尝试与恢复。只有planning-v1前置运行可无大纲，其他运行仍强制大纲来源。规划原始全文/要求/批准设定/结构/前驱及最终请求文本通过D06组装器冻结，不能裁剪强制来源；实际Token未知。明确fake响应回放仍经过网关与C05预算/证据，响应须匹配启动hash，真实调用门禁保留。模型无作者决定或批准权限，预演回滚所有草稿写入；作者采纳后仍由既有覆盖、蓝图批准、计划冻结复核。正式剧情不变。详见[NF-E01验收](../phase-e/NF-E01_ACCEPTANCE.md)。
+
+## NF-E02 落地补充（2026-10-24）
+
+新增 scene_versions / chapter_versions 与 chapter_scene_versions。稳定节点仍为 scenes / chapters；候选最新版本由节点内最大version派生，不添加或覆盖正式指针。所有版本禁止UPDATE/DELETE，正文哈希由实际UTF8字节校验；复合外键及有序来源约束限制同书、同章、同计划和场景位置。编辑只追加父子版本；仅标题变化不伪造正文哈希变化。
+
+`drafting.scene` 为单场景离线运行，复用原有步骤、租约、网关预算、outbox和恢复。D06 共用组装方法在创建运行前返回完整上下文，内联冻结于 `frozen_config.context`；其 final_prompt 是网关实际发送文本。前场景版本/哈希/全文不可裁剪，更新后后续候选及章节派生为stale，不重绑定旧证据。完整性规则结果不代表语义评审；异常正文仍保留候选历史并禁止完整组装。正式事件、canonical映射及提交边界未开放。详见 [NF-E02验收](../phase-e/NF-E02_ACCEPTANCE.md)。

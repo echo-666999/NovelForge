@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthoringConfigurationController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BlueprintController;
 use App\Http\Controllers\ContextAssemblyController;
+use App\Http\Controllers\DraftingController;
 use App\Http\Controllers\ForeshadowLedgerController;
 use App\Http\Controllers\HybridSearchController;
 use App\Http\Controllers\LayeredMemoryController;
@@ -155,4 +156,13 @@ Route::prefix('api/v1/novels/{novel}/planning-runs')->whereNumber('novel')->grou
     Route::post('/', PlanningPipelineController::class);
     Route::get('/{planning}', PlanningPipelineController::class)->whereNumber('planning');
     Route::post('/{planning}/adopt', PlanningPipelineController::class)->whereNumber('planning');
+});
+
+// E02 仅离线场景正文、候选组装和版本编辑；正式提交接口仍关闭。
+Route::prefix('api/v1/novels/{novel}/drafts')->whereNumber('novel')->group(function (): void {
+    Route::get('/', DraftingController::class);
+    Route::post('/runs', DraftingController::class)->defaults('draftAction', 'start');
+    Route::post('/chapters/{object}/assemble', DraftingController::class)->whereNumber('object')->defaults('draftAction', 'assemble');
+    Route::get('/{kind}/versions/{object}', DraftingController::class)->whereIn('kind', ['scene', 'chapter'])->whereNumber('object')->defaults('draftAction', 'read');
+    Route::post('/{kind}/{object}/versions', DraftingController::class)->whereIn('kind', ['scene', 'chapter'])->whereNumber('object')->defaults('draftAction', 'save');
 });

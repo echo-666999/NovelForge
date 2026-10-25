@@ -75,12 +75,14 @@ class FoundationTest extends TestCase
         $this->assertTrue(Schema::hasTable('requirement_coverages'));
         $this->assertTrue(Schema::hasTable('plan_validations'));
         $this->assertTrue(Schema::hasTable('plan_freezes'));
-        // D01 已授权候选状态及关闭写入的正式预备结构，正文版本仍未授权。
+        // D01 已授权候选状态及关闭写入的正式预备结构，E02 已授权候选正文版本。
         foreach (['source_documents', 'evidence_spans', 'proposed_events', 'proposed_state_patches', 'story_events', 'state_snapshots', 'entity_state_versions'] as $table) {
             $this->assertTrue(Schema::hasTable($table));
         }
         $this->assertSame('CHECK (false)', DB::selectOne("SELECT pg_get_constraintdef(oid) AS definition FROM pg_constraint WHERE conrelid='story_events'::regclass AND conname='d01_formal_entry_closed'")->definition);
-        $this->assertFalse(Schema::hasTable('chapter_versions'));
+        $this->assertTrue(Schema::hasTable('chapter_versions'));
+        $this->assertTrue(Schema::hasTable('scene_versions'));
+        $this->assertFalse(Schema::hasTable('canonical_chapters'));
         foreach (['generation_runs', 'generation_steps', 'generation_artifacts', 'generation_dependencies'] as $table) {
             $this->assertTrue(Schema::hasTable($table));
         }

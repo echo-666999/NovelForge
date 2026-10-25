@@ -11,6 +11,6 @@ return [
     'redelivery_seconds' => 60,
     'max_claims' => 3,
     'queues' => ['planning', 'generation', 'review', 'memory', 'export', 'maintenance'],
-    // E01 仅注册离线规划，其他业务阶段仍不可执行。
-    'stage_queues' => ['test.echo' => 'generation', ...array_fill_keys(array_map(fn ($phase) => 'planning.'.$phase, PlanningContract::PHASES), 'planning')],
+    // E01/E02 仅注册离线规划及正文，其他业务阶段仍不可执行。
+    'stage_queues' => ['test.echo' => 'generation', 'drafting.scene' => 'generation', ...array_fill_keys(array_map(fn ($phase) => 'planning.'.$phase, PlanningContract::PHASES), 'planning')],
 ];

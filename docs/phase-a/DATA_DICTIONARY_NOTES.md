@@ -90,3 +90,7 @@ run_traces(run_id主键外键, trace_id唯一UUID, origin, created_at)只追加�
 新增embedding_profiles、index_builds、search_documents、memory_embeddings、search_evaluations。memory_embeddings通过document_id→search_documents.chunk_id连接记忆分块，也允许精确证据原文。index_build_id与profile_id组合FK阻止错档案，vector_dims/非零向量与input_hash触发器阻止错维度和错输入。vector为可变维度物理列，逐行固定档案；首期精确搜索没有混合维度ANN索引。文档同书分支、来源、证据、事件与记忆均有强FK。
 
 revision_id只能NULL，scope只能candidate；tsvector/parser/dictionary不提前建设。GIN用于normalized_text gin_trgm_ops，B-tree支持书/分支/代次/章位及来源定位。5表字段中文COMMENT由迁移实际写入并测试核验。D04 index_status为活动代次分块覆盖投影，不修改immutable memory_items历史值。见[数据库与验收](../phase-d/NF-D05_ACCEPTANCE.md)。
+
+## NF-E02 实施映射（2026-10-24）
+
+`scene_versions` / `chapter_versions` 使用设计中的 `node_id`，另保存 `novel_id、plan_id、title、raw_body、status、report、sources、run_id、actor_id、reason、created_at`。`body` 仅规范换行，`raw_body` 保留输入，body_hash 不包含标题。`chapter_scene_versions` 将设计示意的 `sequence` 落为 `position`（从1开始），含义仍为冻结拼接顺序；复合外键与插入触发器校验同书、同章、同计划及实际位置，不能用JSON来源替代受约束关联。所有新增表/字段有中文备注，三个表均不可变。正式正文指针/提交映射尚未添加，详见 [NF-E02验收](../phase-e/NF-E02_ACCEPTANCE.md)。

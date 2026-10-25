@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Drafting\BodyContract;
 use App\Exceptions\NovelProblem;
 use App\Generation\RecoveryPolicy;
 use App\Generation\StageExecutor;
@@ -15,12 +16,12 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Throwable;
 
-/** 持久编排与恢复；支持 test.echo 和 E01 明确注册的离线规划，不开放真实模型或正文阶段。 */
+/** 持久编排与恢复；支持 test.echo 和 E01 明确注册的离线规划，支持 E02 离线正文；不开放真实模型。 */
 final class GenerationService
 {
     private function harness(?string $runId = null): void
     {
-        $planning = $runId && DB::table('generation_runs')->where('id', $runId)->where('frozen_config->schema_version', 'planning-v1')->exists();
+        $planning = $runId && DB::table('generation_runs')->where('id', $runId)->whereIn('frozen_config->schema_version', ['planning-v1', 'drafting-v1'])->exists();
         if (! app()->environment('testing') && ! $planning) {
             throw new NovelProblem('STAGE_NOT_AVAILABLE', '测试阶段仅允许在测试环境执行。', 403);
         }
@@ -181,6 +182,11 @@ final class GenerationService
 
             return $frozen;
         }
+        if (($frozen['schema_version'] ?? null) === 'drafting-v1') {
+            app(DraftingService::class)->verifyFrozen($run, $frozen);
+
+            return $frozen;
+        }
         $outline = OutlineVersion::find($run->outline_version_id);
         $novel = DB::table('novels')->find($run->novel_id);
         if (! hash_equals($run->input_hash, $this->hash($frozen)) || ! $outline
@@ -198,7 +204,7 @@ final class GenerationService
         if (! $artifact || ! hash_equals($artifact->source_hash, $step->dependency_hash)
             || ! hash_equals($artifact->content_hash, $this->hash($this->json($artifact->content)))
             || ! hash_equals($step->dependency_hash, $this->hash($this->json($step->frozen_input)))
-            || $artifact->schema_version !== (str_starts_with($step->stage, 'planning.') ? $step->stage.'-v1' : 'test.echo-v1')) {
+            || $artifact->schema_version !== ((str_starts_with($step->stage, 'planning.') || $step->stage === 'drafting.scene') ? $step->stage.'-v1' : 'test.echo-v1')) {
             throw new NovelProblem('DEPENDENCY_MISMATCH', '产物来源或内容哈希不匹配。');
         }
 
@@ -393,10 +399,14 @@ final class GenerationService
             // 产物与检查点及阶段状态在同一事务落盘，不留下半个成功阶段。
             $artifactId = DB::table('generation_artifacts')->insertGetId([
                 'novel_id' => $novelId, 'run_id' => $runId, 'step_id' => $step->id,
-                'type' => str_starts_with($step->stage, 'planning.') ? ($status === 'succeeded' ? 'planning_candidate' : 'planning_evidence') : ($status === 'succeeded' ? 'test_result' : 'test_evidence'), 'schema_version' => str_starts_with($step->stage, 'planning.') ? $step->stage.'-v1' : 'test.echo-v1',
+                'type' => $step->stage === 'drafting.scene' ? ($status === 'succeeded' ? 'scene_candidate' : 'scene_evidence') : (str_starts_with($step->stage, 'planning.') ? ($status === 'succeeded' ? 'planning_candidate' : 'planning_evidence') : ($status === 'succeeded' ? 'test_result' : 'test_evidence')), 'schema_version' => (str_starts_with($step->stage, 'planning.') || $step->stage === 'drafting.scene') ? $step->stage.'-v1' : 'test.echo-v1',
                 'content' => NovelIntentService::canonical($result->content), 'content_hash' => $this->hash($result->content),
                 'source_hash' => $step->dependency_hash, 'storage_ref' => 'db:'.Str::uuid(), 'created_at' => now(),
             ]);
+            // 正文与有效产物共用完成事务；租约或来源失败会整体回滚。
+            if ($step->stage === 'drafting.scene' && $status === 'succeeded') {
+                app(DraftingService::class)->generated($run, (string) $artifactId, $result->content);
+            }
             $updated = DB::table('generation_steps')->where('id', $step->id)->where('fencing_token', $claim['token'])->where('lease_owner', $claim['owner'])
                 ->whereRaw('lease_until > clock_timestamp()')->update(['status' => $status, 'error_code' => $error,
                     'checkpoint_artifact_id' => $status === 'deferred' ? $artifactId : null, 'updated_at' => now()]);
@@ -434,6 +444,13 @@ final class GenerationService
     private function validatedResult(StageResult $result, string $stage): StageResult
     {
         try {
+            if ($stage === 'drafting.scene' && $result->status === 'succeeded') {
+                if (app(StructuredOutput::class)->issues(json_decode(NovelIntentService::canonical($result->content)), BodyContract::schema())) {
+                    throw new \InvalidArgumentException('正文响应不符合协议。');
+                }
+
+                return $result;
+            }
             if (str_starts_with($stage, 'planning.') && $result->status === 'succeeded') {
                 $schema = PlanningContract::schema(substr($stage, 9));
                 if (app(StructuredOutput::class)->issues(json_decode(NovelIntentService::canonical($result->content)), $schema)) {
