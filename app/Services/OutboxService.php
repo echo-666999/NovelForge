@@ -10,6 +10,7 @@ use App\Generation\TestEchoExecutor;
 use App\Jobs\ConsumeGenerationIntent;
 use App\Models\User;
 use App\Planning\PlanningExecutor;
+use App\Review\ReviewExecutor;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Queue;
 use Throwable;
@@ -114,12 +115,13 @@ final class OutboxService
         $planning = DB::table('generation_runs')->where('id', $event->run_id)->where('frozen_config->schema_version', 'planning-v1')->exists();
         $drafting = DB::table('generation_runs')->where('id', $event->run_id)->where('frozen_config->schema_version', 'drafting-v1')->exists();
         $extraction = DB::table('generation_runs')->where('id', $event->run_id)->where('frozen_config->schema_version', 'extraction-v1')->exists();
-        if (! app()->environment('testing') && ! $planning && ! $drafting && ! $extraction) {
+        $review = DB::table('generation_runs')->where('id', $event->run_id)->where('frozen_config->schema_version', 'review-v1')->exists();
+        if (! app()->environment('testing') && ! $planning && ! $drafting && ! $extraction && ! $review) {
             throw new NovelProblem('STAGE_NOT_AVAILABLE', '生产阶段尚未注册。', 403);
         }
         $actor = User::findOrFail(DB::table('generation_runs')->where('id', $event->run_id)->value('actor_id'));
         try {
-            app(GenerationService::class)->advance($actor, (string) $event->novel_id, (string) $event->run_id, $event->scope_key, $executor ?? ($extraction ? new ExtractionExecutor : ($drafting ? new DraftExecutor : ($planning ? new PlanningExecutor : new TestEchoExecutor))), $event->retry_of ?: null, $eventId);
+            app(GenerationService::class)->advance($actor, (string) $event->novel_id, (string) $event->run_id, $event->scope_key, $executor ?? ($review ? new ReviewExecutor : ($extraction ? new ExtractionExecutor : ($drafting ? new DraftExecutor : ($planning ? new PlanningExecutor : new TestEchoExecutor)))), $event->retry_of ?: null, $eventId);
             // 覆盖“阶段已落盘、旧投递尚未确认”的重复消费路径。
             $this->acknowledge($eventId);
         } catch (NovelProblem $e) {

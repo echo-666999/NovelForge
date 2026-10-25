@@ -1,0 +1,55 @@
+{
+    "database": "novel_forge",
+    "migration": "2026_10_25_000022_create_chapter_reviews",
+    "exit_code": 0,
+    "backup": ".local/backups/nf-e04-before-20261025-190755.dump",
+    "backup_sha256": "9e634edec09891526fd8feaadc7939ac5a373d544bf53cf5e308bc493ae5d75c",
+    "backup_archive_list_verified": true,
+    "restore_drill": false,
+    "before": {
+        "users": 1,
+        "novels": 0,
+        "providers": 0,
+        "model_profiles": 0,
+        "ai_requests": 0
+    },
+    "after": {
+        "users": 1,
+        "novels": 0,
+        "providers": 0,
+        "model_profiles": 0,
+        "ai_requests": 0
+    },
+    "tables": {
+        "review_policy_versions": {
+            "table_comment": "不可变七维评审策略版本",
+            "columns": 9,
+            "commented_columns": 9,
+            "rows": 0
+        },
+        "review_policy_states": {
+            "table_comment": "策略发布与退役的追加历史",
+            "columns": 6,
+            "commented_columns": 6,
+            "rows": 0
+        },
+        "reviews": {
+            "table_comment": "绑定正文、提取、上下文与策略的不可变候选评审",
+            "columns": 20,
+            "commented_columns": 20,
+            "rows": 0
+        },
+        "review_issues": {
+            "table_comment": "可定位评审问题与保留的硬约束诊断",
+            "columns": 10,
+            "commented_columns": 10,
+            "rows": 0
+        },
+        "review_issue_decisions": {
+            "table_comment": "非阻塞文学问题的人工接受或拒绝意见",
+            "columns": 8,
+            "commented_columns": 8,
+            "rows": 0
+        }
+    }
+}

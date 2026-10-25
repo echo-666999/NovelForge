@@ -26,3 +26,6 @@ catch (\Illuminate\Database\QueryException $e) { report($e); $context=null; }
 
 {{-- E03 的候选账本不能更新正式剧情。 --}}
 <a href="/admin/extraction-ledger?novel={{ $novelId }}">正文提取与硬约束</a>
+
+{{-- E04评审中心仅提供候选评分和问题。 --}}
+<a href="{{ url('/admin/review-center') }}?novel={{ urlencode($novelId) }}">评审中心与策略</a>

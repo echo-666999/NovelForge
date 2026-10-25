@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthoringConfigurationController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BlueprintController;
+use App\Http\Controllers\ChapterReviewController;
 use App\Http\Controllers\ContextAssemblyController;
 use App\Http\Controllers\DraftingController;
 use App\Http\Controllers\ExtractionController;
@@ -174,4 +175,19 @@ Route::prefix('api/v1/novels/{novel}/extractions')->whereNumber('novel')->group(
     Route::post('/', ExtractionController::class);
     Route::post('/runs', ExtractionController::class)->defaults('extractionAction', 'start');
     Route::get('/{extraction}', ExtractionController::class)->whereNumber('extraction');
+});
+
+// E04仅离线候选评审与策略，不开放修订或正式提交。
+Route::prefix('api/v1/review-policies')->group(function (): void {
+    Route::get('/', ChapterReviewController::class)->defaults('reviewAction', 'policies');
+    foreach (['save', 'publish', 'retire'] as $action) {
+        Route::post('/'.$action, ChapterReviewController::class)->defaults('reviewAction', $action);
+    }
+});
+Route::prefix('api/v1/novels/{novel}/reviews')->whereNumber('novel')->group(function (): void {
+    Route::get('/', ChapterReviewController::class);
+    Route::post('/', ChapterReviewController::class);
+    Route::post('/runs', ChapterReviewController::class)->defaults('reviewAction', 'start');
+    Route::get('/{review}', ChapterReviewController::class)->whereNumber('review');
+    Route::post('/{review}/decisions', ChapterReviewController::class)->whereNumber('review')->defaults('reviewAction', 'decide');
 });

@@ -45,6 +45,14 @@ final class RecoveryService
                 $stale = true;
             }
         }
+        // E04恢复继续绑定原评审上下文，不重用旧正文评审。
+        if (($run['frozen_config']['schema_version'] ?? null) === 'review-v1') {
+            try {
+                app(ReviewPipelineService::class)->verifyFrozen((object) $run, $run['frozen_config']);
+            } catch (NovelProblem) {
+                $stale = true;
+            }
+        }
         $latest = collect($data['steps'])->sortByDesc('attempt_no')->unique('scope_key')->keyBy('scope_key');
         $artifacts = collect($data['artifacts'])->keyBy('step_id');
         $invalid = $stale ? array_column($nodes, 'key') : $changedScopes;
@@ -65,7 +73,7 @@ final class RecoveryService
             $rows[] = ['scope' => $node['key'], 'step_id' => $step['id'] ?? null, 'status' => $step['status'] ?? 'not_started', 'technical_attempts' => $step['attempt_no'] ?? 0,
                 'automatic_revision_rounds' => 0, 'revision_executor_available' => false, 'disposition' => $disposition, 'artifact_id' => $artifact['id'] ?? null,
                 'next_retry_at' => $step ? DB::table('outbox_events')->where('run_id', $runId)->where('scope_key', $node['key'])->where('retry_of', $step['attempt_no'])->value('next_delivery_at') : null, 'artifact_content' => $artifact['content'] ?? null, 'artifact_hash' => $artifact['content_hash'] ?? null, 'unknown_request' => $unknown, 'error_code' => $step['error_code'] ?? null, 'classification' => $classification,
-                'retry_allowed' => $classification['kind'] !== 'hard_constraint' && ! $unknown && $disposition !== 'stale' && $step && in_array($step['status'], ['failed', 'deferred', 'blocked', 'quarantined'], true) && $step['attempt_no'] < 3];
+                'retry_allowed' => ! in_array($classification['kind'], ['hard_constraint', 'literary'], true) && ! $unknown && $disposition !== 'stale' && $step && in_array($step['status'], ['failed', 'deferred', 'blocked', 'quarantined'], true) && $step['attempt_no'] < 3];
         }
         $requests = DB::table('ai_requests')->where('run_id', $runId)->orderBy('id')->get(['id', 'status', 'error_code'])->map(function ($r) {
             // 未知费用原样展示，不与已知费用相加，也不把核销当成请求完成。
@@ -78,7 +86,7 @@ final class RecoveryService
             'late_evidence' => DB::table('generation_late_evidence')->where('run_id', $runId)->orderBy('id')->get(['id', 'step_id', 'reason', 'content', 'content_hash'])->map(fn ($e) => ['id' => (string) $e->id, 'step_id' => (string) $e->step_id, 'reason' => $e->reason, 'content' => json_decode($e->content, true), 'content_hash' => $e->content_hash])->all(),
             'decisions' => DB::table('recovery_decisions')->where('run_id', $runId)->orderBy('id')->get(['id', 'actor_id', 'action', 'reason', 'created_at'])->map(fn ($d) => ['id' => (string) $d->id, 'actor_id' => (string) $d->actor_id, 'action' => $d->action, 'reason' => $d->reason, 'created_at' => $d->created_at])->all(),
             'configuration_rule' => '默认配置变化不改变旧运行；显式变更须新运行。变更节点及下游重验，原产物永久保留。',
-            'execution_boundary' => '支持离线 test.echo、E01 规划及 E02 正文与 E03 事件提取回放；文学修订尚未实现。'];
+            'execution_boundary' => '支持离线 test.echo、E01 规划及 E02 正文与 E03 事件提取与 E04 评审回放；文学修订尚未实现。'];
         $result['preview_hash'] = $this->hash($result);
 
         return $result;

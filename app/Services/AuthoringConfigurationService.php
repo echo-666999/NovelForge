@@ -241,7 +241,9 @@ final class AuthoringConfigurationService
         if ($prompt['status'] !== 'published' || $style['status'] !== 'published') {
             throw new NovelProblem('UNPUBLISHED_REFERENCE', '路由必须引用已发布提示词和文风版本。');
         }
-        if ($prompt['stage'] !== $style['stage'] || $prompt['language'] !== $style['language']) {
+        // E04评审精确共用正文文风版本；其他阶段仍要求原阶段匹配。
+        $sharedReviewStyle = $prompt['stage'] === 'review.chapter' && $style['stage'] === 'drafting.scene';
+        if ((! $sharedReviewStyle && $prompt['stage'] !== $style['stage']) || $prompt['language'] !== $style['language']) {
             throw new NovelProblem('CONTRACT_MISMATCH', '提示词与文风的阶段及语言不匹配。');
         }
         $models = [];

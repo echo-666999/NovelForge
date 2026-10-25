@@ -181,3 +181,9 @@ UI16入口 `/admin/extraction-ledger` 支持原文、候选事件、补丁、冲
 正文候选实际入口为 `/api/v1/novels/{novel}/drafts`，细化上文设计示意；未注册的示意接口不应视为可用。GET 根列表；POST `/runs` 启动场景离线回放（202）；POST `/chapters/{chapter}/assemble` 组装（201）；GET `/{kind}/versions/{version}` 读取；POST `/{kind}/{node}/versions` 编辑（201），kind仅scene/chapter。所有写入要求 Idempotency-Key，保留同源会话、CSRF、管理员同书授权与 private/no-store。
 
 启动字段：plan_id、scene_id、pov_id、route_version_id、billing、offline_output.body、expected_version（书级）、expected_candidate_version（节点级）、reason；billing须category=generation且chapter_id精确匹配。组装字段：plan_id、scene_version_ids（完整有序）、title、expected_version（章节候选版号，首次0）、reason。编辑字段：plan_id、source_version_id（当前候选）、body、title、expected_version（节点版号）、reason。未知字段拒绝。原始正文不trim，换行规范后计算body_hash；自动保存只追加候选版本。无真实模型、评审或正式写入能力。详情见 [NF-E02验收](../phase-e/NF-E02_ACCEPTANCE.md)。
+
+## NF-E04 实施接口（2026-10-25）
+
+原review-runs示意细化为同书入口：GET/POST `/api/v1/novels/{novel}/reviews`（历史/离线验证或人工评分）、POST `/runs`（202离线阶段）、GET `/{review}`（当前资格与原始报告）、POST `/{review}/decisions`（仅非阻塞文学提示意见）。策略接口为GET `/api/v1/review-policies`与POST `/save`、`/publish`、`/retire`。全部写操作要求Idempotency-Key与原因，保留会话/同源/CSRF、管理员/同书授权和private/no-store；未注册示意路径不是可用接口。
+
+评审必须显式绑定chapter_version_id、body_hash、extraction_id、policy_version_id、书级expected_version与expected_state_version。同步入口另需offline_output、reviewer_type=offline/human、reason；异步入口不接受人工标记，另加route_version_id与本章review预算billing。七维整数1至5、每项理由/实际引文、问题分类/严重度/局部修复方向必须通过业务复核。模型不得提供verdict或自动修改阈值。界面 `/admin/review-center` 联通UI13/UI27；通过仅为候选资格，详情见[NF-E04验收](../phase-e/NF-E04_ACCEPTANCE.md)。
