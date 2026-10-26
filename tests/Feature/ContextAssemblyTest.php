@@ -10,6 +10,7 @@ use App\Models\Novel;
 use App\Models\User;
 use App\Services\AuthoringConfigurationService;
 use App\Services\ContextAssemblyService;
+use App\Services\DraftingService;
 use App\Services\ForeshadowLedgerService;
 use App\Services\GenerationService;
 use App\Services\HybridSearchService;
@@ -25,6 +26,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
+use Tests\Support\DraftingFixture;
 use Tests\Support\ProviderFixture;
 use Tests\Support\RollingPlanFixture;
 use Tests\Support\StoryConsistencyFixture;
@@ -205,12 +207,105 @@ class ContextAssemblyTest extends TestCase
         $this->assertStringNotContainsString('另一分支秘密', $blocked['final_prompt']);
     }
 
+    /** 同一证据范围可含更强信息，角色区只能获得经过知识链证明的事实值。 */
+    public function test_pov_evidence_is_locatable_without_copying_extra_quote_text(): void
+    {
+        $f = $this->fixture();
+        $event = app(StoryStateService::class)->propose($f['actor'], $f['novel'], ['evidence_id' => $f['evidence'], 'definition_version_id' => $f['definition'], 'fact_kind' => 'fact', 'action' => 'set', 'chapter_sequence' => 1, 'narrative_order' => 1, 'attribute' => 'known_injury', 'value' => '右手受伤', 'confidence' => 'confirmed', 'story_time' => [], 'reason' => '验证证据范围不扩大角色知识']);
+        $belief = app(StoryStateService::class)->propose($f['actor'], $f['novel'], ['evidence_id' => $f['evidence'], 'definition_version_id' => $f['definition'], 'holder_id' => $f['input']['pov_id'], 'fact_kind' => 'belief', 'action' => 'set', 'chapter_sequence' => 1, 'narrative_order' => 2, 'attribute' => 'suspected_cause', 'value' => '他怀疑钥匙被动过', 'confidence' => 'confirmed', 'story_time' => [], 'reason' => '信念也不能夹带原文秘密']);
+        $context = app(StoryConsistencyService::class)->save($f['actor'], $f['novel'], ['expected_version' => 0, 'reason' => '知识投影边界', 'entries' => [StoryConsistencyFixture::entry($event, 0), StoryConsistencyFixture::entry($belief, 10)], 'knowledge' => [['knower_id' => $f['input']['pov_id'], 'fact_event_id' => $event, 'acquired_event_id' => $event, 'method' => 'witness']]], 'quote-scope');
+        $r = $this->assemble($f, ['context_id' => $context['id']]);
+        $pov = collect($r['items'])->filter(fn ($i) => str_starts_with($i['zone'], 'POV'));
+        $this->assertStringContainsString('右手受伤', implode('', $pov->pluck('text')->all()));
+        $this->assertStringNotContainsString('许砚失去右手。', implode('', $pov->pluck('text')->all()));
+        $fact = json_decode($pov->firstWhere('category', 'key_fact')['text'], true);
+        $this->assertSame($f['evidence'], $fact['evidence']['id']);
+        $this->assertSame(hash('sha256', '许砚失去右手。'), $fact['evidence']['quote_hash']);
+        $this->assertArrayNotHasKey('quote', $fact['evidence']);
+        $knowledge = json_decode($pov->firstWhere('category', 'knowledge_relationships')['text'], true);
+        $this->assertSame('belief', $knowledge['beliefs'][0]['fact_kind']);
+        $this->assertArrayNotHasKey('quote', $knowledge['beliefs'][0]['evidence']);
+        $this->assertStringContainsString('许砚失去右手。', $r['final_prompt']);
+        $this->assertDatabaseCount('ai_requests', 0);
+        Http::assertNothingSent();
+    }
+
+    /** 推断可以供角色参考，但不能被第二次投影为已确认关键事实。 */
+    public function test_inferred_knowledge_is_not_promoted_to_required_pov_fact(): void
+    {
+        $f = $this->fixture();
+        $event = app(StoryStateService::class)->propose($f['actor'], $f['novel'], ['evidence_id' => $f['evidence'], 'definition_version_id' => $f['definition'], 'fact_kind' => 'fact', 'action' => 'set', 'chapter_sequence' => 1, 'narrative_order' => 1, 'attribute' => 'possible_injury', 'value' => '右手受伤', 'confidence' => 'confirmed', 'story_time' => [], 'reason' => '推断不能冒充已证事实']);
+        $context = app(StoryConsistencyService::class)->save($f['actor'], $f['novel'], ['expected_version' => 0, 'reason' => '推断来源类型', 'entries' => [StoryConsistencyFixture::entry($event, 0)], 'knowledge' => [['knower_id' => $f['input']['pov_id'], 'fact_event_id' => $event, 'acquired_event_id' => $event, 'method' => 'inference']]], 'inference-context');
+        $r = $this->assemble($f, ['context_id' => $context['id']]);
+        $items = collect($r['items']);
+        $knowledge = json_decode($items->firstWhere('category', 'knowledge_relationships')['text'], true);
+        $this->assertSame('inference', $knowledge['knowledge'][0]['knowledge_kind']);
+        $this->assertSame('右手受伤', $knowledge['knowledge'][0]['value']);
+        $this->assertCount(0, $items->filter(fn ($i) => $i['category'] === 'key_fact' && str_starts_with($i['zone'], 'POV')));
+        $this->assertTrue($items->firstWhere('source_type', 'memory_facts')['selected']);
+        $this->assertDatabaseCount('ai_requests', 0);
+        Http::assertNothingSent();
+    }
+
+    /** 上下文重组必须保持既有运行配置和阶段输入不变。 */
+    public function test_reassembly_preserves_frozen_input_and_rejects_changed_command_identity(): void
+    {
+        $f = $this->fixture();
+        $before = (array) DB::table('generation_steps')->find($f['step']);
+        $first = $this->assemble($f, key: 'frozen-context');
+        foreach ([
+            [['reason' => '更换同键内容'], 'frozen-context', 'IDEMPOTENCY_CONFLICT'],
+            [['configuration' => array_replace($f['input']['configuration'], ['variables' => ['topic' => '不能改写旧运行']])], 'new-route-input', 'CONTEXT_IDENTITY_MISMATCH'],
+            [['expected_version' => $f['input']['expected_version'] - 1], 'stale-context', 'STALE_STATE'],
+        ] as [$input, $key, $code]) {
+            try {
+                $this->assemble($f, $input, $key);
+                $this->fail('变更身份必须拒绝');
+            } catch (NovelProblem $e) {
+                $this->assertSame($code, $e->errorCode);
+            }
+        }
+        $again = $this->assemble($f, ['safety_margin' => 101]);
+        $this->assertNotSame($first['id'], $again['id']);
+        $this->assertSame($first['final_prompt_hash'], $again['final_prompt_hash']);
+        $this->assertSame($before, (array) DB::table('generation_steps')->find($f['step']));
+        $this->assertDatabaseCount('context_manifests', 2);
+        $this->assertDatabaseCount('ai_requests', 0);
+        Http::assertNothingSent();
+    }
+
+    /** 使用现有离线消费者的真实前场景，检验D06顺序；不开发新的生成能力。 */
+    public function test_previous_scene_precedes_optional_memories_and_final_style(): void
+    {
+        $f = DraftingFixture::create(true);
+        $body = implode("\n", array_slice(explode("\n", DraftingFixture::body()), 0, 25));
+        $previous = DraftingFixture::generate($f, $body);
+        $payload = array_replace(DraftingFixture::payload($f, $body), ['scene_id' => $f['second']['id']]);
+        $run = app(DraftingService::class)->start($f['actor'], $f['novel'], $payload, 'context-order');
+        $frozen = app(GenerationService::class)->read($f['actor'], $f['novel'], $run['run_id'])['run']['frozen_config'];
+        $items = collect($frozen['context']['items']);
+        $transition = $items->firstWhere('category', 'previous_scene');
+        $style = $items->firstWhere('category', 'style');
+        $this->assertSame($previous['id'], $transition['source_id']);
+        $this->assertSame($previous['body'], $transition['text']);
+        $this->assertTrue($transition['required']);
+        $this->assertTrue($transition['selected']);
+        $this->assertLessThan($style['final_order'], $transition['final_order']);
+        $this->assertSame('style', $items->where('selected', true)->last()['category']);
+        $this->assertSame($frozen['context']['final_prompt'], $frozen['configuration']['rendered_prompt']);
+        Http::assertNothingSent();
+    }
+
     public function test_database_rejects_mutation_and_all_columns_have_comments(): void
     {
         $f = $this->fixture();
         $a = $this->assemble($f);
         $missing = DB::selectOne("SELECT count(*) AS n FROM pg_attribute WHERE attrelid='context_manifests'::regclass AND attnum>0 AND NOT attisdropped AND col_description(attrelid,attnum) IS NULL");
         $this->assertSame(0, (int) $missing->n);
+        $this->assertMatchesRegularExpression('/[\x{4e00}-\x{9fff}]/u', DB::selectOne("SELECT obj_description('context_manifests'::regclass) AS remark")->remark);
+        foreach (DB::select("SELECT col_description(attrelid,attnum) AS remark FROM pg_attribute WHERE attrelid='context_manifests'::regclass AND attnum>0 AND NOT attisdropped") as $column) {
+            $this->assertMatchesRegularExpression('/[\x{4e00}-\x{9fff}]/u', $column->remark);
+        }
         $this->expectException(QueryException::class);
         DB::table('context_manifests')->where('id', $a['id'])->update(['payload' => '{}']);
     }

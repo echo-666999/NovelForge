@@ -24,6 +24,28 @@ final class ContextAssemblyService
         return $value;
     }
 
+    /** 引文范围可能包含尚未知晓的其他事实；角色区只保存可定位的证据元数据。 */
+    private function evidenceReference(array $evidence): array
+    {
+        $reference = array_intersect_key($evidence, array_flip(['id', 'novel_id', 'source_version_id', 'source_hash', 'start_offset', 'end_offset', 'offset_unit']));
+        $reference['quote_hash'] = hash('sha256', $evidence['quote']);
+
+        return $reference;
+    }
+
+    /** 保留D02已证明的知识、信念类型及关系，原始引文留在作者证据区。 */
+    private function povSnapshot(array $known): array
+    {
+        foreach (['knowledge', 'beliefs'] as $field) {
+            foreach ($known[$field] as &$item) {
+                $item['evidence'] = $this->evidenceReference($item['evidence']);
+            }
+            unset($item);
+        }
+
+        return $known;
+    }
+
     private function hash(mixed $value): string
     {
         return hash('sha256', NovelIntentService::canonical($value));
@@ -151,10 +173,14 @@ final class ContextAssemblyService
                 if (! $known['usable']) {
                     $issues[] = 'POV_CONTEXT_UNUSABLE';
                 } else {
-                    $add('knowledge_relationships', 'POV 可知信息（候选证据）', 'story_context_versions', $context['id'], $context['version'], $known);
+                    $add('knowledge_relationships', 'POV 可知信息（候选证据）', 'story_context_versions', $context['id'], $context['version'], $this->povSnapshot($known));
                     foreach ($known['knowledge'] as $knowledge) {
+                        // 推断和被告知的非事实保留原类型，不提升为确定性的关键事实。
+                        if (! in_array($knowledge['knowledge_kind'], ['fact', 'hidden_truth'], true)) {
+                            continue;
+                        }
                         $e = $events[$knowledge['fact_event_id']];
-                        $add('key_fact', 'POV 可知信息（候选证据）', 'proposed_events', $e['id'], $e['content_hash'], ['attribute' => $e['attribute'], 'value' => $e['value'], 'evidence' => $e['evidence']]);
+                        $add('key_fact', 'POV 可知信息（候选证据）', 'proposed_events', $e['id'], $e['content_hash'], ['attribute' => $e['attribute'], 'value' => $e['value'], 'evidence' => $this->evidenceReference($e['evidence'])]);
                     }
                 }
             }
@@ -167,6 +193,10 @@ final class ContextAssemblyService
             }
         }
         $add('ending', '作者计划且角色未知', 'blueprint_versions', $bp['id'], $bp['version'], $bp['content']['ending']);
+        // 前场景全文不可裁剪，仅属于作者候选资料，不证明角色知情。
+        if ($previous !== null) {
+            $add('previous_scene', '前场景衔接（作者候选正文）', 'scene_versions', $previous['id'], $previous['body_hash'], $previous['body']);
+        }
         // 尚未创建的新分支不可能已有候选记忆；不借用其他运行的资料。
         $retrieval = null;
         if (DB::table('generation_runs')->where('novel_id', $novel)->where('id', $branch)->exists()) {
@@ -205,10 +235,6 @@ final class ContextAssemblyService
             }
         }
         $add('style', '文风样例与负面清单', 'style_versions', $config['style']['id'], $config['style']['version'], $config['style']['content']['voice'], false);
-        // 前场景全文不可裁剪，仅属于作者候选资料，不证明角色知情。
-        if ($previous !== null) {
-            $add('previous_scene', '前场景衔接（作者候选正文）', 'scene_versions', $previous['id'], $previous['body_hash'], $previous['body']);
-        }
         $model = $config['models'][0];
         $price = $billing['prices'][$model['model_version_id']];
         $mode = $price['reasoning_mode'];

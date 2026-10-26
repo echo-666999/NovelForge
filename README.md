@@ -91,3 +91,5 @@ NF-D03：`/admin/foreshadow-ledger` 管理不可变伏笔计划、冻结、改�
 NF-D04：`/admin/memory-library` 管理分层候选记忆、证据事实清单、压缩版本、失败重试和来源失效链。正式基线读取不回退草稿；D04原验收时索引未请求，当前投影已接入D05，不调用真实模型。详见 [NF-D04验收](docs/phase-d/NF-D04_ACCEPTANCE.md)。
 
 NF-D05：`/admin/search-lab` 管理冻结嵌入档案与索引代次，提供精确/别名/pg_trgm/pgvector融合、来源与POV过滤、排序解释及评测查看。当前仅离线字符编码，真实模型和正式基线未开放；D04记忆库索引状态已接入分块覆盖投影。见[NF-D05验收](docs/phase-d/NF-D05_ACCEPTANCE.md)。
+
+NF-D06：既有 `/admin/context-inspector` 可查看冻结上下文、裁剪理由、容量及历史比较。2026-10-26补强去重顺序、POV引文和推断边界、前场景顺序；详见[本次复核与验收](docs/phase-d/NF-D06_RECHECK_2026-10-26.md)。真实模型与正式基线继续关闭。

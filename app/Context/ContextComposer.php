@@ -19,6 +19,13 @@ final class ContextComposer
     {
         // included 的推理已包含在最大输出中，只对 separate 额外预留一次。
         $reserve = $mode === 'separate' ? $reasoning : 0;
+        // 先收集强制文本，确保前置可选副本不会占用容量或改变裁剪理由。
+        $required = [];
+        foreach ($items as $item) {
+            if ($item['required'] ?? false) {
+                $required[$item['zone'].':'.hash('sha256', $item['text'])] = true;
+            }
+        }
         $seen = [];
         foreach ($items as $n => &$item) {
             $item += ['score' => null, 'channels' => [], 'required' => false];
@@ -29,7 +36,7 @@ final class ContextComposer
             $item['trim_reason'] = null;
             // 不跨作者区和角色区去重；强制条目永远优先于可选副本。
             $key = $item['zone'].':'.$item['text_hash'];
-            if (isset($seen[$key]) && ! $item['required']) {
+            if (! $item['required'] && (isset($required[$key]) || isset($seen[$key]))) {
                 $item['selected'] = false;
                 $item['trim_reason'] = 'duplicate';
             } else {

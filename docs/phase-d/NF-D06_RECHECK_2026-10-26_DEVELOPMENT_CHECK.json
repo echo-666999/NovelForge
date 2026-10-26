@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-26",
+  "database": "novel_forge",
+  "operation": "read_only_no_migration",
+  "migration_applied": true,
+  "table_comment": "不可变候选上下文组装清单及最终文本；不代表正式生成资格",
+  "columns": [
+    {
+      "name": "id",
+      "remark": "清单主键"
+    },
+    {
+      "name": "novel_id",
+      "remark": "所属小说"
+    },
+    {
+      "name": "run_id",
+      "remark": "所属候选运行分支"
+    },
+    {
+      "name": "step_id",
+      "remark": "绑定阶段尝试"
+    },
+    {
+      "name": "actor_id",
+      "remark": "组装管理员"
+    },
+    {
+      "name": "command_key",
+      "remark": "组装幂等键"
+    },
+    {
+      "name": "request_hash",
+      "remark": "组装输入哈希"
+    },
+    {
+      "name": "input",
+      "remark": "重组参数快照，不含凭据"
+    },
+    {
+      "name": "payload",
+      "remark": "逐项来源、分区、裁剪、容量与最终文本快照"
+    },
+    {
+      "name": "content_hash",
+      "remark": "完整清单规范化哈希"
+    },
+    {
+      "name": "created_at",
+      "remark": "组装时间"
+    }
+  ],
+  "counts": {
+    "users": 1,
+    "novels": 0,
+    "context_manifests": 0,
+    "ai_requests": 0
+  },
+  "post_test_readback_identical": true
+}
