@@ -106,3 +106,9 @@ source_documents新增chapter_version_id；artifact来源继续要求run_id/arti
 新增review_policy_versions（独立1至5七维策略及精确正文文风FK）、review_policy_states（发布/退役追加历史）、reviews、review_issues、review_issue_decisions。设计中的review_issues.resolution落实为追加人工意见表，不覆盖历史或硬错误。reviews保存完整冻结输入、body/context/validation/input/output哈希及可选注册运行/精确响应产物，reviewer_type区分明确离线与人工评分，当前有效性动态推导。
 
 全部表不可UPDATE/DELETE；同书复合FK及插入触发器校验提取正文、来源引文、运行正文/冻结输入/输出身份，数据库也禁止硬错误和阻塞项人工豁免。新增表及字段均由迁移写入中文COMMENT，实际核验与迁移结果见[NF-E04验收](../phase-e/NF-E04_ACCEPTANCE.md)。正式评审引用/提交外键待E06存在后再接入，不创建虚假正式记录。
+
+## NF-E05 实施映射（2026-10-25）
+
+新增revision_tasks、revision_task_issues、revision_task_facts、revision_proposals、revision_decisions、revision_validations、revision_assessments，均不可UPDATE/DELETE。设计的revision_tasks来源/目标版本与issue关联细化为冻结input中的问题/来源、受约束proposal、逐项decision目标版本，以及新提取validation和完整review assessment。任务问题及保留事件通过revision_task_issues/revision_task_facts建立强关联，冻结JSON另存原始快照；实际正文、来源评审、采纳新版本、重提取和复评同样有同书强FK，读取复核关联完整性。
+
+插入触发器验证来源评审/实际章、注册网关精确输出、采纳的父版本与实际正文、新提取对应目标正文及最终评审对应提取。每轮最多一次采纳，放弃及人工确认追加历史；自动轮次预留与技术尝试分离。所有新表/字段中文COMMENT，备注和开发库备份迁移实际结果见[NF-E05验收](../phase-e/NF-E05_ACCEPTANCE.md)。未增加正式提交映射，不推进正式状态版本。

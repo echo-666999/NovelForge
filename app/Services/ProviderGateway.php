@@ -11,6 +11,7 @@ use App\ProvidersGateway\FakeProvider;
 use App\ProvidersGateway\ProviderAdapter;
 use App\ProvidersGateway\StructuredOutput;
 use App\Review\ReviewReplayAdapter;
+use App\Revision\RevisionReplayAdapter;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -23,7 +24,7 @@ final class ProviderGateway
     {
         app(NovelIntentService::class)->novel($actor, $novelId);
         // 规划包含完整原始输入和结构证据，单独采用有界容量；旧网关限制保持原值。
-        $planningInput = ctype_digit($stepId) && strlen($stepId) < 19 && DB::table('generation_steps as s')->join('generation_runs as r', 'r.id', '=', 's.run_id')->where('s.id', $stepId)->where('s.novel_id', $novelId)->whereIn('r.frozen_config->schema_version', ['planning-v1', 'drafting-v1', 'extraction-v1', 'review-v1'])->exists();
+        $planningInput = ctype_digit($stepId) && strlen($stepId) < 19 && DB::table('generation_steps as s')->join('generation_runs as r', 'r.id', '=', 's.run_id')->where('s.id', $stepId)->where('s.novel_id', $novelId)->whereIn('r.frozen_config->schema_version', ['planning-v1', 'drafting-v1', 'extraction-v1', 'review-v1', 'revision-v1'])->exists();
         Validator::make(['key' => $key, 'step' => $stepId, 'model' => $modelVersionId, 'input' => $input], [
             'key' => ['required', 'string', 'max:128', 'regex:/^[\x20-\x7E]+$/D'], 'step' => 'required|integer|min:1', 'model' => 'required|integer|min:1',
             'input' => 'required|array:prompt,output_schema', 'input.prompt' => 'required|string|max:'.($planningInput ? 200000 : 50000), 'input.output_schema' => 'required|array',
@@ -105,7 +106,15 @@ final class ProviderGateway
                     throw new NovelProblem('REVIEW_REPLAY_MISMATCH', '评审响应必须精确匹配启动快照。');
                 }
             }
-            if ($provider->interface_type !== 'fake' || (! app()->environment('testing') && ! $draftReplay && ! $extractionReplay && ! $reviewReplay && ! ($planningReplay instanceof PlanningReplayAdapter && DB::table('generation_runs')->where('id', $step->run_id)->where('frozen_config->schema_version', 'planning-v1')->exists()))) {
+            // E05同样限制为精确冻结响应的离线适配器，真实供应商门禁不变。
+            $revisionReplay = $adapter instanceof RevisionReplayAdapter;
+            if ($revisionReplay) {
+                $frozen = json_decode(DB::table('generation_runs')->where('id', $step->run_id)->value('frozen_config'), true);
+                if (($frozen['schema_version'] ?? null) !== 'revision-v1' || $adapter->outputHash() !== hash('sha256', NovelIntentService::canonical($frozen['nodes'][0]['input']['offline_output']))) {
+                    throw new NovelProblem('REVISION_REPLAY_MISMATCH', '修订响应必须匹配启动快照。');
+                }
+            }
+            if ($provider->interface_type !== 'fake' || (! app()->environment('testing') && ! $draftReplay && ! $extractionReplay && ! $reviewReplay && ! $revisionReplay && ! ($planningReplay instanceof PlanningReplayAdapter && DB::table('generation_runs')->where('id', $step->run_id)->where('frozen_config->schema_version', 'planning-v1')->exists()))) {
                 throw new NovelProblem('BUDGET_GATE_REQUIRED', '真实调用及能力探测尚未获准；仍需部署条件、能力验证及外部调用授权，当前仅允许离线测试。', 403);
             }
             if ($step->status !== 'running' || ! DB::table('generation_steps')->where('id', $stepId)->whereRaw('lease_until > clock_timestamp()')->exists()) {

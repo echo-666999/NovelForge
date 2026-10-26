@@ -13,17 +13,18 @@ use App\Models\User;
 use App\Planning\PlanningContract;
 use App\ProvidersGateway\StructuredOutput;
 use App\Review\ReviewContract;
+use App\Revision\RevisionContract;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Throwable;
 
-/** 持久编排与恢复；支持 test.echo 和 E01 明确注册的离线规划，支持 E02 正文与 E03 提取和 E04 评审离线回放；不开放真实模型。 */
+/** 持久编排与恢复；支持 test.echo 和 E01 明确注册的离线规划，支持 E02 正文与 E03 提取、E04 评审和 E05 受限修订离线回放；不开放真实模型。 */
 final class GenerationService
 {
     private function harness(?string $runId = null): void
     {
-        $planning = $runId && DB::table('generation_runs')->where('id', $runId)->whereIn('frozen_config->schema_version', ['planning-v1', 'drafting-v1', 'extraction-v1', 'review-v1'])->exists();
+        $planning = $runId && DB::table('generation_runs')->where('id', $runId)->whereIn('frozen_config->schema_version', ['planning-v1', 'drafting-v1', 'extraction-v1', 'review-v1', 'revision-v1'])->exists();
         if (! app()->environment('testing') && ! $planning) {
             throw new NovelProblem('STAGE_NOT_AVAILABLE', '测试阶段仅允许在测试环境执行。', 403);
         }
@@ -199,6 +200,11 @@ final class GenerationService
 
             return $frozen;
         }
+        if (($frozen['schema_version'] ?? null) === 'revision-v1') {
+            app(RevisionPipelineService::class)->verifyFrozen($run, $frozen);
+
+            return $frozen;
+        }
         $outline = OutlineVersion::find($run->outline_version_id);
         $novel = DB::table('novels')->find($run->novel_id);
         if (! hash_equals($run->input_hash, $this->hash($frozen)) || ! $outline
@@ -216,7 +222,7 @@ final class GenerationService
         if (! $artifact || ! hash_equals($artifact->source_hash, $step->dependency_hash)
             || ! hash_equals($artifact->content_hash, $this->hash($this->json($artifact->content)))
             || ! hash_equals($step->dependency_hash, $this->hash($this->json($step->frozen_input)))
-            || $artifact->schema_version !== ((str_starts_with($step->stage, 'planning.') || in_array($step->stage, ['drafting.scene', 'extraction.events', 'review.chapter'], true)) ? $step->stage.'-v1' : 'test.echo-v1')) {
+            || $artifact->schema_version !== ((str_starts_with($step->stage, 'planning.') || in_array($step->stage, ['drafting.scene', 'extraction.events', 'review.chapter', 'revision.propose'], true)) ? $step->stage.'-v1' : 'test.echo-v1')) {
             throw new NovelProblem('DEPENDENCY_MISMATCH', '产物来源或内容哈希不匹配。');
         }
 
@@ -311,6 +317,9 @@ final class GenerationService
                     return null;
                 }
                 // 文学低分与结构失败不是技术故障，不能靠重复调用凑分。
+                if ($previous->stage === 'revision.propose' && $previous->error_code === 'REVISION_SCOPE_BLOCKED') {
+                    throw new NovelProblem('REVISION_RETRY_FORBIDDEN', '无效文学补丁须人工处理，不能技术重试。');
+                }
                 if ($previous->stage === 'review.chapter' && in_array($previous->error_code, ['LITERARY_REVIEW_BLOCKED', 'HARD_CONSTRAINT_BLOCKED'], true)) {
                     throw new NovelProblem('REVIEW_RETRY_FORBIDDEN', '评审问题须保留并人工处理；不能技术重试凑分。');
                 }
@@ -415,7 +424,7 @@ final class GenerationService
             // 产物与检查点及阶段状态在同一事务落盘，不留下半个成功阶段。
             $artifactId = DB::table('generation_artifacts')->insertGetId([
                 'novel_id' => $novelId, 'run_id' => $runId, 'step_id' => $step->id,
-                'type' => $step->stage === 'review.chapter' ? ($status === 'succeeded' ? 'review_candidate' : 'review_evidence') : ($step->stage === 'extraction.events' ? ($status === 'succeeded' ? 'extraction_candidate' : 'extraction_evidence') : ($step->stage === 'drafting.scene' ? ($status === 'succeeded' ? 'scene_candidate' : 'scene_evidence') : (str_starts_with($step->stage, 'planning.') ? ($status === 'succeeded' ? 'planning_candidate' : 'planning_evidence') : ($status === 'succeeded' ? 'test_result' : 'test_evidence')))), 'schema_version' => (str_starts_with($step->stage, 'planning.') || in_array($step->stage, ['drafting.scene', 'extraction.events', 'review.chapter'], true)) ? $step->stage.'-v1' : 'test.echo-v1',
+                'type' => $step->stage === 'revision.propose' ? ($status === 'succeeded' ? 'revision_candidate' : 'revision_evidence') : ($step->stage === 'review.chapter' ? ($status === 'succeeded' ? 'review_candidate' : 'review_evidence') : ($step->stage === 'extraction.events' ? ($status === 'succeeded' ? 'extraction_candidate' : 'extraction_evidence') : ($step->stage === 'drafting.scene' ? ($status === 'succeeded' ? 'scene_candidate' : 'scene_evidence') : (str_starts_with($step->stage, 'planning.') ? ($status === 'succeeded' ? 'planning_candidate' : 'planning_evidence') : ($status === 'succeeded' ? 'test_result' : 'test_evidence'))))), 'schema_version' => (str_starts_with($step->stage, 'planning.') || in_array($step->stage, ['drafting.scene', 'extraction.events', 'review.chapter', 'revision.propose'], true)) ? $step->stage.'-v1' : 'test.echo-v1',
                 'content' => NovelIntentService::canonical($result->content), 'content_hash' => $this->hash($result->content),
                 'source_hash' => $step->dependency_hash, 'storage_ref' => 'db:'.Str::uuid(), 'created_at' => now(),
             ]);
@@ -439,9 +448,17 @@ final class GenerationService
                     $error = $review['report']['hard_pass'] ? 'LITERARY_REVIEW_BLOCKED' : 'HARD_CONSTRAINT_BLOCKED';
                 }
             }
+            // 补丁只落提案，必须由作者明确选择；无效提案保留后转人工。
+            if ($step->stage === 'revision.propose' && $status === 'succeeded') {
+                $task = app(RevisionPipelineService::class)->generated($run, (string) $artifactId, $result->content);
+                if ($task['status'] === 'manual_required') {
+                    $status = 'blocked';
+                    $error = 'REVISION_SCOPE_BLOCKED';
+                }
+            }
             $updated = DB::table('generation_steps')->where('id', $step->id)->where('fencing_token', $claim['token'])->where('lease_owner', $claim['owner'])
                 ->whereRaw('lease_until > clock_timestamp()')->update(['status' => $status, 'error_code' => $error,
-                    'checkpoint_artifact_id' => $status === 'deferred' && ! in_array($step->stage, ['extraction.events', 'review.chapter'], true) ? $artifactId : null, 'updated_at' => now()]);
+                    'checkpoint_artifact_id' => $status === 'deferred' && ! in_array($step->stage, ['extraction.events', 'review.chapter', 'revision.propose'], true) ? $artifactId : null, 'updated_at' => now()]);
             if ($updated !== 1) {
                 // 校验期间到期也必须回滚刚写入的产物，不能留下半份提交。
                 throw new NovelProblem('LEASE_LOST', '提交期间租约已失效。');
@@ -476,6 +493,13 @@ final class GenerationService
     private function validatedResult(StageResult $result, string $stage): StageResult
     {
         try {
+            if ($stage === 'revision.propose' && $result->status === 'succeeded') {
+                if (app(StructuredOutput::class)->issues(json_decode(NovelIntentService::canonical($result->content)), RevisionContract::schema())) {
+                    throw new \InvalidArgumentException('修订响应不符合注册协议。');
+                }
+
+                return $result;
+            }
             if ($stage === 'review.chapter' && $result->status === 'succeeded') {
                 if (app(StructuredOutput::class)->issues(json_decode(NovelIntentService::canonical($result->content)), ReviewContract::schema())) {
                     throw new \InvalidArgumentException('评审响应不符合注册协议。');

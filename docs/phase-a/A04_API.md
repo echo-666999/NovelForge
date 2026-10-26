@@ -187,3 +187,9 @@ UI16入口 `/admin/extraction-ledger` 支持原文、候选事件、补丁、冲
 原review-runs示意细化为同书入口：GET/POST `/api/v1/novels/{novel}/reviews`（历史/离线验证或人工评分）、POST `/runs`（202离线阶段）、GET `/{review}`（当前资格与原始报告）、POST `/{review}/decisions`（仅非阻塞文学提示意见）。策略接口为GET `/api/v1/review-policies`与POST `/save`、`/publish`、`/retire`。全部写操作要求Idempotency-Key与原因，保留会话/同源/CSRF、管理员/同书授权和private/no-store；未注册示意路径不是可用接口。
 
 评审必须显式绑定chapter_version_id、body_hash、extraction_id、policy_version_id、书级expected_version与expected_state_version。同步入口另需offline_output、reviewer_type=offline/human、reason；异步入口不接受人工标记，另加route_version_id与本章review预算billing。七维整数1至5、每项理由/实际引文、问题分类/严重度/局部修复方向必须通过业务复核。模型不得提供verdict或自动修改阈值。界面 `/admin/review-center` 联通UI13/UI27；通过仅为候选资格，详情见[NF-E04验收](../phase-e/NF-E04_ACCEPTANCE.md)。
+
+## NF-E05 实施接口（2026-10-25）
+
+revision-runs示意细化为GET/POST `/api/v1/novels/{novel}/revisions`、GET `/{revision}`和POST `/{revision}/{propose|runs|decide|assess|confirm}`。runs为202离线阶段，其余写入201；必须Idempotency-Key和原因，未知字段拒绝，保留同源会话/CSRF、管理员/同书授权及private/no-store。原示意路径未注册，不应视为可用。
+
+任务冻结review_id、issue_ids、allowed_scope（paragraph/scene/chapter及精确ranges）、preserve_facts、preserve_quotes、mode和书级expected_version/expected_state_version。propose仅存明确离线补丁；runs另需冻结路由/本章generation预算。decide须显式patch_keys逐项采纳或manual_output同范围手工编辑，expected_version为来源候选版号；不自动采纳整章。assess要求新正文extraction_output与完整章节review_output，confirm只能明确接受已达线且无硬错误的非阻塞候选，不改旧评分。完整字段、边界与UI14见[NF-E05验收](../phase-e/NF-E05_ACCEPTANCE.md)。

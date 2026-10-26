@@ -29,3 +29,5 @@ catch (\Illuminate\Database\QueryException $e) { report($e); $context=null; }
 
 {{-- E04评审中心仅提供候选评分和问题。 --}}
 <a href="{{ url('/admin/review-center') }}?novel={{ urlencode($novelId) }}">评审中心与策略</a>
+{{-- E05采纳只改候选，复评合格不等于正式提交。 --}}
+<a href="/admin/revision-desk?novel={{ $novelId }}">受限修订工作台</a>

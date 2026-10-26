@@ -10,6 +10,7 @@ use App\Review\ReviewContract;
 use App\Review\StyleSignals;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
@@ -61,7 +62,26 @@ final class ChapterReviewService
         $context = $e['context_id'] ? app(StoryConsistencyService::class)->read($actor, $novel, $e['context_id']) : null;
         $validation = $this->hash(['input' => $e['input_hash'], 'output' => $e['output_hash'], 'report' => $e['report'], 'events' => $e['candidate_event_ids'], 'patches' => $e['patches']]);
 
-        return ['schema' => 'review-input-v1', 'book_status' => $book->status, 'row_version' => $book->row_version, 'state_version' => $book->state_version, 'chapter_version_id' => $body['id'], 'chapter_id' => $body['node_id'], 'body_hash' => $body['body_hash'], 'source_id' => $e['source_id'], 'extraction_id' => $e['id'], 'validation_hash' => $validation, 'policy' => ['id' => $p['id'], 'content' => $p['content'], 'content_hash' => $p['content_hash'], 'style_version_id' => $p['style_version_id']], 'context' => ['body' => $body['body'], 'title' => $body['title'], 'body_report' => $body['report'], 'sources' => $body['sources'], 'plan' => app(RollingPlanService::class)->read($actor, $novel, $body['plan_id']), 'extraction' => $e['frozen_input'], 'events' => $e['events'], 'patches' => $e['patches'], 'validation' => $e['report'], 'state_context' => $context, 'previous_body' => $priorBody['body'] ?? null, 'previous_body_hash' => $priorBody['body_hash'] ?? null, 'style' => $style, 'requirements' => app(NovelIntentService::class)->requirements($book)], 'hard' => $hard, 'canonical' => false];
+        // E05采纳的新正文不能绕开事实保留验证直接取得E04通过。
+        $revisionGuard = null;
+        if (Schema::hasTable('revision_decisions')) {
+            $adoption = DB::table('revision_decisions')->where('novel_id', $novel)->where('target_version_id', $body['id'])->first();
+            if ($adoption) {
+                $v = DB::table('revision_validations')->where('decision_id', $adoption->id)->where('extraction_id', $e['id'])->orderByDesc('id')->first();
+                $vr = $v ? json_decode($v->report, true) : null;
+                $revisionGuard = ['decision_id' => (string) $adoption->id, 'validation_id' => $v ? (string) $v->id : null, 'validation_hash' => $v->content_hash ?? null];
+                $latestDecision = DB::table('revision_decisions')->where('task_id', $adoption->task_id)->orderByDesc('id')->first();
+                if ($latestDecision->kind === 'abandon') {
+                    $revisionGuard['abandoned'] = true;
+                    $hard[] = ['code' => 'REVISION_ABANDONED', 'revision' => $revisionGuard];
+                }
+                if (! $v || $this->hash($vr) !== $v->content_hash || ! $vr['eligible']) {
+                    $hard[] = ['code' => 'REVISION_PRESERVATION_REQUIRED', 'revision' => $revisionGuard];
+                }
+            }
+        }
+
+        return ['schema' => 'review-input-v1', 'book_status' => $book->status, 'row_version' => $book->row_version, 'state_version' => $book->state_version, 'chapter_version_id' => $body['id'], 'chapter_id' => $body['node_id'], 'body_hash' => $body['body_hash'], 'source_id' => $e['source_id'], 'extraction_id' => $e['id'], 'validation_hash' => $validation, 'policy' => ['id' => $p['id'], 'content' => $p['content'], 'content_hash' => $p['content_hash'], 'style_version_id' => $p['style_version_id']], 'context' => ['body' => $body['body'], 'title' => $body['title'], 'body_report' => $body['report'], 'sources' => $body['sources'], 'plan' => app(RollingPlanService::class)->read($actor, $novel, $body['plan_id']), 'extraction' => $e['frozen_input'], 'events' => $e['events'], 'patches' => $e['patches'], 'validation' => $e['report'], 'state_context' => $context, 'previous_body' => $priorBody['body'] ?? null, 'previous_body_hash' => $priorBody['body_hash'] ?? null, 'style' => $style, 'requirements' => app(NovelIntentService::class)->requirements($book), ...($revisionGuard === null ? [] : ['revision_guard' => $revisionGuard])], 'hard' => $hard, 'canonical' => false];
     }
 
     public function review(User $actor, string $novel, array $d, string $key, ?array $origin = null, ?array $frozen = null): array

@@ -14,6 +14,7 @@ use App\Http\Controllers\NovelIntentController;
 use App\Http\Controllers\PlanningPipelineController;
 use App\Http\Controllers\ProviderConfigurationController;
 use App\Http\Controllers\RecoveryController;
+use App\Http\Controllers\RevisionController;
 use App\Http\Controllers\RollingPlanController;
 use App\Http\Controllers\RunCenterController;
 use App\Http\Controllers\StoryConsistencyController;
@@ -190,4 +191,15 @@ Route::prefix('api/v1/novels/{novel}/reviews')->whereNumber('novel')->group(func
     Route::post('/runs', ChapterReviewController::class)->defaults('reviewAction', 'start');
     Route::get('/{review}', ChapterReviewController::class)->whereNumber('review');
     Route::post('/{review}/decisions', ChapterReviewController::class)->whereNumber('review')->defaults('reviewAction', 'decide');
+});
+
+// E05只管理候选补丁、明确采纳与整章复评，不注册正式提交。
+Route::prefix('api/v1/novels/{novel}/revisions')->whereNumber('novel')->group(function (): void {
+    Route::get('/', RevisionController::class);
+    Route::post('/', RevisionController::class);
+    Route::get('/{revision}', RevisionController::class)->whereNumber('revision');
+    foreach (['propose', 'decide', 'assess', 'confirm'] as $action) {
+        Route::post('/{revision}/'.$action, RevisionController::class)->whereNumber('revision')->defaults('revisionAction', $action);
+    }
+    Route::post('/{revision}/runs', RevisionController::class)->whereNumber('revision')->defaults('revisionAction', 'start');
 });
