@@ -15,7 +15,9 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Support\Exceptions\Halt;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Url;
 
@@ -88,9 +90,22 @@ class RollingPlans extends Structure
         $key = $data['command_key'];
         unset($data['command_key']);
         try {
+            if (in_array($command, ['split', 'merge', 'reorder'], true)) {
+                foreach ($data['scene_ids'] as $id) {
+                    if ($this->nodeFrozen('scene', (string) $id)) {
+                        throw new NovelProblem('PLAN_FROZEN', '冻结场景不能原地拆分、合并或重排。', 422);
+                    }
+                }
+            }
             $r = app(RollingPlanService::class)->execute(auth()->user(), $this->novelId, $command, $data, $key);
             $this->selectedId = $r['plan']['id'] ?? (string) ($data['rolling_plan_id'] ?? '');
             Notification::make()->success()->title('已记录；请查看门禁结果')->send();
+        } catch (QueryException $e) {
+            if ((string) $e->getCode() !== '23514' || ! Str::contains($e->getMessage(), ['Frozen structure requires history change', 'Frozen chapter cannot add or move scene', 'Formal history requires change workflow'])) {
+                throw $e;
+            }
+            Notification::make()->danger()->title('规划或正式历史已冻结，请刷新并走历史变更流程。')->send();
+            throw new Halt;
         } catch (NovelProblem $e) {
             Notification::make()->danger()->title($e->getMessage())->send();
             throw new Halt;
@@ -104,8 +119,8 @@ class RollingPlans extends Structure
             TextInput::make('start_chapter')->label('细化窗口起始章')->integer()->minValue(1)->required(), TextInput::make('end_chapter')->label('细化窗口结束章')->integer()->minValue(1)->required(),
             Repeater::make('coverages')->label('要求覆盖证据（弧→章→场景，每级各一项）')->defaultItems(0)->schema([
                 Select::make('requirement_version_id')->label('当前原始要求')->options(fn () => collect(app(NovelIntentService::class)->requirements(app(NovelIntentService::class)->novel(auth()->user(), $this->novelId)))->pluck('content', 'id')->all())->required(),
-                Select::make('type')->label('层级')->options(['story_arc' => '故事弧', 'chapter' => '章节', 'scene' => '场景'])->required(),
-                TextInput::make('node_id')->label('稳定节点 ID（见下表）')->integer()->minValue(1)->required(),
+                Select::make('type')->label('层级')->live()->options(['story_arc' => '故事弧', 'chapter' => '章节', 'scene' => '场景'])->required(),
+                Select::make('node_id')->label('实际结构节点')->options(fn (Get $get) => collect($this->state()['nodes'])->where('type', $get('type'))->mapWithKeys(fn ($n) => [(string) $n['id'] => $n['sequence'].' · '.$n['title'].' · #'.$n['id']])->all())->searchable()->required(),
                 Select::make('field')->label('承接字段')->options(['objective' => '目标', 'summary' => '摘要', 'details.required_events' => '必要事件', 'details.forbidden_changes' => '禁止改变', 'details.foreshadow_tasks' => '伏笔规划'])->required(),
                 Textarea::make('quote')->label('精确引文')->required(), TextInput::make('start_offset')->label('起始码点（从0开始）')->integer()->minValue(0)->required(), TextInput::make('end_offset')->label('结束码点（不含）')->integer()->minValue(1)->required(),
             ]), ...$this->commonPlan(),
@@ -132,7 +147,7 @@ class RollingPlans extends Structure
 
     public function freezePlanAction(): Action
     {
-        return Action::make('freezePlan')->label('冻结详细窗口')->visible(fn () => filled($this->selectedId))->modalDescription('冻结后不能原地修改窗口内的章、场景及其祖先。只冻结计划，不开启模型或正式提交。')->schema([Hidden::make('rolling_plan_id'), Hidden::make('validation_id'), Hidden::make('report_hash'), ...$this->commonPlan()])->fillForm(function () {
+        return Action::make('freezePlan')->label('冻结详细窗口')->visible(fn () => filled($this->selectedId) && $this->selected()['display_status'] === 'ready')->modalDescription('冻结后不能原地修改窗口内的章、场景及其祖先。只冻结计划，不开启模型或正式提交。')->schema([Hidden::make('rolling_plan_id'), Hidden::make('validation_id'), Hidden::make('report_hash'), ...$this->commonPlan()])->fillForm(function () {
             $p = $this->selected();
 
             return $this->planBase() + ['rolling_plan_id' => $p['id'], 'validation_id' => $p['validation']['id'] ?? null, 'report_hash' => $p['validation']['report_hash'] ?? null];
@@ -143,13 +158,13 @@ class RollingPlans extends Structure
     {
         $details = [];
         foreach (self::DETAILS as $key => $label) {
-            $details[] = in_array($key, ['min_words', 'target_words', 'max_words', 'pov_version_id']) ? TextInput::make('details.'.$key)->label($label)->integer()->minValue(1) : Textarea::make('details.'.$key)->label($label);
+            $details[] = $key === 'pov_version_id' ? Select::make('details.'.$key)->label('已批准POV人物版本')->searchable()->options(fn () => $this->povOptions()) : (in_array($key, ['target_words', 'min_words', 'max_words']) ? TextInput::make('details.'.$key)->label($label)->integer()->minValue(1) : Textarea::make('details.'.$key)->label($label));
         }
 
         return Action::make('transform')->label('拆分 / 合并 / 排序场景')->visible(fn () => $this->editable())->schema([
             Select::make('operation')->label('操作')->options(['split' => '拆分', 'merge' => '合并相邻场景', 'reorder' => '按选择顺序重排全部场景'])->required(),
-            Select::make('chapter_id')->label('所属章节')->options(fn () => collect($this->state()['nodes'])->where('type', 'chapter')->pluck('title', 'id')->all())->required(),
-            Repeater::make('ordered_scenes')->label('场景顺序（排序须列全本章场景）')->schema([TextInput::make('id')->label('场景 ID')->integer()->required()])->minItems(1)->required(),
+            Select::make('chapter_id')->label('所属章节')->live()->options(fn () => collect($this->state()['nodes'])->where('type', 'chapter')->pluck('title', 'id')->all())->required(),
+            Repeater::make('ordered_scenes')->label('场景顺序（排序须列全本章场景）')->schema([Select::make('id')->label('实际章节场景')->options(fn (Get $get) => collect($this->state()['nodes'])->where('type', 'scene')->where('parent_id', (string) $get('../../chapter_id'))->mapWithKeys(fn ($n) => [(string) $n['id'] => $n['sequence'].' · '.$n['title']])->all())->required()])->minItems(1)->required(),
             Repeater::make('replacements')->label('替代场景（排序时留空）')->defaultItems(0)->schema([TextInput::make('title')->label('标题')->required(), Textarea::make('objective')->label('目标')->required(), Textarea::make('summary')->label('摘要'), ...$details]), ...$this->commonPlan(),
         ])->fillForm(fn () => $this->planBase() + ['replacements' => []])->action(function (array $data) {
             $op = $data['operation'];

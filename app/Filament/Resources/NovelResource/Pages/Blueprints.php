@@ -21,6 +21,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\Page;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Support\Exceptions\Halt;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Locked;
@@ -151,7 +153,22 @@ class Blueprints extends Page
             $fields[] = Toggle::make('author_checks.'.$k)->label($label);
         }
 
-        return Action::make('save')->label('新增 / 复制修改候选')->visible(fn () => $this->editable())->modalDescription('每次保存追加新版本及新终局契约。勾选检查项代表作者判断，系统不会代替文学审查。')->schema([...$fields, ...$this->common()])->fillForm(function (array $arguments) {
+        // 来源、正文、主支线、终局与作者确认分签，保存仍是同一次版本命令。
+        $groups = [];
+        foreach ($fields as $field) {
+            $name = $field->getName();
+            $group = match (true) {
+                str_starts_with($name, 'body.') => '故事蓝图',str_starts_with($name, 'ending.') => '终局契约',
+                $name === 'threads' => '主支线', $name === 'coverages' || str_starts_with($name, 'author_checks.') => '覆盖与确认', default => '来源与设定',
+            };
+            if ($field instanceof Textarea || $field instanceof Repeater) {
+                $field->columnSpanFull();
+            }
+            $groups[$group][] = $field;
+        }
+        $fields = [Tabs::make('蓝图编辑')->tabs(array_map(fn ($label, $fields) => Tab::make($label)->schema($fields)->columns(2), array_keys($groups), array_values($groups)))];
+
+        return Action::make('save')->label('新增 / 复制修改候选')->modalWidth('7xl')->visible(fn () => $this->editable())->modalDescription('每次保存追加新版本及新终局契约。勾选检查项代表作者判断，系统不会代替文学审查。')->schema([...$fields, ...$this->common()])->fillForm(function (array $arguments) {
             $data = $this->base() + ['body' => [], 'entity_version_ids' => [], 'threads' => [], 'ending' => ['outcomes' => [], 'required_foreshadows' => [], 'open_items' => []], 'coverages' => [], 'author_checks' => []];
             if (isset($arguments['blueprint'])) {
                 $v = app(BlueprintService::class)->read(auth()->user(), $this->novelId, (string) $arguments['blueprint']);

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="/Users/webb/Herd/NovelForge/phpunit.xml" tests="17" assertions="301" errors="0" failures="0" skipped="0" time="88.837755">
+    <testsuite name="Feature" tests="17" assertions="301" errors="0" failures="0" skipped="0" time="88.837755">
+      <testsuite name="Tests\Feature\NovelNavigationTest" file="/Users/webb/Herd/NovelForge/tests/Feature/NovelNavigationTest.php" tests="8" assertions="204" errors="0" failures="0" skipped="0" time="34.534525">
+        <testcase name="test_navigation_groups_order_orphans_and_status_secondary_entry" file="/Users/webb/Herd/NovelForge/tests/Feature/NovelNavigationTest.php" line="42" class="Tests\Feature\NovelNavigationTest" classname="Tests.Feature.NovelNavigationTest" assertions="7" time="2.269552"/>
+        <testcase name="test_empty_book_context_does_not_select_first_book_or_previous_tab" file="/Users/webb/Herd/NovelForge/tests/Feature/NovelNavigationTest.php" line="55" class="Tests\Feature\NovelNavigationTest" classname="Tests.Feature.NovelNavigationTest" assertions="7" time="0.204388"/>
+        <testcase name="test_all_book_entries_keep_identity_and_unique_links_without_writes" file="/Users/webb/Herd/NovelForge/tests/Feature/NovelNavigationTest.php" line="64" class="Tests\Feature\NovelNavigationTest" classname="Tests.Feature.NovelNavigationTest" assertions="87" time="1.922515"/>
+        <testcase name="test_switch_drops_previous_book_object_parameters_and_keeps_target" file="/Users/webb/Herd/NovelForge/tests/Feature/NovelNavigationTest.php" line="80" class="Tests\Feature\NovelNavigationTest" classname="Tests.Feature.NovelNavigationTest" assertions="55" time="0.446912"/>
+        <testcase name="test_foreign_missing_and_malformed_contexts_are_rejected" file="/Users/webb/Herd/NovelForge/tests/Feature/NovelNavigationTest.php" line="95" class="Tests\Feature\NovelNavigationTest" classname="Tests.Feature.NovelNavigationTest" assertions="11" time="0.201689"/>
+        <testcase name="test_switch_and_new_story_page_preserve_authentication" file="/Users/webb/Herd/NovelForge/tests/Feature/NovelNavigationTest.php" line="110" class="Tests\Feature\NovelNavigationTest" classname="Tests.Feature.NovelNavigationTest" assertions="6" time="0.074675"/>
+        <testcase name="test_actual_canonical_cursor_and_legacy_references_are_same_book" file="/Users/webb/Herd/NovelForge/tests/Feature/NovelNavigationTest.php" line="119" class="Tests\Feature\NovelNavigationTest" classname="Tests.Feature.NovelNavigationTest" assertions="25" time="29.152064"/>
+        <testcase name="test_book_title_is_escaped_and_sidebar_keeps_explicit_context" file="/Users/webb/Herd/NovelForge/tests/Feature/NovelNavigationTest.php" line="140" class="Tests\Feature\NovelNavigationTest" classname="Tests.Feature.NovelNavigationTest" assertions="6" time="0.262730"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\StoryUiTest" file="/Users/webb/Herd/NovelForge/tests/Feature/StoryUiTest.php" tests="9" assertions="97" errors="0" failures="0" skipped="0" time="54.303230">
+        <testcase name="test_option_adapter_keeps_unicode_zero_escaping_and_selected_multi_values" file="/Users/webb/Herd/NovelForge/tests/Feature/StoryUiTest.php" line="45" class="Tests\Feature\StoryUiTest" classname="Tests.Feature.StoryUiTest" assertions="7" time="0.056060"/>
+        <testcase name="test_story_pages_use_structured_readonly_views_and_do_not_write_on_render" file="/Users/webb/Herd/NovelForge/tests/Feature/StoryUiTest.php" line="59" class="Tests\Feature\StoryUiTest" classname="Tests.Feature.StoryUiTest" assertions="19" time="3.443051"/>
+        <testcase name="test_hierarchy_expansion_focus_and_immutable_version_are_readonly" file="/Users/webb/Herd/NovelForge/tests/Feature/StoryUiTest.php" line="77" class="Tests\Feature\StoryUiTest" classname="Tests.Feature.StoryUiTest" assertions="11" time="3.539047"/>
+        <testcase name="test_blueprint_tabs_copy_to_new_version_without_mutating_history" file="/Users/webb/Herd/NovelForge/tests/Feature/StoryUiTest.php" line="94" class="Tests\Feature\StoryUiTest" classname="Tests.Feature.StoryUiTest" assertions="6" time="3.216716"/>
+        <testcase name="test_formal_evidence_is_read_from_active_baseline_and_structure_is_readonly" file="/Users/webb/Herd/NovelForge/tests/Feature/StoryUiTest.php" line="107" class="Tests\Feature\StoryUiTest" classname="Tests.Feature.StoryUiTest" assertions="9" time="22.909846"/>
+        <testcase name="test_create_wizard_keeps_original_fields_and_never_calls_model" file="/Users/webb/Herd/NovelForge/tests/Feature/StoryUiTest.php" line="124" class="Tests\Feature\StoryUiTest" classname="Tests.Feature.StoryUiTest" assertions="7" time="0.075076"/>
+        <testcase name="test_native_plan_fields_freeze_gate_and_no_overwrite" file="/Users/webb/Herd/NovelForge/tests/Feature/StoryUiTest.php" line="134" class="Tests\Feature\StoryUiTest" classname="Tests.Feature.StoryUiTest" assertions="21" time="13.187274"/>
+        <testcase name="test_native_scene_selector_resolves_repeater_parent_chapter" file="/Users/webb/Herd/NovelForge/tests/Feature/StoryUiTest.php" line="158" class="Tests\Feature\StoryUiTest" classname="Tests.Feature.StoryUiTest" assertions="7" time="3.844552"/>
+        <testcase name="test_pov_options_keep_approved_history_and_native_edit_keeps_reference" file="/Users/webb/Herd/NovelForge/tests/Feature/StoryUiTest.php" line="172" class="Tests\Feature\StoryUiTest" classname="Tests.Feature.StoryUiTest" assertions="10" time="4.031609"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

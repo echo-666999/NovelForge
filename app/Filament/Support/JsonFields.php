@@ -164,7 +164,7 @@ final class JsonFields
             return '第'.((int) $key + 1).'项';
         }
         $labels = [
-            'content' => '配置正文', 'regression' => '离线回归', 'purpose' => '模板用途', 'body' => 'Prompt正文',
+            'min' => '下限', 'max' => '上限', 'name' => '名称', 'title' => '标题', 'source_quote' => '来源原句', 'source_version_id' => '原始输入版本', 'outline_version_id' => '结构快照版本', 'profile' => '人物设定', 'role' => '角色类型', 'identity' => '身份', 'limitations' => '能力边界', 'aliases' => '别名', 'relations' => '初始关系', 'ending' => '终局契约', 'threads' => '主支线', 'coverages' => '要求覆盖', 'author_checks' => '作者检查', 'logline' => '一句话故事', 'required_foreshadows' => '必须回收承诺', 'open_items' => '允许开放项', 'outcomes' => '人物结局', 'content' => '配置正文', 'regression' => '离线回归', 'purpose' => '模板用途', 'body' => '正文/配置内容',
             'variable_schema' => '变量结构', 'output_schema' => '输出结构', 'examples' => '样例',
             'voice' => '文风', 'genre' => '题材', 'pov' => '叙事视角', 'tone' => '语气', 'pace' => '节奏',
             'description' => '说明', 'forbidden_patterns' => '禁用套路', 'licensed_examples' => '授权样例',

@@ -1,0 +1,599 @@
+{
+  "browser": "Chrome",
+  "base": "http://127.0.0.1:8769",
+  "database": "novel_forge_test",
+  "interactions": [
+    "普通登录",
+    "五层目录展开及场景定位",
+    "蓝图来源/正文页签",
+    "人物修订候选页签并带入原值",
+    "时间线读取与实际事件选择",
+    "修复后展开状态持续",
+    "手机表格键盘局部横滚，scrollLeft实测33.5",
+    "建书背景焦点单边框",
+    "最终工作台/意图文案与工具条补拍"
+  ],
+  "observations": [
+    {
+      "page": "world-character-modal",
+      "viewport": "mobile",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 390,
+      "tables": [
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 768,
+          "width": 310
+        }
+      ],
+      "width": 390
+    },
+    {
+      "page": "story-timeline",
+      "viewport": "desktop",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 1709,
+      "tables": [
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 1277,
+          "width": 1277
+        },
+        {
+          "label": "事件值只读",
+          "overflow": "auto",
+          "scroll": 480,
+          "width": 231
+        }
+      ],
+      "width": 1709
+    },
+    {
+      "page": "timeline-editor",
+      "viewport": "desktop",
+      "selection": "10 · action",
+      "detailsStayOpen": true,
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 1709,
+      "tables": [
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 1277,
+          "width": 1277
+        },
+        {
+          "label": "事件值只读",
+          "overflow": "auto",
+          "scroll": 480,
+          "width": 231
+        }
+      ],
+      "width": 1709
+    },
+    {
+      "page": "timeline-editor",
+      "viewport": "mobile",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 390,
+      "tables": [
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 768,
+          "width": 310
+        },
+        {
+          "label": "事件值只读",
+          "overflow": "auto",
+          "scroll": 480,
+          "width": 130
+        }
+      ],
+      "width": 390
+    },
+    {
+      "page": "foreshadow-ledger",
+      "viewport": "desktop",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 1709,
+      "tables": [
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 1277,
+          "width": 1277
+        }
+      ],
+      "width": 1709
+    },
+    {
+      "page": "foreshadow-ledger",
+      "viewport": "mobile",
+      "localKeyboardScroll": true,
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 390,
+      "tables": [
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 768,
+          "width": 310
+        }
+      ],
+      "width": 390
+    },
+    {
+      "page": "timeline-editor",
+      "viewport": "mobile",
+      "detailsStayOpen": true,
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 390,
+      "tables": [
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 768,
+          "width": 310
+        },
+        {
+          "label": "事件值只读",
+          "overflow": "auto",
+          "scroll": 480,
+          "width": 130
+        }
+      ],
+      "width": 390
+    },
+    {
+      "page": "novel-list",
+      "viewport": "mobile",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 390,
+      "tables": [],
+      "width": 390
+    },
+    {
+      "page": "create",
+      "viewport": "mobile",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 390,
+      "tables": [],
+      "width": 390
+    },
+    {
+      "page": "workspace",
+      "viewport": "mobile",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 390,
+      "tables": [
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 768,
+          "width": 310
+        }
+      ],
+      "width": 390
+    },
+    {
+      "page": "intent",
+      "viewport": "mobile",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 390,
+      "tables": [
+        {
+          "label": "原始输入逐字段只读",
+          "overflow": "auto",
+          "scroll": 768,
+          "width": 284
+        },
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 768,
+          "width": 310
+        }
+      ],
+      "width": 390
+    },
+    {
+      "page": "structure",
+      "viewport": "mobile",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 390,
+      "tables": [
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 768,
+          "width": 310
+        }
+      ],
+      "width": 390
+    },
+    {
+      "page": "plans",
+      "viewport": "mobile",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 390,
+      "tables": [
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 768,
+          "width": 310
+        }
+      ],
+      "width": 390
+    },
+    {
+      "page": "blueprints",
+      "viewport": "mobile",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 390,
+      "tables": [
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 768,
+          "width": 310
+        }
+      ],
+      "width": 390
+    },
+    {
+      "page": "world",
+      "viewport": "mobile",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 390,
+      "tables": [
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 768,
+          "width": 310
+        }
+      ],
+      "width": 390
+    },
+    {
+      "page": "novel-list",
+      "viewport": "desktop",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 1709,
+      "tables": [],
+      "width": 1709
+    },
+    {
+      "page": "create",
+      "viewport": "desktop",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 1709,
+      "tables": [],
+      "width": 1709
+    },
+    {
+      "page": "workspace",
+      "viewport": "desktop",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 1709,
+      "tables": [
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 1277,
+          "width": 1277
+        }
+      ],
+      "width": 1709
+    },
+    {
+      "page": "intent",
+      "viewport": "desktop",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 1709,
+      "tables": [
+        {
+          "label": "原始输入逐字段只读",
+          "overflow": "auto",
+          "scroll": 1251,
+          "width": 1251
+        },
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 1277,
+          "width": 1277
+        }
+      ],
+      "width": 1709
+    },
+    {
+      "page": "structure",
+      "viewport": "desktop",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 1709,
+      "tables": [
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 1277,
+          "width": 1277
+        }
+      ],
+      "width": 1709
+    },
+    {
+      "page": "plans",
+      "viewport": "desktop",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 1709,
+      "tables": [
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 1277,
+          "width": 1277
+        }
+      ],
+      "width": 1709
+    },
+    {
+      "page": "blueprints",
+      "viewport": "desktop",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 1709,
+      "tables": [
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 1277,
+          "width": 1277
+        }
+      ],
+      "width": 1709
+    },
+    {
+      "page": "world",
+      "viewport": "desktop",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 1709,
+      "tables": [
+        {
+          "label": "故事资料列表",
+          "overflow": "auto",
+          "scroll": 1277,
+          "width": 1277
+        }
+      ],
+      "width": 1709
+    },
+    {
+      "page": "workspace",
+      "viewport": "mobile-final-copy",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 390,
+      "width": 390
+    },
+    {
+      "page": "intent",
+      "viewport": "mobile-final-copy",
+      "fieldOverflow": 0,
+      "rawPre": 0,
+      "rootWidth": 390,
+      "width": 390
+    }
+  ],
+  "data_before": {
+    "novels": 3,
+    "novel_commands": 148,
+    "ai_requests": 1,
+    "story_events": 1,
+    "canonical_commits": 1,
+    "story_context_versions": 2,
+    "outline_versions": 7,
+    "blueprint_versions": 2,
+    "rolling_plans": 2,
+    "plan_freezes": 1
+  },
+  "data_after": {
+    "novels": 3,
+    "novel_commands": 148,
+    "ai_requests": 1,
+    "story_events": 1,
+    "canonical_commits": 1,
+    "story_context_versions": 2,
+    "outline_versions": 7,
+    "blueprint_versions": 2,
+    "rolling_plans": 2,
+    "plan_freezes": 1
+  },
+  "copy_recheck_before": {
+    "novels": 1,
+    "novel_commands": 57,
+    "ai_requests": 0,
+    "story_events": 0,
+    "canonical_commits": 0,
+    "story_context_versions": 0,
+    "outline_versions": 3,
+    "blueprint_versions": 1,
+    "rolling_plans": 1,
+    "plan_freezes": 0
+  },
+  "copy_recheck_after": {
+    "novels": 1,
+    "novel_commands": 57,
+    "ai_requests": 0,
+    "story_events": 0,
+    "canonical_commits": 0,
+    "story_context_versions": 0,
+    "outline_versions": 3,
+    "blueprint_versions": 1,
+    "rolling_plans": 1,
+    "plan_freezes": 0
+  },
+  "screenshots": [
+    {
+      "path": "screenshots/blueprint-fields-desktop.jpg",
+      "sha256": "1f99564eee952d46de024a85a9bd69b0c1ccd1add17dfcf670a56b90ebae8019",
+      "bytes": 63302
+    },
+    {
+      "path": "screenshots/blueprints-desktop.jpg",
+      "sha256": "27e9b7f0f5cd5d84b61c2a0f8d2dfc69a521e7b91e1c51184bd4f82b97d33278",
+      "bytes": 89194
+    },
+    {
+      "path": "screenshots/blueprints-mobile.jpg",
+      "sha256": "b312a9930bac33cfde0a1e328b73eb4c5dab7f3b888981470ef457116d48ca11",
+      "bytes": 44570
+    },
+    {
+      "path": "screenshots/create-desktop.jpg",
+      "sha256": "a9c6e513209bd780f442ed10fa079d58577116d45399cf2264be02ff149eab6a",
+      "bytes": 53521
+    },
+    {
+      "path": "screenshots/create-focus-desktop.jpg",
+      "sha256": "7a688fa99c544936d649131ca0377e4be04ad78fcbf6ce6d9966747271237231",
+      "bytes": 58739
+    },
+    {
+      "path": "screenshots/create-mobile.jpg",
+      "sha256": "dd3de2fa00f20a104bcc8eacb69b46e407d085409ecba2c6c722c7ab79f87ade",
+      "bytes": 15468
+    },
+    {
+      "path": "screenshots/foreshadow-evidence-desktop.jpg",
+      "sha256": "0881bc75e72e60fbdb4fb31b59c9a13b11bf62aa7333ab7a314ef1fa2cdeeb5e",
+      "bytes": 77555
+    },
+    {
+      "path": "screenshots/foreshadow-evidence-mobile.jpg",
+      "sha256": "a733e008557c4521e5ebe3fcd9d8506b768220fa71cd8abd77d99ef9d4110df7",
+      "bytes": 22336
+    },
+    {
+      "path": "screenshots/foreshadow-mobile.jpg",
+      "sha256": "a038d9e87493547487a96d4f8a67d28fbd151b28f7b9272f97da03644363b095",
+      "bytes": 37346
+    },
+    {
+      "path": "screenshots/intent-desktop.jpg",
+      "sha256": "cd09e6ebf6f76fa22aef2779ee71bba881be7e86a2e008f8f0d8a796f2c2e12c",
+      "bytes": 96993
+    },
+    {
+      "path": "screenshots/intent-mobile.jpg",
+      "sha256": "2e504ce21f17cfa7b7018764e0cd7e8d3179045df6aa6c5498ebd2e0c9f58925",
+      "bytes": 41702
+    },
+    {
+      "path": "screenshots/novel-list-desktop.jpg",
+      "sha256": "03b416317b0459e5c14f0b35391e980eec01a7b3ffb3532d428ede480408b48b",
+      "bytes": 84738
+    },
+    {
+      "path": "screenshots/novel-list-mobile.jpg",
+      "sha256": "12ecd5e088c200b47b49821606f55b8399ce3af498da3cefca9b5d84cc52c96a",
+      "bytes": 19386
+    },
+    {
+      "path": "screenshots/plans-desktop.jpg",
+      "sha256": "35ae7238d0c4e1b00e6e4481ca0971eb0e1f23733db3675c9761f0b93e0105c4",
+      "bytes": 92761
+    },
+    {
+      "path": "screenshots/plans-mobile.jpg",
+      "sha256": "98707676778003cf42298887ac9638b3c245ce7e2350c38126485c93e9720d1c",
+      "bytes": 41693
+    },
+    {
+      "path": "screenshots/structure-desktop.jpg",
+      "sha256": "76cbd52f967db192664982b33aaf5ac21adad810dd95a4d00745d8be1e65e999",
+      "bytes": 90356
+    },
+    {
+      "path": "screenshots/structure-mobile.jpg",
+      "sha256": "41d4b25c007494cf14c38b33680c308273871a93888507296b0fe9c529e1e321",
+      "bytes": 40100
+    },
+    {
+      "path": "screenshots/structure-tree-desktop.jpg",
+      "sha256": "6395348e3dab3058c42777972aba0c6b143055cc73cc6d7a48e9377b8470a951",
+      "bytes": 85163
+    },
+    {
+      "path": "screenshots/timeline-desktop.jpg",
+      "sha256": "fcbd7b94256b1b3ea0cb464f7e7ad2ecefdc28cdce22fd11eab5af53ce0604e5",
+      "bytes": 88833
+    },
+    {
+      "path": "screenshots/timeline-editor-desktop.jpg",
+      "sha256": "20cc2e9e0205721aa897a7b80ea313dee950790a1e8d2a2ea8be53d020b3bfa6",
+      "bytes": 63029
+    },
+    {
+      "path": "screenshots/timeline-editor-mobile.jpg",
+      "sha256": "11e56e83cf256073d63bccd62b85ba342bf7d5b260f85e61bb71859da2114aad",
+      "bytes": 24989
+    },
+    {
+      "path": "screenshots/workspace-desktop.jpg",
+      "sha256": "0875e07d9665e495cc102d6a04e23b1eebfa6b7e06344e99f0f66d0242cff975",
+      "bytes": 89546
+    },
+    {
+      "path": "screenshots/workspace-mobile.jpg",
+      "sha256": "68d8815b68d8ad71d831598fdd9e26e1fe11a1badf10b537e6f3a371e8e08dc7",
+      "bytes": 34124
+    },
+    {
+      "path": "screenshots/world-character-desktop.jpg",
+      "sha256": "2d356a235897ae6e08e145b79bd0c21eb648e0952fa0a6c0f1feab9244d5828d",
+      "bytes": 59913
+    },
+    {
+      "path": "screenshots/world-character-mobile.jpg",
+      "sha256": "ae14f3de6685ea04b416b9153e3e893635c0b453ae1e41c031c201f448fac505",
+      "bytes": 20951
+    },
+    {
+      "path": "screenshots/world-desktop.jpg",
+      "sha256": "702f5a85d0faab914d1de3464284111c397b6da762c06fa95b0392abe44aafef",
+      "bytes": 88073
+    },
+    {
+      "path": "screenshots/world-mobile.jpg",
+      "sha256": "a28e2e2f450dcc6244d75bd541f3f1444dced3e984280887268b816db5458db9",
+      "bytes": 40335
+    }
+  ]
+}

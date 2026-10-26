@@ -19,6 +19,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\Page;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Support\Exceptions\Halt;
 use Illuminate\Support\Str;
@@ -160,7 +162,8 @@ class WorldLibrary extends Page
             $profile[] = Textarea::make('profile.'.$k)->label($label)->required(fn (Get $get) => $get('type') === 'character' && in_array($k, ['identity', 'voice', 'limitations']));
         }
 
-        return Action::make('definition')->label('新增 / 修订候选设定')->visible(fn () => $this->editable())->schema([
+        // 类型身份、人物声音、世界边界与初始关系分签；字段路径与批准协议保持原样。
+        $fields = [
             Hidden::make('entity_id'), Select::make('type')->label('实体类型')->options(self::TYPES)->required()->live()->disabled(fn (Get $get) => filled($get('entity_id')))->dehydrated(),
             TextInput::make('name')->label('名称')->required()->maxLength(255), Textarea::make('description')->label('描述')->required(), TagsInput::make('aliases')->label('别名'),
             Select::make('criticality')->label('重要性')->options(['core' => '核心 / 关键实体', 'minor' => '非关键'])->required(), Toggle::make('affects_main_plot')->label('影响主线或关键解决方案')->required(),
@@ -169,14 +172,35 @@ class WorldLibrary extends Page
             ...array_map(fn ($f) => $f->visible(fn (Get $get) => $get('type') === 'character'), $profile),
             Textarea::make('rule')->label('世界规则'), Textarea::make('scope')->label('规则适用范围'), Textarea::make('conflict')->label('待解决冲突（非空时禁止批准）'),
             Repeater::make('relations')->label('初始关系（引用具体设定版本）')->schema([Select::make('target_definition_version_id')->label('目标设定版本')->options(fn () => $this->versionOptions())->required(), TextInput::make('relation_type')->label('关系类型')->required(), Textarea::make('description')->label('初始关系说明')->required()])->defaultItems(0), ...$this->common(),
-        ])->fillForm(function (array $arguments) {
+        ];
+        $groups = [];
+        foreach ($fields as $field) {
+            $name = $field->getName();
+            $group = match (true) {
+                str_starts_with($name, 'profile.') => '人物设定',in_array($name, ['rule', 'scope', 'conflict'], true) => '规则与边界',$name === 'relations' => '初始关系',default => '身份与来源'
+            };
+            if ($field instanceof Textarea || $field instanceof Repeater) {
+                $field->columnSpanFull();
+            }
+            $groups[$group][] = $field;
+        }
+        $tabs = [];
+        foreach ($groups as $label => $fields) {
+            $tab = Tab::make($label)->schema($fields)->columns(2);
+            if ($label === '人物设定') {
+                $tab->visible(fn (Get $get) => $get('type') === 'character');
+            }
+            $tabs[] = $tab;
+        }
+
+        return Action::make('definition')->label('新增 / 修订候选设定')->modalWidth('7xl')->visible(fn () => $this->editable())->schema([Tabs::make('设定编辑')->tabs($tabs)])->fillForm(function (array $arguments) {
             $data = $this->base() + ['type' => 'character', 'criticality' => 'core', 'affects_main_plot' => true, 'introduced_chapter' => 1, 'aliases' => [], 'profile' => [], 'relations' => []];
             if (isset($arguments['entity'])) {
                 $d = app(WorldService::class)->detail(auth()->user(), $this->novelId, (string) $arguments['entity']);
                 $data = array_replace($data, $d['versions'][0]['definition'], ['entity_id' => $d['entity']['id'], 'reason' => '']);
             }
 
-return $data;
+            return $data;
         })->action(fn (array $data) => $this->run('definition', $data));
     }
 
@@ -212,6 +236,6 @@ return $data;
 
     public function retireAction(): Action
     {
-        return Action::make('retire')->label('停用实体')->visible(fn () => $this->editable())->modalDescription('保留全部版本和引用，禁止新的引用及设定修改。此操作不表示人物死亡。')->schema([Hidden::make('entity_id'), ...$this->common()])->fillForm(fn (array $arguments) => $this->base() + ['entity_id' => $arguments['entity'] ?? null])->action(fn (array $data) => $this->run('retire',$data));
+        return Action::make('retire')->label('停用实体')->visible(fn () => $this->editable())->modalDescription('保留全部版本和引用，禁止新的引用及设定修改。此操作不表示人物死亡。')->schema([Hidden::make('entity_id'), ...$this->common()])->fillForm(fn (array $arguments) => $this->base() + ['entity_id' => $arguments['entity'] ?? null])->action(fn (array $data) => $this->run('retire', $data));
     }
 }

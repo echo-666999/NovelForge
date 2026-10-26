@@ -17,7 +17,9 @@ use Filament\Notifications\Notification;
 use Filament\Resources\Pages\Page;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Support\Exceptions\Halt;
+use Illuminate\Database\QueryException;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Url;
@@ -66,6 +68,10 @@ class Structure extends Page
     #[Url]
     public int $perPage = 25;
 
+    public array $treeOpen = [];
+
+    protected ?array $frozenNodeCache = null;
+
     public const LABELS = ['volume' => '卷', 'story_arc' => '故事弧', 'chapter' => '章', 'scene' => '场景'];
 
     public const DETAILS = ['min_words' => '字数下限', 'max_words' => '字数上限', 'pov_version_id' => '已批准 POV 人物版本 ID', 'narration_mode' => '叙事人称 / 模式', 'time_end' => '时间区间结束', 'emotion_start' => '情绪起点', 'emotion_end' => '情绪终点', 'turning_point' => '转折', 'climax' => '高潮', 'ending_state' => '结束状态', 'pov' => 'POV / 视角', 'story_time' => '故事时间', 'location' => '地点', 'conflict' => '冲突', 'character_change' => '角色变化', 'foreshadow_tasks' => '伏笔计划任务', 'participants' => '参与者', 'transition_in' => '前场衔接', 'transition_out' => '后场衔接', 'forbidden_changes' => '禁止变更', 'required_events' => '必要事件', 'dependencies' => '前置依赖说明', 'target_words' => '目标字数'];
@@ -100,7 +106,7 @@ class Structure extends Page
 
     public function editable(): bool
     {
-        return ! $this->versionId && in_array(app(NovelIntentService::class)->novel(auth()->user(), $this->novelId)->status, ['draft', 'planning']);
+        return ! $this->versionId && in_array(app(NovelIntentService::class)->novel(auth()->user(), $this->novelId)->status, ['draft', 'planning']) && (int) app(NovelIntentService::class)->novel(auth()->user(), $this->novelId)->state_version === 0;
     }
 
     public function rows(): LengthAwarePaginator
@@ -148,8 +154,17 @@ class Structure extends Page
         $key = $data['command_key'];
         unset($data['command_key']);
         try {
+            if ($name === 'node' && (($data['node_id'] ?? '') !== '' && $this->nodeFrozen($data['type'], (string) $data['node_id']) || $data['type'] === 'scene' && $this->nodeFrozen('chapter', (string) ($data['parent_id'] ?? '')))) {
+                throw new NovelProblem('PLAN_FROZEN', '规划窗口已冻结，请走历史变更流程。', 422);
+            }
             app(StructureService::class)->execute(auth()->user(), $this->novelId, $name, $data, $key);
             Notification::make()->success()->title('已保存')->send();
+        } catch (QueryException $e) {
+            if ((string) $e->getCode() !== '23514' || ! Str::contains($e->getMessage(), ['Frozen structure requires history change', 'Frozen chapter cannot add or move scene', 'Formal history requires change workflow'])) {
+                throw $e;
+            }
+            Notification::make()->danger()->title('规划或正式历史已冻结，请刷新并走历史变更流程。')->send();
+            throw new Halt;
         } catch (NovelProblem $e) {
             Notification::make()->danger()->title($e->getMessage())->send();
             throw new Halt;
@@ -159,6 +174,48 @@ class Structure extends Page
     private function base(): array
     {
         return ['expected_version' => app(NovelIntentService::class)->novel(auth()->user(), $this->novelId)->row_version, 'command_key' => (string) Str::uuid()];
+    }
+
+    /** 与数据库冻结触发器使用同一窗口条件，只读投影用于提示与提交前拦截。 */
+    public function nodeFrozen(string $type, string $id): bool
+    {
+        if ($this->frozenNodeCache === null) {
+            $rows = DB::select("SELECT DISTINCT n.node_type, COALESCE(n.volume_id,n.story_arc_id,n.chapter_id,n.scene_id)::text AS node_id FROM rolling_plans p JOIN plan_freezes f ON f.rolling_plan_id=p.id JOIN plan_nodes n ON n.outline_version_id=p.outline_version_id LEFT JOIN plan_nodes c ON c.id=n.parent_plan_node_id WHERE p.novel_id=? AND ((n.node_type='chapter' AND n.sequence BETWEEN p.start_chapter AND p.end_chapter) OR (n.node_type='scene' AND c.sequence BETWEEN p.start_chapter AND p.end_chapter) OR (n.node_type IN ('volume','story_arc') AND (n.details->>'start_chapter')::int<=p.end_chapter AND (n.details->>'end_chapter')::int>=p.start_chapter))", [$this->novelId]);
+            $this->frozenNodeCache = [];
+            foreach ($rows as $row) {
+                $this->frozenNodeCache[$row->node_type.':'.$row->node_id] = true;
+            }
+        }
+
+        return $this->frozenNodeCache[$type.':'.$id] ?? false;
+    }
+
+    public function toggleStoryBranch(string $type, string $id): void
+    {
+        abort_unless(collect($this->state()['nodes'])->contains(fn ($n) => $n['type'] === $type && $n['id'] === $id), 404);
+        $key = $type.'-'.$id;
+        $this->treeOpen[$key] = ! ($this->treeOpen[$key] ?? false);
+    }
+
+    public function focusStoryNode(string $type, string $id): void
+    {
+        $node = collect($this->state()['nodes'])->first(fn ($n) => $n['type'] === $type && $n['id'] === $id);
+        abort_unless($node, 404);
+        $this->type = $type;
+        $this->parent = isset($node['parent_id']) ? (StructureService::PARENTS[$type].':'.$node['parent_id']) : '';
+        $this->from = (string) $node['sequence'];
+        $this->until = $this->from;
+        $this->thread = '';
+        $this->missing = false;
+        $this->resetPage();
+    }
+
+    /** 保留本书所有已批准人物版本，避免新版批准后丢失仍有效的历史POV引用；停用和未批准版本不可新选。 */
+    public function povOptions(): array
+    {
+        app(NovelIntentService::class)->novel(auth()->user(), $this->novelId);
+
+        return DB::table('entity_definition_versions as d')->join('entities as e', 'e.id', '=', 'd.entity_id')->where('e.novel_id', $this->novelId)->where('e.type', 'character')->where('e.retired', false)->whereExists(fn ($q) => $q->selectRaw('1')->from('entity_approvals as a')->whereColumn('a.entity_definition_version_id', 'd.id'))->orderBy('e.name')->orderByDesc('d.version')->get(['d.id', 'd.version', 'e.name'])->mapWithKeys(fn ($v) => [(string) $v->id => $v->name.' · v'.$v->version.' · #'.$v->id])->all();
     }
 
     public function nodeAction(): Action
@@ -180,7 +237,7 @@ class Structure extends Page
             Select::make('thread_ids')->label('关联全书线索')->multiple()->visible(fn (Get $get) => $get('type') === 'story_arc')->options(fn () => collect(app(StructureService::class)->working(auth()->user(), $this->novelId)['threads'])->pluck('title', 'id')->all()),
         ];
         foreach (self::DETAILS as $key => $label) {
-            $fields[] = in_array($key, ['target_words', 'min_words', 'max_words', 'pov_version_id']) ? TextInput::make('details.'.$key)->label($label)->integer()->minValue(1) : Textarea::make('details.'.$key)->label($label)->maxLength(20000);
+            $fields[] = $key === 'pov_version_id' ? Select::make('details.'.$key)->label('已批准POV人物版本')->searchable()->options(fn () => $this->povOptions()) : (in_array($key, ['target_words', 'min_words', 'max_words']) ? TextInput::make('details.'.$key)->label($label)->integer()->minValue(1) : Textarea::make('details.'.$key)->label($label)->maxLength(20000));
         }
 
         return Action::make('node')->label('新增 / 修改结构节点')->visible(fn () => $this->editable())->schema([...$fields, Textarea::make('reason')->label('本次变更原因')->required()])->fillForm(function (array $arguments) {

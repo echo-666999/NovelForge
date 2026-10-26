@@ -1,58 +1,63 @@
-<x-filament-panels::page>
+<x-filament-panels::page class="nf-story-screen">
     @include('filament.book-navigation', ['navigation' => $this->bookNavigation()])
+<div wire:loading role="status">正在读取或保存本书资料，请稍候…</div>
+@if($errors->any())<x-nf.state state="error" title="请核对字段，输入仍保留"><ul>@foreach($errors->all() as $message)<li>{{ $message }}</li>@endforeach</ul></x-nf.state>@endif
     {{-- 所有作者内容使用转义输出；不将隐藏含义送入角色上下文。 --}}
-    <p>作者规划区。正式提交尚未接入，埋设、强化和回收证据均未成立；预期知情范围不代表人物已知。</p>
+    <p>作者规划区。正式进度仅按活动正式基线的证据读取；预期知情范围不代表人物已知。</p>
 
     @if($novel === '')
         <p>选择小说后查看伏笔承诺与主支线。暂无作品时，请先创建小说和蓝图。</p>
     @else
         @php($ledger = $this->ledger())
         @php($options = $this->options())
-        <div class="grid gap-4 md:grid-cols-3">
-            <label>调度预览章（非正式游标）<input type="number" min="1" max="100000" wire:model.live="chapter"></label>
-            <label>提示筛选 <select wire:model.live="dueFilter"><option value="">全部</option><option value="due">到期</option><option value="overdue">逾期</option><option value="no_evidence">无正式证据</option></select></label>
-            <label><input type="checkbox" wire:model.live="requiredOnly">仅必回收</label>
-            <label>生命周期 <select wire:model.live="lifecycleFilter"><option value="">全部</option><option value="planned">计划</option><option value="abandoned">已批准放弃</option></select></label>
-            <label>关联实体 <select wire:model.live="entityFilter"><option value="">全部</option>@foreach($options['entities'] as $e)<option value="{{ $e->id }}">{{ $e->name }}</option>@endforeach</select></label>
-            <label>回收窗口起 <input type="number" min="1" wire:model.live="from"></label><label>回收窗口止 <input type="number" min="1" wire:model.live="to"></label>
+        <x-nf.section heading="伏笔计划与正式证据">
+        <div class="nf-story-fields">
+            <x-nf.field id="ui06-foreshadow-ledger-1-{{ md5('chapter') }}" label="调度预览章（非正式游标）" :error="$errors->first('chapter')"><input id="ui06-foreshadow-ledger-1-{{ md5('chapter') }}" type="number" min="1" max="100000" wire:model.live="chapter"></x-nf.field>
+            <x-nf.story-select id="ui06-foreshadow-ledger-2-{{ md5('dueFilter') }}" label="提示筛选" model="dueFilter" :value="data_get($__livewire,'dueFilter')" ><option value="">全部</option><option value="due">到期</option><option value="overdue">逾期</option><option value="no_evidence">无正式证据</option></x-nf.story-select>
+            <label class="nf-story-check"><input type="checkbox" wire:model.live="requiredOnly">仅必回收</label>
+            <x-nf.story-select id="ui06-foreshadow-ledger-3-{{ md5('lifecycleFilter') }}" label="生命周期" model="lifecycleFilter" :value="data_get($__livewire,'lifecycleFilter')" ><option value="">全部</option><option value="planned">计划</option><option value="abandoned">已批准放弃</option></x-nf.story-select>
+            <x-nf.story-select id="ui06-foreshadow-ledger-4-{{ md5('entityFilter') }}" label="关联实体" model="entityFilter" :value="data_get($__livewire,'entityFilter')" ><option value="">全部</option>@foreach($options['entities'] as $e)<option value="{{ $e->id }}">{{ $e->name }}</option>@endforeach</x-nf.story-select>
+            <x-nf.field id="ui06-foreshadow-ledger-5-{{ md5('from') }}" label="回收窗口起" :error="$errors->first('from')"><input id="ui06-foreshadow-ledger-5-{{ md5('from') }}" type="number" min="1" wire:model.live="from"></x-nf.field><x-nf.field id="ui06-foreshadow-ledger-6-{{ md5('to') }}" label="回收窗口止" :error="$errors->first('to')"><input id="ui06-foreshadow-ledger-6-{{ md5('to') }}" type="number" min="1" wire:model.live="to"></x-nf.field>
         </div>
-        <div class="overflow-x-auto"><table class="w-full"><thead><tr><th>伏笔 / 版本</th><th>回收目标</th><th>规划状态</th><th>实际埋设 / 强化</th><th>正式证据数</th><th>提示</th><th>操作</th></tr></thead><tbody>
+        <x-nf.table label="故事资料列表"><table class="w-full"><thead><tr><th>伏笔 / 版本</th><th>回收目标</th><th>规划状态</th><th>实际埋设 / 强化</th><th>正式证据数</th><th>提示</th><th>操作</th></tr></thead><tbody>
         @forelse($ledger['items'] as $item)
-            <tr><td>{{ $item['name'] }} / V{{ $item['version'] }}</td><td>{{ $item['payoff_target'] }}（{{ $item['payoff_start'] }}–{{ $item['payoff_end'] }}）</td><td>{{ $item['lifecycle']==='abandoned'?'已批准放弃':'计划' }} {{ $item['frozen']?'已冻结':'' }}</td><td>无 / 无</td><td>{{ $item['evidence_count'] }}</td><td>{{ $item['overdue']?'逾期，缺回收证据':($item['due']?'到期':'') }} {{ $item['priority']==='high'?'高优先级':($item['priority']==='groundwork_check'?'检查铺垫':'') }}@foreach($item['suggestions'] as $s)<p>{{ $s }}</p>@endforeach</td><td><x-filament::button size="sm" wire:click="inspect('{{ $item['id'] }}')">查看版本与证据</x-filament::button></td></tr>
+            <tr><td>{{ $item['name'] }} / V{{ $item['version'] }}</td><td>{{ $item['payoff_target'] }}（{{ $item['payoff_start'] }}–{{ $item['payoff_end'] }}）</td><td>{{ $item['lifecycle']==='abandoned'?'已批准放弃':'计划' }} {{ $item['frozen']?'已冻结':'' }}</td><td>{{ $ledger['formal_progress']==='connected'?($item['first_actual_plant']??'尚无埋设证据'):'正式基线未连接' }} / {{ $ledger['formal_progress']==='connected'?($item['last_actual_reinforcement']??'尚无强化证据'):'未知' }}</td><td>{{ $ledger['formal_progress']==='connected'?$item['evidence_count']:'未知（未连接）' }}</td><td>{{ $item['overdue']?'逾期，缺回收证据':($item['due']?'到期':'') }} {{ $item['priority']==='high'?'高优先级':($item['priority']==='groundwork_check'?'检查铺垫':'') }}@foreach($item['suggestions'] as $s)<p>{{ $s }}</p>@endforeach</td><td><x-filament::button size="sm" wire:click="inspect('{{ $item['id'] }}')">查看版本与证据</x-filament::button></td></tr>
         @empty<tr><td colspan="7">暂无符合条件的伏笔计划。可以创建计划；不会生成正文或标记已埋设。</td></tr>@endforelse
-        </tbody></table></div>
-        <x-filament::section heading="主支线承诺与终局（批准蓝图）">
-            <label>类型 <select wire:model.live="threadKind"><option value="">全部</option><option value="main">主线</option><option value="sub">支线</option></select></label>
-            @forelse($ledger['threads'] as $thread)<div><strong>{{ $thread['kind']==='main'?'主线':'支线' }} #{{ $thread['thread_id'] }}</strong><p>目标：{{ $thread['content']['goal'] ?? '' }}；计划解决：{{ $thread['content']['resolution'] ?? '' }}</p><p>转折：{{ $thread['content']['turning_points'] ?? '' }}；人物弧：{{ $thread['content']['character_arc'] ?? '' }}</p><p>关联伏笔版本：{{ implode('、',$thread['linked_plan_ids']) ?: '未关联' }}；正式证据：0；闭合状态：尚未接入。</p></div>@empty<p>没有已批准蓝图的主支线承诺，请先完成蓝图批准。</p>@endforelse
+        </tbody></table></x-nf.table>
+        </x-nf.section>
+        <x-nf.section heading="主支线承诺与终局（批准蓝图）">
+            <x-nf.story-select id="ui06-foreshadow-ledger-7-{{ md5('threadKind') }}" label="类型" model="threadKind" :value="data_get($__livewire,'threadKind')" ><option value="">全部</option><option value="main">主线</option><option value="sub">支线</option></x-nf.story-select>
+            @forelse($ledger['threads'] as $thread)<div><strong>{{ $thread['kind']==='main'?'主线':'支线' }} #{{ $thread['thread_id'] }}</strong><p>目标：{{ $thread['content']['goal'] ?? '' }}；计划解决：{{ $thread['content']['resolution'] ?? '' }}</p><p>转折：{{ $thread['content']['turning_points'] ?? '' }}；人物弧：{{ $thread['content']['character_arc'] ?? '' }}</p><p>关联伏笔版本：{{ implode('、',$thread['linked_plan_ids']) ?: '未关联' }}；正式证据与闭合进度：该主支线投影未接入，不显示虚构计数。</p></div>@empty<p>没有已批准蓝图的主支线承诺，请先完成蓝图批准。</p>@endforelse
             @if($ledger['ending'])<p>终局窗口：{{ $ledger['ending']['content']['start_chapter'] }}–{{ $ledger['ending']['content']['end_chapter'] }}；目标 {{ $ledger['ending']['content']['target_chapters'] }} 章</p><p>最终选择：{{ $ledger['ending']['content']['final_choice'] }}</p><p>必回收文本承诺：{{ implode('、',$ledger['ending']['content']['required_foreshadows']) }}</p><p>开放项：{{ implode('、',$ledger['ending']['content']['open_items']) }}</p><p>文本承诺未自动按名称绑定伏笔；终局完成门禁待后续任务接入。</p>@endif
-        </x-filament::section>
-        <x-filament::section heading="创建伏笔或编辑改期候选">
+        </x-nf.section>
+        <x-nf.section heading="创建伏笔或编辑改期候选">
             @if(!$options['blueprints'])<p>缺少蓝图，请先保存并批准蓝图。</p>@endif
-            <div class="grid gap-4 md:grid-cols-2">
-            <label>蓝图版本 <select wire:model.live="form.blueprint_version_id"><option value="">请选择</option>@foreach($options['blueprints'] as $b)<option value="{{ $b->id }}">V{{ $b->version }} / #{{ $b->id }}</option>@endforeach</select></label>
-            <label>主支线 <select wire:model="form.thread_id"><option value="">未关联</option>@foreach($options['threads'] as $t)<option value="{{ $t->thread_id }}">{{ $t->kind }} #{{ $t->thread_id }}</option>@endforeach</select></label>
-            @foreach(['name'=>'伏笔名称','surface_clue'=>'表面线索','hidden_meaning'=>'隐藏含义','misdirection'=>'预期读者误导','no_early_reveal'=>'禁止提前揭示','causal_role'=>'终局因果作用','prerequisite_description'=>'前置条件说明'] as $field=>$label)<label>{{ $label }}<textarea wire:model="form.{{ $field }}" class="w-full"></textarea></label>@endforeach
-            @foreach(['plant_start'=>'埋设起章','plant_end'=>'埋设止章','payoff_target'=>'回收目标章','payoff_start'=>'回收窗口起章','payoff_end'=>'回收窗口止章'] as $field=>$label)<label>{{ $label }}<input type="number" min="1" max="100000" wire:model="form.{{ $field }}"></label>@endforeach
-            <label><input type="checkbox" wire:model="form.required">必须回收</label>
-            <label>重要程度 <select wire:model="form.importance"><option value="major">重要</option><option value="minor">次要</option></select></label>
-            <label>保密级别 <select wire:model="form.secrecy"><option value="author_only">仅作者</option><option value="reader_hint">读者可见线索</option><option value="character_limited">限定角色</option></select></label>
-            @foreach(['entity_version_ids'=>'关联实体版本','knower_version_ids'=>'预期知情角色版本'] as $field=>$label)<label>{{ $label }}<select multiple wire:model="form.{{ $field }}">@foreach($options['entities'] as $e)@if($field!=='knower_version_ids'||$e->type==='character')<option value="{{ $e->approved_version_id }}">{{ $e->name }} / 定义 #{{ $e->approved_version_id }}</option>@endif@endforeach</select></label>@endforeach
-            <label>前置候选事件（仍须正式证据）<select multiple wire:model="form.prerequisite_event_ids">@foreach($options['events'] as $e)<option value="{{ $e->id }}">#{{ $e->id }} / 第{{ $e->chapter_sequence }}章 {{ $e->attribute }}</option>@endforeach</select></label>
+            <div class="nf-story-fields">
+            <x-nf.story-select id="ui06-foreshadow-ledger-8-{{ md5('form.blueprint_version_id') }}" label="蓝图版本" model="form.blueprint_version_id" :value="data_get($__livewire,'form.blueprint_version_id')" ><option value="">请选择</option>@foreach($options['blueprints'] as $b)<option value="{{ $b->id }}">V{{ $b->version }} / #{{ $b->id }}</option>@endforeach</x-nf.story-select>
+            <x-nf.story-select id="ui06-foreshadow-ledger-9-{{ md5('form.thread_id') }}" label="主支线" model="form.thread_id" :value="data_get($__livewire,'form.thread_id')" ><option value="">未关联</option>@foreach($options['threads'] as $t)<option value="{{ $t->thread_id }}">{{ $t->kind }} #{{ $t->thread_id }}</option>@endforeach</x-nf.story-select>
+            @foreach(['name'=>'伏笔名称','surface_clue'=>'表面线索','hidden_meaning'=>'隐藏含义','misdirection'=>'预期读者误导','no_early_reveal'=>'禁止提前揭示','causal_role'=>'终局因果作用','prerequisite_description'=>'前置条件说明'] as $field=>$label)<x-nf.field id="ui06-foreshadow-ledger-10-{{ md5('form.'.($field)) }}" label="{{ $label }}" :error="$errors->first('form.'.($field))"><textarea id="ui06-foreshadow-ledger-10-{{ md5('form.'.($field)) }}" wire:model="form.{{ $field }}" class="w-full"></textarea></x-nf.field>@endforeach
+            @foreach(['plant_start'=>'埋设起章','plant_end'=>'埋设止章','payoff_target'=>'回收目标章','payoff_start'=>'回收窗口起章','payoff_end'=>'回收窗口止章'] as $field=>$label)<x-nf.field id="ui06-foreshadow-ledger-11-{{ md5('form.'.($field)) }}" label="{{ $label }}" :error="$errors->first('form.'.($field))"><input id="ui06-foreshadow-ledger-11-{{ md5('form.'.($field)) }}" type="number" min="1" max="100000" wire:model="form.{{ $field }}"></x-nf.field>@endforeach
+            <label class="nf-story-check"><input type="checkbox" wire:model="form.required">必须回收</label>
+            <x-nf.story-select id="ui06-foreshadow-ledger-12-{{ md5('form.importance') }}" label="重要程度" model="form.importance" :value="data_get($__livewire,'form.importance')" ><option value="major">重要</option><option value="minor">次要</option></x-nf.story-select>
+            <x-nf.story-select id="ui06-foreshadow-ledger-13-{{ md5('form.secrecy') }}" label="保密级别" model="form.secrecy" :value="data_get($__livewire,'form.secrecy')" ><option value="author_only">仅作者</option><option value="reader_hint">读者可见线索</option><option value="character_limited">限定角色</option></x-nf.story-select>
+            @foreach(['entity_version_ids'=>'关联实体版本','knower_version_ids'=>'预期知情角色版本'] as $field=>$label)<x-nf.story-select id="ui06-foreshadow-ledger-14-{{ md5('form.'.($field)) }}" label="{{ $label }}" model="form.{{ $field }}" :value="data_get($__livewire,'form.'.($field))" :multiple="true">@foreach($options['entities'] as $e)@if($field!=='knower_version_ids'||$e->type==='character')<option value="{{ $e->approved_version_id }}">{{ $e->name }} / 定义 #{{ $e->approved_version_id }}</option>@endif@endforeach</x-nf.story-select>@endforeach
+            <x-nf.story-select id="ui06-foreshadow-ledger-15-{{ md5('form.prerequisite_event_ids') }}" label="前置候选事件（仍须正式证据）" model="form.prerequisite_event_ids" :value="data_get($__livewire,'form.prerequisite_event_ids')" :multiple="true">@foreach($options['events'] as $e)<option value="{{ $e->id }}">#{{ $e->id }} / 第{{ $e->chapter_sequence }}章 {{ $e->attribute }}</option>@endforeach</x-nf.story-select>
             </div>
-            @foreach($form['reinforcements'] as $i=>$w)<div wire:key="reinforcement-{{ $i }}"><label>强化起章<input type="number" wire:model="form.reinforcements.{{ $i }}.start"></label><label>止章<input type="number" wire:model="form.reinforcements.{{ $i }}.end"></label><label>新增信息<textarea wire:model="form.reinforcements.{{ $i }}.new_information"></textarea></label><label>选择影响<textarea wire:model="form.reinforcements.{{ $i }}.choice_impact"></textarea></label><x-filament::button wire:click="removeReinforcement({{ $i }})">移除此强化候选</x-filament::button></div>@endforeach
+            @foreach($form['reinforcements'] as $i=>$w)<div wire:key="reinforcement-{{ $i }}"><x-nf.field id="ui06-foreshadow-ledger-16-{{ md5('form.reinforcements.'.($i).'.start') }}" label="强化起章" :error="$errors->first('form.reinforcements.'.($i).'.start')"><input id="ui06-foreshadow-ledger-16-{{ md5('form.reinforcements.'.($i).'.start') }}" type="number" wire:model="form.reinforcements.{{ $i }}.start"></x-nf.field><x-nf.field id="ui06-foreshadow-ledger-17-{{ md5('form.reinforcements.'.($i).'.end') }}" label="止章" :error="$errors->first('form.reinforcements.'.($i).'.end')"><input id="ui06-foreshadow-ledger-17-{{ md5('form.reinforcements.'.($i).'.end') }}" type="number" wire:model="form.reinforcements.{{ $i }}.end"></x-nf.field><x-nf.field id="ui06-foreshadow-ledger-18-{{ md5('form.reinforcements.'.($i).'.new_information') }}" label="新增信息" :error="$errors->first('form.reinforcements.'.($i).'.new_information')"><textarea id="ui06-foreshadow-ledger-18-{{ md5('form.reinforcements.'.($i).'.new_information') }}" wire:model="form.reinforcements.{{ $i }}.new_information"></textarea></x-nf.field><x-nf.field id="ui06-foreshadow-ledger-19-{{ md5('form.reinforcements.'.($i).'.choice_impact') }}" label="选择影响" :error="$errors->first('form.reinforcements.'.($i).'.choice_impact')"><textarea id="ui06-foreshadow-ledger-19-{{ md5('form.reinforcements.'.($i).'.choice_impact') }}" wire:model="form.reinforcements.{{ $i }}.choice_impact"></textarea></x-nf.field><x-filament::button wire:click="removeReinforcement({{ $i }})">移除此强化候选</x-filament::button></div>@endforeach
             <x-filament::button wire:click="addReinforcement">增加强化窗口</x-filament::button>
-            <label>操作理由<textarea wire:model="reason" class="w-full"></textarea></label><label>放弃后的替代安排<textarea wire:model="alternative" class="w-full"></textarea></label>
+            <x-nf.field id="ui06-foreshadow-ledger-20-{{ md5('reason') }}" label="操作理由" :error="$errors->first('reason')"><textarea id="ui06-foreshadow-ledger-20-{{ md5('reason') }}" wire:model="reason" class="w-full"></textarea></x-nf.field><x-nf.field id="ui06-foreshadow-ledger-21-{{ md5('alternative') }}" label="放弃后的替代安排" :error="$errors->first('alternative')"><textarea id="ui06-foreshadow-ledger-21-{{ md5('alternative') }}" wire:model="alternative" class="w-full"></textarea></x-nf.field>
             <x-filament::button wire:click="createPlan">创建新伏笔</x-filament::button>
             @if($detail && $detail['novel_id']===$novel)<x-filament::button wire:click="freezePlan">冻结选中版本</x-filament::button><x-filament::button wire:click="propose('reschedule')">提出改期候选</x-filament::button><x-filament::button wire:click="propose('abandon')">提出放弃候选</x-filament::button>@endif
             <x-filament::button color="gray" wire:click="refreshVersion">刷新操作基线</x-filament::button><p>{{ $notice }}</p>
-        </x-filament::section>
+        </x-nf.section>
         @if($detail && $detail['novel_id']===$novel)
-            <x-filament::section heading="历史版本、冻结承诺与作者决定">
-                <p>当前选择：{{ $detail['name'] }} V{{ $detail['version'] }}；跨章正式证据为空。提及或解释均不能代替因果回收。</p>
+            <x-nf.section heading="历史版本、冻结承诺与作者决定">
+                <p>当前选择：{{ $detail['name'] }} V{{ $detail['version'] }}；正式证据请核对当前基线投影。提及或解释均不能代替因果回收。</p>
+                @include('filament.value-table',['value'=>$detail['occurrences']??[],'label'=>'当前正式基线的伏笔证据'])
                 @foreach($detail['history'] as $h)<p><button wire:click="inspect('{{ $h['id'] }}')">V{{ $h['version'] }} / 回收 {{ $h['payoff_start'] }}–{{ $h['payoff_end'] }} / {{ $h['reason'] }}</button></p>@endforeach
                 @foreach($detail['freezes'] as $f)<p>冻结版本 #{{ $f['plan_id'] }}；哈希 {{ $f['content_hash'] }}；理由 {{ $f['reason'] }}</p>@endforeach
                 @foreach($detail['proposals'] as $q)<div><p>候选 #{{ $q['id'] }}：{{ $q['kind']==='abandon'?'放弃':'改期' }}；原版本 #{{ $q['plan_id'] }}；新窗口 {{ $q['payload']['payoff_start'] }}–{{ $q['payload']['payoff_end'] }}；理由 {{ $q['reason'] }}；替代安排 {{ $q['alternative'] }}</p>@if($q['decision'])<p>作者决定：{{ $q['decision']['decision']==='approve'?'批准':'拒绝' }} / {{ $q['decision']['reason'] }}</p>@else<x-filament::button wire:click="decide('{{ $q['id'] }}','approve')">批准候选</x-filament::button><x-filament::button color="gray" wire:click="decide('{{ $q['id'] }}','reject')">拒绝候选</x-filament::button>@endif</div>@endforeach
-            </x-filament::section>
+            </x-nf.section>
         @endif
     @endif
 </x-filament-panels::page>

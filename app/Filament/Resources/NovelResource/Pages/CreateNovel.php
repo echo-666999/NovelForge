@@ -35,7 +35,8 @@ class CreateNovel extends CreateRecord
     protected function getSteps(): array
     {
         return [
-            Step::make('输入')->schema(NovelResource::inputFields()),
+            // 短字段并排呈现，原始背景和剧情由字段定义保持全文宽。
+            Step::make('输入')->schema(NovelResource::inputFields())->columns(2),
             Step::make('提炼约束')->schema([Text::make(fn (Get $get) => '背景要求：'.$get('background')), Text::make(fn (Get $get) => '剧情要求：'.$get('premise_raw')), Text::make(fn (Get $get) => '禁用内容：'.$get('forbidden_content')), Text::make(fn (Get $get) => '结局待决定：'.$get('ending_preference')), Text::make('背景、剧情、禁用内容和结局原句将分别建立待确认要求。本阶段不调用模型；保存后可逐条拆分、修正与决定。')]),
             Step::make('确认歧义')->schema([Text::make('背景与结局列为关键待决定项。未决定或未覆盖的要求不会被视作已满足；保存草稿不会批准规划。'), Checkbox::make('acknowledged')->label('已了解待决定项会保留，稍后逐条确认')->accepted()->required()->dehydrated(false)]),
             Step::make('保存')->schema([Text::make('保存原始输入和第一版要求；后续修改保留旧版本。')]),

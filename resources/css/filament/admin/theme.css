@@ -361,3 +361,23 @@
 
 /* UI05：长书名不能挤占日期、状态和创作动作；窄屏只在表格容器滚动。 */
 .nf-overview-table { width: 100%; min-width: 48rem; table-layout: fixed; }
+
+/* UI06：故事工作区统一密度，正文与版本证据保留阅读层次。 */
+.nf-story-screen { --nf-story-gap: 1rem; }
+.nf-story-toolbar { display:flex; flex-wrap:wrap; align-items:end; gap:1rem; }
+.nf-story-toolbar > .nf-field { flex:1 1 12rem; min-width:0; }
+.nf-story-fields { display:grid; grid-template-columns:minmax(0,1fr); gap:1rem; }
+.nf-story-screen .nf-field { min-width:0; margin-block:.5rem; }
+.nf-story-screen > details, .nf-story-screen .fi-section-content > details { padding:.75rem; border:1px solid var(--nf-rule); border-radius:var(--nf-control-radius); }
+.nf-story-screen summary { cursor:pointer; font-weight:600; overflow-wrap:anywhere; }
+.nf-story-screen p, .nf-story-screen td, .nf-story-screen dd { overflow-wrap:anywhere; }
+.nf-story-screen table { width:100%; min-width:48rem; table-layout:fixed; }
+.nf-story-screen table table { min-width:30rem; }
+.nf-story-text { white-space:pre-wrap; line-height:1.8; max-width:48em; }
+.nf-story-check { display:flex; align-items:center; gap:.5rem; min-height:2.5rem; margin-block:.25rem; }
+.nf-story-multiple { min-width:0; max-height:18rem; overflow:auto; padding:1rem; border:1px solid var(--nf-rule); border-radius:var(--nf-control-radius); }
+.nf-story-screen details[open]:has(> .nf-field) { display:grid; grid-template-columns:minmax(0,1fr); gap:.75rem; }
+.nf-story-screen details[open]:has(> .nf-field) > summary, .nf-story-screen details[open]:has(> .nf-field) > p { grid-column:1/-1; }
+.nf-story-tree { display:grid; gap:.75rem; padding-inline-start:1rem; border-inline-start:1px solid var(--nf-rule); }
+.nf-story-tree .nf-story-tree { margin-block-start:.75rem; }
+@media(min-width:768px) { .nf-story-fields, .nf-story-screen details[open]:has(> .nf-field) { grid-template-columns:repeat(2,minmax(0,1fr)); } }
