@@ -150,7 +150,7 @@ class LayeredMemoryTest extends TestCase
         $s = app(LayeredMemoryService::class);
         $m = F::command($f, 'save', $f['memory'])['memory'];
         foreach (['1', '9223372036854775807'] as $revision) {
-            $this->reject(fn () => $s->listing($f['actor'], $f['novelId'], ['scope' => 'formal', 'revision_id' => $revision]), 'FORMAL_MEMORY_UNAVAILABLE');
+            $this->reject(fn () => $s->listing($f['actor'], $f['novelId'], ['scope' => 'formal', 'revision_id' => $revision]), 'STALE_REVISION');
         }
         $this->invalid(fn () => $s->listing($f['actor'], $f['novelId'], []));
         $this->invalid(fn () => $s->listing($f['actor'], $f['novelId'], $this->filters($f, ['revision_id' => '1'])));
@@ -222,7 +222,7 @@ class LayeredMemoryTest extends TestCase
         $this->getJson($url)->assertUnauthorized();
         $this->actingAs(User::factory()->create(['is_admin' => false]))->getJson($url)->assertForbidden();
         $this->actingAs($f['actor']);
-        $this->getJson($url.'?scope=formal&revision_id=1')->assertConflict()->assertJsonPath('error.code', 'FORMAL_MEMORY_UNAVAILABLE');
+        $this->getJson($url.'?scope=formal&revision_id=1')->assertConflict()->assertJsonPath('error.code', 'STALE_REVISION');
         Filament::setCurrentPanel(Filament::getPanel('admin'));
         Livewire::test(MemoryLibrary::class)->assertSee('请先选择小说和候选分支');
         $page = Livewire::test(MemoryLibrary::class, ['novel' => $f['novelId'], 'branch' => $f['branch']])->assertSee('暂无符合条件')->set('form', $f['memory'])->set('reason', '作者离线摘要验收')->call('saveMemory')->assertSee('记忆操作已保存')->call('activate');

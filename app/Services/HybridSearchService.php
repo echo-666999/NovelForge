@@ -245,11 +245,15 @@ final class HybridSearchService
 
     public function search(User $actor, string $novel, array $d): array
     {
+        if (($d['scope'] ?? null) === 'formal' && isset($d['revision_id'])) {
+            return app(CanonicalMemoryService::class)->search($actor, $novel, $d);
+        }
+
         return DB::transaction(function () use ($actor, $novel, $d) {
             app(NovelIntentService::class)->novel($actor, $novel, true);
             Validator::make($d, ['scope' => ['required', Rule::in(['candidate', 'formal'])]])->validate();
             if ($d['scope'] === 'formal') {
-                throw new NovelProblem('FORMAL_SEARCH_UNAVAILABLE', '正式来源与基线未接入，不能回退到候选检索。');
+                throw new NovelProblem('FORMAL_SEARCH_UNAVAILABLE', '正式检索必须显式指定活动revision_id，不能回退到候选检索。');
             }
             Validator::make($d, ['branch_id' => 'required|integer|min:1', 'build_id' => 'required|integer|min:1', 'profile_id' => 'required|integer|min:1', 'query' => 'required|string|max:500', 'chapter' => 'required|integer|min:1|max:100000', 'audience' => ['required', Rule::in(['author', 'pov'])], 'pov_id' => 'required_if:audience,pov|integer|min:1', 'context_id' => 'required_if:audience,pov|integer|min:1', 'limit' => 'sometimes|integer|min:1|max:100', 'revision_id' => 'prohibited', 'vector' => 'sometimes|boolean'])->validate();
             $b = $this->index($novel, $d['build_id']);

@@ -1,0 +1,33 @@
+{
+    "database": "novel_forge",
+    "mode": "read_only",
+    "server_version": "18.6",
+    "migration_registered": true,
+    "tables": {
+        "scene_versions": {
+            "columns": 19,
+            "commented_columns": 19,
+            "table_comment": "不可变场景候选正文版本；不代表正式提交",
+            "rows": 0
+        },
+        "chapter_versions": {
+            "columns": 19,
+            "commented_columns": 19,
+            "table_comment": "不可变章节候选正文版本；不代表正式提交",
+            "rows": 0
+        },
+        "chapter_scene_versions": {
+            "columns": 4,
+            "commented_columns": 4,
+            "table_comment": "章节候选组装的有序场景版本来源",
+            "rows": 0
+        }
+    },
+    "counts": {
+        "users": 1,
+        "novels": 0,
+        "providers": 0,
+        "model_profiles": 0,
+        "ai_requests": 0
+    }
+}

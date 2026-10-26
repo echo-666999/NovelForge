@@ -143,7 +143,7 @@ class CanonicalCommitCenter extends Page
                 throw new NovelProblem('INVALID_PREFLIGHT', '请先完成本次预检。');
             }
             $this->receipt = app(CanonicalCommitService::class)->commit(auth()->user(), $this->novel, $this->form + ['validation_artifact_id' => $this->preflight['id']], $this->commandKey);
-            $this->notice = '正式提交已完成；后续记忆意图已持久保存，E07尚未接入消费。';
+            $this->notice = '正式提交已完成；后续记忆意图已持久保存，由memory队列异步处理。';
         });
     }
 

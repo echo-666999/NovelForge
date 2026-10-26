@@ -134,3 +134,10 @@ source_documents新增chapter_version_id；artifact来源继续要求run_id/arti
 story_events、foreshadow_occurrences解除旧CHECK(false)，改用commit证明、同书FK、来源一致性和事务完成约束；保留不可改删。entity_state_versions绑定正式快照投影，source_event_id指正式story_events，另保留proposed_event_id来源。canonical知识和关系是正式投影，不能改写D02候选；正式快照以formal-state-v1封存实体/知识/当前关系。关系历史保留，快照只呈现当时有效事实关系，撤销/替代事件不继续污染当前关系。
 
 本轮只实现根基线顺序追加，不实现CSV的base_revision_id及G01候选重基线。新增物理表/字段数量、中文备注及开发库迁移结果见../phase-e/NF-E06_ACCEPTANCE.md。C02运行outbox与canonical_outbox分开说明见A04_CONTRACTS的ADR-E06-01。
+
+
+## NF-E07 实际增量（2026-10-26）
+
+新增canonical_memory_tasks（20字段）、canonical_memory_attempts（7）、canonical_memories（11）、canonical_memory_documents（11）、canonical_memory_embeddings（8），共5表57字段，全部中文COMMENT，无既有表新列。任务commit/outbox唯一，身份不可变、通知与执行状态分开；尝试追加不可变。正式四层摘要以commit/kind唯一，事实值文档以revision/event唯一，vector(64)以document/profile唯一；同书正式commit/event/document强FK，租约与完整事实保留触发器约束，队列待处理/基线章位索引和pg_trgm GIN已建。
+
+独立表避免把generation_run强依赖候选表伪造成正式资料；C02/C04/C05候选架构保持。正式来源以E06回执、原正文/快照/事件hash为证，不能用角色声明代替实际获知链；任务状态变更接C07审计，原outbox不改删。具体字段、租约、索引和中文备注实测见../phase-e/NF-E07_ACCEPTANCE.md及迁移JSON。

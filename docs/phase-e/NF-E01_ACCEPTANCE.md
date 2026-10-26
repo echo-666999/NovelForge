@@ -48,3 +48,6 @@
 开发库先备份后仅应用E01迁移，退出0。新增2表18字段中文备注完整；generation_runs.outline_version_id调整及中文备注已核验。users 1→1、novels 0→0，providers/model_profiles/ai_requests均0→0，两张规划表均0行，没有导入测试候选或配置。备份 `.local/backups/nf-e01-before-20261024-200324.dump`，SHA256 `0ada66b5e2e3fb90d3bc86252397d99f9d121f4708c70f9b1021909cc76cc41a`；归档目录检查通过，未执行恢复演练。详情见 `NF-E01_MIGRATION_RESULT.json`。测试限定novel_forge_test，专用测试Redis在收尾关闭。
 
 UI证据为HTTP/Livewire动作，不代表真实浏览器视觉与键盘验收；未验证真实供应商、模型语义质量、实际Token、千章性能或备份恢复演练。中文分词未接入。
+
+
+2026-10-26已按当前仓库复核，新增两项来源/依赖边界测试，专项12项通过、94断言；没有重建业务或新增迁移。历史统计与关闭范围保留为当时记录；当前范围、开发库只读证据及单进程回归内存问题见[NF-E01复核](NF-E01_RECHECK_2026-10-26.md)。

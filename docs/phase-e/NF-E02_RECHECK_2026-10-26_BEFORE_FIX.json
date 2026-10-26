@@ -1,0 +1,1 @@
+{"tool":"phpunit","result":"failed","tests":1,"passed":0,"assertions":1,"duration_ms":24574,"failed":1,"failures":[{"test":"Tests\\Feature\\DraftingRecheckTest::test_formal_body_is_visible_and_read_only_when_a_new_candidate_is_edited","file":"/Users/webb/Herd/NovelForge/tests/Feature/DraftingRecheckTest.php","line":27,"message":"Failed asserting that null is identical to '1'."}]}

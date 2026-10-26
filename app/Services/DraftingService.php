@@ -116,6 +116,10 @@ final class DraftingService
                 throw new NovelProblem('STALE_CANDIDATE', '场景候选已被另一次保存改变。');
             }
             $chapter = collect($plan['nodes'])->firstWhere('id', $scene['parent_plan_node_id']);
+            // 正式历史的重新生成须走重基线流程；当前只接入下一章连续衔接。
+            if ($book->state_version > 0 && (int) DB::table('canonical_revisions')->where('novel_id', $novel)->where('id', $book->active_canonical_revision_id)->value('cursor') + 1 !== $chapter['sequence']) {
+                throw new NovelProblem('HISTORY_CHANGE_REQUIRED', '只能从最新正式前缀生成下一章，历史重生成等待专门流程。');
+            }
             $previous = null;
             foreach ($this->scenes($plan, $chapter) as $s) {
                 if ((string) $s['scene_id'] === (string) $d['scene_id']) {
@@ -137,7 +141,7 @@ final class DraftingService
             $billing = app(BudgetService::class)->freeze($actor, $novel, $billingInput, $config);
             // 预分配身份仅用于组装分支；所有持久行在同一事务内一次性写入冻结输入。
             $id = (string) DB::selectOne("SELECT nextval(pg_get_serial_sequence('generation_runs','id')) AS id")->id;
-            $context = app(ContextAssemblyService::class)->prepare($actor, $book, (object) ['stage' => 'drafting.scene', 'dependency_hash' => null], (object) ['id' => $id, 'outline_version_id' => $plan['outline_version_id'], 'expected_state_version' => $book->state_version, 'status' => 'queued', 'frozen_config' => NovelIntentService::canonical(['configuration' => $config, 'billing' => $billing])], ['scope' => 'candidate', 'plan_id' => $plan['id'], 'scene_id' => $d['scene_id'], 'pov_id' => $d['pov_id'], 'configuration' => ['route_version_id' => $config['route']['id'], 'variables' => $config['variables']], 'billing' => $billingInput, 'safety_margin' => 256], '', $previous);
+            $context = app(ContextAssemblyService::class)->prepare($actor, $book, (object) ['stage' => 'drafting.scene', 'dependency_hash' => null], (object) ['id' => $id, 'outline_version_id' => $plan['outline_version_id'], 'expected_state_version' => $book->state_version, 'status' => 'queued', 'frozen_config' => NovelIntentService::canonical(['configuration' => $config, 'billing' => $billing])], ['scope' => $book->state_version > 0 ? 'formal' : 'candidate', 'revision_id' => $book->active_canonical_revision_id, 'plan_id' => $plan['id'], 'scene_id' => $d['scene_id'], 'pov_id' => $d['pov_id'], 'configuration' => ['route_version_id' => $config['route']['id'], 'variables' => $config['variables']], 'billing' => $billingInput, 'safety_margin' => 256], '', $previous);
             if ($context['status'] !== 'assembled') {
                 throw new NovelProblem('CONTEXT_NOT_READY', '上下文缺少必要来源或超过容量。');
             }
@@ -312,26 +316,81 @@ final class DraftingService
         return $v + ['display_status' => $formal ? 'committed' : ($v['stale'] ? 'stale' : $v['status']), 'formal' => $formal ? ['commit_id' => (string) $formal->commit_id, 'revision_id' => (string) $formal->revision_id] : null, 'review_status' => 'not_implemented', 'accepted' => false];
     }
 
+    /** 正式版本仅按活动基线映射读取；展示不回退候选，也不重算当前规划资格。 */
+    public function formal(User $actor, string $novel, string $chapter): ?array
+    {
+        $book = app(NovelIntentService::class)->novel($actor, $novel);
+        Validator::make(['chapter' => $chapter], ['chapter' => 'required|integer|min:1|max:9223372036854775807'])->validate();
+        if (! DB::table('chapters')->where('novel_id', $novel)->where('id', $chapter)->exists()) {
+            throw new NovelProblem('NOT_FOUND', '章节不属于当前小说。', 404);
+        }
+        $formal = $this->formalVersions($novel, $book->active_canonical_revision_id, $chapter)[$chapter] ?? null;
+        if ($formal === null) {
+            return null;
+        }
+        $body = DB::table('chapter_versions')->where('novel_id', $novel)->where('node_id', $chapter)->find($formal['id']);
+        if (! $body) {
+            throw new NovelProblem('NOT_FOUND', '正式映射的正文不存在。', 404);
+        }
+
+        return $this->decode($body) + $formal + ['canonical' => true, 'display_status' => 'committed'];
+    }
+
+    /** 一次读取正式列表元数据，不把整本正式正文塞入列表响应。 */
+    private function formalVersions(string $novel, ?int $revision, ?string $chapter = null): array
+    {
+        if ($revision === null) {
+            return [];
+        }
+
+        return DB::table('canonical_chapters as m')->join('canonical_commits as c', 'c.id', '=', 'm.commit_id')
+            ->join('chapter_versions as v', 'v.id', '=', 'm.chapter_version_id')
+            ->where('m.novel_id', $novel)->where('m.revision_id', $revision)->where('c.status', 'committed')
+            ->when($chapter !== null, fn ($q) => $q->where('m.chapter_id', $chapter))
+            ->get(['m.chapter_id', 'm.chapter_version_id as id', 'm.commit_id', 'm.revision_id', 'v.version', 'v.title', 'v.body_hash', 'v.character_count', 'c.created_at as committed_at'])
+            ->mapWithKeys(fn ($v) => [(string) $v->chapter_id => ['id' => (string) $v->id, 'commit_id' => (string) $v->commit_id, 'revision_id' => (string) $v->revision_id, 'version' => $v->version, 'title' => $v->title, 'body_hash' => $v->body_hash, 'character_count' => $v->character_count, 'committed_at' => CarbonImmutable::parse($v->committed_at)->toISOString()]])->all();
+    }
+
+    /** 已存评审只是历史记录；本列表不以旧PASS推断当前可提交资格。 */
+    private function recordedReview(string $novel, string $version): ?array
+    {
+        $review = DB::table('reviews')->where('novel_id', $novel)->where('chapter_version_id', $version)->orderByDesc('id')->first();
+        if (! $review) {
+            return null;
+        }
+
+        return ['id' => (string) $review->id, 'verdict' => json_decode($review->report, true, flags: JSON_THROW_ON_ERROR)['verdict'], 'created_at' => CarbonImmutable::parse($review->created_at)->toISOString(), 'eligibility' => 'not_checked'];
+    }
+
     public function listing(User $actor, string $novel, array $filters = []): array
     {
-        app(NovelIntentService::class)->novel($actor, $novel);
-        Validator::make($filters, ['chapter_id' => 'nullable|integer|min:1', 'status' => 'nullable|in:planned,drafting,revision_required,stale', 'missing' => 'nullable|boolean', 'word_issue' => 'nullable|boolean'])->validate();
+        $book = app(NovelIntentService::class)->novel($actor, $novel);
+        Validator::make($filters, ['chapter_id' => 'nullable|integer|min:1', 'status' => 'nullable|in:planned,drafting,revision_required,stale,committed', 'missing' => 'nullable|boolean', 'word_issue' => 'nullable|boolean'])->validate();
+        $formalVersions = $this->formalVersions($novel, $book->active_canonical_revision_id);
         $items = [];
         foreach (DB::table('chapters')->where('novel_id', $novel)->when($filters['chapter_id'] ?? null, fn ($q, $v) => $q->where('id', $v))->orderBy('sequence')->get() as $ch) {
             $latest = $this->latest($novel, 'chapter', (string) $ch->id);
             $candidate = $latest ? $this->read($actor, $novel, 'chapter', $latest['id']) : null;
-            $status = $candidate['display_status'] ?? 'planned';
-            if (($filters['status'] ?? $status) !== $status || (! empty($filters['missing']) && $candidate) || (! empty($filters['word_issue']) && ! array_intersect($candidate['report']['issues'] ?? [], ['BELOW_MINIMUM', 'ABOVE_MAXIMUM']))) {
+            $formal = $formalVersions[$ch->id] ?? null;
+            $candidateStatus = $candidate['display_status'] ?? 'planned';
+            $status = $formal ? 'committed' : $candidateStatus;
+            $filterStatus = $filters['status'] ?? null;
+            if (($filterStatus !== null && ($filterStatus === 'committed' ? $formal === null : $filterStatus !== $candidateStatus)) || (! empty($filters['missing']) && $candidate) || (! empty($filters['word_issue']) && ! array_intersect($candidate['report']['issues'] ?? [], ['BELOW_MINIMUM', 'ABOVE_MAXIMUM']))) {
                 continue;
             }
-            $scenes = [];
-            foreach (DB::table('scenes')->where('novel_id', $novel)->where('parent_id', $ch->id)->where('retired', false)->orderBy('sequence')->get() as $s) {
-                $latestScene = $this->latest($novel, 'scene', (string) $s->id);
-                $scenes[] = ['id' => (string) $s->id, 'title' => $s->title, 'candidate' => $latestScene ? $this->read($actor, $novel, 'scene', $latestScene['id']) : null];
+            if ($candidate !== null) {
+                // 仅丰富列表副本，不改变E03–E05冻结的正文读取对象或资格哈希。
+                $candidate['recorded_review'] = $this->recordedReview($novel, $candidate['id']);
+                $candidate['review_status'] = $candidate['recorded_review'] ? 'recorded_'.$candidate['recorded_review']['verdict'] : 'not_reviewed';
             }
-            $items[] = ['id' => (string) $ch->id, 'parent_id' => (string) $ch->parent_id, 'sequence' => $ch->sequence, 'title' => $ch->title, 'candidate' => $candidate, 'formal' => null, 'status' => $status, 'scenes' => $scenes];
+            $scenes = [];
+            foreach (DB::table('scenes')->where('novel_id', $novel)->where('parent_id', $ch->id)->where('retired', false)->orderBy('sequence')->get() as $sc) {
+                $latestScene = $this->latest($novel, 'scene', (string) $sc->id);
+                $scenes[] = ['id' => (string) $sc->id, 'title' => $sc->title, 'candidate' => $latestScene ? $this->read($actor, $novel, 'scene', $latestScene['id']) : null];
+            }
+            $items[] = ['id' => (string) $ch->id, 'parent_id' => (string) $ch->parent_id, 'sequence' => $ch->sequence, 'title' => $ch->title, 'candidate' => $candidate, 'formal' => $formal, 'status' => $status, 'candidate_status' => $candidateStatus, 'scenes' => $scenes];
         }
 
-        return ['items' => $items, 'formal_status' => 'not_implemented'];
+        return ['items' => $items, 'formal_status' => $formalVersions ? 'available' : 'empty', 'revision_id' => $book->active_canonical_revision_id === null ? null : (string) $book->active_canonical_revision_id];
     }
 }

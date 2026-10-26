@@ -1,5 +1,5 @@
 {
-  "package_version": "1.5",
+  "package_version": "1.8",
   "created_date": "2026-10-22",
   "scope": [
     "NF-A01",
@@ -9,7 +9,10 @@
     "NF-A01 F01-F03 isolation repair",
     "NF-D05 implementation notes",
     "NF-D06 recheck 2026-10-26",
-    "NF-E06 canonical commit implementation mapping"
+    "NF-E06 canonical commit implementation mapping",
+    "NF-E01 recheck 2026-10-26",
+    "NF-E02 recheck 2026-10-26",
+    "NF-E07 formal memory and next-chapter integration"
   ],
   "approval": "design_package_not_runtime_acceptance",
   "counts": {
@@ -32,13 +35,13 @@
     },
     {
       "path": "A04_API.md",
-      "sha256": "01646c695df09b5ed61d5278196b5f7d5b70676303c67fa1da4f8af9476af8a9",
-      "bytes": 27802
+      "sha256": "1836190d04e51c8c352c1b4261b59ce0c1f5871f2b8c4d2f74debe3b802f49f7",
+      "bytes": 30343
     },
     {
       "path": "A04_CONTRACTS.md",
-      "sha256": "91f6faa3b7421eb1ccf3ca706672a984d18967cfde5275cc2b67f0995a59ce80",
-      "bytes": 41371
+      "sha256": "945bcdfb217df7d9312fbfe12cbfef2daa31f98f6f05f58612899907b409fdf4",
+      "bytes": 43598
     },
     {
       "path": "A05_ACCEPTANCE.md",
@@ -52,13 +55,13 @@
     },
     {
       "path": "DATA_DICTIONARY_NOTES.md",
-      "sha256": "3c590f05a62dfa0148907e8ebffbed451c459e55112a4eabd98f73a127059fd7",
-      "bytes": 20728
+      "sha256": "59760b1332614316691382cd78e34ebcfbff0cbdf239856426c036e3aec8d7c3",
+      "bytes": 21749
     },
     {
       "path": "DECISIONS.md",
-      "sha256": "95b03d2768912e1965aea3abe96039272a05cfc22fe0b04dd9b3fbd862c79a07",
-      "bytes": 14817
+      "sha256": "15a32b953c6c2977636bec520b0250f08969a487e2f34fed82284f0fe81ee8f4",
+      "bytes": 16770
     },
     {
       "path": "README.md",

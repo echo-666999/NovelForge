@@ -297,3 +297,19 @@ revision_tasks冻结当前E04来源、问题、精确允许范围、全部显式
 ADR-E06-01：C02 outbox_events强依赖真实generation_run；正式提交可能来自人工候选，故采用每commit唯一的canonical_outbox保存同事务不可变意图，不伪造运行。该表当前无消费器或发布标记，E07负责后续摘要/索引和投递回执接入；pending仅表示已持久保存，不能声称记忆已更新。ADR-E06-02：正式人物知识/关系使用独立canonical_knowledge_facts/canonical_relationships保留来源，D02候选上下文不可原地升格；信念/推测等类型继续区分。
 
 UI15/API及验证证据见[验收报告](../phase-e/NF-E06_ACCEPTANCE.md)。真实语义/文学、十章成品、百章伏笔和生产吞吐不由离线结构测试替代。
+
+
+## NF-E02 当前展示边界补强（2026-10-26）
+
+E06已接入正式映射后，E02不再固定宣称无正式稿。列表与UI09分别呈现当前活动正式版本和最新候选，正式全文仅对选中章节只读加载；编辑只追加候选，不能改正式正文/指针。已存评审只作历史记录，不能以旧PASS推出当前资格。列表元信息不改写E03–E05的既有冻结正文读取对象、产物或评审。
+
+同正文标题换版仍有新版本身份，使旧前场景引用失效；纯换行规范化后的同文保存不造空版本。网关成功但返回期间候选已被作者编辑，结果隔离留证，不覆盖作者稿。50项相关回归通过，无新增数据库列或正式写动作，见[NF-E02复核](../phase-e/NF-E02_RECHECK_2026-10-26.md)。
+
+
+## NF-E07 正式派生与连续章衔接（2026-10-26）
+
+ADR-E07：正式派生用canonical_memory_tasks/attempts、canonical_memories/documents/embeddings绑定E06不可变commit/outbox，不伪造D04/D05候选branch或generation_run。冻结canonical-memory-v1、offline_hash_v1/64/cosine，semantic_model=false；模型摘要/真实嵌入仍关闭。四层为完整正式事实/状态的保守结构化保留，不是语义压缩或质量认可。
+
+扫描意图校验回执hash，事务登记后Redis memory至少一次通知；投递计数/补投时间与执行次数/可执行时间分开。小说→任务锁序、60秒租约、单调token/owner封口；三次技术上限及明确人工重试保留旧日志，摘要/文档/向量/完成同事务，唯一约束防重复。旧回执memory_status保持原样，当前pending由实时任务/意图计算。
+
+正式scope显式活动revision_id，按小说/截止章/活动事件/合法获知链先过滤再排名。原quote大段不进入POV；缺向量统一文本降级，不回退候选。下一章直接回放完整正式状态与最近两章正文作为强制上下文，知识另凭D02证明；摘要落后不能代替当前working/semantic状态。无法保证来源或容量则等待；只对新运行/清单生效，不回写历史。已有冻结窗口以外、G01重基线及F01编排未扩大范围。详见[NF-E07验收](../phase-e/NF-E07_ACCEPTANCE.md)。

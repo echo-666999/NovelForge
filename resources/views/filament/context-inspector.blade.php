@@ -1,5 +1,6 @@
 <x-filament-panels::page>
-    <p>离线上下文检查。作者计划与隐藏真相不代表角色知情；硬约束不可移除。正式来源尚未接入。</p>
+    <a href="/admin/canonical-memory-center">正式记忆、队列和索引恢复</a>
+    <p>离线上下文检查。作者计划与隐藏真相不代表角色知情；硬约束不可移除。正式来源按当前活动基线读取，索引延迟时强制补齐状态与最近正文。</p>
     <div class="flex flex-wrap gap-3">
         <select wire:model.live="step" aria-label="阶段"><option value="">选择阶段</option>@foreach($this->steps() as $s)<option value="{{ $s->id }}">{{ $s->title }} · {{ $s->stage }} · {{ $s->scope_key }}（{{ $s->id }}）</option>@endforeach</select>
         <input wire:model="manifest" placeholder="清单编号，留空读取最新" aria-label="清单编号">
@@ -8,7 +9,7 @@
     </div>
     @if($notice)<p role="status">{{ $notice }}</p>@endif
     @if($detail)
-        <p>状态：{{ $detail['current_status'] }}；章：{{ $detail['chapter'] }}；场景：{{ $detail['scene_id'] }}；POV：{{ $detail['pov_id'] }}；状态版本：{{ $detail['state_version'] }}</p>
+        <p>状态：{{ $detail['current_status'] }}；章：{{ $detail['chapter'] }}；场景：{{ $detail['scene_id'] }}；POV：{{ $detail['pov_id'] }}；状态版本：{{ $detail['state_version'] }}；来源 {{ $detail['scope'] }}；记忆待处理 {{ ($detail['memory_pending'] ?? false) ? '是' : '否' }}</p>
         <p>估算输入 {{ $detail['budget']['input_tokens'] }} + 输出 {{ $detail['budget']['max_output_tokens'] }} + 单列推理 {{ $detail['budget']['separate_reasoning_tokens'] }} + 安全余量 {{ $detail['budget']['safety_margin'] }} / 容量 {{ $detail['budget']['context_tokens'] }}。按 UTF-8 字节保守估算，实际误差未知。</p>
         <p>阻塞原因：{{ implode('、', $detail['issues']) }}</p>
         <div class="flex flex-wrap gap-3">

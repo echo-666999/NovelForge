@@ -5,7 +5,7 @@
     @if($novel==='')<p>请选择小说查看基线、预检与提交记录。</p>@else
     @php($state=$this->state())
     @if(!$state['revision'])<p>尚未初始化正式基线。空根初始化不会产生正文、事件或推进剧情版本。</p><x-filament::button wire:click="initialize">初始化空根基线</x-filament::button>
-    @else<p>正式基线 #{{ $state['revision']['id'] }} / 连续提交至第{{ $state['revision']['cursor'] }}章 / 状态版本{{ $state['state_version'] }} / 待E07消费意图{{ $state['outbox_pending'] }}</p>@endif
+    @else<p>正式基线 #{{ $state['revision']['id'] }} / 连续提交至第{{ $state['revision']['cursor'] }}章 / 状态版本{{ $state['state_version'] }} / 待处理记忆意图{{ $state['outbox_pending'] }}</p>@endif
     <x-filament::section heading="章节提交预检">
         <label>候选版本<select wire:model="candidate"><option value="">请选择</option>@foreach($this->candidates() as $v)<option value="{{ $v->id }}">{{ $v->title }} / V{{ $v->version }} / #{{ $v->id }}</option>@endforeach</select></label><x-filament::button wire:click="loadCandidate">载入候选与当前依赖</x-filament::button>
         @if($form)<div class="grid gap-3 md:grid-cols-2">

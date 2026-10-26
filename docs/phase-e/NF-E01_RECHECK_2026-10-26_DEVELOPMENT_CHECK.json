@@ -1,0 +1,27 @@
+{
+    "database": "novel_forge",
+    "mode": "read_only",
+    "server_version": "18.6",
+    "migration_registered": true,
+    "tables": {
+        "planning_stages": {
+            "columns": 7,
+            "commented_columns": 7,
+            "table_comment": "离线规划五阶段有向无环依赖与运行引用",
+            "rows": 0
+        },
+        "planning_adoptions": {
+            "columns": 11,
+            "commented_columns": 11,
+            "table_comment": "作者采纳规划候选的不可变来源和结果",
+            "rows": 0
+        }
+    },
+    "counts": {
+        "users": 1,
+        "novels": 0,
+        "providers": 0,
+        "model_profiles": 0,
+        "ai_requests": 0
+    }
+}

@@ -1,0 +1,12 @@
+{
+  "kind": "segmented_method_coverage",
+  "single_process_full_suite_passed": false,
+  "discovered_methods": 376,
+  "covered_methods": 376,
+  "passed_methods": 375,
+  "skipped_methods": 1,
+  "e01_target_tests": 12,
+  "e06_supplement_tests": 4,
+  "memory_failure_retained": "NF-E06_FULL_MEMORY_FAILURE.json",
+  "note": "Method coverage across recorded runs; not a single-process full-suite success. Existing Chinese extension skip retained."
+}

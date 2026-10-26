@@ -255,4 +255,56 @@ class PlanningPipelineTest extends TestCase
         $this->assertSame(1, DB::table('planning_adoptions')->count());
         $this->assertDatabaseCount('blueprint_versions', 0);
     }
+
+    /** 成功网关响应不能豁免作者采纳时的当前输入校验，原证据继续可读。 */
+    public function test_successful_candidate_cannot_be_adopted_after_input_changes_and_evidence_survives(): void
+    {
+        $f = F::create();
+        $done = F::execute($f, F::start($f, 'intake', F::intake($f)));
+        $artifact = DB::table('generation_artifacts')->where('run_id', $done['data']['run']['id'])->first();
+        DB::table('novels')->where('id', $f['novel'])->increment('row_version');
+        try {
+            F::adopt($f, $done);
+            $this->fail('成功响应不能豁免采纳时的来源校验');
+        } catch (NovelProblem $e) {
+            $this->assertSame('DEPENDENCY_MISMATCH', $e->errorCode);
+        }
+        $this->assertDatabaseCount('planning_adoptions', 0);
+        $this->assertDatabaseCount('ai_requests', 1);
+        $this->assertSame($artifact->content_hash, DB::table('generation_artifacts')->find($artifact->id)->content_hash);
+        $this->assertSame('succeeded', app(PlanningPipelineService::class)->read($f['actor'], $f['novel'], $done['id'])['data']['run']['status']);
+        $this->assertSame(0, Novel::find($f['novel'])->state_version);
+        Http::assertNothingSent();
+    }
+
+    /** 成功前驱须由作者采纳，且采纳不能跳过蓝图等中间阶段。 */
+    public function test_unadopted_parent_and_skipped_phase_do_not_create_runs_or_requests(): void
+    {
+        $f = F::create();
+        $intake = F::execute($f, F::start($f, 'intake', F::intake($f)));
+        // 供应商夹具另有两条基础运行；按实际基线核查拒绝动作不新增运行。
+        $runsBefore = DB::table('generation_runs')->count();
+        $blueprint = $f['payload'];
+        unset($blueprint['outline_version_id'], $blueprint['author_checks']);
+        $blueprint['foundation_nodes'] = [];
+        try {
+            F::start($f, 'blueprint', $blueprint, $intake['id']);
+            $this->fail('必须先由作者采纳前驱');
+        } catch (NovelProblem $e) {
+            $this->assertSame('PLANNING_DEPENDENCY_REQUIRED', $e->errorCode);
+        }
+        F::adopt($f, $intake);
+        try {
+            F::start($f, 'outline', ['nodes' => [], 'coverages' => []], $intake['id']);
+            $this->fail('不能从输入提炼直接跳到卷弧骨架');
+        } catch (NovelProblem $e) {
+            $this->assertSame('PLANNING_DEPENDENCY_REQUIRED', $e->errorCode);
+        }
+        $this->assertDatabaseCount('planning_stages', 1);
+        $this->assertSame($runsBefore, DB::table('generation_runs')->count());
+        $this->assertSame(1, DB::table('generation_runs')->where('novel_id', $f['novel'])->count());
+        $this->assertDatabaseCount('ai_requests', 1);
+        $this->assertSame(0, Novel::find($f['novel'])->state_version);
+        Http::assertNothingSent();
+    }
 }

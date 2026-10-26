@@ -76,6 +76,10 @@ class DraftEditor extends Page
     #[Locked]
     public ?array $previous = null;
 
+    /** 正式正文与编辑缓冲分离，客户端不可改写该只读快照。 */
+    #[Locked]
+    public ?array $formalDetail = null;
+
     #[Locked]
     public string $savedBody = '';
 
@@ -107,6 +111,7 @@ class DraftEditor extends Page
             if ($previous && $previous['node_id'] !== $detail['node_id']) {
                 throw new NovelProblem('INVALID_COMPARISON', '请选择同一节点的两个版本。');
             }
+            $this->formalDetail = $this->kind === 'chapter' ? app(DraftingService::class)->formal(auth()->user(), $this->novelId, $detail['node_id']) : null;
             $this->loadedKind = $this->kind;
             $this->detail = $detail;
             $this->previous = $previous;

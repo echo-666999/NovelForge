@@ -95,3 +95,9 @@ NF-D05：`/admin/search-lab` 管理冻结嵌入档案与索引代次，提供精
 NF-D06：既有 `/admin/context-inspector` 可查看冻结上下文、裁剪理由、容量及历史比较。2026-10-26补强去重顺序、POV引文和推断边界、前场景顺序；详见[本次复核与验收](docs/phase-d/NF-D06_RECHECK_2026-10-26.md)。真实模型与正式基线继续关闭。
 
 NF-E06：`/admin/canonical-commit-center` 提供空根初始化、候选依赖载入、预检、正式提交、幂等回执与历史状态。数据库原子推进章指针、正式事件/投影/伏笔、游标、审计和待消费意图；E07记忆消费者与G01历史重基线未接入。详见[NF-E06验收](docs/phase-e/NF-E06_ACCEPTANCE.md)。
+
+NF-E01于2026-10-26按现状复核，专项12项通过；新增来源与阶段依赖测试，不重复建表，见[NF-E01复核](docs/phase-e/NF-E01_RECHECK_2026-10-26.md)。单进程全量回归内存问题与分段结果在报告中分别保留。
+
+NF-E02于2026-10-26补齐真实正式稿只读区、候选分区、committed筛选与历史评审提示；相关50项通过，未新增数据库迁移，详见[NF-E02复核](docs/phase-e/NF-E02_RECHECK_2026-10-26.md)。
+
+NF-E07：`/admin/canonical-memory-center`查看正式派生任务/租约/失败日志、四层保守摘要与正式POV检索。定时`novelforge:canonical-memory`补投到Redis memory队列；下一章直接读取正式状态/最近正文，索引延迟不遗漏硬事实，向量不可用明确文本降级。仅离线字符向量，不代表真实语义模型；见[NF-E07验收](docs/phase-e/NF-E07_ACCEPTANCE.md)。

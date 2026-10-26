@@ -1,15 +1,17 @@
 <x-filament-panels::page>
     @include('filament.novel-navigation', ['novelId' => $novelId])
-    <p>候选正文工作区。正式正文只读区：尚未实施正式提交，无正式版本。规则检查不等于评审或人工验收。</p>
+    {{-- 当前正式映射与候选缓冲分别展示，历史PASS不代表当前提交资格。 --}}
+    <p>候选编辑只追加新版本。正式正文在独立只读区查看；已存评审须另行核对当前资格，规则检查不等于评审或人工验收。</p>
+    @php($listing = $this->listing())
     @if($notice)<p role="status">{{ $notice }}</p>@endif
     <section class="space-y-3 rounded-xl border p-4">
         <h2>章节与场景</h2>
-        <label>状态 <select wire:model.live="status"><option value="">全部</option>@foreach(['planned','drafting','revision_required','stale'] as $value)<option>{{ $value }}</option>@endforeach</select></label>
+        <label>状态 <select wire:model.live="status"><option value="">全部</option>@foreach(['planned','drafting','revision_required','stale','committed'] as $value)<option>{{ $value }}</option>@endforeach</select></label>
         <label><input type="checkbox" wire:model.live="missing"> 缺章</label>
         <label><input type="checkbox" wire:model.live="wordIssue"> 字数不达标</label>
         <table class="w-full"><thead><tr><th>章序 / 标题</th><th>候选版本 / 字数</th><th>状态</th><th>正式 / 评审 / 人工验收</th></tr></thead><tbody>
-        @foreach($this->listing()['items'] as $ch)
-            <tr><td>{{ $ch['sequence'] }} / {{ $ch['title'] }}</td><td>{{ $ch['candidate']['id'] ?? '无' }} / {{ $ch['candidate']['character_count'] ?? 0 }}</td><td>{{ $ch['status'] }}</td><td>无 / 未实施 / 未验收</td></tr>
+        @foreach($listing['items'] as $ch)
+            <tr><td>{{ $ch['sequence'] }} / {{ $ch['title'] }}</td><td>{{ $ch['candidate']['id'] ?? '无' }} / {{ $ch['candidate']['character_count'] ?? 0 }}</td><td>{{ $ch['status'] }}</td><td>正式版本 {{ $ch['formal']['id'] ?? '无' }} @if($ch['formal']) / v{{ $ch['formal']['version'] }} / {{ $ch['formal']['committed_at'] }} @endif<br>候选状态 {{ $ch['candidate_status'] }} / 已存评审 {{ $ch['candidate']['recorded_review']['verdict'] ?? '无' }}（当前资格需核对） / 未人工验收</td></tr>
             @foreach($ch['scenes'] as $sc)<tr><td>场景 {{ $sc['id'] }} {{ $sc['title'] }}</td><td>{{ $sc['candidate']['id'] ?? '无' }} / {{ $sc['candidate']['character_count'] ?? 0 }}</td><td>{{ $sc['candidate']['display_status'] ?? 'planned' }}</td><td></td></tr>@endforeach
         @endforeach
         </tbody></table>
@@ -25,10 +27,19 @@
                 <label class="block">具体标题 <input wire:model.live.debounce.500ms="bodyTitle"></label>
                 <label class="block">候选正文 <textarea class="w-full" rows="18" wire:model.live.debounce.1000ms="body"></textarea></label>
                 <p>可见码点：{{ $this->count() }}；{{ ($body !== $savedBody || $bodyTitle !== $savedTitle) ? '尚未保存（每15秒尝试自动保存）' : '候选已保存' }}</p>
-                <p>哈希 {{ $detail['body_hash'] }}；来源 {{ $detail['parent_version_id'] ?? '初始' }}；{{ implode('、', $detail['report']['issues']) ?: '规则检查无问题，仍未评审' }}</p>
+                <p>哈希 {{ $detail['body_hash'] }}；来源 {{ $detail['parent_version_id'] ?? '初始' }}；{{ implode('、', $detail['report']['issues']) ?: '规则检查无问题，评审资格需另行核对' }}</p>
                 <x-filament::button wire:click="save">保存为新候选版本</x-filament::button>
             </div>
             @if($previous)<h3>旧版本 v{{ $previous['version'] }}（与上方完整当前稿比较）</h3><pre class="whitespace-pre-wrap">{{ $previous['body'] }}</pre>@endif
+        @endif
+    </section>
+    <section class="space-y-3 rounded-xl border p-4">
+        <h2>正式正文只读区</h2>
+        @if($formalDetail)
+            <p>正式版本 #{{ $formalDetail['id'] }} / v{{ $formalDetail['version'] }}，基线 #{{ $formalDetail['revision_id'] }}，提交 #{{ $formalDetail['commit_id'] }} / {{ $formalDetail['committed_at'] }}</p>
+            <h3>{{ $formalDetail['title'] }}</h3><pre class="whitespace-pre-wrap">{{ $formalDetail['body'] }}</pre>
+        @else
+            <p>请选择已提交的章节查看正式正文；当前选择没有正式章快照，不以候选填充。</p>
         @endif
     </section>
     @php($options = $this->options())

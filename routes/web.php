@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthoringConfigurationController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BlueprintController;
 use App\Http\Controllers\CanonicalCommitController;
+use App\Http\Controllers\CanonicalMemoryController;
 use App\Http\Controllers\ChapterReviewController;
 use App\Http\Controllers\ContextAssemblyController;
 use App\Http\Controllers\DraftingController;
@@ -213,3 +214,7 @@ Route::get('api/v1/novels/{novel}/state', CanonicalCommitController::class)->def
 Route::post('api/v1/chapters/{chapter}/commits/preflight', CanonicalCommitController::class)->defaults('canonicalAction', 'preflight');
 Route::post('api/v1/chapters/{chapter}/commits', CanonicalCommitController::class)->defaults('canonicalAction', 'commit');
 Route::get('api/v1/novels/{novel}/state/replay', CanonicalCommitController::class)->defaults('canonicalAction', 'replay');
+
+// 正式派生中心只暴露状态和人工重试，不授予写正式剧情的权限。
+Route::get('api/v1/novels/{novel}/canonical-memory', CanonicalMemoryController::class);
+Route::post('api/v1/novels/{novel}/canonical-memory/tasks/{task}/retry', CanonicalMemoryController::class);

@@ -68,7 +68,7 @@ final class ContextAssemblyService
     {
         return DB::transaction(function () use ($actor, $stepId, $d, $key) {
             [$book, $step, $run] = $this->step($actor, $stepId);
-            Validator::make(['key' => $key, 'data' => $d], ['key' => ['required', 'string', 'max:128', 'regex:/^[\x20-\x7E]+$/D'], 'data' => 'array:scope,plan_id,scene_id,context_id,pov_id,configuration,billing,safety_margin,search,expected_version,reason'])->validate();
+            Validator::make(['key' => $key, 'data' => $d], ['key' => ['required', 'string', 'max:128', 'regex:/^[\x20-\x7E]+$/D'], 'data' => 'array:scope,revision_id,plan_id,scene_id,context_id,pov_id,configuration,billing,safety_margin,search,expected_version,reason'])->validate();
             $where = ['actor_id' => $actor->id, 'step_id' => $stepId, 'command_key' => $key];
             if ($old = DB::table('context_manifests')->where($where)->first()) {
                 if ($old->request_hash !== $this->hash($d)) {
@@ -78,8 +78,8 @@ final class ContextAssemblyService
                 return $this->decode($old);
             }
             Validator::make($d, ['scope' => 'required|in:candidate,formal', 'plan_id' => 'required|integer|min:1', 'scene_id' => 'required|integer|min:1', 'context_id' => 'nullable|integer|min:1', 'pov_id' => 'required|integer|min:1', 'configuration' => 'required|array', 'billing' => 'required|array', 'safety_margin' => 'required|integer|min:1|max:1000000', 'search' => 'sometimes|array:build_id,profile_id,query,limit,vector', 'expected_version' => 'required|integer|min:1', 'reason' => 'required|string|max:2000'])->validate();
-            if ($d['scope'] === 'formal') {
-                throw new NovelProblem('FORMAL_CONTEXT_UNAVAILABLE', '正式状态与正文来源尚未接入，不会回退到候选分支。');
+            if ($d['scope'] === 'formal' && ! isset($d['revision_id'])) {
+                throw new NovelProblem('FORMAL_CONTEXT_UNAVAILABLE', '正式上下文必须显式指定revision_id，不会回退到候选分支。');
             }
             if ($book->row_version !== (int) $d['expected_version']) {
                 throw new NovelProblem('STALE_STATE', '小说已变化，请刷新后重新组装。');
@@ -158,29 +158,45 @@ final class ContextAssemblyService
         if ($run->status === 'canceled') {
             $issues[] = 'BRANCH_CANCELED';
         }
-        $state = ['formal_state_version' => $book->state_version, 'formal_state' => 'not_connected', 'candidate_branch' => $branch];
-        $add('state', '作者状态基线（候选）', 'novels', $novel, $book->state_version, $state);
-        if (isset($d['context_id'])) {
-            $context = app(StoryConsistencyService::class)->read($actor, $novel, (string) $d['context_id']);
-            $events = array_column($context['events'], null, 'id');
-            $ids = array_map(fn ($e) => $e['evidence']['source_version_id'], $events);
-            $valid = app(LayeredMemoryService::class)->verifiedSources($actor, $novel, $branch, $ids);
-            if (count($valid) !== count(array_unique($ids))) {
-                $issues[] = 'INVALID_KNOWLEDGE_SOURCE';
-            } else {
-                $add('candidate_state', '作者候选事实与隐藏真相（不证明角色知情）', 'story_context_versions', $context['id'], $context['version'], array_values(array_filter($events, fn ($e) => $e['chapter_sequence'] <= $chapter['sequence'])));
-                $known = app(StoryConsistencyService::class)->pov($actor, $novel, (string) $d['context_id'], (string) $d['pov_id'], $chapter['sequence']);
-                if (! $known['usable']) {
-                    $issues[] = 'POV_CONTEXT_UNUSABLE';
+        $formal = $d['scope'] === 'formal';
+        $bridge = null;
+        if ($formal) {
+            if (isset($d['context_id'])) {
+                throw new NovelProblem('FORMAL_CONTEXT_SOURCE_MISMATCH', '正式上下文不接收候选知识上下文。');
+            }
+            $bridge = app(CanonicalMemoryService::class)->bridge($actor, $novel, (string) ($d['revision_id'] ?? ''), $chapter['sequence'] - 1, (string) $d['pov_id']);
+            $add('state', '作者正式状态与隐藏真相（不证明角色知情）', 'canonical_revisions', $bridge['revision_id'], $book->state_version, $bridge['state']);
+            $add('knowledge_relationships', 'POV 可知信息（正式获知证据）', 'canonical_revisions', $bridge['revision_id'], $book->state_version, $bridge['pov']);
+            foreach ($bridge['pov']['knowledge'] as $knowledge) {
+                if (in_array($knowledge['knowledge_kind'], ['fact', 'hidden_truth'], true)) {
+                    $add('key_fact', 'POV 可知信息（正式获知证据）', 'story_events', $knowledge['fact_event_id'], $book->state_version, $knowledge);
+                }
+            }
+        } else {
+            $state = ['formal_state_version' => $book->state_version, 'formal_state' => 'not_connected', 'candidate_branch' => $branch];
+            $add('state', '作者状态基线（候选）', 'novels', $novel, $book->state_version, $state);
+            if (isset($d['context_id'])) {
+                $context = app(StoryConsistencyService::class)->read($actor, $novel, (string) $d['context_id']);
+                $events = array_column($context['events'], null, 'id');
+                $ids = array_map(fn ($e) => $e['evidence']['source_version_id'], $events);
+                $valid = app(LayeredMemoryService::class)->verifiedSources($actor, $novel, $branch, $ids);
+                if (count($valid) !== count(array_unique($ids))) {
+                    $issues[] = 'INVALID_KNOWLEDGE_SOURCE';
                 } else {
-                    $add('knowledge_relationships', 'POV 可知信息（候选证据）', 'story_context_versions', $context['id'], $context['version'], $this->povSnapshot($known));
-                    foreach ($known['knowledge'] as $knowledge) {
-                        // 推断和被告知的非事实保留原类型，不提升为确定性的关键事实。
-                        if (! in_array($knowledge['knowledge_kind'], ['fact', 'hidden_truth'], true)) {
-                            continue;
+                    $add('candidate_state', '作者候选事实与隐藏真相（不证明角色知情）', 'story_context_versions', $context['id'], $context['version'], array_values(array_filter($events, fn ($e) => $e['chapter_sequence'] <= $chapter['sequence'])));
+                    $known = app(StoryConsistencyService::class)->pov($actor, $novel, (string) $d['context_id'], (string) $d['pov_id'], $chapter['sequence']);
+                    if (! $known['usable']) {
+                        $issues[] = 'POV_CONTEXT_UNUSABLE';
+                    } else {
+                        $add('knowledge_relationships', 'POV 可知信息（候选证据）', 'story_context_versions', $context['id'], $context['version'], $this->povSnapshot($known));
+                        foreach ($known['knowledge'] as $knowledge) {
+                            // 推断和被告知的非事实保留原类型，不提升为确定性的关键事实。
+                            if (! in_array($knowledge['knowledge_kind'], ['fact', 'hidden_truth'], true)) {
+                                continue;
+                            }
+                            $e = $events[$knowledge['fact_event_id']];
+                            $add('key_fact', 'POV 可知信息（候选证据）', 'proposed_events', $e['id'], $e['content_hash'], ['attribute' => $e['attribute'], 'value' => $e['value'], 'evidence' => $this->evidenceReference($e['evidence'])]);
                         }
-                        $e = $events[$knowledge['fact_event_id']];
-                        $add('key_fact', 'POV 可知信息（候选证据）', 'proposed_events', $e['id'], $e['content_hash'], ['attribute' => $e['attribute'], 'value' => $e['value'], 'evidence' => $this->evidenceReference($e['evidence'])]);
                     }
                 }
             }
@@ -197,9 +213,32 @@ final class ContextAssemblyService
         if ($previous !== null) {
             $add('previous_scene', '前场景衔接（作者候选正文）', 'scene_versions', $previous['id'], $previous['body_hash'], $previous['body']);
         }
+        if ($bridge !== null) {
+            foreach (array_reverse($bridge['recent']) as $recent) {
+                // 最近正式正文不依赖索引，强制保留但不作为角色已知证据。
+                $add('recent_body', '最近正式正文（作者衔接资料）', 'chapter_versions', $recent['id'], $recent['body_hash'], $recent['body']);
+            }
+        }
         // 尚未创建的新分支不可能已有候选记忆；不借用其他运行的资料。
         $retrieval = null;
-        if (DB::table('generation_runs')->where('novel_id', $novel)->where('id', $branch)->exists()) {
+        if ($formal) {
+            $memories = $bridge['chapter_cutoff'] === 0 ? ['items' => []] : app(CanonicalMemoryService::class)->memories($actor, $novel, ['revision_id' => $bridge['revision_id'], 'chapter' => $bridge['chapter_cutoff']]);
+            foreach (collect($memories['items'])->unique('kind')->all() as $memory) {
+                if (in_array($memory['kind'], ['working', 'semantic'], true) && $memory['chapter_sequence'] < $bridge['chapter_cutoff']) {
+                    continue;
+                }
+                $add('memory_'.$memory['kind'], '正式派生记忆（作者资料，不证明角色知情）', 'canonical_memories', $memory['id'], $memory['content_hash'], ['chapter' => $memory['chapter_sequence'], 'commit_id' => $memory['commit_id'], 'summary' => $memory['summary']], false);
+            }
+            if (isset($d['search'])) {
+                if (isset($d['search']['build_id']) || isset($d['search']['profile_id'])) {
+                    throw new NovelProblem('INDEX_PROFILE_MISMATCH', '正式检索不能借用候选索引或档案。');
+                }
+                $retrieval = app(CanonicalMemoryService::class)->search($actor, $novel, $d['search'] + ['revision_id' => $bridge['revision_id'], 'chapter' => $chapter['sequence'] - 1, 'audience' => 'pov', 'pov_id' => $d['pov_id']]);
+                foreach ($retrieval['results'] as $hit) {
+                    $add('long_term_memory', 'POV 已知正式检索资料', 'canonical_memory_documents', $hit['id'], $book->state_version, $hit['body'], false, $hit['score'], $hit['contributions']);
+                }
+            }
+        } elseif (DB::table('generation_runs')->where('novel_id', $novel)->where('id', $branch)->exists()) {
             $facts = DB::table('memory_facts')->where('novel_id', $novel)->where('branch_id', $branch)->where('introduced_chapter', '<=', $chapter['sequence'])->orderBy('id')->get();
             $sources = app(LayeredMemoryService::class)->verifiedSources($actor, $novel, $branch, $facts->pluck('source_version_id')->all());
             foreach ($facts as $fact) {
@@ -246,7 +285,7 @@ final class ContextAssemblyService
             $issues[] = 'MISSING_REASONING_RESERVE';
         }
         $result = app(ContextComposer::class)->compose($items, $model['declared_capabilities']['context_tokens'], $billing['max_output_tokens'], $billing['max_reasoning_tokens'], $mode, $d['safety_margin']);
-        $result += ['schema' => 'context-manifest-v1', 'scope' => $d['scope'], 'formal_usable' => false, 'real_model_eligible' => false, 'novel_id' => $novel, 'branch_id' => $branch, 'step_id' => $stepId, 'stage' => $step->stage, 'chapter' => $chapter['sequence'], 'scene_id' => (string) $d['scene_id'], 'pov_id' => (string) $d['pov_id'], 'row_version' => $book->row_version, 'state_version' => $book->state_version, 'configuration' => $config, 'billing' => $billing, 'retrieval' => $retrieval, 'issues' => array_values(array_unique($issues)), 'target_model_version_id' => $model['model_version_id'], 'step_dependency_hash' => $step->dependency_hash];
+        $result += ['schema' => 'context-manifest-v1', 'scope' => $d['scope'], 'formal_usable' => $formal && $issues === [] && $result['status'] === 'assembled', 'revision_id' => $bridge['revision_id'] ?? null, 'memory_pending' => $bridge['memory_pending'] ?? false, 'real_model_eligible' => false, 'novel_id' => $novel, 'branch_id' => $branch, 'step_id' => $stepId, 'stage' => $step->stage, 'chapter' => $chapter['sequence'], 'scene_id' => (string) $d['scene_id'], 'pov_id' => (string) $d['pov_id'], 'row_version' => $book->row_version, 'state_version' => $book->state_version, 'configuration' => $config, 'billing' => $billing, 'retrieval' => $retrieval, 'issues' => array_values(array_unique($issues)), 'target_model_version_id' => $model['model_version_id'], 'step_dependency_hash' => $step->dependency_hash];
         if ($issues) {
             $result['status'] = 'missing_required';
         }

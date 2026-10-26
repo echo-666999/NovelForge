@@ -214,3 +214,19 @@ revision-runs示意细化为GET/POST `/api/v1/novels/{novel}/revisions`、GET `/
 典型错误：STALE_STATE、CANONICAL_CONFLICT、REVIEW_STALE、EXTRACTION_NOT_ELIGIBLE、EXTRACTION_CONTENT_MISMATCH、UNAPPROVED_ENTITY、PLAN_NOT_FROZEN、INCOMPLETE_BODY、INCOMPLETE_SCENES、DEPENDENCY_MISMATCH、REQUIRED_FORESHADOW_MISSING、INVALID_PREFLIGHT、IDEMPOTENCY_CONFLICT；错误HTTP状态以服务实际结果为准（通常409或422），格式/未知字段422。请求不允许指定正式指针、状态或force。
 
 UI15 `/admin/canonical-commit-center?novel=…`复用同一服务；E07消费、G01历史改写、外部令牌和真实模型未接入。详见[NF-E06验收](../phase-e/NF-E06_ACCEPTANCE.md)。
+
+
+## NF-E02 正式/候选展示补强（2026-10-26）
+
+原5条drafts路径不变。GET `/api/v1/novels/{novel}/drafts`增加committed筛选；formal_status为available/empty，revision_id为活动基线字符串或null。每章formal返回当前活动正式映射的ID/版号/标题/hash/字数、commit_id/revision_id/committed_at元数据，不返回正式全文；candidate仍为最新候选，candidate_status单列。存在正式映射时章status保持committed；committed筛选按映射，其他状态按candidate_status。
+
+列表candidate.recorded_review仅包含该版本已存评审ID/verdict/时间及eligibility=not_checked；review_status为recorded_pass/recorded_block/not_reviewed，不表示当前评审资格或可提交。单版本读取的兼容字段不作资格依据，E04/E06仍独立重验。正式全文由UI09调用内部只读formal方法按当前活动映射读取，HTTP正文版本接口仍沿用原路径；没有新增正式写入口、路由或E07消费者。详见[NF-E02复核](../phase-e/NF-E02_RECHECK_2026-10-26.md)。
+
+
+## NF-E07 正式派生接口（2026-10-26）
+
+新增GET `/api/v1/novels/{novel}/canonical-memory`返回revision/state_version、memory_pending/pending_count、最近100条持久任务与尝试；POST同路径`/tasks/{task}/retry`仅接受reason及Idempotency-Key，重放同请求、异载荷409，拒绝未知字段。保持同源会话/CSRF、管理员同书和private/no-store。原提交回执pending是历史时点，不修改回执hash。
+
+原GET memories及`/{memory}`在scope=formal时需revision_id，可选chapter/kind/page；ID属于正式命名空间，source hash和截止章验证，不回退候选。原POST search正式范围需要scope=formal、活动revision_id、query、已提交chapter、audience=author/pov，pov须合法pov_id，可选limit≤100/vector。正式请求拒绝候选branch/build/profile/context参数；结果含degraded/degradation_reason、memory_pending与semantic_model=false。缺revision继续保护拒绝，错基线STALE_REVISION、未来章FORMAL_PREFIX_INCOMPLETE；旧候选协议不变。
+
+上下文组装formal增加revision_id，拒绝候选context_id；新正文运行在已有正式状态时自动绑定最新前缀，只处理下一章。formal_usable必须来源完整且容量组装成功，memory_pending不代表硬状态可以省略。UI22/23/24从`/admin/canonical-memory-center`查看正式任务、保守摘要、恢复与POV检索，原候选工作区保留。详见[NF-E07验收](../phase-e/NF-E07_ACCEPTANCE.md)。

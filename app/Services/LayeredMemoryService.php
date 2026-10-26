@@ -386,7 +386,7 @@ final class LayeredMemoryService
         app(NovelIntentService::class)->novel($actor, $novel, true);
         Validator::make($filters, ['scope' => ['required', Rule::in(['candidate', 'formal'])]])->validate();
         if ($filters['scope'] === 'formal') {
-            throw new NovelProblem('FORMAL_MEMORY_UNAVAILABLE', '正式基线记忆等待 E07 接入，不会回退到候选分支。');
+            throw new NovelProblem('FORMAL_MEMORY_UNAVAILABLE', '正式记忆必须显式指定活动revision_id，不会回退到候选分支。');
         }
         Validator::make($filters, ['branch_id' => 'required|integer|min:1|max:9223372036854775807', 'revision_id' => 'prohibited'])->validate();
         $this->branch($novel, $filters['branch_id']);
@@ -396,6 +396,10 @@ final class LayeredMemoryService
 
     public function listing(User $actor, string $novel, array $filters): array
     {
+        if (($filters['scope'] ?? null) === 'formal' && isset($filters['revision_id'])) {
+            return app(CanonicalMemoryService::class)->memories($actor, $novel, $filters);
+        }
+
         // 与停用命令共用书行锁，活动读取得到一致的来源有效性快照。
         return DB::transaction(fn () => $this->listingLocked($actor, $novel, $filters));
     }
@@ -428,6 +432,10 @@ final class LayeredMemoryService
 
     public function read(User $actor, string $novel, string $id, array $filters): array
     {
+        if (($filters['scope'] ?? null) === 'formal' && isset($filters['revision_id'])) {
+            return app(CanonicalMemoryService::class)->memories($actor, $novel, $filters, $id);
+        }
+
         return DB::transaction(fn () => $this->readLocked($actor, $novel, $id, $filters));
     }
 

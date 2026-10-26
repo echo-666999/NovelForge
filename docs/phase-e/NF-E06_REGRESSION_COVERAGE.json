@@ -1,0 +1,32 @@
+{
+  "result": "segmented_coverage_verified",
+  "single_process_full_suite_passed": false,
+  "initial_completed": 274,
+  "remaining_result": {
+    "tool": "phpunit",
+    "result": "passed",
+    "tests": 99,
+    "passed": 98,
+    "assertions": 1155,
+    "duration_ms": 154749,
+    "skipped": 1
+  },
+  "supplement_result": {
+    "tool": "phpunit",
+    "result": "passed",
+    "tests": 4,
+    "passed": 4,
+    "assertions": 213,
+    "duration_ms": 142363
+  },
+  "snapshot_test_methods": 374,
+  "covered_methods": 374,
+  "passed_methods": 373,
+  "skipped_methods": 1,
+  "notes": [
+    "Initial single-process run exhausted 128MB after 274 passes; cause of accumulated memory not established.",
+    "Remaining 99 methods: 98 passed, 1 existing Chinese-extension skip.",
+    "Four supplements cover latest 13 failure points, actual Livewire actions, new-character approval recovery, empty-schema rollback; one is an additional test beyond the 373-method original run.",
+    "NF-E01 recheck adds two further tests recorded independently."
+  ]
+}
