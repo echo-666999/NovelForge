@@ -1,0 +1,14 @@
+{
+  "result": "passed",
+  "entry": {
+    "file": "assets/theme-CZNg2b53.css",
+    "name": "theme",
+    "names": [
+      "theme.css"
+    ],
+    "src": "resources/css/filament/admin/theme.css",
+    "isEntry": true
+  },
+  "asset_sha256": "d002ed7fda1e3211dd2e03b25d4a6184218a8f79e5865d1c248a3ab4db780c20",
+  "source_sha256": "925fa4ad8792cb624aef5e35dda32a1e65104d50f66203fc26017034d845a745"
+}

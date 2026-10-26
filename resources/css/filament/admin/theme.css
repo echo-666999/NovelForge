@@ -1,0 +1,307 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+/* 后台独立扫描业务页面、公共组件和 PHP Schema；不依赖欢迎页的 app.css。 */
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+@source '../../../../resources/views/components/**/*';
+
+/* 纸面、正文、书签与校对色统一为语义令牌；业务页面不各自定义调色板。 */
+:root {
+    --nf-paper: #f8f9fb;
+    --nf-manuscript: #ffffff;
+    --nf-ink: #202737;
+    --nf-pencil: #576174;
+    --nf-bookmark: #4338ca;
+    --nf-control: #f2f4f7;
+    --nf-rule: rgb(32 39 55 / 14%);
+    --nf-proof: #b42318;
+    --nf-warning: #8a4b08;
+    --nf-archive: #216e4e;
+    --nf-step: 4px;
+    --nf-control-height: 40px;
+    --nf-control-radius: 8px;
+    --nf-surface-radius: 12px;
+    --nf-font: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
+}
+
+:root.dark {
+    --nf-paper: #171a21;
+    --nf-manuscript: #20242d;
+    --nf-ink: #eef0f5;
+    --nf-pencil: #adb6c7;
+    --nf-bookmark: #a5b4fc;
+    --nf-control: #191d26;
+    --nf-rule: rgb(238 240 245 / 14%);
+    --nf-proof: #fda29b;
+    --nf-warning: #fec84b;
+    --nf-archive: #75e0a7;
+}
+
+/* 只影响本项目 admin 面板；原生组件的键盘、浮层和状态逻辑仍由 Filament 管理。 */
+.fi-panel-admin {
+    --font-family: var(--nf-font);
+    background: var(--nf-paper);
+    color: var(--nf-ink);
+    font-family: var(--nf-font);
+    -webkit-font-smoothing: antialiased;
+}
+
+.fi-panel-admin :is(.fi-sidebar, .fi-sidebar-header, .fi-topbar) {
+    background: var(--nf-paper);
+}
+
+.fi-panel-admin .fi-topbar {
+    border-bottom: 1px solid var(--nf-rule);
+    box-shadow: none;
+}
+
+.fi-panel-admin .fi-header-heading {
+    font-size: 28px;
+    line-height: 1.35;
+    font-weight: 600;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+}
+
+.fi-panel-admin .fi-page-content {
+    min-width: 0;
+    gap: 24px;
+    line-height: 1.65;
+}
+
+.fi-panel-admin :is(.fi-section, .fi-ta-ctn, .fi-modal-window) {
+    background: var(--nf-manuscript);
+    color: var(--nf-ink);
+    border-radius: var(--nf-surface-radius);
+}
+
+.fi-panel-admin :is(.fi-section, .fi-ta-ctn) {
+    box-shadow: 0 0 0 1px var(--nf-rule);
+}
+
+.fi-panel-admin .fi-section-header-heading {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.fi-panel-admin .fi-input-wrp {
+    min-height: var(--nf-control-height);
+    border-radius: var(--nf-control-radius);
+    background: var(--nf-control);
+}
+
+.fi-panel-admin :is(.fi-input, .fi-select-input) {
+    min-height: var(--nf-control-height);
+    color: var(--nf-ink);
+}
+
+.fi-panel-admin .fi-btn {
+    min-height: var(--nf-control-height);
+    border-radius: var(--nf-control-radius);
+}
+
+/* 兼容存量原生控件；Filament 文本域的 class 在外壳上，因此必须排除外壳内所有控件，避免双边框。 */
+.fi-panel-admin .fi-page-content :where(input, select, textarea):not(.fi-input, .fi-select-input, .fi-input-wrp *, [type='hidden'], [type='checkbox'], [type='radio'], [type='file']) {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: var(--nf-control-height);
+    margin-top: 8px;
+    padding: 8px 12px;
+    border: 1px solid var(--nf-rule);
+    border-radius: var(--nf-control-radius);
+    background: var(--nf-control);
+    color: var(--nf-ink);
+    font-size: inherit;
+    font-weight: 400;
+    line-height: 1.65;
+}
+
+.fi-panel-admin .fi-page-content :where(label):has(> :is(input, select, textarea):not([type='hidden'], [type='checkbox'], [type='radio'])) {
+    display: inline-grid;
+    min-width: min(100%, 12rem);
+    max-width: 100%;
+    margin-block: 8px;
+    margin-inline-end: 12px;
+    color: var(--nf-ink);
+    font-weight: 500;
+    vertical-align: top;
+}
+
+.fi-panel-admin .fi-page-content :where(label):has(> textarea) {
+    display: grid;
+    width: 100%;
+    margin-inline-end: 0;
+}
+
+.fi-panel-admin .fi-page-content .grid > label {
+    min-width: 0;
+    width: 100%;
+    margin: 0;
+}
+
+.fi-panel-admin .fi-page-content textarea:not(.fi-input-wrp *) {
+    resize: vertical;
+    overflow-wrap: anywhere;
+}
+
+
+.fi-panel-admin .fi-page-content :where(input, textarea)[readonly] {
+    color: var(--nf-pencil);
+}
+
+.fi-panel-admin .fi-page-content :where(input, select, textarea):disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+.fi-panel-admin .fi-page-content :where(input, select, textarea)[aria-invalid='true'] {
+    border-color: var(--nf-proof);
+}
+
+.fi-panel-admin .fi-page-content > :where(section):not(.fi-section) {
+    background: var(--nf-manuscript);
+    border-color: var(--nf-rule);
+    border-radius: var(--nf-surface-radius);
+    padding: 24px;
+}
+
+.fi-panel-admin .fi-page-content :where(pre) {
+    max-width: 100%;
+    max-height: 36rem;
+    overflow: auto;
+    padding: 16px;
+    border: 1px solid var(--nf-rule);
+    border-radius: var(--nf-control-radius);
+    background: var(--nf-control);
+    color: var(--nf-ink);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.fi-panel-admin .fi-page-content :where(div):has(> table:not(.fi-ta-table)) {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.fi-panel-admin .fi-page-content :where(table):not(.fi-ta-table) {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: start;
+    font-variant-numeric: tabular-nums;
+}
+
+.fi-panel-admin .fi-page-content :where(table):not(.fi-ta-table) :where(th, td) {
+    padding: 12px;
+    border-bottom: 1px solid var(--nf-rule);
+    text-align: start;
+    vertical-align: top;
+}
+
+.fi-panel-admin .fi-page-content :where(table):not(.fi-ta-table) th {
+    color: var(--nf-pencil);
+    font-weight: 500;
+}
+
+/* 公共外壳不承载业务查询或写入，后续页面可逐步使用同一布局和状态。 */
+.nf-form-grid, .nf-filter-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 16px;
+}
+
+.nf-field, .nf-table-region { min-width: 0; }
+.nf-field-help { color: var(--nf-pencil); font-size: 13px; margin-top: 8px; }
+.nf-field-error { color: var(--nf-proof); font-size: 13px; margin-top: 8px; }
+.nf-field-full { grid-column: 1 / -1; }
+.nf-table-region { max-width: 100%; overflow-x: auto; }
+.nf-table-region:focus-visible { outline: 2px solid var(--nf-bookmark); outline-offset: 2px; }
+.nf-state { padding: 16px; border: 1px solid var(--nf-rule); border-radius: var(--nf-control-radius); background: var(--nf-control); }
+.nf-state-title { font-weight: 600; margin-bottom: 4px; }
+.nf-state-content { color: var(--nf-pencil); overflow-wrap: anywhere; }
+.nf-state-error { border-inline-start: 4px solid var(--nf-proof); }
+.nf-state-success { border-inline-start: 4px solid var(--nf-archive); }
+.nf-state-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+.nf-section-stack { display: grid; gap: 24px; }
+
+@media (min-width: 768px) {
+    .nf-form-grid, .nf-filter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1280px) {
+    .nf-filter-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+    .fi-panel-admin .fi-header-heading { font-size: 24px; }
+    .fi-panel-admin .fi-page-content > section:not(.fi-section) { padding: 16px; }
+    .fi-panel-admin .fi-page-content :where(label):has(> :is(input, select, textarea):not([type='hidden'], [type='checkbox'], [type='radio'])) {
+        display: grid;
+        width: 100%;
+        min-width: 0;
+        margin-inline-end: 0;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    /* 不改变 x-cloak/显示逻辑；只缩短过渡，保留浮层与控件的原生行为。 */
+    .fi-panel-admin :where(.fi-btn, .fi-input-wrp, .nf-state) { transition-duration: 0.01ms; }
+}
+
+/* UI10：焦点描边贴合边框，不使用带间隙的第二圈 outline。 */
+.fi-panel-admin .fi-page-content :where(input, select, textarea):not(.fi-input-wrp *, [type='hidden'], [type='checkbox'], [type='radio'], [type='file']):focus-visible,
+.nf-select-trigger:focus-visible,
+.nf-select-trigger[aria-expanded='true'] {
+    border-color: var(--nf-bookmark);
+    box-shadow: 0 0 0 1px var(--nf-bookmark);
+    outline: none;
+    outline-offset: 0;
+}
+.fi-panel-admin .fi-page-content :where(input, select, textarea):not(.fi-input-wrp *)[aria-invalid='true']:focus-visible {
+    border-color: var(--nf-proof);
+    box-shadow: 0 0 0 1px var(--nf-proof);
+}
+
+/* 原生 select 的箭头沿用 Filament 的 Chevron 图形，统一预留文字与右侧间距。 */
+.fi-panel-admin .fi-page-content select:not(.fi-input-wrp *, [multiple], [size]) {
+    appearance: none;
+    padding-inline-end: 44px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+    background-position: right 14px center;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+}
+.fi-panel-admin .fi-select-input-btn,
+.fi-panel-admin select.fi-select-input { background-position: right 14px center; padding-inline-end: 44px; }
+
+/* 选择菜单复用 Filament 的定位、关闭、焦点返回和菜单键盘行为，只统一视觉。 */
+.nf-select { width: 100%; min-width: 0; }
+.nf-select-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    min-height: var(--nf-control-height);
+    padding: 8px 14px 8px 12px;
+    border: 1px solid var(--nf-rule);
+    border-radius: var(--nf-control-radius);
+    background: var(--nf-control);
+    color: var(--nf-ink);
+    text-align: start;
+    cursor: pointer;
+}
+.nf-select-trigger:disabled { opacity: .6; cursor: not-allowed; }
+.nf-select-value { min-width: 0; overflow-wrap: anywhere; }
+.nf-select-chevron { width: 20px; height: 20px; flex-shrink: 0; color: var(--nf-pencil); }
+.nf-select .fi-dropdown-panel {
+    width: 100%;
+    max-width: calc(100vw - 32px);
+    border-radius: var(--nf-control-radius);
+    background: var(--nf-manuscript);
+    color: var(--nf-ink);
+}
+.nf-select .fi-dropdown-list { padding: 4px; }
+.nf-select .fi-dropdown-list-item { min-height: 40px; border-radius: 6px; padding-inline: 12px; }
+.nf-select .fi-dropdown-list-item[aria-checked='false'] > .fi-icon { visibility: hidden; }
+.nf-select .fi-dropdown-list-item[aria-checked='true'] { color: var(--nf-bookmark); background: var(--nf-control); }

@@ -17,13 +17,13 @@
     <div class="grid gap-3 md:grid-cols-4">
         <label>小说ID <input wire:model.live.debounce.400ms="novel" class="w-full rounded border p-2"></label>
         <label>币种 <input wire:model.live.debounce.400ms="currency" class="w-full rounded border p-2"></label>
-        <label>费用状态 <select wire:model.live="status" class="w-full rounded border p-2"><option value="">全部</option>@foreach(['reserved','unknown','settled'] as $s)<option>{{$s}}</option>@endforeach</select></label>
-        <label>用途 <select wire:model.live="category" class="w-full rounded border p-2"><option value="">全部</option>@foreach(['generation','review','revision','summary','embedding','planning'] as $s)<option>{{$s}}</option>@endforeach</select></label>
+        <x-nf.select id="billing-status" label="费用状态" model="status" :value="$status" :options="[''=>'全部','reserved'=>'已预留','unknown'=>'费用未知','settled'=>'已核销']" />
+        <x-nf.select id="billing-category" label="用途" model="category" :value="$category" :options="[''=>'全部','generation'=>'正文生成','review'=>'评审','revision'=>'修订','summary'=>'摘要','embedding'=>'嵌入','planning'=>'规划']" />
     </div>
     <div class="grid gap-3 md:grid-cols-3">
         <label>运行ID <input wire:model.live.debounce.400ms="run" class="w-full rounded border p-2"></label>
         <label>模型能力版本ID <input wire:model.live.debounce.400ms="model" class="w-full rounded border p-2"></label>
-        <label>请求状态 <select wire:model.live="requestStatus" class="w-full rounded border p-2"><option value="">全部</option>@foreach(['pending','succeeded','failed','unknown','quarantined'] as $s)<option>{{$s}}</option>@endforeach</select></label>
+        <x-nf.select id="billing-request-status" label="请求状态" model="requestStatus" :value="$requestStatus" :options="[''=>'全部','pending'=>'等待处理','succeeded'=>'成功','failed'=>'失败','unknown'=>'结果未知','quarantined'=>'已隔离']" />
         <label>UTC开始日期 <input type="date" wire:model.live="dateFrom" class="rounded border p-2"></label>
         <label>UTC结束日期 <input type="date" wire:model.live="dateTo" class="rounded border p-2"></label>
     </div>

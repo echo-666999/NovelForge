@@ -64,3 +64,23 @@ Prompt、路由、文风分开表单；不是三个菜单共用一个大JSON输�
 可见label与焦点、字段错误关联、键盘可操作、弹窗焦点返回、长表局部滚动、中文长值换行、主题一致。交互默认150–200ms，仅opacity/transform，减少动效模式不移动。普通文本目标4.5:1。
 
 每批必须有真实浏览器证据，桌面/窄屏、明暗、空/长数据/失败状态；200%缩放与纯字体单独测试。后端测试不能替代视觉和浏览器验收。新增代码中文注释，若涉及新表/字段须中文备注；本批不预设需要改数据库。
+
+
+## NF-UI02 已接入的工程基础（2026-10-26）
+
+主题入口 `resources/css/filament/admin/theme.css`，已接入 admin 面板及 Vite；完整结果见 [NF-UI02验收](docs/ui/NF-UI02/ACCEPTANCE.md)。仅基础已实现，后续导航与结构化表单仍按各自任务推进。
+
+公共组件位于 `resources/views/components/nf`：Section沿用原生Filament；form-grid仅布局，filters模式4/2/1列；input自动连接label/help/error并透传原生属性和wire:model；field用于其他控件，调用方必须匹配id并关联说明；table只提供命名可聚焦滚动区；state显式传入白名单状态，不根据文案推断成功。新页面优先使用原生Schema/Table；手写专用Page复用这些外壳。
+
+```blade
+<x-nf.section heading="草稿配置">
+    <x-nf.form-grid>
+        <x-nf.input id="draft-key" label="配置键" wire:model="key" :required="true" help="稳定用途标识" />
+    </x-nf.form-grid>
+</x-nf.section>
+```
+
+状态组件提供状态语义，不自行读取数据或重试；按钮仍调用既有服务。历史/冻结内容的只读约束由服务端维持，不能仅依靠HTML readonly。
+
+
+NF-UI10补充：固定少量选项的单选筛选可使用 `x-nf.select`（id/label/model/value/options），复用Filament菜单键盘与焦点；状态值不因中文展示改名。它不是动态检索或多选组件。普通输入与菜单触发器焦点描边贴合边框，不再使用有间隙的双圈outline；select箭头右侧留14px。费用页已采用，其他页面按后续任务推进。

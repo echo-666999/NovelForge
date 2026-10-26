@@ -1,0 +1,51 @@
+{
+  "before": {
+    "border": "1px",
+    "class": "",
+    "margin": "8px",
+    "outline": "rgb(67, 56, 202) solid 2px",
+    "wrapperRing": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklch(0.511 0.262 276.966) 0px 0px 0px 2px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px"
+  },
+  "after": {
+    "allNativeTextareas": [
+      {
+        "border": "0px",
+        "margin": "0px"
+      },
+      {
+        "border": "0px",
+        "margin": "0px"
+      },
+      {
+        "border": "0px",
+        "margin": "0px"
+      },
+      {
+        "border": "0px",
+        "margin": "0px"
+      },
+      {
+        "border": "0px",
+        "margin": "0px"
+      },
+      {
+        "border": "0px",
+        "margin": "0px"
+      },
+      {
+        "border": "0px",
+        "margin": "0px"
+      }
+    ],
+    "border": "0px",
+    "focused": true,
+    "margin": "0px",
+    "outlineStyle": "none",
+    "wrapperRing": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklch(0.511 0.262 276.966) 0px 0px 0px 2px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px"
+  },
+  "rawTextarea": {
+    "border": "1px",
+    "insideFilamentWrapper": false,
+    "margin": "8px"
+  }
+}

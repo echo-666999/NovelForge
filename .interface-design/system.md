@@ -11,3 +11,6 @@
 固定五组导航；JSON 存储采用类型化字段编辑；正式历史逐字段只读；所有写入经过现有应用服务。
 
 目标规范已记录，当前旧页面不视为已符合。新增 NF-UI01–08 跟踪，不改既有任务状态。未开启真实模型、中文分词或新业务。
+
+
+NF-UI02已接入：后台独立主题资源位于 resources/css/filament/admin/theme.css；公共外壳为 x-nf.section/form-grid/field/input/table/state。参数与用法只在 DESIGN.md 维护，验收见 docs/ui/NF-UI02/ACCEPTANCE.md；没有完成导航和JSON字段改造。

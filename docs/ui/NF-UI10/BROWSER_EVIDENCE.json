@@ -1,0 +1,25 @@
+{
+  "inputFocus": {
+    "border": "rgb(67, 56, 202)",
+    "offset": "0px",
+    "outline": "none",
+    "shadow": "rgb(67, 56, 202) 0px 0px 0px 1px",
+    "tag": "INPUT"
+  },
+  "keyboardSelection": {
+    "expanded": "false",
+    "focus": "billing-status",
+    "url": "http://novelforge.test/admin/billing?status=reserved"
+  },
+  "escape": {
+    "expanded": "false",
+    "focus": "billing-status"
+  },
+  "mobile": {
+    "arrowInset": 15,
+    "expanded": "true",
+    "overflow": false,
+    "padding": "14px",
+    "width": 390
+  }
+}

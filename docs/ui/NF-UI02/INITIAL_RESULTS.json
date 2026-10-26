@@ -1,0 +1,15 @@
+{
+  "tool": "phpunit",
+  "result": "failed",
+  "tests": 7,
+  "passed": 4,
+  "failed": 2,
+  "errors": 1,
+  "assertions": 44,
+  "duration_ms": 2538,
+  "failures_summary": [
+    "构建引用断言受到开发者public/hot影响，两项失败；测试改用隔离的不存在hot文件，明确验证构建产物。",
+    "自定义Blade标签属性中直接使用条件指令，输入标签未正确编译；改用AttributeBag合并，保留语义断言。"
+  ],
+  "raw_html_omitted": "首轮失败包含大段测试页面HTML；此处只保存原因与计数，不复制会话字段。"
+}

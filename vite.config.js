@@ -6,7 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            // 后台主题独立构建，保留原欢迎页资源入口。
+            input: ['resources/css/app.css', 'resources/js/app.js', 'resources/css/filament/admin/theme.css'],
             refresh: true,
             fonts: [
                 bunny('Instrument Sans', {

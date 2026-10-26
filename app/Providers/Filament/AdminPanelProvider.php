@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Overview;
+use Filament\FontProviders\LocalFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -29,6 +30,9 @@ class AdminPanelProvider extends PanelProvider
             ->brandName('NovelForge · 小说工坊')
             ->path('admin')
             ->login()
+            // UI02 仅接入主题与本机字体，不修改导航、页面数据或业务动作。
+            ->viteTheme('resources/css/filament/admin/theme.css')
+            ->font('PingFang SC', provider: LocalFontProvider::class)
             ->colors([
                 'primary' => Color::Indigo,
             ])

@@ -1,0 +1,302 @@
+[
+  {
+    "control": [
+      {
+        "background": "rgb(25, 29, 38)",
+        "border": "1px",
+        "color": "rgb(238, 240, 245)",
+        "minHeight": "40px"
+      },
+      {
+        "background": "rgb(25, 29, 38)",
+        "border": "1px",
+        "color": "rgb(238, 240, 245)",
+        "minHeight": "40px"
+      },
+      {
+        "background": "rgb(25, 29, 38)",
+        "border": "1px",
+        "color": "rgb(238, 240, 245)",
+        "minHeight": "40px"
+      },
+      {
+        "background": "rgb(25, 29, 38)",
+        "border": "1px",
+        "color": "rgb(238, 240, 245)",
+        "minHeight": "40px"
+      }
+    ],
+    "dark": true,
+    "grid": [
+      {
+        "columns": "358px",
+        "display": "grid"
+      }
+    ],
+    "overflow": false,
+    "page": "/admin/prompt-templates",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "dark": false,
+    "fields": [
+      {
+        "border": "1px",
+        "padding": "8px 12px",
+        "tag": "INPUT",
+        "width": 198
+      },
+      {
+        "border": "1px",
+        "padding": "8px 12px",
+        "tag": "INPUT",
+        "width": 198
+      },
+      {
+        "border": "1px",
+        "padding": "8px 12px",
+        "tag": "INPUT",
+        "width": 198
+      },
+      {
+        "border": "1px",
+        "padding": "8px 12px",
+        "tag": "INPUT",
+        "width": 198
+      },
+      {
+        "border": "1px",
+        "padding": "8px 12px",
+        "tag": "INPUT",
+        "width": 198
+      },
+      {
+        "border": "1px",
+        "padding": "8px 12px",
+        "tag": "TEXTAREA",
+        "width": 1275
+      },
+      {
+        "border": "1px",
+        "padding": "8px 12px",
+        "tag": "INPUT",
+        "width": 198
+      },
+      {
+        "border": "1px",
+        "padding": "8px 12px",
+        "tag": "SELECT",
+        "width": 192
+      },
+      {
+        "border": "1px",
+        "padding": "8px 12px",
+        "tag": "SELECT",
+        "width": 192
+      },
+      {
+        "border": "1px",
+        "padding": "8px 12px",
+        "tag": "INPUT",
+        "width": 198
+      },
+      {
+        "border": "1px",
+        "padding": "8px 12px",
+        "tag": "INPUT",
+        "width": 198
+      }
+    ],
+    "overflow": false,
+    "page": "/admin/extraction-ledger",
+    "sections": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "padding": "24px"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "padding": "24px"
+      }
+    ],
+    "viewport": [
+      1709,
+      939
+    ]
+  },
+  {
+    "controls": [
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(32, 39, 55)",
+        "disabled": false,
+        "height": 40,
+        "id": "normal",
+        "invalid": "false",
+        "outline": "none",
+        "readonly": false
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(32, 39, 55)",
+        "disabled": false,
+        "height": 40,
+        "id": "invalid",
+        "invalid": "true",
+        "outline": "none",
+        "readonly": false
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(87, 97, 116)",
+        "disabled": false,
+        "height": 40,
+        "id": "readonly",
+        "invalid": "false",
+        "outline": "none",
+        "readonly": true
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(32, 39, 55)",
+        "disabled": true,
+        "height": 40,
+        "id": "disabled",
+        "invalid": "false",
+        "outline": "none",
+        "readonly": false
+      }
+    ],
+    "dark": false,
+    "grid": "504px 504px",
+    "overflow": false,
+    "page": "isolated-component-specimen",
+    "states": [
+      {
+        "busy": null,
+        "role": "status"
+      },
+      {
+        "busy": "true",
+        "role": "status"
+      },
+      {
+        "busy": null,
+        "role": "status"
+      },
+      {
+        "busy": null,
+        "role": "alert"
+      },
+      {
+        "busy": null,
+        "role": "status"
+      }
+    ],
+    "viewport": [
+      1709,
+      883
+    ]
+  },
+  {
+    "controls": [
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(238, 240, 245)",
+        "disabled": false,
+        "height": 40,
+        "id": "normal",
+        "invalid": "false",
+        "readonly": false
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(238, 240, 245)",
+        "disabled": false,
+        "height": 40,
+        "id": "invalid",
+        "invalid": "true",
+        "readonly": false
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(173, 182, 199)",
+        "disabled": false,
+        "height": 40,
+        "id": "readonly",
+        "invalid": "false",
+        "readonly": true
+      },
+      {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(238, 240, 245)",
+        "disabled": true,
+        "height": 40,
+        "id": "disabled",
+        "invalid": "false",
+        "readonly": false
+      }
+    ],
+    "dark": true,
+    "grid": "504px 504px",
+    "overflow": false,
+    "page": "isolated-component-specimen",
+    "viewport": [
+      1709,
+      883
+    ]
+  },
+  {
+    "dark": true,
+    "disabled": true,
+    "errorBorder": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklch(0.637 0.237 25.331) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+    "grid": "294px",
+    "overflow": false,
+    "page": "isolated-component-specimen",
+    "readonly": true,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "background": "rgb(248, 249, 251)",
+    "controls": [
+      {
+        "border": "1px",
+        "minHeight": "40px",
+        "padding": "8px 12px"
+      },
+      {
+        "border": "1px",
+        "minHeight": "40px",
+        "padding": "8px 12px"
+      },
+      {
+        "border": "1px",
+        "minHeight": "40px",
+        "padding": "8px 12px"
+      },
+      {
+        "border": "1px",
+        "minHeight": "40px",
+        "padding": "8px 12px"
+      }
+    ],
+    "dark": false,
+    "font": "\"PingFang SC\", \"Microsoft YaHei\", \"Noto Sans CJK SC\", sans-serif",
+    "overflow": false,
+    "page": "/admin",
+    "styles": [
+      "http://novelforge.test/fonts/filament/filament/inter/index.css?v=5.10.3.0",
+      "http://127.0.0.1:5173/resources/css/filament/admin/theme.css"
+    ],
+    "viewport": [
+      1709,
+      939
+    ]
+  }
+]

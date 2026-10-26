@@ -1,0 +1,84 @@
+{
+  "result": "passed",
+  "command": "npm run build",
+  "entry": {
+    "file": "assets/theme-mXuzJhRF.css",
+    "name": "theme",
+    "names": [
+      "theme.css"
+    ],
+    "src": "resources/css/filament/admin/theme.css",
+    "isEntry": true
+  },
+  "css_bytes": 704865,
+  "css_gzip_bytes": 71171,
+  "sha256": "14e19ccce2682666f35c8479fb191dc9f32f9b1c5e4adc9b6e966b0b1032c1ad",
+  "business_utility_and_component_rules_present": true,
+  "token_contrast_only": [
+    {
+      "pair": "light-primary",
+      "foreground": "#202737",
+      "background": "#ffffff",
+      "ratio": 14.93
+    },
+    {
+      "pair": "light-secondary",
+      "foreground": "#576174",
+      "background": "#f2f4f7",
+      "ratio": 5.66
+    },
+    {
+      "pair": "light-action",
+      "foreground": "#4338ca",
+      "background": "#ffffff",
+      "ratio": 7.9
+    },
+    {
+      "pair": "light-error",
+      "foreground": "#b42318",
+      "background": "#f2f4f7",
+      "ratio": 5.97
+    },
+    {
+      "pair": "dark-primary",
+      "foreground": "#eef0f5",
+      "background": "#20242d",
+      "ratio": 13.63
+    },
+    {
+      "pair": "dark-secondary",
+      "foreground": "#adb6c7",
+      "background": "#191d26",
+      "ratio": 8.27
+    },
+    {
+      "pair": "dark-action",
+      "foreground": "#a5b4fc",
+      "background": "#20242d",
+      "ratio": 7.79
+    },
+    {
+      "pair": "dark-error",
+      "foreground": "#fda29b",
+      "background": "#191d26",
+      "ratio": 8.69
+    }
+  ],
+  "warning": "已有可选fontaine字体优化提示；构建通过，未安装可选包。",
+  "asset_bundle_auxiliary_check": "failed; no HTTP status code assertion; actual computed style and screenshots verified separately",
+  "source_hashes": {
+    "app/Providers/Filament/AdminPanelProvider.php": "1004f232db61a64c3231377d4015d348c0c686a9b09ff41045200667b1237648",
+    "resources/css/filament/admin/theme.css": "30bad6b6ced2ff52bef93e14a0f9ba620bf230370f340cf03ecd7f17c516adf1",
+    "vite.config.js": "6dae1f0a68da28c321c131afb073092e2eeb0fc5c0a5672869c74f3100009eac",
+    "resources/views/filament/overview.blade.php": "14bc4b87d370adf3d8316f24e50c064e85fb7a052741d0d71d91cdd1c9e97a3d",
+    "tests/Feature/UiFoundationTest.php": "d8e7ba664bfd9e2e3fb79e4a6c5e434e952ed079e536e1cd02f61d88ee8e9aae",
+    "tests/Support/render-ui-foundation.php": "bcf61332d2a6ad3b13862ca132e4a063e9d1fd3361a400c4f65e238567844859",
+    "tests/Fixtures/ui-foundation.blade.php": "403ece2d012aace6edc079d13d3cbb9729c9f9e2251c5a3a25cecff9d40794c6",
+    "resources/views/components/nf/field.blade.php": "04abd3a0c6ced74836bdfb6f68743154e436b704d997c8de3b1d81513f2cdf44",
+    "resources/views/components/nf/table.blade.php": "0a958c7bbda14430adf587e0b493776f0f74d1416d51c3335ac6604a60005165",
+    "resources/views/components/nf/input.blade.php": "3ec25faba8d70c763c1fb8ff05e4d9fda39c063aaaefddb87e6e6e23f0895a44",
+    "resources/views/components/nf/section.blade.php": "7187d2600a2058330ff8fd8588bbcd42b21749f8e5a98070ff7b2e117a530996",
+    "resources/views/components/nf/state.blade.php": "bdc096f8de21a13ffa268f8d590accd2fc5f06a7d796c5cfaf18e13569be63a6",
+    "resources/views/components/nf/form-grid.blade.php": "6652a9a9de75c6ec073a964829899ee676ad00e9211592fb3c7f355cca68ae99"
+  }
+}

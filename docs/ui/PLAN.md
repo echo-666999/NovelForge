@@ -138,7 +138,7 @@ A 采用项目内副本 `.agents/skills/interface-design/`，保留上游 LICENS
 | 编号 | 状态 / 优先级 | 范围与交付 | 前置 | 验收标准 |
 | --- | --- | --- | --- | --- |
 | NF-UI01 | design_documented / P0 | 本文、DESIGN.md、技能项目副本、页面矩阵、交互原型 | 用户选定 A；PRD/A04/现有代码 | 来源可追溯；现有页面全部入矩阵；已有任务原文不变；原型明确无后端 |
-| NF-UI02 | todo / P0 | Filament theme、Vite输入与扫描范围、统一 tokens、公共 Section/Form/Table/状态外壳 | NF-UI01 | 构建通过；真实后台CSS请求成功；截图问题处 computed style 生效；明暗主题与关键控件边界正常；不改业务服务 |
+| NF-UI02 | implemented_core_verified / P0 | Filament theme、Vite输入与扫描范围、统一 tokens、公共 Section/Form/Table/状态外壳 | NF-UI01 | 构建通过；真实后台CSS请求成功；截图问题处 computed style 生效；明暗主题与关键控件边界正常；不改业务服务 |
 | NF-UI03 | todo / P0 | 五组导航、顺序、三个游离入口归组、小说上下文、书内导航、状态页次级入口 | NF-UI02 | 无游离菜单/重复入口；所有旧深链接可访问；刷新/切书/返回状态正确；越权/跨书被拒绝 |
 | NF-UI04 | todo / P0 | Prompt/模型路由/文风/供应商字段表单、递归schema编辑、结构化版本比较 | NF-UI02、NF-UI03；C03/C04现有契约 | 不手写JSON可建草稿/新版本、按现有条件测试发布；复杂schema与未知键无损；已发布版本只读；字段路径错误正确映射；无真实网络调用 |
 | NF-UI05 | todo / P0 | 总览和候选提取样板，连同UI04 Prompt覆盖截图三页 | NF-UI04 | 0条/正常/长数据/错误/加载/禁用均可读；不依赖人工输入ID完成常规选取；候选事件逐字段编辑并准确还原契约；未接入数据明确说明；截图对照通过 |
@@ -174,3 +174,16 @@ NF-UI02–NF-UI07 均补相应局部回归和页面截图，不将全部测试�
 官方依据：[Filament 5.x 样式与主题](https://filamentphp.com/docs/5.x/styling/overview)、[Interface Design 源码](https://github.com/Dammyjay93/interface-design/blob/2f9be3206855bcb2d1d0af262c8bae25cba6658d/.claude/skills/interface-design/SKILL.md)、项目 PRD §22–30、docs/phase-a/A04_CONTRACTS.md 与 A04_API.md。
 
 本轮原型核对：Codex IAB 522×726视口，已检查字段布局、变量添加、五组导航、页面切换、总览空态/示例列表和演示错误反馈。截图见 [Prompt原型](prototype-prompt.jpg)，精确边界见 [VERIFICATION.json](VERIFICATION.json)。该结果不覆盖实际后台、桌面、390px、明暗主题或全Schema往返验收。
+
+
+2026-10-26 NF-UI02专项结果：主题与公共组件基础实现、15项专项/相关测试（149断言）、Chrome实际后台与隔离样本明暗/390px核对；[验收报告](NF-UI02/ACCEPTANCE.md)。不代表导航或JSON表单整改完成，其他任务状态不变。
+
+
+## 新增纠正任务 NF-UI09（2026-10-26）
+
+用户反馈创建小说页文本域上方重复横线，新增NF-UI09修复；依赖已完成的NF-UI02，不改其状态。收窄兼容选择器，实际聚焦与原生文本域正反向检查、构建及7项回归通过。范围与证据见 [NF-UI09验收](NF-UI09/ACCEPTANCE.md)。此项为用户反馈纠正，不改变既定导航/结构化表单开发顺序。
+
+
+## 新增纠正任务 NF-UI10（2026-10-26）
+
+费用页原生菜单与箭头、输入聚焦双圈反馈，新增NF-UI10：三个筛选采用复用Filament的公共单选菜单，保留原筛选链路；共享主题统一箭头与连续焦点描边。[验收记录](NF-UI10/ACCEPTANCE.md)。既有任务状态不改，后续导航/JSON结构化任务顺序保持原计划。
