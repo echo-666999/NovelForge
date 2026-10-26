@@ -1,0 +1,133 @@
+{
+  "date": "2026-10-26/27",
+  "browser": "Chrome",
+  "desktop": [
+    1709,
+    939
+  ],
+  "mobile": [
+    390,
+    844
+  ],
+  "database": "novel_forge_test",
+  "development_demo_writes": false,
+  "real_model_calls": false,
+  "actual": [
+    "normal Filament login",
+    "overview 13 rows with 120-character title",
+    "10 per page and page2",
+    "invalid date error",
+    "copy attempt36 from body15",
+    "invalid quote saved as attempt37 with INVALID_EVIDENCE",
+    "focus by stable event key",
+    "correct quote saved as eligible attempt38",
+    "same-input repeat stayed attempt38",
+    "loading display block and submit disabled",
+    "dark editor and system theme restore",
+    "three-page mobile root width390 and sidebar right0"
+  ],
+  "browser_database_after_pure_validation": {
+    "ai_requests": 1,
+    "story_events": 0,
+    "extraction_attempts": 3,
+    "state_version": 0
+  },
+  "limitations": [
+    "Chrome only",
+    "no full-page state coverage or Safari",
+    "no pure-font 200%, reduced motion or SLA claim",
+    "final layout screenshots recaptured on same-type isolated fixtures after fixed table widths"
+  ],
+  "screenshots": [
+    {
+      "path": "screenshots/before-extraction.jpg",
+      "sha256": "edbc9260b8b5f5a20f6c761cad8c5daeaf21da4489a7818838adc96663e8a2a2"
+    },
+    {
+      "path": "screenshots/before-overview.jpg",
+      "sha256": "d99fac85e67ebc74e41900f27f77741119fa7c6969aaccc4ee60d1562b7bee4e"
+    },
+    {
+      "path": "screenshots/extraction-conflict.jpg",
+      "sha256": "da76d870d1bc6683e679a4bc835af0e0126b7a6fe09a947de1c4b3590b2d0ea1"
+    },
+    {
+      "path": "screenshots/extraction-dark.jpg",
+      "sha256": "e901e7c1d002173f0ebfdbfa5f1401fa8569dcf6df308849072975bb5f54dd6d"
+    },
+    {
+      "path": "screenshots/extraction-editor.jpg",
+      "sha256": "d76c266a399cfc45634e9f86c069a6b90c87faafde348dc2426e41788d6ecd6b"
+    },
+    {
+      "path": "screenshots/extraction-empty.jpg",
+      "sha256": "e1db0cb45bc1cdd7fe670f210143d248942b22bd1c80972ae2a475a02efea081"
+    },
+    {
+      "path": "screenshots/extraction-loading.jpg",
+      "sha256": "4cfb236ae4eb03487dc8e4dfdd286e6f30cefa65f7697530e34ba649fc946830"
+    },
+    {
+      "path": "screenshots/extraction-mobile.jpg",
+      "sha256": "93c1e17f86eb76fdb39a2781b5307ce7e1f375b099ffb36a6913a531f584ea71"
+    },
+    {
+      "path": "screenshots/extraction-success.jpg",
+      "sha256": "3ca7e991ef0cb0695b4a0d64e87aac64070fbac44fc13c243ac81949ec97646e"
+    },
+    {
+      "path": "screenshots/overview-empty.jpg",
+      "sha256": "b85aa06b745621d620199a32a55d4503b287bbd6440474c85283ec478e2e2944"
+    },
+    {
+      "path": "screenshots/overview-error.jpg",
+      "sha256": "55cf6e559e82e217c1abf0ceb67919c1c4cfab5e53656a60eb1bda846d9fd0ed"
+    },
+    {
+      "path": "screenshots/overview-mobile.jpg",
+      "sha256": "a241cd5c8c21cc34a2c37b80c91931b65992de15ed9dbc115151ce3c33394c6f"
+    },
+    {
+      "path": "screenshots/overview-page2.jpg",
+      "sha256": "78b9b2baab2f034ffe6f3bd83743d59d3581608972eeff6895349ab0e74fb4a9"
+    },
+    {
+      "path": "screenshots/overview-populated.jpg",
+      "sha256": "a36b73a61b2f0c5f9f0c57f2218e7562f06dd70e3ea2ea0e62b3feac7f669b09"
+    },
+    {
+      "path": "screenshots/prompt-mobile.jpg",
+      "sha256": "e593f21bde857a59e90da9cea3684021159a6f019743553ef7837e8c4ccccdee"
+    },
+    {
+      "path": "screenshots/prompt-reference.jpg",
+      "sha256": "6173e58285a5725687ef64e6ae19a03af66a8b0cdb0fcc388a36dfe044261a22"
+    },
+    {
+      "path": "screenshots/ui04-prompt-baseline.jpg",
+      "sha256": "38d1a0e0f1c5db1aa61f49904f5d23ad9a38e2a2bd1558b4d2e6b5fab409836e"
+    }
+  ],
+  "cleanup": {
+    "server_listening": false,
+    "credentials_exist": false,
+    "isolated_counts": {
+      "users": 0,
+      "novels": 0,
+      "ai_requests": 0,
+      "provider_versions": 0,
+      "model_profile_versions": 0,
+      "prompt_versions": 0,
+      "style_versions": 0,
+      "route_versions": 0
+    },
+    "cleanup_test": {
+      "tool": "phpunit",
+      "result": "passed",
+      "tests": 1,
+      "passed": 1,
+      "assertions": 10,
+      "duration_ms": 2112
+    }
+  }
+}

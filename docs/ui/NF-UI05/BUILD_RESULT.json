@@ -1,0 +1,6 @@
+{
+  "command": "npm run build",
+  "result": "passed",
+  "theme": "assets/theme-F89-ClmT.css",
+  "warning": "existing optional fontaine dependency warning"
+}

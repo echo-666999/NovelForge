@@ -345,3 +345,19 @@
 .nf-value-changed > th { color: var(--nf-bookmark); }
 
 .nf-field-path { display: block; font-size: .75rem; font-weight: 400; color: var(--nf-pencil); overflow-wrap: anywhere; }
+
+/* UI05：原文采用正文行宽和独立阅读区，长引用不推宽页面。 */
+.nf-source-reading { white-space: pre-wrap; overflow-wrap: anywhere; max-height: 26rem; overflow-y: auto; max-width: 44em; font-size: 1.125rem; line-height: 1.8; }
+.nf-break, .nf-extraction-field { overflow-wrap: anywhere; min-width: 0; }
+.nf-price-choice { display: flex; align-items: center; gap: .5rem; padding-block: .5rem; }
+
+/* UI05：固定字段两列，证据与嵌套结构跨行，手机保持单列。 */
+.nf-extraction-object { display: grid; grid-template-columns: minmax(0,1fr); gap: 1rem; }
+.nf-extraction-object > fieldset, .nf-full-row { grid-column: 1 / -1; }
+@media (min-width: 768px) { .nf-extraction-object { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+[id^="er-"] { scroll-margin-top: 5rem; }
+
+#nf-extraction-editor, #nf-extraction-result { scroll-margin-top: 5rem; }
+
+/* UI05：长书名不能挤占日期、状态和创作动作；窄屏只在表格容器滚动。 */
+.nf-overview-table { width: 100%; min-width: 48rem; table-layout: fixed; }

@@ -1,0 +1,52 @@
+{
+  "result": "passed",
+  "pint": {
+    "tool": "pint",
+    "result": "passed"
+  },
+  "diff_check": "passed",
+  "database": {
+    "database": "novel_forge_test",
+    "counts": {
+      "users": 0,
+      "novels": 0,
+      "ai_requests": 0,
+      "provider_versions": 0,
+      "model_profile_versions": 0,
+      "prompt_versions": 0,
+      "style_versions": 0,
+      "route_versions": 0
+    }
+  },
+  "cleanup_test": {
+    "tool": "phpunit",
+    "result": "passed",
+    "tests": 1,
+    "passed": 1,
+    "assertions": 10,
+    "duration_ms": 2112
+  },
+  "temporary_server_listening": false,
+  "private_credentials_exist": false,
+  "preexisting_task_status_changes": {
+    "NF-UI05": [
+      "todo ",
+      "implemented_core_verified "
+    ]
+  },
+  "new_task": "NF-UI12 todo",
+  "protected_source_changes": [],
+  "changed_preexisting_files": [
+    ".interface-design/system.md",
+    "DESIGN.md",
+    "app/Filament/Concerns/EditsJsonFields.php",
+    "app/Filament/Pages/ExtractionLedger.php",
+    "app/Filament/Support/JsonFields.php",
+    "docs/DEVELOPMENT_TASKS.md",
+    "docs/ui/PLAN.md",
+    "resources/css/filament/admin/theme.css",
+    "resources/views/filament/extraction-ledger.blade.php",
+    "resources/views/filament/overview.blade.php"
+  ],
+  "other_preexisting_files_sha256_unchanged": true
+}

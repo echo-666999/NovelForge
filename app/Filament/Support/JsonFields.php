@@ -188,7 +188,8 @@ final class JsonFields
             'real_model_verified' => '真实模型是否已验证', 'cases' => '回归样例', 'issues' => '问题', 'check' => '检查项',
         ];
 
-        return $labels[$key] ?? $key;
+        // UI05只读证据与编辑器共用业务字段名，未知键仍显示原名。
+        return $labels[$key] ?? ExtractionUi::LABELS[$key] ?? $key;
     }
 
     /** 只读路径表与比较保留列表位置，明确区分不存在、空值、布尔和空列表。 */

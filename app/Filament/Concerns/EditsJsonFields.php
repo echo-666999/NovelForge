@@ -71,9 +71,15 @@ trait EditsJsonFields
         $this->advancedTrees[$key] = ! ($this->advancedTrees[$key] ?? false);
     }
 
+    /** 调用页面显式声明根节点，客户端不能增加允许范围。 */
+    protected function jsonTreeRoots(): array
+    {
+        return ['variable_schema', 'output_schema', 'examples', 'rubric'];
+    }
+
     private function treePath(string $path): void
     {
-        if (! preg_match('/^trees\.(variable_schema|output_schema|examples|rubric)(\.children\.[0-9]+\.node)*$/D', $path) || substr_count($path, '.children.') > 24 || ! is_array(data_get($this, $path))) {
+        if (! preg_match('/^trees\.([a-z_]+)(\.children\.[0-9]+\.node)*$/D', $path, $match) || ! in_array($match[1], $this->jsonTreeRoots(), true) || substr_count($path, '.children.') > 24 || ! is_array(data_get($this, $path))) {
             throw ValidationException::withMessages(['trees' => '字段路径不存在。']);
         }
     }
