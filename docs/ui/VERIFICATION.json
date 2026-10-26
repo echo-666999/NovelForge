@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-26",
+  "scope": "planning_and_independent_prototype_only",
+  "user_selected_skill": "interface-design",
+  "upstream_commit": "2f9be3206855bcb2d1d0af262c8bae25cba6658d",
+  "existing_task_content_unchanged": true,
+  "previous_task_file_sha256": "31ed073c5a6a16040f6064ac82678d78ec793b76f1740ca7729d331f8ae438ca",
+  "view_templates_accounted_for": 28,
+  "relative_doc_links": "passed",
+  "html_parser": "passed",
+  "prototype_browser": "Codex IAB",
+  "prototype_viewport_screenshot_px": [
+    522,
+    726
+  ],
+  "prototype_checks": [
+    "prompt_initial_layout_visual",
+    "add_variable_creates_new_field_row",
+    "navigation_five_groups",
+    "overview_page_switch",
+    "overview_empty_to_example_list",
+    "extraction_page_switch_and_typed_fields",
+    "extraction_demo_error_feedback"
+  ],
+  "app_code_changed": false,
+  "app_browser_tested": false,
+  "backend_tests_run": false,
+  "database_changed": false,
+  "not_verified": [
+    "actual_admin_css_network_and_computed_style",
+    "actual_admin_functional_interaction",
+    "desktop_and_390px_prototype",
+    "dark_mode",
+    "Safari_and_Chromium_separate",
+    "200_percent_zoom_and_font",
+    "full_schema_roundtrip"
+  ],
+  "prototype_screenshot": "prototype-prompt.jpg",
+  "prototype_screenshot_format": "JPEG",
+  "skill_source_matches_upstream": true
+}
