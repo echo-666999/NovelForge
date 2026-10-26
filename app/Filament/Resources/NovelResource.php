@@ -29,7 +29,10 @@ class NovelResource extends Resource
 
     protected static ?string $pluralModelLabel = '小说';
 
-    protected static ?string $navigationLabel = '小说与原始要求';
+    // 小说资源保留原路由，只统一常驻导航名称与顺序。
+    protected static ?int $navigationSort = 20;
+
+    protected static ?string $navigationLabel = '小说库';
 
     protected static ?string $recordTitleAttribute = 'title';
 

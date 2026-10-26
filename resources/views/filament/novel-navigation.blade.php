@@ -1,35 +1,4 @@
 @php
-try { $context=app(\App\Services\WorkspaceService::class)->navigation(auth()->user(),$novelId); }
-catch (\Illuminate\Database\QueryException $e) { report($e); $context=null; }
+    $navigation = app(\App\Services\NovelNavigationService::class)->context(auth()->user(), $novelId, class_basename($this));
 @endphp
-@if($context)
-<x-filament::section>
-<p><strong>当前小说：{{ $context['title'] }}</strong> · #{{ $context['id'] }} @if($context['status']==='archived') · 已归档 @endif</p>
-<p>正式基线：尚未接入</p>
-<nav aria-label="当前小说创作导航" class="flex flex-wrap gap-3">
-@foreach($context['links'] as $link)<a href="{{ $link['url'] }}" @if(request()->is(ltrim($link['url'],'/'))) aria-current="page" @endif>{{ $link['label'] }}</a>@endforeach
-{{-- 账本只展示本书规划承诺，正式证据由后续提交链提供。 --}}
-<a href="/admin/foreshadow-ledger?novel={{ $context['id'] }}">伏笔与主支线账本</a>
-<a href="/admin/memory-library?novel={{ $context['id'] }}">分层记忆库</a>
-<a href="/admin/search-lab?novel={{ $context['id'] }}">检索实验室</a>
-<a href="/admin/novels">切换小说</a><a href="/admin">创作总览</a>
-</nav>
-</x-filament::section>
-
-@else <p role="alert">当前小说信息读取失败，请重试。</p> @endif
-
-{{-- E01 从要求、蓝图和层级规划共用入口查看离线候选与来源。 --}}
-<a href="{{ \App\Filament\Resources\NovelResource::getUrl('planning-candidates', ['record' => $novelId]) }}">离线规划候选</a>
-
-{{-- E02 候选正文独立于正式提交。 --}}
-<a href="{{ \App\Filament\Resources\NovelResource::getUrl('draft-editor', ['record' => $novelId]) }}">候选正文</a>
-
-{{-- E03 的候选账本不能更新正式剧情。 --}}
-<a href="/admin/extraction-ledger?novel={{ $novelId }}">正文提取与硬约束</a>
-
-{{-- E04评审中心仅提供候选评分和问题。 --}}
-<a href="{{ url('/admin/review-center') }}?novel={{ urlencode($novelId) }}">评审中心与策略</a>
-{{-- E05采纳只改候选，复评合格不等于正式提交。 --}}
-<a href="/admin/revision-desk?novel={{ $novelId }}">受限修订工作台</a>
-{{-- E06预检与正式回执为独立入口，不能以候选采纳代替。 --}}
-<a href="/admin/canonical-commit-center?novel={{ $novelId }}">正式提交与基线</a>
+@include('filament.book-navigation', ['navigation' => $navigation])

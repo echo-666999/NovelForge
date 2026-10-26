@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-26",
+  "command": "npm run build",
+  "result": "passed",
+  "theme": "assets/theme-CRKbS89l.css",
+  "bytes": 707912,
+  "sha256": "0d1568f662bcd81adf1335aaf495f33f281f320a51af9e1941251929804d2da3",
+  "warning": "可选 fontaine 缺失，不影响本次成功构建；未新增依赖。"
+}

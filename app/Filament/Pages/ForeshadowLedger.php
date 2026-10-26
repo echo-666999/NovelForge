@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Exceptions\NovelProblem;
+use App\Filament\Concerns\HasNovelNavigation;
 use App\Services\ForeshadowLedgerService;
 use App\Services\NovelIntentService;
 use Filament\Pages\Page;
@@ -10,19 +11,20 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Locked;
-use Livewire\Attributes\Url;
 
 /** 作者侧伏笔与主支线账本，明确显示未知的正式证据进度。 */
 class ForeshadowLedger extends Page
 {
+    use HasNovelNavigation;
+
+    // UI03：分组与顺序显式固定，不依赖页面发现次序。
+    protected static string|\UnitEnum|null $navigationGroup = '故事管理';
+
+    protected static ?int $navigationSort = 30;
+
     protected static ?string $title = '伏笔与主支线账本';
 
-    protected static string|\UnitEnum|null $navigationGroup = '创作管理';
-
     protected string $view = 'filament.foreshadow-ledger';
-
-    #[Url]
-    public string $novel = '';
 
     public int $chapter = 1;
 

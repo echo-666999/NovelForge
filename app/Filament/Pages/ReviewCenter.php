@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Exceptions\NovelProblem;
+use App\Filament\Concerns\HasNovelNavigation;
 use App\Review\ReviewContract;
 use App\Services\AuthoringConfigurationService;
 use App\Services\ChapterReviewService;
@@ -21,6 +22,13 @@ use Livewire\Attributes\Locked;
 /** UI13/UI27：只读原文、评分与问题，非阻塞意见不能改写硬门禁。 */
 class ReviewCenter extends Page
 {
+    use HasNovelNavigation;
+
+    // UI03：分组与顺序显式固定，不依赖页面发现次序。
+    protected static string|\UnitEnum|null $navigationGroup = '生产与质量';
+
+    protected static ?int $navigationSort = 30;
+
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-clipboard-document-check';
 
     protected static ?string $navigationLabel = '评审中心与策略';
@@ -28,8 +36,6 @@ class ReviewCenter extends Page
     protected static ?string $title = '评审中心与文风策略';
 
     protected string $view = 'filament.review-center';
-
-    public string $novel = '';
 
     public string $version = '';
 

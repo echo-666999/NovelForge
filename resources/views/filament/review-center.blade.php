@@ -1,11 +1,11 @@
 <x-filament-panels::page>
+    @include('filament.book-navigation', ['navigation' => $this->bookNavigation()])
     {{-- E04评审和策略共享服务鉴权，页面不提供修改正文或强制通过动作。 --}}
-    @if($novel !== '') @include('filament.novel-navigation', ['novelId' => $novel]) @endif
     <p>离线评分只决定候选资格。自然度需人工阅读评分确认，不以 AI 检测器概率验收。</p>
     <p role="status">{{ $notice }}</p>
     <section class="space-y-3 rounded-xl border p-4">
         <h2 class="font-bold">正文评审与人工评分</h2>
-        <label>小说 ID <input aria-label="小说 ID" wire:model="novel"></label>
+
         <label>正文版本 <input wire:model="version"></label><label>本章提取记录 <input wire:model="extraction"></label>
         <label>评审策略版本 <input wire:model="policy"></label>
         <label>评审者 <select wire:model="reviewer"><option value="offline">明确离线响应</option><option value="human">本人阅读后的人工评分</option></select></label>

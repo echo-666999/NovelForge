@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Exceptions\NovelProblem;
+use App\Filament\Concerns\HasNovelNavigation;
 use App\Services\NovelIntentService;
 use App\Services\StoryConsistencyService;
 use Filament\Pages\Page;
@@ -15,14 +16,16 @@ use Livewire\Attributes\Url;
 /** 时间线工作台只追加修正版本，历史事件和正式状态不可编辑。 */
 class StoryTimeline extends Page
 {
+    use HasNovelNavigation;
+
+    // UI03：分组与顺序显式固定，不依赖页面发现次序。
+    protected static string|\UnitEnum|null $navigationGroup = '故事管理';
+
+    protected static ?int $navigationSort = 20;
+
     protected static ?string $title = '时间线与角色知识';
 
-    protected static string|\UnitEnum|null $navigationGroup = '创作管理';
-
     protected string $view = 'filament.story-timeline';
-
-    #[Url]
-    public string $novel = '';
 
     #[Url]
     public string $context = '';

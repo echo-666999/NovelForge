@@ -305,3 +305,43 @@
 .nf-select .fi-dropdown-list-item { min-height: 40px; border-radius: 6px; padding-inline: 12px; }
 .nf-select .fi-dropdown-list-item[aria-checked='false'] > .fi-icon { visibility: hidden; }
 .nf-select .fi-dropdown-list-item[aria-checked='true'] { color: var(--nf-bookmark); background: var(--nf-control); }
+
+/* UI03：上下文固定为身份、基线与分组入口；窄屏自动换行，不再堆叠散落链接。 */
+.nf-book-switch { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; margin-bottom: 16px; }
+.nf-book-switch label { flex: 1 1 16rem; min-width: 0 !important; margin: 0 !important; }
+.nf-book-identity { margin-top: 12px; overflow-wrap: anywhere; }
+.nf-book-baseline { color: var(--nf-pencil); margin-top: 4px; }
+.nf-book-navigation { display: grid; gap: 12px; margin-top: 16px; }
+.nf-book-navigation details { border-top: 1px solid var(--nf-rule); padding-top: 12px; }
+.nf-book-navigation summary { cursor: pointer; font-weight: 500; }
+.nf-book-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.nf-book-links a { padding: 6px 12px; border-radius: 8px; color: var(--nf-pencil); border: 1px solid var(--nf-rule); }
+.nf-book-links a:hover, .nf-book-links a[aria-current='page'] { color: var(--nf-bookmark); background: var(--nf-control); }
+.nf-book-links a:focus-visible { outline: 2px solid var(--nf-bookmark); outline-offset: 2px; }
+
+/* 切书选择器复用统一单选菜单，GET表单布局不拉伸相邻动作。 */
+.nf-book-picker { flex: 1 1 16rem; max-width: 28rem; min-width: 0; }
+
+/* 书级辅助入口默认收起，当前任务的正文与表单保持靠前。 */
+.nf-book-navigation-drawer { margin-top: 1rem; }
+.nf-book-navigation-drawer > summary { cursor: pointer; font-weight: 600; }
+
+/* UI04：复杂字段按当前层级展开，轻边界区分行，窄屏操作自然换行。 */
+.nf-config-editor { display: grid; gap: 1.5rem; }
+.nf-config-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.nf-json-node { min-width: 0; margin-block: .75rem; padding: .75rem; border: 1px solid var(--nf-rule); border-radius: .5rem; }
+.nf-json-node > legend { padding-inline: .25rem; font-weight: 600; overflow-wrap: anywhere; }
+.nf-json-row { min-width: 0; margin-top: .75rem; }
+.nf-json-row-actions { display: flex; flex-wrap: wrap; align-items: end; gap: .5rem; }
+.nf-json-row-actions > .nf-field { flex: 1 1 12rem; }
+.nf-config-text { white-space: pre-wrap; overflow-wrap: anywhere; min-width: 12rem; }
+.nf-json-empty { color: var(--nf-pencil); margin-block: .5rem; }
+@media (max-width: 640px) { .nf-json-node .nf-json-node { padding-inline: .375rem; } }
+
+/* 固定顶部栏下定位表单与详情，避免标题被遮挡。 */
+.nf-config-editor, #nf-configuration-detail { scroll-margin-top: 5rem; }
+
+#nf-provider-history { scroll-margin-top: 5rem; }
+.nf-value-changed > th { color: var(--nf-bookmark); }
+
+.nf-field-path { display: block; font-size: .75rem; font-weight: 400; color: var(--nf-pencil); overflow-wrap: anywhere; }

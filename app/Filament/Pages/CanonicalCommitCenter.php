@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Exceptions\NovelProblem;
+use App\Filament\Concerns\HasNovelNavigation;
 use App\Services\CanonicalCommitService;
 use App\Services\NovelIntentService;
 use Filament\Pages\Page;
@@ -10,19 +11,20 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Locked;
-use Livewire\Attributes\Url;
 
 /** UI15展示预检和正式回执，没有绕过门禁或原地重写历史的动作。 */
 class CanonicalCommitCenter extends Page
 {
-    protected static ?string $title = '正式提交与基线';
+    use HasNovelNavigation;
 
+    // UI03：分组与顺序显式固定，不依赖页面发现次序。
     protected static string|\UnitEnum|null $navigationGroup = '生产与质量';
 
-    protected string $view = 'filament.canonical-commit-center';
+    protected static ?int $navigationSort = 50;
 
-    #[Url]
-    public string $novel = '';
+    protected static ?string $title = '正式提交与基线';
+
+    protected string $view = 'filament.canonical-commit-center';
 
     public string $candidate = '';
 

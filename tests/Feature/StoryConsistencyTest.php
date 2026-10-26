@@ -220,7 +220,8 @@ class StoryConsistencyTest extends TestCase
         $this->assertCount(1, $page->instance()->visibleEvents());
         $page->set('context', $old)->call('inspect');
         $this->assertNull($page->get('detail')['payload']['entries'][0]['time']['start']);
-        $page->set('novel', '999999')->call('reviseTime')->assertSee('请先读取当前小说');
+        // UI03在公共上下文渲染时即拒绝不存在的小说，不继续显示上一书的编辑状态。
+        $page->set('novel', '999999')->assertStatus(404);
         $this->assertDatabaseCount('story_context_versions', 2);
     }
 

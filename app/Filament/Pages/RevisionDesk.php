@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Exceptions\NovelProblem;
+use App\Filament\Concerns\HasNovelNavigation;
 use App\Services\ChapterReviewService;
 use App\Services\GenerationService;
 use App\Services\NovelIntentService;
@@ -18,6 +19,13 @@ use Livewire\Attributes\Locked;
 /** UI14先展示原文、范围与差异，再允许逐项采纳；不自动改写整章。 */
 class RevisionDesk extends Page
 {
+    use HasNovelNavigation;
+
+    // UI03：分组与顺序显式固定，不依赖页面发现次序。
+    protected static string|\UnitEnum|null $navigationGroup = '生产与质量';
+
+    protected static ?int $navigationSort = 40;
+
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-pencil-square';
 
     protected static ?string $navigationLabel = '受限修订工作台';
@@ -25,8 +33,6 @@ class RevisionDesk extends Page
     protected static ?string $title = '受限修订与完整章节复评';
 
     protected string $view = 'filament.revision-desk';
-
-    public string $novel = '';
 
     public string $review = '';
 

@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Exceptions\NovelProblem;
+use App\Filament\Concerns\HasNovelNavigation;
 use App\Services\DraftingService;
 use App\Services\ExtractionPipelineService;
 use App\Services\ExtractionService;
@@ -19,6 +20,13 @@ use Livewire\Attributes\Locked;
 /** UI16 候选事件账本：可比较、定位原文和只重提取，不提供正式状态写入。 */
 class ExtractionLedger extends Page
 {
+    use HasNovelNavigation;
+
+    // UI03：分组与顺序显式固定，不依赖页面发现次序。
+    protected static string|\UnitEnum|null $navigationGroup = '生产与质量';
+
+    protected static ?int $navigationSort = 20;
+
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-document-magnifying-glass';
 
     protected static ?string $navigationLabel = '正文提取与硬约束';
@@ -26,8 +34,6 @@ class ExtractionLedger extends Page
     protected static ?string $title = '正文提取与候选事件账本';
 
     protected string $view = 'filament.extraction-ledger';
-
-    public string $novel = '';
 
     public string $version = '';
 

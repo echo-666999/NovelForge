@@ -10,8 +10,12 @@ use Livewire\Attributes\Url;
 
 class Overview extends Dashboard
 {
-    // 只将已实现的创作入口放入导航，不显示不存在的生产页面。
+    // UI03：分组与顺序显式固定，不依赖页面发现次序。
     protected static string|\UnitEnum|null $navigationGroup = '创作工作台';
+
+    protected static ?int $navigationSort = 10;
+
+    // 只将已实现的创作入口放入导航，不显示不存在的生产页面。
 
     protected static ?string $title = '创作总览';
 

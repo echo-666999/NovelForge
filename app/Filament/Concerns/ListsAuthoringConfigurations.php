@@ -9,6 +9,8 @@ use Livewire\Attributes\Url;
 /** 三个配置页面复用筛选与只读比较，不在页面直接更新数据库。 */
 trait ListsAuthoringConfigurations
 {
+    use EditsAuthoringConfigurations;
+
     #[Url]
     public string $q = '';
 

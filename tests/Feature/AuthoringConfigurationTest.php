@@ -236,7 +236,7 @@ class AuthoringConfigurationTest extends TestCase
         $r = $this->postJson('/api/v1/configurations/prompt/save', $p, ['Idempotency-Key' => 'api'])->assertOk();
         $this->postJson('/api/v1/configurations/prompt/save', $p, ['Idempotency-Key' => 'api'])->assertJsonPath('data.id', $r->json('data.id'));
         $this->post('/api/v1/configurations/prompt/save', ['command_key' => 'html', 'payload_json' => 'bad'])->assertRedirect('/admin/prompt-templates')->assertSessionHas('configuration_error');
-        Livewire::test(PromptTemplates::class)->set('status', 'published')->assertSee('echo.prompt')->set('compareLeft', $f['prompt']['id'])->set('compareRight', $f['prompt']['id'])->assertSee('left');
+        Livewire::test(PromptTemplates::class)->set('status', 'published')->assertSee('echo.prompt')->set('compareLeft', $f['prompt']['id'])->set('compareRight', $f['prompt']['id'])->assertSee('版本字段比较');
     }
 
     public function test_all_new_tables_and_columns_have_chinese_database_comments(): void

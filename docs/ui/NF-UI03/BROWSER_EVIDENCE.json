@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-26",
+  "browser": "Chrome",
+  "development_site": "http://novelforge.test",
+  "test_preview": "http://127.0.0.1:8768",
+  "sample_database": "novel_forge_test",
+  "samples": {
+    "14": "UI03隔离样本甲书，合法空根基线 #3 v1/cursor0/state0",
+    "15": "UI03隔离样本乙书，未初始化基线"
+  },
+  "checks": {
+    "five_groups_order": true,
+    "orphans_regrouped": true,
+    "group_collapse_restore": true,
+    "secondary_status_original_url": true,
+    "mouse_book_switch": true,
+    "keyboard_selection_focus_return": true,
+    "keyboard_confirm_after_navigation_settled": true,
+    "reload_and_back_identity": true,
+    "clear_book_no_implicit_selection": true,
+    "search_unsaved_query_pov_context_cleared": true,
+    "task_auxiliary_navigation_collapsed": true,
+    "story_hub_navigation_expanded": true,
+    "dark_empty_state": true
+  },
+  "viewports": [
+    {
+      "width": 1709,
+      "height": 939,
+      "page_overflow": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "book_picker_width": 310,
+      "states": [
+        "empty",
+        "selected_book"
+      ]
+    }
+  ],
+  "dark_body_background": "rgb(23, 26, 33)",
+  "cleanup": {
+    "preview_stopped": true,
+    "private_credentials_removed": true,
+    "sample_database_rebuilt_by_standard_isolated_tests": true,
+    "viewport_reset": true,
+    "original_system_theme_restored": true,
+    "temporary_tabs_closed": true
+  },
+  "not_verified": [
+    "带书菜单深色",
+    "Safari/WebKit",
+    "200%与纯字体放大",
+    "全部页面及所有状态"
+  ],
+  "notes": [
+    "无效/跨书深链接由HTTP/Livewire测试验证，浏览器样本没有章节正文。",
+    "临时调试连接超时不作为产品通过证据；以稳定画面复核。",
+    "未向开发库插入样本，未调用真实模型。"
+  ]
+}

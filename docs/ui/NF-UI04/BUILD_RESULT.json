@@ -1,0 +1,6 @@
+{
+  "command": "npm run build",
+  "result": "passed",
+  "theme": "assets/theme-RjGJc4Nl.css",
+  "warning": "existing optional fontaine dependency warning"
+}

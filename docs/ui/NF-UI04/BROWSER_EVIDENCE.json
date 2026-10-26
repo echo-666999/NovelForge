@@ -1,0 +1,116 @@
+{
+  "date": "2026-10-26",
+  "browser": "Chrome",
+  "desktop": [
+    1709,
+    939
+  ],
+  "mobile": [
+    390,
+    844
+  ],
+  "database": "novel_forge_test",
+  "real_model_calls": false,
+  "actual_interactions": [
+    "published_prompt_copy_save_regress_publish_modal",
+    "prompt_version_comparison",
+    "style_licensed_sample_new_version",
+    "provider_native_post_new_version_with_blank_key",
+    "provider_safe_history_comparison",
+    "model_native_post_null_capacities",
+    "invalid_model_capacity_retained_nonsecret_input_and_anchor",
+    "lazy_provider_and_model_forms",
+    "schema_type_field_change",
+    "route_actual_version_options_and_fallback_fields"
+  ],
+  "viewport_checks": {
+    "root_scroll_width": 390,
+    "sidebar_right": 0,
+    "pages": [
+      "prompt_schema",
+      "prompt_long_text",
+      "route",
+      "style",
+      "provider_history"
+    ]
+  },
+  "theme": {
+    "dark_body_background": "rgb(23, 26, 33)",
+    "scope": "prompt_schema",
+    "restored": "system"
+  },
+  "cleanup": [
+    "own_preview_tabs_closed",
+    "server_stopped",
+    "private_credentials_deleted",
+    "test_fixtures_rebuilt_by_tests"
+  ],
+  "limitations": [
+    "Chrome only",
+    "not all pages or states",
+    "no Safari, pure-font 200%, reduced-motion or literary acceptance",
+    "version-compare screenshot predates friendly labels"
+  ],
+  "screenshots": [
+    {
+      "file": "screenshots/model-fields.jpg",
+      "sha256": "dcea1464c9d7b356cb7e22cbc3e8a434492e0ee6d3bebfac7a349f1f0f4e1ce6"
+    },
+    {
+      "file": "screenshots/model-validation.jpg",
+      "sha256": "264377ae409545849a6d3d4ed19df1f4dd926a52c369961033c75edb8641949e"
+    },
+    {
+      "file": "screenshots/prompt-dark.jpg",
+      "sha256": "d7383c40322295a7bab4cf56505a9ef9201709ed9ecb449f25fe83c028643c9e"
+    },
+    {
+      "file": "screenshots/prompt-editor.jpg",
+      "sha256": "38d1a0e0f1c5db1aa61f49904f5d23ad9a38e2a2bd1558b4d2e6b5fab409836e"
+    },
+    {
+      "file": "screenshots/prompt-long-mobile.jpg",
+      "sha256": "0d330006c9f368c0220229d7651fa61759ad193ca786df7605c5f1da46fcac19"
+    },
+    {
+      "file": "screenshots/prompt-mobile.jpg",
+      "sha256": "5a1be7e0d98816fb4495cf675bff4d68bd66df1870b874afc8dd1055185b76bc"
+    },
+    {
+      "file": "screenshots/prompt-schema.jpg",
+      "sha256": "be0757e028139b643a6314f38712cd14ec399f5c51d6a1bda57d7e92394b8c52"
+    },
+    {
+      "file": "screenshots/provider-history.jpg",
+      "sha256": "509305f6bd1fe5ed0545666e721c5fff8b01ea334568d60bf4a000839cda9ae7"
+    },
+    {
+      "file": "screenshots/provider-mobile.jpg",
+      "sha256": "8f6a16b38d67a2dd33e1d6d0588b9de889cfaad1e9e94cf9b836bd2fbac52cda"
+    },
+    {
+      "file": "screenshots/publish-confirm.jpg",
+      "sha256": "7394685e3f89a4ef842a358e636e710719a2aae0f461c144cb903a2c5c120993"
+    },
+    {
+      "file": "screenshots/route-editor.jpg",
+      "sha256": "40a9a22311111f3b8459868f68378a133b2d016d9f1e02af12a6f2d141af82c4"
+    },
+    {
+      "file": "screenshots/route-mobile.jpg",
+      "sha256": "37515eb779f682e8e5307eb9fde8015ab48c0d28fe7675efbd455576695d7f6d"
+    },
+    {
+      "file": "screenshots/style-editor.jpg",
+      "sha256": "045a601f71737b775855a5fafa301a05ead866825c5f8173c22996af480cce2a"
+    },
+    {
+      "file": "screenshots/style-mobile.jpg",
+      "sha256": "d4b02e94e60c13c1784c58b820ca6ee83e02aab8d3972d6c79b033c19c3eecde"
+    },
+    {
+      "file": "screenshots/version-compare.jpg",
+      "sha256": "563d40f9788d04395705f1f853f075f8813d4fd6614e0119c67fff1bfc2d42db"
+    }
+  ]
+}

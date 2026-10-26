@@ -43,8 +43,8 @@ class UiFoundationTest extends TestCase
         foreach (['/admin', '/admin/prompt-templates', '/admin/extraction-ledger', '/admin/novels/create'] as $url) {
             $this->get($url)->assertOk()->assertSee('/build/assets/theme-', false);
         }
-        // 主题不能顺带移动导航或让离线页面触发模型调用。
-        $this->get('/admin')->assertSee('正文提取与硬约束')->assertSee('系统配置')->assertSee('尚未创建小说');
+        // UI03已授权导航分组；展示仍不能触发模型调用或业务写入。
+        $this->get('/admin')->assertSee('正文提取与硬约束')->assertSee('配置与运维')->assertSee('尚未创建小说');
         $this->assertSame($before, $this->counts());
     }
 

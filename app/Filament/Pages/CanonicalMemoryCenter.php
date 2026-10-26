@@ -3,24 +3,26 @@
 namespace App\Filament\Pages;
 
 use App\Exceptions\NovelProblem;
+use App\Filament\Concerns\HasNovelNavigation;
 use App\Services\CanonicalMemoryService;
 use Filament\Pages\Page;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use Livewire\Attributes\Url;
 
 /** UI22/23/24正式派生诊断，不提供修改正式事实或隐式放宽POV的动作。 */
 class CanonicalMemoryCenter extends Page
 {
+    use HasNovelNavigation;
+
+    // UI03：分组与顺序显式固定，不依赖页面发现次序。
+    protected static string|\UnitEnum|null $navigationGroup = '检索与记忆';
+
+    protected static ?int $navigationSort = 20;
+
     protected static ?string $title = '正式记忆与索引';
 
-    protected static string|\UnitEnum|null $navigationGroup = '生产与质量';
-
     protected string $view = 'filament.canonical-memory-center';
-
-    #[Url]
-    public string $novel = '';
 
     public string $reason = '';
 

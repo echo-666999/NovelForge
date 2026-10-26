@@ -1,8 +1,8 @@
 <x-filament-panels::page>
-    <a href="/admin/canonical-memory-center">正式记忆、队列和索引恢复</a>
+    @include('filament.book-navigation', ['navigation' => $this->bookNavigation()])
     {{-- 来源和摘要均为不可信文本，始终转义；角色范围仅供作者核对。 --}}
     <p>候选记忆库：正式派生资料请到正式记忆与索引中心。摘要不能代替正式事实；角色范围声明不等于人物已知。索引可在检索实验室使用离线编码构建；真实嵌入与模型摘要执行未开放。</p>
-    <label>小说<select wire:model.live="novel"><option value="">请选择</option>@foreach($this->books() as $b)<option value="{{ $b->id }}">{{ $b->title }}</option>@endforeach</select></label>
+
     <label>候选分支<select wire:model.live="branch"><option value="">请选择持久运行分支</option>@foreach($this->branches() as $b)<option value="{{ $b->id }}">#{{ $b->id }} / {{ $b->status }}</option>@endforeach</select></label>
     @if($novel==='' || $branch==='')<p>请先选择小说和候选分支。没有来源时不能创建无依据摘要。</p>@else
     @php($data=$this->listing()) @php($options=$this->options())

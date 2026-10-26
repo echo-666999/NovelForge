@@ -1,4 +1,5 @@
 <x-filament-panels::page>
+    @include('filament.book-navigation', ['navigation' => $this->bookNavigation()])
     {{-- 管理员候选工作区与 POV 结果分开呈现，不能把全知信息当作角色已知。 --}}
     @php
         $characters = $this->entities('character'); $entities = $this->entities(); $candidates = $this->candidates();
@@ -8,7 +9,7 @@
     <p>候选时间线：检测通过不代表正式提交。未知时间保留未知；历史版本只读，修正会创建新版本。</p>
     @if($notice)<p role="status">{{ $notice }}</p>@endif
     <div class="grid gap-4 md:grid-cols-2">
-        <label>小说<select wire:model.live="novel"><option value="">请选择</option>@foreach($this->books() as $book)<option value="{{ $book->id }}">{{ $book->title }}</option>@endforeach</select></label>
+
         <label>历史版本（最近50个）<select wire:model="context"><option value="">请选择</option>@foreach($this->versions() as $v)<option value="{{ $v['id'] }}">版本 {{ $v['version'] }} · {{ $v['reason'] }}</option>@endforeach</select></label>
     </div>
     <x-filament::button wire:click="inspect">读取版本 / 重新查看检测结果</x-filament::button>

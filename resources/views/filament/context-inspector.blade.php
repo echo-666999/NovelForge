@@ -1,5 +1,5 @@
 <x-filament-panels::page>
-    <a href="/admin/canonical-memory-center">正式记忆、队列和索引恢复</a>
+    @include('filament.book-navigation', ['navigation' => $this->bookNavigation()])
     <p>离线上下文检查。作者计划与隐藏真相不代表角色知情；硬约束不可移除。正式来源按当前活动基线读取，索引延迟时强制补齐状态与最近正文。</p>
     <div class="flex flex-wrap gap-3">
         <select wire:model.live="step" aria-label="阶段"><option value="">选择阶段</option>@foreach($this->steps() as $s)<option value="{{ $s->id }}">{{ $s->title }} · {{ $s->stage }} · {{ $s->scope_key }}（{{ $s->id }}）</option>@endforeach</select>

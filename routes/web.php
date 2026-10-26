@@ -13,6 +13,7 @@ use App\Http\Controllers\ForeshadowLedgerController;
 use App\Http\Controllers\HybridSearchController;
 use App\Http\Controllers\LayeredMemoryController;
 use App\Http\Controllers\NovelIntentController;
+use App\Http\Controllers\NovelNavigationController;
 use App\Http\Controllers\PlanningPipelineController;
 use App\Http\Controllers\ProviderConfigurationController;
 use App\Http\Controllers\RecoveryController;
@@ -26,6 +27,9 @@ use App\Http\Controllers\WorldController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/admin');
+
+// 仅做同书授权后的白名单GET跳转，切书不携带上一书对象参数。
+Route::get('/admin/novel-context', NovelNavigationController::class)->name('novel-context.switch');
 
 Route::prefix('api/v1')->group(function (): void {
     Route::post('novels', NovelIntentController::class)->defaults('command', 'create');

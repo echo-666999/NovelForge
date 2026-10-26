@@ -1,7 +1,8 @@
 <x-filament-panels::page>
+    @include('filament.book-navigation', ['navigation' => $this->bookNavigation()])
     {{-- 正式资料与候选库分开，摘要为保守结构化保留，向量仅为离线字符编码。 --}}
     <p>正式提交后派生中心。四层摘要保留精确事实和值，不代表模型语义摘要；offline_hash_v1不是语义嵌入。memory队列由定时补投恢复，下一章硬状态不依赖索引。</p>
-    <label>小说<select wire:model.live="novel"><option value="">请选择</option>@foreach($this->books() as $b)<option value="{{ $b->id }}">{{ $b->title }}</option>@endforeach</select></label>
+
     @if($novel==='')<p>请选择小说查看正式任务、来源与重试历史。</p>@else
     @php($state=$this->state())
     <p>基线 #{{ $state['revision_id'] ?? '未初始化' }} / 正式状态 {{ $state['state_version'] }} / memory_pending：{{ $state['memory_pending'] ? '是' : '否' }} / 待处理 {{ $state['pending_count'] }}</p>

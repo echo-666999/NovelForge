@@ -1,9 +1,10 @@
 <x-filament-panels::page>
+    @include('filament.book-navigation', ['navigation' => $this->bookNavigation()])
     {{-- 只刷新数据库投影，不在页面生命周期调用生成器。 --}}
     <div wire:poll.15s class="space-y-4">
         <p>当前仅离线阶段可运行。正式章节进度未知；页面关闭不会取消持久任务。</p>
         <div class="flex flex-wrap gap-3">
-            @foreach(['novel'=>'小说ID','run'=>'查看运行ID','status'=>'运行状态','error'=>'错误码','trace'=>'追踪号','dateFrom'=>'开始日期 UTC','dateTo'=>'结束日期 UTC'] as $field=>$label)
+            @foreach(['run'=>'查看运行ID','status'=>'运行状态','error'=>'错误码','trace'=>'追踪号','dateFrom'=>'开始日期 UTC','dateTo'=>'结束日期 UTC'] as $field=>$label)
                 <label>{{ $label }} <input class="border rounded p-2" wire:model.live.debounce.500ms="{{ $field }}" /></label>
             @endforeach
         </div>

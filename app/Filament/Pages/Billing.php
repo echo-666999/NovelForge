@@ -9,9 +9,12 @@ use Livewire\Attributes\Url;
 /** 费用、预留和未知风险分开显示，不用零金额掩盖未核销请求。 */
 class Billing extends Page
 {
-    protected static ?string $title = '价格与原子预算';
+    // UI03：分组与顺序显式固定，不依赖页面发现次序。
+    protected static string|\UnitEnum|null $navigationGroup = '配置与运维';
 
-    protected static string|\UnitEnum|null $navigationGroup = '系统配置';
+    protected static ?int $navigationSort = 50;
+
+    protected static ?string $title = '价格与原子预算';
 
     protected string $view = 'filament.billing';
 

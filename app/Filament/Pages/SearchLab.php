@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Exceptions\NovelProblem;
+use App\Filament\Concerns\HasNovelNavigation;
 use App\Services\HybridSearchService;
 use App\Services\NovelIntentService;
 use Filament\Pages\Page;
@@ -10,19 +11,20 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Locked;
-use Livewire\Attributes\Url;
 
 /** 检索实验室明确展示离线编码、索引代次、过滤范围和通道贡献。 */
 class SearchLab extends Page
 {
+    use HasNovelNavigation;
+
+    // UI03：分组与顺序显式固定，不依赖页面发现次序。
+    protected static string|\UnitEnum|null $navigationGroup = '检索与记忆';
+
+    protected static ?int $navigationSort = 30;
+
     protected static ?string $title = '检索实验室与索引';
 
-    protected static string|\UnitEnum|null $navigationGroup = '创作管理';
-
     protected string $view = 'filament.search-lab';
-
-    #[Url]
-    public string $novel = '';
 
     public string $branch = '';
 

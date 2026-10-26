@@ -3,6 +3,10 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Overview;
+use App\Filament\Pages\ProjectStatus;
+use App\Http\Middleware\ValidateNovelNavigation;
+use App\Services\NovelNavigationService;
+use Filament\Actions\Action;
 use Filament\FontProviders\LocalFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -30,6 +34,9 @@ class AdminPanelProvider extends PanelProvider
             ->brandName('NovelForge · 小说工坊')
             ->path('admin')
             ->login()
+            // 五组目录及次级关于入口统一维护，旧状态页URL继续可访问。
+            ->navigationGroups(NovelNavigationService::GROUPS)
+            ->userMenuItems([Action::make('implementation-status')->label('关于与实施状态')->icon('heroicon-o-information-circle')->url(fn (): string => ProjectStatus::getUrl())])
             // UI02 仅接入主题与本机字体，不修改导航、页面数据或业务动作。
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->font('PingFang SC', provider: LocalFontProvider::class)
@@ -60,6 +67,7 @@ class AdminPanelProvider extends PanelProvider
             ->maxContentWidth(Width::Full)
             ->authMiddleware([
                 Authenticate::class,
+                ValidateNovelNavigation::class,
             ]);
     }
 }

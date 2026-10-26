@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Exceptions\NovelProblem;
+use App\Filament\Concerns\HasNovelNavigation;
 use App\Services\LayeredMemoryService;
 use App\Services\NovelIntentService;
 use Filament\Pages\Page;
@@ -15,14 +16,16 @@ use Livewire\Attributes\Url;
 /** 记忆库只维护作者侧候选摘要，不把声明的角色范围当作知识证明。 */
 class MemoryLibrary extends Page
 {
+    use HasNovelNavigation;
+
+    // UI03：分组与顺序显式固定，不依赖页面发现次序。
+    protected static string|\UnitEnum|null $navigationGroup = '检索与记忆';
+
+    protected static ?int $navigationSort = 10;
+
     protected static ?string $title = '分层记忆库';
 
-    protected static string|\UnitEnum|null $navigationGroup = '创作管理';
-
     protected string $view = 'filament.memory-library';
-
-    #[Url]
-    public string $novel = '';
 
     #[Url]
     public string $branch = '';

@@ -20,10 +20,10 @@ class WorkspaceService
 
     public function navigation(User $actor, string $id): array
     {
-        $novel = app(NovelIntentService::class)->novel($actor, $id);
+        $identity = app(NovelNavigationService::class)->identity($actor, $id);
 
         // 每条链接显式携带同一本书，不用跨标签页共享的“当前小说”会话变量。
-        return ['id' => $novel->id, 'title' => $novel->title, 'status' => $novel->status, 'baseline' => null, 'links' => collect(self::LINKS)->map(fn ($label, $key) => ['label' => $label, 'url' => '/admin/novels/'.$novel->id.'/'.$key])->all()];
+        return ['id' => $identity['id'], 'title' => $identity['title'], 'status' => $identity['status'], 'baseline' => $identity['baseline'], 'links' => collect(self::LINKS)->map(fn ($label, $key) => ['label' => $label, 'url' => '/admin/novels/'.$id.'/'.$key])->all()];
     }
 
     public function overview(User $actor, array $filters = []): array

@@ -1,7 +1,8 @@
 <x-filament-panels::page>
+    @include('filament.book-navigation', ['navigation' => $this->bookNavigation()])
     {{-- 正式状态来自提交回执，预检与模型评分不能代替提交。 --}}
     <p>顺序提交完整章节。预检、正式提交与作者成品认可分别记录；此页没有强制通过或修改正式历史的入口。</p>
-    <label>小说<select wire:model.live="novel"><option value="">请选择</option>@foreach($this->books() as $book)<option value="{{ $book->id }}">{{ $book->title }}</option>@endforeach</select></label>
+
     @if($novel==='')<p>请选择小说查看基线、预检与提交记录。</p>@else
     @php($state=$this->state())
     @if(!$state['revision'])<p>尚未初始化正式基线。空根初始化不会产生正文、事件或推进剧情版本。</p><x-filament::button wire:click="initialize">初始化空根基线</x-filament::button>

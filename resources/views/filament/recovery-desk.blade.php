@@ -1,4 +1,5 @@
 <x-filament-panels::page>
+    @include('filament.book-navigation', ['navigation' => $this->bookNavigation()])
     {{-- 跨页只传同书运行标识，详情页再次鉴权。 --}}
     @if($novel !== '' && $run !== '')<a href="{{ '/admin/run-center?novel='.$novel.'&run='.$run }}">返回运行、请求与审计详情</a>@endif
     {{-- 恢复台明确区分证据、执行状态与尚未实现的业务阶段。 --}}
@@ -10,7 +11,7 @@
         @empty
             <p>尚无运行。当前没有真实生成入口，不会创建演示成功记录。</p>
         @endforelse
-        <label>小说标识 <input wire:model="novel" class="border rounded p-2" /></label>
+
         <label>运行标识 <input wire:model="run" class="border rounded p-2" /></label>
         <label>拟变更的节点（逗号分隔；不变更则留空） <input wire:model="changedScopes" class="border rounded p-2" /></label>
         <x-filament::button wire:click="inspect">刷新恢复预览</x-filament::button>

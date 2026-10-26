@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Concerns\HasNovelNavigation;
 use App\Services\RunCenterService;
 use Filament\Pages\Page;
 use Livewire\Attributes\Url;
@@ -9,14 +10,16 @@ use Livewire\Attributes\Url;
 /** 页面只读轮询数据库，离开页面不会取消队列任务。 */
 class RunCenter extends Page
 {
-    protected static ?string $title = '生成运行中心';
+    use HasNovelNavigation;
 
+    // UI03：分组与顺序显式固定，不依赖页面发现次序。
     protected static string|\UnitEnum|null $navigationGroup = '生产与质量';
 
-    protected string $view = 'filament.run-center';
+    protected static ?int $navigationSort = 10;
 
-    #[Url]
-    public string $novel = '';
+    protected static ?string $title = '生成运行中心';
+
+    protected string $view = 'filament.run-center';
 
     #[Url]
     public string $run = '';

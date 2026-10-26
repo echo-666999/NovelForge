@@ -1,11 +1,11 @@
 <x-filament-panels::page>
+    @include('filament.book-navigation', ['navigation' => $this->bookNavigation()])
     {{-- 明确冻结范围、选择补丁和重新复评，不把修订采纳当作正式提交。 --}}
-    @if($novel !== '') @include('filament.novel-navigation', ['novelId' => $novel]) @endif
     <p role="status">{{ $notice }}</p>
     <p>补丁不会自动采纳；默认最多三轮自动文学修订。无改善、预算不足或达到上限转人工，旧稿与旧失败保留。</p>
     <section class="space-y-3 border rounded p-4">
         <h2 class="font-bold">选择问题与允许范围</h2>
-        <label>小说 ID <input wire:model="novel"></label><label>来源评审 <input wire:model="review"></label><x-filament::button wire:click="prepare">读取评审并准备首段范围</x-filament::button>
+        <label>来源评审 <input wire:model="review"></label><x-filament::button wire:click="prepare">读取评审并准备首段范围</x-filament::button>
         <label>问题 ID（逗号分隔）<input wire:model="issues"></label><label>方式 <select wire:model="mode"><option value="offline">明确离线自动补丁</option><option value="manual">人工编辑</option></select></label>
         <label class="block">范围（段落、来源场景或明确整章）<textarea class="w-full" rows="5" wire:model="scopeJson"></textarea></label>
         <label>额外保留事件 ID <input wire:model="facts"></label><p>已提取的事实、知识/因果关系和伏笔会自动纳入保留门禁，不能通过空列表省略。</p>

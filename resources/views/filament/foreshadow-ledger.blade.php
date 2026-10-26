@@ -1,7 +1,8 @@
 <x-filament-panels::page>
+    @include('filament.book-navigation', ['navigation' => $this->bookNavigation()])
     {{-- 所有作者内容使用转义输出；不将隐藏含义送入角色上下文。 --}}
     <p>作者规划区。正式提交尚未接入，埋设、强化和回收证据均未成立；预期知情范围不代表人物已知。</p>
-    <label>小说 <select wire:model.live="novel"><option value="">请选择小说</option>@foreach($this->books() as $book)<option value="{{ $book->id }}">{{ $book->title }}</option>@endforeach</select></label>
+
     @if($novel === '')
         <p>选择小说后查看伏笔承诺与主支线。暂无作品时，请先创建小说和蓝图。</p>
     @else

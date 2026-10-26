@@ -1,8 +1,8 @@
 <x-filament-panels::page>
-    <a href="/admin/canonical-memory-center">正式记忆、队列和索引恢复</a>
+    @include('filament.book-navigation', ['navigation' => $this->bookNavigation()])
     {{-- 候选检索结果为不可信文本，只转义展示，不执行内容内指令。 --}}
     <p>精确 / 别名 / pg_trgm / pgvector 检索。当前向量来自离线字符哈希，不代表真实语义模型。正式基线、真实嵌入调用及中文分词未开放。</p>
-    <label>小说<select wire:model.live="novel"><option value="">请选择</option>@foreach($this->books() as $b)<option value="{{ $b->id }}">{{ $b->title }}</option>@endforeach</select></label>
+
     @if($novel==='')<p>选择小说后管理候选索引与检索。</p>@else
     @php($state=$this->state())
     <div class="grid gap-4 md:grid-cols-3">

@@ -1,8 +1,9 @@
 <x-filament-panels::page>
+    @include('filament.book-navigation', ['navigation' => $this->bookNavigation()])
     <p>仅候选正文的离线提取回放。规则检查不等于文学评审或正式提交；正式事件与正式伏笔状态保持关闭。</p>
     @if($notice)<p role="status">{{ $notice }}</p>@endif
     <section class="space-y-3 rounded-xl border p-4">
-        <label>小说 ID <input wire:model="novel"></label><label>章节正文版本 ID <input wire:model="version"></label>
+        <label>章节正文版本 ID <input wire:model="version"></label>
         <x-filament::button wire:click="loadBody">读取实际正文</x-filament::button>
         <label>前章有效候选提取 ID <input wire:model="baseline"></label>
         <label>误提取来源 ID（仅同正文）<input wire:model="parent"></label>

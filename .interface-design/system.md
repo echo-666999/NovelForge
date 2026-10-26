@@ -14,3 +14,9 @@
 
 
 NF-UI02已接入：后台独立主题资源位于 resources/css/filament/admin/theme.css；公共外壳为 x-nf.section/form-grid/field/input/table/state。参数与用法只在 DESIGN.md 维护，验收见 docs/ui/NF-UI02/ACCEPTANCE.md；没有完成导航和JSON字段改造。
+
+
+NF-UI03已接入：五组排序、统一授权书级上下文、实际正式基线、白名单GET切书与用户菜单关于入口。组件使用规则仍只在DESIGN.md维护；证据见docs/ui/NF-UI03/ACCEPTANCE.md。任务页附属书内入口默认收起，StoryHub默认展开；未完成JSON字段改造或全页验收。
+
+
+NF-UI04已接入：配置原生字段、语义Schema/惰性类型树、扁平签名字段映射、逐字段只读比较与安全POST。用法仍只在DESIGN.md维护；证据docs/ui/NF-UI04。完整对象语义修复另列NF-UI11，其他页面和全页验收未完成。

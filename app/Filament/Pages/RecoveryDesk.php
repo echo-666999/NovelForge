@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Exceptions\NovelProblem;
+use App\Filament\Concerns\HasNovelNavigation;
 use App\Services\RecoveryService;
 use Filament\Pages\Page;
 use Illuminate\Support\Facades\DB;
@@ -14,14 +15,16 @@ use Livewire\Attributes\Url;
 /** 人工处理卡只调用与API相同的服务，没有强制通过或直接改写正文。 */
 class RecoveryDesk extends Page
 {
+    use HasNovelNavigation;
+
+    // UI03：分组与顺序显式固定，不依赖页面发现次序。
+    protected static string|\UnitEnum|null $navigationGroup = '生产与质量';
+
+    protected static ?int $navigationSort = 70;
+
     protected static ?string $title = '运行恢复台';
 
-    protected static string|\UnitEnum|null $navigationGroup = '创作管理';
-
     protected string $view = 'filament.recovery-desk';
-
-    #[Url]
-    public string $novel = '';
 
     #[Url]
     public string $run = '';
