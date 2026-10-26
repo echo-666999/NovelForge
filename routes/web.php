@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthoringConfigurationController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BlueprintController;
+use App\Http\Controllers\CanonicalCommitController;
 use App\Http\Controllers\ChapterReviewController;
 use App\Http\Controllers\ContextAssemblyController;
 use App\Http\Controllers\DraftingController;
@@ -203,3 +204,12 @@ Route::prefix('api/v1/novels/{novel}/revisions')->whereNumber('novel')->group(fu
     }
     Route::post('/{revision}/runs', RevisionController::class)->whereNumber('revision')->defaults('revisionAction', 'start');
 });
+
+// E06唯一正式提交入口，E07消费及G01重基线动作保持未开放。
+Route::get('api/v1/novels/{novel}/canonical', CanonicalCommitController::class);
+Route::get('api/v1/novels/{novel}/canonical/{commit}', CanonicalCommitController::class);
+Route::post('api/v1/novels/{novel}/canonical-revisions', CanonicalCommitController::class)->defaults('canonicalAction', 'initialize');
+Route::get('api/v1/novels/{novel}/state', CanonicalCommitController::class)->defaults('canonicalAction', 'state');
+Route::post('api/v1/chapters/{chapter}/commits/preflight', CanonicalCommitController::class)->defaults('canonicalAction', 'preflight');
+Route::post('api/v1/chapters/{chapter}/commits', CanonicalCommitController::class)->defaults('canonicalAction', 'commit');
+Route::get('api/v1/novels/{novel}/state/replay', CanonicalCommitController::class)->defaults('canonicalAction', 'replay');

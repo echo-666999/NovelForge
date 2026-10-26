@@ -46,7 +46,7 @@ final class ExtractionPipelineService
             if ($body['stale'] || ! $body['report']['complete'] || (string) DB::table('chapter_versions')->where('novel_id', $novel)->where('node_id', $body['node_id'])->orderByDesc('version')->value('id') !== $body['id'] || in_array('INVALID_CANDIDATE_BASELINE', array_column($preview['report']['issues'], 'code'), true)) {
                 throw new NovelProblem('DEPENDENCY_MISMATCH', '正文或前章基线不能用于新的提取运行。');
             }
-            $baseline = empty($d['baseline_id']) ? null : app(ExtractionService::class)->read($actor, $novel, (string) $d['baseline_id']);
+            $baseline = empty($d['baseline_id']) ? null : app(ExtractionService::class)->baseline($actor, $novel, (string) $d['baseline_id']);
             $rules = empty($d['rule_context_id']) ? null : app(StoryConsistencyService::class)->read($actor, $novel, (string) $d['rule_context_id']);
             $source = app(StoryStateService::class)->registerChapter($actor, $novel, $body['id']);
             $admission = $preview['frozen_input'];
@@ -101,8 +101,8 @@ final class ExtractionPipelineService
             throw new NovelProblem('DEPENDENCY_MISMATCH', '此运行的旧提取候选已被新提取替代，不能复用旧事件。');
         }
         if ($frozen['baseline_id']) {
-            $b = app(ExtractionService::class)->read($actor, (string) $run->novel_id, $frozen['baseline_id']);
-            if (! $b['current_eligible'] || $b['input_hash'] !== $frozen['baseline_hash']) {
+            $b = app(ExtractionService::class)->baseline($actor, (string) $run->novel_id, $frozen['baseline_id']);
+            if (! $b['baseline_eligible'] || $b['input_hash'] !== $frozen['baseline_hash']) {
                 throw new NovelProblem('DEPENDENCY_MISMATCH', '前章候选提取基线已失效。');
             }
         }

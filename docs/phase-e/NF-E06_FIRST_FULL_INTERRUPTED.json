@@ -1,0 +1,6 @@
+{
+  "result": "interrupted_after_confirmed_obsolete_stage_assertion",
+  "exit_code": 130,
+  "failure": "BlueprintTest expected canonical_commits table absent; E06 now creates it",
+  "correction": "assert no formal rows after planning; update corresponding NovelIntent and Foundation schema gates, without bypassing write guards"
+}

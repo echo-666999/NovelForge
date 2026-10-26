@@ -64,7 +64,7 @@ class FoundationTest extends TestCase
         $this->assertTrue((bool) $result->matched);
     }
 
-    public function test_only_authorized_schema_through_d01_is_installed(): void
+    public function test_only_authorized_schema_through_e06_is_installed(): void
     {
         $this->assertTrue(Schema::hasTable('novels'));
         $this->assertTrue(Schema::hasTable('chapters'));
@@ -79,10 +79,12 @@ class FoundationTest extends TestCase
         foreach (['source_documents', 'evidence_spans', 'proposed_events', 'proposed_state_patches', 'story_events', 'state_snapshots', 'entity_state_versions'] as $table) {
             $this->assertTrue(Schema::hasTable($table));
         }
-        $this->assertSame('CHECK (false)', DB::selectOne("SELECT pg_get_constraintdef(oid) AS definition FROM pg_constraint WHERE conrelid='story_events'::regclass AND conname='d01_formal_entry_closed'")->definition);
+        // E06用事务能力证明和延迟完整性守卫取代早期的永久关闭约束。
+        $this->assertTrue(DB::selectOne("SELECT EXISTS(SELECT 1 FROM pg_trigger WHERE tgrelid='story_events'::regclass AND tgname='e06_event_guard' AND tgenabled='O') AS installed")->installed);
         $this->assertTrue(Schema::hasTable('chapter_versions'));
         $this->assertTrue(Schema::hasTable('scene_versions'));
-        $this->assertFalse(Schema::hasTable('canonical_chapters'));
+        $this->assertTrue(Schema::hasTable('canonical_chapters'));
+        $this->assertDatabaseCount('canonical_chapters', 0);
         foreach (['generation_runs', 'generation_steps', 'generation_artifacts', 'generation_dependencies'] as $table) {
             $this->assertTrue(Schema::hasTable($table));
         }

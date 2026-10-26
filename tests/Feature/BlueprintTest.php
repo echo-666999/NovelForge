@@ -20,7 +20,6 @@ use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
 use Tests\Support\BlueprintFixture;
@@ -92,7 +91,8 @@ class BlueprintTest extends TestCase
         $this->assertSame(0, Novel::find($v['novel_id'])->state_version);
         $this->assertDatabaseCount('ending_contracts', 1);
         $this->assertDatabaseCount('blueprint_thread_versions', 1);
-        $this->assertFalse(Schema::hasTable('canonical_commits'));
+        // E06已建正式表；批准规划仍不能产生正式提交。
+        $this->assertDatabaseCount('canonical_commits', 0);
     }
 
     public function test_ending_change_creates_new_contract_and_preserves_old_approval(): void

@@ -306,7 +306,10 @@ final class DraftingService
 
         $v['history'] = DB::table($kind.'_versions')->where('novel_id', $novel)->where('node_id', $v['node_id'])->orderByDesc('version')->limit(50)->get(['id', 'version', 'title', 'body_hash'])->map(fn ($r) => ['id' => (string) $r->id, 'version' => $r->version, 'title' => $r->title, 'body_hash' => $r->body_hash])->all();
 
-        return $v + ['display_status' => $v['stale'] ? 'stale' : $v['status'], 'formal' => null, 'review_status' => 'not_implemented', 'accepted' => false];
+        // E06正式指针由映射判定，候选版本和旧评审不会自动升级成正式稿。
+        $formal = $kind === 'chapter' ? DB::table('canonical_chapters as m')->join('novels as n', 'n.active_canonical_revision_id', '=', 'm.revision_id')->where('m.novel_id', $novel)->where('m.chapter_version_id', $id)->first(['m.commit_id', 'm.revision_id']) : null;
+
+        return $v + ['display_status' => $formal ? 'committed' : ($v['stale'] ? 'stale' : $v['status']), 'formal' => $formal ? ['commit_id' => (string) $formal->commit_id, 'revision_id' => (string) $formal->revision_id] : null, 'review_status' => 'not_implemented', 'accepted' => false];
     }
 
     public function listing(User $actor, string $novel, array $filters = []): array

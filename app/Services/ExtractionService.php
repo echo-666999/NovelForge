@@ -8,6 +8,7 @@ use App\Extraction\ExtractionProblem;
 use App\Models\User;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -53,7 +54,7 @@ final class ExtractionService
             if ($parent && ($parent['chapter_version_id'] !== $body['id'] || $parent['body_hash'] !== $body['body_hash'] || ($parent['baseline_id'] ?? null) !== (isset($d['baseline_id']) ? (string) $d['baseline_id'] : null))) {
                 throw new NovelProblem('REEXTRACTION_SOURCE_MISMATCH', '重新提取只能修正同一正文及同一前章基线；正文换版需新提取。');
             }
-            $baseline = empty($d['baseline_id']) ? null : $this->read($actor, $novel, (string) $d['baseline_id']);
+            $baseline = empty($d['baseline_id']) ? null : $this->baseline($actor, $novel, (string) $d['baseline_id']);
             $rulesContext = empty($d['rule_context_id']) ? null : app(StoryConsistencyService::class)->read($actor, $novel, (string) $d['rule_context_id']);
             $inventory = DB::table('entities')->where('novel_id', $novel)->orderBy('id')->get(['id', 'name', 'type', 'approved_version_id', 'retired'])->map(fn ($e) => ['id' => (string) $e->id, 'name' => $e->name, 'type' => $e->type, 'approved_version_id' => $e->approved_version_id === null ? null : (string) $e->approved_version_id, 'definition_hash' => $e->approved_version_id === null ? null : DB::table('entity_definition_versions')->where('id', $e->approved_version_id)->value('content_hash'), 'retired' => $e->retired])->all();
             $blueprint = DB::table('rolling_plans')->where('novel_id', $novel)->where('id', $body['plan_id'])->value('blueprint_version_id');
@@ -69,7 +70,7 @@ final class ExtractionService
                 if ($body['stale'] || ! $body['report']['complete'] || (string) DB::table('chapter_versions')->where('novel_id', $novel)->where('node_id', $body['node_id'])->orderByDesc('version')->value('id') !== $body['id']) {
                     throw new NovelProblem('STALE_EXTRACTION', '旧版、过期或不完整正文不能通过提取。');
                 }
-                if (($chapter->sequence > 1 && ! $baseline) || ($baseline && (! $baseline['current_eligible'] || $baseline['chapter_sequence'] !== $chapter->sequence - 1))) {
+                if (($chapter->sequence > 1 && ! $baseline) || ($baseline && (! $baseline['baseline_eligible'] || $baseline['chapter_sequence'] !== $chapter->sequence - 1))) {
                     throw new NovelProblem('INVALID_CANDIDATE_BASELINE', '须绑定紧邻前章当前有效的候选提取；不能用空基线忽略历史事实。');
                 }
                 [$context, $events, $changes, $report] = $this->materialize($actor, $novel, $body, $source, $chapter->sequence, $d['offline_output'], $baseline, $rulesContext, $inventory);
@@ -289,8 +290,8 @@ final class ExtractionService
         if (DB::table('extraction_attempts')->where('novel_id', $novel)->where('chapter_version_id', $r['chapter_version_id'])->where('id', '>', $id)->where('report->eligible', true)->exists()) {
             $stale = true;
         }
-        $base = $r['baseline_id'] ? $this->read($actor, $novel, $r['baseline_id']) : null;
-        if ($base && ! $base['current_eligible']) {
+        $base = $r['baseline_id'] ? $this->baseline($actor, $novel, $r['baseline_id']) : null;
+        if ($base && ! $base['baseline_eligible']) {
             $stale = true;
         }
         $context = $r['context_id'] ? app(StoryConsistencyService::class)->read($actor, $novel, $r['context_id']) : null;
@@ -316,6 +317,29 @@ final class ExtractionService
         $r['candidate_foreshadows'] = [...($base['candidate_foreshadows'] ?? []), ...$local];
         $r['created_at'] = CarbonImmutable::parse($r['created_at'])->toISOString();
         $r['canonical'] = false;
+
+        return $r;
+    }
+
+    /** E06正式前缀有独立资格，不能因全局状态前进而把已提交证据变成无效候选。 */
+    public function baseline(User $actor, string $novel, string $id): array
+    {
+        $r = $this->read($actor, $novel, $id);
+        $r['baseline_eligible'] = $r['current_eligible'];
+        $r['baseline_scope'] = 'candidate';
+        if (Schema::hasTable('canonical_commits')) {
+            $book = app(NovelIntentService::class)->novel($actor, $novel);
+            $commit = DB::table('canonical_commits')->where('novel_id', $novel)->where('revision_id', $book->active_canonical_revision_id)->where('event_artifact_id', $id)->where('status', 'committed')->first();
+            if ($commit) {
+                $formal = app(CanonicalCommitService::class)->read($actor, $novel, (string) $commit->id);
+                if ($formal['chapter_version_id'] !== $r['chapter_version_id'] || $formal['body_hash'] !== $r['body_hash'] || ! $r['report']['eligible']) {
+                    throw new NovelProblem('INVALID_CANONICAL_PREDECESSOR', '正式前缀与提取证据不一致。');
+                }
+                $r['baseline_eligible'] = true;
+                $r['baseline_scope'] = 'canonical';
+                $r['canonical_commit_id'] = (string) $commit->id;
+            }
+        }
 
         return $r;
     }

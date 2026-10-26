@@ -252,10 +252,26 @@ final class ForeshadowLedgerService
 
             return $q;
         })->all();
-        $p['occurrences'] = []; // E06 前硬门禁下没有正式证据，不能用计划填充。
-        $p['formal_progress'] = 'not_connected';
+        $p['occurrences'] = $this->formalOccurrences($novel, $p['lineage_id']);
+        $p['formal_progress'] = $this->hasFormalBaseline($novel) ? 'connected' : 'not_connected';
 
         return $p;
+    }
+
+    /** 正式生命周期只从当前基线的真实提交证据派生，规划版本不直接推进状态。 */
+    private function hasFormalBaseline(string $novel): bool
+    {
+        return (bool) DB::table('novels')->where('id', $novel)->value('active_canonical_revision_id');
+    }
+
+    private function formalOccurrences(string $novel, string $lineage, ?int $chapter = null): array
+    {
+        $revision = DB::table('novels')->where('id', $novel)->value('active_canonical_revision_id');
+        if (! $revision) {
+            return [];
+        }
+
+        return DB::table('foreshadow_occurrences as o')->join('foreshadow_plans as p', 'p.id', '=', 'o.plan_id')->join('canonical_commits as c', 'c.id', '=', 'o.commit_id')->where('o.novel_id', $novel)->where('o.revision_id', $revision)->where('p.lineage_id', $lineage)->when($chapter !== null, fn ($q) => $q->where('c.chapter_sequence', '<=', $chapter))->orderBy('c.chapter_sequence')->orderBy('o.id')->get(['o.*', 'c.chapter_sequence'])->map(fn ($o) => $this->decode($o))->all();
     }
 
     public function ledger(User $actor, string $novel, array $filters = []): array
@@ -269,8 +285,19 @@ final class ForeshadowLedgerService
             $p = $this->decode($row);
             $active = $p['lifecycle'] === 'planned';
             $p += ['first_actual_plant' => null, 'last_actual_reinforcement' => null, 'formal_status' => null, 'evidence_count' => 0, 'due' => $chapter === null ? null : ($active && $chapter >= $p['payoff_start'] && $chapter <= $p['payoff_end']), 'overdue' => $chapter === null ? null : ($active && $chapter > $p['payoff_end']), 'priority' => $chapter === null || ! $active ? 'none' : ($chapter >= $p['payoff_target'] - 5 ? 'high' : ($chapter >= $p['payoff_target'] - 20 ? 'groundwork_check' : 'normal'))];
+            $actual = $this->formalOccurrences($novel, $p['lineage_id'], $chapter);
+            $p['evidence_count'] = count($actual);
+            $plants = array_values(array_filter($actual, fn ($o) => $o['kind'] === 'plant'));
+            $reinforcements = array_values(array_filter($actual, fn ($o) => $o['kind'] === 'reinforce'));
+            $p['first_actual_plant'] = $plants[0]['chapter_sequence'] ?? null;
+            $p['last_actual_reinforcement'] = $reinforcements ? end($reinforcements)['chapter_sequence'] : null;
+            $p['formal_status'] = ! $this->hasFormalBaseline($novel) ? null : (in_array('payoff', array_column($actual, 'kind'), true) ? 'paid_off' : ($reinforcements ? 'reinforced' : ($plants ? 'planted' : 'planned')));
+            if ($p['formal_status'] === 'paid_off') {
+                $p['overdue'] = false;
+                $p['due'] = false;
+            }
             $p['frozen'] = DB::table('foreshadow_freezes')->where('plan_id', $p['id'])->exists();
-            $p['blockers'] = $active ? ['FORMAL_EVIDENCE_UNAVAILABLE'] : [];
+            $p['blockers'] = $active && ! $this->hasFormalBaseline($novel) ? ['FORMAL_EVIDENCE_UNAVAILABLE'] : [];
             if ($p['overdue']) {
                 $p['blockers'][] = 'OVERDUE_WITHOUT_PAYOFF';
             }
@@ -293,7 +320,7 @@ final class ForeshadowLedgerService
             if (isset($v['from']) && $p['payoff_end'] < $v['from'] || isset($v['to']) && $p['payoff_start'] > $v['to']) {
                 $skip = true;
             }
-            if (isset($v['no_evidence']) && ! (bool) $v['no_evidence']) {
+            if (isset($v['no_evidence']) && (bool) $v['no_evidence'] !== ($p['evidence_count'] === 0)) {
                 $skip = true;
             }
             if (isset($v['entity_id']) && ! DB::table('foreshadow_entity_refs')->where('plan_id', $p['id'])->where('entity_id', $v['entity_id'])->exists()) {
@@ -316,6 +343,6 @@ final class ForeshadowLedgerService
         })->all() : [];
         $ending = $blueprint ? DB::table('ending_contracts')->where('novel_id', $novel)->where('blueprint_version_id', $blueprint)->first() : null;
 
-        return ['novel_id' => $novel, 'row_version' => $book->row_version, 'chapter' => $chapter, 'schedule_basis' => $chapter === null ? 'unspecified' : 'author_preview', 'formal_progress' => 'not_connected', 'items' => $items, 'threads' => $threads, 'ending' => $ending ? $this->decode($ending) : null];
+        return ['novel_id' => $novel, 'row_version' => $book->row_version, 'chapter' => $chapter, 'schedule_basis' => $chapter === null ? 'unspecified' : 'author_preview', 'formal_progress' => $this->hasFormalBaseline($novel) ? 'connected' : 'not_connected', 'items' => $items, 'threads' => $threads, 'ending' => $ending ? $this->decode($ending) : null];
     }
 }

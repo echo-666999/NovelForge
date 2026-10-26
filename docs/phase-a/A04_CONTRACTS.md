@@ -280,3 +280,20 @@ revision_tasks冻结当前E04来源、问题、精确允许范围、全部显式
 ## NF-D06 复核补充（2026-10-26）
 
 新组装先收集强制文本，再做同分区可选副本去重，保证出现顺序不改变去重结果；不跨作者与角色分区合并。POV知识/信念只保留D02证明的值和类型，证据使用来源/证据ID、正文哈希、码点范围、单位及quote_hash，完整quote留在作者资料中，不能通过引用范围扩大角色知情。inference等非事实不复制为强制关键事实。前场景全文保持强制，位于可选记忆之前，文风资料最后。历史清单和冻结运行不回写。没有新增表或字段；验证见[NF-D06复核](../phase-d/NF-D06_RECHECK_2026-10-26.md)。
+
+
+## NF-E06 正式提交落地与兼容说明（2026-10-26）
+
+本节是E06实际实现记录，早期章节的状态描述按对应阶段理解。CommitCommand字段未删除或改名，ID必须为十进制字符串且在PostgreSQL bigint正数范围内，拒绝未知字段及force参数。以下明确设计到物理实现的映射：event_artifact_id指向不可变E03 extraction_attempts.id；validation_artifact_id指向不可变canonical_preflights.id；plan_node_version_id指向冻结结构中的章节plan_nodes.id。离线/人工提取存在真实提取记录却不一定有模型运行产物，不为填字段伪造generation_artifacts或网关账单。
+
+首次显式初始化空根canonical_revision只确立身份，状态与游标仍为0，不含事实，不增加novels.row_version/state_version，也不使已有评审失效。该动作不是已有基线切换。E06只允许活动根基线顺序追加；历史修订、候选重基线与切换仍属于G01，不能通过重新初始化绕过。
+
+唯一正式写入口CanonicalCommitService：novel→revision→chapter固定锁序；在最新状态下重新验证完整正文/场景、冻结计划、生成运行实际状态/输入哈希、当前E03/E04、前章正式提取及证据、批准实体、时间/知识/关系/作者规则、到期伏笔。前序候选不能替代正式前缀，旧人工高分不能豁免。重新提取使用保存的明确响应，在保存点中执行并回滚全部临时记录；比较事实、引文和上下文而非仅比较PASS。列表保序，仅对重验产生的事件标识规范化。提交事务内不调用模型、网络或Redis。
+
+同事务写提交、章映射/指针、正式事件与实体/知识/关系快照、伏笔发生/状态、全局state_version+1、revision局部版本/游标+1、审计及canonical_outbox。novels.row_version不推进，避免把不变计划当作元数据改版。正式章指针不进入结构内容哈希；既有冻结窗口仅在当前正式版本一致时允许继续只读消费，不能编辑冻结规划或正式历史。前章已提交提取可作正式baseline，但其candidate current_eligible仍可为false，不伪称旧候选重新有效。
+
+正式表同书复合外键、唯一约束、事务能力证明和延迟完整性触发器替代D01/D03永久关闭约束；缺少任意映射、状态、指针或outbox不能完成事务。正式回执/事件/快照/投影不可改删，历史状态可从真实正式事件映射重放并核对快照哈希。快照可重建不等于覆盖原审计快照，回放入口只读。
+
+ADR-E06-01：C02 outbox_events强依赖真实generation_run；正式提交可能来自人工候选，故采用每commit唯一的canonical_outbox保存同事务不可变意图，不伪造运行。该表当前无消费器或发布标记，E07负责后续摘要/索引和投递回执接入；pending仅表示已持久保存，不能声称记忆已更新。ADR-E06-02：正式人物知识/关系使用独立canonical_knowledge_facts/canonical_relationships保留来源，D02候选上下文不可原地升格；信念/推测等类型继续区分。
+
+UI15/API及验证证据见[验收报告](../phase-e/NF-E06_ACCEPTANCE.md)。真实语义/文学、十章成品、百章伏笔和生产吞吐不由离线结构测试替代。

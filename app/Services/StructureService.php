@@ -171,6 +171,8 @@ final class StructureService
         foreach (self::MODELS as $type => $model) {
             foreach ($model::where('novel_id', $id)->when($type === 'scene', fn ($q) => $q->where('retired', false))->orderBy('sequence')->orderBy('id')->get() as $node) {
                 $row = $node->toArray();
+                // E06正式指针是提交投影，不属于作者规划内容或冻结依赖。
+                unset($row['current_canonical_version_id'], $row['canonical_commit_id']);
                 $row['type'] = $type;
                 if ($type === 'story_arc') {
                     $row['threads'] = Thread::where('novel_id', $id)->whereIn('id', DB::table('arc_thread')->where('arc_id', $node->id)->select('thread_id'))->orderBy('id')->get()->toArray();

@@ -1,0 +1,84 @@
+{
+    "database": "novel_forge",
+    "migration": "2026_10_26_000024_create_canonical_commits",
+    "migration_exit": 0,
+    "before": {
+        "users": 1,
+        "novels": 0,
+        "providers": 0,
+        "model_profiles": 0,
+        "ai_requests": 0
+    },
+    "after": {
+        "users": 1,
+        "novels": 0,
+        "providers": 0,
+        "model_profiles": 0,
+        "ai_requests": 0
+    },
+    "backup": "\/Users\/webb\/Herd\/NovelForge\/.local\/backups\/nf-e06-before-20261026-051608.dump",
+    "backup_sha256": "c432cc4710b28fbbfa27204d47d4ce16d3964f19078c5ce0b213d38a77b916d3",
+    "backup_permissions": "0600",
+    "archive_list_verified": true,
+    "restoration_tested": false,
+    "comments": {
+        "canonical_revisions": {
+            "columns": 9,
+            "commented_columns": 9,
+            "table_comment": "活动正式基线与提交游标，仅空根基线和顺序追加"
+        },
+        "canonical_preflights": {
+            "columns": 10,
+            "commented_columns": 10,
+            "table_comment": "不可变正式提交预检与校验产物"
+        },
+        "canonical_commits": {
+            "columns": 22,
+            "commented_columns": 22,
+            "table_comment": "唯一正式提交记录及长期幂等回执"
+        },
+        "canonical_chapters": {
+            "columns": 8,
+            "commented_columns": 8,
+            "table_comment": "正式基线与精确章版本映射"
+        },
+        "canonical_knowledge_facts": {
+            "columns": 11,
+            "commented_columns": 11,
+            "table_comment": "有正式事件和获知证据的知识投影"
+        },
+        "canonical_relationships": {
+            "columns": 9,
+            "commented_columns": 9,
+            "table_comment": "绑定正式来源事件的关系投影"
+        },
+        "canonical_foreshadow_states": {
+            "columns": 7,
+            "commented_columns": 7,
+            "table_comment": "由正式证据驱动的伏笔生命周期"
+        },
+        "canonical_outbox": {
+            "columns": 8,
+            "commented_columns": 8,
+            "table_comment": "正式提交的持久后续意图，消费待E07"
+        }
+    },
+    "new_table_counts": {
+        "canonical_revisions": 0,
+        "canonical_preflights": 0,
+        "canonical_commits": 0,
+        "canonical_chapters": 0,
+        "canonical_knowledge_facts": 0,
+        "canonical_relationships": 0,
+        "canonical_foreshadow_states": 0,
+        "canonical_outbox": 0
+    },
+    "added_column_comments": {
+        "novels.active_canonical_revision_id": "当前正式根基线，空根初始化不产生剧情状态",
+        "chapters.current_canonical_version_id": "当前正式章版本，仅原子提交更新",
+        "chapters.canonical_commit_id": "当前正式版本的提交来源",
+        "state_snapshots.revision_id": "正式范围所属基线，候选为空",
+        "state_snapshots.commit_id": "正式快照来源提交，候选为空",
+        "state_snapshots.formal_state_version": "正式状态版本，候选为空"
+    }
+}

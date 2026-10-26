@@ -77,7 +77,8 @@ class NovelIntentTest extends TestCase
         $this->assertTrue(Schema::hasTable('chapter_versions'));
         $this->assertDatabaseCount('chapter_versions', 0);
         $this->assertDatabaseCount('scene_versions', 0);
-        $this->assertFalse(Schema::hasTable('canonical_commits'));
+        // E06已建立提交表，创建创意仍不产生任何正式提交。
+        $this->assertDatabaseCount('canonical_commits', 0);
         // C01 已建编排表，但本操作不能创建运行。
         $this->assertDatabaseCount('generation_runs', 0);
     }

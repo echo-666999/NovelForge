@@ -212,9 +212,9 @@ class StoryStateTest extends TestCase
         }
         try {
             DB::transaction(fn () => DB::table('story_events')->insert(['novel_id' => $f['novelId'], 'proposed_event_id' => $a, 'revision_id' => 1, 'commit_id' => 1, 'chapter_version_id' => 1, 'evidence_id' => $f['evidence'], 'narrative_order' => 1, 'payload' => '{}']));
-            $this->fail('E06 接入前不得写正式事实');
+            $this->fail('缺少正式提交证明不得写正式事实');
         } catch (QueryException $e) {
-            $this->assertStringContainsString('d01_formal_entry_closed', $e->getMessage());
+            $this->assertStringContainsString('canonical commit write proof required', $e->getMessage());
         }
         foreach (['source_documents', 'evidence_spans', 'proposed_events', 'proposed_state_patches', 'story_events', 'state_snapshots', 'entity_state_versions'] as $table) {
             $comments = DB::select('SELECT obj_description(c.oid) AS table_comment,col_description(c.oid,a.attnum) AS column_comment FROM pg_class c JOIN pg_attribute a ON a.attrelid=c.oid WHERE c.oid=to_regclass(?) AND a.attnum>0 AND NOT a.attisdropped', [$table]);

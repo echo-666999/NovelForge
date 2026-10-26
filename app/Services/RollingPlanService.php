@@ -213,8 +213,10 @@ final class RollingPlanService
         if ($this->hash($effectiveNodes($outline['content']['nodes'])) !== $this->hash($effectiveNodes($working['nodes'])) || $this->hash($outline['content']['threads']) !== $this->hash($working['threads']) || $this->hash($p->content['requirements']) !== $this->hash($reqs) || $this->hash($outline['content']['novel']['chapter_length_policy']) !== $this->hash($novel->chapter_length_policy)) {
             $add('PLAN_STALE', 'plan', '工作草稿或要求已变更，请保存新计划。');
         }
-        if ($novel->state_version > 0) {
-            $add('HISTORY_CHANGE_REQUIRED', 'novel', '正式历史模块尚未接入，不允许直接覆盖正式结构。');
+        // E06只允许继续消费未变化的已冻结窗口；结构写入和历史重基线门禁仍保留。
+        $committedPrefix = $frozen && $novel->active_canonical_revision_id && DB::table('canonical_revisions')->where('novel_id', $novel->id)->where('id', $novel->active_canonical_revision_id)->where('local_state_version', $novel->state_version)->exists();
+        if ($novel->state_version > 0 && ! $committedPrefix) {
+            $add('HISTORY_CHANGE_REQUIRED', 'novel', '必须绑定一致的正式前缀才能消费冻结计划；历史结构修改仍需专门流程。');
         }
         if (! in_array($novel->status, ['draft', 'planning'])) {
             $add('INVALID_TRANSITION', 'novel', '当前小说状态不允许冻结规划。');

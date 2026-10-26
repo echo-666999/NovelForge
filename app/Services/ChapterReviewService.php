@@ -57,7 +57,7 @@ final class ChapterReviewService
         if (! $styles || count(array_unique($styles)) !== 1 || (string) $styles[0] !== $p['style_version_id']) {
             $hard[] = ['code' => 'GENERATION_STYLE_MISMATCH', 'generation_style_ids' => $styles, 'policy_style_id' => $p['style_version_id']];
         }
-        $prior = $e['baseline_id'] ? app(ExtractionService::class)->read($actor, $novel, $e['baseline_id']) : null;
+        $prior = $e['baseline_id'] ? app(ExtractionService::class)->baseline($actor, $novel, $e['baseline_id']) : null;
         $priorBody = $prior ? app(DraftingService::class)->read($actor, $novel, 'chapter', $prior['chapter_version_id']) : null;
         $context = $e['context_id'] ? app(StoryConsistencyService::class)->read($actor, $novel, $e['context_id']) : null;
         $validation = $this->hash(['input' => $e['input_hash'], 'output' => $e['output_hash'], 'report' => $e['report'], 'events' => $e['candidate_event_ids'], 'patches' => $e['patches']]);

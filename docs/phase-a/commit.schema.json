@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "NovelForge CommitCommand v1 (design)",
+  "title": "NovelForge CommitCommand v1（NF-E06实现）",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -42,15 +42,18 @@
     },
     "plan_node_version_id": {
       "type": "string",
-      "pattern": "^[1-9][0-9]*$"
+      "pattern": "^[1-9][0-9]*$",
+      "description": "冻结outline_versions内目标章节的plan_nodes.id"
     },
     "event_artifact_id": {
       "type": "string",
-      "pattern": "^[1-9][0-9]*$"
+      "pattern": "^[1-9][0-9]*$",
+      "description": "实际不可变 extraction_attempts.id（E03事件提取产物），非虚构generation_artifacts标识"
     },
     "validation_artifact_id": {
       "type": "string",
-      "pattern": "^[1-9][0-9]*$"
+      "pattern": "^[1-9][0-9]*$",
+      "description": "实际不可变 canonical_preflights.id（提交前锁内验证产物），必须ready且请求完全一致"
     },
     "reason": {
       "type": "string",

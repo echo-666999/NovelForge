@@ -112,3 +112,25 @@ source_documents新增chapter_version_id；artifact来源继续要求run_id/arti
 新增revision_tasks、revision_task_issues、revision_task_facts、revision_proposals、revision_decisions、revision_validations、revision_assessments，均不可UPDATE/DELETE。设计的revision_tasks来源/目标版本与issue关联细化为冻结input中的问题/来源、受约束proposal、逐项decision目标版本，以及新提取validation和完整review assessment。任务问题及保留事件通过revision_task_issues/revision_task_facts建立强关联，冻结JSON另存原始快照；实际正文、来源评审、采纳新版本、重提取和复评同样有同书强FK，读取复核关联完整性。
 
 插入触发器验证来源评审/实际章、注册网关精确输出、采纳的父版本与实际正文、新提取对应目标正文及最终评审对应提取。每轮最多一次采纳，放弃及人工确认追加历史；自动轮次预留与技术尝试分离。所有新表/字段中文COMMENT，备注和开发库备份迁移实际结果见[NF-E05验收](../phase-e/NF-E05_ACCEPTANCE.md)。未增加正式提交映射，不推进正式状态版本。
+
+
+## NF-E06 实际增量（2026-10-26）
+
+目标CSV仍表示全产品设计，以下为本次真实物理映射，不能把目标字段都当作已建：
+
+| 表 | 主要字段/约束与索引 |
+| --- | --- |
+| canonical_revisions | novel/version/status/cursor/local_state_version/actor/reason；同书ID、版本唯一；每书仅一个active；仅空根及有提交证明的顺序推进 |
+| canonical_preflights | chapter/command_key/request/request_hash/report/content_hash/actor；同书键唯一，报告不可变 |
+| canonical_commits | revision/chapter/chapter_version/chapter_sequence/review/event_artifact/validation_artifact/plan_node；previous/new_state_version、key、request/hash、status、snapshot、response/hash；同书键和基线章/序唯一；building必须同事务封口committed |
+| canonical_chapters | revision/chapter/chapter_version/commit/sequence/body_hash；同书强FK，基线章和序号唯一，追加不可变 |
+| canonical_knowledge_facts | revision/commit/knower/fact_event/acquired_event/method/knowledge_kind/source_knower/introduced_chapter；来源正式事件及D02获取证据核对，获取链去重；不混淆fact/inference等类别 |
+| canonical_relationships | revision/commit/event/from/to/relation_type/state；同书正式事件与实体FK，实际D02来源核对；事件关系唯一，不覆盖历史 |
+| canonical_foreshadow_states | revision/commit/plan/occurrence/status；发生记录真实匹配，planted/reinforced/paid_off追加状态；规划不能直接回收 |
+| canonical_outbox | revision/commit/topic/payload/hash/created_at；每commit唯一且不可变，当前pending意图，无E07消费者 |
+
+既有表新增6字段：novels.active_canonical_revision_id；chapters.current_canonical_version_id、canonical_commit_id（必须成对并精确指向章映射）；state_snapshots.revision_id、commit_id、formal_state_version。所有新表/字段均有中文数据库COMMENT。同书ID/版本复合FK限制跨书/跨章串联，正式snapshot按revision/chapter唯一，candidate scope不得伪带正式字段。
+
+story_events、foreshadow_occurrences解除旧CHECK(false)，改用commit证明、同书FK、来源一致性和事务完成约束；保留不可改删。entity_state_versions绑定正式快照投影，source_event_id指正式story_events，另保留proposed_event_id来源。canonical知识和关系是正式投影，不能改写D02候选；正式快照以formal-state-v1封存实体/知识/当前关系。关系历史保留，快照只呈现当时有效事实关系，撤销/替代事件不继续污染当前关系。
+
+本轮只实现根基线顺序追加，不实现CSV的base_revision_id及G01候选重基线。新增物理表/字段数量、中文备注及开发库迁移结果见../phase-e/NF-E06_ACCEPTANCE.md。C02运行outbox与canonical_outbox分开说明见A04_CONTRACTS的ADR-E06-01。

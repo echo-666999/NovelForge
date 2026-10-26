@@ -193,3 +193,24 @@ UI16入口 `/admin/extraction-ledger` 支持原文、候选事件、补丁、冲
 revision-runs示意细化为GET/POST `/api/v1/novels/{novel}/revisions`、GET `/{revision}`和POST `/{revision}/{propose|runs|decide|assess|confirm}`。runs为202离线阶段，其余写入201；必须Idempotency-Key和原因，未知字段拒绝，保留同源会话/CSRF、管理员/同书授权及private/no-store。原示意路径未注册，不应视为可用。
 
 任务冻结review_id、issue_ids、allowed_scope（paragraph/scene/chapter及精确ranges）、preserve_facts、preserve_quotes、mode和书级expected_version/expected_state_version。propose仅存明确离线补丁；runs另需冻结路由/本章generation预算。decide须显式patch_keys逐项采纳或manual_output同范围手工编辑，expected_version为来源候选版号；不自动采纳整章。assess要求新正文extraction_output与完整章节review_output，confirm只能明确接受已达线且无硬错误的非阻塞候选，不改旧评分。完整字段、边界与UI14见[NF-E05验收](../phase-e/NF-E05_ACCEPTANCE.md)。
+
+
+## NF-E06 实际接口（2026-10-26）
+
+| 方法/实际路径 | 字段与返回 |
+| --- | --- |
+| POST `/api/v1/novels/{novel}/canonical-revisions` | expected_state_version、reason；显式初始化空根身份，201；不推进剧情版本 |
+| GET `/api/v1/novels/{novel}/canonical` | chapter_id、revision_id、status=ready/blocked/committed、error_code、from/to日期、page≥1；每页各50条，返回totals/page/next_page；当前实现采用页码而非设计中的不透明cursor |
+| GET `/api/v1/novels/{novel}/canonical/{commit}` | 正式回执、原命令和对应状态；只读核对哈希 |
+| POST `/api/v1/chapters/{chapter}/commits/preflight` | CommitCommand去掉validation_artifact_id；保存ready/blocked报告，201；blocked不代表可以提交 |
+| POST `/api/v1/chapters/{chapter}/commits` | 完整CommitCommand，201首次正式回执；相同键载荷重放200；异载荷409 |
+| GET `/api/v1/novels/{novel}/state` | 可选revision_id、chapter（正式章序）；当前/历史正式状态，显式未提交章404，不回退候选 |
+| GET `/api/v1/novels/{novel}/state/replay` | 同上，从正式映射重放并核对快照，200；无写入副作用 |
+
+所有写操作需要Idempotency-Key及reason。同源会话/CSRF、管理员、同书授权和private/no-store继续生效，路径/正文归属不同404；所有ID字符串。event_artifact_id=E03 extraction_attempts.id，validation_artifact_id=canonical_preflights.id，plan_node_version_id=冻结章节plan_nodes.id；响应并非模型虚构的artifact。
+
+幂等键：提交按novel/key长期唯一，预检按novel/key唯一，空根初始化沿novel_commands的actor/novel/command/key；成功提交优先匹配原键，不因后来游标变化拒绝合法重试。ready预检与提交命令除validation_artifact_id外必须完全一致，包括reason。预检复用只返回原报告，正式提交在锁内重验，不授予豁免。
+
+典型错误：STALE_STATE、CANONICAL_CONFLICT、REVIEW_STALE、EXTRACTION_NOT_ELIGIBLE、EXTRACTION_CONTENT_MISMATCH、UNAPPROVED_ENTITY、PLAN_NOT_FROZEN、INCOMPLETE_BODY、INCOMPLETE_SCENES、DEPENDENCY_MISMATCH、REQUIRED_FORESHADOW_MISSING、INVALID_PREFLIGHT、IDEMPOTENCY_CONFLICT；错误HTTP状态以服务实际结果为准（通常409或422），格式/未知字段422。请求不允许指定正式指针、状态或force。
+
+UI15 `/admin/canonical-commit-center?novel=…`复用同一服务；E07消费、G01历史改写、外部令牌和真实模型未接入。详见[NF-E06验收](../phase-e/NF-E06_ACCEPTANCE.md)。

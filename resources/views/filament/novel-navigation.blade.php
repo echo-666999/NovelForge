@@ -31,3 +31,5 @@ catch (\Illuminate\Database\QueryException $e) { report($e); $context=null; }
 <a href="{{ url('/admin/review-center') }}?novel={{ urlencode($novelId) }}">评审中心与策略</a>
 {{-- E05采纳只改候选，复评合格不等于正式提交。 --}}
 <a href="/admin/revision-desk?novel={{ $novelId }}">受限修订工作台</a>
+{{-- E06预检与正式回执为独立入口，不能以候选采纳代替。 --}}
+<a href="/admin/canonical-commit-center?novel={{ $novelId }}">正式提交与基线</a>
