@@ -41,7 +41,7 @@
             <x-filament::button color="gray" wire:click="exportResponseFields">导出当前候选草稿</x-filament::button>
         </div>
         <details><summary>高级响应导入</summary><p>只导入候选响应，不改变正文、小说或版本身份。错误不会覆盖当前编辑区。</p>
-            <x-nf.field id="extraction-import" label="高级JSON响应"><textarea id="extraction-import" rows="5" wire:model="importResponse"></textarea></x-nf.field>
+            <x-nf.field id="extraction-import" label="高级JSON响应"><x-nf.control tag="textarea" id="extraction-import" rows="5" wire:model="importResponse"></x-nf.control></x-nf.field>
             <x-filament::button color="gray" wire:click="importResponseFields">载入字段编辑区</x-filament::button>
         </details>
     </x-nf.section>

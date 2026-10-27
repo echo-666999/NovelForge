@@ -1,5 +1,5 @@
 @props(['id', 'label', 'help' => null, 'error' => null, 'required' => false, 'full' => false])
-{{-- 调用方为控件设置同一 id，并以 aria-describedby 关联下面的帮助/错误文本。 --}}
+{{-- 原生控件复用nf.control继承本字段的id与说明；自定义控件须提供同等ARIA关联。 --}}
 <x-filament-forms::field-wrapper :id="$id" :label="$label" :required="$required" :has-errors="false"
     {{ $attributes->class(['nf-field', 'nf-field-full' => $full]) }}>
     {{ $slot }}

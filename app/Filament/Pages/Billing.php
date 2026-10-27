@@ -78,6 +78,7 @@ class Billing extends Page
         $property = ['price' => 'pricePayload', 'policy' => 'policyPayload', 'reconcile' => 'reconcilePayload'][$action] ?? null;
         abort_unless($property, 422);
         $this->billingNotice = '';
+        $this->beginProductionAction();
         try {
             $data = $this->productionValue($property);
             $hash = hash('sha256', NovelIntentService::canonical([$action, $data]));
@@ -88,10 +89,7 @@ class Billing extends Page
             if ($e instanceof ValidationException) {
                 $this->productionErrors($e);
             }
-            if ($e instanceof ValidationException) {
-                $this->productionErrors($e);
-            }
-            $this->billingNotice = $e->getMessage();
+            $this->billingNotice = $e instanceof ValidationException ? implode(' ', $e->validator->errors()->all()) : $e->getMessage();
         }
     }
 

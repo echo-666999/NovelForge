@@ -11,9 +11,9 @@
 <div class="nf-story-toolbar">
 <x-nf.story-select id="ui06-world-library-1-{{ md5('type') }}" label="类型" model="type" :value="data_get($__livewire,'type')" ><option value="">全部</option>@foreach($this::TYPES as $k=>$v)<option value="{{ $k }}">{{ $v }}</option>@endforeach</x-nf.story-select>
 <x-nf.story-select id="ui06-world-library-2-{{ md5('status') }}" label="状态" model="status" :value="data_get($__livewire,'status')" ><option value="">全部</option>@foreach($this::STATUS as $k=>$v)<option value="{{ $k }}">{{ $v }}</option>@endforeach</x-nf.story-select>
-<x-nf.field id="ui06-world-library-3-{{ md5('q') }}" label="名称 / 当前别名" :error="$errors->first('q')"><input id="ui06-world-library-3-{{ md5('q') }}" wire:model.live.debounce.300ms="q" /></x-nf.field>
+<x-nf.field id="ui06-world-library-3-{{ md5('q') }}" label="名称 / 当前别名" :error="$errors->first('q')"><x-nf.control id="ui06-world-library-3-{{ md5('q') }}" wire:model.live.debounce.300ms="q"  /></x-nf.field>
 <x-nf.story-select id="ui06-world-library-4-{{ md5('role') }}" label="角色" model="role" :value="data_get($__livewire,'role')" ><option value="">全部</option><option value="primary">主角</option><option value="supporting">配角</option><option value="extra">路人</option></x-nf.story-select>
-<x-nf.field id="ui06-world-library-5-{{ md5('faction') }}" label="阵营" :error="$errors->first('faction')"><input id="ui06-world-library-5-{{ md5('faction') }}" wire:model.live.debounce.300ms="faction" /></x-nf.field>
+<x-nf.field id="ui06-world-library-5-{{ md5('faction') }}" label="阵营" :error="$errors->first('faction')"><x-nf.control id="ui06-world-library-5-{{ md5('faction') }}" wire:model.live.debounce.300ms="faction"  /></x-nf.field>
 <label class="nf-story-check"><input type="checkbox" wire:model.live="unreferenced"/>无初始关系引用</label>
 </div>
 <x-nf.table label="故事资料列表"><table class="w-full text-left"><thead><tr><th>名称 / 类型</th><th>角色 / 阵营</th><th>版本 / 批准</th><th>引用 / 动态状态</th><th>操作</th></tr></thead><tbody>

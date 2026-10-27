@@ -1,0 +1,23 @@
+[
+  "vendor/bin/pint",
+  "--test",
+  "--format=json",
+  "app/Filament/Concerns/EditsProductionPayloads.php",
+  "app/Filament/Concerns/HasProductionChoices.php",
+  "app/Filament/Concerns/ReadsProductionFrames.php",
+  "app/Filament/Pages/Billing.php",
+  "app/Filament/Pages/CanonicalCommitCenter.php",
+  "app/Filament/Pages/CanonicalMemoryCenter.php",
+  "app/Filament/Pages/ContextInspector.php",
+  "app/Filament/Pages/MemoryLibrary.php",
+  "app/Filament/Pages/ReviewCenter.php",
+  "app/Filament/Pages/RevisionDesk.php",
+  "app/Filament/Pages/SearchLab.php",
+  "app/Filament/Resources/NovelResource/Pages/DraftEditor.php",
+  "app/Filament/Resources/NovelResource/Pages/PlanningCandidates.php",
+  "app/Providers/Filament/AdminPanelProvider.php",
+  "lang/vendor/filament-panels/zh_CN/global-search.php",
+  "lang/zh_CN/validation.php",
+  "tests/Feature/FormAccessibilityTest.php",
+  "tests/Feature/ProductionUiTest.php"
+]

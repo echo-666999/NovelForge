@@ -29,8 +29,8 @@
             <p>当前载入：{{ $loadedKind }}正文版本 #{{ $detail['id'] }}。上方选择只有点击读取后才替换此缓冲。</p>
             <p>版本历史：@foreach($detail['history'] as $v) #{{ $v['id'] }}（v{{ $v['version'] }}） @endforeach</p>
             <div x-data="{ dirty: false }" x-on:input="dirty = true" x-on:draft-saved.window="dirty = false" x-on:beforeunload.window="if (dirty) { $event.preventDefault(); $event.returnValue = ''; }" wire:poll.15s="autoSave">
-                <x-nf.field id="ui07-draft-editor-5-{{ md5('bodyTitle') }}" label="具体标题" :error="$errors->first('bodyTitle')"><input id="ui07-draft-editor-5-{{ md5('bodyTitle') }}" wire:model.live.debounce.500ms="bodyTitle"></x-nf.field>
-                <x-nf.field id="ui07-draft-editor-6-{{ md5('body') }}" label="候选正文" :error="$errors->first('body')"><textarea id="ui07-draft-editor-6-{{ md5('body') }}" class="w-full" rows="18" wire:model.live.debounce.1000ms="body"></textarea></x-nf.field>
+                <x-nf.field id="ui07-draft-editor-5-{{ md5('bodyTitle') }}" label="具体标题" :error="$errors->first('bodyTitle')"><x-nf.control id="ui07-draft-editor-5-{{ md5('bodyTitle') }}" wire:model.live.debounce.500ms="bodyTitle" /></x-nf.field>
+                <x-nf.field id="ui07-draft-editor-6-{{ md5('body') }}" label="候选正文" :error="$errors->first('body')"><x-nf.control tag="textarea" id="ui07-draft-editor-6-{{ md5('body') }}" class="w-full" rows="18" wire:model.live.debounce.1000ms="body"></x-nf.control></x-nf.field>
                 <p>可见码点：{{ $this->count() }}；{{ ($body !== $savedBody || $bodyTitle !== $savedTitle) ? '尚未保存（每15秒尝试自动保存）' : '候选已保存' }}</p>
                 <p>哈希 {{ $detail['body_hash'] }}；来源 {{ $detail['parent_version_id'] ?? '初始' }}；{{ implode('、', $detail['report']['issues']) ?: '规则检查无问题，评审资格需另行核对' }}</p>
                 <x-filament::button wire:loading.attr="disabled" wire:click="save">保存为新候选版本</x-filament::button>
@@ -55,12 +55,12 @@
         <x-nf.story-select id="ui07-draft-editor-10-{{ md5('route') }}" label="离线路由" model="route" :value="data_get($__livewire,'route')" ><option value="">请选择</option>@foreach($options['routes'] as $v)<option value="{{ $v->id }}">{{ $v->key }}</option>@endforeach</x-nf.story-select>
         <x-nf.story-select id="ui07-draft-editor-11-{{ md5('policy') }}" label="预算政策" model="policy" :value="data_get($__livewire,'policy')" ><option value="">请选择</option>@foreach($options['policies'] as $v)<option value="{{ $v->id }}">{{ $v->key }}</option>@endforeach</x-nf.story-select>
         @include('filament.production-reference',['label'=>'报价版本 ','model'=>'prices','kind'=>'price','multiple'=>true])
-        <x-nf.field id="ui07-draft-editor-13-{{ md5('offlineBody') }}" label="离线完整场景正文" :error="$errors->first('offlineBody')"><textarea id="ui07-draft-editor-13-{{ md5('offlineBody') }}" class="w-full" rows="8" wire:model="offlineBody"></textarea></x-nf.field>
-        <x-nf.field id="ui07-draft-editor-14-{{ md5('reason') }}" label="备注 / 原因" :error="$errors->first('reason')"><input id="ui07-draft-editor-14-{{ md5('reason') }}" wire:model="reason"></x-nf.field>
+        <x-nf.field id="ui07-draft-editor-13-{{ md5('offlineBody') }}" label="离线完整场景正文" :error="$errors->first('offlineBody')"><x-nf.control tag="textarea" id="ui07-draft-editor-13-{{ md5('offlineBody') }}" class="w-full" rows="8" wire:model="offlineBody"></x-nf.control></x-nf.field>
+        <x-nf.field id="ui07-draft-editor-14-{{ md5('reason') }}" label="备注 / 原因" :error="$errors->first('reason')"><x-nf.control id="ui07-draft-editor-14-{{ md5('reason') }}" wire:model="reason" /></x-nf.field>
         <x-filament::button wire:loading.attr="disabled" wire:click="startScene">冻结并启动离线场景</x-filament::button>
         @include('filament.production-reference',['label'=>'运行 ','model'=>'run','kind'=>'run','multiple'=>false])<x-filament::button wire:loading.attr="disabled" wire:click="replay">执行离线回放</x-filament::button>
         @if(ctype_digit($run))<a href="/admin/recovery-desk?novel={{ $novelId }}&run={{ $run }}">查看恢复与证据</a>@endif
-        <h3>章节组装</h3>@include('filament.production-reference',['label'=>'章节 ','model'=>'chapter','kind'=>'chapter','multiple'=>false])<x-nf.field id="ui07-draft-editor-17-{{ md5('assemblyTitle') }}" label="具体章名" :error="$errors->first('assemblyTitle')"><input id="ui07-draft-editor-17-{{ md5('assemblyTitle') }}" wire:model="assemblyTitle"></x-nf.field>
+        <h3>章节组装</h3>@include('filament.production-reference',['label'=>'章节 ','model'=>'chapter','kind'=>'chapter','multiple'=>false])<x-nf.field id="ui07-draft-editor-17-{{ md5('assemblyTitle') }}" label="具体章名" :error="$errors->first('assemblyTitle')"><x-nf.control id="ui07-draft-editor-17-{{ md5('assemblyTitle') }}" wire:model="assemblyTitle" /></x-nf.field>
         <x-filament::button wire:loading.attr="disabled" wire:click="assemble">按当前场景版本完整组装候选章</x-filament::button>
     </div></x-nf.section>
 @endif

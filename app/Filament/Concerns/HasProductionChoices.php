@@ -152,30 +152,72 @@ trait HasProductionChoices
         return ['prices' => 'price', 'issues' => 'review_issue', 'facts' => 'event', 'changedScopes' => 'scope'];
     }
 
-    /** 原错误路径和逐字段路径同时保留，页面不能只吞成一条通知。 */
-    protected function productionErrors(ValidationException $error): void
+    /** 仅当前动作实际读取的载荷参与错误投影；客户端不能选择错误作用域。 */
+    protected array $productionErrorRoots = [];
+
+    protected function beginProductionAction(): void
     {
-        $messages = $error->validator->errors()->toArray();
-        $mapped = $messages;
-        $walk = function (array $node, string $path, string $logical) use (&$walk, $messages, &$mapped): void {
-            foreach ($messages as $key => $rows) {
-                $trim = preg_replace('/^(offline_output|extraction_output|review_output|content)\./', '', $key);
-                if ($trim === $logical || $key === $path || $key === $path.'.value') {
-                    $mapped[$path.(in_array($node['type'], ['object', 'array'], true) ? '' : '.value')] = $rows;
+        $this->productionErrorRoots = [];
+        $this->resetErrorBag();
+        // 新动作不沿用上一动作的错误通知，避免导入区仍显示旧预算错误。
+        foreach (['notice', 'billingNotice'] as $property) {
+            if (property_exists($this, $property)) {
+                $this->$property = '';
+            }
+        }
+    }
+
+    /** 显式前缀优先；未限定且同名的错误只进摘要，绝不广播到多个编辑树。 */
+    protected function productionErrors(ValidationException $error, ?array $roots = null): void
+    {
+        $roots ??= $this->productionErrorRoots;
+        $mapped = [];
+        foreach ($error->errors() as $key => $messages) {
+            $candidates = [];
+            $prefixed = array_filter($roots, fn ($spec) => $spec['prefix'] !== '' && ($key === $spec['prefix'] || str_starts_with($key, $spec['prefix'].'.')));
+            foreach ($prefixed ?: $roots as $root => $spec) {
+                $logical = $prefixed ? ltrim(substr($key, strlen($spec['prefix'])), '.') : $key;
+                $paths = [];
+                $walk = function (array $node, string $path, string $name) use (&$walk, &$paths): void {
+                    $paths[$name] = $path.(in_array($node['type'], ['object', 'array'], true) ? '' : '.value');
+                    foreach ($node['children'] as $i => $row) {
+                        $part = $node['type'] === 'array' ? (string) $i : $row['key'];
+                        $walk($row['node'], $path.'.children.'.$i.'.node', $name === '' ? $part : $name.'.'.$part);
+                    }
+                };
+                $walk($this->trees[$root], 'trees.'.$root, '');
+                if (isset($paths[$logical])) {
+                    $candidates[] = $paths[$logical];
+                } elseif (in_array($key, $paths, true)) {
+                    $candidates[] = $key;
+                } elseif ($prefixed || isset($spec['schema']['properties'][explode('.', $logical)[0]])) {
+                    // 缺失的必填字段没有控件，关联到最近的既有容器而非同名筛选。
+                    while ($logical !== '' && ! isset($paths[$logical])) {
+                        $logical = str_contains($logical, '.') ? substr($logical, 0, strrpos($logical, '.')) : '';
+                    }
+                    $candidates[] = $paths[$logical];
                 }
             }
-            foreach ($node['children'] as $i => $row) {
-                $walk($row['node'], $path.'.children.'.$i.'.node', $logical === '' ? (string) $row['key'] : $logical.'.'.($node['type'] === 'array' ? $i : $row['key']));
+            $candidates = array_values(array_unique($candidates));
+            // 无前缀表示整个表单载荷：未识别的服务字段也只能落到本表单容器。
+            $directRoot = count($roots) === 1 && array_values($roots)[0]['prefix'] === '' ? array_key_first($roots) : null;
+            $target = count($candidates) === 1 ? $candidates[0] : ($directRoot !== null ? 'trees.'.$directRoot : (count($candidates) > 1 || str_starts_with($key, 'trees.') ? 'production' : $key));
+            $mapped[$target] = array_values(array_unique([...($mapped[$target] ?? []), ...$messages]));
+            if (str_starts_with($target, 'trees.') && property_exists($this, 'expandedJson')) {
+                // 只展开错误所在的树祖先，确保深层控件可供键盘定位。
+                $parts = explode('.', $target);
+                for ($i = 2; $i <= count($parts); $i += 3) {
+                    $this->expandedJson[implode('.', array_slice($parts, 0, $i))] = true;
+                }
             }
-        };
-        foreach ($this->trees ?? [] as $root => $node) {
-            $walk($node, 'trees.'.$root, '');
         }
         foreach (['chapter_version_id' => 'version', 'extraction_id' => 'extraction', 'policy_version_id' => 'policy'] as $key => $field) {
-            if (isset($messages[$key])) {
-                $mapped[$field] = $messages[$key];
+            if (isset($mapped[$key])) {
+                $mapped[$field] = $mapped[$key];
+                unset($mapped[$key]);
             }
         }
         $this->setErrorBag($mapped);
+        $this->dispatch('nf-validation-failed', sourceId: $this->getId());
     }
 }

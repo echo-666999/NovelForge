@@ -32,7 +32,7 @@
                     @endif
                     <x-nf.select :id="'ef-'.md5($childPath)" :label="$labels[$key]??$key" :model="$binding" :value="$field['node']['value']" :options="$opts" />
                 @elseif(in_array($key,['quote','reason','state'],true))
-                    <x-nf.field :id="'ef-'.md5($childPath)" :label="$labels[$key]??$key"><textarea id="{{ 'ef-'.md5($childPath) }}" rows="3" wire:model.blur="{{ $binding }}">{{ $field['node']['value'] }}</textarea></x-nf.field>
+                    <x-nf.field :id="'ef-'.md5($childPath)" :label="$labels[$key]??$key"><x-nf.control tag="textarea" id="{{ 'ef-'.md5($childPath) }}" rows="3" wire:model.blur="{{ $binding }}">{{ $field['node']['value'] }}</x-nf.control></x-nf.field>
                 @else
                     <x-nf.input :id="'ef-'.md5($childPath)" :label="$labels[$key]??$key" :type="$field['node']['type']==='integer'?'number':'text'" wire:model.blur="{{ $binding }}" :value="$field['node']['value']" :readonly="$key==='source_hash'" :error="$errors->first($childPath.'.value')" />
                 @endif

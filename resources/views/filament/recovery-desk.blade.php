@@ -35,7 +35,7 @@
         <details wire:ignore.self><summary>请求与费用证据</summary>@include('filament.value-table',['value'=>$preview['requests'],'label'=>'逐字段只读证据'])</details>
         @include('filament.production-reference',['label'=>'操作阶段','model'=>'scope','kind'=>'scope','multiple'=>false])
         @include('filament.production-reference',['label'=>'批准的备用模型版本（可选）','model'=>'modelVersion','kind'=>'model','multiple'=>false])
-        <x-nf.field id="ui07-recovery-desk-6-{{ md5('reason') }}" label="决定原因" :error="$errors->first('reason')"><textarea id="ui07-recovery-desk-6-{{ md5('reason') }}" wire:model="reason" class="border rounded p-2 w-full"></textarea></x-nf.field>
+        <x-nf.field id="ui07-recovery-desk-6-{{ md5('reason') }}" label="决定原因" :error="$errors->first('reason')"><x-nf.control tag="textarea" id="ui07-recovery-desk-6-{{ md5('reason') }}" wire:model="reason" class="border rounded p-2 w-full"></x-nf.control></x-nf.field>
         <div class="nf-story-toolbar">
             @foreach(['pause'=>'暂停','resume'=>'恢复调度','cancel'=>'取消运行','manual'=>'转人工','retry'=>'重试此阶段','reextract'=>'登记原证据重新提取','change_plan'=>'登记配置变更影响'] as $action=>$label)
                 <x-filament::button wire:loading.attr="disabled" wire:click="decide('{{ $action }}')" wire:confirm="确认{{ $label }}？操作将保留审计，取消不能撤销。" >{{ $label }}</x-filament::button>

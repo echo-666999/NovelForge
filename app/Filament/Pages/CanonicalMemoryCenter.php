@@ -88,6 +88,7 @@ class CanonicalMemoryCenter extends Page
 
     private function attempt(callable $fn): void
     {
+        $this->beginProductionAction();
         $this->notice = '';
         try {
             $fn();

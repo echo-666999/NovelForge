@@ -107,6 +107,7 @@ class RevisionDesk extends Page
 
     private function attempt(callable $fn): void
     {
+        $this->beginProductionAction();
         try {
             $fn();
         } catch (NovelProblem|ValidationException|\JsonException $e) {
@@ -134,7 +135,7 @@ class RevisionDesk extends Page
     {
         $this->attempt(function () {
             $n = app(NovelIntentService::class)->novel(auth()->user(), $this->novel);
-            $this->detail = $this->productionWrite('RevisionService.create', [], ['review_id' => $this->review, 'issue_ids' => array_values(array_filter(array_map('trim', explode(',', $this->issues)))), 'allowed_scope' => $this->productionValue('scopeJson'), 'preserve_facts' => array_values(array_filter(array_map('trim', explode(',', $this->facts)))), 'preserve_quotes' => $this->productionValue('protectedJson'), 'mode' => $this->mode, 'expected_version' => $n->row_version, 'expected_state_version' => $n->state_version, 'reason' => $this->reason], fn ($frozenPayload, $commandKey) => app(RevisionService::class)->create(auth()->user(), $this->novel, $frozenPayload, $commandKey));
+            $this->detail = $this->productionWrite('RevisionService.create', [], ['review_id' => $this->review, 'issue_ids' => array_values(array_filter(array_map('trim', explode(',', $this->issues)))), 'allowed_scope' => $this->productionValue('scopeJson', 'allowed_scope'), 'preserve_facts' => array_values(array_filter(array_map('trim', explode(',', $this->facts)))), 'preserve_quotes' => $this->productionValue('protectedJson', 'preserve_quotes'), 'mode' => $this->mode, 'expected_version' => $n->row_version, 'expected_state_version' => $n->state_version, 'reason' => $this->reason], fn ($frozenPayload, $commandKey) => app(RevisionService::class)->create(auth()->user(), $this->novel, $frozenPayload, $commandKey));
             $this->selected = $this->detail['id'];
             $this->notice = '修订问题和范围已冻结；状态：'.$this->detail['display_status'];
         });
@@ -161,7 +162,7 @@ class RevisionDesk extends Page
     public function propose(): void
     {
         $this->attempt(function () {
-            $this->detail = $this->productionWrite('RevisionService.propose', [$this->selected], ['offline_output' => $this->productionValue('patchJson'), 'reason' => $this->reason], fn ($frozenPayload, $commandKey) => app(RevisionService::class)->propose(auth()->user(), $this->novel, $this->selected, $frozenPayload, $commandKey));
+            $this->detail = $this->productionWrite('RevisionService.propose', [$this->selected], ['offline_output' => $this->productionValue('patchJson', 'offline_output'), 'reason' => $this->reason], fn ($frozenPayload, $commandKey) => app(RevisionService::class)->propose(auth()->user(), $this->novel, $this->selected, $frozenPayload, $commandKey));
             $last = end($this->detail['proposals']);
             $this->proposal = $last['id'];
             $this->notice = '提案已保存，尚未改动正文。';
@@ -202,7 +203,7 @@ class RevisionDesk extends Page
     public function assess(): void
     {
         $this->attempt(function () {
-            $this->detail = $this->productionWrite('RevisionService.assess', [$this->selected], ['extraction_output' => $this->productionValue('extractionJson'), 'review_output' => $this->productionValue('reviewJson'), 'reviewer_type' => $this->reviewer, 'reason' => $this->reason], fn ($frozenPayload, $commandKey) => app(RevisionService::class)->assess(auth()->user(), $this->novel, $this->selected, $frozenPayload, $commandKey));
+            $this->detail = $this->productionWrite('RevisionService.assess', [$this->selected], ['extraction_output' => $this->productionValue('extractionJson', 'extraction_output'), 'review_output' => $this->productionValue('reviewJson', 'review_output'), 'reviewer_type' => $this->reviewer, 'reason' => $this->reason], fn ($frozenPayload, $commandKey) => app(RevisionService::class)->assess(auth()->user(), $this->novel, $this->selected, $frozenPayload, $commandKey));
             $this->notice = '新正文已重新取证并整章复评：'.$this->detail['display_status'].'；未提交正式剧情。';
         });
     }
@@ -213,7 +214,7 @@ class RevisionDesk extends Page
             $t = app(RevisionService::class)->read(auth()->user(), $this->novel, $this->selected);
             $route = preg_match('/^[1-9][0-9]{0,17}$/D', $this->route) ? DB::table('route_versions')->find($this->route) : null;
             $params = $route ? json_decode($route->content, true)['parameters'] : [];
-            $r = $this->productionWrite('RevisionPipelineService.start', [$this->selected], ['route_version_id' => $this->route, 'offline_output' => $this->productionValue('patchJson'), 'billing' => ['policy_id' => $this->budget, 'price_version_ids' => array_values(array_filter(array_map('trim', explode(',', $this->prices)))), 'category' => 'generation', 'chapter_id' => $t['chapter_node_id'], 'max_output_tokens' => $params['max_output_tokens'] ?? 0, 'max_reasoning_tokens' => 0], 'reason' => $this->reason], fn ($frozenPayload, $commandKey) => app(RevisionPipelineService::class)->start(auth()->user(), $this->novel, $this->selected, $frozenPayload, $commandKey));
+            $r = $this->productionWrite('RevisionPipelineService.start', [$this->selected], ['route_version_id' => $this->route, 'offline_output' => $this->productionValue('patchJson', 'offline_output'), 'billing' => ['policy_id' => $this->budget, 'price_version_ids' => array_values(array_filter(array_map('trim', explode(',', $this->prices)))), 'category' => 'generation', 'chapter_id' => $t['chapter_node_id'], 'max_output_tokens' => $params['max_output_tokens'] ?? 0, 'max_reasoning_tokens' => 0], 'reason' => $this->reason], fn ($frozenPayload, $commandKey) => app(RevisionPipelineService::class)->start(auth()->user(), $this->novel, $this->selected, $frozenPayload, $commandKey));
             $this->run = $r['run_id'];
             $this->notice = '离线补丁运行已冻结；不会自动采纳。';
         });

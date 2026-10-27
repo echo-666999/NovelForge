@@ -1,0 +1,192 @@
+Window: "价格与原子预算 - NovelForge · 小说工坊", App: Safari浏览器.
+0 标准窗口 价格与原子预算 - NovelForge · 小说工坊，无痕浏览, ID: SafariWindow?IsSecure=false&UUID=C48C52DA-3E46-482E-89C4-FCB78737FBEC, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: 价格与原子预算 - NovelForge · 小说工坊, URL: 127.0.0.1:8772/admin/billing
+					6 link 跳至主要内容, Value: 127.0.0.1:8772/admin/billing#fi-main-content
+					7 container 顶部栏
+						8 link NovelForge · 小说工坊, Value: 127.0.0.1:8772/admin
+						9 文本 全局搜索
+						10 搜索文本栏 (settable) 全局搜索, Placeholder: 搜索
+							11 文本 搜索
+						12 文本 按向下键浏览结果，按上下键移动，按Tab键进入结果操作，按Escape键关闭结果。
+						13 弹出式按钮 用户菜单
+					14 container 侧边栏导航
+						15 内容列表
+							16 container
+								17 文本 创作工作台
+								18 按钮 (expanded) 创作工作台, Secondary Actions: Collapse
+								19 内容列表
+									20 link 创作总览, Value: 127.0.0.1:8772/admin
+									21 link 小说库, Value: 127.0.0.1:8772/admin/novels
+							22 container
+								23 文本 故事管理
+								24 按钮 (expanded) 故事管理, Secondary Actions: Collapse
+								25 内容列表
+									26 link 故事管理, Value: 127.0.0.1:8772/admin/story-hub
+									27 link 时间线与角色知识, Value: 127.0.0.1:8772/admin/story-timeline
+									28 link 伏笔与主支线账本, Value: 127.0.0.1:8772/admin/foreshadow-ledger
+							29 container
+								30 文本 生产与质量
+								31 按钮 (expanded) 生产与质量, Secondary Actions: Collapse
+								32 内容列表
+									33 link 生成运行中心, Value: 127.0.0.1:8772/admin/run-center
+									34 link 正文提取与硬约束, Value: 127.0.0.1:8772/admin/extraction-ledger
+									35 link 评审中心与策略, Value: 127.0.0.1:8772/admin/review-center
+									36 link 受限修订工作台, Value: 127.0.0.1:8772/admin/revision-desk
+									37 link 正式提交与基线, Value: 127.0.0.1:8772/admin/canonical-commit-center
+									38 link 上下文检查器, Value: 127.0.0.1:8772/admin/context-inspector
+									39 link 运行恢复台, Value: 127.0.0.1:8772/admin/recovery-desk
+							40 container
+								41 文本 检索与记忆
+								42 按钮 (expanded) 检索与记忆, Secondary Actions: Collapse
+								43 内容列表
+									44 link 分层记忆库, Value: 127.0.0.1:8772/admin/memory-library
+									45 link 正式记忆与索引, Value: 127.0.0.1:8772/admin/canonical-memory-center
+									46 link 检索实验室与索引, Value: 127.0.0.1:8772/admin/search-lab
+							47 container
+								48 文本 配置与运维
+								49 按钮 (expanded) 配置与运维, Secondary Actions: Collapse
+								50 内容列表
+									51 link Prompt 模板与发布, Value: 127.0.0.1:8772/admin/prompt-templates
+									52 link 供应商与模型, Value: 127.0.0.1:8772/admin/providers
+									53 link 模型主备路由, Value: 127.0.0.1:8772/admin/model-routes
+									54 link 文风与评分策略, Value: 127.0.0.1:8772/admin/style-profiles
+									55 link 价格与原子预算, Value: 127.0.0.1:8772/admin/billing
+									56 link 审计与系统健康, Value: 127.0.0.1:8772/admin/audit-center
+					57 container
+						58 标题 价格与原子预算, Value: 1
+							59 文本 价格与原子预算
+						60 文本 请核对字段，输入仍保留
+						61 container
+							62 container 稳定标识不能为空。
+							63 container 币种不能为空。
+							64 container 预警阈值不能小于1。
+							65 container 停止阈值不能小于2。
+							66 container 停止阈值必须大于0。
+							67 container 时区不能为空。
+							68 container 原因不能为空。
+						69 文本 当前为离线模拟账本，真实调用保持关闭。金额保留原币，不自动换汇；日预算按 UTC 切日。
+						70 文本 新版本只影响显式采用它的新运行。未知实际费用保持空值并保留风险预留；HTTP失败不等于免费。超预算不发请求。
+						71 文本 小说ID
+						72 文本栏 (settable) 小说ID
+						73 文本 币种
+						74 文本栏 (settable) 币种
+						75 文本 费用状态
+						76 弹出式按钮 费用状态：全部
+						77 文本 用途
+						78 弹出式按钮 用途：全部
+						79 文本 运行ID
+						80 文本栏 (settable) 运行ID
+						81 文本 模型能力版本ID
+						82 文本栏 (settable) 模型能力版本ID
+						83 文本 请求状态
+						84 弹出式按钮 请求状态：全部
+						85 文本 UTC开始日期
+						86 日期时间区域 UTC开始日期, Value: 2026/10/27
+							87 container
+								88 步进器 (settable, float) 年, Value: 0
+								89 文本 /
+								90 步进器 (settable, float) 月, Value: 0
+								91 文本 /
+								92 步进器 (settable, float) 日, Value: 0
+						93 文本 UTC结束日期
+						94 日期时间区域 UTC结束日期, Value: 2026/10/27
+							95 container
+								96 步进器 (settable, float) 年, Value: 0
+								97 文本 /
+								98 步进器 (settable, float) 月, Value: 0
+								99 文本 /
+								100 步进器 (settable, float) 日, Value: 0
+						101 文本 稳定标识不能为空。 币种不能为空。 预警阈值不能小于1。 停止阈值不能小于2。 停止阈值必须大于0。 时区不能为空。 原因不能为空。
+						102 摘要 新增价格版本（每百万Token）, Value: off
+							103 文本 新增价格版本（每百万Token）
+						104 container (expanded) Secondary Actions: Collapse
+							105 摘要 新增预算政策版本, Value: on
+								106 文本 新增预算政策版本
+							107 container 新增预算政策版本
+								108 text 新增预算政策版本 稳定标识
+								109 文本栏 (settable) 稳定标识
+								110 文本 稳定标识不能为空。
+								111 文本 预期已有版本号
+								112 文本栏 (settable) 预期已有版本号, Value: 0
+								113 文本 币种
+								114 文本栏 (settable) 币种
+								115 文本 币种不能为空。
+								116 按钮 收起 预算上限（十进制文本）（5项）
+								117 container 预算上限（十进制文本）
+									118 text 预算上限（十进制文本） 单次请求
+									119 文本栏 (settable) 单次请求
+									120 文本 每章
+									121 文本栏 (settable) 每章
+									122 文本 每次运行
+									123 文本栏 (settable) 每次运行
+									124 文本 每本书
+									125 文本栏 (settable) 每本书
+									126 文本 每日
+									127 文本栏 (settable) 每日
+								128 文本 警告百分比
+								129 文本栏 (settable) 警告百分比, Value: 0
+								130 文本 预警阈值不能小于1。
+								131 文本 停止百分比
+								132 文本栏 (settable) 停止百分比, Value: 0
+								133 文本 停止阈值不能小于2。
+								134 文本 预算时区
+								135 文本栏 (settable) 预算时区
+								136 文本 时区不能为空。
+								137 文本 理由
+								138 文本输入区 (settable) 理由, Value: [文本输入区], Secondary Actions: 显示写作工具
+								139 文本 原因不能为空。
+							140 摘要 高级导入（可选，不代替逐字段编辑）, Value: off
+								141 文本 高级导入（可选，不代替逐字段编辑）
+							142 按钮 保存版本或凭证记录
+							143 文本 金额按十进制文本填写，未知Token明确使用空值；只有实际凭证才能对账。相同输入重试保留原幂等键。
+						144 摘要 凭证对账或追加核销更正, Value: off
+							145 文本 凭证对账或追加核销更正
+						146 container 生产资料列表
+							147 表格
+								148 row (selectable) 请求 / 用途
+币种 / 价格版本
+状态
+最坏预留
+实际费用
+风险预留
+								149 row (selectable)
+									150 单元格 (selectable) Columns: 0-5, Value: 暂无费用记录。先录入有凭证的价格和预算版本；配置保存不会调用模型。
+						151 文本 共0笔，第1页。
+						152 link 导出当前筛选费用摘要 CSV（最多一万笔）, Value: 127.0.0.1:8772/api/v1/billing/export?
+						153 摘要 最近100个价格与预算版本（只读）, Value: off
+							154 文本 最近100个价格与预算版本（只读）
+				155 滚动条 (settable, float) 0.4548315
+	156 工具栏
+		157 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			158 按钮 Description: 显示边栏, ID: SidebarButton
+			159 文本 Description: 开关边栏, Value: 无痕浏览
+		160 container BackForwardSegmentedControl
+			161 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			162 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		163 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			164 按钮 页面菜单, ID: AssistantButton
+			165 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			166 文本栏 (settable) Description: 无痕浏览窗口中的智能搜索栏, Value: 127.0.0.1:8772/admin/billing, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			167 按钮 重新加载此页面, ID: ReloadButton
+		168 按钮 Description: 显示此站点的隐私报告, ID: PrivacyReportShieldButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		169 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		170 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		171 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	172 关闭按钮
+	173 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	174 最小化按钮
+175 menu bar
+	176 Safari浏览器
+	177 文件
+	178 编辑
+	179 显示, ID: SafariViewMenu
+	180 历史记录
+	181 书签, ID: SafariBookmarksMenu
+	182 窗口, ID: SafariWindowMenu
+	183 帮助, ID: SafariHelpMenu
+
+The focused UI element is 109 文本栏 (settable) 稳定标识

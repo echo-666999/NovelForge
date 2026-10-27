@@ -123,7 +123,7 @@ class ProductionUiTest extends TestCase
         $page->set(JsonFields::binding($path.'.value'), '不是整数')->call('review')->assertHasErrors($path.'.value');
         $this->assertDatabaseCount('reviews', 0);
         $tree = $page->get('trees.output');
-        $page->set('productionImports.output', '{"scores":1,"scores":2}')->call('importProductionPayload', 'output')->assertHasErrors('importJson');
+        $page->set('productionImports.output', '{"scores":1,"scores":2}')->call('importProductionPayload', 'output')->assertHasErrors('productionImports.output');
         $this->assertSame($tree, $page->get('trees.output'));
         Http::assertNothingSent();
     }

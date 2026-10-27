@@ -13,17 +13,17 @@
     @if(session('billing_error'))<p role="alert">{{session('billing_error')}}</p>@endif
     @if(session('billing_notice'))<p role="status">{{session('billing_notice')}}</p>@endif
     <div class="nf-story-fields">
-        <x-nf.field id="ui07-billing-1-{{ md5('novel') }}" label="小说ID" :error="$errors->first('novel')"><input id="ui07-billing-1-{{ md5('novel') }}" wire:model.live.debounce.400ms="novel" class="w-full rounded border p-2"></x-nf.field>
-        <x-nf.field id="ui07-billing-2-{{ md5('currency') }}" label="币种" :error="$errors->first('currency')"><input id="ui07-billing-2-{{ md5('currency') }}" wire:model.live.debounce.400ms="currency" class="w-full rounded border p-2"></x-nf.field>
+        <x-nf.field id="ui07-billing-1-{{ md5('novel') }}" label="小说ID" :error="$errors->first('novel')"><x-nf.control id="ui07-billing-1-{{ md5('novel') }}" wire:model.live.debounce.400ms="novel" class="w-full rounded border p-2" /></x-nf.field>
+        <x-nf.field id="ui07-billing-2-{{ md5('currency') }}" label="币种" :error="$errors->first('currency')"><x-nf.control id="ui07-billing-2-{{ md5('currency') }}" wire:model.live.debounce.400ms="currency" class="w-full rounded border p-2" /></x-nf.field>
         <x-nf.select id="billing-status" label="费用状态" model="status" :value="$status" :options="[''=>'全部','reserved'=>'已预留','unknown'=>'费用未知','settled'=>'已核销']" />
         <x-nf.select id="billing-category" label="用途" model="category" :value="$category" :options="[''=>'全部','generation'=>'正文生成','review'=>'评审','revision'=>'修订','summary'=>'摘要','embedding'=>'嵌入','planning'=>'规划']" />
     </div>
     <div class="nf-story-fields">
-        <x-nf.field id="ui07-billing-3-{{ md5('run') }}" label="运行ID" :error="$errors->first('run')"><input id="ui07-billing-3-{{ md5('run') }}" wire:model.live.debounce.400ms="run" class="w-full rounded border p-2"></x-nf.field>
-        <x-nf.field id="ui07-billing-4-{{ md5('model') }}" label="模型能力版本ID" :error="$errors->first('model')"><input id="ui07-billing-4-{{ md5('model') }}" wire:model.live.debounce.400ms="model" class="w-full rounded border p-2"></x-nf.field>
+        <x-nf.field id="ui07-billing-3-{{ md5('run') }}" label="运行ID" :error="$errors->first('run')"><x-nf.control id="ui07-billing-3-{{ md5('run') }}" wire:model.live.debounce.400ms="run" class="w-full rounded border p-2" /></x-nf.field>
+        <x-nf.field id="ui07-billing-4-{{ md5('model') }}" label="模型能力版本ID" :error="$errors->first('model')"><x-nf.control id="ui07-billing-4-{{ md5('model') }}" wire:model.live.debounce.400ms="model" class="w-full rounded border p-2" /></x-nf.field>
         <x-nf.select id="billing-request-status" label="请求状态" model="requestStatus" :value="$requestStatus" :options="[''=>'全部','pending'=>'等待处理','succeeded'=>'成功','failed'=>'失败','unknown'=>'结果未知','quarantined'=>'已隔离']" />
-        <x-nf.field id="ui07-billing-5-{{ md5('dateFrom') }}" label="UTC开始日期" :error="$errors->first('dateFrom')"><input id="ui07-billing-5-{{ md5('dateFrom') }}" type="date" wire:model.live="dateFrom" class="rounded border p-2"></x-nf.field>
-        <x-nf.field id="ui07-billing-6-{{ md5('dateTo') }}" label="UTC结束日期" :error="$errors->first('dateTo')"><input id="ui07-billing-6-{{ md5('dateTo') }}" type="date" wire:model.live="dateTo" class="rounded border p-2"></x-nf.field>
+        <x-nf.field id="ui07-billing-5-{{ md5('dateFrom') }}" label="UTC开始日期" :error="$errors->first('dateFrom')"><x-nf.control id="ui07-billing-5-{{ md5('dateFrom') }}" type="date" wire:model.live="dateFrom" class="rounded border p-2" /></x-nf.field>
+        <x-nf.field id="ui07-billing-6-{{ md5('dateTo') }}" label="UTC结束日期" :error="$errors->first('dateTo')"><x-nf.control id="ui07-billing-6-{{ md5('dateTo') }}" type="date" wire:model.live="dateTo" class="rounded border p-2" /></x-nf.field>
     </div>
     @foreach($data['totals'] as $t)<p>{{$t['currency']}} · 已核销 {{$t['settled_cost']}} · 风险预留 {{$t['risk_reserved']}} · 未核销 {{$t['unknown_count']}} 笔。{{(int)$t['unknown_count']>0?'总实际费用未知':'全部已核销（模拟）'}}</p>@endforeach
     @if($billingNotice)<p role="status">{{ $billingNotice }}</p>@endif

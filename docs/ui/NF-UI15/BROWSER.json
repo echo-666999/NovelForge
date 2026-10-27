@@ -1,0 +1,1265 @@
+[
+  {
+    "case": "budget_invalid_1440",
+    "active": "nf-prod-9f47672eebb86debe115",
+    "invalid": [
+      {
+        "field": "currency",
+        "id": "nf-prod-9f47672eebb86debe115",
+        "rect": {
+          "bottom": 612.671875,
+          "top": 568.2734375
+        },
+        "refs": "nf-prod-9f47672eebb86debe115-error",
+        "value": "U"
+      }
+    ],
+    "messages": [
+      "币种格式无效。"
+    ],
+    "scroll": 1440,
+    "width": 1440,
+    "phase": "intermediate",
+    "note": "早期采集含一次未定位焦点；最终结论采用focus_stress_final的12次重复验证，不把早期样本计为通过。"
+  },
+  {
+    "case": "budget_invalid_light_390",
+    "active": "",
+    "dark": false,
+    "errors": [
+      {
+        "root": "production-policyPayload",
+        "text": "币种格式无效。"
+      }
+    ],
+    "height": 844,
+    "invalid": [
+      {
+        "border": "1px",
+        "described": "nf-prod-9f47672eebb86debe115-error",
+        "id": "nf-prod-9f47672eebb86debe115",
+        "outline": "none",
+        "outlineOffset": "0px",
+        "refsExist": true,
+        "shadow": "none",
+        "value": "U"
+      }
+    ],
+    "rootScroll": 390,
+    "width": 390,
+    "phase": "intermediate",
+    "note": "早期采集含一次未定位焦点；最终结论采用focus_stress_final的12次重复验证，不把早期样本计为通过。"
+  },
+  {
+    "case": "budget_invalid_dark_390",
+    "active": "nf-prod-9f47672eebb86debe115",
+    "dark": true,
+    "errors": [
+      {
+        "root": "production-policyPayload",
+        "text": "币种格式无效。"
+      }
+    ],
+    "height": 844,
+    "invalid": [
+      {
+        "border": "1px",
+        "described": "nf-prod-9f47672eebb86debe115-error",
+        "id": "nf-prod-9f47672eebb86debe115",
+        "outline": "none",
+        "outlineOffset": "0px",
+        "refsExist": true,
+        "shadow": "rgb(253, 162, 155) 0px 0px 0px 1px",
+        "value": "U"
+      }
+    ],
+    "rootScroll": 390,
+    "width": 390,
+    "phase": "intermediate",
+    "note": "早期采集含一次未定位焦点；最终结论采用focus_stress_final的12次重复验证，不把早期样本计为通过。"
+  },
+  {
+    "case": "budget_invalid_dark_1440",
+    "active": "nf-prod-9f47672eebb86debe115",
+    "dark": true,
+    "errors": [
+      {
+        "root": "production-policyPayload",
+        "text": "币种格式无效。"
+      }
+    ],
+    "height": 1000,
+    "invalid": [
+      {
+        "border": "1px",
+        "described": "nf-prod-9f47672eebb86debe115-error",
+        "id": "nf-prod-9f47672eebb86debe115",
+        "outline": "none",
+        "outlineOffset": "0px",
+        "refsExist": true,
+        "shadow": "rgb(253, 162, 155) 0px 0px 0px 1px",
+        "value": "U"
+      }
+    ],
+    "rootScroll": 1440,
+    "width": 1440,
+    "phase": "intermediate",
+    "note": "早期采集含一次未定位焦点；最终结论采用focus_stress_final的12次重复验证，不把早期样本计为通过。"
+  },
+  {
+    "case": "focus_stress_final",
+    "rows": [
+      {
+        "theme": "light",
+        "width": 1440,
+        "attempt": 1,
+        "active": "nf-prod-9f47672eebb86debe115",
+        "dark": false,
+        "errors": [
+          {
+            "root": "production-policyPayload",
+            "text": "币种格式无效。"
+          }
+        ],
+        "height": 1000,
+        "invalid": [
+          {
+            "border": "1px",
+            "described": "nf-prod-9f47672eebb86debe115-error",
+            "id": "nf-prod-9f47672eebb86debe115",
+            "outline": "none",
+            "outlineOffset": "0px",
+            "refsExist": true,
+            "shadow": "rgb(180, 35, 24) 0px 0px 0px 1px",
+            "value": "U"
+          }
+        ],
+        "rootScroll": 1440
+      },
+      {
+        "theme": "light",
+        "width": 1440,
+        "attempt": 2,
+        "active": "nf-prod-9f47672eebb86debe115",
+        "dark": false,
+        "errors": [
+          {
+            "root": "production-policyPayload",
+            "text": "币种格式无效。"
+          }
+        ],
+        "height": 1000,
+        "invalid": [
+          {
+            "border": "1px",
+            "described": "nf-prod-9f47672eebb86debe115-error",
+            "id": "nf-prod-9f47672eebb86debe115",
+            "outline": "none",
+            "outlineOffset": "0px",
+            "refsExist": true,
+            "shadow": "rgb(180, 35, 24) 0px 0px 0px 1px",
+            "value": "U"
+          }
+        ],
+        "rootScroll": 1440
+      },
+      {
+        "theme": "light",
+        "width": 1440,
+        "attempt": 3,
+        "active": "nf-prod-9f47672eebb86debe115",
+        "dark": false,
+        "errors": [
+          {
+            "root": "production-policyPayload",
+            "text": "币种格式无效。"
+          }
+        ],
+        "height": 1000,
+        "invalid": [
+          {
+            "border": "1px",
+            "described": "nf-prod-9f47672eebb86debe115-error",
+            "id": "nf-prod-9f47672eebb86debe115",
+            "outline": "none",
+            "outlineOffset": "0px",
+            "refsExist": true,
+            "shadow": "rgb(180, 35, 24) 0px 0px 0px 1px",
+            "value": "U"
+          }
+        ],
+        "rootScroll": 1440
+      },
+      {
+        "theme": "light",
+        "width": 390,
+        "attempt": 1,
+        "active": "nf-prod-9f47672eebb86debe115",
+        "dark": false,
+        "errors": [
+          {
+            "root": "production-policyPayload",
+            "text": "币种格式无效。"
+          }
+        ],
+        "height": 844,
+        "invalid": [
+          {
+            "border": "1px",
+            "described": "nf-prod-9f47672eebb86debe115-error",
+            "id": "nf-prod-9f47672eebb86debe115",
+            "outline": "none",
+            "outlineOffset": "0px",
+            "refsExist": true,
+            "shadow": "rgb(180, 35, 24) 0px 0px 0px 1px",
+            "value": "U"
+          }
+        ],
+        "rootScroll": 390
+      },
+      {
+        "theme": "light",
+        "width": 390,
+        "attempt": 2,
+        "active": "nf-prod-9f47672eebb86debe115",
+        "dark": false,
+        "errors": [
+          {
+            "root": "production-policyPayload",
+            "text": "币种格式无效。"
+          }
+        ],
+        "height": 844,
+        "invalid": [
+          {
+            "border": "1px",
+            "described": "nf-prod-9f47672eebb86debe115-error",
+            "id": "nf-prod-9f47672eebb86debe115",
+            "outline": "none",
+            "outlineOffset": "0px",
+            "refsExist": true,
+            "shadow": "rgb(180, 35, 24) 0px 0px 0px 1px",
+            "value": "U"
+          }
+        ],
+        "rootScroll": 390
+      },
+      {
+        "theme": "light",
+        "width": 390,
+        "attempt": 3,
+        "active": "nf-prod-9f47672eebb86debe115",
+        "dark": false,
+        "errors": [
+          {
+            "root": "production-policyPayload",
+            "text": "币种格式无效。"
+          }
+        ],
+        "height": 844,
+        "invalid": [
+          {
+            "border": "1px",
+            "described": "nf-prod-9f47672eebb86debe115-error",
+            "id": "nf-prod-9f47672eebb86debe115",
+            "outline": "none",
+            "outlineOffset": "0px",
+            "refsExist": true,
+            "shadow": "rgb(180, 35, 24) 0px 0px 0px 1px",
+            "value": "U"
+          }
+        ],
+        "rootScroll": 390
+      },
+      {
+        "theme": "dark",
+        "width": 390,
+        "attempt": 1,
+        "active": "nf-prod-9f47672eebb86debe115",
+        "dark": true,
+        "errors": [
+          {
+            "root": "production-policyPayload",
+            "text": "币种格式无效。"
+          }
+        ],
+        "height": 844,
+        "invalid": [
+          {
+            "border": "1px",
+            "described": "nf-prod-9f47672eebb86debe115-error",
+            "id": "nf-prod-9f47672eebb86debe115",
+            "outline": "none",
+            "outlineOffset": "0px",
+            "refsExist": true,
+            "shadow": "rgb(253, 162, 155) 0px 0px 0px 1px",
+            "value": "U"
+          }
+        ],
+        "rootScroll": 390
+      },
+      {
+        "theme": "dark",
+        "width": 390,
+        "attempt": 2,
+        "active": "nf-prod-9f47672eebb86debe115",
+        "dark": true,
+        "errors": [
+          {
+            "root": "production-policyPayload",
+            "text": "币种格式无效。"
+          }
+        ],
+        "height": 844,
+        "invalid": [
+          {
+            "border": "1px",
+            "described": "nf-prod-9f47672eebb86debe115-error",
+            "id": "nf-prod-9f47672eebb86debe115",
+            "outline": "none",
+            "outlineOffset": "0px",
+            "refsExist": true,
+            "shadow": "rgb(253, 162, 155) 0px 0px 0px 1px",
+            "value": "U"
+          }
+        ],
+        "rootScroll": 390
+      },
+      {
+        "theme": "dark",
+        "width": 390,
+        "attempt": 3,
+        "active": "nf-prod-9f47672eebb86debe115",
+        "dark": true,
+        "errors": [
+          {
+            "root": "production-policyPayload",
+            "text": "币种格式无效。"
+          }
+        ],
+        "height": 844,
+        "invalid": [
+          {
+            "border": "1px",
+            "described": "nf-prod-9f47672eebb86debe115-error",
+            "id": "nf-prod-9f47672eebb86debe115",
+            "outline": "none",
+            "outlineOffset": "0px",
+            "refsExist": true,
+            "shadow": "rgb(253, 162, 155) 0px 0px 0px 1px",
+            "value": "U"
+          }
+        ],
+        "rootScroll": 390
+      },
+      {
+        "theme": "dark",
+        "width": 1440,
+        "attempt": 1,
+        "active": "nf-prod-9f47672eebb86debe115",
+        "dark": true,
+        "errors": [
+          {
+            "root": "production-policyPayload",
+            "text": "币种格式无效。"
+          }
+        ],
+        "height": 1000,
+        "invalid": [
+          {
+            "border": "1px",
+            "described": "nf-prod-9f47672eebb86debe115-error",
+            "id": "nf-prod-9f47672eebb86debe115",
+            "outline": "none",
+            "outlineOffset": "0px",
+            "refsExist": true,
+            "shadow": "rgb(253, 162, 155) 0px 0px 0px 1px",
+            "value": "U"
+          }
+        ],
+        "rootScroll": 1440
+      },
+      {
+        "theme": "dark",
+        "width": 1440,
+        "attempt": 2,
+        "active": "nf-prod-9f47672eebb86debe115",
+        "dark": true,
+        "errors": [
+          {
+            "root": "production-policyPayload",
+            "text": "币种格式无效。"
+          }
+        ],
+        "height": 1000,
+        "invalid": [
+          {
+            "border": "1px",
+            "described": "nf-prod-9f47672eebb86debe115-error",
+            "id": "nf-prod-9f47672eebb86debe115",
+            "outline": "none",
+            "outlineOffset": "0px",
+            "refsExist": true,
+            "shadow": "rgb(253, 162, 155) 0px 0px 0px 1px",
+            "value": "U"
+          }
+        ],
+        "rootScroll": 1440
+      },
+      {
+        "theme": "dark",
+        "width": 1440,
+        "attempt": 3,
+        "active": "nf-prod-9f47672eebb86debe115",
+        "dark": true,
+        "errors": [
+          {
+            "root": "production-policyPayload",
+            "text": "币种格式无效。"
+          }
+        ],
+        "height": 1000,
+        "invalid": [
+          {
+            "border": "1px",
+            "described": "nf-prod-9f47672eebb86debe115-error",
+            "id": "nf-prod-9f47672eebb86debe115",
+            "outline": "none",
+            "outlineOffset": "0px",
+            "refsExist": true,
+            "shadow": "rgb(253, 162, 155) 0px 0px 0px 1px",
+            "value": "U"
+          }
+        ],
+        "rootScroll": 1440
+      }
+    ],
+    "phase": "final"
+  },
+  {
+    "case": "field_keyboard",
+    "tabNext": "收起 预算上限（十进制文本）（5项）",
+    "focusVisible": true,
+    "returnId": "nf-prod-9f47672eebb86debe115",
+    "phase": "final"
+  },
+  {
+    "case": "import_error_scoped",
+    "active": "import-policyPayload",
+    "dark": true,
+    "errors": [
+      {
+        "root": "production-policyPayload",
+        "text": "对象存在重复属性：currency；拒绝会丢值的导入。"
+      }
+    ],
+    "height": 1000,
+    "invalid": [
+      {
+        "border": "1px",
+        "described": "import-policyPayload-error",
+        "id": "import-policyPayload",
+        "outline": "none",
+        "outlineOffset": "0px",
+        "refsExist": true,
+        "shadow": "rgb(253, 162, 155) 0px 0px 0px 1px",
+        "value": "{\"currency\":1,\"currency\":2}"
+      }
+    ],
+    "rootScroll": 1440,
+    "width": 1440,
+    "phase": "final"
+  },
+  {
+    "case": "corrected_and_saved",
+    "active": "",
+    "dark": true,
+    "errors": [],
+    "height": 1000,
+    "invalid": [],
+    "rootScroll": 1440,
+    "width": 1440,
+    "phase": "final"
+  },
+  {
+    "case": "global_search_chinese",
+    "instruction": "\n            按向下键浏览结果，按上下键移动，按Tab键进入结果操作，按Escape键关闭结果。\n        ",
+    "regions": [
+      {
+        "label": "全局搜索结果",
+        "text": "小说\n                                \n\n                                \n                                                                            \n                                 "
+      },
+      {
+        "label": "生产资料列表",
+        "text": "请求 / 用途币种 / 价格版本状态最坏预留实际费用风险预留\n         暂无费用记录。先录入有凭证的价格和预算版本；配置保存不会调用模型。"
+      },
+      {
+        "label": "只读账本证据",
+        "text": "字段路径类型内容\n                    全部字段$对象2项\n                    prices$/prices有序列表0项\n                    policies$/policies有序列表1项\n                    第1项$/policies/0对象11项\n              "
+      }
+    ],
+    "statuses": [
+      "显示27条结果",
+      "正在读取或保存，请稍候…",
+      "已保存版本或凭证；相同输入重试复用原记录，不调用模型。"
+    ],
+    "phase": "final"
+  },
+  {
+    "case": "pagination_contrast_raw",
+    "rows": [
+      {
+        "theme": "dark",
+        "dark": true,
+        "height": 1000,
+        "rows": [
+          {
+            "chain": [
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgb(25, 29, 38)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgb(32, 36, 45)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgb(23, 26, 33)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              }
+            ],
+            "color": "rgb(173, 182, 199)",
+            "fontSize": "14px",
+            "text": "每页",
+            "weight": "400"
+          },
+          {
+            "chain": [
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E\")",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgb(25, 29, 38)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgb(32, 36, 45)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgb(23, 26, 33)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              }
+            ],
+            "color": "rgb(238, 240, 245)",
+            "fontSize": "14px",
+            "text": "25",
+            "weight": "400"
+          }
+        ],
+        "scroll": 1440,
+        "width": 1440
+      },
+      {
+        "theme": "dark",
+        "dark": true,
+        "height": 844,
+        "rows": [
+          {
+            "chain": [
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E\")",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgb(25, 29, 38)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgb(32, 36, 45)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgb(23, 26, 33)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              }
+            ],
+            "color": "rgb(238, 240, 245)",
+            "fontSize": "14px",
+            "text": "25",
+            "weight": "400"
+          }
+        ],
+        "scroll": 390,
+        "width": 390
+      },
+      {
+        "theme": "light",
+        "dark": false,
+        "height": 844,
+        "rows": [
+          {
+            "chain": [
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E\")",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgb(242, 244, 247)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgb(255, 255, 255)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgb(248, 249, 251)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              }
+            ],
+            "color": "rgb(32, 39, 55)",
+            "fontSize": "14px",
+            "text": "25",
+            "weight": "400"
+          }
+        ],
+        "scroll": 390,
+        "width": 390
+      },
+      {
+        "theme": "light",
+        "dark": false,
+        "height": 1000,
+        "rows": [
+          {
+            "chain": [
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgb(242, 244, 247)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgb(255, 255, 255)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgb(248, 249, 251)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              }
+            ],
+            "color": "rgb(87, 97, 116)",
+            "fontSize": "14px",
+            "text": "每页",
+            "weight": "400"
+          },
+          {
+            "chain": [
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E\")",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgb(242, 244, 247)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgb(255, 255, 255)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgb(248, 249, 251)",
+                "image": "none",
+                "opacity": "1"
+              },
+              {
+                "background": "rgba(0, 0, 0, 0)",
+                "image": "none",
+                "opacity": "1"
+              }
+            ],
+            "color": "rgb(32, 39, 55)",
+            "fontSize": "14px",
+            "text": "25",
+            "weight": "400"
+          }
+        ],
+        "scroll": 1440,
+        "width": 1440
+      }
+    ],
+    "phase": "final"
+  },
+  {
+    "case": "chrome_native_page_zoom200",
+    "menuObserved": "200%",
+    "dpr": 4,
+    "height": 441,
+    "rootFont": "16px",
+    "scroll": 854,
+    "width": 854,
+    "phase": "final"
+  },
+  {
+    "case": "chrome_zoom_reset_background_attempt",
+    "dpr": 4,
+    "height": 441,
+    "rootFont": "16px",
+    "width": 854,
+    "phase": "intermediate",
+    "note": "快捷键未恢复实际几何；随后经原生菜单恢复并核实DPR2与1709px。"
+  },
+  {
+    "case": "chrome_shortcut_reset_attempt",
+    "dpr": 4,
+    "height": 441,
+    "rootFont": "16px",
+    "width": 854,
+    "phase": "intermediate",
+    "note": "快捷键未恢复实际几何；随后经原生菜单恢复并核实DPR2与1709px。"
+  },
+  {
+    "case": "chrome_zoom_restored",
+    "method": "原生菜单缩小5次，几何与DPR恢复基线",
+    "dpr": 2,
+    "height": 883,
+    "rootFont": "16px",
+    "width": 1709,
+    "phase": "final"
+  }
+]

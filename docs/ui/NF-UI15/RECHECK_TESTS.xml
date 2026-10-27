@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="NF-UI15-recheck">
+  <testcase name="test_budget_errors_are_scoped_localized_associated_and_clear_after_correction" classname="Tests.Feature.FormAccessibilityTest" assertions="23" time="2.711155" />
+  <testcase name="test_missing_budget_field_targets_its_container_and_next_action_clears_old_errors" classname="Tests.Feature.FormAccessibilityTest" assertions="7" time="0.437349" />
+  <testcase name="test_filter_errors_never_map_into_payloads_and_clear_on_valid_read" classname="Tests.Feature.FormAccessibilityTest" assertions="6" time="0.242676" />
+  <testcase name="test_prefixed_and_ambiguous_errors_do_not_broadcast_between_trees" classname="Tests.Feature.FormAccessibilityTest" assertions="10" time="0.052533" />
+  <testcase name="test_native_controls_inherit_field_aria_without_extra_border_wrapper" classname="Tests.Feature.FormAccessibilityTest" assertions="23" time="0.043684" />
+  <testcase name="test_import_errors_are_scoped_and_preserve_existing_trees" classname="Tests.Feature.FormAccessibilityTest" assertions="7" time="0.335928" />
+  <testcase name="test_story_option_adapter_has_scoped_error_semantics" classname="Tests.Feature.FormAccessibilityTest" assertions="6" time="0.050935" />
+  <testcase name="test_global_search_instructions_and_status_are_chinese" classname="Tests.Feature.FormAccessibilityTest" assertions="4" time="0.041151" />
+  <testcase name="test_pencil_text_has_required_contrast_on_all_declared_surfaces" classname="Tests.Feature.FormAccessibilityTest" assertions="12" time="0.040479" />
+  <testcase name="test_option_adapter_keeps_unicode_zero_escaping_and_selected_multi_values" classname="Tests.Feature.StoryUiTest" assertions="7" time="0.047519" />
+  <testcase name="test_story_pages_use_structured_readonly_views_and_do_not_write_on_render" classname="Tests.Feature.StoryUiTest" assertions="19" time="3.264181" />
+  <testcase name="test_hierarchy_expansion_focus_and_immutable_version_are_readonly" classname="Tests.Feature.StoryUiTest" assertions="11" time="3.335020" />
+  <testcase name="test_blueprint_tabs_copy_to_new_version_without_mutating_history" classname="Tests.Feature.StoryUiTest" assertions="6" time="3.020144" />
+  <testcase name="test_formal_evidence_is_read_from_active_baseline_and_structure_is_readonly" classname="Tests.Feature.StoryUiTest" assertions="9" time="22.106267" />
+  <testcase name="test_create_wizard_keeps_original_fields_and_never_calls_model" classname="Tests.Feature.StoryUiTest" assertions="7" time="0.067018" />
+  <testcase name="test_native_plan_fields_freeze_gate_and_no_overwrite" classname="Tests.Feature.StoryUiTest" assertions="21" time="12.523841" />
+  <testcase name="test_native_scene_selector_resolves_repeater_parent_chapter" classname="Tests.Feature.StoryUiTest" assertions="7" time="3.572279" />
+  <testcase name="test_pov_options_keep_approved_history_and_native_edit_keeps_reference" classname="Tests.Feature.StoryUiTest" assertions="10" time="3.557871" />
+</testsuite>

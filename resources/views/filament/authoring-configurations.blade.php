@@ -44,7 +44,7 @@
                 <span wire:loading wire:target="saveConfiguration">正在校验与保存…</span>
             </div>
             <details><summary>高级导入（仅内容，不改变身份；错误不覆盖表单）</summary>
-                <x-nf.field id="nf-config-import" label="导入内容 JSON" :error="$errors->first('importJson')"><textarea id="nf-config-import" rows="6" wire:model="importJson"></textarea></x-nf.field>
+                <x-nf.field id="nf-config-import" label="导入内容 JSON" :error="$errors->first('importJson')"><x-nf.control tag="textarea" id="nf-config-import" rows="6" wire:model="importJson"></x-nf.control></x-nf.field>
                 <x-filament::button color="gray" wire:click="importConfigurationContent">校验后导入编辑区</x-filament::button>
             </details>
         </form>

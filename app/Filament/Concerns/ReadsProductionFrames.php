@@ -5,10 +5,15 @@ namespace App\Filament\Concerns;
 use App\Exceptions\NovelProblem;
 use Illuminate\Database\QueryException;
 use Illuminate\Validation\ValidationException;
+use Livewire\Attributes\Locked;
 
 /** 只读失败是独立状态，不能通过空列表、零金额或健康标签掩盖。 */
 trait ReadsProductionFrames
 {
+    /** 只跟踪筛选错误，成功读取后不清除尚未修正的编辑字段错误。 */
+    #[Locked]
+    public array $productionReadErrorKeys = [];
+
     public function productionReadFrame(array $methods): array
     {
         $data = [];
@@ -18,9 +23,15 @@ trait ReadsProductionFrames
                 $data[$method] = $this->$method();
             }
 
+            if ($this->productionReadErrorKeys) {
+                $this->resetErrorBag($this->productionReadErrorKeys);
+                $this->productionReadErrorKeys = [];
+            }
+
             return ['ok' => true, 'data' => $data];
         } catch (ValidationException $e) {
-            $this->productionErrors($e);
+            $this->productionErrors($e, []);
+            $this->productionReadErrorKeys = $this->getErrorBag()->keys();
 
             return ['ok' => false, 'message' => '筛选字段或范围无效，请修正后重试。'];
         } catch (NovelProblem $e) {

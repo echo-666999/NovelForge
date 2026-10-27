@@ -1,0 +1,16 @@
+{
+  "case": "safari_native_text_zoom",
+  "windowUUID": "C48C52DA-3E46-482E-89C4-FCB78737FBEC",
+  "baseline": "ActualSize disabled",
+  "command": "MakeTextBigger",
+  "steps": 4,
+  "computedFontMeasured": false,
+  "exactPercentVerified": false,
+  "firstErrorFocus": "稳定标识",
+  "keyboard": {
+    "back": "The focused UI element is 109 文本栏 (settable) 稳定标识"
+  },
+  "restore": "\t\t24 (disabled) 实际大小, ID: ActualSize",
+  "closedOwnPrivateWindow": true,
+  "developerPreferencesChanged": false
+}

@@ -1,0 +1,1280 @@
+[
+  {
+    "round": "regression",
+    "tests": 96,
+    "passed": 95,
+    "assertions": 1057,
+    "seconds": 298.944,
+    "cases": [
+      {
+        "name": "test_release_idempotency_and_immutable_content",
+        "classname": "Tests.Feature.AuthoringConfigurationTest",
+        "assertions": 4,
+        "seconds": 2.65684,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_missing_variables_unsafe_template_bad_schema_and_fact_omission_fail_regression",
+        "classname": "Tests.Feature.AuthoringConfigurationTest",
+        "assertions": 12,
+        "seconds": 0.701849,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_json_escaping_and_stage_output_contract",
+        "classname": "Tests.Feature.AuthoringConfigurationTest",
+        "assertions": 4,
+        "seconds": 0.593651,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_new_publications_and_retirement_do_not_change_frozen_runs_or_old_scores",
+        "classname": "Tests.Feature.AuthoringConfigurationTest",
+        "assertions": 13,
+        "seconds": 1.011475,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_approved_switch_creates_new_attempt_and_preserves_actual_request_identity",
+        "classname": "Tests.Feature.AuthoringConfigurationTest",
+        "assertions": 15,
+        "seconds": 1.57418,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_bound_gateway_rejects_input_and_model_bypass",
+        "classname": "Tests.Feature.AuthoringConfigurationTest",
+        "assertions": 6,
+        "seconds": 0.961222,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_production_route_and_capacity_mismatch_fail_offline_publication",
+        "classname": "Tests.Feature.AuthoringConfigurationTest",
+        "assertions": 7,
+        "seconds": 1.130664,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_admin_api_pages_filters_copy_compare_and_permission_boundaries",
+        "classname": "Tests.Feature.AuthoringConfigurationTest",
+        "assertions": 21,
+        "seconds": 1.362446,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_all_new_tables_and_columns_have_chinese_database_comments",
+        "classname": "Tests.Feature.AuthoringConfigurationTest",
+        "assertions": 74,
+        "seconds": 0.076343,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_unknown_request_outcome_prevents_switch_and_ordinary_retry",
+        "classname": "Tests.Feature.AuthoringConfigurationTest",
+        "assertions": 7,
+        "seconds": 1.146844,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_provider_rotation_does_not_replace_frozen_provider_and_disable_blocks",
+        "classname": "Tests.Feature.AuthoringConfigurationTest",
+        "assertions": 5,
+        "seconds": 1.235259,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_route_rechecks_retired_sources_before_publication",
+        "classname": "Tests.Feature.AuthoringConfigurationTest",
+        "assertions": 5,
+        "seconds": 0.99125,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_database_blocks_direct_publish_and_default_to_draft",
+        "classname": "Tests.Feature.AuthoringConfigurationTest",
+        "assertions": 2,
+        "seconds": 0.61709,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_style_regression_failure_and_stale_copy_are_rejected",
+        "classname": "Tests.Feature.AuthoringConfigurationTest",
+        "assertions": 3,
+        "seconds": 0.562749,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_default_route_is_resolved_only_for_new_runs",
+        "classname": "Tests.Feature.AuthoringConfigurationTest",
+        "assertions": 8,
+        "seconds": 1.11791,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_fact_regression_uses_text_values_instead_of_json_field_names_or_escapes",
+        "classname": "Tests.Feature.AuthoringConfigurationTest",
+        "assertions": 3,
+        "seconds": 0.655985,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_billing_filters_preserve_values_pagination_and_export_scope",
+        "classname": "Tests.Feature.BillingSelectTest",
+        "assertions": 9,
+        "seconds": 0.640961,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_menu_has_explicit_selection_and_safe_update_command",
+        "classname": "Tests.Feature.BillingSelectTest",
+        "assertions": 6,
+        "seconds": 0.047453,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_labels_are_escaped_and_disabled_control_remains_disabled",
+        "classname": "Tests.Feature.BillingSelectTest",
+        "assertions": 3,
+        "seconds": 0.041862,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_invalid_property_path_is_rejected",
+        "classname": "Tests.Feature.BillingSelectTest",
+        "assertions": 1,
+        "seconds": 0.043184,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_success_reserves_all_scopes_and_settles_exact_decimal_once",
+        "classname": "Tests.Feature.BillingTest",
+        "assertions": 10,
+        "seconds": 0.911475,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_meter_handles_inclusive_cache_and_reasoning_without_double_billing",
+        "classname": "Tests.Feature.BillingTest",
+        "assertions": 9,
+        "seconds": 0.064861,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_unknown_and_failed_usage_keep_risk_then_reconcile_with_immutable_revisions",
+        "classname": "Tests.Feature.BillingTest",
+        "assertions": 11,
+        "seconds": 0.972708,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_http_and_schema_failures_with_usage_are_still_charged_and_missing_usage_is_not_zero",
+        "classname": "Tests.Feature.BillingTest",
+        "assertions": 8,
+        "seconds": 1.358977,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_duplicate_supplier_identity_does_not_charge_twice_and_retains_second_risk",
+        "classname": "Tests.Feature.BillingTest",
+        "assertions": 5,
+        "seconds": 1.073352,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_budget_rejection_rolls_back_request_and_all_allocations_before_send",
+        "classname": "Tests.Feature.BillingTest",
+        "assertions": 5,
+        "seconds": 0.660362,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_each_scope_and_warning_stop_thresholds_are_enforced",
+        "classname": "Tests.Feature.BillingTest",
+        "assertions": 8,
+        "seconds": 1.725987,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_new_policy_cannot_reset_book_or_day_spending",
+        "classname": "Tests.Feature.BillingTest",
+        "assertions": 2,
+        "seconds": 0.926112,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_missing_budget_and_cross_book_chapter_are_blocked",
+        "classname": "Tests.Feature.BillingTest",
+        "assertions": 2,
+        "seconds": 0.619581,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_actual_over_reservation_is_recorded_and_stops_new_requests",
+        "classname": "Tests.Feature.BillingTest",
+        "assertions": 3,
+        "seconds": 0.86311,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_all_request_categories_use_same_gate_and_prices_are_frozen",
+        "classname": "Tests.Feature.BillingTest",
+        "assertions": 19,
+        "seconds": 2.582195,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_api_page_filters_and_all_database_comments",
+        "classname": "Tests.Feature.BillingTest",
+        "assertions": 94,
+        "seconds": 1.345936,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_invoice_amount_can_resolve_unknown_cost_without_inventing_tokens",
+        "classname": "Tests.Feature.BillingTest",
+        "assertions": 6,
+        "seconds": 0.864201,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_currency_and_future_price_versions_fail_closed",
+        "classname": "Tests.Feature.BillingTest",
+        "assertions": 2,
+        "seconds": 0.605891,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_node_chapter_and_category_override_are_frozen_inside_multi_scope_run",
+        "classname": "Tests.Feature.BillingTest",
+        "assertions": 4,
+        "seconds": 0.886382,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_budget_exception_is_persisted_as_deferred_without_transport",
+        "classname": "Tests.Feature.BillingTest",
+        "assertions": 5,
+        "seconds": 0.709589,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_native_prompt_create_regress_publish_copy_and_stale_are_independent",
+        "classname": "Tests.Feature.ConfigurationUiTest",
+        "assertions": 19,
+        "seconds": 1.218255,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_types_nested_schema_unknown_keys_and_duplicate_import_are_lossless_or_blocked",
+        "classname": "Tests.Feature.ConfigurationUiTest",
+        "assertions": 15,
+        "seconds": 0.739856,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_field_errors_are_mapped_and_failed_values_and_unsafe_text_remain_escaped",
+        "classname": "Tests.Feature.ConfigurationUiTest",
+        "assertions": 7,
+        "seconds": 0.700016,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_ordered_rows_can_move_and_duplicate_property_names_or_implicit_loss_are_rejected",
+        "classname": "Tests.Feature.ConfigurationUiTest",
+        "assertions": 13,
+        "seconds": 0.937339,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_route_uses_real_versions_and_ordered_approved_fallbacks_without_model_calls",
+        "classname": "Tests.Feature.ConfigurationUiTest",
+        "assertions": 8,
+        "seconds": 1.211259,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_native_model_fields_preserve_null_and_errors_never_flash_secret",
+        "classname": "Tests.Feature.ConfigurationUiTest",
+        "assertions": 14,
+        "seconds": 0.61922,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_structured_compare_distinguishes_types_and_preserves_list_order_and_auth",
+        "classname": "Tests.Feature.ConfigurationUiTest",
+        "assertions": 6,
+        "seconds": 0.224794,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_supported_nested_schema_round_trips_false_zero_null_empty_text_and_array",
+        "classname": "Tests.Feature.ConfigurationUiTest",
+        "assertions": 8,
+        "seconds": 0.568167,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_schema_semantic_controls_edit_required_properties_and_preserve_incompatible_keywords",
+        "classname": "Tests.Feature.ConfigurationUiTest",
+        "assertions": 12,
+        "seconds": 1.117729,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_unknown_extensions_export_without_type_loss_and_empty_object_never_aliases_array_on_save",
+        "classname": "Tests.Feature.ConfigurationUiTest",
+        "assertions": 7,
+        "seconds": 0.774064,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_modal_cancel_confirm_and_flat_field_guard",
+        "classname": "Tests.Feature.ConfigurationUiTest",
+        "assertions": 13,
+        "seconds": 0.756945,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_repeater_uuid_rows_export_as_ordered_values",
+        "classname": "Tests.Feature.ConfigurationUiTest",
+        "assertions": 7,
+        "seconds": 0.724292,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_provider_history_is_safe_and_editors_are_lazy",
+        "classname": "Tests.Feature.ConfigurationUiTest",
+        "assertions": 10,
+        "seconds": 0.916043,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_native_failure_returns_to_same_origin_filter_and_never_redirects_external",
+        "classname": "Tests.Feature.ConfigurationUiTest",
+        "assertions": 8,
+        "seconds": 0.713099,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_empty_overview_and_extraction_have_explicit_unknowns_and_no_writes",
+        "classname": "Tests.Feature.ExtractionUiTest",
+        "assertions": 10,
+        "seconds": 0.117254,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_editor_builds_event_with_actual_selectors_saves_and_retries_idempotently",
+        "classname": "Tests.Feature.ExtractionUiTest",
+        "assertions": 13,
+        "seconds": 17.424587,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_forged_quote_has_event_key_source_and_focus_then_correct_reextract",
+        "classname": "Tests.Feature.ExtractionUiTest",
+        "assertions": 11,
+        "seconds": 24.692174,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_import_preserves_types_unknown_fields_order_and_failed_import_is_atomic",
+        "classname": "Tests.Feature.ExtractionUiTest",
+        "assertions": 14,
+        "seconds": 0.144776,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_lists_keep_order_and_required_fields_cannot_be_removed",
+        "classname": "Tests.Feature.ExtractionUiTest",
+        "assertions": 7,
+        "seconds": 0.126302,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_loaded_concurrency_conflict_and_cross_book_versions_cannot_write",
+        "classname": "Tests.Feature.ExtractionUiTest",
+        "assertions": 8,
+        "seconds": 9.774751,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_overview_read_failure_is_not_empty_and_output_is_escaped",
+        "classname": "Tests.Feature.ExtractionUiTest",
+        "assertions": 4,
+        "seconds": 0.071399,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_all_five_groups_round_trip_and_null_reference_can_be_selected",
+        "classname": "Tests.Feature.ExtractionUiTest",
+        "assertions": 13,
+        "seconds": 9.041249,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_overview_long_titles_pagination_and_extraction_read_failure",
+        "classname": "Tests.Feature.ExtractionUiTest",
+        "assertions": 10,
+        "seconds": 0.596431,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_replay_rejects_non_extraction_run_without_new_request_or_artifact",
+        "classname": "Tests.Feature.ExtractionUiTest",
+        "assertions": 6,
+        "seconds": 7.796022,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_budget_errors_are_scoped_localized_associated_and_clear_after_correction",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 23,
+        "seconds": 0.670518,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_missing_budget_field_targets_its_container_and_next_action_clears_old_errors",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 7,
+        "seconds": 0.436765,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_filter_errors_never_map_into_payloads_and_clear_on_valid_read",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 6,
+        "seconds": 0.241776,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_prefixed_and_ambiguous_errors_do_not_broadcast_between_trees",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 10,
+        "seconds": 0.052471,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_native_controls_inherit_field_aria_without_extra_border_wrapper",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 23,
+        "seconds": 0.044263,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_import_errors_are_scoped_and_preserve_existing_trees",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 7,
+        "seconds": 0.331443,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_global_search_instructions_and_status_are_chinese",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 4,
+        "seconds": 0.039905,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_pencil_text_has_required_contrast_on_all_declared_surfaces",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 12,
+        "seconds": 0.041666,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_thirteen_pages_render_structured_evidence_without_writes",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 71,
+        "seconds": 3.519989,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_default_open_object_toggle_preserves_field_input",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 9,
+        "seconds": 0.59733,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_review_field_edits_are_saved_and_identical_retry_reuses_record",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 11,
+        "seconds": 18.339668,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_invalid_field_never_submits_previous_valid_payload_and_import_keeps_draft",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 12,
+        "seconds": 11.640884,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_policy_fields_save_publish_retire_and_old_content_stays_immutable",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 8,
+        "seconds": 10.793028,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_revision_scope_patch_order_and_explicit_adoption_use_frozen_sources",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 16,
+        "seconds": 42.979058,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_planning_fields_start_and_retry_preserve_the_original_task",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 6,
+        "seconds": 1.676953,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_budget_decimal_text_and_duplicate_save_are_not_float_or_extra_records",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 5,
+        "seconds": 0.451878,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_typed_path_and_cross_book_reference_are_rejected",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 4,
+        "seconds": 2.645418,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_read_failure_keeps_filter_and_does_not_claim_empty_or_zero",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 6,
+        "seconds": 0.255491,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_review_reads_actual_body_and_locates_unique_unicode_quote_without_writes",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 16,
+        "seconds": 12.548838,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_canonical_memory_and_formal_body_are_structured_readonly",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 7,
+        "seconds": 25.382378,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_option_adapter_keeps_unicode_zero_escaping_and_selected_multi_values",
+        "classname": "Tests.Feature.StoryUiTest",
+        "assertions": 0,
+        "seconds": 0.05114,
+        "status": "error",
+        "round": "regression",
+        "message": "Tests\\Feature\\StoryUiTest::test_option_adapter_keeps_unicode_zero_escaping_and_selected_multi_values"
+      },
+      {
+        "name": "test_story_pages_use_structured_readonly_views_and_do_not_write_on_render",
+        "classname": "Tests.Feature.StoryUiTest",
+        "assertions": 19,
+        "seconds": 3.279892,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_hierarchy_expansion_focus_and_immutable_version_are_readonly",
+        "classname": "Tests.Feature.StoryUiTest",
+        "assertions": 11,
+        "seconds": 3.224742,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_blueprint_tabs_copy_to_new_version_without_mutating_history",
+        "classname": "Tests.Feature.StoryUiTest",
+        "assertions": 6,
+        "seconds": 2.943408,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_formal_evidence_is_read_from_active_baseline_and_structure_is_readonly",
+        "classname": "Tests.Feature.StoryUiTest",
+        "assertions": 9,
+        "seconds": 22.339663,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_create_wizard_keeps_original_fields_and_never_calls_model",
+        "classname": "Tests.Feature.StoryUiTest",
+        "assertions": 7,
+        "seconds": 0.065739,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_native_plan_fields_freeze_gate_and_no_overwrite",
+        "classname": "Tests.Feature.StoryUiTest",
+        "assertions": 21,
+        "seconds": 12.07471,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_native_scene_selector_resolves_repeater_parent_chapter",
+        "classname": "Tests.Feature.StoryUiTest",
+        "assertions": 7,
+        "seconds": 3.594574,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_pov_options_keep_approved_history_and_native_edit_keeps_reference",
+        "classname": "Tests.Feature.StoryUiTest",
+        "assertions": 10,
+        "seconds": 3.731412,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_panel_registers_independent_compiled_theme",
+        "classname": "Tests.Feature.UiFoundationTest",
+        "assertions": 5,
+        "seconds": 0.06366,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_read_only_pages_keep_authentication_and_have_no_business_side_effects",
+        "classname": "Tests.Feature.UiFoundationTest",
+        "assertions": 15,
+        "seconds": 0.313339,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_input_connects_native_label_help_error_and_preserves_attributes",
+        "classname": "Tests.Feature.UiFoundationTest",
+        "assertions": 7,
+        "seconds": 0.042546,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_readonly_and_disabled_are_native_control_states",
+        "classname": "Tests.Feature.UiFoundationTest",
+        "assertions": 4,
+        "seconds": 0.047851,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_section_form_and_table_use_native_semantics_and_escaped_labels",
+        "classname": "Tests.Feature.UiFoundationTest",
+        "assertions": 6,
+        "seconds": 0.045716,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_common_states_have_explicit_accessible_feedback",
+        "classname": "Tests.Feature.UiFoundationTest",
+        "assertions": 22,
+        "seconds": 0.043782,
+        "status": "passed",
+        "round": "regression"
+      },
+      {
+        "name": "test_unknown_visual_state_is_not_silently_treated_as_success",
+        "classname": "Tests.Feature.UiFoundationTest",
+        "assertions": 1,
+        "seconds": 0.046284,
+        "status": "passed",
+        "round": "regression"
+      }
+    ]
+  },
+  {
+    "round": "recheck",
+    "tests": 18,
+    "passed": 18,
+    "assertions": 195,
+    "seconds": 55.45,
+    "cases": [
+      {
+        "name": "test_budget_errors_are_scoped_localized_associated_and_clear_after_correction",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 23,
+        "seconds": 2.711155,
+        "status": "passed",
+        "round": "recheck"
+      },
+      {
+        "name": "test_missing_budget_field_targets_its_container_and_next_action_clears_old_errors",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 7,
+        "seconds": 0.437349,
+        "status": "passed",
+        "round": "recheck"
+      },
+      {
+        "name": "test_filter_errors_never_map_into_payloads_and_clear_on_valid_read",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 6,
+        "seconds": 0.242676,
+        "status": "passed",
+        "round": "recheck"
+      },
+      {
+        "name": "test_prefixed_and_ambiguous_errors_do_not_broadcast_between_trees",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 10,
+        "seconds": 0.052533,
+        "status": "passed",
+        "round": "recheck"
+      },
+      {
+        "name": "test_native_controls_inherit_field_aria_without_extra_border_wrapper",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 23,
+        "seconds": 0.043684,
+        "status": "passed",
+        "round": "recheck"
+      },
+      {
+        "name": "test_import_errors_are_scoped_and_preserve_existing_trees",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 7,
+        "seconds": 0.335928,
+        "status": "passed",
+        "round": "recheck"
+      },
+      {
+        "name": "test_story_option_adapter_has_scoped_error_semantics",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 6,
+        "seconds": 0.050935,
+        "status": "passed",
+        "round": "recheck"
+      },
+      {
+        "name": "test_global_search_instructions_and_status_are_chinese",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 4,
+        "seconds": 0.041151,
+        "status": "passed",
+        "round": "recheck"
+      },
+      {
+        "name": "test_pencil_text_has_required_contrast_on_all_declared_surfaces",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 12,
+        "seconds": 0.040479,
+        "status": "passed",
+        "round": "recheck"
+      },
+      {
+        "name": "test_option_adapter_keeps_unicode_zero_escaping_and_selected_multi_values",
+        "classname": "Tests.Feature.StoryUiTest",
+        "assertions": 7,
+        "seconds": 0.047519,
+        "status": "passed",
+        "round": "recheck"
+      },
+      {
+        "name": "test_story_pages_use_structured_readonly_views_and_do_not_write_on_render",
+        "classname": "Tests.Feature.StoryUiTest",
+        "assertions": 19,
+        "seconds": 3.264181,
+        "status": "passed",
+        "round": "recheck"
+      },
+      {
+        "name": "test_hierarchy_expansion_focus_and_immutable_version_are_readonly",
+        "classname": "Tests.Feature.StoryUiTest",
+        "assertions": 11,
+        "seconds": 3.33502,
+        "status": "passed",
+        "round": "recheck"
+      },
+      {
+        "name": "test_blueprint_tabs_copy_to_new_version_without_mutating_history",
+        "classname": "Tests.Feature.StoryUiTest",
+        "assertions": 6,
+        "seconds": 3.020144,
+        "status": "passed",
+        "round": "recheck"
+      },
+      {
+        "name": "test_formal_evidence_is_read_from_active_baseline_and_structure_is_readonly",
+        "classname": "Tests.Feature.StoryUiTest",
+        "assertions": 9,
+        "seconds": 22.106267,
+        "status": "passed",
+        "round": "recheck"
+      },
+      {
+        "name": "test_create_wizard_keeps_original_fields_and_never_calls_model",
+        "classname": "Tests.Feature.StoryUiTest",
+        "assertions": 7,
+        "seconds": 0.067018,
+        "status": "passed",
+        "round": "recheck"
+      },
+      {
+        "name": "test_native_plan_fields_freeze_gate_and_no_overwrite",
+        "classname": "Tests.Feature.StoryUiTest",
+        "assertions": 21,
+        "seconds": 12.523841,
+        "status": "passed",
+        "round": "recheck"
+      },
+      {
+        "name": "test_native_scene_selector_resolves_repeater_parent_chapter",
+        "classname": "Tests.Feature.StoryUiTest",
+        "assertions": 7,
+        "seconds": 3.572279,
+        "status": "passed",
+        "round": "recheck"
+      },
+      {
+        "name": "test_pov_options_keep_approved_history_and_native_edit_keeps_reference",
+        "classname": "Tests.Feature.StoryUiTest",
+        "assertions": 10,
+        "seconds": 3.557871,
+        "status": "passed",
+        "round": "recheck"
+      }
+    ]
+  },
+  {
+    "round": "final",
+    "tests": 21,
+    "passed": 21,
+    "assertions": 270,
+    "seconds": 194.201,
+    "cases": [
+      {
+        "name": "test_budget_errors_are_scoped_localized_associated_and_clear_after_correction",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 23,
+        "seconds": 2.79833,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_missing_budget_field_targets_its_container_and_next_action_clears_old_errors",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 7,
+        "seconds": 0.389659,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_filter_errors_never_map_into_payloads_and_clear_on_valid_read",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 6,
+        "seconds": 0.215342,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_prefixed_and_ambiguous_errors_do_not_broadcast_between_trees",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 10,
+        "seconds": 0.049412,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_native_controls_inherit_field_aria_without_extra_border_wrapper",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 23,
+        "seconds": 0.038853,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_import_errors_are_scoped_and_preserve_existing_trees",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 8,
+        "seconds": 0.392532,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_story_option_adapter_has_scoped_error_semantics",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 6,
+        "seconds": 0.039323,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_global_search_instructions_and_status_are_chinese",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 4,
+        "seconds": 0.037321,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_pencil_text_has_required_contrast_on_all_declared_surfaces",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 12,
+        "seconds": 0.03834,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_thirteen_pages_render_structured_evidence_without_writes",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 71,
+        "seconds": 4.333789,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_default_open_object_toggle_preserves_field_input",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 9,
+        "seconds": 0.518109,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_review_field_edits_are_saved_and_identical_retry_reuses_record",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 11,
+        "seconds": 26.797372,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_invalid_field_never_submits_previous_valid_payload_and_import_keeps_draft",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 12,
+        "seconds": 18.38702,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_policy_fields_save_publish_retire_and_old_content_stays_immutable",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 8,
+        "seconds": 16.781189,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_revision_scope_patch_order_and_explicit_adoption_use_frozen_sources",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 16,
+        "seconds": 56.534222,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_planning_fields_start_and_retry_preserve_the_original_task",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 6,
+        "seconds": 2.518913,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_budget_decimal_text_and_duplicate_save_are_not_float_or_extra_records",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 5,
+        "seconds": 0.43871,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_typed_path_and_cross_book_reference_are_rejected",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 4,
+        "seconds": 4.424929,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_read_failure_keeps_filter_and_does_not_claim_empty_or_zero",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 6,
+        "seconds": 0.23612,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_review_reads_actual_body_and_locates_unique_unicode_quote_without_writes",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 16,
+        "seconds": 19.321369,
+        "status": "passed",
+        "round": "final"
+      },
+      {
+        "name": "test_canonical_memory_and_formal_body_are_structured_readonly",
+        "classname": "Tests.Feature.ProductionUiTest",
+        "assertions": 7,
+        "seconds": 39.910225,
+        "status": "passed",
+        "round": "final"
+      }
+    ]
+  },
+  {
+    "round": "edge",
+    "tests": 9,
+    "passed": 9,
+    "assertions": 103,
+    "seconds": 4.04,
+    "cases": [
+      {
+        "name": "test_budget_errors_are_scoped_localized_associated_and_clear_after_correction",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 23,
+        "seconds": 2.826699,
+        "status": "passed",
+        "round": "edge"
+      },
+      {
+        "name": "test_missing_budget_field_targets_its_container_and_next_action_clears_old_errors",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 7,
+        "seconds": 0.393016,
+        "status": "passed",
+        "round": "edge"
+      },
+      {
+        "name": "test_filter_errors_never_map_into_payloads_and_clear_on_valid_read",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 6,
+        "seconds": 0.228757,
+        "status": "passed",
+        "round": "edge"
+      },
+      {
+        "name": "test_prefixed_and_ambiguous_errors_do_not_broadcast_between_trees",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 14,
+        "seconds": 0.05592,
+        "status": "passed",
+        "round": "edge"
+      },
+      {
+        "name": "test_native_controls_inherit_field_aria_without_extra_border_wrapper",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 23,
+        "seconds": 0.040606,
+        "status": "passed",
+        "round": "edge"
+      },
+      {
+        "name": "test_import_errors_are_scoped_and_preserve_existing_trees",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 8,
+        "seconds": 0.373192,
+        "status": "passed",
+        "round": "edge"
+      },
+      {
+        "name": "test_story_option_adapter_has_scoped_error_semantics",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 6,
+        "seconds": 0.043469,
+        "status": "passed",
+        "round": "edge"
+      },
+      {
+        "name": "test_global_search_instructions_and_status_are_chinese",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 4,
+        "seconds": 0.036846,
+        "status": "passed",
+        "round": "edge"
+      },
+      {
+        "name": "test_pencil_text_has_required_contrast_on_all_declared_surfaces",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 12,
+        "seconds": 0.041009,
+        "status": "passed",
+        "round": "edge"
+      }
+    ]
+  },
+  {
+    "round": "container",
+    "tests": 10,
+    "passed": 10,
+    "assertions": 122,
+    "seconds": 4.46,
+    "cases": [
+      {
+        "name": "test_budget_errors_are_scoped_localized_associated_and_clear_after_correction",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 23,
+        "seconds": 2.835223,
+        "status": "passed",
+        "round": "container"
+      },
+      {
+        "name": "test_missing_budget_field_targets_its_container_and_next_action_clears_old_errors",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 11,
+        "seconds": 0.512282,
+        "status": "passed",
+        "round": "container"
+      },
+      {
+        "name": "test_filter_errors_never_map_into_payloads_and_clear_on_valid_read",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 6,
+        "seconds": 0.295343,
+        "status": "passed",
+        "round": "container"
+      },
+      {
+        "name": "test_prefixed_and_ambiguous_errors_do_not_broadcast_between_trees",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 14,
+        "seconds": 0.066616,
+        "status": "passed",
+        "round": "container"
+      },
+      {
+        "name": "test_native_controls_inherit_field_aria_without_extra_border_wrapper",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 23,
+        "seconds": 0.0549,
+        "status": "passed",
+        "round": "container"
+      },
+      {
+        "name": "test_import_errors_are_scoped_and_preserve_existing_trees",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 8,
+        "seconds": 0.491026,
+        "status": "passed",
+        "round": "container"
+      },
+      {
+        "name": "test_story_option_adapter_has_scoped_error_semantics",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 6,
+        "seconds": 0.047959,
+        "status": "passed",
+        "round": "container"
+      },
+      {
+        "name": "test_generic_type_boolean_and_null_errors_have_associated_targets",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 15,
+        "seconds": 0.058959,
+        "status": "passed",
+        "round": "container"
+      },
+      {
+        "name": "test_global_search_instructions_and_status_are_chinese",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 4,
+        "seconds": 0.045748,
+        "status": "passed",
+        "round": "container"
+      },
+      {
+        "name": "test_pencil_text_has_required_contrast_on_all_declared_surfaces",
+        "classname": "Tests.Feature.FormAccessibilityTest",
+        "assertions": 12,
+        "seconds": 0.051508,
+        "status": "passed",
+        "round": "container"
+      }
+    ]
+  }
+]

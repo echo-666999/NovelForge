@@ -14,9 +14,10 @@
 @else
 @if($schema['nullable']??false)<div class="nf-story-toolbar"><x-filament::button color="gray" size="sm" wire:click="setProductionUsage('{{ $path }}',false)" wire:confirm="明确清除这些用量字段并标为未知？">明确用量未知</x-filament::button><x-filament::button color="gray" size="sm" wire:click="setProductionUsage('{{ $path }}',true)" wire:confirm="重建用量字段，当前用量将清空？">录入已知Token用量</x-filament::button></div>@endif
 @if($container)
-<fieldset><legend @class(['sr-only'=>!$root])>{{ $label }}</legend>
+{{-- 容器错误也有独立关联与程序焦点，缺失字段不会借用其他同名控件。 --}}
+<fieldset id="{{ $id }}" tabindex="-1" aria-invalid="{{ $errors->has($path) ? 'true' : 'false' }}" @if($errors->has($path)) aria-describedby="{{ $id }}-error" @endif><legend @class(['sr-only'=>!$root])>{{ $label }}</legend>
     @if(method_exists($this,'locateReviewQuote') && isset($schema['properties']['quote'],$schema['properties']['start'],$schema['properties']['end']))<x-filament::button color="gray" size="sm" wire:click="locateReviewQuote('{{ $path }}')">按唯一引文定位正文码点</x-filament::button>@endif
-    @error($path)<p role="alert">{{ $message }}</p>@enderror
+    @error($path)<p id="{{ $id }}-error" class="nf-field-error" role="alert">{{ $message }}</p>@enderror
     <div class="nf-production-fields">
     @forelse($node['children'] as $i=>$row)
         @php($childSchema=$node['type']==='array'?($schema['items']??[]):($schema['properties'][$row['key']]??[]))
@@ -36,23 +37,26 @@
     </div>
 </fieldset>
 @elseif($node['type']==='boolean')
-    <x-nf.select :id="$id" :label="$label" :model="\App\Filament\Support\JsonFields::binding($path.'.value')" :value="$node['value']" :options="['0'=>'否','1'=>'是']" />
+    <x-nf.select :id="$id" :label="$label" :model="\App\Filament\Support\JsonFields::binding($path.'.value')" :value="$node['value']" :error="$errors->first($path.'.value')" :options="['0'=>'否','1'=>'是']" />
 @elseif(($references=$this->productionFieldChoices($path,$fieldKey))!==null)
-    <x-nf.select :id="$id" :label="$label" :model="\App\Filament\Support\JsonFields::binding($path.'.value')" :value="$node['value']" :options="[''=>'请选择实际记录']+$references" />
+    <x-nf.select :id="$id" :label="$label" :model="\App\Filament\Support\JsonFields::binding($path.'.value')" :value="$node['value']" :error="$errors->first($path.'.value')" :options="[''=>'请选择实际记录']+$references" />
 @elseif($fieldKey==='type' && class_basename($this)==='PlanningCandidates')
-    <x-nf.select :id="$id" :label="$label" :model="\App\Filament\Support\JsonFields::binding($path.'.value')" :value="$node['value']" :options="[''=>'请选择层级','volume'=>'卷','story_arc'=>'故事弧','chapter'=>'章节','scene'=>'场景']" />
+    <x-nf.select :id="$id" :label="$label" :model="\App\Filament\Support\JsonFields::binding($path.'.value')" :value="$node['value']" :error="$errors->first($path.'.value')" :options="[''=>'请选择层级','volume'=>'卷','story_arc'=>'故事弧','chapter'=>'章节','scene'=>'场景']" />
 @elseif($fieldKey==='severity')
-    <x-nf.select :id="$id" :label="$label" :model="\App\Filament\Support\JsonFields::binding($path.'.value')" :value="$node['value']" :options="[''=>'请选择严重度','blocking'=>'阻塞','warning'=>'警告','info'=>'提示']" />
+    <x-nf.select :id="$id" :label="$label" :model="\App\Filament\Support\JsonFields::binding($path.'.value')" :value="$node['value']" :error="$errors->first($path.'.value')" :options="[''=>'请选择严重度','blocking'=>'阻塞','warning'=>'警告','info'=>'提示']" />
 @elseif(isset($schema['enum']))
-    <x-nf.select :id="$id" :label="$label" :model="\App\Filament\Support\JsonFields::binding($path.'.value')" :value="$node['value']" :options="array_combine($schema['enum'],$schema['enum'])" />
+    <x-nf.select :id="$id" :label="$label" :model="\App\Filament\Support\JsonFields::binding($path.'.value')" :value="$node['value']" :error="$errors->first($path.'.value')" :options="array_combine($schema['enum'],$schema['enum'])" />
 @elseif($node['type']==='null')<p>明确空值（未知），不是零或空文本。</p>
 @else
     <x-nf.field :id="$id" :label="$label" :error="$errors->first($path.'.value')">
-        @if(in_array($node['type'],['integer','number'],true))<input id="{{ $id }}" inputmode="numeric" wire:model="{{ \App\Filament\Support\JsonFields::binding($path.'.value') }}" />
+        @if(in_array($node['type'],['integer','number'],true))<x-nf.control id="{{ $id }}" inputmode="numeric" wire:model="{{ \App\Filament\Support\JsonFields::binding($path.'.value') }}"  />
         @else
         @php($long=in_array($fieldKey,['quote','source_quote','reason','message','suggested_fix','replacement','summary','content','description','evidence_ref'],true)||(($schema['maxLength']??0)>=1000&&!in_array($fieldKey,['key','title','name','field'],true)))
-        @if($long)<textarea id="{{ $id }}" rows="2" wire:model="{{ \App\Filament\Support\JsonFields::binding($path.'.value') }}"></textarea>
-        @else<input id="{{ $id }}" @if($fieldKey==='key') wire:model.live.debounce.400ms="{{ \App\Filament\Support\JsonFields::binding($path.'.value') }}" @else wire:model="{{ \App\Filament\Support\JsonFields::binding($path.'.value') }}" @endif />@endif
+        @if($long)<x-nf.control tag="textarea" id="{{ $id }}" rows="2" wire:model="{{ \App\Filament\Support\JsonFields::binding($path.'.value') }}"></x-nf.control>
+        @else
+        @if($fieldKey==='key')<x-nf.control id="{{ $id }}" wire:model.live.debounce.400ms="{{ \App\Filament\Support\JsonFields::binding($path.'.value') }}" />
+        @else<x-nf.control id="{{ $id }}" wire:model="{{ \App\Filament\Support\JsonFields::binding($path.'.value') }}" />@endif
+        @endif
         @endif
     </x-nf.field>
 @endif

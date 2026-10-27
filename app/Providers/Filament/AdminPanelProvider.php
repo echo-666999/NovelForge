@@ -16,6 +16,7 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\Width;
+use Filament\View\PanelsRenderHook;
 use Filament\Widgets\AccountWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -39,6 +40,8 @@ class AdminPanelProvider extends PanelProvider
             ->userMenuItems([Action::make('implementation-status')->label('关于与实施状态')->icon('heroicon-o-information-circle')->url(fn (): string => ProjectStatus::getUrl())])
             // UI02 仅接入主题与本机字体，不修改导航、页面数据或业务动作。
             ->viteTheme('resources/css/filament/admin/theme.css')
+            // UI15：统一错误定位，不改变原服务命令与控件焦点边界。
+            ->renderHook(PanelsRenderHook::BODY_END, fn () => view('filament.validation-focus'))
             ->font('PingFang SC', provider: LocalFontProvider::class)
             ->colors([
                 'primary' => Color::Indigo,

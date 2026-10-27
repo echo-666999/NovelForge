@@ -21,7 +21,7 @@
 </x-nf.section>
 <x-nf.section heading="近期章节规划">
 <div class="nf-story-toolbar">
-<x-nf.field id="ui06-workspace-1-{{ md5('from') }}" label="起始章" :error="$errors->first('from')"><input id="ui06-workspace-1-{{ md5('from') }}" type="number" min="1" wire:model.live="from" /></x-nf.field><x-nf.field id="ui06-workspace-2-{{ md5('until') }}" label="结束章" :error="$errors->first('until')"><input id="ui06-workspace-2-{{ md5('until') }}" type="number" min="1" wire:model.live="until" /></x-nf.field>
+<x-nf.field id="ui06-workspace-1-{{ md5('from') }}" label="起始章" :error="$errors->first('from')"><x-nf.control id="ui06-workspace-1-{{ md5('from') }}" type="number" min="1" wire:model.live="from"  /></x-nf.field><x-nf.field id="ui06-workspace-2-{{ md5('until') }}" label="结束章" :error="$errors->first('until')"><x-nf.control id="ui06-workspace-2-{{ md5('until') }}" type="number" min="1" wire:model.live="until"  /></x-nf.field>
 <x-nf.story-select id="ui06-workspace-3-{{ md5('status') }}" label="规划状态" model="status" :value="data_get($__livewire,'status')" ><option value="">全部</option>@foreach($this::STATES as $key=>$label)<option value="{{ $key }}">{{ $label }}</option>@endforeach</x-nf.story-select>
 <label class="nf-story-check"><input type="checkbox" wire:model.live="issuesOnly" />仅有规划问题</label>
 <x-nf.story-select id="ui06-workspace-4-{{ md5('limit') }}" label="每页" model="limit" :value="data_get($__livewire,'limit')" ><option>10</option><option>25</option><option>50</option><option>100</option></x-nf.story-select>

@@ -405,3 +405,10 @@
 
 /* 普通属性只保留控件边界，容器行才分组，避免多重边框吞掉小屏空间。 */
 .nf-production-row:not(.nf-production-row-wide){padding:0;border:0;}
+
+/* UI15：分页辅助文字使用校对铅笔色，浅/深主题均通过普通文字对比度。 */
+.fi-panel-admin .fi-pagination :is(.fi-input-wrp-label, .fi-pagination-records-per-page-select > span) {
+    color: var(--nf-pencil);
+}
+/* 错误定位避让固定顶部栏，焦点样式继续沿用既有单层边界。 */
+.fi-panel-admin [aria-invalid="true"] { scroll-margin-top: 6rem; }

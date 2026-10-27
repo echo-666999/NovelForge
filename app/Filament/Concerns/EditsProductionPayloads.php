@@ -42,9 +42,10 @@ trait EditsProductionPayloads
     }
 
     /** 保存前再次从当前树校验，输入错误不能悄悄改为提交旧的有效字符串。 */
-    protected function productionValue(string $property): mixed
+    protected function productionValue(string $property, string $errorPrefix = ''): mixed
     {
         $e = $this->productionEditor($property);
+        $this->productionErrorRoots[Str::snake($property)] = ['prefix' => $errorPrefix, 'schema' => $e['schema']];
         $value = JsonFields::serviceValue(JsonFields::value($e['node'], $e['path']), $e['path']);
 
         return $value;
@@ -93,8 +94,17 @@ trait EditsProductionPayloads
         if (! array_key_exists($property, $this->productionPayloads())) {
             throw ValidationException::withMessages(['production' => '未知字段。']);
         }
+        $this->beginProductionAction();
         $raw = $this->productionImports[$property] ?? '';
-        JsonFields::parse($raw);
+        try {
+            JsonFields::parse($raw);
+        } catch (ValidationException $error) {
+            // 导入错误只属于当前输入框，不能污染其他载荷的高级导入区。
+            $this->setErrorBag(['productionImports.'.$property => $error->validator->errors()->all()]);
+            $this->dispatch('nf-validation-failed', sourceId: $this->getId());
+
+            return;
+        }
         $this->$property = $raw;
         $this->productionEditor($property);
     }

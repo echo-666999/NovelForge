@@ -1,0 +1,64 @@
+[
+  {
+    "theme": "dark",
+    "width": 1440,
+    "text": "每页",
+    "measured": true,
+    "foreground": [
+      173.0,
+      182.0,
+      199.0
+    ],
+    "background": [
+      25.0,
+      29.0,
+      38.0
+    ],
+    "ratio": 8.267,
+    "required": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "dark",
+    "width": 1440,
+    "text": "25",
+    "measured": false
+  },
+  {
+    "theme": "dark",
+    "width": 390,
+    "text": "25",
+    "measured": false
+  },
+  {
+    "theme": "light",
+    "width": 390,
+    "text": "25",
+    "measured": false
+  },
+  {
+    "theme": "light",
+    "width": 1440,
+    "text": "每页",
+    "measured": true,
+    "foreground": [
+      87.0,
+      97.0,
+      116.0
+    ],
+    "background": [
+      242.0,
+      244.0,
+      247.0
+    ],
+    "ratio": 5.66,
+    "required": 4.5,
+    "pass": true
+  },
+  {
+    "theme": "light",
+    "width": 1440,
+    "text": "25",
+    "measured": false
+  }
+]

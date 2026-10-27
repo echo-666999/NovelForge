@@ -10,14 +10,14 @@
 @if($errors->any())<x-nf.state state="error" title="请核对字段，输入仍保留"><ul>@foreach($errors->all() as $message)<li>{{ $message }}</li>@endforeach</ul></x-nf.state>@endif
     <div class="nf-story-toolbar">
         @foreach(['novel'=>'小说ID','trace'=>'根/操作追踪号','action'=>'动作','status'=>'结果或失败码','dateFrom'=>'开始日期 UTC','dateTo'=>'结束日期 UTC'] as $field=>$label)
-            @if($field==='novel')@include('filament.production-reference',['label'=>$label,'model'=>$field,'kind'=>'book'])@else<x-nf.field id="ui07-audit-center-1-{{ md5(($field)) }}" label="{{ $label }}" :error="$errors->first(($field))"><input id="ui07-audit-center-1-{{ md5(($field)) }}" class="border rounded p-2" type="{{ in_array($field,['dateFrom','dateTo'],true)?'date':'text' }}" wire:model.live.debounce.500ms="{{ $field }}" /></x-nf.field>@endif
+            @if($field==='novel')@include('filament.production-reference',['label'=>$label,'model'=>$field,'kind'=>'book'])@else<x-nf.field id="ui07-audit-center-1-{{ md5(($field)) }}" label="{{ $label }}" :error="$errors->first(($field))"><x-nf.control id="ui07-audit-center-1-{{ md5(($field)) }}" class="border rounded p-2" type="{{ in_array($field,['dateFrom','dateTo'],true)?'date':'text' }}" wire:model.live.debounce.500ms="{{ $field }}"  /></x-nf.field>@endif
         @endforeach
         <label class="nf-story-check"><input type="checkbox" wire:model.live="highRisk" />仅高风险</label>
     </div>
     @php($catalog=$pageRead['data']['catalog'])
     <p>{{ $catalog['total'] }} 条 / 第 {{ $catalog['page'] }} 页；审计只追加，没有删除动作。</p>
     <a href="{{ '/api/v1/audit/export?'.http_build_query(array_filter($this->filters(),fn($v)=>$v!==null)) }}">下载当前页脱敏审计记录</a>
-    <x-nf.field id="ui07-audit-center-2-{{ md5('page') }}" label="页码" :error="$errors->first('page')"><input id="ui07-audit-center-2-{{ md5('page') }}" type="number" min="1" wire:model.live="page" /></x-nf.field>
+    <x-nf.field id="ui07-audit-center-2-{{ md5('page') }}" label="页码" :error="$errors->first('page')"><x-nf.control id="ui07-audit-center-2-{{ md5('page') }}" type="number" min="1" wire:model.live="page"  /></x-nf.field>
     @forelse($catalog['rows'] as $row)
         <details wire:ignore.self><summary>{{ $row['created_at'] }} / {{ $row['object_type'] }} #{{ $row['object_id'] }} / {{ $row['action'] }} / {{ $row['outcome'] }}</summary>
             <p>操作人 {{ $row['actor_id']??'系统' }}；原因：{{ $row['reason'] }}；根追踪：{{ $row['trace_id'] }}；操作追踪：{{ $row['operation_trace_id'] }}</p>

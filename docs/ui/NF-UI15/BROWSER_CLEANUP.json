@@ -1,0 +1,8 @@
+{
+  "systemTheme": "34 按照系统主题切换, Value: 1",
+  "chromeNativeZoom": "已在BROWSER.json恢复至1709px/DPR2基线",
+  "safariOwnWindowClosed": true,
+  "developerPreferencesChanged": false,
+  "closedOwnChromeTabVerified": true,
+  "closeMethod": "本轮标签自己的上下文菜单关闭，并核对浏览器清单缺席"
+}

@@ -114,6 +114,7 @@ class ReviewCenter extends Page
 
     private function attempt(callable $fn): void
     {
+        $this->beginProductionAction();
         try {
             $fn();
         } catch (NovelProblem|ValidationException|\JsonException $e) {
@@ -148,7 +149,7 @@ class ReviewCenter extends Page
         $b = app(DraftingService::class)->read(auth()->user(), $this->novel, 'chapter', $this->version);
         $n = app(NovelIntentService::class)->novel(auth()->user(), $this->novel);
 
-        return ['chapter_version_id' => $this->version, 'body_hash' => $b['body_hash'], 'extraction_id' => $this->extraction, 'policy_version_id' => $this->policy, 'expected_version' => $n->row_version, 'expected_state_version' => $n->state_version, 'offline_output' => $this->productionValue('output'), 'reviewer_type' => $this->reviewer, 'reason' => $this->reason];
+        return ['chapter_version_id' => $this->version, 'body_hash' => $b['body_hash'], 'extraction_id' => $this->extraction, 'policy_version_id' => $this->policy, 'expected_version' => $n->row_version, 'expected_state_version' => $n->state_version, 'offline_output' => $this->productionValue('output', 'offline_output'), 'reviewer_type' => $this->reviewer, 'reason' => $this->reason];
     }
 
     public function review(): void
@@ -184,7 +185,7 @@ class ReviewCenter extends Page
     public function policyAction(string $action): void
     {
         $this->attempt(function () use ($action) {
-            $d = $action === 'save' ? ['key' => $this->policyKey, 'expected_version' => $this->policyVersion, 'style_version_id' => $this->style, 'content' => $this->productionValue('policyJson'), 'reason' => $this->reason] : ['policy_version_id' => $this->policy, 'reason' => $this->reason];
+            $d = $action === 'save' ? ['key' => $this->policyKey, 'expected_version' => $this->policyVersion, 'style_version_id' => $this->style, 'content' => $this->productionValue('policyJson', 'content'), 'reason' => $this->reason] : ['policy_version_id' => $this->policy, 'reason' => $this->reason];
             $p = $this->productionWrite('ReviewPolicyService.execute', [$action], $d, fn ($frozenPayload, $commandKey) => app(ReviewPolicyService::class)->execute(auth()->user(), $action, $frozenPayload, $commandKey));
             $this->policy = $p['id'];
             $this->policyVersion = $p['version'];

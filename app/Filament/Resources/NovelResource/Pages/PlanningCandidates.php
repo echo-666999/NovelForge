@@ -86,7 +86,7 @@ class PlanningCandidates extends Page
     public function startCandidate(): void
     {
         $this->attempt(function () {
-            $output = $this->productionValue('offlineOutput');
+            $output = $this->productionValue('offlineOutput', 'offline_output');
             $cfg = preg_match('/^[1-9][0-9]{0,17}$/D', $this->route) ? DB::table('route_versions')->find($this->route) : null;
             $parameters = $cfg ? json_decode($cfg->content, true)['parameters'] : [];
             $result = $this->productionWrite('PlanningPipelineService.start', [], ['start_chapter' => in_array($this->phase, ['chapter_plan', 'scene_plan'], true) ? $this->startChapter : null, 'end_chapter' => in_array($this->phase, ['chapter_plan', 'scene_plan'], true) ? $this->endChapter : null, 'phase' => $this->phase, 'parent_id' => $this->parent ?: null, 'route_version_id' => $this->route, 'billing' => ['policy_id' => $this->policy, 'price_version_ids' => array_values(array_filter(array_map('trim', explode(',', $this->prices)))), 'category' => 'planning', 'max_output_tokens' => $parameters['max_output_tokens'] ?? 0, 'max_reasoning_tokens' => 0], 'offline_output' => $output, 'expected_version' => app(NovelIntentService::class)->novel(auth()->user(), $this->novelId)->row_version, 'reason' => $this->reason], fn ($frozenPayload, $commandKey) => app(PlanningPipelineService::class)->start(auth()->user(), $this->novelId, $frozenPayload, $commandKey));
@@ -139,6 +139,7 @@ class PlanningCandidates extends Page
 
     private function attempt(callable $fn): void
     {
+        $this->beginProductionAction();
         $this->notice = '';
         try {
             $fn();
