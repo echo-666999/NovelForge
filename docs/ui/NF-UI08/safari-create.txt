@@ -1,0 +1,153 @@
+Window: "创建 小说 - NovelForge · 小说工坊", App: Safari浏览器.
+0 标准窗口 创建 小说 - NovelForge · 小说工坊, ID: SafariWindow?IsSecure=false&UUID=1C91E0BE-FABC-4972-8AB6-02AB60E256E5, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: 创建 小说 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels/create
+					6 link 跳至主要内容, Value: 127.0.0.1:8770/admin/novels/create#fi-main-content
+					7 container 顶部栏
+						8 link NovelForge · 小说工坊, Value: 127.0.0.1:8770/admin
+						9 文本 全局搜索
+						10 搜索文本栏 (settable) 全局搜索, Placeholder: 搜索
+							11 文本 搜索
+						12 文本 Press Down arrow to browse results. Use Up and Down arrows to move between results, and Tab to reach result actions. Press Escape to close results.
+						13 弹出式按钮 用户菜单
+					14 container 侧边栏导航
+						15 内容列表
+							16 container
+								17 文本 创作工作台
+								18 按钮 (expanded) 创作工作台, Secondary Actions: Collapse
+								19 内容列表
+									20 link 创作总览, Value: 127.0.0.1:8770/admin
+									21 link 小说库, Value: 127.0.0.1:8770/admin/novels
+							22 container
+								23 文本 故事管理
+								24 按钮 (expanded) 故事管理, Secondary Actions: Collapse
+								25 内容列表
+									26 link 故事管理, Value: 127.0.0.1:8770/admin/story-hub
+									27 link 时间线与角色知识, Value: 127.0.0.1:8770/admin/story-timeline
+									28 link 伏笔与主支线账本, Value: 127.0.0.1:8770/admin/foreshadow-ledger
+							29 container
+								30 文本 生产与质量
+								31 按钮 (expanded) 生产与质量, Secondary Actions: Collapse
+								32 内容列表
+									33 link 生成运行中心, Value: 127.0.0.1:8770/admin/run-center
+									34 link 正文提取与硬约束, Value: 127.0.0.1:8770/admin/extraction-ledger
+									35 link 评审中心与策略, Value: 127.0.0.1:8770/admin/review-center
+									36 link 受限修订工作台, Value: 127.0.0.1:8770/admin/revision-desk
+									37 link 正式提交与基线, Value: 127.0.0.1:8770/admin/canonical-commit-center
+									38 link 上下文检查器, Value: 127.0.0.1:8770/admin/context-inspector
+									39 link 运行恢复台, Value: 127.0.0.1:8770/admin/recovery-desk
+							40 container
+								41 文本 检索与记忆
+								42 按钮 (expanded) 检索与记忆, Secondary Actions: Collapse
+								43 内容列表
+									44 link 分层记忆库, Value: 127.0.0.1:8770/admin/memory-library
+									45 link 正式记忆与索引, Value: 127.0.0.1:8770/admin/canonical-memory-center
+									46 link 检索实验室与索引, Value: 127.0.0.1:8770/admin/search-lab
+							47 container
+								48 文本 配置与运维
+								49 按钮 (expanded) 配置与运维, Secondary Actions: Collapse
+								50 内容列表
+									51 link Prompt 模板与发布, Value: 127.0.0.1:8770/admin/prompt-templates
+									52 link 供应商与模型, Value: 127.0.0.1:8770/admin/providers
+									53 link 模型主备路由, Value: 127.0.0.1:8770/admin/model-routes
+									54 link 文风与评分策略, Value: 127.0.0.1:8770/admin/style-profiles
+									55 link 价格与原子预算, Value: 127.0.0.1:8770/admin/billing
+									56 link 审计与系统健康, Value: 127.0.0.1:8770/admin/audit-center
+					57 container
+						58 container 当前位置
+							59 内容列表
+								60 link 小说, Value: 127.0.0.1:8770/admin/novels
+								61 文本 创建
+						62 标题 创建 小说, Value: 1
+							63 文本 创建 小说
+						64 内容列表
+							65 按钮 (disabled) 输入
+							66 按钮 (disabled) 提炼约束 未完成
+							67 按钮 (disabled) 确认歧义 未完成
+							68 按钮 (disabled) 保存 未完成
+						69 container 输入
+							70 container
+								71 文本 书名*
+							72 文本栏 (settable) 书名 *
+							73 container
+								74 文本 题材*
+							75 文本栏 (settable) 题材 *
+							76 文本 目标读者
+							77 文本栏 (settable) 目标读者
+							78 container
+								79 文本 原始背景*
+							80 文本输入区 (settable) 原始背景 *, Value: [文本输入区]
+							81 container
+								82 文本 剧情概述（原文保留）*
+							83 文本输入区 (settable) 剧情概述（原文保留） *, Value: [文本输入区]
+							84 文本 核心卖点
+							85 文本输入区 (settable) 核心卖点, Value: [文本输入区]
+							86 文本 禁用内容
+							87 文本输入区 (settable) 禁用内容, Value: [文本输入区]
+							88 container
+								89 文本 目标章节数*
+							90 数字栏 (settable) 目标章节数 *
+								91 步进器 0
+									92 未知
+									93 未知
+							94 container
+								95 文本 每章字数下限*
+							96 数字栏 (settable) 每章字数下限 *
+								97 步进器 0
+									98 未知
+									99 未知
+							100 container
+								101 文本 每章字数上限*
+							102 数字栏 (settable) 每章字数上限 *
+								103 步进器 0
+									104 未知
+									105 未知
+							106 文本 文风偏好
+							107 文本输入区 (settable) 文风偏好, Value: [文本输入区]
+							108 文本 结局偏好
+							109 文本输入区 (settable) 结局偏好, Value: [文本输入区]
+							110 文本 预算意向（尚非生效预算）
+							111 文本输入区 (settable) 预算意向（尚非生效预算）, Value: [文本输入区]
+							112 文本 正式预算与币种将在成本模块中确认。
+						113 按钮 取消
+						114 按钮 下一步
+				115 滚动条 (settable, float) 0
+	116 工具栏
+		117 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			118 按钮 Description: 显示边栏, ID: SidebarButton
+			119 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		120 container BackForwardSegmentedControl
+			121 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			122 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		123 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			124 按钮 页面菜单，翻译可用, ID: AssistantButton
+			125 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			126 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:8770/admin/novels/create, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			127 按钮 重新加载此页面, ID: ReloadButton
+		128 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		129 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		130 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	131 标签页组 Description: 标签页栏，2个标签页, ID: TabBar?isSeparate=false
+		132 标签 创建 小说 - NovelForge · 小说工坊, Help: 若要与此按钮中的项目交互，请按下Control-Option-Shift-下箭头键。, Value: on, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=true
+			133 图像 FaviconImageView
+			134 文本 Value: 创建 小说 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+		135 标签 正式提交与基线 - NovelForge · 小说工坊, Value: off, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=false
+			136 图像 FaviconImageView
+			137 文本 Value: 正式提交与基线 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+	138 关闭按钮
+	139 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	140 最小化按钮
+141 menu bar
+	142 Safari浏览器
+	143 文件
+	144 编辑
+	145 显示, ID: SafariViewMenu
+	146 历史记录
+	147 书签, ID: SafariBookmarksMenu
+	148 窗口, ID: SafariWindowMenu
+	149 帮助, ID: SafariHelpMenu
+
+The focused UI element is 5 HTML内容 Description: 创建 小说 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels/create

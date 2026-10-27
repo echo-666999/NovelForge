@@ -1,0 +1,249 @@
+Window: "审计与系统健康 - NovelForge · 小说工坊", App: Safari浏览器.
+0 标准窗口 审计与系统健康 - NovelForge · 小说工坊, ID: SafariWindow?IsSecure=false&UUID=1C91E0BE-FABC-4972-8AB6-02AB60E256E5, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: 审计与系统健康 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/audit-center
+					6 link 跳至主要内容, Value: 127.0.0.1:8770/admin/audit-center#fi-main-content
+					7 container 顶部栏
+						8 link NovelForge · 小说工坊, Value: 127.0.0.1:8770/admin
+						9 文本 全局搜索
+						10 搜索文本栏 (settable) 全局搜索, Placeholder: 搜索
+							11 文本 搜索
+						12 文本 Press Down arrow to browse results. Use Up and Down arrows to move between results, and Tab to reach result actions. Press Escape to close results.
+						13 弹出式按钮 用户菜单
+					14 container 侧边栏导航
+						15 内容列表
+							16 container
+								17 文本 创作工作台
+								18 按钮 (expanded) 创作工作台, Secondary Actions: Collapse
+								19 内容列表
+									20 link 创作总览, Value: 127.0.0.1:8770/admin
+									21 link 小说库, Value: 127.0.0.1:8770/admin/novels
+							22 container
+								23 文本 故事管理
+								24 按钮 (expanded) 故事管理, Secondary Actions: Collapse
+								25 内容列表
+									26 link 故事管理, Value: 127.0.0.1:8770/admin/story-hub
+									27 link 时间线与角色知识, Value: 127.0.0.1:8770/admin/story-timeline
+									28 link 伏笔与主支线账本, Value: 127.0.0.1:8770/admin/foreshadow-ledger
+							29 container
+								30 文本 生产与质量
+								31 按钮 (expanded) 生产与质量, Secondary Actions: Collapse
+								32 内容列表
+									33 link 生成运行中心, Value: 127.0.0.1:8770/admin/run-center
+									34 link 正文提取与硬约束, Value: 127.0.0.1:8770/admin/extraction-ledger
+									35 link 评审中心与策略, Value: 127.0.0.1:8770/admin/review-center
+									36 link 受限修订工作台, Value: 127.0.0.1:8770/admin/revision-desk
+									37 link 正式提交与基线, Value: 127.0.0.1:8770/admin/canonical-commit-center
+									38 link 上下文检查器, Value: 127.0.0.1:8770/admin/context-inspector
+									39 link 运行恢复台, Value: 127.0.0.1:8770/admin/recovery-desk
+							40 container
+								41 文本 检索与记忆
+								42 按钮 (expanded) 检索与记忆, Secondary Actions: Collapse
+								43 内容列表
+									44 link 分层记忆库, Value: 127.0.0.1:8770/admin/memory-library
+									45 link 正式记忆与索引, Value: 127.0.0.1:8770/admin/canonical-memory-center
+									46 link 检索实验室与索引, Value: 127.0.0.1:8770/admin/search-lab
+							47 container
+								48 文本 配置与运维
+								49 按钮 (expanded) 配置与运维, Secondary Actions: Collapse
+								50 内容列表
+									51 link Prompt 模板与发布, Value: 127.0.0.1:8770/admin/prompt-templates
+									52 link 供应商与模型, Value: 127.0.0.1:8770/admin/providers
+									53 link 模型主备路由, Value: 127.0.0.1:8770/admin/model-routes
+									54 link 文风与评分策略, Value: 127.0.0.1:8770/admin/style-profiles
+									55 link 价格与原子预算, Value: 127.0.0.1:8770/admin/billing
+									56 link 审计与系统健康, Value: 127.0.0.1:8770/admin/audit-center
+					57 container
+						58 标题 审计与系统健康, Value: 1
+							59 文本 审计与系统健康
+						60 标题 数据库观测：incident, Value: 2
+							61 文本 数据库观测：incident
+						62 文本 仅数据库观测，不代表外部服务可用性
+						63 container 逐字段只读证据
+							64 表格
+								65 row (selectable) 字段路径
+类型
+内容
+								66 row (selectable)
+									67 单元格 (selectable) 全部字段
+$
+									68 单元格 (selectable) 对象
+									69 单元格 (selectable) 11项
+								70 row (selectable)
+									71 单元格 (selectable) 关系状态
+$/state
+									72 单元格 (selectable) 文本
+									73 单元格 (selectable) incident
+								74 row (selectable)
+									75 单元格 (selectable) scope
+$/scope
+									76 单元格 (selectable) 文本
+									77 单元格 (selectable) 仅数据库观测，不代表外部服务可用性
+								78 row (selectable)
+									79 单元格 (selectable) unresolved_request_errors
+$/unresolved_request_errors
+									80 单元格 (selectable) 整数
+									81 单元格 (selectable) 0
+								82 row (selectable)
+									83 单元格 (selectable) expired_leases
+$/expired_leases
+									84 单元格 (selectable) 整数
+									85 单元格 (selectable) 1
+								86 row (selectable)
+									87 单元格 (selectable) blocked_runs
+$/blocked_runs
+									88 单元格 (selectable) 整数
+									89 单元格 (selectable) 0
+								90 row (selectable)
+									91 单元格 (selectable) unknown_cost_requests
+$/unknown_cost_requests
+									92 单元格 (selectable) 整数
+									93 单元格 (selectable) 0
+								94 row (selectable)
+									95 单元格 (selectable) due_outbox
+$/due_outbox
+									96 单元格 (selectable) 整数
+									97 单元格 (selectable) 2
+								98 row (selectable)
+									99 单元格 (selectable) redis_connectivity
+$/redis_connectivity
+									100 单元格 (selectable) 文本
+									101 单元格 (selectable) unknown
+								102 row (selectable)
+									103 单元格 (selectable) provider_availability
+$/provider_availability
+									104 单元格 (selectable) 文本
+									105 单元格 (selectable) unverified
+								106 row (selectable)
+									107 单元格 (selectable) worker_processes
+$/worker_processes
+									108 单元格 (selectable) 文本
+									109 单元格 (selectable) unknown
+								110 row (selectable)
+									111 单元格 (selectable) canonical_progress
+$/canonical_progress
+									112 单元格 (selectable) 空值
+									113 单元格 (selectable) 空值
+						114 文本 小说ID
+						115 弹出式按钮 小说ID：请选择实际记录
+						116 文本 根/操作追踪号
+						117 文本栏 (settable) 根/操作追踪号
+						118 文本 动作
+						119 文本栏 (settable) 动作
+						120 文本 结果或失败码
+						121 文本栏 (settable) 结果或失败码
+						122 文本 开始日期 UTC
+						123 日期时间区域 开始日期 UTC, Value: 2026/10/27
+							124 container
+								125 步进器 (settable, float) 年, Value: 0
+								126 文本 /
+								127 步进器 (settable, float) 月, Value: 0
+								128 文本 /
+								129 步进器 (settable, float) 日, Value: 0
+						130 文本 结束日期 UTC
+						131 日期时间区域 结束日期 UTC, Value: 2026/10/27
+							132 container
+								133 步进器 (settable, float) 年, Value: 0
+								134 文本 /
+								135 步进器 (settable, float) 月, Value: 0
+								136 文本 /
+								137 步进器 (settable, float) 日, Value: 0
+						138 复选框 仅高风险, Value: 0
+						139 文本 仅高风险
+						140 文本 134 条 / 第 1 页；审计只追加，没有删除动作。
+						141 link 下载当前页脱敏审计记录, Value: 127.0.0.1:8770/api/v1/audit/export?page=1
+						142 文本 页码
+						143 数字栏 (settable) 页码, Value: 1
+							144 步进器 0
+								145 未知
+								146 未知
+						147 摘要 2026-10-27T06:01:11+00:00 / budget_policies #14 / insert / recorded, Value: off
+							148 文本 2026-10-27T06:01:11+00:00 / budget_policies #14 / insert / recorded
+						149 摘要 2026-10-27T05:52:48+00:00 / generation_runs #59 / update / succeeded, Value: off
+							150 文本 2026-10-27T05:52:48+00:00 / generation_runs #59 / update / succeeded
+						151 摘要 2026-10-27T05:52:48+00:00 / generation_steps #47 / update / succeeded, Value: off
+							152 文本 2026-10-27T05:52:48+00:00 / generation_steps #47 / update / succeeded
+						153 摘要 2026-10-27T05:52:48+00:00 / generation_artifacts #33 / insert / recorded, Value: off
+							154 文本 2026-10-27T05:52:48+00:00 / generation_artifacts #33 / insert / recorded
+						155 摘要 2026-10-27T05:52:47+00:00 / budget_reservations #19 / update / settled, Value: off
+							156 文本 2026-10-27T05:52:47+00:00 / budget_reservations #19 / update / settled
+						157 摘要 2026-10-27T05:52:47+00:00 / cost_ledger #95 / insert / recorded, Value: off
+							158 文本 2026-10-27T05:52:47+00:00 / cost_ledger #95 / insert / recorded
+						159 摘要 2026-10-27T05:52:47+00:00 / cost_ledger #94 / insert / recorded, Value: off
+							160 文本 2026-10-27T05:52:47+00:00 / cost_ledger #94 / insert / recorded
+						161 摘要 2026-10-27T05:52:47+00:00 / cost_ledger #93 / insert / recorded, Value: off
+							162 文本 2026-10-27T05:52:47+00:00 / cost_ledger #93 / insert / recorded
+						163 摘要 2026-10-27T05:52:47+00:00 / cost_ledger #92 / insert / recorded, Value: off
+							164 文本 2026-10-27T05:52:47+00:00 / cost_ledger #92 / insert / recorded
+						165 摘要 2026-10-27T05:52:47+00:00 / cost_ledger #91 / insert / recorded, Value: off
+							166 文本 2026-10-27T05:52:47+00:00 / cost_ledger #91 / insert / recorded
+						167 摘要 2026-10-27T05:52:47+00:00 / usage_settlements #19 / insert / recorded, Value: off
+							168 文本 2026-10-27T05:52:47+00:00 / usage_settlements #19 / insert / recorded
+						169 摘要 2026-10-27T05:52:47+00:00 / ai_requests #20 / update / succeeded, Value: off
+							170 文本 2026-10-27T05:52:47+00:00 / ai_requests #20 / update / succeeded
+						171 摘要 2026-10-27T05:52:47+00:00 / budget_reservations #19 / insert / reserved, Value: off
+							172 文本 2026-10-27T05:52:47+00:00 / budget_reservations #19 / insert / reserved
+						173 摘要 2026-10-27T05:52:47+00:00 / ai_requests #20 / insert / pending, Value: off
+							174 文本 2026-10-27T05:52:47+00:00 / ai_requests #20 / insert / pending
+						175 摘要 2026-10-27T05:52:47+00:00 / generation_steps #47 / update / running, Value: off
+							176 文本 2026-10-27T05:52:47+00:00 / generation_steps #47 / update / running
+						177 摘要 2026-10-27T05:52:47+00:00 / generation_runs #59 / update / running, Value: off
+							178 文本 2026-10-27T05:52:47+00:00 / generation_runs #59 / update / running
+						179 摘要 2026-10-27T05:52:47+00:00 / generation_steps #47 / insert / running, Value: off
+							180 文本 2026-10-27T05:52:47+00:00 / generation_steps #47 / insert / running
+						181 摘要 2026-10-27T05:52:47+00:00 / generation_runs #59 / insert / queued, Value: off
+							182 文本 2026-10-27T05:52:47+00:00 / generation_runs #59 / insert / queued
+						183 摘要 2026-10-27T05:52:47+00:00 / route_versions #19 / update / published, Value: off
+							184 文本 2026-10-27T05:52:47+00:00 / route_versions #19 / update / published
+						185 摘要 2026-10-27T05:52:47+00:00 / route_versions #19 / update / tested, Value: off
+							186 文本 2026-10-27T05:52:47+00:00 / route_versions #19 / update / tested
+						187 摘要 2026-10-27T05:52:47+00:00 / route_versions #19 / insert / draft, Value: off
+							188 文本 2026-10-27T05:52:47+00:00 / route_versions #19 / insert / draft
+						189 摘要 2026-10-27T05:52:47+00:00 / style_versions #19 / update / published, Value: off
+							190 文本 2026-10-27T05:52:47+00:00 / style_versions #19 / update / published
+						191 摘要 2026-10-27T05:52:47+00:00 / style_versions #19 / update / tested, Value: off
+							192 文本 2026-10-27T05:52:47+00:00 / style_versions #19 / update / tested
+						193 摘要 2026-10-27T05:52:47+00:00 / style_versions #19 / insert / draft, Value: off
+							194 文本 2026-10-27T05:52:47+00:00 / style_versions #19 / insert / draft
+						195 摘要 2026-10-27T05:52:47+00:00 / prompt_versions #19 / update / published, Value: off
+							196 文本 2026-10-27T05:52:47+00:00 / prompt_versions #19 / update / published
+				197 滚动条 (settable, float) 0
+	198 工具栏
+		199 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			200 按钮 Description: 显示边栏, ID: SidebarButton
+			201 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		202 container BackForwardSegmentedControl
+			203 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			204 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		205 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			206 按钮 显示阅读器, ID: AssistantButton
+			207 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			208 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:8770/admin/audit-center, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			209 按钮 重新加载此页面, ID: ReloadButton
+		210 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		211 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		212 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	213 标签页组 Description: 标签页栏，2个标签页, ID: TabBar?isSeparate=false
+		214 标签 审计与系统健康 - NovelForge · 小说工坊, Help: 若要与此按钮中的项目交互，请按下Control-Option-Shift-下箭头键。, Value: on, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=true
+			215 图像 FaviconImageView
+			216 文本 Value: 审计与系统健康 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+		217 标签 正式提交与基线 - NovelForge · 小说工坊, Value: off, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=false
+			218 图像 FaviconImageView
+			219 文本 Value: 正式提交与基线 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+	220 关闭按钮
+	221 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	222 最小化按钮
+223 menu bar
+	224 Safari浏览器
+	225 文件
+	226 编辑
+	227 显示, ID: SafariViewMenu
+	228 历史记录
+	229 书签, ID: SafariBookmarksMenu
+	230 窗口, ID: SafariWindowMenu
+	231 帮助, ID: SafariHelpMenu
+
+The focused UI element is 5 HTML内容 Description: 审计与系统健康 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/audit-center

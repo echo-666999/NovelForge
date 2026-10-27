@@ -1,0 +1,490 @@
+Window: "检索实验室与索引 - NovelForge · 小说工坊", App: Safari浏览器.
+0 标准窗口 生成运行中心 - NovelForge · 小说工坊, ID: SafariWindow?IsSecure=false&UUID=1C91E0BE-FABC-4972-8AB6-02AB60E256E5, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: 检索实验室与索引 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/search-lab?novel=35
+					6 link 跳至主要内容, Value: 127.0.0.1:8770/admin/search-lab?novel=35#fi-main-content
+					7 container 顶部栏
+						8 link NovelForge · 小说工坊, Value: 127.0.0.1:8770/admin
+						9 文本 全局搜索
+						10 搜索文本栏 (settable) 全局搜索, Placeholder: 搜索
+							11 文本 搜索
+						12 文本 Press Down arrow to browse results. Use Up and Down arrows to move between results, and Tab to reach result actions. Press Escape to close results.
+						13 弹出式按钮 用户菜单
+					14 container 侧边栏导航
+						15 内容列表
+							16 container
+								17 文本 创作工作台
+								18 按钮 (expanded) 创作工作台, Secondary Actions: Collapse
+								19 内容列表
+									20 link 创作总览, Value: 127.0.0.1:8770/admin
+									21 link 小说库, Value: 127.0.0.1:8770/admin/novels
+							22 container
+								23 文本 故事管理
+								24 按钮 (expanded) 故事管理, Secondary Actions: Collapse
+								25 内容列表
+									26 link 故事管理, Value: 127.0.0.1:8770/admin/story-hub?novel=35
+									27 link 时间线与角色知识, Value: 127.0.0.1:8770/admin/story-timeline?novel=35
+									28 link 伏笔与主支线账本, Value: 127.0.0.1:8770/admin/foreshadow-ledger?novel=35
+							29 container
+								30 文本 生产与质量
+								31 按钮 (expanded) 生产与质量, Secondary Actions: Collapse
+								32 内容列表
+									33 link 生成运行中心, Value: 127.0.0.1:8770/admin/run-center?novel=35
+									34 link 正文提取与硬约束, Value: 127.0.0.1:8770/admin/extraction-ledger?novel=35
+									35 link 评审中心与策略, Value: 127.0.0.1:8770/admin/review-center?novel=35
+									36 link 受限修订工作台, Value: 127.0.0.1:8770/admin/revision-desk?novel=35
+									37 link 正式提交与基线, Value: 127.0.0.1:8770/admin/canonical-commit-center?novel=35
+									38 link 上下文检查器, Value: 127.0.0.1:8770/admin/context-inspector?novel=35
+									39 link 运行恢复台, Value: 127.0.0.1:8770/admin/recovery-desk?novel=35
+							40 container
+								41 文本 检索与记忆
+								42 按钮 (expanded) 检索与记忆, Secondary Actions: Collapse
+								43 内容列表
+									44 link 分层记忆库, Value: 127.0.0.1:8770/admin/memory-library?novel=35
+									45 link 正式记忆与索引, Value: 127.0.0.1:8770/admin/canonical-memory-center?novel=35
+									46 link 检索实验室与索引, Value: 127.0.0.1:8770/admin/search-lab?novel=35
+							47 container
+								48 文本 配置与运维
+								49 按钮 (expanded) 配置与运维, Secondary Actions: Collapse
+								50 内容列表
+									51 link Prompt 模板与发布, Value: 127.0.0.1:8770/admin/prompt-templates
+									52 link 供应商与模型, Value: 127.0.0.1:8770/admin/providers
+									53 link 模型主备路由, Value: 127.0.0.1:8770/admin/model-routes
+									54 link 文风与评分策略, Value: 127.0.0.1:8770/admin/style-profiles
+									55 link 价格与原子预算, Value: 127.0.0.1:8770/admin/billing
+									56 link 审计与系统健康, Value: 127.0.0.1:8770/admin/audit-center
+					57 container
+						58 标题 检索实验室与索引, Value: 1
+							59 文本 检索实验室与索引
+						60 标题 小说上下文, Value: 2
+							61 文本 小说上下文
+						62 文本 当前小说
+						63 弹出式按钮 当前小说：蓝图夹具
+						64 按钮 切换小说
+						65 link 小说库, Value: 127.0.0.1:8770/admin/novels
+						66 文本 当前小说：蓝图夹具 · #35
+						67 文本 正式基线：尚未初始化；当前内容仍按候选或规划身份展示。
+						68 摘要 本书创作入口 · 检索与记忆, Value: off
+							69 文本 本书创作入口 · 检索与记忆
+						70 文本 精确 / 别名 / pg_trgm / pgvector 检索。当前向量来自离线字符哈希，不代表真实语义模型。本页管理候选索引；正式检索见正式记忆中心。真实嵌入调用与中文分词本轮保持关闭。
+						71 文本 候选分支
+						72 弹出式按钮 候选分支：请选择
+						73 文本 嵌入档案
+						74 弹出式按钮 嵌入档案：请选择
+						75 文本 索引代次
+						76 弹出式按钮 索引代次：请选择
+						77 标题 嵌入档案与影子索引, Value: 2
+							78 文本 嵌入档案与影子索引
+						79 文本 档案名
+						80 文本栏 (settable) 档案名, Value: 离线字符哈希
+						81 文本 维度
+						82 数字栏 (settable) 维度, Value: 128
+							83 步进器 0
+								84 未知
+								85 未知
+						86 文本 距离
+						87 弹出式按钮 距离：余弦
+						88 按钮 注册离线档案新版本
+						89 按钮 新建影子代次
+						90 文本 只用精确向量检索；HNSW等待规模评测。变更档案须完整重建，旧代次保留以便重新验证后回滚。
+						91 按钮 核验清单并封存
+						92 按钮 切换或回滚至选中代次
+						93 文本 代次 #1 / 分支55 / active / 文档数1 / 9c22584cff1eca6461d3212aef1c64c45a829a57b6f4a58c6c78b70e646169f1
+						94 标题 离线评测记录, Value: 2
+							95 文本 离线评测记录
+						96 文本 尚无固定标注评测报告。结构验证不代表召回质量通过。
+						97 标题 追加有来源的文档, Value: 2
+							98 文本 追加有来源的文档
+						99 文本 原文使用精确证据ID；记忆使用活动记忆ID及分块ID。POV文档另须事件ID，正文严格等于该事件事实值，标题和别名不得包含额外秘密。
+						100 文本 来源版本ID
+						101 弹出式按钮 来源版本ID：请选择实际记录
+						102 文本 原文证据ID
+						103 弹出式按钮 原文证据ID：请选择实际记录
+						104 文本 事件ID（可选）
+						105 弹出式按钮 事件ID（可选）：请选择实际记录
+						106 文本 记忆ID（可选）
+						107 弹出式按钮 记忆ID（可选）：请选择实际记录
+						108 文本 记忆分块ID（可选）
+						109 弹出式按钮 记忆分块ID（可选）：请选择实际记录
+						110 文本 标题
+						111 文本栏 (settable) 标题
+						112 文本 有效章位
+						113 数字栏 (settable) 有效章位, Value: 1
+							114 步进器 0
+								115 未知
+								116 未知
+						117 文本 别名，每行一个
+						118 文本输入区 (settable) 别名，每行一个, Value: [文本输入区]
+						119 按钮 追加并计算离线向量
+						120 文本 操作理由
+						121 文本输入区 (settable) 操作理由, Value: [文本输入区]
+						122 按钮 刷新操作基线
+						123 标题 检索与排序解释, Value: 2
+							124 文本 检索与排序解释
+						125 文本 查询
+						126 文本栏 (settable) 查询
+						127 文本 截至章
+						128 数字栏 (settable) 截至章, Value: 1
+							129 步进器 0
+								130 未知
+								131 未知
+						132 文本 范围
+						133 弹出式按钮 范围：作者候选区
+						134 文本 角色
+						135 弹出式按钮 角色：请选择实际记录
+						136 文本 D02时间线版本
+						137 弹出式按钮 D02时间线版本：请选择实际记录
+						138 复选框 使用离线向量通道, Value: 1
+						139 文本 使用离线向量通道
+						140 按钮 检索 Top 20
+				141 滚动条 (settable, float) 0
+			142 滚动区
+				143 HTML内容 Description: 生成运行中心 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/run-center?novel=36&run=57
+					144 link 跳至主要内容, Value: 127.0.0.1:8770/admin/run-center?novel=36&run=57#fi-main-content
+					145 container 顶部栏
+						146 link NovelForge · 小说工坊, Value: 127.0.0.1:8770/admin
+						147 文本 全局搜索
+						148 搜索文本栏 全局搜索, Placeholder: 搜索
+							149 文本 搜索
+						150 文本 Press Down arrow to browse results. Use Up and Down arrows to move between results, and Tab to reach result actions. Press Escape to close results.
+						151 弹出式按钮 用户菜单
+					152 container 侧边栏导航
+						153 内容列表
+							154 container
+								155 文本 创作工作台
+								156 按钮 创作工作台
+								157 内容列表
+									158 link 创作总览, Value: 127.0.0.1:8770/admin
+									159 link 小说库, Value: 127.0.0.1:8770/admin/novels
+							160 container
+								161 文本 故事管理
+								162 按钮 故事管理
+								163 内容列表
+									164 link 故事管理, Value: 127.0.0.1:8770/admin/story-hub?novel=36
+									165 link 时间线与角色知识, Value: 127.0.0.1:8770/admin/story-timeline?novel=36
+									166 link 伏笔与主支线账本, Value: 127.0.0.1:8770/admin/foreshadow-ledger?novel=36
+							167 container
+								168 文本 生产与质量
+								169 按钮 生产与质量
+								170 内容列表
+									171 link 生成运行中心, Value: 127.0.0.1:8770/admin/run-center?novel=36
+									172 link 正文提取与硬约束, Value: 127.0.0.1:8770/admin/extraction-ledger?novel=36
+									173 link 评审中心与策略, Value: 127.0.0.1:8770/admin/review-center?novel=36
+									174 link 受限修订工作台, Value: 127.0.0.1:8770/admin/revision-desk?novel=36
+									175 link 正式提交与基线, Value: 127.0.0.1:8770/admin/canonical-commit-center?novel=36
+									176 link 上下文检查器, Value: 127.0.0.1:8770/admin/context-inspector?novel=36
+									177 link 运行恢复台, Value: 127.0.0.1:8770/admin/recovery-desk?novel=36
+							178 container
+								179 文本 检索与记忆
+								180 按钮 检索与记忆
+								181 内容列表
+									182 link 分层记忆库, Value: 127.0.0.1:8770/admin/memory-library?novel=36
+									183 link 正式记忆与索引, Value: 127.0.0.1:8770/admin/canonical-memory-center?novel=36
+									184 link 检索实验室与索引, Value: 127.0.0.1:8770/admin/search-lab?novel=36
+							185 container
+								186 文本 配置与运维
+								187 按钮 配置与运维
+								188 内容列表
+									189 link Prompt 模板与发布, Value: 127.0.0.1:8770/admin/prompt-templates
+									190 link 供应商与模型, Value: 127.0.0.1:8770/admin/providers
+									191 link 模型主备路由, Value: 127.0.0.1:8770/admin/model-routes
+									192 link 文风与评分策略, Value: 127.0.0.1:8770/admin/style-profiles
+									193 link 价格与原子预算, Value: 127.0.0.1:8770/admin/billing
+									194 link 审计与系统健康, Value: 127.0.0.1:8770/admin/audit-center
+					195 container
+						196 标题 生成运行中心, Value: 1
+							197 文本 生成运行中心
+						198 标题 小说上下文, Value: 2
+							199 文本 小说上下文
+						200 文本 当前小说
+						201 弹出式按钮 当前小说：蓝图夹具
+						202 按钮 切换小说
+						203 link 小说库, Value: 127.0.0.1:8770/admin/novels
+						204 text 当前小说：蓝图夹具 · #36 正式基线：尚未初始化；当前内容仍按候选或规划身份展示。
+						205 摘要 本书创作入口 · 生产与质量, Value: off
+							206 文本 本书创作入口 · 生产与质量
+						207 text 当前仅离线阶段可运行。本页阶段数不是正式章数，正式前缀见小说上下文；页面关闭不会取消持久任务。 查看运行ID
+						208 弹出式按钮 查看运行ID：记录 #57 · succeeded / 36
+						209 文本 运行状态
+						210 文本栏 运行状态
+						211 文本 错误码
+						212 文本栏 错误码
+						213 文本 追踪号
+						214 文本栏 追踪号
+						215 文本 开始日期 UTC
+						216 日期时间区域 开始日期 UTC, Value: 2026/10/27, 00:00
+							217 container
+								218 步进器 年, Value: 0
+								219 文本 /
+								220 步进器 月, Value: 0
+								221 文本 /
+								222 步进器 日, Value: 0
+						223 文本 结束日期 UTC
+						224 日期时间区域 结束日期 UTC, Value: 2026/10/27, 00:00
+							225 container
+								226 步进器 年, Value: 0
+								227 文本 /
+								228 步进器 月, Value: 0
+								229 文本 /
+								230 步进器 日, Value: 0
+						231 文本 筛选结果 2 条 / 第 1 页。各状态：
+						232 container 分类明细
+							233 表格
+								234 row
+									235 单元格
+										236 文本 字段路径
+									237 单元格
+										238 文本 类型
+									239 单元格
+										240 文本 内容
+								241 row
+									242 单元格
+										243 text 全部字段 $
+									244 单元格
+										245 文本 对象
+									246 单元格
+										247 文本 1项
+								248 row
+									249 单元格
+										250 text succeeded $/succeeded
+									251 单元格
+										252 文本 整数
+									253 单元格
+										254 文本 2
+						255 container 生产资料列表
+							256 表格
+								257 row
+									258 单元格
+										259 文本 运行 / 小说
+									260 单元格
+										261 文本 状态 / 错误
+									262 单元格
+										263 文本 阶段完成
+									264 单元格
+										265 文本 费用（分币种）
+									266 单元格
+										267 文本 开始时间
+									268 单元格
+										269 文本 追踪号
+								270 row
+									271 单元格
+										272 link 59 / 蓝图夹具, Value: 127.0.0.1:8770/admin/run-center?novel=36&run=59
+									273 单元格
+										274 文本 succeeded / 无
+									275 单元格
+										276 文本 1/1（非正式章数）
+									277 单元格
+										278 container 分类明细
+											279 表格
+												280 row
+													281 单元格
+														282 文本 字段路径
+													283 单元格
+														284 文本 类型
+													285 单元格
+														286 文本 内容
+												287 row
+													288 单元格
+														289 text 全部字段 $
+													290 单元格
+														291 文本 有序列表
+													292 单元格
+														293 文本 1项
+												294 row
+													295 单元格
+														296 text 第1项 $/0
+													297 单元格
+														298 文本 对象
+													299 单元格
+														300 文本 4项
+												301 row
+													302 单元格
+														303 text currency $/0/currency
+													304 单元格
+														305 文本 文本
+													306 单元格
+														307 文本 USD
+												308 row
+													309 单元格
+														310 text settled_cost $/0/settled_cost
+													311 单元格
+														312 文本 文本
+													313 单元格
+														314 文本 0.0000030000
+												315 row
+													316 单元格
+														317 text risk_reserved $/0/risk_reserved
+													318 单元格
+														319 文本 文本
+													320 单元格
+														321 文本 0
+												322 row
+													323 单元格
+														324 text unknown_count $/0/unknown_count
+													325 单元格
+														326 文本 整数
+													327 单元格
+														328 文本 0
+									329 单元格
+										330 文本 2026-10-27T05:52:47+00:00
+									331 单元格
+										332 文本 4baf052f-2ac4-4301-85a9-6bacdd018aac
+								333 row
+									334 单元格
+										335 link 57 / 蓝图夹具, Value: 127.0.0.1:8770/admin/run-center?novel=36&run=57
+									336 单元格
+										337 文本 succeeded / 无
+									338 单元格
+										339 文本 1/1（非正式章数）
+									340 单元格
+										341 container 分类明细
+											342 表格
+												343 row
+													344 单元格
+														345 文本 字段路径
+													346 单元格
+														347 文本 类型
+													348 单元格
+														349 文本 内容
+												350 row
+													351 单元格
+														352 text 全部字段 $
+													353 单元格
+														354 文本 有序列表
+													355 单元格
+														356 文本 1项
+												357 row
+													358 单元格
+														359 text 第1项 $/0
+													360 单元格
+														361 文本 对象
+													362 单元格
+														363 文本 4项
+												364 row
+													365 单元格
+														366 text currency $/0/currency
+													367 单元格
+														368 文本 文本
+													369 单元格
+														370 文本 USD
+												371 row
+													372 单元格
+														373 text settled_cost $/0/settled_cost
+													374 单元格
+														375 文本 文本
+													376 单元格
+														377 文本 0.0000030000
+												378 row
+													379 单元格
+														380 text risk_reserved $/0/risk_reserved
+													381 单元格
+														382 文本 文本
+													383 单元格
+														384 文本 0
+												385 row
+													386 单元格
+														387 text unknown_count $/0/unknown_count
+													388 单元格
+														389 文本 整数
+													390 单元格
+														391 文本 0
+									392 单元格
+										393 文本 2026-10-27T05:52:15+00:00
+									394 单元格
+										395 文本 5c1de4d0-a879-479a-8023-6d11de8924d3
+						396 文本 页码
+						397 数字栏 页码, Value: 1
+							398 步进器 0
+						399 标题 运行 57：succeeded, Value: 2
+							400 文本 运行 57：succeeded
+						401 文本 追踪 5c1de4d0-a879-479a-8023-6d11de8924d3 / live
+						402 link 暂停、取消与恢复决定, Value: 127.0.0.1:8770/admin/recovery-desk?novel=36&run=57
+						403 link 成本账本及预算, Value: 127.0.0.1:8770/admin/billing?novel=36&run=57
+						404 link 审计链, Value: 127.0.0.1:8770/admin/audit-center?trace=5c1de4d0-a879-479a-8023-6d11de8924d3
+						405 摘要 冻结输入、路由及预算快照, Value: off
+							406 文本 冻结输入、路由及预算快照
+						407 文本 阶段状态
+						408 文本栏 阶段状态
+						409 文本 尝试号
+						410 文本栏 尝试号
+						411 文本 产物类型
+						412 文本栏 产物类型
+						413 container 生产资料列表
+							414 表格
+								415 row
+									416 单元格
+										417 文本 阶段 / 尝试
+									418 单元格
+										419 文本 状态 / 错误
+									420 单元格
+										421 文本 心跳 / 租约
+									422 单元格
+										423 文本 耗时秒
+									424 单元格
+										425 文本 检查点
+								426 row
+									427 单元格
+										428 文本 scene / 1
+									429 单元格
+										430 文本 succeeded /
+									431 单元格
+										432 文本 2026-10-27T05:52:15+00:00 / 2026-10-27T05:53:45+00:00
+									433 单元格
+										434 文本 2
+									435 单元格
+										436 文本 无
+						437 标题 产物 29 / scene_candidate, Value: 3
+							438 文本 产物 29 / scene_candidate
+						439 text 预览已截断，请下载完整受控产物核对；这里不显示残缺JSON。 摘要已截断，完整内容请受控下载。 
+						440 link 下载完整产物, Value: 127.0.0.1:8770/api/v1/novels/36/runs/57/artifacts/29
+						441 标题 请求、Token、已结算与未知风险（分币种）, Value: 3
+							442 文本 请求、Token、已结算与未知风险（分币种）
+						443 text 共 1 条，每页50条。 请求页码
+						444 数字栏 请求页码, Value: 1
+							445 步进器 0
+						446 摘要 请求 18 / succeeded /, Value: off
+							447 文本 请求 18 / succeeded /
+						448 摘要 预算与账本汇总, Value: off
+							449 文本 预算与账本汇总
+						450 摘要 持久投递与回执, Value: off
+							451 文本 持久投递与回执
+				452 滚动条 0
+	453 工具栏
+		454 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			455 按钮 Description: 显示边栏, ID: SidebarButton
+			456 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		457 container BackForwardSegmentedControl
+			458 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			459 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		460 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			461 按钮 页面菜单, ID: AssistantButton
+			462 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			463 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:8770/admin/search-lab?novel=35, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			464 按钮 停止加载此页面, ID: ReloadButton
+		465 按钮 (disabled) Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		466 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		467 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	468 标签页组 Description: 标签页栏，2个标签页, ID: TabBar?isSeparate=false
+		469 标签 生成运行中心 - NovelForge · 小说工坊, Help: 若要与此按钮中的项目交互，请按下Control-Option-Shift-下箭头键。, Value: on, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=true
+			470 图像 FaviconImageView
+			471 文本 Value: 生成运行中心 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+		472 标签 正式提交与基线 - NovelForge · 小说工坊, Value: off, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=false
+			473 图像 FaviconImageView
+			474 文本 Value: 正式提交与基线 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+	475 关闭按钮
+	476 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	477 最小化按钮
+478 menu bar
+	479 Safari浏览器
+	480 文件
+	481 编辑
+	482 显示, ID: SafariViewMenu
+	483 历史记录
+	484 书签, ID: SafariBookmarksMenu
+	485 窗口, ID: SafariWindowMenu
+	486 帮助, ID: SafariHelpMenu
+
+The focused UI element is 5 HTML内容 Description: 检索实验室与索引 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/search-lab?novel=35

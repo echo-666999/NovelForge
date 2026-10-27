@@ -1,0 +1,97 @@
+{
+  "baseline_head": "67d9a3957fa24b302eb2c473f4de9efce024bc6b",
+  "baseline_files": 766,
+  "changed_baseline_files": [
+    "docs/DEVELOPMENT_TASKS.md",
+    "docs/ui/PLAN.md"
+  ],
+  "all_other_baseline_files_unchanged": true,
+  "application_schema_dependencies_changed": false,
+  "existing_task_statuses_preserved": true,
+  "only_existing_status_changed": "NF-UI08: todo -> audited_with_gaps",
+  "new_todos": [
+    "NF-UI15",
+    "NF-UI16",
+    "NF-UI17"
+  ],
+  "screenshots": 531,
+  "screenshot_bytes": 94061267,
+  "chrome_matrix_cases": 256,
+  "safari_matrix_cases": 164,
+  "safari_font_pages": 32,
+  "cleanup": {
+    "safari_application_theme": {
+      "case": "safari_application_theme",
+      "original": "system",
+      "restored": true
+    },
+    "safari_private_login_window": {
+      "case": "safari_private_login_window",
+      "window": "4781945A-D2EB-40EB-97A4-3156F03CE5A7",
+      "closed": true
+    },
+    "safari_developer_features_restoration": {
+      "case": "safari_developer_features_restoration",
+      "original": 0,
+      "enabledForAudit": 1,
+      "restored": true,
+      "observed": "24 复选框 显示网页开发者功能, Value: 0, ID: ShowDevelopMenuCheckBox"
+    },
+    "safari_cleanup": {
+      "case": "safari_cleanup",
+      "ownedTabClosed": true,
+      "originalTabPreserved": true,
+      "developerMenuRestored": true,
+      "verification": "remaining original document; single-tab bar may be hidden"
+    },
+    "chrome_cleanup": {
+      "case": "chrome_cleanup",
+      "themeSystem": true,
+      "viewportReset": true,
+      "dpr": 2,
+      "font": "16px",
+      "reduce": false,
+      "width": 1709,
+      "ownedTabClosed": true
+    },
+    "safari_font_restoration": {
+      "case": "safari_font_restoration",
+      "baselineRoot": "16px",
+      "maximumRoot": "33.177601px",
+      "actualPercent": 207.36000625,
+      "restoredRoot": "16px",
+      "privateWindowActualSizeThenClosed": true
+    },
+    "gallery_qa_cleanup": {
+      "owned_tabs_closed": true,
+      "viewport_reset": true
+    }
+  },
+  "runtime_cleanup": {
+    "preview_session_exit": 0,
+    "gallery_session_exit": 0,
+    "ports": {
+      "8770": {
+        "no_listener": true,
+        "exit_code": 1
+      },
+      "8771": {
+        "no_listener": true,
+        "exit_code": 1
+      }
+    },
+    "test_redis_socket_removed": true,
+    "removed_task_private_files": [
+      "ui08-browser.json",
+      "ui08-stage.ser"
+    ],
+    "test_fixtures_retained": true,
+    "extra_database_cleanup": false
+  },
+  "git_diff_check": "passed",
+  "gallery_qa_frames": 6,
+  "screenshot_bytes_preserved": true,
+  "local_links_valid": true,
+  "credential_exact_value_scan": "passed; no values copied",
+  "old_task_body_preserved_except_ui08_status": true
+}

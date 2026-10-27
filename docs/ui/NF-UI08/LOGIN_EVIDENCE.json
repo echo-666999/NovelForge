@@ -1,0 +1,377 @@
+{
+  "observations": [
+    {
+      "page": "login",
+      "theme": "light",
+      "brokenAria": [],
+      "controls": 3,
+      "dark": false,
+      "duplicateIds": [],
+      "fontSize": "16px",
+      "height": 1000,
+      "motion": false,
+      "overflow": [],
+      "preCount": 0,
+      "readError": false,
+      "scroll": 1440,
+      "title": "登录",
+      "unlabeled": [],
+      "unnamedButtons": [],
+      "width": 1440
+    },
+    {
+      "page": "login",
+      "theme": "light",
+      "brokenAria": [],
+      "controls": 3,
+      "dark": false,
+      "duplicateIds": [],
+      "fontSize": "16px",
+      "height": 1000,
+      "motion": false,
+      "overflow": [],
+      "preCount": 0,
+      "readError": false,
+      "scroll": 1920,
+      "title": "登录",
+      "unlabeled": [],
+      "unnamedButtons": [],
+      "width": 1920
+    },
+    {
+      "page": "login",
+      "theme": "light",
+      "brokenAria": [],
+      "controls": 3,
+      "dark": false,
+      "duplicateIds": [],
+      "fontSize": "16px",
+      "height": 1000,
+      "motion": false,
+      "overflow": [],
+      "preCount": 0,
+      "readError": false,
+      "scroll": 1024,
+      "title": "登录",
+      "unlabeled": [],
+      "unnamedButtons": [],
+      "width": 1024
+    },
+    {
+      "page": "login",
+      "theme": "light",
+      "brokenAria": [],
+      "controls": 3,
+      "dark": false,
+      "duplicateIds": [],
+      "fontSize": "16px",
+      "height": 844,
+      "motion": false,
+      "overflow": [],
+      "preCount": 0,
+      "readError": false,
+      "scroll": 390,
+      "title": "登录",
+      "unlabeled": [],
+      "unnamedButtons": [],
+      "width": 390
+    },
+    {
+      "page": "login",
+      "theme": "dark",
+      "brokenAria": [],
+      "controls": 3,
+      "dark": true,
+      "duplicateIds": [],
+      "fontSize": "16px",
+      "height": 1000,
+      "motion": false,
+      "overflow": [],
+      "preCount": 0,
+      "readError": false,
+      "scroll": 1440,
+      "title": "登录",
+      "unlabeled": [],
+      "unnamedButtons": [],
+      "width": 1440
+    },
+    {
+      "page": "login",
+      "theme": "dark",
+      "brokenAria": [],
+      "controls": 3,
+      "dark": true,
+      "duplicateIds": [],
+      "fontSize": "16px",
+      "height": 1000,
+      "motion": false,
+      "overflow": [],
+      "preCount": 0,
+      "readError": false,
+      "scroll": 1920,
+      "title": "登录",
+      "unlabeled": [],
+      "unnamedButtons": [],
+      "width": 1920
+    },
+    {
+      "page": "login",
+      "theme": "dark",
+      "brokenAria": [],
+      "controls": 3,
+      "dark": true,
+      "duplicateIds": [],
+      "fontSize": "16px",
+      "height": 1000,
+      "motion": false,
+      "overflow": [],
+      "preCount": 0,
+      "readError": false,
+      "scroll": 1024,
+      "title": "登录",
+      "unlabeled": [],
+      "unnamedButtons": [],
+      "width": 1024
+    },
+    {
+      "page": "login",
+      "theme": "dark",
+      "brokenAria": [],
+      "controls": 3,
+      "dark": true,
+      "duplicateIds": [],
+      "fontSize": "16px",
+      "height": 844,
+      "motion": false,
+      "overflow": [],
+      "preCount": 0,
+      "readError": false,
+      "scroll": 390,
+      "title": "登录",
+      "unlabeled": [],
+      "unnamedButtons": [],
+      "width": 390
+    }
+  ],
+  "contrasts": [
+    {
+      "page": "login",
+      "theme": "light",
+      "rows": [
+        {
+          "text": "NovelForge · 小说工坊",
+          "foreground": "oklch(0.141 0.005 285.823)",
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "fontSize": "20px",
+          "ratio": 19.891,
+          "required": 3,
+          "pass": true,
+          "measured": true
+        },
+        {
+          "text": "登录",
+          "foreground": "oklch(0.141 0.005 285.823)",
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "fontSize": "24px",
+          "ratio": 19.891,
+          "required": 3,
+          "pass": true,
+          "measured": true
+        },
+        {
+          "text": "邮箱地址",
+          "foreground": "oklch(0.141 0.005 285.823)",
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "fontSize": "14px",
+          "ratio": 19.891,
+          "required": 4.5,
+          "pass": true,
+          "measured": true
+        },
+        {
+          "text": "*",
+          "foreground": "oklch(0.577 0.245 27.325)",
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "fontSize": "10.5px",
+          "ratio": 4.765,
+          "required": 4.5,
+          "pass": true,
+          "measured": true
+        },
+        {
+          "text": "登录",
+          "foreground": "oklch(1 0 0)",
+          "background": [
+            79.2757957959748,
+            57.22315037075533,
+            246.3966120513585
+          ],
+          "fontSize": "14px",
+          "ratio": 6.441,
+          "required": 4.5,
+          "pass": true,
+          "measured": true
+        }
+      ]
+    },
+    {
+      "page": "login",
+      "theme": "dark",
+      "rows": [
+        {
+          "text": "NovelForge · 小说工坊",
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            23.918079737227714,
+            23.917193843807766,
+            26.987071975848387
+          ],
+          "fontSize": "20px",
+          "ratio": 17.73,
+          "required": 3,
+          "pass": true,
+          "measured": true
+        },
+        {
+          "text": "登录",
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            23.918079737227714,
+            23.917193843807766,
+            26.987071975848387
+          ],
+          "fontSize": "24px",
+          "ratio": 17.73,
+          "required": 3,
+          "pass": true,
+          "measured": true
+        },
+        {
+          "text": "邮箱地址",
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            23.918079737227714,
+            23.917193843807766,
+            26.987071975848387
+          ],
+          "fontSize": "14px",
+          "ratio": 17.73,
+          "required": 4.5,
+          "pass": true,
+          "measured": true
+        },
+        {
+          "text": "*",
+          "foreground": "oklch(0.704 0.191 22.216)",
+          "background": [
+            23.918079737227714,
+            23.917193843807766,
+            26.987071975848387
+          ],
+          "fontSize": "10.5px",
+          "ratio": 6.13,
+          "required": 4.5,
+          "pass": true,
+          "measured": true
+        },
+        {
+          "text": "登录",
+          "foreground": "oklch(1 0 0)",
+          "background": [
+            79.2757957959748,
+            57.22315037075533,
+            246.3966120513585
+          ],
+          "fontSize": "14px",
+          "ratio": 6.441,
+          "required": 4.5,
+          "pass": true,
+          "measured": true
+        }
+      ]
+    }
+  ],
+  "special": [
+    {
+      "case": "login_page_zoom",
+      "browser": "Chrome",
+      "zoom": "200% (native toolbar)",
+      "width": 854,
+      "height": 441,
+      "scroll": 854,
+      "rootFont": "16px",
+      "result": "no horizontal overflow",
+      "restored": true
+    },
+    {
+      "case": "OS_text_scale",
+      "value": "200%",
+      "observedRoot": "16px",
+      "observedLabel": "14px",
+      "result": "未产生实际字号变化，不能作为纯字体200%通过证据"
+    },
+    {
+      "case": "login_reduced_motion",
+      "media": true,
+      "transition": "0.00001s",
+      "animation": "0.00001s"
+    },
+    {
+      "case": "login_keyboard",
+      "focus": [
+        {
+          "focusVisible": true,
+          "label": "form.password",
+          "outline": "rgb(17, 64, 123) none 1px",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(32, 39, 55, 0.455) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "tag": "INPUT",
+          "type": "password"
+        },
+        {
+          "focusVisible": true,
+          "label": "显示密码",
+          "outline": "rgb(113, 113, 123) none 1px",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0 0 0 / 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "tag": "BUTTON",
+          "type": "button"
+        },
+        {
+          "focusVisible": true,
+          "label": "form.remember",
+          "outline": "rgb(0, 95, 204) none 1px",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(255, 255, 255) 0px 0px 0px 0px, oklch(0.511 0.262 276.966) 0px 0px 0px 2px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+          "tag": "INPUT",
+          "type": "checkbox"
+        },
+        {
+          "focusVisible": true,
+          "label": "form.remember",
+          "outline": "rgb(0, 95, 204) none 1px",
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(255, 255, 255) 0px 0px 0px 0px, oklch(0.511 0.262 276.966) 0px 0px 0px 2px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+          "tag": "INPUT",
+          "type": "checkbox"
+        }
+      ]
+    },
+    {
+      "case": "login_dark_media_attempt",
+      "result": "media=true但应用dark=false；DevTools打开时视口覆盖未生效，不计入深色/视口通过"
+    }
+  ]
+}

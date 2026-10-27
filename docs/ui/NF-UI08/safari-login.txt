@@ -1,0 +1,54 @@
+Window: "登录 - NovelForge · 小说工坊", App: Safari浏览器.
+0 标准窗口 登录 - NovelForge · 小说工坊，无痕浏览, ID: SafariWindow?IsSecure=false&UUID=A947F5CD-B810-4028-ABA8-FEE6FE182D35, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: 登录 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/login
+					6 container
+						7 文本 NovelForge · 小说工坊
+						8 标题 登录, Value: 1
+							9 文本 登录
+						10 container
+							11 文本 邮箱地址*
+						12 电子邮件栏 (settable) 邮箱地址 *
+							13 按钮 自动填充密码
+						14 container
+							15 文本 密码*
+						16 安全文本栏 (settable) 密码 *
+						17 按钮 显示密码
+						18 container
+							19 复选框 保持登录状态, Value: 0
+							20 文本 保持登录状态
+						21 按钮 登录
+	22 工具栏
+		23 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			24 按钮 Description: 显示边栏, ID: SidebarButton
+			25 文本 Description: 开关边栏, Value: 无痕浏览
+		26 container BackForwardSegmentedControl
+			27 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			28 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		29 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			30 按钮 页面菜单, ID: AssistantButton
+			31 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			32 文本栏 (settable) Description: 无痕浏览窗口中的智能搜索栏, Value: 127.0.0.1:8770/admin/login, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			33 按钮 翻译可用, ID: TranslationButton
+			34 按钮 重新加载此页面, ID: ReloadButton
+		35 按钮 Description: 显示此站点的隐私报告, ID: PrivacyReportShieldButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		36 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		37 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		38 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	39 关闭按钮
+	40 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	41 最小化按钮
+42 menu bar
+	43 Safari浏览器
+	44 文件
+	45 编辑
+	46 显示, ID: SafariViewMenu
+	47 历史记录
+	48 书签, ID: SafariBookmarksMenu
+	49 窗口, ID: SafariWindowMenu
+	50 帮助, ID: SafariHelpMenu
+
+The focused UI element is 12 电子邮件栏 (settable) 邮箱地址 *

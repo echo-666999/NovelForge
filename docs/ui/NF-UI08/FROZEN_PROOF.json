@@ -1,0 +1,22 @@
+{
+  "prompt": {
+    "id": "18",
+    "frozen_equals_stored": true,
+    "frozen_content_valid": true
+  },
+  "style": {
+    "id": "18",
+    "frozen_equals_stored": true,
+    "frozen_content_valid": true
+  },
+  "route": {
+    "id": "18",
+    "frozen_equals_stored": true,
+    "frozen_content_valid": true
+  },
+  "budget_request_limit": {
+    "value": "123.4500000001",
+    "type": "string",
+    "exact": true
+  }
+}

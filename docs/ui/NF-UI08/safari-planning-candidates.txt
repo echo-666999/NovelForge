@@ -1,0 +1,146 @@
+Window: "离线规划候选 - NovelForge · 小说工坊", App: Safari浏览器.
+0 标准窗口 离线规划候选 - NovelForge · 小说工坊, ID: SafariWindow?IsSecure=false&UUID=1C91E0BE-FABC-4972-8AB6-02AB60E256E5, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: 离线规划候选 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels/36/planning-candidates
+					6 link 跳至主要内容, Value: 127.0.0.1:8770/admin/novels/36/planning-candidates#fi-main-content
+					7 container 顶部栏
+						8 link NovelForge · 小说工坊, Value: 127.0.0.1:8770/admin
+						9 文本 全局搜索
+						10 搜索文本栏 (settable) 全局搜索, Placeholder: 搜索
+							11 文本 搜索
+						12 文本 Press Down arrow to browse results. Use Up and Down arrows to move between results, and Tab to reach result actions. Press Escape to close results.
+						13 弹出式按钮 用户菜单
+					14 container 侧边栏导航
+						15 内容列表
+							16 container
+								17 文本 创作工作台
+								18 按钮 (expanded) 创作工作台, Secondary Actions: Collapse
+								19 内容列表
+									20 link 创作总览, Value: 127.0.0.1:8770/admin
+									21 link 小说库, Value: 127.0.0.1:8770/admin/novels
+							22 container
+								23 文本 故事管理
+								24 按钮 (expanded) 故事管理, Secondary Actions: Collapse
+								25 内容列表
+									26 link 故事管理, Value: 127.0.0.1:8770/admin/story-hub?novel=36
+									27 link 时间线与角色知识, Value: 127.0.0.1:8770/admin/story-timeline?novel=36
+									28 link 伏笔与主支线账本, Value: 127.0.0.1:8770/admin/foreshadow-ledger?novel=36
+							29 container
+								30 文本 生产与质量
+								31 按钮 (expanded) 生产与质量, Secondary Actions: Collapse
+								32 内容列表
+									33 link 生成运行中心, Value: 127.0.0.1:8770/admin/run-center?novel=36
+									34 link 正文提取与硬约束, Value: 127.0.0.1:8770/admin/extraction-ledger?novel=36
+									35 link 评审中心与策略, Value: 127.0.0.1:8770/admin/review-center?novel=36
+									36 link 受限修订工作台, Value: 127.0.0.1:8770/admin/revision-desk?novel=36
+									37 link 正式提交与基线, Value: 127.0.0.1:8770/admin/canonical-commit-center?novel=36
+									38 link 上下文检查器, Value: 127.0.0.1:8770/admin/context-inspector?novel=36
+									39 link 运行恢复台, Value: 127.0.0.1:8770/admin/recovery-desk?novel=36
+							40 container
+								41 文本 检索与记忆
+								42 按钮 (expanded) 检索与记忆, Secondary Actions: Collapse
+								43 内容列表
+									44 link 分层记忆库, Value: 127.0.0.1:8770/admin/memory-library?novel=36
+									45 link 正式记忆与索引, Value: 127.0.0.1:8770/admin/canonical-memory-center?novel=36
+									46 link 检索实验室与索引, Value: 127.0.0.1:8770/admin/search-lab?novel=36
+							47 container
+								48 文本 配置与运维
+								49 按钮 (expanded) 配置与运维, Secondary Actions: Collapse
+								50 内容列表
+									51 link Prompt 模板与发布, Value: 127.0.0.1:8770/admin/prompt-templates
+									52 link 供应商与模型, Value: 127.0.0.1:8770/admin/providers
+									53 link 模型主备路由, Value: 127.0.0.1:8770/admin/model-routes
+									54 link 文风与评分策略, Value: 127.0.0.1:8770/admin/style-profiles
+									55 link 价格与原子预算, Value: 127.0.0.1:8770/admin/billing
+									56 link 审计与系统健康, Value: 127.0.0.1:8770/admin/audit-center
+					57 container
+						58 container 当前位置
+							59 内容列表
+								60 link 小说, Value: 127.0.0.1:8770/admin/novels
+								61 文本 离线规划候选
+						62 标题 离线规划候选, Value: 1
+							63 文本 离线规划候选
+						64 标题 小说上下文, Value: 2
+							65 文本 小说上下文
+						66 文本 当前小说
+						67 弹出式按钮 当前小说：蓝图夹具
+						68 按钮 切换小说
+						69 link 小说库, Value: 127.0.0.1:8770/admin/novels
+						70 文本 当前小说：蓝图夹具 · #36
+						71 文本 正式基线：尚未初始化；当前内容仍按候选或规划身份展示。
+						72 摘要 本书创作入口 · 生产与质量, Value: off
+							73 文本 本书创作入口 · 生产与质量
+						74 按钮 开始新一轮操作
+						75 文本 相同输入重复保存复用原记录；新一轮请先明确开始。
+						76 文本 当前仅回放明确提供的离线响应，用于检查规划流程；不是实际 AI 创作。候选不会自动批准或推进正式剧情。
+						77 标题 准备离线规划, Value: 2
+							78 文本 准备离线规划
+						79 文本 阶段
+						80 弹出式按钮 阶段：输入提炼
+						81 文本 前阶段
+						82 弹出式按钮 前阶段：无（输入提炼）
+						83 文本 已发布离线路由
+						84 弹出式按钮 已发布离线路由：请选择
+						85 文本 预算政策
+						86 弹出式按钮 预算政策：请选择
+						87 container 价格版本
+							88 文本 价格版本
+							89 文本 逐项选取实际记录，保留选择顺序。
+							90 container
+								91 复选框 报价 #24 · 24 / 1 / USD, Value: 0
+								92 文本 报价 #24 · 24 / 1 / USD
+							93 container
+								94 复选框 报价 #23 · 23 / 1 / USD, Value: 0
+								95 文本 报价 #23 · 23 / 1 / USD
+						96 摘要 离线验收资料与固定结构（开发验证用）, Value: off
+							97 文本 离线验收资料与固定结构（开发验证用）
+						98 文本 说明
+						99 文本输入区 (settable) 说明, Value: [文本输入区]
+						100 按钮 保存离线任务
+						101 文本 当前候选
+						102 弹出式按钮 当前候选：选择候选
+						103 文本 对比候选
+						104 弹出式按钮 对比候选：不对比
+						105 按钮 查看 / 比较
+						106 按钮 执行离线回放
+						107 按钮 确认采纳为草稿
+				108 滚动条 (settable, float) 0
+	109 工具栏
+		110 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			111 按钮 Description: 显示边栏, ID: SidebarButton
+			112 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		113 container BackForwardSegmentedControl
+			114 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			115 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		116 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			117 按钮 页面菜单, ID: AssistantButton
+			118 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			119 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:8770/admin/novels/36/planning-candidates, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			120 按钮 重新加载此页面, ID: ReloadButton
+		121 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		122 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		123 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	124 标签页组 Description: 标签页栏，2个标签页, ID: TabBar?isSeparate=false
+		125 标签 离线规划候选 - NovelForge · 小说工坊, Help: 若要与此按钮中的项目交互，请按下Control-Option-Shift-下箭头键。, Value: on, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=true
+			126 图像 FaviconImageView
+			127 文本 Value: 离线规划候选 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+		128 标签 正式提交与基线 - NovelForge · 小说工坊, Value: off, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=false
+			129 图像 FaviconImageView
+			130 文本 Value: 正式提交与基线 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+	131 关闭按钮
+	132 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	133 最小化按钮
+134 menu bar
+	135 Safari浏览器
+	136 文件
+	137 编辑
+	138 显示, ID: SafariViewMenu
+	139 历史记录
+	140 书签, ID: SafariBookmarksMenu
+	141 窗口, ID: SafariWindowMenu
+	142 帮助, ID: SafariHelpMenu
+
+The focused UI element is 5 HTML内容 Description: 离线规划候选 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels/36/planning-candidates

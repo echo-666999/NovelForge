@@ -1,0 +1,188 @@
+[
+  {
+    "name": "overview",
+    "path": "/admin",
+    "route": "admin",
+    "action": "App\\Filament\\Pages\\Overview"
+  },
+  {
+    "name": "audit-center",
+    "path": "/admin/audit-center",
+    "route": "admin/audit-center",
+    "action": "App\\Filament\\Pages\\AuditCenter"
+  },
+  {
+    "name": "billing",
+    "path": "/admin/billing",
+    "route": "admin/billing",
+    "action": "App\\Filament\\Pages\\Billing"
+  },
+  {
+    "name": "canonical-commit-center",
+    "path": "/admin/canonical-commit-center?novel=37",
+    "route": "admin/canonical-commit-center",
+    "action": "App\\Filament\\Pages\\CanonicalCommitCenter"
+  },
+  {
+    "name": "canonical-memory-center",
+    "path": "/admin/canonical-memory-center?novel=37",
+    "route": "admin/canonical-memory-center",
+    "action": "App\\Filament\\Pages\\CanonicalMemoryCenter"
+  },
+  {
+    "name": "context-inspector",
+    "path": "/admin/context-inspector?novel=36&step=43&manifest=1",
+    "route": "admin/context-inspector",
+    "action": "App\\Filament\\Pages\\ContextInspector"
+  },
+  {
+    "name": "extraction-ledger",
+    "path": "/admin/extraction-ledger?novel=36",
+    "route": "admin/extraction-ledger",
+    "action": "App\\Filament\\Pages\\ExtractionLedger"
+  },
+  {
+    "name": "foreshadow-ledger",
+    "path": "/admin/foreshadow-ledger?novel=36",
+    "route": "admin/foreshadow-ledger",
+    "action": "App\\Filament\\Pages\\ForeshadowLedger"
+  },
+  {
+    "name": "memory-library",
+    "path": "/admin/memory-library?novel=35",
+    "route": "admin/memory-library",
+    "action": "App\\Filament\\Pages\\MemoryLibrary"
+  },
+  {
+    "name": "model-routes",
+    "path": "/admin/model-routes",
+    "route": "admin/model-routes",
+    "action": "App\\Filament\\Pages\\ModelRoutes"
+  },
+  {
+    "name": "novels",
+    "path": "/admin/novels",
+    "route": "admin/novels",
+    "action": "App\\Filament\\Resources\\NovelResource\\Pages\\ListNovels"
+  },
+  {
+    "name": "create",
+    "path": "/admin/novels/create",
+    "route": "admin/novels/create",
+    "action": "App\\Filament\\Resources\\NovelResource\\Pages\\CreateNovel"
+  },
+  {
+    "name": "blueprints",
+    "path": "/admin/novels/36/blueprints",
+    "route": "admin/novels/{record}/blueprints",
+    "action": "App\\Filament\\Resources\\NovelResource\\Pages\\Blueprints"
+  },
+  {
+    "name": "draft-editor",
+    "path": "/admin/novels/36/draft-editor",
+    "route": "admin/novels/{record}/draft-editor",
+    "action": "App\\Filament\\Resources\\NovelResource\\Pages\\DraftEditor"
+  },
+  {
+    "name": "intent",
+    "path": "/admin/novels/36/intent",
+    "route": "admin/novels/{record}/intent",
+    "action": "App\\Filament\\Resources\\NovelResource\\Pages\\NovelIntent"
+  },
+  {
+    "name": "planning-candidates",
+    "path": "/admin/novels/36/planning-candidates",
+    "route": "admin/novels/{record}/planning-candidates",
+    "action": "App\\Filament\\Resources\\NovelResource\\Pages\\PlanningCandidates"
+  },
+  {
+    "name": "plans",
+    "path": "/admin/novels/36/plans",
+    "route": "admin/novels/{record}/plans",
+    "action": "App\\Filament\\Resources\\NovelResource\\Pages\\RollingPlans"
+  },
+  {
+    "name": "structure",
+    "path": "/admin/novels/36/structure",
+    "route": "admin/novels/{record}/structure",
+    "action": "App\\Filament\\Resources\\NovelResource\\Pages\\Structure"
+  },
+  {
+    "name": "workspace",
+    "path": "/admin/novels/36/workspace",
+    "route": "admin/novels/{record}/workspace",
+    "action": "App\\Filament\\Resources\\NovelResource\\Pages\\Workspace"
+  },
+  {
+    "name": "world",
+    "path": "/admin/novels/36/world",
+    "route": "admin/novels/{record}/world",
+    "action": "App\\Filament\\Resources\\NovelResource\\Pages\\WorldLibrary"
+  },
+  {
+    "name": "project-status",
+    "path": "/admin/project-status",
+    "route": "admin/project-status",
+    "action": "App\\Filament\\Pages\\ProjectStatus"
+  },
+  {
+    "name": "prompt-templates",
+    "path": "/admin/prompt-templates",
+    "route": "admin/prompt-templates",
+    "action": "App\\Filament\\Pages\\PromptTemplates"
+  },
+  {
+    "name": "providers",
+    "path": "/admin/providers",
+    "route": "admin/providers",
+    "action": "App\\Filament\\Pages\\Providers"
+  },
+  {
+    "name": "recovery-desk",
+    "path": "/admin/recovery-desk?novel=36&run=57",
+    "route": "admin/recovery-desk",
+    "action": "App\\Filament\\Pages\\RecoveryDesk"
+  },
+  {
+    "name": "review-center",
+    "path": "/admin/review-center?novel=36&version=1",
+    "route": "admin/review-center",
+    "action": "App\\Filament\\Pages\\ReviewCenter"
+  },
+  {
+    "name": "revision-desk",
+    "path": "/admin/revision-desk?novel=36",
+    "route": "admin/revision-desk",
+    "action": "App\\Filament\\Pages\\RevisionDesk"
+  },
+  {
+    "name": "run-center",
+    "path": "/admin/run-center?novel=36&run=57",
+    "route": "admin/run-center",
+    "action": "App\\Filament\\Pages\\RunCenter"
+  },
+  {
+    "name": "search-lab",
+    "path": "/admin/search-lab?novel=35",
+    "route": "admin/search-lab",
+    "action": "App\\Filament\\Pages\\SearchLab"
+  },
+  {
+    "name": "story-hub",
+    "path": "/admin/story-hub?novel=36",
+    "route": "admin/story-hub",
+    "action": "App\\Filament\\Pages\\StoryHub"
+  },
+  {
+    "name": "story-timeline",
+    "path": "/admin/story-timeline?novel=36",
+    "route": "admin/story-timeline",
+    "action": "App\\Filament\\Pages\\StoryTimeline"
+  },
+  {
+    "name": "style-profiles",
+    "path": "/admin/style-profiles",
+    "route": "admin/style-profiles",
+    "action": "App\\Filament\\Pages\\StyleProfiles"
+  }
+]

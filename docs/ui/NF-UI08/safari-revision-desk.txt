@@ -1,0 +1,230 @@
+Window: "受限修订与完整章节复评 - NovelForge · 小说工坊", App: Safari浏览器.
+0 标准窗口 受限修订与完整章节复评 - NovelForge · 小说工坊, ID: SafariWindow?IsSecure=false&UUID=1C91E0BE-FABC-4972-8AB6-02AB60E256E5, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: 受限修订与完整章节复评 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/revision-desk?novel=36
+					6 link 跳至主要内容, Value: 127.0.0.1:8770/admin/revision-desk?novel=36#fi-main-content
+					7 container 顶部栏
+						8 link NovelForge · 小说工坊, Value: 127.0.0.1:8770/admin
+						9 文本 全局搜索
+						10 搜索文本栏 (settable) 全局搜索, Placeholder: 搜索
+							11 文本 搜索
+						12 文本 Press Down arrow to browse results. Use Up and Down arrows to move between results, and Tab to reach result actions. Press Escape to close results.
+						13 弹出式按钮 用户菜单
+					14 container 侧边栏导航
+						15 内容列表
+							16 container
+								17 文本 创作工作台
+								18 按钮 (expanded) 创作工作台, Secondary Actions: Collapse
+								19 内容列表
+									20 link 创作总览, Value: 127.0.0.1:8770/admin
+									21 link 小说库, Value: 127.0.0.1:8770/admin/novels
+							22 container
+								23 文本 故事管理
+								24 按钮 (expanded) 故事管理, Secondary Actions: Collapse
+								25 内容列表
+									26 link 故事管理, Value: 127.0.0.1:8770/admin/story-hub?novel=36
+									27 link 时间线与角色知识, Value: 127.0.0.1:8770/admin/story-timeline?novel=36
+									28 link 伏笔与主支线账本, Value: 127.0.0.1:8770/admin/foreshadow-ledger?novel=36
+							29 container
+								30 文本 生产与质量
+								31 按钮 (expanded) 生产与质量, Secondary Actions: Collapse
+								32 内容列表
+									33 link 生成运行中心, Value: 127.0.0.1:8770/admin/run-center?novel=36
+									34 link 正文提取与硬约束, Value: 127.0.0.1:8770/admin/extraction-ledger?novel=36
+									35 link 评审中心与策略, Value: 127.0.0.1:8770/admin/review-center?novel=36
+									36 link 受限修订工作台, Value: 127.0.0.1:8770/admin/revision-desk?novel=36
+									37 link 正式提交与基线, Value: 127.0.0.1:8770/admin/canonical-commit-center?novel=36
+									38 link 上下文检查器, Value: 127.0.0.1:8770/admin/context-inspector?novel=36
+									39 link 运行恢复台, Value: 127.0.0.1:8770/admin/recovery-desk?novel=36
+							40 container
+								41 文本 检索与记忆
+								42 按钮 (expanded) 检索与记忆, Secondary Actions: Collapse
+								43 内容列表
+									44 link 分层记忆库, Value: 127.0.0.1:8770/admin/memory-library?novel=36
+									45 link 正式记忆与索引, Value: 127.0.0.1:8770/admin/canonical-memory-center?novel=36
+									46 link 检索实验室与索引, Value: 127.0.0.1:8770/admin/search-lab?novel=36
+							47 container
+								48 文本 配置与运维
+								49 按钮 (expanded) 配置与运维, Secondary Actions: Collapse
+								50 内容列表
+									51 link Prompt 模板与发布, Value: 127.0.0.1:8770/admin/prompt-templates
+									52 link 供应商与模型, Value: 127.0.0.1:8770/admin/providers
+									53 link 模型主备路由, Value: 127.0.0.1:8770/admin/model-routes
+									54 link 文风与评分策略, Value: 127.0.0.1:8770/admin/style-profiles
+									55 link 价格与原子预算, Value: 127.0.0.1:8770/admin/billing
+									56 link 审计与系统健康, Value: 127.0.0.1:8770/admin/audit-center
+					57 container
+						58 标题 受限修订与完整章节复评, Value: 1
+							59 文本 受限修订与完整章节复评
+						60 标题 小说上下文, Value: 2
+							61 文本 小说上下文
+						62 文本 当前小说
+						63 弹出式按钮 当前小说：蓝图夹具
+						64 按钮 切换小说
+						65 link 小说库, Value: 127.0.0.1:8770/admin/novels
+						66 文本 当前小说：蓝图夹具 · #36
+						67 文本 正式基线：尚未初始化；当前内容仍按候选或规划身份展示。
+						68 摘要 本书创作入口 · 生产与质量, Value: off
+							69 文本 本书创作入口 · 生产与质量
+						70 按钮 开始新一轮操作
+						71 文本 相同输入重复保存复用原记录；新一轮请先明确开始。
+						72 文本 补丁不会自动采纳；默认最多三轮自动文学修订。无改善、预算不足或达到上限转人工，旧稿与旧失败保留。
+						73 标题 选择问题与允许范围, Value: 2
+							74 文本 选择问题与允许范围
+						75 文本 来源评审
+						76 弹出式按钮 来源评审：请选择实际记录
+						77 按钮 读取评审并准备首段范围
+						78 container 问题
+							79 文本 问题
+							80 文本 逐项选取实际记录，保留选择顺序。
+							81 文本 暂无符合当前范围的记录。
+						82 文本 方式
+						83 弹出式按钮 方式：明确离线自动补丁
+						84 container 允许范围
+							85 text 允许范围 类型
+							86 弹出式按钮 类型：paragraph
+							87 按钮 展开 允许修改的范围（0项）
+							88 按钮 添加来源场景版本
+						89 摘要 高级导入（可选，不代替逐字段编辑）, Value: off
+							90 文本 高级导入（可选，不代替逐字段编辑）
+						91 container 额外保留事件
+							92 文本 额外保留事件
+							93 文本 逐项选取实际记录，保留选择顺序。
+							94 文本 暂无符合当前范围的记录。
+						95 文本 已提取的事实、知识/因果关系和伏笔会自动纳入保留门禁，不能通过空列表省略。
+						96 container 额外保留引文
+							97 文本 额外保留引文
+							98 文本 暂无条目；不会自动填入事实、评分或凭证。
+							99 按钮 添加额外保留引文条目
+						100 摘要 高级导入（可选，不代替逐字段编辑）, Value: off
+							101 文本 高级导入（可选，不代替逐字段编辑）
+						102 文本 操作原因
+						103 文本输入区 (settable) 操作原因, Value: [文本输入区]
+						104 按钮 冻结修订任务
+						105 标题 修订历史与候选差异, Value: 2
+							106 文本 修订历史与候选差异
+						107 container 1 · 正文 1 · awaiting_selection · 自动轮次 1/3
+						108 文本 任务
+						109 弹出式按钮 任务 ：请选择实际记录
+						110 按钮 查看问题、原文与差异
+						111 标题 明确离线补丁与新正文复评, Value: 2
+							112 文本 明确离线补丁与新正文复评
+						113 按钮 人工确认已达标的非阻塞文学候选
+						114 container 有序修订补丁
+							115 文本 有序修订补丁
+							116 按钮 展开 有序补丁（0项）
+						117 摘要 高级导入（可选，不代替逐字段编辑）, Value: off
+							118 文本 高级导入（可选，不代替逐字段编辑）
+						119 按钮 仅验证并保存离线提案
+						120 摘要 通过预算与离线路由生成提案, Value: off
+							121 文本 通过预算与离线路由生成提案
+						122 文本 采纳后必须针对新正文重新定位证据，重新取证并评审完整章节衔接，不能复用旧引文。
+						123 container 新正文候选提取
+							124 文本 新正文候选提取
+							125 按钮 展开 候选事件（0项）
+							126 按钮 展开 事件依赖（0项）
+							127 按钮 展开 人物知情（0项）
+							128 按钮 展开 人物关系（0项）
+							129 按钮 展开 伏笔证据（0项）
+						130 摘要 高级导入（可选，不代替逐字段编辑）, Value: off
+							131 文本 高级导入（可选，不代替逐字段编辑）
+						132 container 完整章节复评
+							133 文本 完整章节复评
+							134 按钮 收起 七维评分（7项）
+							135 container 七维评分
+								136 文本 七维评分
+								137 按钮 收起 情节推进（3项）
+								138 container 情节推进
+									139 text 情节推进 分数（1至5）
+									140 文本栏 (settable) 分数（1至5）, Value: 0
+									141 文本 理由
+									142 文本输入区 (settable) 理由, Value: [文本输入区]
+									143 按钮 展开 原文证据（3项）
+								144 按钮 收起 人物一致性（3项）
+								145 container 人物一致性
+									146 text 人物一致性 分数（1至5）
+									147 文本栏 (settable) 分数（1至5）, Value: 0
+									148 文本 理由
+									149 文本输入区 (settable) 理由, Value: [文本输入区]
+									150 按钮 展开 原文证据（3项）
+								151 按钮 收起 因果连贯（3项）
+								152 container 因果连贯
+									153 text 因果连贯 分数（1至5）
+									154 文本栏 (settable) 分数（1至5）, Value: 0
+									155 文本 理由
+									156 文本输入区 (settable) 理由, Value: [文本输入区]
+									157 按钮 展开 原文证据（3项）
+								158 按钮 收起 节奏（3项）
+								159 container 节奏
+									160 text 节奏 分数（1至5）
+									161 文本栏 (settable) 分数（1至5）, Value: 0
+									162 文本 理由
+									163 文本输入区 (settable) 理由, Value: [文本输入区]
+									164 按钮 展开 原文证据（3项）
+								165 按钮 收起 对白与声音（3项）
+								166 container 对白与声音
+									167 text 对白与声音 分数（1至5）
+									168 文本栏 (settable) 分数（1至5）, Value: 0
+									169 文本 理由
+									170 文本输入区 (settable) 理由, Value: [文本输入区]
+									171 按钮 展开 原文证据（3项）
+								172 按钮 收起 自然度（3项）
+								173 container 自然度
+									174 text 自然度 分数（1至5）
+									175 文本栏 (settable) 分数（1至5）, Value: 0
+									176 文本 理由
+									177 文本输入区 (settable) 理由, Value: [文本输入区]
+									178 按钮 展开 原文证据（3项）
+								179 按钮 收起 章节吸引力（3项）
+								180 container 章节吸引力
+									181 text 章节吸引力 分数（1至5）
+									182 文本栏 (settable) 分数（1至5）, Value: 0
+									183 文本 理由
+									184 文本输入区 (settable) 理由, Value: [文本输入区]
+									185 按钮 展开 原文证据（3项）
+							186 按钮 展开 问题清单（0项）
+						187 摘要 高级导入（可选，不代替逐字段编辑）, Value: off
+							188 文本 高级导入（可选，不代替逐字段编辑）
+						189 文本 复评者
+						190 弹出式按钮 复评者：明确离线响应
+						191 按钮 重新取证并完整章节复评
+				192 滚动条 (settable, float) 0
+	193 工具栏
+		194 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			195 按钮 Description: 显示边栏, ID: SidebarButton
+			196 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		197 container BackForwardSegmentedControl
+			198 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			199 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		200 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			201 按钮 页面菜单, ID: AssistantButton
+			202 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			203 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:8770/admin/revision-desk?novel=36, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			204 按钮 重新加载此页面, ID: ReloadButton
+		205 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		206 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		207 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	208 标签页组 Description: 标签页栏，2个标签页, ID: TabBar?isSeparate=false
+		209 标签 受限修订与完整章节复评 - NovelForge · 小说工坊, Help: 若要与此按钮中的项目交互，请按下Control-Option-Shift-下箭头键。, Value: on, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=true
+			210 图像 FaviconImageView
+			211 文本 Value: 受限修订与完整章节复评 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+		212 标签 正式提交与基线 - NovelForge · 小说工坊, Value: off, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=false
+			213 图像 FaviconImageView
+			214 文本 Value: 正式提交与基线 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+	215 关闭按钮
+	216 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	217 最小化按钮
+218 menu bar
+	219 Safari浏览器
+	220 文件
+	221 编辑
+	222 显示, ID: SafariViewMenu
+	223 历史记录
+	224 书签, ID: SafariBookmarksMenu
+	225 窗口, ID: SafariWindowMenu
+	226 帮助, ID: SafariHelpMenu
+
+The focused UI element is 5 HTML内容 Description: 受限修订与完整章节复评 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/revision-desk?novel=36

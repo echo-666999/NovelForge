@@ -1,0 +1,25 @@
+{
+  "groups": 64,
+  "samples": 1738,
+  "measured": 1648,
+  "unmeasured": 90,
+  "failed": [
+    {
+      "page": "novels",
+      "theme": "light",
+      "text": "每页",
+      "foreground": "oklch(0.552 0.016 285.938)",
+      "background": [
+        242,
+        244,
+        247
+      ],
+      "fontSize": "14px",
+      "ratio": 4.382,
+      "required": 4.5,
+      "pass": false,
+      "measured": true
+    }
+  ],
+  "limits": "每页每主题唯一文字样式抽样；透明度、图片、渐变和未识别颜色不认证。不是全页面每个像素的WCAG认证。"
+}

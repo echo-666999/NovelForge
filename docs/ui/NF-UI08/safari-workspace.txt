@@ -1,0 +1,209 @@
+Window: "创作工作台 - NovelForge · 小说工坊", App: Safari浏览器.
+0 标准窗口 创作工作台 - NovelForge · 小说工坊, ID: SafariWindow?IsSecure=false&UUID=1C91E0BE-FABC-4972-8AB6-02AB60E256E5, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: 创作工作台 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels/36/workspace
+					6 link 跳至主要内容, Value: 127.0.0.1:8770/admin/novels/36/workspace#fi-main-content
+					7 container 顶部栏
+						8 link NovelForge · 小说工坊, Value: 127.0.0.1:8770/admin
+						9 文本 全局搜索
+						10 搜索文本栏 (settable) 全局搜索, Placeholder: 搜索
+							11 文本 搜索
+						12 文本 Press Down arrow to browse results. Use Up and Down arrows to move between results, and Tab to reach result actions. Press Escape to close results.
+						13 弹出式按钮 用户菜单
+					14 container 侧边栏导航
+						15 内容列表
+							16 container
+								17 文本 创作工作台
+								18 按钮 (expanded) 创作工作台, Secondary Actions: Collapse
+								19 内容列表
+									20 link 创作总览, Value: 127.0.0.1:8770/admin
+									21 link 小说库, Value: 127.0.0.1:8770/admin/novels
+							22 container
+								23 文本 故事管理
+								24 按钮 (expanded) 故事管理, Secondary Actions: Collapse
+								25 内容列表
+									26 link 故事管理, Value: 127.0.0.1:8770/admin/story-hub?novel=36
+									27 link 时间线与角色知识, Value: 127.0.0.1:8770/admin/story-timeline?novel=36
+									28 link 伏笔与主支线账本, Value: 127.0.0.1:8770/admin/foreshadow-ledger?novel=36
+							29 container
+								30 文本 生产与质量
+								31 按钮 (expanded) 生产与质量, Secondary Actions: Collapse
+								32 内容列表
+									33 link 生成运行中心, Value: 127.0.0.1:8770/admin/run-center?novel=36
+									34 link 正文提取与硬约束, Value: 127.0.0.1:8770/admin/extraction-ledger?novel=36
+									35 link 评审中心与策略, Value: 127.0.0.1:8770/admin/review-center?novel=36
+									36 link 受限修订工作台, Value: 127.0.0.1:8770/admin/revision-desk?novel=36
+									37 link 正式提交与基线, Value: 127.0.0.1:8770/admin/canonical-commit-center?novel=36
+									38 link 上下文检查器, Value: 127.0.0.1:8770/admin/context-inspector?novel=36
+									39 link 运行恢复台, Value: 127.0.0.1:8770/admin/recovery-desk?novel=36
+							40 container
+								41 文本 检索与记忆
+								42 按钮 (expanded) 检索与记忆, Secondary Actions: Collapse
+								43 内容列表
+									44 link 分层记忆库, Value: 127.0.0.1:8770/admin/memory-library?novel=36
+									45 link 正式记忆与索引, Value: 127.0.0.1:8770/admin/canonical-memory-center?novel=36
+									46 link 检索实验室与索引, Value: 127.0.0.1:8770/admin/search-lab?novel=36
+							47 container
+								48 文本 配置与运维
+								49 按钮 (expanded) 配置与运维, Secondary Actions: Collapse
+								50 内容列表
+									51 link Prompt 模板与发布, Value: 127.0.0.1:8770/admin/prompt-templates
+									52 link 供应商与模型, Value: 127.0.0.1:8770/admin/providers
+									53 link 模型主备路由, Value: 127.0.0.1:8770/admin/model-routes
+									54 link 文风与评分策略, Value: 127.0.0.1:8770/admin/style-profiles
+									55 link 价格与原子预算, Value: 127.0.0.1:8770/admin/billing
+									56 link 审计与系统健康, Value: 127.0.0.1:8770/admin/audit-center
+					57 container
+						58 container 当前位置
+							59 内容列表
+								60 link 小说, Value: 127.0.0.1:8770/admin/novels
+								61 文本 创作工作台
+						62 标题 创作工作台, Value: 1
+							63 文本 创作工作台
+						64 标题 小说上下文, Value: 2
+							65 文本 小说上下文
+						66 文本 当前小说
+						67 弹出式按钮 当前小说：蓝图夹具
+						68 按钮 切换小说
+						69 link 小说库, Value: 127.0.0.1:8770/admin/novels
+						70 文本 当前小说：蓝图夹具 · #36
+						71 文本 正式基线：尚未初始化；当前内容仍按候选或规划身份展示。
+						72 摘要 本书创作入口 · 创作工作台, Value: off
+							73 文本 本书创作入口 · 创作工作台
+						74 按钮 刷新状态
+						75 标题 真实规划进度, Value: 2
+							76 文本 真实规划进度
+						77 文本 当前规划窗口已冻结
+						78 文本 章节骨架 10 / 10 · 当前有效冻结 10 章 · 待决定要求 0 项
+						79 文本 每章字数策略：2000—3000 字
+						80 文本 最近批准蓝图：v1（当前可用性以计划门禁为准）
+						81 文本 最新滚动计划： v1 · 第1—10章 · 有效冻结
+						82 文本 正式章数、下一正式章、预算余额与终局准备度：未知，本页尚未读取这些生产指标。
+						83 标题 下一步与规划缺项, Value: 2
+							84 文本 下一步与规划缺项
+						85 文本 当前没有规划门禁阻塞。计划冻结不代表已生成正文，也不代表文学验收通过。
+						86 标题 近期章节规划, Value: 2
+							87 文本 近期章节规划
+						88 文本 起始章
+						89 数字栏 (settable) 起始章
+							90 步进器 0
+								91 未知
+								92 未知
+						93 文本 结束章
+						94 数字栏 (settable) 结束章
+							95 步进器 0
+								96 未知
+								97 未知
+						98 文本 规划状态
+						99 弹出式按钮 规划状态：全部
+						100 复选框 仅有规划问题, Value: 0
+						101 文本 仅有规划问题
+						102 文本 每页
+						103 弹出式按钮 每页：25
+						104 文本 本页未读取评审问题等级；以下问题数仅来自规划检查。
+						105 container 故事资料列表
+							106 表格
+								107 row (selectable) 章节
+规划状态
+规划问题
+评审 / 正式版本
+								108 row (selectable)
+									109 单元格 (selectable) 1 · 铜钥匙线索推进1
+									110 单元格 (selectable) 有效冻结
+									111 单元格 (selectable) 0
+									112 单元格 (selectable) 本页未读取
+								113 row (selectable)
+									114 单元格 (selectable) 2 · 铜钥匙线索推进2
+									115 单元格 (selectable) 有效冻结
+									116 单元格 (selectable) 0
+									117 单元格 (selectable) 本页未读取
+								118 row (selectable)
+									119 单元格 (selectable) 3 · 铜钥匙线索推进3
+									120 单元格 (selectable) 有效冻结
+									121 单元格 (selectable) 0
+									122 单元格 (selectable) 本页未读取
+								123 row (selectable)
+									124 单元格 (selectable) 4 · 铜钥匙线索推进4
+									125 单元格 (selectable) 有效冻结
+									126 单元格 (selectable) 0
+									127 单元格 (selectable) 本页未读取
+								128 row (selectable)
+									129 单元格 (selectable) 5 · 铜钥匙线索推进5
+									130 单元格 (selectable) 有效冻结
+									131 单元格 (selectable) 0
+									132 单元格 (selectable) 本页未读取
+								133 row (selectable)
+									134 单元格 (selectable) 6 · 铜钥匙线索推进6
+									135 单元格 (selectable) 有效冻结
+									136 单元格 (selectable) 0
+									137 单元格 (selectable) 本页未读取
+								138 row (selectable)
+									139 单元格 (selectable) 7 · 铜钥匙线索推进7
+									140 单元格 (selectable) 有效冻结
+									141 单元格 (selectable) 0
+									142 单元格 (selectable) 本页未读取
+								143 row (selectable)
+									144 单元格 (selectable) 8 · 铜钥匙线索推进8
+									145 单元格 (selectable) 有效冻结
+									146 单元格 (selectable) 0
+									147 单元格 (selectable) 本页未读取
+								148 row (selectable)
+									149 单元格 (selectable) 9 · 铜钥匙线索推进9
+									150 单元格 (selectable) 有效冻结
+									151 单元格 (selectable) 0
+									152 单元格 (selectable) 本页未读取
+								153 row (selectable)
+									154 单元格 (selectable) 10 · 铜钥匙线索推进10
+									155 单元格 (selectable) 有效冻结
+									156 单元格 (selectable) 0
+									157 单元格 (selectable) 本页未读取
+						158 文本 第 1 / 1 页 · 10 章
+						159 标题 正文生产, Value: 2
+							160 文本 正文生产
+						161 文本 本页尚未提供生产操作与运行读模型，以下按钮保持禁用；请从本书导航进入对应页面核对实际能力。
+						162 按钮 (disabled) 生成下一章
+						163 按钮 (disabled) 生成连续范围
+						164 按钮 (disabled) 暂停
+						165 按钮 (disabled) 继续
+						166 按钮 (disabled) 打开阅读器
+						167 按钮 (disabled) 导出
+				168 滚动条 (settable, float) 0
+	169 工具栏
+		170 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			171 按钮 Description: 显示边栏, ID: SidebarButton
+			172 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		173 container BackForwardSegmentedControl
+			174 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			175 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		176 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			177 按钮 页面菜单, ID: AssistantButton
+			178 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			179 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:8770/admin/novels/36/workspace, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			180 按钮 重新加载此页面, ID: ReloadButton
+		181 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		182 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		183 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	184 标签页组 Description: 标签页栏，2个标签页, ID: TabBar?isSeparate=false
+		185 标签 创作工作台 - NovelForge · 小说工坊, Help: 若要与此按钮中的项目交互，请按下Control-Option-Shift-下箭头键。, Value: on, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=true
+			186 图像 FaviconImageView
+			187 文本 Value: 创作工作台 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+		188 标签 正式提交与基线 - NovelForge · 小说工坊, Value: off, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=false
+			189 图像 FaviconImageView
+			190 文本 Value: 正式提交与基线 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+	191 关闭按钮
+	192 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	193 最小化按钮
+194 menu bar
+	195 Safari浏览器
+	196 文件
+	197 编辑
+	198 显示, ID: SafariViewMenu
+	199 历史记录
+	200 书签, ID: SafariBookmarksMenu
+	201 窗口, ID: SafariWindowMenu
+	202 帮助, ID: SafariHelpMenu
+
+The focused UI element is 5 HTML内容 Description: 创作工作台 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels/36/workspace

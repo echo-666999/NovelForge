@@ -1,0 +1,23 @@
+[
+  {
+    "color": "rgb(0, 0, 0)",
+    "background": "rgb(255, 255, 255)",
+    "expected": 21,
+    "actual": 21,
+    "pass": true
+  },
+  {
+    "color": "oklch(0 0 0)",
+    "background": "oklch(1 0 0)",
+    "expected": 21,
+    "actual": 21,
+    "pass": true
+  },
+  {
+    "color": "rgb(255, 255, 255)",
+    "background": "rgb(0, 0, 0)",
+    "expected": 21,
+    "actual": 21,
+    "pass": true
+  }
+]

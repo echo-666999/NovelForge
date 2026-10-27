@@ -1,0 +1,3211 @@
+{
+  "kind": "latest_result_per_case_across_two_runs",
+  "single_green_full_suite": false,
+  "tests": 457,
+  "passed": 456,
+  "skipped": 1,
+  "errors": 0,
+  "assertions": 5137,
+  "rule": "按classname和name匹配，49个复测结果覆盖同名首次结果；首次失败文件原样保留。",
+  "cases": [
+    {
+      "class": "Tests.Unit.ContextComposerTest",
+      "name": "test_required_copy_wins_over_earlier_optional_copy_without_losing_provenance",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Unit.ContextComposerTest",
+      "name": "test_same_text_in_author_and_pov_zones_is_not_deduplicated",
+      "assertions": 2,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Unit.ContextComposerTest",
+      "name": "test_exact_capacity_counts_headers_unicode_and_separators_and_blocks_one_byte_over",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Unit.ExampleTest",
+      "name": "test_that_true_is_true",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Unit.IntentCanonicalTest",
+      "name": "test_canonical_golden_vector_preserves_lists_and_unicode",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Unit.IntentCanonicalTest",
+      "name": "test_float_is_rejected",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Unit.TestIsolationTest",
+      "name": "test_approved_plain_and_url_connections_are_allowed",
+      "assertions": 3,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Unit.TestIsolationTest",
+      "name": "test_unsafe_targets_fail_before_connecting with data set \"plain database\"",
+      "assertions": 1,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Unit.TestIsolationTest",
+      "name": "test_unsafe_targets_fail_before_connecting with data set \"URL overrides database\"",
+      "assertions": 1,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Unit.TestIsolationTest",
+      "name": "test_unsafe_targets_fail_before_connecting with data set \"URL query overrides path\"",
+      "assertions": 1,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Unit.TestIsolationTest",
+      "name": "test_unsafe_targets_fail_before_connecting with data set \"URL changes host\"",
+      "assertions": 1,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Unit.TestIsolationTest",
+      "name": "test_unsafe_targets_fail_before_connecting with data set \"URL changes port\"",
+      "assertions": 1,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Unit.TestIsolationTest",
+      "name": "test_unsafe_targets_fail_before_connecting with data set \"wrong driver\"",
+      "assertions": 1,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Unit.TestIsolationTest",
+      "name": "test_unsafe_targets_fail_before_connecting with data set \"read replica\"",
+      "assertions": 1,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Unit.TestIsolationTest",
+      "name": "test_unsafe_targets_fail_before_connecting with data set \"write replica\"",
+      "assertions": 1,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Unit.TestIsolationTest",
+      "name": "test_unsafe_targets_fail_before_connecting with data set \"URL write replica\"",
+      "assertions": 1,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Unit.TestIsolationTest",
+      "name": "test_unsafe_targets_fail_before_connecting with data set \"PDO options\"",
+      "assertions": 1,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.AuthoringConfigurationTest",
+      "name": "test_release_idempotency_and_immutable_content",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.AuthoringConfigurationTest",
+      "name": "test_missing_variables_unsafe_template_bad_schema_and_fact_omission_fail_regression",
+      "assertions": 12,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.AuthoringConfigurationTest",
+      "name": "test_json_escaping_and_stage_output_contract",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.AuthoringConfigurationTest",
+      "name": "test_new_publications_and_retirement_do_not_change_frozen_runs_or_old_scores",
+      "assertions": 13,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.AuthoringConfigurationTest",
+      "name": "test_approved_switch_creates_new_attempt_and_preserves_actual_request_identity",
+      "assertions": 15,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.AuthoringConfigurationTest",
+      "name": "test_bound_gateway_rejects_input_and_model_bypass",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.AuthoringConfigurationTest",
+      "name": "test_production_route_and_capacity_mismatch_fail_offline_publication",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.AuthoringConfigurationTest",
+      "name": "test_admin_api_pages_filters_copy_compare_and_permission_boundaries",
+      "assertions": 21,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.AuthoringConfigurationTest",
+      "name": "test_all_new_tables_and_columns_have_chinese_database_comments",
+      "assertions": 74,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.AuthoringConfigurationTest",
+      "name": "test_unknown_request_outcome_prevents_switch_and_ordinary_retry",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.AuthoringConfigurationTest",
+      "name": "test_provider_rotation_does_not_replace_frozen_provider_and_disable_blocks",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.AuthoringConfigurationTest",
+      "name": "test_route_rechecks_retired_sources_before_publication",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.AuthoringConfigurationTest",
+      "name": "test_database_blocks_direct_publish_and_default_to_draft",
+      "assertions": 2,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.AuthoringConfigurationTest",
+      "name": "test_style_regression_failure_and_stale_copy_are_rejected",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.AuthoringConfigurationTest",
+      "name": "test_default_route_is_resolved_only_for_new_runs",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.AuthoringConfigurationTest",
+      "name": "test_fact_regression_uses_text_values_instead_of_json_field_names_or_escapes",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingConcurrencyTest",
+      "name": "test_two_workers_cannot_overspend_last_balance",
+      "assertions": 10,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingSelectTest",
+      "name": "test_billing_filters_preserve_values_pagination_and_export_scope",
+      "assertions": 9,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingSelectTest",
+      "name": "test_menu_has_explicit_selection_and_safe_update_command",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingSelectTest",
+      "name": "test_labels_are_escaped_and_disabled_control_remains_disabled",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingSelectTest",
+      "name": "test_invalid_property_path_is_rejected",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingTest",
+      "name": "test_success_reserves_all_scopes_and_settles_exact_decimal_once",
+      "assertions": 10,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingTest",
+      "name": "test_meter_handles_inclusive_cache_and_reasoning_without_double_billing",
+      "assertions": 9,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingTest",
+      "name": "test_unknown_and_failed_usage_keep_risk_then_reconcile_with_immutable_revisions",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingTest",
+      "name": "test_http_and_schema_failures_with_usage_are_still_charged_and_missing_usage_is_not_zero",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingTest",
+      "name": "test_duplicate_supplier_identity_does_not_charge_twice_and_retains_second_risk",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingTest",
+      "name": "test_budget_rejection_rolls_back_request_and_all_allocations_before_send",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingTest",
+      "name": "test_each_scope_and_warning_stop_thresholds_are_enforced",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingTest",
+      "name": "test_new_policy_cannot_reset_book_or_day_spending",
+      "assertions": 2,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingTest",
+      "name": "test_missing_budget_and_cross_book_chapter_are_blocked",
+      "assertions": 2,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingTest",
+      "name": "test_actual_over_reservation_is_recorded_and_stops_new_requests",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingTest",
+      "name": "test_all_request_categories_use_same_gate_and_prices_are_frozen",
+      "assertions": 19,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingTest",
+      "name": "test_api_page_filters_and_all_database_comments",
+      "assertions": 94,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingTest",
+      "name": "test_invoice_amount_can_resolve_unknown_cost_without_inventing_tokens",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingTest",
+      "name": "test_currency_and_future_price_versions_fail_closed",
+      "assertions": 2,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingTest",
+      "name": "test_node_chapter_and_category_override_are_frozen_inside_multi_scope_run",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BillingTest",
+      "name": "test_budget_exception_is_persisted_as_deferred_without_transport",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_complete_blueprint_checks_and_approves_without_enabling_generation",
+      "assertions": 13,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_ending_change_creates_new_contract_and_preserves_old_approval",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_missing_coverage_main_resolution_and_author_checks_block_approval",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_forged_coverage_quote_and_non_bound_ending_entity_are_rejected",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_changed_requirement_invalidates_previous_passed_validation",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_retired_entity_blocks_approval_and_history_stays_readable",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_stale_structure_and_invalid_ending_window_block",
+      "assertions": 2,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_cross_novel_references_and_reads_are_rejected",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_idempotency_and_stale_optimistic_version",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_database_rejects_blueprint_mutation",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_database_rejects_ending_mutation",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_database_rejects_unvalidated_approval",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_failed_materialization_rolls_back_blueprint_contract_and_command",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_api_pagination_access_and_archived_state",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_first_ten_structure_missing_scene_blocks",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_database_rejects_cross_book_outline_without_service",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_database_rejects_approval_audit_delete",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_database_rejects_check_history_update",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_missing_impact_confirmation_and_forged_report_are_rejected",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.BlueprintTest",
+      "name": "test_filament_save_check_approve_and_copy_are_real_operations",
+      "assertions": 17,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalCommitTest",
+      "name": "test_commit_is_atomic_and_idempotent_with_formal_evidence_and_pending_outbox",
+      "assertions": 14,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalCommitTest",
+      "name": "test_two_chapters_require_formal_prefix_and_due_foreshadow_and_replay_history",
+      "assertions": 14,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalCommitTest",
+      "name": "test_faults_at_every_material_write_roll_back_all_formal_data_and_recover",
+      "assertions": 185,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalCommitTest",
+      "name": "test_modified_body_and_manual_pass_cannot_bypass_current_source_gates",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalCommitTest",
+      "name": "test_manual_high_scores_do_not_waive_blocked_extraction_or_unapproved_entities",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalCommitTest",
+      "name": "test_unapproved_new_character_blocks_then_approval_and_fresh_sources_allow_commit",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalCommitTest",
+      "name": "test_preflight_identity_and_database_scope_guards_and_chinese_comments",
+      "assertions": 105,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalCommitTest",
+      "name": "test_filament_actions_load_preflight_submit_and_filter_real_commit_history",
+      "assertions": 15,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalCommitTest",
+      "name": "test_api_and_filament_preflight_commit_and_formal_state_are_same_service",
+      "assertions": 21,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalConcurrencyTest",
+      "name": "test_same_key_replays_one_atomic_result",
+      "assertions": 13,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalConcurrencyTest",
+      "name": "test_same_expected_version_different_keys_only_one_commits",
+      "assertions": 12,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalMemoryRecoveryTest",
+      "name": "test_new_worker_recovers_expired_lease_and_replayed_delivery_does_not_duplicate_outputs",
+      "assertions": 11,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalMemoryRecoveryTest",
+      "name": "test_two_consumers_of_the_same_task_only_materialize_once",
+      "assertions": 6,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalMemoryRecoveryTest",
+      "name": "test_scheduler_publication_is_consumed_by_real_memory_queue_worker",
+      "assertions": 7,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalMemoryTest",
+      "name": "test_outbox_materializes_four_memories_and_offline_index_exactly_once",
+      "assertions": 75,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalMemoryTest",
+      "name": "test_pending_index_never_omits_formal_state_or_recent_body_from_next_chapter",
+      "assertions": 10,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalMemoryTest",
+      "name": "test_vector_degradation_and_explicit_retry_do_not_duplicate_facts_or_summaries",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalMemoryTest",
+      "name": "test_old_lease_cannot_complete_and_failed_projection_is_atomic",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalMemoryTest",
+      "name": "test_formal_filters_reject_other_revision_and_future_cutoff_without_candidate_fallback",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalMemoryTest",
+      "name": "test_irreversible_state_is_injected_without_any_memory_or_embedding",
+      "assertions": 9,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalMemoryTest",
+      "name": "test_formal_pov_without_acquisition_cannot_retrieve_another_characters_fact",
+      "assertions": 2,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalMemoryTest",
+      "name": "test_api_and_livewire_show_formal_pending_and_explicit_retry",
+      "assertions": 15,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalMemoryTest",
+      "name": "test_inconsistent_head_and_incomplete_projection_wait_instead_of_succeeding",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalMemoryTest",
+      "name": "test_technical_limit_and_failure_history_require_explicit_retry",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.CanonicalMemoryTest",
+      "name": "test_inferred_knowledge_stays_typed_and_is_not_reinjected_as_retrieved_fact",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ChapterReviewTest",
+      "name": "test_exact_seven_dimensions_and_thresholds_preserve_history_and_formal_gate",
+      "assertions": 16,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ChapterReviewTest",
+      "name": "test_high_literary_scores_and_human_rating_never_override_failed_extraction_or_blocking_issue",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ChapterReviewTest",
+      "name": "test_forged_offsets_missing_dimensions_unknown_fields_and_model_blocking_produce_locatable_failure",
+      "assertions": 9,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ChapterReviewTest",
+      "name": "test_policy_lifecycle_explicit_lower_version_and_exceptions_do_not_mutate_old_results",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ChapterReviewTest",
+      "name": "test_body_edit_or_new_extraction_stales_old_review_without_rebinding",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ChapterReviewTest",
+      "name": "test_literal_style_signals_are_only_warnings_with_exact_codepoint_locations_and_exceptions",
+      "assertions": 10,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ChapterReviewTest",
+      "name": "test_http_ui_authorization_decisions_and_chinese_schema_comments",
+      "assertions": 27,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ConfigurationUiTest",
+      "name": "test_native_prompt_create_regress_publish_copy_and_stale_are_independent",
+      "assertions": 19,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ConfigurationUiTest",
+      "name": "test_types_nested_schema_unknown_keys_and_duplicate_import_are_lossless_or_blocked",
+      "assertions": 15,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ConfigurationUiTest",
+      "name": "test_field_errors_are_mapped_and_failed_values_and_unsafe_text_remain_escaped",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ConfigurationUiTest",
+      "name": "test_ordered_rows_can_move_and_duplicate_property_names_or_implicit_loss_are_rejected",
+      "assertions": 13,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ConfigurationUiTest",
+      "name": "test_route_uses_real_versions_and_ordered_approved_fallbacks_without_model_calls",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ConfigurationUiTest",
+      "name": "test_native_model_fields_preserve_null_and_errors_never_flash_secret",
+      "assertions": 14,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ConfigurationUiTest",
+      "name": "test_structured_compare_distinguishes_types_and_preserves_list_order_and_auth",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ConfigurationUiTest",
+      "name": "test_supported_nested_schema_round_trips_false_zero_null_empty_text_and_array",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ConfigurationUiTest",
+      "name": "test_schema_semantic_controls_edit_required_properties_and_preserve_incompatible_keywords",
+      "assertions": 12,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ConfigurationUiTest",
+      "name": "test_unknown_extensions_export_without_type_loss_and_empty_object_never_aliases_array_on_save",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ConfigurationUiTest",
+      "name": "test_modal_cancel_confirm_and_flat_field_guard",
+      "assertions": 13,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ConfigurationUiTest",
+      "name": "test_repeater_uuid_rows_export_as_ordered_values",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ConfigurationUiTest",
+      "name": "test_provider_history_is_safe_and_editors_are_lazy",
+      "assertions": 10,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ConfigurationUiTest",
+      "name": "test_native_failure_returns_to_same_origin_filter_and_never_redirects_external",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ContextAssemblyTest",
+      "name": "test_frozen_manifest_keeps_required_facts_zones_hashes_and_capacity",
+      "assertions": 31,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ContextAssemblyTest",
+      "name": "test_formal_scope_blocks_and_old_snapshot_survives_invalidation",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ContextAssemblyTest",
+      "name": "test_authorized_api_ui_compare_and_reassembly",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ContextAssemblyTest",
+      "name": "test_due_foreshadow_and_facts_do_not_depend_on_top_k",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ContextAssemblyTest",
+      "name": "test_future_acquisition_stays_out_of_pov_zone_and_known_fact_is_injected",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ContextAssemblyTest",
+      "name": "test_pov_evidence_is_locatable_without_copying_extra_quote_text",
+      "assertions": 10,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ContextAssemblyTest",
+      "name": "test_inferred_knowledge_is_not_promoted_to_required_pov_fact",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ContextAssemblyTest",
+      "name": "test_reassembly_preserves_frozen_input_and_rejects_changed_command_identity",
+      "assertions": 9,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ContextAssemblyTest",
+      "name": "test_previous_scene_precedes_optional_memories_and_final_style",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ContextAssemblyTest",
+      "name": "test_database_rejects_mutation_and_all_columns_have_comments",
+      "assertions": 14,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ContextAssemblyTest",
+      "name": "test_budget_counts_separate_reasoning_once_and_preserves_hard_constraints",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.DraftingRecheckTest",
+      "name": "test_formal_body_is_visible_and_read_only_when_a_new_candidate_is_edited",
+      "assertions": 21,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.DraftingRecheckTest",
+      "name": "test_normalized_noop_keeps_version_but_title_only_edit_invalidates_frozen_transition",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.DraftingRecheckTest",
+      "name": "test_completed_gateway_response_is_quarantined_after_concurrent_candidate_edit",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.DraftingRecoveryTest",
+      "name": "test_new_worker_recovers_saved_response_after_lease_loss_once",
+      "assertions": 12,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.DraftingTest",
+      "name": "test_normalization_count_and_rule_findings_do_not_claim_semantic_review",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.DraftingTest",
+      "name": "test_offline_scene_generation_and_assembly_are_idempotent_and_keep_formal_state_closed",
+      "assertions": 14,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.DraftingTest",
+      "name": "test_editing_creates_hash_lineage_stales_assembly_and_rejects_lost_updates",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.DraftingTest",
+      "name": "test_incomplete_body_is_preserved_but_cannot_be_assembled",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.DraftingTest",
+      "name": "test_http_and_livewire_candidate_save_compare_and_authorization",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.DraftingTest",
+      "name": "test_two_scenes_freeze_transition_reject_skip_and_invalidate_after_prior_edit",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.DraftingTest",
+      "name": "test_zero_budget_and_replay_response_mismatch_never_send_another_request",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.DraftingTest",
+      "name": "test_null_byte_is_rejected_before_start_and_http_edit_preserves_body_bytes",
+      "assertions": 10,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.DraftingTest",
+      "name": "test_postgresql_immutable_versions_comments_and_composite_scope",
+      "assertions": 9,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExampleTest",
+      "name": "test_home_redirects_to_private_panel",
+      "assertions": 2,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionPipelineTest",
+      "name": "test_registered_offline_stage_creates_bound_report_and_blocks_semantic_failure_without_body_change",
+      "assertions": 28,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionPipelineTest",
+      "name": "test_response_substitution_and_zero_budget_are_rejected_before_any_extraction_request",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionRecoveryTest",
+      "name": "test_another_process_reextracts_original_body_and_replays_committed_response_once",
+      "assertions": 14,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionRecoveryTest",
+      "name": "test_registered_worker_recovers_saved_gateway_response_without_duplicate_request",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionTest",
+      "name": "test_actual_body_source_events_patches_and_idempotency_leave_formal_state_unchanged",
+      "assertions": 12,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionTest",
+      "name": "test_forged_quote_offset_and_unapproved_entity_block_with_location_then_reextract_same_body",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionTest",
+      "name": "test_dead_action_unknown_time_and_legal_flashback_have_distinct_results",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionTest",
+      "name": "test_secret_use_requires_acquisition_before_this_sentence_even_with_later_same_chapter_knowledge",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionTest",
+      "name": "test_item_ability_travel_and_model_supplied_rules_are_blocked",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionTest",
+      "name": "test_foreshadow_candidate_plant_and_early_payoff_do_not_change_formal_ledger",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionTest",
+      "name": "test_body_edit_stales_old_extraction_and_reextract_cannot_bind_new_version",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionTest",
+      "name": "test_prior_chapter_baseline_cannot_be_omitted_and_supersession_stales_descendants",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionTest",
+      "name": "test_literal_unapproved_mentions_and_hidden_foreshadow_cannot_be_omitted_from_output",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionTest",
+      "name": "test_database_source_hash_scope_and_invalid_characters_are_not_bypassable",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionTest",
+      "name": "test_http_ui_authorization_compare_reextract_and_database_history_comments",
+      "assertions": 23,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionUiTest",
+      "name": "test_empty_overview_and_extraction_have_explicit_unknowns_and_no_writes",
+      "assertions": 10,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionUiTest",
+      "name": "test_editor_builds_event_with_actual_selectors_saves_and_retries_idempotently",
+      "assertions": 13,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionUiTest",
+      "name": "test_forged_quote_has_event_key_source_and_focus_then_correct_reextract",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionUiTest",
+      "name": "test_import_preserves_types_unknown_fields_order_and_failed_import_is_atomic",
+      "assertions": 14,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionUiTest",
+      "name": "test_lists_keep_order_and_required_fields_cannot_be_removed",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionUiTest",
+      "name": "test_loaded_concurrency_conflict_and_cross_book_versions_cannot_write",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionUiTest",
+      "name": "test_overview_read_failure_is_not_empty_and_output_is_escaped",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionUiTest",
+      "name": "test_all_five_groups_round_trip_and_null_reference_can_be_selected",
+      "assertions": 13,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionUiTest",
+      "name": "test_overview_long_titles_pagination_and_extraction_read_failure",
+      "assertions": 10,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ExtractionUiTest",
+      "name": "test_replay_rejects_non_extraction_run_without_new_request_or_artifact",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ForeshadowConcurrencyTest",
+      "name": "test_two_processes_share_idempotence_and_competing_versions_do_not_overwrite",
+      "assertions": 12,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ForeshadowLedgerTest",
+      "name": "test_first_five_three_plans_and_exact_hundred_contract_can_be_frozen_without_formal_progress",
+      "assertions": 48,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ForeshadowLedgerTest",
+      "name": "test_reschedule_needs_decision_and_preserves_frozen_original_and_reason",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ForeshadowLedgerTest",
+      "name": "test_abandon_requires_alternative_and_author_approval_rejection_does_not_change_plan",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ForeshadowLedgerTest",
+      "name": "test_schedule_is_explicit_preview_and_due_overdue_are_independent",
+      "assertions": 35,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ForeshadowLedgerTest",
+      "name": "test_idempotency_stale_input_and_formal_state_injection_are_rejected",
+      "assertions": 13,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ForeshadowLedgerTest",
+      "name": "test_bad_windows_cross_book_sources_and_unapproved_freeze_are_rejected",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ForeshadowLedgerTest",
+      "name": "test_prerequisite_candidate_has_real_source_but_does_not_satisfy_formal_groundwork",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ForeshadowLedgerTest",
+      "name": "test_database_guards_immutability_formal_entry_references_and_chinese_comments",
+      "assertions": 84,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ForeshadowLedgerTest",
+      "name": "test_http_and_filament_share_services_with_auth_empty_state_and_decisions",
+      "assertions": 14,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.FoundationTest",
+      "name": "test_non_admin_is_denied",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.FoundationTest",
+      "name": "test_guest_is_redirected_to_login",
+      "assertions": 2,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.FoundationTest",
+      "name": "test_login_and_foundation_pages_render",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.FoundationTest",
+      "name": "test_only_one_administrator_can_exist",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.FoundationTest",
+      "name": "test_database_version_and_extensions",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.FoundationTest",
+      "name": "test_chinese_fulltext_configuration_segments_and_matches",
+      "assertions": 0,
+      "status": "skipped",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.FoundationTest",
+      "name": "test_only_authorized_schema_through_e06_is_installed",
+      "assertions": 46,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.GenerationConcurrencyTest",
+      "name": "test_process_restart_duplicate_start_and_attempt_claim",
+      "assertions": 15,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.GenerationTest",
+      "name": "test_dag_restart_reuses_only_verified_success_and_requires_all_goals",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.GenerationTest",
+      "name": "test_idempotent_start_conflict_and_frozen_input",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.GenerationTest",
+      "name": "test_cycle_unknown_duplicate_dependency_are_rejected",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.GenerationTest",
+      "name": "test_deferred_checkpoint_retry_identity_and_limit",
+      "assertions": 10,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.GenerationTest",
+      "name": "test_failed_blocked_canceled_are_distinct_and_history_preserved",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.GenerationTest",
+      "name": "test_state_change_blocks_reuse_and_quarantines_late_output",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.GenerationTest",
+      "name": "test_invalid_output_and_exception_become_durable_failure_without_secret",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.GenerationTest",
+      "name": "test_nested_duplicate_dispatch_does_not_execute_twice",
+      "assertions": 2,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.GenerationTest",
+      "name": "test_database_immutability_and_same_run_foreign_keys",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.GenerationTest",
+      "name": "test_unverified_artifact_hash_and_changed_dependency_identity_prevent_reuse",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.GenerationTest",
+      "name": "test_cross_book_source_and_archived_book_cannot_start",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.GenerationTest",
+      "name": "test_ownership_and_production_harness_guard",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.HybridSearchTest",
+      "name": "test_channels_short_words_unicode_and_source_invalidation",
+      "assertions": 25,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.HybridSearchTest",
+      "name": "test_profile_switch_rollback_dedup_and_no_mixed_generations",
+      "assertions": 9,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.HybridSearchTest",
+      "name": "test_database_guards_comments_and_idempotent_commands",
+      "assertions": 68,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.HybridSearchTest",
+      "name": "test_pov_requires_acquisition_and_rechecks_its_source",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.HybridSearchTest",
+      "name": "test_memory_projection_and_api_filament_authorization",
+      "assertions": 9,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.LayeredMemoryTest",
+      "name": "test_four_layers_chunks_and_content_are_independent_from_index_state",
+      "assertions": 49,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.LayeredMemoryTest",
+      "name": "test_omission_cannot_replace_active_even_when_parent_and_fact_ids_are_omitted_and_retry_preserves_history",
+      "assertions": 12,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.LayeredMemoryTest",
+      "name": "test_source_invalidation_is_transitive_and_blocks_activation_and_active_reads",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.LayeredMemoryTest",
+      "name": "test_disabling_parent_invalidates_descendants_without_disabling_unrelated_memory",
+      "assertions": 2,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.LayeredMemoryTest",
+      "name": "test_formal_branch_and_cross_book_scopes_never_fall_back_to_candidate_sources",
+      "assertions": 9,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.LayeredMemoryTest",
+      "name": "test_visibility_and_chapter_cannot_widen_during_compression_and_evidence_must_match",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.LayeredMemoryTest",
+      "name": "test_canceled_branch_is_stale_and_new_versions_cannot_reuse_it",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.LayeredMemoryTest",
+      "name": "test_idempotence_stale_version_and_database_guards",
+      "assertions": 96,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.LayeredMemoryTest",
+      "name": "test_api_and_filament_use_same_versioned_service_and_escape_text",
+      "assertions": 15,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.MemoryConcurrencyTest",
+      "name": "test_two_processes_share_idempotence_and_competing_versions_do_not_overwrite",
+      "assertions": 12,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelConcurrencyTest",
+      "name": "test_two_real_processes_share_one_idempotent_creation",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelConcurrencyTest",
+      "name": "test_structure_concurrency_replays_once_and_allocates_versions_under_lock",
+      "assertions": 13,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelConcurrencyTest",
+      "name": "test_world_duplicate_creation_and_policy_quota_are_serialized",
+      "assertions": 12,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelConcurrencyTest",
+      "name": "test_blueprint_concurrent_saves_and_approvals_are_unique",
+      "assertions": 12,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelConcurrencyTest",
+      "name": "test_rolling_plan_concurrent_save_and_freeze_are_serialized",
+      "assertions": 10,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelConcurrencyTest",
+      "name": "test_empty_b01_b02_b03_b04_b05_c01_c02_schema_can_roll_back_and_reapply",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelIntentTest",
+      "name": "test_create_preserves_original_bytes_and_returns_string_ids_and_unresolved_items",
+      "assertions": 13,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelIntentTest",
+      "name": "test_creation_validation_and_key_are_required",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelIntentTest",
+      "name": "test_idempotent_replay_is_exact_and_different_payload_conflicts",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelIntentTest",
+      "name": "test_metadata_versions_and_forbidden_state_updates",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelIntentTest",
+      "name": "test_source_and_requirement_revisions_keep_history_and_cross_book_ids_are_rejected",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelIntentTest",
+      "name": "test_hard_waiver_conflict_and_coverage_cannot_be_forged",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelIntentTest",
+      "name": "test_archive_restore_and_copy_reset_history",
+      "assertions": 15,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelIntentTest",
+      "name": "test_database_blocks_cross_novel_reference",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelIntentTest",
+      "name": "test_database_blocks_original_history_update",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelIntentTest",
+      "name": "test_database_blocks_requirement_history_delete",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelIntentTest",
+      "name": "test_authorization_and_record_scoping",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelIntentTest",
+      "name": "test_csrf_is_enforced_outside_phpunit_bypass",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelIntentTest",
+      "name": "test_filament_create_list_and_requirement_actions_use_the_service",
+      "assertions": 19,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelIntentTest",
+      "name": "test_requirement_cursor_pagination_and_filters",
+      "assertions": 10,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelIntentTest",
+      "name": "test_filament_source_revision_and_matrix_filters",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelIntentTest",
+      "name": "test_stale_filament_action_does_not_overwrite_newer_state",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelNavigationTest",
+      "name": "test_navigation_groups_order_orphans_and_status_secondary_entry",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelNavigationTest",
+      "name": "test_empty_book_context_does_not_select_first_book_or_previous_tab",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelNavigationTest",
+      "name": "test_all_book_entries_keep_identity_and_unique_links_without_writes",
+      "assertions": 87,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelNavigationTest",
+      "name": "test_switch_drops_previous_book_object_parameters_and_keeps_target",
+      "assertions": 55,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelNavigationTest",
+      "name": "test_foreign_missing_and_malformed_contexts_are_rejected",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelNavigationTest",
+      "name": "test_switch_and_new_story_page_preserve_authentication",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelNavigationTest",
+      "name": "test_actual_canonical_cursor_and_legacy_references_are_same_book",
+      "assertions": 25,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.NovelNavigationTest",
+      "name": "test_book_title_is_escaped_and_sidebar_keeps_explicit_context",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.OutboxRecoveryTest",
+      "name": "test_killed_worker_is_reclaimed_once_by_two_processes",
+      "assertions": 11,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.OutboxRecoveryTest",
+      "name": "test_worker_restart_signal_releases_old_process_and_new_worker_continues",
+      "assertions": 8,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.OutboxRecoveryTest",
+      "name": "test_redis_restart_loses_notification_but_database_recovers",
+      "assertions": 14,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.OutboxTest",
+      "name": "test_run_and_intent_share_transaction_and_rollback",
+      "assertions": 6,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.OutboxTest",
+      "name": "test_duplicate_delivery_and_result_receipt_are_atomic",
+      "assertions": 8,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.OutboxTest",
+      "name": "test_expired_heartbeat_and_stale_worker_cannot_write",
+      "assertions": 11,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.OutboxTest",
+      "name": "test_reclaim_is_bounded_and_scanner_detects_expired_lease",
+      "assertions": 10,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.OutboxTest",
+      "name": "test_same_book_queued_runs_are_serial_until_run_finishes",
+      "assertions": 4,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.OutboxTest",
+      "name": "test_pause_and_cancel_are_rechecked_before_commit",
+      "assertions": 5,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.OutboxTest",
+      "name": "test_real_queue_publish_duplicate_and_republish_without_receipt",
+      "assertions": 12,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.OutboxTest",
+      "name": "test_delivery_failure_preserves_intent_and_can_retry",
+      "assertions": 4,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.OutboxTest",
+      "name": "test_retry_notice_cannot_create_first_attempt_and_stale_notice_cannot_reclaim_retry",
+      "assertions": 5,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.OutboxTest",
+      "name": "test_failed_run_replay_cannot_reacquire_released_book_slot",
+      "assertions": 3,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.OutboxTest",
+      "name": "test_unsafe_timing_and_immutable_intent_are_rejected",
+      "assertions": 2,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.PlanningPipelineTest",
+      "name": "test_intake_goes_through_gateway_and_requires_author_decision",
+      "assertions": 10,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.PlanningPipelineTest",
+      "name": "test_missing_special_detail_blocks_without_importing_and_resume_reuses_valid_artifact",
+      "assertions": 6,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.PlanningPipelineTest",
+      "name": "test_api_authentication_and_comment_coverage",
+      "assertions": 7,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.PlanningPipelineTest",
+      "name": "test_stale_source_blocks_and_database_preserves_history",
+      "assertions": 3,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.PlanningPipelineTest",
+      "name": "test_five_phase_candidates_keep_detail_and_existing_author_freeze_contract",
+      "assertions": 16,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.PlanningPipelineTest",
+      "name": "test_fresh_intake_has_no_outline_and_only_registered_offline_execution_works_outside_testing",
+      "assertions": 5,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.PlanningPipelineTest",
+      "name": "test_malformed_response_and_budget_defer_have_no_candidate_side_effects",
+      "assertions": 7,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.PlanningPipelineTest",
+      "name": "test_http_idempotency_and_ui_compare_use_persisted_candidates",
+      "assertions": 12,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.PlanningPipelineTest",
+      "name": "test_illegal_hierarchy_and_missing_layer_coverage_are_blocked",
+      "assertions": 4,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.PlanningPipelineTest",
+      "name": "test_successful_candidate_cannot_be_adopted_after_input_changes_and_evidence_survives",
+      "assertions": 7,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.PlanningPipelineTest",
+      "name": "test_unadopted_parent_and_skipped_phase_do_not_create_runs_or_requests",
+      "assertions": 8,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.PlanningRecoveryTest",
+      "name": "test_new_worker_recovers_saved_response_after_lease_loss_once",
+      "assertions": 9,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProductionUiTest",
+      "name": "test_thirteen_pages_render_structured_evidence_without_writes",
+      "assertions": 71,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProductionUiTest",
+      "name": "test_default_open_object_toggle_preserves_field_input",
+      "assertions": 9,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProductionUiTest",
+      "name": "test_review_field_edits_are_saved_and_identical_retry_reuses_record",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProductionUiTest",
+      "name": "test_invalid_field_never_submits_previous_valid_payload_and_import_keeps_draft",
+      "assertions": 12,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProductionUiTest",
+      "name": "test_policy_fields_save_publish_retire_and_old_content_stays_immutable",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProductionUiTest",
+      "name": "test_revision_scope_patch_order_and_explicit_adoption_use_frozen_sources",
+      "assertions": 16,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProductionUiTest",
+      "name": "test_planning_fields_start_and_retry_preserve_the_original_task",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProductionUiTest",
+      "name": "test_budget_decimal_text_and_duplicate_save_are_not_float_or_extra_records",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProductionUiTest",
+      "name": "test_typed_path_and_cross_book_reference_are_rejected",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProductionUiTest",
+      "name": "test_read_failure_keeps_filter_and_does_not_claim_empty_or_zero",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProductionUiTest",
+      "name": "test_review_reads_actual_body_and_locates_unique_unicode_quote_without_writes",
+      "assertions": 16,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProductionUiTest",
+      "name": "test_canonical_memory_and_formal_body_are_structured_readonly",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProviderConcurrencyTest",
+      "name": "test_two_processes_observe_persistent_idempotency_and_concurrency_limit",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProviderGatewayTest",
+      "name": "test_configuration_secret_versions_and_claims_are_not_verified",
+      "assertions": 14,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProviderGatewayTest",
+      "name": "test_request_is_idempotent_with_private_evidence_and_frozen_configuration",
+      "assertions": 12,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProviderGatewayTest",
+      "name": "test_malformed_json_and_structural_error_preserve_locatable_raw_evidence",
+      "assertions": 13,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProviderGatewayTest",
+      "name": "test_echoed_secret_is_removed_from_metadata_and_encrypted_evidence",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProviderGatewayTest",
+      "name": "test_unknown_outcome_is_not_retried_or_reported_as_zero_usage",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProviderGatewayTest",
+      "name": "test_transport_exception_does_not_log_or_persist_secret_text",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProviderGatewayTest",
+      "name": "test_http_failures_are_recorded_without_automatic_retries",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProviderGatewayTest",
+      "name": "test_real_provider_and_disabled_configuration_are_blocked_before_transport",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProviderGatewayTest",
+      "name": "test_rate_and_concurrency_limits_are_enforced_before_send",
+      "assertions": 2,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProviderGatewayTest",
+      "name": "test_endpoint_policy_rejects_ssrf_and_pins_only_public_answers",
+      "assertions": 25,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProviderGatewayTest",
+      "name": "test_http_adapter_uses_fake_transport_and_does_not_follow_redirects",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProviderGatewayTest",
+      "name": "test_schema_unsupported_keywords_fail_closed",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProviderGatewayTest",
+      "name": "test_inflight_lease_change_quarantines_result_and_expired_lease_prevents_send",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProviderGatewayTest",
+      "name": "test_configuration_cannot_forge_verification_and_production_fake_is_blocked",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProviderGatewayTest",
+      "name": "test_filters_and_native_form_rotate_without_secret_in_livewire_state",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProviderGatewayTest",
+      "name": "test_all_new_tables_and_columns_have_database_chinese_comments",
+      "assertions": 81,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ProviderGatewayTest",
+      "name": "test_api_page_and_form_never_echo_or_flash_secret",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RecoveryConcurrencyTest",
+      "name": "test_conflicting_decisions_are_serialized_and_replay_is_stable",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RecoveryTest",
+      "name": "test_pause_resume_fences_inflight_result_and_records_late_evidence_once",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RecoveryTest",
+      "name": "test_cancel_stops_new_publication_consumption_and_cannot_resume",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RecoveryTest",
+      "name": "test_preview_idempotency_stale_conflict_and_immutable_decisions",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RecoveryTest",
+      "name": "test_checkpoint_and_success_preserved_and_changed_descendants_are_stale",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RecoveryTest",
+      "name": "test_error_classification_auto_backoff_and_three_attempt_limit",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RecoveryTest",
+      "name": "test_unknown_request_blocks_expired_reclaim_and_manual_resume",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RecoveryTest",
+      "name": "test_api_ownership_ui_empty_state_and_livewire_control",
+      "assertions": 9,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RecoveryTest",
+      "name": "test_provider_retry_hint_is_persisted_and_applied_to_outbox",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RecoveryTest",
+      "name": "test_pause_during_provider_response_quarantines_but_accounts_usage",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RecoveryTest",
+      "name": "test_finished_run_can_ack_missing_receipts_without_new_execution",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RecoveryTest",
+      "name": "test_new_tables_and_every_column_have_chinese_comments",
+      "assertions": 34,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ReviewPipelineTest",
+      "name": "test_registered_stage_uses_same_style_frozen_prompt_exact_artifact_and_no_technical_retry_for_low_scores",
+      "assertions": 18,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ReviewPipelineTest",
+      "name": "test_response_substitution_zero_budget_and_stale_extraction_keep_evidence_without_fake_checkpoint",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.ReviewRecoveryTest",
+      "name": "test_registered_review_recovers_saved_response_after_worker_lease_expires",
+      "assertions": 12,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RevisionContractTest",
+      "name": "test_lf_normalization_and_unicode_patches_keep_original_coordinates",
+      "assertions": 2,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RevisionContractTest",
+      "name": "test_fact_refs_normalize_keys_but_actual_narrative_order_and_literal_values_remain_meaningful",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RevisionFrozenPolicyTest",
+      "name": "test_retired_policy_rejects_new_task_but_existing_task_reassesses_with_exact_frozen_policy",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RevisionFrozenPolicyTest",
+      "name": "test_external_state_change_after_adoption_invalidates_task_before_reextraction_or_review",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RevisionPipelineTest",
+      "name": "test_registered_pipeline_freezes_exact_scope_and_produces_one_proposal_without_adopting_body",
+      "assertions": 18,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RevisionPipelineTest",
+      "name": "test_zero_budget_requires_manual_and_frozen_response_cannot_be_substituted",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RevisionRecoveryTest",
+      "name": "test_another_worker_recovers_saved_revision_response_once_without_adopting_or_spending_another_round",
+      "assertions": 13,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RevisionTest",
+      "name": "test_partial_adoption_reextracts_new_body_reviews_full_chapter_and_preserves_history",
+      "assertions": 19,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RevisionTest",
+      "name": "test_out_of_scope_forged_overlap_and_protected_fact_changes_leave_failed_proposals_without_body_rewrite",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RevisionTest",
+      "name": "test_default_three_automatic_rounds_cannot_be_reset_with_new_task_keys_and_manual_can_continue",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RevisionTest",
+      "name": "test_no_improvement_and_lost_structured_facts_require_manual_and_high_scores_cannot_bypass_preservation",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RevisionTest",
+      "name": "test_no_improvement_even_when_scores_pass_needs_explicit_human_confirmation_and_abandon_invalidates_review",
+      "assertions": 9,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RevisionTest",
+      "name": "test_scene_and_explicit_chapter_scope_are_bound_to_actual_sources_and_bad_boundaries_are_rejected",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RevisionTest",
+      "name": "test_http_livewire_scope_preparation_manual_path_and_all_new_schema_comments",
+      "assertions": 26,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_first_ten_have_complete_budget_and_coverage_then_freeze_without_generating",
+      "assertions": 16,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_budget_mismatch_blocks_freeze",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_missing_scene_fields_and_unapproved_pov_block",
+      "assertions": 2,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_missing_coverage_and_broken_ancestry_block",
+      "assertions": 2,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_bad_evidence_rolls_back_new_outline_and_plan",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_plan_and_evidence_are_immutable_in_database",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_freeze_blocks_legacy_editor_direct_sql_and_scene_insertion",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_edit_after_validation_makes_report_stale_and_retains_history",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_generic_title_and_skeleton_are_not_detailed_plan",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_split_merge_and_reorder_preserve_budgets_and_old_snapshot",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_duplicate_scene_padding_is_blocked",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_api_auth_ownership_idempotency_and_stale_version",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_formal_state_redirects_to_history_change_without_fake_commits",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_livewire_actual_save_check_freeze_and_http_page",
+      "assertions": 14,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_hundred_chapter_skeleton_first_ten_and_next_window_are_separate",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_unicode_evidence_uses_codepoints_and_api_returns_coverage",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_cross_book_references_and_database_forged_evidence_are_rejected",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_budget_range_policy_and_split_rollback",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RollingPlanTest",
+      "name": "test_changed_requirements_and_retired_world_reference_cannot_use_old_pass",
+      "assertions": 2,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RunCenterConcurrencyTest",
+      "name": "test_independent_worker_progress_and_honest_historical_trace_backfill",
+      "assertions": 15,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RunCenterTest",
+      "name": "test_trace_links_run_step_request_artifact_cost_and_control",
+      "assertions": 15,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RunCenterTest",
+      "name": "test_page_return_reads_real_progress_without_triggering_execution",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RunCenterTest",
+      "name": "test_truncated_preview_has_full_private_download_and_escaped_view",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RunCenterTest",
+      "name": "test_unknown_cost_and_expired_lease_cannot_be_hidden_by_success_counts",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RunCenterTest",
+      "name": "test_private_provider_evidence_and_same_run_scope",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RunCenterTest",
+      "name": "test_rejected_command_records_safe_failure_trace_and_no_false_success",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RunCenterTest",
+      "name": "test_failed_command_preserves_trace_for_full_bigint_run_identifier",
+      "assertions": 2,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.RunCenterTest",
+      "name": "test_audit_append_only_transaction_rollback_filters_and_export",
+      "assertions": 31,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.SearchConcurrencyTest",
+      "name": "test_two_processes_share_idempotence_and_competing_versions_do_not_overwrite",
+      "assertions": 13,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.SearchCorpusTest",
+      "name": "test_frozen_hundred_queries_recall_and_zero_leaks_with_distractors",
+      "assertions": 209,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryConsistencyConcurrencyTest",
+      "name": "test_two_processes_share_idempotence_and_competing_versions_do_not_overwrite",
+      "assertions": 12,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryConsistencyTest",
+      "name": "test_flashback_unknown_and_impossible_travel_have_distinct_outcomes",
+      "assertions": 10,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryConsistencyTest",
+      "name": "test_ranges_absolute_dates_mixed_clocks_and_dependency_cycles",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryConsistencyTest",
+      "name": "test_death_activity_and_explicit_revival_are_checked_on_actual_time",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryConsistencyTest",
+      "name": "test_location_and_ability_limits_are_not_inferred_from_narrative",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryConsistencyTest",
+      "name": "test_unique_item_ownership_requires_transfer_and_belief_is_separate",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryConsistencyTest",
+      "name": "test_secret_requires_acquisition_and_telling_requires_prior_knowledge",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryConsistencyTest",
+      "name": "test_relationship_changes_need_objective_event_and_pov_path",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryConsistencyTest",
+      "name": "test_api_idempotence_version_checks_ownership_and_no_formal_mutation",
+      "assertions": 16,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryConsistencyTest",
+      "name": "test_filament_empty_state_editing_filters_and_historical_versions",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryConsistencyTest",
+      "name": "test_pending_and_conflicting_acquisitions_never_become_usable_pov",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryConsistencyTest",
+      "name": "test_rule_and_event_scope_duplicates_and_stale_relations_are_rejected",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryConsistencyTest",
+      "name": "test_hidden_death_is_checked_without_promoting_it_into_character_knowledge",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryConsistencyTest",
+      "name": "test_database_immutability_scope_constraints_and_all_chinese_comments",
+      "assertions": 115,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryStateTest",
+      "name": "test_unicode_evidence_normalization_and_stale_source_are_exact",
+      "assertions": 13,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryStateTest",
+      "name": "test_all_fact_kinds_are_separate_and_replay_hash_is_deterministic",
+      "assertions": 12,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryStateTest",
+      "name": "test_json_key_order_is_irrelevant_but_list_order_is_preserved",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryStateTest",
+      "name": "test_correction_is_append_only_and_rebuild_restores_corrupt_projection",
+      "assertions": 9,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryStateTest",
+      "name": "test_pending_events_do_not_become_state_and_cross_scope_references_fail",
+      "assertions": 9,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryStateTest",
+      "name": "test_new_body_cannot_rebind_old_extraction_and_failed_proposal_is_atomic",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryStateTest",
+      "name": "test_database_rejects_forged_evidence_and_wrong_entity_version",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryStateTest",
+      "name": "test_database_guards_immutability_formal_entry_and_chinese_comments",
+      "assertions": 160,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryUiTest",
+      "name": "test_option_adapter_keeps_unicode_zero_escaping_and_selected_multi_values",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryUiTest",
+      "name": "test_story_pages_use_structured_readonly_views_and_do_not_write_on_render",
+      "assertions": 19,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryUiTest",
+      "name": "test_hierarchy_expansion_focus_and_immutable_version_are_readonly",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryUiTest",
+      "name": "test_blueprint_tabs_copy_to_new_version_without_mutating_history",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryUiTest",
+      "name": "test_formal_evidence_is_read_from_active_baseline_and_structure_is_readonly",
+      "assertions": 9,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryUiTest",
+      "name": "test_create_wizard_keeps_original_fields_and_never_calls_model",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryUiTest",
+      "name": "test_native_plan_fields_freeze_gate_and_no_overwrite",
+      "assertions": 21,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryUiTest",
+      "name": "test_native_scene_selector_resolves_repeater_parent_chapter",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StoryUiTest",
+      "name": "test_pov_options_keep_approved_history_and_native_edit_keeps_reference",
+      "assertions": 10,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StructureTest",
+      "name": "test_tree_snapshot_retains_titles_transitions_and_historical_parent",
+      "assertions": 12,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StructureTest",
+      "name": "test_overlap_parent_shrink_and_duplicate_sequences_fail_atomically",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StructureTest",
+      "name": "test_cross_novel_parent_source_and_thread_are_denied",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StructureTest",
+      "name": "test_global_thread_links_across_volumes_preserve_one_arc_parent",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StructureTest",
+      "name": "test_idempotency_stale_versions_and_archived_book",
+      "assertions": 9,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StructureTest",
+      "name": "test_database_rejects_cross_novel_parent_without_service",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StructureTest",
+      "name": "test_database_rejects_modifying_sealed_version",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StructureTest",
+      "name": "test_database_rejects_modifying_version_node",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StructureTest",
+      "name": "test_sealed_version_cannot_receive_more_nodes",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StructureTest",
+      "name": "test_database_rejects_duplicate_version_numbers",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StructureTest",
+      "name": "test_api_version_lookup_pagination_and_access",
+      "assertions": 12,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StructureTest",
+      "name": "test_target_reduction_and_forged_frozen_status_are_rejected",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StructureTest",
+      "name": "test_database_blocks_changing_novel_target_below_volume",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StructureTest",
+      "name": "test_structure_snapshot_failure_rolls_back_all_rows",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StructureTest",
+      "name": "test_page_filters_parent_and_compares_history",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.StructureTest",
+      "name": "test_filament_actual_node_edit_snapshot_readonly_and_filter",
+      "assertions": 19,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.TestIsolationTest",
+      "name": "test_actual_database_and_all_resource_routes_are_isolated",
+      "assertions": 14,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.TestIsolationTest",
+      "name": "test_files_and_file_cache_use_only_testing_storage",
+      "assertions": 8,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.TestIsolationTest",
+      "name": "test_artisan_rejects_url_bypass_before_any_database_connection",
+      "assertions": 4,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.TestIsolationTest",
+      "name": "test_unverifiable_database_fails_closed_without_credentials_in_output",
+      "assertions": 3,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.TestIsolationTest",
+      "name": "test_conflicting_environment_is_rejected",
+      "assertions": 2,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.TestIsolationTest",
+      "name": "test_cached_configuration_is_rejected_without_loading_it",
+      "assertions": 18,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.TestIsolationTest",
+      "name": "test_normal_console_command_still_runs_termination_callbacks",
+      "assertions": 5,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.TestIsolationTest",
+      "name": "test_early_storage_symlink_gate_still_rejects_without_config_errors",
+      "assertions": 4,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.TestIsolationTest",
+      "name": "test_external_resource_settings_cannot_redirect_testing",
+      "assertions": 1,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.TestIsolationTest",
+      "name": "test_real_redis_and_explicit_queue_use_dedicated_process",
+      "assertions": 6,
+      "status": "passed",
+      "source": "RECHECK_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.UiFoundationTest",
+      "name": "test_panel_registers_independent_compiled_theme",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.UiFoundationTest",
+      "name": "test_read_only_pages_keep_authentication_and_have_no_business_side_effects",
+      "assertions": 15,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.UiFoundationTest",
+      "name": "test_input_connects_native_label_help_error_and_preserves_attributes",
+      "assertions": 7,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.UiFoundationTest",
+      "name": "test_readonly_and_disabled_are_native_control_states",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.UiFoundationTest",
+      "name": "test_section_form_and_table_use_native_semantics_and_escaped_labels",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.UiFoundationTest",
+      "name": "test_common_states_have_explicit_accessible_feedback",
+      "assertions": 22,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.UiFoundationTest",
+      "name": "test_unknown_visual_state_is_not_silently_treated_as_success",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorkspaceTest",
+      "name": "test_empty_overview_and_no_match_are_distinct",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorkspaceTest",
+      "name": "test_summary_has_real_missing_items_unknown_metrics_and_no_side_effects",
+      "assertions": 23,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorkspaceTest",
+      "name": "test_all_planning_pages_keep_book_context_and_return_link",
+      "assertions": 28,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorkspaceTest",
+      "name": "test_auth_ownership_and_invalid_filters",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorkspaceTest",
+      "name": "test_real_ready_frozen_and_stale_plans_are_not_generation_readiness",
+      "assertions": 10,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorkspaceTest",
+      "name": "test_invalid_filters_and_read_failure_do_not_render_empty_state",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorkspaceTest",
+      "name": "test_archived_workbench_and_overview_filters_are_read_only",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorkspaceTest",
+      "name": "test_overview_pagination_is_stable_and_has_only_owned_books",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorkspaceTest",
+      "name": "test_single_sided_ranges_and_filter_reset",
+      "assertions": 6,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorkspaceTest",
+      "name": "test_creation_and_copy_redirect_to_the_correct_workspace",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_candidate_approval_and_revision_preserve_approved_history",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_initial_relationships_require_approved_exact_version_and_preserve_reference",
+      "assertions": 4,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_rules_conflicts_and_source_quote_validation",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_default_disabled_policy_and_valid_minor_acceptance_quota",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_policy_blocks_core_abilities_plot_range_and_obsolete_policy",
+      "assertions": 13,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_alias_merge_creates_candidate_without_rebinding_history",
+      "assertions": 9,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_cross_book_source_relation_alias_and_version_are_denied",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_idempotency_stale_archive_and_retirement",
+      "assertions": 8,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_database_blocks_history_update",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_database_blocks_alias_insert_after_sealing",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_database_blocks_entity_deletion",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_database_blocks_policy_mutation",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_database_blocks_direct_core_policy_approval",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_database_blocks_cross_book_definition_parent",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_database_rejects_approval_pointer_without_approval",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_database_preserves_approval_audit",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_database_preserves_profile_history",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_database_rejects_cross_book_initial_relation",
+      "assertions": 1,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_stale_definition_and_invalid_type_change_are_rejected",
+      "assertions": 3,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_filament_non_character_and_archived_readonly",
+      "assertions": 11,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_failure_rolls_back_entity_version_and_command",
+      "assertions": 5,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_list_filter_cursor_and_authentication",
+      "assertions": 13,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    },
+    {
+      "class": "Tests.Feature.WorldTest",
+      "name": "test_filament_actual_save_approve_history_and_policy",
+      "assertions": 19,
+      "status": "passed",
+      "source": "INITIAL_TESTS.xml"
+    }
+  ]
+}

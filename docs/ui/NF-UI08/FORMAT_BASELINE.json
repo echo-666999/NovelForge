@@ -1,0 +1,27 @@
+[
+  {
+    "path": "app/Http/Controllers/RunCenterController.php",
+    "fixers": [
+      "method_argument_space",
+      "unary_operator_spaces",
+      "not_operator_with_successor_space"
+    ],
+    "unchanged_from_turn_baseline": true
+  },
+  {
+    "path": "app/Console/Commands/CreateAdmin.php",
+    "fixers": [
+      "statement_indentation"
+    ],
+    "unchanged_from_turn_baseline": true
+  },
+  {
+    "path": "tests/Feature/RecoveryConcurrencyTest.php",
+    "fixers": [
+      "method_argument_space",
+      "unary_operator_spaces",
+      "not_operator_with_successor_space"
+    ],
+    "unchanged_from_turn_baseline": true
+  }
+]

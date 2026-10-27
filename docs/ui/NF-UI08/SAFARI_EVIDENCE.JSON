@@ -1,0 +1,285 @@
+{
+  "rows": [
+    {
+      "page": "overview",
+      "path": "/admin",
+      "expected": "创作总览",
+      "ready": true,
+      "heading": "58 标题 创作总览, Value: 1",
+      "document": "5 HTML内容 Description: 创作总览 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin",
+      "readError": false
+    },
+    {
+      "page": "audit-center",
+      "path": "/admin/audit-center",
+      "expected": "审计与系统健康",
+      "ready": true,
+      "heading": "58 标题 审计与系统健康, Value: 1",
+      "document": "5 HTML内容 Description: 审计与系统健康 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/audit-center",
+      "readError": false
+    },
+    {
+      "page": "billing",
+      "path": "/admin/billing",
+      "expected": "价格与原子预算",
+      "ready": true,
+      "heading": "58 标题 价格与原子预算, Value: 1",
+      "document": "5 HTML内容 Description: 价格与原子预算 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/billing",
+      "readError": false
+    },
+    {
+      "page": "canonical-commit-center",
+      "path": "/admin/canonical-commit-center?novel=37",
+      "expected": "正式提交与基线",
+      "ready": true,
+      "heading": "58 标题 正式提交与基线, Value: 1",
+      "document": "5 HTML内容 Description: 正式提交与基线 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/canonical-commit-center?novel=37",
+      "readError": false
+    },
+    {
+      "page": "canonical-memory-center",
+      "path": "/admin/canonical-memory-center?novel=37",
+      "expected": "正式记忆与索引",
+      "ready": true,
+      "heading": "58 标题 正式记忆与索引, Value: 1",
+      "document": "5 HTML内容 Description: 正式记忆与索引 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/canonical-memory-center?novel=37",
+      "readError": false
+    },
+    {
+      "page": "context-inspector",
+      "path": "/admin/context-inspector?novel=36&step=43&manifest=1",
+      "expected": "上下文检查器",
+      "ready": true,
+      "heading": "58 标题 上下文检查器, Value: 1",
+      "document": "5 HTML内容 Description: 上下文检查器 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/context-inspector?novel=36&step=43&manifest=1",
+      "readError": false
+    },
+    {
+      "page": "extraction-ledger",
+      "path": "/admin/extraction-ledger?novel=36",
+      "expected": "正文提取与候选事件账本",
+      "ready": true,
+      "heading": "58 标题 正文提取与候选事件账本, Value: 1",
+      "document": "5 HTML内容 Description: 正文提取与候选事件账本 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/extraction-ledger?novel=36",
+      "readError": false
+    },
+    {
+      "page": "foreshadow-ledger",
+      "path": "/admin/foreshadow-ledger?novel=36",
+      "expected": "伏笔与主支线账本",
+      "ready": true,
+      "heading": "58 标题 伏笔与主支线账本, Value: 1",
+      "document": "5 HTML内容 Description: 伏笔与主支线账本 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/foreshadow-ledger?novel=36",
+      "readError": false
+    },
+    {
+      "page": "memory-library",
+      "path": "/admin/memory-library?novel=35",
+      "expected": "分层记忆库",
+      "ready": true,
+      "heading": "58 标题 分层记忆库, Value: 1",
+      "document": "5 HTML内容 Description: 分层记忆库 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/memory-library?novel=35",
+      "readError": false
+    },
+    {
+      "page": "model-routes",
+      "path": "/admin/model-routes",
+      "expected": "模型主备路由",
+      "ready": true,
+      "heading": "58 标题 模型主备路由, Value: 1",
+      "document": "5 HTML内容 Description: 模型主备路由 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/model-routes",
+      "readError": false
+    },
+    {
+      "page": "novels",
+      "path": "/admin/novels",
+      "expected": "小说",
+      "ready": true,
+      "heading": "62 标题 小说, Value: 1",
+      "document": "5 HTML内容 Description: 小说 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels",
+      "readError": false
+    },
+    {
+      "page": "create",
+      "path": "/admin/novels/create",
+      "expected": "创建 小说",
+      "ready": true,
+      "heading": "62 标题 创建 小说, Value: 1",
+      "document": "5 HTML内容 Description: 创建 小说 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels/create",
+      "readError": false
+    },
+    {
+      "page": "blueprints",
+      "path": "/admin/novels/36/blueprints",
+      "expected": "蓝图与终局契约",
+      "ready": true,
+      "heading": "62 标题 蓝图与终局契约, Value: 1",
+      "document": "5 HTML内容 Description: 蓝图与终局契约 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels/36/blueprints",
+      "readError": false
+    },
+    {
+      "page": "draft-editor",
+      "path": "/admin/novels/36/draft-editor",
+      "expected": "候选正文",
+      "ready": true,
+      "heading": "62 标题 候选正文, Value: 1",
+      "document": "5 HTML内容 Description: 候选正文 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels/36/draft-editor",
+      "readError": false
+    },
+    {
+      "page": "intent",
+      "path": "/admin/novels/36/intent",
+      "expected": "原始要求与覆盖矩阵",
+      "ready": true,
+      "heading": "62 标题 原始要求与覆盖矩阵, Value: 1",
+      "document": "5 HTML内容 Description: 原始要求与覆盖矩阵 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels/36/intent",
+      "readError": false
+    },
+    {
+      "page": "planning-candidates",
+      "path": "/admin/novels/36/planning-candidates",
+      "expected": "离线规划候选",
+      "ready": true,
+      "heading": "62 标题 离线规划候选, Value: 1",
+      "document": "5 HTML内容 Description: 离线规划候选 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels/36/planning-candidates",
+      "readError": false
+    },
+    {
+      "page": "plans",
+      "path": "/admin/novels/36/plans",
+      "expected": "滚动细化与章节场景计划",
+      "ready": true,
+      "heading": "62 标题 滚动细化与章节场景计划, Value: 1",
+      "document": "5 HTML内容 Description: 滚动细化与章节场景计划 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels/36/plans",
+      "readError": false
+    },
+    {
+      "page": "structure",
+      "path": "/admin/novels/36/structure",
+      "expected": "五层结构与版本",
+      "ready": true,
+      "heading": "62 标题 五层结构与版本, Value: 1",
+      "document": "5 HTML内容 Description: 五层结构与版本 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels/36/structure",
+      "readError": false
+    },
+    {
+      "page": "workspace",
+      "path": "/admin/novels/36/workspace",
+      "expected": "创作工作台",
+      "ready": true,
+      "heading": "62 标题 创作工作台, Value: 1",
+      "document": "5 HTML内容 Description: 创作工作台 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels/36/workspace",
+      "readError": false
+    },
+    {
+      "page": "world",
+      "path": "/admin/novels/36/world",
+      "expected": "世界实体与人物设定",
+      "ready": true,
+      "heading": "62 标题 世界实体与人物设定, Value: 1",
+      "document": "5 HTML内容 Description: 世界实体与人物设定 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels/36/world",
+      "readError": false
+    },
+    {
+      "page": "project-status",
+      "path": "/admin/project-status",
+      "expected": "实施状态",
+      "ready": true,
+      "heading": "58 标题 实施状态, Value: 1",
+      "document": "5 HTML内容 Description: 实施状态 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/project-status",
+      "readError": false
+    },
+    {
+      "page": "prompt-templates",
+      "path": "/admin/prompt-templates",
+      "expected": "Prompt 模板与发布",
+      "ready": true,
+      "heading": "58 标题 Prompt 模板与发布, Value: 1",
+      "document": "5 HTML内容 Description: Prompt 模板与发布 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/prompt-templates",
+      "readError": false
+    },
+    {
+      "page": "providers",
+      "path": "/admin/providers",
+      "expected": "供应商与模型",
+      "ready": true,
+      "heading": "58 标题 供应商与模型, Value: 1",
+      "document": "5 HTML内容 Description: 供应商与模型 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/providers",
+      "readError": false
+    },
+    {
+      "page": "recovery-desk",
+      "path": "/admin/recovery-desk?novel=36&run=57",
+      "expected": "运行恢复台",
+      "ready": true,
+      "heading": "58 标题 运行恢复台, Value: 1",
+      "document": "5 HTML内容 Description: 运行恢复台 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/recovery-desk?novel=36&run=57",
+      "readError": false
+    },
+    {
+      "page": "review-center",
+      "path": "/admin/review-center?novel=36&version=1",
+      "expected": "评审中心与文风策略",
+      "ready": true,
+      "heading": "58 标题 评审中心与文风策略, Value: 1",
+      "document": "5 HTML内容 Description: 评审中心与文风策略 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/review-center?novel=36&version=1",
+      "readError": false
+    },
+    {
+      "page": "revision-desk",
+      "path": "/admin/revision-desk?novel=36",
+      "expected": "受限修订与完整章节复评",
+      "ready": true,
+      "heading": "58 标题 受限修订与完整章节复评, Value: 1",
+      "document": "5 HTML内容 Description: 受限修订与完整章节复评 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/revision-desk?novel=36",
+      "readError": false
+    },
+    {
+      "page": "run-center",
+      "path": "/admin/run-center?novel=36&run=57",
+      "expected": "生成运行中心",
+      "ready": true,
+      "heading": "58 标题 生成运行中心, Value: 1",
+      "document": "5 HTML内容 Description: 生成运行中心 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/run-center?novel=36&run=57",
+      "readError": false
+    },
+    {
+      "page": "search-lab",
+      "path": "/admin/search-lab?novel=35",
+      "expected": "检索实验室与索引",
+      "ready": true,
+      "heading": "58 标题 检索实验室与索引, Value: 1",
+      "document": "5 HTML内容 Description: 检索实验室与索引 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/search-lab?novel=35",
+      "readError": false
+    },
+    {
+      "page": "story-hub",
+      "path": "/admin/story-hub?novel=36",
+      "expected": "故事管理",
+      "ready": true,
+      "heading": "58 标题 故事管理, Value: 1",
+      "document": "5 HTML内容 Description: 故事管理 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/story-hub?novel=36",
+      "readError": false
+    },
+    {
+      "page": "story-timeline",
+      "path": "/admin/story-timeline?novel=36",
+      "expected": "时间线与角色知识",
+      "ready": true,
+      "heading": "58 标题 时间线与角色知识, Value: 1",
+      "document": "5 HTML内容 Description: 时间线与角色知识 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/story-timeline?novel=36",
+      "readError": false
+    },
+    {
+      "page": "style-profiles",
+      "path": "/admin/style-profiles",
+      "expected": "文风与评分策略",
+      "ready": true,
+      "heading": "58 标题 文风与评分策略, Value: 1",
+      "document": "5 HTML内容 Description: 文风与评分策略 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/style-profiles",
+      "readError": false
+    }
+  ],
+  "method": "原生Safari默认窗口，实际HTML文档URL与主标题匹配后截图；未视为四种CSS视口验收",
+  "login": "前置窗口后使用正常邮箱密码认证，拒绝保存临时密码"
+}

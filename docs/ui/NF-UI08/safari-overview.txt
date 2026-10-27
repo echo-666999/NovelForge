@@ -1,0 +1,288 @@
+Window: "创作总览 - NovelForge · 小说工坊", App: Safari浏览器.
+0 标准窗口 创作总览 - NovelForge · 小说工坊, ID: SafariWindow?IsSecure=false&UUID=1C91E0BE-FABC-4972-8AB6-02AB60E256E5, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: 创作总览 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin
+					6 link 跳至主要内容, Value: 127.0.0.1:8770/admin#fi-main-content
+					7 container 顶部栏
+						8 link NovelForge · 小说工坊, Value: 127.0.0.1:8770/admin
+						9 文本 全局搜索
+						10 搜索文本栏 (settable) 全局搜索, Placeholder: 搜索
+							11 文本 搜索
+						12 文本 Press Down arrow to browse results. Use Up and Down arrows to move between results, and Tab to reach result actions. Press Escape to close results.
+						13 弹出式按钮 用户菜单
+					14 container 侧边栏导航
+						15 内容列表
+							16 container
+								17 文本 创作工作台
+								18 按钮 (expanded) 创作工作台, Secondary Actions: Collapse
+								19 内容列表
+									20 link 创作总览, Value: 127.0.0.1:8770/admin
+									21 link 小说库, Value: 127.0.0.1:8770/admin/novels
+							22 container
+								23 文本 故事管理
+								24 按钮 (expanded) 故事管理, Secondary Actions: Collapse
+								25 内容列表
+									26 link 故事管理, Value: 127.0.0.1:8770/admin/story-hub
+									27 link 时间线与角色知识, Value: 127.0.0.1:8770/admin/story-timeline
+									28 link 伏笔与主支线账本, Value: 127.0.0.1:8770/admin/foreshadow-ledger
+							29 container
+								30 文本 生产与质量
+								31 按钮 (expanded) 生产与质量, Secondary Actions: Collapse
+								32 内容列表
+									33 link 生成运行中心, Value: 127.0.0.1:8770/admin/run-center
+									34 link 正文提取与硬约束, Value: 127.0.0.1:8770/admin/extraction-ledger
+									35 link 评审中心与策略, Value: 127.0.0.1:8770/admin/review-center
+									36 link 受限修订工作台, Value: 127.0.0.1:8770/admin/revision-desk
+									37 link 正式提交与基线, Value: 127.0.0.1:8770/admin/canonical-commit-center
+									38 link 上下文检查器, Value: 127.0.0.1:8770/admin/context-inspector
+									39 link 运行恢复台, Value: 127.0.0.1:8770/admin/recovery-desk
+							40 container
+								41 文本 检索与记忆
+								42 按钮 (expanded) 检索与记忆, Secondary Actions: Collapse
+								43 内容列表
+									44 link 分层记忆库, Value: 127.0.0.1:8770/admin/memory-library
+									45 link 正式记忆与索引, Value: 127.0.0.1:8770/admin/canonical-memory-center
+									46 link 检索实验室与索引, Value: 127.0.0.1:8770/admin/search-lab
+							47 container
+								48 文本 配置与运维
+								49 按钮 (expanded) 配置与运维, Secondary Actions: Collapse
+								50 内容列表
+									51 link Prompt 模板与发布, Value: 127.0.0.1:8770/admin/prompt-templates
+									52 link 供应商与模型, Value: 127.0.0.1:8770/admin/providers
+									53 link 模型主备路由, Value: 127.0.0.1:8770/admin/model-routes
+									54 link 文风与评分策略, Value: 127.0.0.1:8770/admin/style-profiles
+									55 link 价格与原子预算, Value: 127.0.0.1:8770/admin/billing
+									56 link 审计与系统健康, Value: 127.0.0.1:8770/admin/audit-center
+					57 container
+						58 标题 创作总览, Value: 1
+							59 文本 创作总览
+						60 link 创建小说, Value: 127.0.0.1:8770/admin/novels/create
+						61 link 小说库 / 归档与恢复, Value: 127.0.0.1:8770/admin/novels
+						62 按钮 刷新列表
+						63 标题 找到小说，继续创作, Value: 2
+							64 文本 找到小说，继续创作
+						65 文本 按最近更新时间浏览小说，进入本书工作台核对规划与缺项。这里不是运行进度或模型质量报告。
+						66 文本 小说状态
+						67 弹出式按钮 小说状态：全部
+						68 文本 更新日期从（上海时间）
+						69 日期时间区域 更新日期从（上海时间）, Value: 2026/10/27
+							70 container
+								71 步进器 (settable, float) 年, Value: 0
+								72 文本 /
+								73 步进器 (settable, float) 月, Value: 0
+								74 文本 /
+								75 步进器 (settable, float) 日, Value: 0
+						76 文本 更新日期至（上海时间）
+						77 日期时间区域 更新日期至（上海时间）, Value: 2026/10/27
+							78 container
+								79 步进器 (settable, float) 年, Value: 0
+								80 文本 /
+								81 步进器 (settable, float) 月, Value: 0
+								82 文本 /
+								83 步进器 (settable, float) 日, Value: 0
+						84 文本 每页数量
+						85 弹出式按钮 每页数量：25本
+						86 container 小说与创作入口
+							87 表格
+								88 row (selectable) 小说
+题材 / 存储状态
+目标章数
+最近更新（上海时间）
+创作入口
+								89 row (selectable)
+									90 单元格 (selectable) UI08列表27 · 正常示例
+									91 单元格 (selectable) 隔离测试 / 草稿
+									92 单元格 (selectable) 100
+									93 单元格 (selectable) 2026-10-27 13:52
+									94 单元格 (selectable) 打开工作台
+								95 row (selectable)
+									96 单元格 (selectable) UI08列表26 · 正常示例
+									97 单元格 (selectable) 隔离测试 / 草稿
+									98 单元格 (selectable) 100
+									99 单元格 (selectable) 2026-10-27 13:52
+									100 单元格 (selectable) 打开工作台
+								101 row (selectable)
+									102 单元格 (selectable) UI08列表25 · 正常示例
+									103 单元格 (selectable) 隔离测试 / 草稿
+									104 单元格 (selectable) 100
+									105 单元格 (selectable) 2026-10-27 13:52
+									106 单元格 (selectable) 打开工作台
+								107 row (selectable)
+									108 单元格 (selectable) UI08列表24 · 正常示例
+									109 单元格 (selectable) 隔离测试 / 草稿
+									110 单元格 (selectable) 100
+									111 单元格 (selectable) 2026-10-27 13:52
+									112 单元格 (selectable) 打开工作台
+								113 row (selectable)
+									114 单元格 (selectable) UI08列表23 · 正常示例
+									115 单元格 (selectable) 隔离测试 / 草稿
+									116 单元格 (selectable) 100
+									117 单元格 (selectable) 2026-10-27 13:52
+									118 单元格 (selectable) 打开工作台
+								119 row (selectable)
+									120 单元格 (selectable) UI08列表22 · 正常示例
+									121 单元格 (selectable) 隔离测试 / 草稿
+									122 单元格 (selectable) 100
+									123 单元格 (selectable) 2026-10-27 13:52
+									124 单元格 (selectable) 打开工作台
+								125 row (selectable)
+									126 单元格 (selectable) UI08列表21 · 正常示例
+									127 单元格 (selectable) 隔离测试 / 草稿
+									128 单元格 (selectable) 100
+									129 单元格 (selectable) 2026-10-27 13:52
+									130 单元格 (selectable) 打开工作台
+								131 row (selectable)
+									132 单元格 (selectable) UI08列表20 · 正常示例
+									133 单元格 (selectable) 隔离测试 / 草稿
+									134 单元格 (selectable) 100
+									135 单元格 (selectable) 2026-10-27 13:52
+									136 单元格 (selectable) 打开工作台
+								137 row (selectable)
+									138 单元格 (selectable) UI08列表19 · 正常示例
+									139 单元格 (selectable) 隔离测试 / 草稿
+									140 单元格 (selectable) 100
+									141 单元格 (selectable) 2026-10-27 13:52
+									142 单元格 (selectable) 打开工作台
+								143 row (selectable)
+									144 单元格 (selectable) UI08列表18 · 正常示例
+									145 单元格 (selectable) 隔离测试 / 草稿
+									146 单元格 (selectable) 100
+									147 单元格 (selectable) 2026-10-27 13:52
+									148 单元格 (selectable) 打开工作台
+								149 row (selectable)
+									150 单元格 (selectable) UI08列表17 · 正常示例
+									151 单元格 (selectable) 隔离测试 / 草稿
+									152 单元格 (selectable) 100
+									153 单元格 (selectable) 2026-10-27 13:52
+									154 单元格 (selectable) 打开工作台
+								155 row (selectable)
+									156 单元格 (selectable) UI08列表16 · 正常示例
+									157 单元格 (selectable) 隔离测试 / 草稿
+									158 单元格 (selectable) 100
+									159 单元格 (selectable) 2026-10-27 13:52
+									160 单元格 (selectable) 打开工作台
+								161 row (selectable)
+									162 单元格 (selectable) UI08列表15 · 正常示例
+									163 单元格 (selectable) 隔离测试 / 草稿
+									164 单元格 (selectable) 100
+									165 单元格 (selectable) 2026-10-27 13:52
+									166 单元格 (selectable) 打开工作台
+								167 row (selectable)
+									168 单元格 (selectable) UI08列表14 · 正常示例
+									169 单元格 (selectable) 隔离测试 / 草稿
+									170 单元格 (selectable) 100
+									171 单元格 (selectable) 2026-10-27 13:52
+									172 单元格 (selectable) 打开工作台
+								173 row (selectable)
+									174 单元格 (selectable) UI08列表13 · 正常示例
+									175 单元格 (selectable) 隔离测试 / 草稿
+									176 单元格 (selectable) 100
+									177 单元格 (selectable) 2026-10-27 13:52
+									178 单元格 (selectable) 打开工作台
+								179 row (selectable)
+									180 单元格 (selectable) UI08列表12 · 正常示例
+									181 单元格 (selectable) 隔离测试 / 草稿
+									182 单元格 (selectable) 100
+									183 单元格 (selectable) 2026-10-27 13:52
+									184 单元格 (selectable) 打开工作台
+								185 row (selectable)
+									186 单元格 (selectable) UI08列表11 · 正常示例
+									187 单元格 (selectable) 隔离测试 / 草稿
+									188 单元格 (selectable) 100
+									189 单元格 (selectable) 2026-10-27 13:52
+									190 单元格 (selectable) 打开工作台
+								191 row (selectable)
+									192 单元格 (selectable) UI08列表10 · 正常示例
+									193 单元格 (selectable) 隔离测试 / 草稿
+									194 单元格 (selectable) 100
+									195 单元格 (selectable) 2026-10-27 13:52
+									196 单元格 (selectable) 打开工作台
+								197 row (selectable)
+									198 单元格 (selectable) UI08列表09 · 正常示例
+									199 单元格 (selectable) 隔离测试 / 草稿
+									200 单元格 (selectable) 100
+									201 单元格 (selectable) 2026-10-27 13:52
+									202 单元格 (selectable) 打开工作台
+								203 row (selectable)
+									204 单元格 (selectable) UI08列表08 · 正常示例
+									205 单元格 (selectable) 隔离测试 / 草稿
+									206 单元格 (selectable) 100
+									207 单元格 (selectable) 2026-10-27 13:52
+									208 单元格 (selectable) 打开工作台
+								209 row (selectable)
+									210 单元格 (selectable) UI08列表07 · 正常示例
+									211 单元格 (selectable) 隔离测试 / 草稿
+									212 单元格 (selectable) 100
+									213 单元格 (selectable) 2026-10-27 13:52
+									214 单元格 (selectable) 打开工作台
+								215 row (selectable)
+									216 单元格 (selectable) UI08列表06 · 正常示例
+									217 单元格 (selectable) 隔离测试 / 草稿
+									218 单元格 (selectable) 100
+									219 单元格 (selectable) 2026-10-27 13:52
+									220 单元格 (selectable) 打开工作台
+								221 row (selectable)
+									222 单元格 (selectable) UI08列表05 · 正常示例
+									223 单元格 (selectable) 隔离测试 / 草稿
+									224 单元格 (selectable) 100
+									225 单元格 (selectable) 2026-10-27 13:52
+									226 单元格 (selectable) 打开工作台
+								227 row (selectable)
+									228 单元格 (selectable) UI08列表04 · 正常示例
+									229 单元格 (selectable) 隔离测试 / 草稿
+									230 单元格 (selectable) 100
+									231 单元格 (selectable) 2026-10-27 13:52
+									232 单元格 (selectable) 打开工作台
+								233 row (selectable)
+									234 单元格 (selectable) UI08列表03 · 正常示例
+									235 单元格 (selectable) 隔离测试 / 草稿
+									236 单元格 (selectable) 100
+									237 单元格 (selectable) 2026-10-27 13:52
+									238 单元格 (selectable) 打开工作台
+						239 文本 第 1 / 2 页 · 30 本
+						240 按钮 (disabled) 上一页
+						241 按钮 下一页
+						242 标题 生产指标待接入, Value: 2
+							243 文本 生产指标待接入
+						244 文本 已提交章数、今日费用、预算余额、Worker心跳、索引延迟：未知，尚未接入总览。
+						245 文本 最近运行、继续上次任务、异常与账单尚不可用；未显示数值不代表零，也不代表系统健康。
+				246 滚动条 (settable, float) 0
+	247 工具栏
+		248 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			249 按钮 Description: 显示边栏, ID: SidebarButton
+			250 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		251 container BackForwardSegmentedControl
+			252 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			253 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		254 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			255 按钮 页面菜单, ID: AssistantButton
+			256 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			257 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:8770/admin, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			258 按钮 重新加载此页面, ID: ReloadButton
+		259 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		260 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		261 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	262 标签页组 Description: 标签页栏，2个标签页, ID: TabBar?isSeparate=false
+		263 标签 创作总览 - NovelForge · 小说工坊, Help: 若要与此按钮中的项目交互，请按下Control-Option-Shift-下箭头键。, Value: on, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=true
+			264 图像 FaviconImageView
+			265 文本 Value: 创作总览 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+		266 标签 正式提交与基线 - NovelForge · 小说工坊, Value: off, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=false
+			267 图像 FaviconImageView
+			268 文本 Value: 正式提交与基线 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+	269 关闭按钮
+	270 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	271 最小化按钮
+272 menu bar
+	273 Safari浏览器
+	274 文件
+	275 编辑
+	276 显示, ID: SafariViewMenu
+	277 历史记录
+	278 书签, ID: SafariBookmarksMenu
+	279 窗口, ID: SafariWindowMenu
+	280 帮助, ID: SafariHelpMenu
+
+The focused UI element is 5 HTML内容 Description: 创作总览 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin

@@ -1,0 +1,146 @@
+Window: "Prompt 模板与发布 - NovelForge · 小说工坊", App: Safari浏览器.
+0 标准窗口 Prompt 模板与发布 - NovelForge · 小说工坊, ID: SafariWindow?IsSecure=false&UUID=1C91E0BE-FABC-4972-8AB6-02AB60E256E5, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: Prompt 模板与发布 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/prompt-templates
+					6 link 跳至主要内容, Value: 127.0.0.1:8770/admin/prompt-templates#fi-main-content
+					7 container 顶部栏
+						8 link NovelForge · 小说工坊, Value: 127.0.0.1:8770/admin
+						9 文本 全局搜索
+						10 搜索文本栏 (settable) 全局搜索, Placeholder: 搜索
+							11 文本 搜索
+						12 文本 Press Down arrow to browse results. Use Up and Down arrows to move between results, and Tab to reach result actions. Press Escape to close results.
+						13 弹出式按钮 用户菜单
+					14 container 侧边栏导航
+						15 内容列表
+							16 container
+								17 文本 创作工作台
+								18 按钮 (expanded) 创作工作台, Secondary Actions: Collapse
+								19 内容列表
+									20 link 创作总览, Value: 127.0.0.1:8770/admin
+									21 link 小说库, Value: 127.0.0.1:8770/admin/novels
+							22 container
+								23 文本 故事管理
+								24 按钮 (expanded) 故事管理, Secondary Actions: Collapse
+								25 内容列表
+									26 link 故事管理, Value: 127.0.0.1:8770/admin/story-hub
+									27 link 时间线与角色知识, Value: 127.0.0.1:8770/admin/story-timeline
+									28 link 伏笔与主支线账本, Value: 127.0.0.1:8770/admin/foreshadow-ledger
+							29 container
+								30 文本 生产与质量
+								31 按钮 (expanded) 生产与质量, Secondary Actions: Collapse
+								32 内容列表
+									33 link 生成运行中心, Value: 127.0.0.1:8770/admin/run-center
+									34 link 正文提取与硬约束, Value: 127.0.0.1:8770/admin/extraction-ledger
+									35 link 评审中心与策略, Value: 127.0.0.1:8770/admin/review-center
+									36 link 受限修订工作台, Value: 127.0.0.1:8770/admin/revision-desk
+									37 link 正式提交与基线, Value: 127.0.0.1:8770/admin/canonical-commit-center
+									38 link 上下文检查器, Value: 127.0.0.1:8770/admin/context-inspector
+									39 link 运行恢复台, Value: 127.0.0.1:8770/admin/recovery-desk
+							40 container
+								41 文本 检索与记忆
+								42 按钮 (expanded) 检索与记忆, Secondary Actions: Collapse
+								43 内容列表
+									44 link 分层记忆库, Value: 127.0.0.1:8770/admin/memory-library
+									45 link 正式记忆与索引, Value: 127.0.0.1:8770/admin/canonical-memory-center
+									46 link 检索实验室与索引, Value: 127.0.0.1:8770/admin/search-lab
+							47 container
+								48 文本 配置与运维
+								49 按钮 (expanded) 配置与运维, Secondary Actions: Collapse
+								50 内容列表
+									51 link Prompt 模板与发布, Value: 127.0.0.1:8770/admin/prompt-templates
+									52 link 供应商与模型, Value: 127.0.0.1:8770/admin/providers
+									53 link 模型主备路由, Value: 127.0.0.1:8770/admin/model-routes
+									54 link 文风与评分策略, Value: 127.0.0.1:8770/admin/style-profiles
+									55 link 价格与原子预算, Value: 127.0.0.1:8770/admin/billing
+									56 link 审计与系统健康, Value: 127.0.0.1:8770/admin/audit-center
+					57 container
+						58 标题 Prompt 模板与发布, Value: 1
+							59 文本 Prompt 模板与发布
+						60 文本 编辑创建新草稿，离线回归、发布和退役分别执行；旧运行继续引用原版本。
+						61 按钮 新建 Prompt 模板
+						62 标题 配置版本, Value: 2
+							63 文本 配置版本
+						64 文本 配置键
+						65 文本栏 (settable) 配置键
+						66 文本 阶段
+						67 文本栏 (settable) 阶段
+						68 文本 语言
+						69 文本栏 (settable) 语言
+						70 文本 状态
+						71 弹出式按钮 状态：全部
+						72 container 配置版本列表
+							73 表格
+								74 row (selectable) 配置 / 版本
+阶段 / 语言
+状态 / 默认
+离线回归
+引用运行
+操作
+								75 row (selectable)
+									76 单元格 (selectable) planning.prompt.tuarvpb0 · v1 · #19
+									77 单元格 (selectable) planning.intake / zh-CN
+									78 单元格 (selectable) 已发布 · 默认
+									79 单元格 (selectable) 离线通过
+									80 单元格 (selectable) 1
+									81 单元格 (selectable) 只读详情
+复制为新版本
+退役
+								82 row (selectable)
+									83 单元格 (selectable) draft.prompt · v1 · #18
+									84 单元格 (selectable) drafting.scene / zh-CN
+									85 单元格 (selectable) 已发布 · 默认
+									86 单元格 (selectable) 离线通过
+									87 单元格 (selectable) 2
+									88 单元格 (selectable) 只读详情
+复制为新版本
+退役
+						89 文本 共 2 个版本 · 第 1 页
+						90 按钮 (disabled) 上一页
+						91 按钮 (disabled) 下一页
+						92 标题 同一配置的版本比较, Value: 2
+							93 文本 同一配置的版本比较
+						94 文本 旧版本
+						95 弹出式按钮 旧版本：请选择
+						96 文本 新版本
+						97 弹出式按钮 新版本：请选择
+						98 文本 选择两个真实版本；仅允许同一配置身份。未知 Token 仍显示空值，不代表零成本。
+				99 滚动条 (settable, float) 0
+	100 工具栏
+		101 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			102 按钮 Description: 显示边栏, ID: SidebarButton
+			103 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		104 container BackForwardSegmentedControl
+			105 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			106 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		107 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			108 按钮 页面菜单, ID: AssistantButton
+			109 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			110 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:8770/admin/prompt-templates, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			111 按钮 重新加载此页面, ID: ReloadButton
+		112 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		113 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		114 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	115 标签页组 Description: 标签页栏，2个标签页, ID: TabBar?isSeparate=false
+		116 标签 Prompt 模板与发布 - NovelForge · 小说工坊, Help: 若要与此按钮中的项目交互，请按下Control-Option-Shift-下箭头键。, Value: on, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=true
+			117 图像 FaviconImageView
+			118 文本 Value: Prompt 模板与发布 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+		119 标签 正式提交与基线 - NovelForge · 小说工坊, Value: off, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=false
+			120 图像 FaviconImageView
+			121 文本 Value: 正式提交与基线 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+	122 关闭按钮
+	123 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	124 最小化按钮
+125 menu bar
+	126 Safari浏览器
+	127 文件
+	128 编辑
+	129 显示, ID: SafariViewMenu
+	130 历史记录
+	131 书签, ID: SafariBookmarksMenu
+	132 窗口, ID: SafariWindowMenu
+	133 帮助, ID: SafariHelpMenu
+
+The focused UI element is 5 HTML内容 Description: Prompt 模板与发布 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/prompt-templates

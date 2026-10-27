@@ -1,0 +1,30 @@
+{
+  "filament/filament": "v5.10.3",
+  "laravel/framework": "v13.38.0",
+  "livewire/livewire": "v4.4.8",
+  "git_head": "67d9a3957fa24b302eb2c473f4de9efce024bc6b",
+  "baseline_clean": true,
+  "pages": 32,
+  "get_routes_including_context_redirect": 33,
+  "chrome": "155.0.8059.41",
+  "safari": "27.0.1",
+  "preview": "http://127.0.0.1:8770",
+  "database": "novel_forge_test",
+  "browser_viewports": {
+    "Chrome": [
+      1440,
+      1920,
+      1024,
+      390
+    ],
+    "Safari_RDM": [
+      1440,
+      1920,
+      1024,
+      390
+    ]
+  },
+  "safari_rdm_note": "1440/1920/1024高1000，390高844；预览适配缩放及2倍像素不等于页面缩放。",
+  "normal_env_locale": "zh_CN",
+  "test_env_locale": "zh_CN"
+}

@@ -1,0 +1,54 @@
+{
+  "method": "本机静态画廊逐页扫查Chrome1440浅/深两组各32张缩略图；六帧保留整体布局。",
+  "limits": "缩略图不是逐字段像素认证；原上下文截图可见高度202，另补拍390×844焦点图，未删除旧帧。",
+  "frames": [
+    {
+      "file": "qa/chrome-dark-gallery-1.jpg",
+      "format": "JPEG",
+      "pixel_width": 1920,
+      "pixel_height": 1200,
+      "bytes": 174415,
+      "sha256": "5d23641d87abb388ad5c4d75b43178a46c08b76f8bca66d01ed5ba53cd0417f5"
+    },
+    {
+      "file": "qa/chrome-dark-gallery-2.jpg",
+      "format": "JPEG",
+      "pixel_width": 1920,
+      "pixel_height": 1200,
+      "bytes": 224375,
+      "sha256": "f6cc8c6fe708e129db724e4e1594c0e4e96c905869e985d3d3856fa51336855b"
+    },
+    {
+      "file": "qa/chrome-dark-gallery-3.jpg",
+      "format": "JPEG",
+      "pixel_width": 1920,
+      "pixel_height": 1200,
+      "bytes": 156609,
+      "sha256": "fa26393db240930ca45a48422d278ee829bc221073def6352fb9b268d28bd451"
+    },
+    {
+      "file": "qa/chrome-light-gallery-1.jpg",
+      "format": "JPEG",
+      "pixel_width": 1920,
+      "pixel_height": 1200,
+      "bytes": 173384,
+      "sha256": "21c6d2c89b65568d5a8ba6562cffed27b986f3e3d2f533531d96ff1ead488999"
+    },
+    {
+      "file": "qa/chrome-light-gallery-2.jpg",
+      "format": "JPEG",
+      "pixel_width": 1920,
+      "pixel_height": 1200,
+      "bytes": 212534,
+      "sha256": "14497015542fd75c0a2362bcaa174a793c6b3fc9f8ed3fcd556c601c7334c7bc"
+    },
+    {
+      "file": "qa/chrome-light-gallery-3.jpg",
+      "format": "JPEG",
+      "pixel_width": 1920,
+      "pixel_height": 1200,
+      "bytes": 139760,
+      "sha256": "a8c78df53554f6d013e6ddb7a3cee9c0d49c2258482b60743b5e3a2a76b1741d"
+    }
+  ]
+}

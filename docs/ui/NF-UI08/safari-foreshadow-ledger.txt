@@ -1,0 +1,263 @@
+Window: "伏笔与主支线账本 - NovelForge · 小说工坊", App: Safari浏览器.
+0 标准窗口 伏笔与主支线账本 - NovelForge · 小说工坊, ID: SafariWindow?IsSecure=false&UUID=1C91E0BE-FABC-4972-8AB6-02AB60E256E5, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: 伏笔与主支线账本 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/foreshadow-ledger?novel=36
+					6 link 跳至主要内容, Value: 127.0.0.1:8770/admin/foreshadow-ledger?novel=36#fi-main-content
+					7 container 顶部栏
+						8 link NovelForge · 小说工坊, Value: 127.0.0.1:8770/admin
+						9 文本 全局搜索
+						10 搜索文本栏 (settable) 全局搜索, Placeholder: 搜索
+							11 文本 搜索
+						12 文本 Press Down arrow to browse results. Use Up and Down arrows to move between results, and Tab to reach result actions. Press Escape to close results.
+						13 弹出式按钮 用户菜单
+					14 container 侧边栏导航
+						15 内容列表
+							16 container
+								17 文本 创作工作台
+								18 按钮 (expanded) 创作工作台, Secondary Actions: Collapse
+								19 内容列表
+									20 link 创作总览, Value: 127.0.0.1:8770/admin
+									21 link 小说库, Value: 127.0.0.1:8770/admin/novels
+							22 container
+								23 文本 故事管理
+								24 按钮 (expanded) 故事管理, Secondary Actions: Collapse
+								25 内容列表
+									26 link 故事管理, Value: 127.0.0.1:8770/admin/story-hub?novel=36
+									27 link 时间线与角色知识, Value: 127.0.0.1:8770/admin/story-timeline?novel=36
+									28 link 伏笔与主支线账本, Value: 127.0.0.1:8770/admin/foreshadow-ledger?novel=36
+							29 container
+								30 文本 生产与质量
+								31 按钮 (expanded) 生产与质量, Secondary Actions: Collapse
+								32 内容列表
+									33 link 生成运行中心, Value: 127.0.0.1:8770/admin/run-center?novel=36
+									34 link 正文提取与硬约束, Value: 127.0.0.1:8770/admin/extraction-ledger?novel=36
+									35 link 评审中心与策略, Value: 127.0.0.1:8770/admin/review-center?novel=36
+									36 link 受限修订工作台, Value: 127.0.0.1:8770/admin/revision-desk?novel=36
+									37 link 正式提交与基线, Value: 127.0.0.1:8770/admin/canonical-commit-center?novel=36
+									38 link 上下文检查器, Value: 127.0.0.1:8770/admin/context-inspector?novel=36
+									39 link 运行恢复台, Value: 127.0.0.1:8770/admin/recovery-desk?novel=36
+							40 container
+								41 文本 检索与记忆
+								42 按钮 (expanded) 检索与记忆, Secondary Actions: Collapse
+								43 内容列表
+									44 link 分层记忆库, Value: 127.0.0.1:8770/admin/memory-library?novel=36
+									45 link 正式记忆与索引, Value: 127.0.0.1:8770/admin/canonical-memory-center?novel=36
+									46 link 检索实验室与索引, Value: 127.0.0.1:8770/admin/search-lab?novel=36
+							47 container
+								48 文本 配置与运维
+								49 按钮 (expanded) 配置与运维, Secondary Actions: Collapse
+								50 内容列表
+									51 link Prompt 模板与发布, Value: 127.0.0.1:8770/admin/prompt-templates
+									52 link 供应商与模型, Value: 127.0.0.1:8770/admin/providers
+									53 link 模型主备路由, Value: 127.0.0.1:8770/admin/model-routes
+									54 link 文风与评分策略, Value: 127.0.0.1:8770/admin/style-profiles
+									55 link 价格与原子预算, Value: 127.0.0.1:8770/admin/billing
+									56 link 审计与系统健康, Value: 127.0.0.1:8770/admin/audit-center
+					57 container
+						58 标题 伏笔与主支线账本, Value: 1
+							59 文本 伏笔与主支线账本
+						60 标题 小说上下文, Value: 2
+							61 文本 小说上下文
+						62 文本 当前小说
+						63 弹出式按钮 当前小说：蓝图夹具
+						64 按钮 切换小说
+						65 link 小说库, Value: 127.0.0.1:8770/admin/novels
+						66 文本 当前小说：蓝图夹具 · #36
+						67 文本 正式基线：尚未初始化；当前内容仍按候选或规划身份展示。
+						68 摘要 本书创作入口 · 故事管理, Value: off
+							69 文本 本书创作入口 · 故事管理
+						70 文本 作者规划区。正式进度仅按活动正式基线的证据读取；预期知情范围不代表人物已知。
+						71 标题 伏笔计划与正式证据, Value: 2
+							72 文本 伏笔计划与正式证据
+						73 文本 调度预览章（非正式游标）
+						74 数字栏 (settable) 调度预览章（非正式游标）, Value: 1
+							75 步进器 0
+								76 未知
+								77 未知
+						78 文本 提示筛选
+						79 弹出式按钮 提示筛选：全部
+						80 复选框 仅必回收, Value: 0
+						81 文本 仅必回收
+						82 文本 生命周期
+						83 弹出式按钮 生命周期：全部
+						84 文本 关联实体
+						85 弹出式按钮 关联实体：全部
+						86 文本 回收窗口起
+						87 数字栏 (settable) 回收窗口起
+							88 步进器 0
+								89 未知
+								90 未知
+						91 文本 回收窗口止
+						92 数字栏 (settable) 回收窗口止
+							93 步进器 0
+								94 未知
+								95 未知
+						96 container 故事资料列表
+							97 表格
+								98 row (selectable) 伏笔 / 版本
+回收目标
+规划状态
+实际埋设 / 强化
+正式证据数
+提示
+操作
+								99 row (selectable)
+									100 单元格 (selectable) 铜钥匙缺口 / V1
+									101 单元格 (selectable) 9（8–10）
+									102 单元格 (selectable) 计划 已冻结
+									103 单元格 (selectable) 正式基线未连接 / 未知
+									104 单元格 (selectable) 未知（未连接）
+									105 单元格 (selectable) 检查铺垫
+核对首次埋设及强化的正式正文证据
+核对知情路径和因果作用；不足时提出补铺垫、改期或放弃候选
+									106 单元格 (selectable) 查看版本与证据
+						107 标题 主支线承诺与终局（批准蓝图）, Value: 2
+							108 文本 主支线承诺与终局（批准蓝图）
+						109 文本 类型
+						110 弹出式按钮 类型：全部
+						111 文本 主线 #35
+						112 文本 目标：追查证据；计划解决：公开封记比对结果
+						113 文本 转折：铜钥匙断口吻合；人物弧：由逃避转为公开证据
+						114 文本 关联伏笔版本：1；正式证据与闭合进度：该主支线投影未接入，不显示虚构计数。
+						115 文本 终局窗口：9–11；目标 10 章
+						116 文本 最终选择：承担公开档案的代价
+						117 文本 必回收文本承诺：铜钥匙缺口
+						118 文本 开放项：馆外旧案
+						119 文本 文本承诺未自动按名称绑定伏笔；终局完成门禁待后续任务接入。
+						120 标题 创建伏笔或编辑改期候选, Value: 2
+							121 文本 创建伏笔或编辑改期候选
+						122 文本 蓝图版本
+						123 弹出式按钮 蓝图版本：请选择
+						124 文本 主支线
+						125 弹出式按钮 主支线：未关联
+						126 文本 伏笔名称
+						127 文本输入区 (settable) 伏笔名称, Value: [文本输入区]
+						128 文本 表面线索
+						129 文本输入区 (settable) 表面线索, Value: [文本输入区]
+						130 文本 隐藏含义
+						131 文本输入区 (settable) 隐藏含义, Value: [文本输入区]
+						132 文本 预期读者误导
+						133 文本输入区 (settable) 预期读者误导, Value: [文本输入区]
+						134 文本 禁止提前揭示
+						135 文本输入区 (settable) 禁止提前揭示, Value: [文本输入区]
+						136 文本 终局因果作用
+						137 文本输入区 (settable) 终局因果作用, Value: [文本输入区]
+						138 文本 前置条件说明
+						139 文本输入区 (settable) 前置条件说明, Value: [文本输入区]
+						140 文本 埋设起章
+						141 数字栏 (settable) 埋设起章, Value: 1
+							142 步进器 0
+								143 未知
+								144 未知
+						145 文本 埋设止章
+						146 数字栏 (settable) 埋设止章, Value: 5
+							147 步进器 0
+								148 未知
+								149 未知
+						150 文本 回收目标章
+						151 数字栏 (settable) 回收目标章, Value: 100
+							152 步进器 0
+								153 未知
+								154 未知
+						155 文本 回收窗口起章
+						156 数字栏 (settable) 回收窗口起章, Value: 100
+							157 步进器 0
+								158 未知
+								159 未知
+						160 文本 回收窗口止章
+						161 数字栏 (settable) 回收窗口止章, Value: 100
+							162 步进器 0
+								163 未知
+								164 未知
+						165 复选框 必须回收, Value: 1
+						166 文本 必须回收
+						167 文本 重要程度
+						168 弹出式按钮 重要程度：重要
+						169 文本 保密级别
+						170 弹出式按钮 保密级别：仅作者
+						171 container 关联实体版本
+							172 文本 关联实体版本
+							173 文本 逐项选择，保留实际版本引用。
+							174 container
+								175 复选框 许砚 / 定义 #35, Value: 0
+								176 文本 许砚 / 定义 #35
+							177 container
+								178 复选框 同事 / 定义 #36, Value: 0
+								179 文本 同事 / 定义 #36
+							180 container
+								181 复选框 唯一钥匙 / 定义 #37, Value: 0
+								182 文本 唯一钥匙 / 定义 #37
+							183 container
+								184 复选框 档案馆前厅 / 定义 #38, Value: 0
+								185 文本 档案馆前厅 / 定义 #38
+							186 container
+								187 复选框 山城后门 / 定义 #39, Value: 0
+								188 文本 山城后门 / 定义 #39
+							189 container
+								190 复选框 辨认封记 / 定义 #40, Value: 0
+								191 文本 辨认封记 / 定义 #40
+							192 container
+								193 复选框 旅行能力规则 / 定义 #41, Value: 0
+								194 文本 旅行能力规则 / 定义 #41
+						195 container 预期知情角色版本
+							196 文本 预期知情角色版本
+							197 文本 逐项选择，保留实际版本引用。
+							198 container
+								199 复选框 许砚 / 定义 #35, Value: 0
+								200 文本 许砚 / 定义 #35
+							201 container
+								202 复选框 同事 / 定义 #36, Value: 0
+								203 文本 同事 / 定义 #36
+						204 container 前置候选事件（仍须正式证据）
+							205 文本 前置候选事件（仍须正式证据）
+							206 文本 逐项选择，保留实际版本引用。
+							207 container
+								208 复选框 #1 / 第1章 action, Value: 0
+								209 文本 #1 / 第1章 action
+						210 按钮 增加强化窗口
+						211 文本 操作理由
+						212 文本输入区 (settable) 操作理由, Value: [文本输入区]
+						213 文本 放弃后的替代安排
+						214 文本输入区 (settable) 放弃后的替代安排, Value: [文本输入区]
+						215 按钮 创建新伏笔
+						216 按钮 刷新操作基线
+				217 滚动条 (settable, float) 0
+	218 工具栏
+		219 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			220 按钮 Description: 显示边栏, ID: SidebarButton
+			221 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		222 container BackForwardSegmentedControl
+			223 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			224 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		225 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			226 按钮 页面菜单, ID: AssistantButton
+			227 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			228 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:8770/admin/foreshadow-ledger?novel=36, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			229 按钮 重新加载此页面, ID: ReloadButton
+		230 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		231 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		232 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	233 标签页组 Description: 标签页栏，2个标签页, ID: TabBar?isSeparate=false
+		234 标签 伏笔与主支线账本 - NovelForge · 小说工坊, Help: 若要与此按钮中的项目交互，请按下Control-Option-Shift-下箭头键。, Value: on, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=true
+			235 图像 FaviconImageView
+			236 文本 Value: 伏笔与主支线账本 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+		237 标签 正式提交与基线 - NovelForge · 小说工坊, Value: off, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=false
+			238 图像 FaviconImageView
+			239 文本 Value: 正式提交与基线 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+	240 关闭按钮
+	241 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	242 最小化按钮
+243 menu bar
+	244 Safari浏览器
+	245 文件
+	246 编辑
+	247 显示, ID: SafariViewMenu
+	248 历史记录
+	249 书签, ID: SafariBookmarksMenu
+	250 窗口, ID: SafariWindowMenu
+	251 帮助, ID: SafariHelpMenu
+
+The focused UI element is 5 HTML内容 Description: 伏笔与主支线账本 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/foreshadow-ledger?novel=36

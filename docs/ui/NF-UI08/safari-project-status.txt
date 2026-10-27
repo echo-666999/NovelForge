@@ -1,0 +1,105 @@
+Window: "实施状态 - NovelForge · 小说工坊", App: Safari浏览器.
+0 标准窗口 实施状态 - NovelForge · 小说工坊, ID: SafariWindow?IsSecure=false&UUID=1C91E0BE-FABC-4972-8AB6-02AB60E256E5, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: 实施状态 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/project-status
+					6 link 跳至主要内容, Value: 127.0.0.1:8770/admin/project-status#fi-main-content
+					7 container 顶部栏
+						8 link NovelForge · 小说工坊, Value: 127.0.0.1:8770/admin
+						9 文本 全局搜索
+						10 搜索文本栏 (settable) 全局搜索, Placeholder: 搜索
+							11 文本 搜索
+						12 文本 Press Down arrow to browse results. Use Up and Down arrows to move between results, and Tab to reach result actions. Press Escape to close results.
+						13 弹出式按钮 用户菜单
+					14 container 侧边栏导航
+						15 内容列表
+							16 container
+								17 文本 创作工作台
+								18 按钮 (expanded) 创作工作台, Secondary Actions: Collapse
+								19 内容列表
+									20 link 创作总览, Value: 127.0.0.1:8770/admin
+									21 link 小说库, Value: 127.0.0.1:8770/admin/novels
+							22 container
+								23 文本 故事管理
+								24 按钮 (expanded) 故事管理, Secondary Actions: Collapse
+								25 内容列表
+									26 link 故事管理, Value: 127.0.0.1:8770/admin/story-hub
+									27 link 时间线与角色知识, Value: 127.0.0.1:8770/admin/story-timeline
+									28 link 伏笔与主支线账本, Value: 127.0.0.1:8770/admin/foreshadow-ledger
+							29 container
+								30 文本 生产与质量
+								31 按钮 (expanded) 生产与质量, Secondary Actions: Collapse
+								32 内容列表
+									33 link 生成运行中心, Value: 127.0.0.1:8770/admin/run-center
+									34 link 正文提取与硬约束, Value: 127.0.0.1:8770/admin/extraction-ledger
+									35 link 评审中心与策略, Value: 127.0.0.1:8770/admin/review-center
+									36 link 受限修订工作台, Value: 127.0.0.1:8770/admin/revision-desk
+									37 link 正式提交与基线, Value: 127.0.0.1:8770/admin/canonical-commit-center
+									38 link 上下文检查器, Value: 127.0.0.1:8770/admin/context-inspector
+									39 link 运行恢复台, Value: 127.0.0.1:8770/admin/recovery-desk
+							40 container
+								41 文本 检索与记忆
+								42 按钮 (expanded) 检索与记忆, Secondary Actions: Collapse
+								43 内容列表
+									44 link 分层记忆库, Value: 127.0.0.1:8770/admin/memory-library
+									45 link 正式记忆与索引, Value: 127.0.0.1:8770/admin/canonical-memory-center
+									46 link 检索实验室与索引, Value: 127.0.0.1:8770/admin/search-lab
+							47 container
+								48 文本 配置与运维
+								49 按钮 (expanded) 配置与运维, Secondary Actions: Collapse
+								50 内容列表
+									51 link Prompt 模板与发布, Value: 127.0.0.1:8770/admin/prompt-templates
+									52 link 供应商与模型, Value: 127.0.0.1:8770/admin/providers
+									53 link 模型主备路由, Value: 127.0.0.1:8770/admin/model-routes
+									54 link 文风与评分策略, Value: 127.0.0.1:8770/admin/style-profiles
+									55 link 价格与原子预算, Value: 127.0.0.1:8770/admin/billing
+									56 link 审计与系统健康, Value: 127.0.0.1:8770/admin/audit-center
+					57 container
+						58 标题 实施状态, Value: 1
+							59 文本 实施状态
+						60 标题 实施与验收记录, Value: 2
+							61 文本 实施与验收记录
+						62 文本 完整需求以 docs/PRD-V1.1.md 及变更记录为准；实施范围与验收证据以 docs/DEVELOPMENT_TASKS.md 和各任务验收文档为准。
+						63 文本 界面整改按 docs/ui/PLAN.md 跟踪。本页是说明入口，不代替实际运行健康，也不把历史阶段说明当作当前任务状态。
+						64 标题 当前使用边界, Value: 2
+							65 文本 当前使用边界
+						66 文本 本书规划门禁、正式基线和运行记录从各自页面查询。候选、离线回放、评审通过与正式提交是不同状态，不能相互替代。
+						67 文本 本页不启动生成或模型调用。中文分词按既定决定延后至最低优先级优化。
+	68 工具栏
+		69 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			70 按钮 Description: 显示边栏, ID: SidebarButton
+			71 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		72 container BackForwardSegmentedControl
+			73 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			74 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		75 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			76 按钮 页面菜单, ID: AssistantButton
+			77 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			78 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:8770/admin/project-status, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			79 按钮 重新加载此页面, ID: ReloadButton
+		80 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		81 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		82 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	83 标签页组 Description: 标签页栏，2个标签页, ID: TabBar?isSeparate=false
+		84 标签 实施状态 - NovelForge · 小说工坊, Help: 若要与此按钮中的项目交互，请按下Control-Option-Shift-下箭头键。, Value: on, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=true
+			85 图像 FaviconImageView
+			86 文本 Value: 实施状态 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+		87 标签 正式提交与基线 - NovelForge · 小说工坊, Value: off, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=false
+			88 图像 FaviconImageView
+			89 文本 Value: 正式提交与基线 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+	90 关闭按钮
+	91 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	92 最小化按钮
+93 menu bar
+	94 Safari浏览器
+	95 文件
+	96 编辑
+	97 显示, ID: SafariViewMenu
+	98 历史记录
+	99 书签, ID: SafariBookmarksMenu
+	100 窗口, ID: SafariWindowMenu
+	101 帮助, ID: SafariHelpMenu
+
+The focused UI element is 5 HTML内容 Description: 实施状态 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/project-status

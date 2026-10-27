@@ -1,0 +1,13 @@
+{
+  "novels": 30,
+  "novel_commands": 189,
+  "ai_requests": 3,
+  "story_events": 1,
+  "canonical_commits": 1,
+  "context_manifests": 1,
+  "budget_policies": 1,
+  "billing_commands": 3,
+  "reviews": 2,
+  "chapter_versions": 2,
+  "prompt_versions": 2
+}

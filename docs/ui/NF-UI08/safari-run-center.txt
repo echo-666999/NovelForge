@@ -1,0 +1,292 @@
+Window: "生成运行中心 - NovelForge · 小说工坊", App: Safari浏览器.
+0 标准窗口 生成运行中心 - NovelForge · 小说工坊, ID: SafariWindow?IsSecure=false&UUID=1C91E0BE-FABC-4972-8AB6-02AB60E256E5, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: 生成运行中心 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/run-center?novel=36&run=57
+					6 link 跳至主要内容, Value: 127.0.0.1:8770/admin/run-center?novel=36&run=57#fi-main-content
+					7 container 顶部栏
+						8 link NovelForge · 小说工坊, Value: 127.0.0.1:8770/admin
+						9 文本 全局搜索
+						10 搜索文本栏 (settable) 全局搜索, Placeholder: 搜索
+							11 文本 搜索
+						12 文本 Press Down arrow to browse results. Use Up and Down arrows to move between results, and Tab to reach result actions. Press Escape to close results.
+						13 弹出式按钮 用户菜单
+					14 container 侧边栏导航
+						15 内容列表
+							16 container
+								17 文本 创作工作台
+								18 按钮 (expanded) 创作工作台, Secondary Actions: Collapse
+								19 内容列表
+									20 link 创作总览, Value: 127.0.0.1:8770/admin
+									21 link 小说库, Value: 127.0.0.1:8770/admin/novels
+							22 container
+								23 文本 故事管理
+								24 按钮 (expanded) 故事管理, Secondary Actions: Collapse
+								25 内容列表
+									26 link 故事管理, Value: 127.0.0.1:8770/admin/story-hub?novel=36
+									27 link 时间线与角色知识, Value: 127.0.0.1:8770/admin/story-timeline?novel=36
+									28 link 伏笔与主支线账本, Value: 127.0.0.1:8770/admin/foreshadow-ledger?novel=36
+							29 container
+								30 文本 生产与质量
+								31 按钮 (expanded) 生产与质量, Secondary Actions: Collapse
+								32 内容列表
+									33 link 生成运行中心, Value: 127.0.0.1:8770/admin/run-center?novel=36
+									34 link 正文提取与硬约束, Value: 127.0.0.1:8770/admin/extraction-ledger?novel=36
+									35 link 评审中心与策略, Value: 127.0.0.1:8770/admin/review-center?novel=36
+									36 link 受限修订工作台, Value: 127.0.0.1:8770/admin/revision-desk?novel=36
+									37 link 正式提交与基线, Value: 127.0.0.1:8770/admin/canonical-commit-center?novel=36
+									38 link 上下文检查器, Value: 127.0.0.1:8770/admin/context-inspector?novel=36
+									39 link 运行恢复台, Value: 127.0.0.1:8770/admin/recovery-desk?novel=36
+							40 container
+								41 文本 检索与记忆
+								42 按钮 (expanded) 检索与记忆, Secondary Actions: Collapse
+								43 内容列表
+									44 link 分层记忆库, Value: 127.0.0.1:8770/admin/memory-library?novel=36
+									45 link 正式记忆与索引, Value: 127.0.0.1:8770/admin/canonical-memory-center?novel=36
+									46 link 检索实验室与索引, Value: 127.0.0.1:8770/admin/search-lab?novel=36
+							47 container
+								48 文本 配置与运维
+								49 按钮 (expanded) 配置与运维, Secondary Actions: Collapse
+								50 内容列表
+									51 link Prompt 模板与发布, Value: 127.0.0.1:8770/admin/prompt-templates
+									52 link 供应商与模型, Value: 127.0.0.1:8770/admin/providers
+									53 link 模型主备路由, Value: 127.0.0.1:8770/admin/model-routes
+									54 link 文风与评分策略, Value: 127.0.0.1:8770/admin/style-profiles
+									55 link 价格与原子预算, Value: 127.0.0.1:8770/admin/billing
+									56 link 审计与系统健康, Value: 127.0.0.1:8770/admin/audit-center
+					57 container
+						58 标题 生成运行中心, Value: 1
+							59 文本 生成运行中心
+						60 标题 小说上下文, Value: 2
+							61 文本 小说上下文
+						62 文本 当前小说
+						63 弹出式按钮 当前小说：蓝图夹具
+						64 按钮 切换小说
+						65 link 小说库, Value: 127.0.0.1:8770/admin/novels
+						66 文本 当前小说：蓝图夹具 · #36
+						67 文本 正式基线：尚未初始化；当前内容仍按候选或规划身份展示。
+						68 摘要 本书创作入口 · 生产与质量, Value: off
+							69 文本 本书创作入口 · 生产与质量
+						70 文本 当前仅离线阶段可运行。本页阶段数不是正式章数，正式前缀见小说上下文；页面关闭不会取消持久任务。
+						71 文本 查看运行ID
+						72 弹出式按钮 查看运行ID：记录 #57 · succeeded / 36
+						73 文本 运行状态
+						74 文本栏 (settable) 运行状态
+						75 文本 错误码
+						76 文本栏 (settable) 错误码
+						77 文本 追踪号
+						78 文本栏 (settable) 追踪号
+						79 文本 开始日期 UTC
+						80 日期时间区域 开始日期 UTC, Value: 2026/10/27
+							81 container
+								82 步进器 (settable, float) 年, Value: 0
+								83 文本 /
+								84 步进器 (settable, float) 月, Value: 0
+								85 文本 /
+								86 步进器 (settable, float) 日, Value: 0
+						87 文本 结束日期 UTC
+						88 日期时间区域 结束日期 UTC, Value: 2026/10/27
+							89 container
+								90 步进器 (settable, float) 年, Value: 0
+								91 文本 /
+								92 步进器 (settable, float) 月, Value: 0
+								93 文本 /
+								94 步进器 (settable, float) 日, Value: 0
+						95 文本 筛选结果 2 条 / 第 1 页。各状态：
+						96 container 分类明细
+							97 表格
+								98 row (selectable) 字段路径
+类型
+内容
+								99 row (selectable)
+									100 单元格 (selectable) 全部字段
+$
+									101 单元格 (selectable) 对象
+									102 单元格 (selectable) 1项
+								103 row (selectable)
+									104 单元格 (selectable) succeeded
+$/succeeded
+									105 单元格 (selectable) 整数
+									106 单元格 (selectable) 2
+						107 container 生产资料列表
+							108 表格
+								109 row (selectable) 运行 / 小说
+状态 / 错误
+阶段完成
+费用（分币种）
+开始时间
+追踪号
+								110 row (selectable)
+									111 单元格 (selectable) 59 / 蓝图夹具
+									112 单元格 (selectable) succeeded / 无
+									113 单元格 (selectable) 1/1（非正式章数）
+									114 单元格 (selectable)
+										115 container 分类明细
+											116 表格
+												117 row (selectable) 字段路径
+类型
+内容
+												118 row (selectable)
+													119 单元格 (selectable) 全部字段
+$
+													120 单元格 (selectable) 有序列表
+													121 单元格 (selectable) 1项
+												122 row (selectable)
+													123 单元格 (selectable) 第1项
+$/0
+													124 单元格 (selectable) 对象
+													125 单元格 (selectable) 4项
+												126 row (selectable)
+													127 单元格 (selectable) currency
+$/0/currency
+													128 单元格 (selectable) 文本
+													129 单元格 (selectable) USD
+												130 row (selectable)
+													131 单元格 (selectable) settled_cost
+$/0/settled_cost
+													132 单元格 (selectable) 文本
+													133 单元格 (selectable) 0.0000030000
+												134 row (selectable)
+													135 单元格 (selectable) risk_reserved
+$/0/risk_reserved
+													136 单元格 (selectable) 文本
+													137 单元格 (selectable) 0
+												138 row (selectable)
+													139 单元格 (selectable) unknown_count
+$/0/unknown_count
+													140 单元格 (selectable) 整数
+													141 单元格 (selectable) 0
+									142 单元格 (selectable) 2026-10-27T05:52:47+00:00
+									143 单元格 (selectable) 4baf052f-2ac4-4301-85a9-6bacdd018aac
+								144 row (selectable)
+									145 单元格 (selectable) 57 / 蓝图夹具
+									146 单元格 (selectable) succeeded / 无
+									147 单元格 (selectable) 1/1（非正式章数）
+									148 单元格 (selectable)
+										149 container 分类明细
+											150 表格
+												151 row (selectable) 字段路径
+类型
+内容
+												152 row (selectable)
+													153 单元格 (selectable) 全部字段
+$
+													154 单元格 (selectable) 有序列表
+													155 单元格 (selectable) 1项
+												156 row (selectable)
+													157 单元格 (selectable) 第1项
+$/0
+													158 单元格 (selectable) 对象
+													159 单元格 (selectable) 4项
+												160 row (selectable)
+													161 单元格 (selectable) currency
+$/0/currency
+													162 单元格 (selectable) 文本
+													163 单元格 (selectable) USD
+												164 row (selectable)
+													165 单元格 (selectable) settled_cost
+$/0/settled_cost
+													166 单元格 (selectable) 文本
+													167 单元格 (selectable) 0.0000030000
+												168 row (selectable)
+													169 单元格 (selectable) risk_reserved
+$/0/risk_reserved
+													170 单元格 (selectable) 文本
+													171 单元格 (selectable) 0
+												172 row (selectable)
+													173 单元格 (selectable) unknown_count
+$/0/unknown_count
+													174 单元格 (selectable) 整数
+													175 单元格 (selectable) 0
+									176 单元格 (selectable) 2026-10-27T05:52:15+00:00
+									177 单元格 (selectable) 5c1de4d0-a879-479a-8023-6d11de8924d3
+						178 文本 页码
+						179 数字栏 (settable) 页码, Value: 1
+							180 步进器 0
+								181 未知
+								182 未知
+						183 标题 运行 57：succeeded, Value: 2
+							184 文本 运行 57：succeeded
+						185 文本 追踪 5c1de4d0-a879-479a-8023-6d11de8924d3 / live
+						186 link 暂停、取消与恢复决定, Value: 127.0.0.1:8770/admin/recovery-desk?novel=36&run=57
+						187 link 成本账本及预算, Value: 127.0.0.1:8770/admin/billing?novel=36&run=57
+						188 link 审计链, Value: 127.0.0.1:8770/admin/audit-center?trace=5c1de4d0-a879-479a-8023-6d11de8924d3
+						189 摘要 冻结输入、路由及预算快照, Value: off
+							190 文本 冻结输入、路由及预算快照
+						191 文本 阶段状态
+						192 文本栏 (settable) 阶段状态
+						193 文本 尝试号
+						194 文本栏 (settable) 尝试号
+						195 文本 产物类型
+						196 文本栏 (settable) 产物类型
+						197 container 生产资料列表
+							198 表格
+								199 row (selectable) 阶段 / 尝试
+状态 / 错误
+心跳 / 租约
+耗时秒
+检查点
+								200 row (selectable)
+									201 单元格 (selectable) scene / 1
+									202 单元格 (selectable) succeeded /
+									203 单元格 (selectable) 2026-10-27T05:52:15+00:00 / 2026-10-27T05:53:45+00:00
+									204 单元格 (selectable) 2
+									205 单元格 (selectable) 无
+						206 标题 产物 29 / scene_candidate, Value: 3
+							207 文本 产物 29 / scene_candidate
+						208 文本 预览已截断，请下载完整受控产物核对；这里不显示残缺JSON。
+						209 文本 摘要已截断，完整内容请受控下载。 
+						210 link 下载完整产物, Value: 127.0.0.1:8770/api/v1/novels/36/runs/57/artifacts/29
+						211 标题 请求、Token、已结算与未知风险（分币种）, Value: 3
+							212 文本 请求、Token、已结算与未知风险（分币种）
+						213 文本 共 1 条，每页50条。
+						214 文本 请求页码
+						215 数字栏 (settable) 请求页码, Value: 1
+							216 步进器 0
+								217 未知
+								218 未知
+						219 摘要 请求 18 / succeeded /, Value: off
+							220 文本 请求 18 / succeeded /
+						221 摘要 预算与账本汇总, Value: off
+							222 文本 预算与账本汇总
+						223 摘要 持久投递与回执, Value: off
+							224 文本 持久投递与回执
+				225 滚动条 (settable, float) 0
+	226 工具栏
+		227 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			228 按钮 Description: 显示边栏, ID: SidebarButton
+			229 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		230 container BackForwardSegmentedControl
+			231 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			232 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		233 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			234 按钮 页面菜单, ID: AssistantButton
+			235 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			236 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:8770/admin/run-center?novel=36&run=57, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			237 按钮 重新加载此页面, ID: ReloadButton
+		238 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		239 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		240 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	241 标签页组 Description: 标签页栏，2个标签页, ID: TabBar?isSeparate=false
+		242 标签 生成运行中心 - NovelForge · 小说工坊, Help: 若要与此按钮中的项目交互，请按下Control-Option-Shift-下箭头键。, Value: on, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=true
+			243 图像 FaviconImageView
+			244 文本 Value: 生成运行中心 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+		245 标签 正式提交与基线 - NovelForge · 小说工坊, Value: off, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=false
+			246 图像 FaviconImageView
+			247 文本 Value: 正式提交与基线 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+	248 关闭按钮
+	249 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	250 最小化按钮
+251 menu bar
+	252 Safari浏览器
+	253 文件
+	254 编辑
+	255 显示, ID: SafariViewMenu
+	256 历史记录
+	257 书签, ID: SafariBookmarksMenu
+	258 窗口, ID: SafariWindowMenu
+	259 帮助, ID: SafariHelpMenu
+
+The focused UI element is 5 HTML内容 Description: 生成运行中心 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/run-center?novel=36&run=57

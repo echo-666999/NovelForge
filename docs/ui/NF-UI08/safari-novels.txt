@@ -1,0 +1,677 @@
+Window: "小说 - NovelForge · 小说工坊", App: Safari浏览器.
+0 标准窗口 模型主备路由 - NovelForge · 小说工坊, ID: SafariWindow?IsSecure=false&UUID=1C91E0BE-FABC-4972-8AB6-02AB60E256E5, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: 小说 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels
+					6 link 跳至主要内容, Value: 127.0.0.1:8770/admin/novels#fi-main-content
+					7 container 顶部栏
+						8 link NovelForge · 小说工坊, Value: 127.0.0.1:8770/admin
+						9 文本 全局搜索
+						10 搜索文本栏 (settable) 全局搜索, Placeholder: 搜索
+							11 文本 搜索
+						12 文本 Press Down arrow to browse results. Use Up and Down arrows to move between results, and Tab to reach result actions. Press Escape to close results.
+						13 弹出式按钮 用户菜单
+					14 container 侧边栏导航
+						15 内容列表
+							16 container
+								17 文本 创作工作台
+								18 按钮 (expanded) 创作工作台, Secondary Actions: Collapse
+								19 内容列表
+									20 link 创作总览, Value: 127.0.0.1:8770/admin
+									21 link 小说库, Value: 127.0.0.1:8770/admin/novels
+							22 container
+								23 文本 故事管理
+								24 按钮 (expanded) 故事管理, Secondary Actions: Collapse
+								25 内容列表
+									26 link 故事管理, Value: 127.0.0.1:8770/admin/story-hub
+									27 link 时间线与角色知识, Value: 127.0.0.1:8770/admin/story-timeline
+									28 link 伏笔与主支线账本, Value: 127.0.0.1:8770/admin/foreshadow-ledger
+							29 container
+								30 文本 生产与质量
+								31 按钮 (expanded) 生产与质量, Secondary Actions: Collapse
+								32 内容列表
+									33 link 生成运行中心, Value: 127.0.0.1:8770/admin/run-center
+									34 link 正文提取与硬约束, Value: 127.0.0.1:8770/admin/extraction-ledger
+									35 link 评审中心与策略, Value: 127.0.0.1:8770/admin/review-center
+									36 link 受限修订工作台, Value: 127.0.0.1:8770/admin/revision-desk
+									37 link 正式提交与基线, Value: 127.0.0.1:8770/admin/canonical-commit-center
+									38 link 上下文检查器, Value: 127.0.0.1:8770/admin/context-inspector
+									39 link 运行恢复台, Value: 127.0.0.1:8770/admin/recovery-desk
+							40 container
+								41 文本 检索与记忆
+								42 按钮 (expanded) 检索与记忆, Secondary Actions: Collapse
+								43 内容列表
+									44 link 分层记忆库, Value: 127.0.0.1:8770/admin/memory-library
+									45 link 正式记忆与索引, Value: 127.0.0.1:8770/admin/canonical-memory-center
+									46 link 检索实验室与索引, Value: 127.0.0.1:8770/admin/search-lab
+							47 container
+								48 文本 配置与运维
+								49 按钮 (expanded) 配置与运维, Secondary Actions: Collapse
+								50 内容列表
+									51 link Prompt 模板与发布, Value: 127.0.0.1:8770/admin/prompt-templates
+									52 link 供应商与模型, Value: 127.0.0.1:8770/admin/providers
+									53 link 模型主备路由, Value: 127.0.0.1:8770/admin/model-routes
+									54 link 文风与评分策略, Value: 127.0.0.1:8770/admin/style-profiles
+									55 link 价格与原子预算, Value: 127.0.0.1:8770/admin/billing
+									56 link 审计与系统健康, Value: 127.0.0.1:8770/admin/audit-center
+					57 container
+						58 container 当前位置
+							59 内容列表
+								60 link 小说, Value: 127.0.0.1:8770/admin/novels
+								61 文本 列表
+						62 标题 小说, Value: 1
+							63 文本 小说
+						64 link 创建小说, Value: 127.0.0.1:8770/admin/novels/create
+						65 文本 搜索
+						66 搜索文本栏 (settable) 搜索, Placeholder: 请输入关键词
+							67 文本 请输入关键词
+						68 弹出式按钮 筛选
+						69 菜单 Secondary Actions: Cancel
+						70 菜单 Secondary Actions: Cancel
+						71 菜单 Secondary Actions: Cancel
+						72 文本 30 条结果
+						73 文本 加载中...
+						74 表格 小说
+							75 row (selectable) Description: 操作, 书名
+最近活动
+操作, Value: 题材
+状态
+正式章数
+正文字数
+费用
+							76 row (selectable)
+								77 单元格 (selectable) UI08列表27 · 正常示例
+								78 单元格 (selectable) 隔离测试
+								79 单元格 (selectable) 草稿
+								80 单元格 (selectable) 尚未接入
+								81 单元格 (selectable) 尚未接入
+								82 单元格 (selectable) 未知
+								83 单元格 (selectable) 2026-10-27 13:52
+								84 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							85 row (selectable)
+								86 单元格 (selectable) UI08列表26 · 正常示例
+								87 单元格 (selectable) 隔离测试
+								88 单元格 (selectable) 草稿
+								89 单元格 (selectable) 尚未接入
+								90 单元格 (selectable) 尚未接入
+								91 单元格 (selectable) 未知
+								92 单元格 (selectable) 2026-10-27 13:52
+								93 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							94 row (selectable)
+								95 单元格 (selectable) UI08列表25 · 正常示例
+								96 单元格 (selectable) 隔离测试
+								97 单元格 (selectable) 草稿
+								98 单元格 (selectable) 尚未接入
+								99 单元格 (selectable) 尚未接入
+								100 单元格 (selectable) 未知
+								101 单元格 (selectable) 2026-10-27 13:52
+								102 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							103 row (selectable)
+								104 单元格 (selectable) UI08列表24 · 正常示例
+								105 单元格 (selectable) 隔离测试
+								106 单元格 (selectable) 草稿
+								107 单元格 (selectable) 尚未接入
+								108 单元格 (selectable) 尚未接入
+								109 单元格 (selectable) 未知
+								110 单元格 (selectable) 2026-10-27 13:52
+								111 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							112 row (selectable)
+								113 单元格 (selectable) UI08列表23 · 正常示例
+								114 单元格 (selectable) 隔离测试
+								115 单元格 (selectable) 草稿
+								116 单元格 (selectable) 尚未接入
+								117 单元格 (selectable) 尚未接入
+								118 单元格 (selectable) 未知
+								119 单元格 (selectable) 2026-10-27 13:52
+								120 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							121 row (selectable)
+								122 单元格 (selectable) UI08列表22 · 正常示例
+								123 单元格 (selectable) 隔离测试
+								124 单元格 (selectable) 草稿
+								125 单元格 (selectable) 尚未接入
+								126 单元格 (selectable) 尚未接入
+								127 单元格 (selectable) 未知
+								128 单元格 (selectable) 2026-10-27 13:52
+								129 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							130 row (selectable)
+								131 单元格 (selectable) UI08列表21 · 正常示例
+								132 单元格 (selectable) 隔离测试
+								133 单元格 (selectable) 草稿
+								134 单元格 (selectable) 尚未接入
+								135 单元格 (selectable) 尚未接入
+								136 单元格 (selectable) 未知
+								137 单元格 (selectable) 2026-10-27 13:52
+								138 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							139 row (selectable)
+								140 单元格 (selectable) UI08列表20 · 正常示例
+								141 单元格 (selectable) 隔离测试
+								142 单元格 (selectable) 草稿
+								143 单元格 (selectable) 尚未接入
+								144 单元格 (selectable) 尚未接入
+								145 单元格 (selectable) 未知
+								146 单元格 (selectable) 2026-10-27 13:52
+								147 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							148 row (selectable)
+								149 单元格 (selectable) UI08列表19 · 正常示例
+								150 单元格 (selectable) 隔离测试
+								151 单元格 (selectable) 草稿
+								152 单元格 (selectable) 尚未接入
+								153 单元格 (selectable) 尚未接入
+								154 单元格 (selectable) 未知
+								155 单元格 (selectable) 2026-10-27 13:52
+								156 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							157 row (selectable)
+								158 单元格 (selectable) UI08列表18 · 正常示例
+								159 单元格 (selectable) 隔离测试
+								160 单元格 (selectable) 草稿
+								161 单元格 (selectable) 尚未接入
+								162 单元格 (selectable) 尚未接入
+								163 单元格 (selectable) 未知
+								164 单元格 (selectable) 2026-10-27 13:52
+								165 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							166 row (selectable)
+								167 单元格 (selectable) UI08列表17 · 正常示例
+								168 单元格 (selectable) 隔离测试
+								169 单元格 (selectable) 草稿
+								170 单元格 (selectable) 尚未接入
+								171 单元格 (selectable) 尚未接入
+								172 单元格 (selectable) 未知
+								173 单元格 (selectable) 2026-10-27 13:52
+								174 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							175 row (selectable)
+								176 单元格 (selectable) UI08列表16 · 正常示例
+								177 单元格 (selectable) 隔离测试
+								178 单元格 (selectable) 草稿
+								179 单元格 (selectable) 尚未接入
+								180 单元格 (selectable) 尚未接入
+								181 单元格 (selectable) 未知
+								182 单元格 (selectable) 2026-10-27 13:52
+								183 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							184 row (selectable)
+								185 单元格 (selectable) UI08列表15 · 正常示例
+								186 单元格 (selectable) 隔离测试
+								187 单元格 (selectable) 草稿
+								188 单元格 (selectable) 尚未接入
+								189 单元格 (selectable) 尚未接入
+								190 单元格 (selectable) 未知
+								191 单元格 (selectable) 2026-10-27 13:52
+								192 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							193 row (selectable)
+								194 单元格 (selectable) UI08列表14 · 正常示例
+								195 单元格 (selectable) 隔离测试
+								196 单元格 (selectable) 草稿
+								197 单元格 (selectable) 尚未接入
+								198 单元格 (selectable) 尚未接入
+								199 单元格 (selectable) 未知
+								200 单元格 (selectable) 2026-10-27 13:52
+								201 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							202 row (selectable)
+								203 单元格 (selectable) UI08列表13 · 正常示例
+								204 单元格 (selectable) 隔离测试
+								205 单元格 (selectable) 草稿
+								206 单元格 (selectable) 尚未接入
+								207 单元格 (selectable) 尚未接入
+								208 单元格 (selectable) 未知
+								209 单元格 (selectable) 2026-10-27 13:52
+								210 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							211 row (selectable)
+								212 单元格 (selectable) UI08列表12 · 正常示例
+								213 单元格 (selectable) 隔离测试
+								214 单元格 (selectable) 草稿
+								215 单元格 (selectable) 尚未接入
+								216 单元格 (selectable) 尚未接入
+								217 单元格 (selectable) 未知
+								218 单元格 (selectable) 2026-10-27 13:52
+								219 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							220 row (selectable)
+								221 单元格 (selectable) UI08列表11 · 正常示例
+								222 单元格 (selectable) 隔离测试
+								223 单元格 (selectable) 草稿
+								224 单元格 (selectable) 尚未接入
+								225 单元格 (selectable) 尚未接入
+								226 单元格 (selectable) 未知
+								227 单元格 (selectable) 2026-10-27 13:52
+								228 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							229 row (selectable)
+								230 单元格 (selectable) UI08列表10 · 正常示例
+								231 单元格 (selectable) 隔离测试
+								232 单元格 (selectable) 草稿
+								233 单元格 (selectable) 尚未接入
+								234 单元格 (selectable) 尚未接入
+								235 单元格 (selectable) 未知
+								236 单元格 (selectable) 2026-10-27 13:52
+								237 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							238 row (selectable)
+								239 单元格 (selectable) UI08列表09 · 正常示例
+								240 单元格 (selectable) 隔离测试
+								241 单元格 (selectable) 草稿
+								242 单元格 (selectable) 尚未接入
+								243 单元格 (selectable) 尚未接入
+								244 单元格 (selectable) 未知
+								245 单元格 (selectable) 2026-10-27 13:52
+								246 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							247 row (selectable)
+								248 单元格 (selectable) UI08列表08 · 正常示例
+								249 单元格 (selectable) 隔离测试
+								250 单元格 (selectable) 草稿
+								251 单元格 (selectable) 尚未接入
+								252 单元格 (selectable) 尚未接入
+								253 单元格 (selectable) 未知
+								254 单元格 (selectable) 2026-10-27 13:52
+								255 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							256 row (selectable)
+								257 单元格 (selectable) UI08列表07 · 正常示例
+								258 单元格 (selectable) 隔离测试
+								259 单元格 (selectable) 草稿
+								260 单元格 (selectable) 尚未接入
+								261 单元格 (selectable) 尚未接入
+								262 单元格 (selectable) 未知
+								263 单元格 (selectable) 2026-10-27 13:52
+								264 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							265 row (selectable)
+								266 单元格 (selectable) UI08列表06 · 正常示例
+								267 单元格 (selectable) 隔离测试
+								268 单元格 (selectable) 草稿
+								269 单元格 (selectable) 尚未接入
+								270 单元格 (selectable) 尚未接入
+								271 单元格 (selectable) 未知
+								272 单元格 (selectable) 2026-10-27 13:52
+								273 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							274 row (selectable)
+								275 单元格 (selectable) UI08列表05 · 正常示例
+								276 单元格 (selectable) 隔离测试
+								277 单元格 (selectable) 草稿
+								278 单元格 (selectable) 尚未接入
+								279 单元格 (selectable) 尚未接入
+								280 单元格 (selectable) 未知
+								281 单元格 (selectable) 2026-10-27 13:52
+								282 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							283 row (selectable)
+								284 单元格 (selectable) UI08列表04 · 正常示例
+								285 单元格 (selectable) 隔离测试
+								286 单元格 (selectable) 草稿
+								287 单元格 (selectable) 尚未接入
+								288 单元格 (selectable) 尚未接入
+								289 单元格 (selectable) 未知
+								290 单元格 (selectable) 2026-10-27 13:52
+								291 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+							292 row (selectable)
+								293 单元格 (selectable) UI08列表03 · 正常示例
+								294 单元格 (selectable) 隔离测试
+								295 单元格 (selectable) 草稿
+								296 单元格 (selectable) 尚未接入
+								297 单元格 (selectable) 尚未接入
+								298 单元格 (selectable) 未知
+								299 单元格 (selectable) 2026-10-27 13:52
+								300 单元格 (selectable) 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+修改书名/题材
+复制设定为新书
+归档, Value: 打开工作台
+章节场景计划
+蓝图与终局
+世界与人物
+五层结构
+原始要求
+						301 container 分页
+							302 菜单 Secondary Actions: Cancel
+							303 container
+								304 文本 每页
+								305 弹出式按钮 (collapsed) 每页, Value: 25, Secondary Actions: Expand
+							306 按钮 下一页
+				307 滚动条 (settable, float) 0
+	308 工具栏
+		309 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			310 按钮 Description: 显示边栏, ID: SidebarButton
+			311 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		312 container BackForwardSegmentedControl
+			313 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			314 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		315 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			316 按钮 页面菜单, ID: AssistantButton
+			317 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			318 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:8770/admin/novels, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			319 按钮 翻译可用, ID: TranslationButton
+			320 按钮 停止加载此页面, ID: ReloadButton
+		321 按钮 (disabled) Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		322 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		323 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	324 标签页组 Description: 标签页栏，2个标签页, ID: TabBar?isSeparate=false
+		325 标签 模型主备路由 - NovelForge · 小说工坊, Help: 若要与此按钮中的项目交互，请按下Control-Option-Shift-下箭头键。, Value: on, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=true
+			326 图像 FaviconImageView
+			327 文本 Value: 模型主备路由 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+		328 标签 正式提交与基线 - NovelForge · 小说工坊, Value: off, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=false
+			329 图像 FaviconImageView
+			330 文本 Value: 正式提交与基线 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+	331 关闭按钮
+	332 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	333 最小化按钮
+334 menu bar
+	335 Safari浏览器
+	336 文件
+	337 编辑
+	338 显示, ID: SafariViewMenu
+	339 历史记录
+	340 书签, ID: SafariBookmarksMenu
+	341 窗口, ID: SafariWindowMenu
+	342 帮助, ID: SafariHelpMenu
+
+The focused UI element is 5 HTML内容 Description: 小说 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels

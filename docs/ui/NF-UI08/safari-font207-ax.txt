@@ -1,0 +1,197 @@
+Window: "创建 小说 - NovelForge · 小说工坊", App: Safari浏览器.
+0 标准窗口 创建 小说 - NovelForge · 小说工坊, ID: SafariWindow?IsSecure=false&UUID=1C91E0BE-FABC-4972-8AB6-02AB60E256E5, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 inspector-resource:///Main.html
+					6 按钮 关闭
+					7 按钮 在窗口左侧显示
+					8 按钮 在窗口右侧显示
+					9 按钮 分离到单独的窗口
+					10 按钮 开始选择元素(⇧⌘C)
+					11 按钮 设备设置
+					12 标签页组 (selectable)
+						13 标签 (selectable) 元素
+						14 标签 (selected) 控制台
+						15 标签 (selectable) 来源
+						16 标签 (selectable) 网络
+						17 标签 (selectable) 时间线
+						18 标签 (selectable) 储存空间
+						19 标签 (selectable) 图形
+						20 标签 (selectable) 层
+						21 标签 (selectable) 审核
+						22 标签 (selectable) 搜索(⇧⌘F)
+						23 标签 (selectable) 设置(⌘,)
+					24 container 控制台
+						25 搜索文本栏 (settable)  
+						26 按钮 (disabled) 查找上一个(⇧⌘G)
+						27 按钮 (disabled) 查找下一个(⌘G)
+						28 文本 全部
+						29 文本 评估
+						30 文本 错误
+						31 文本 警告
+						32 文本 打印
+						33 按钮 其他过滤选项…
+						34 复选框 (settable, integer) 模拟用户手势, Help: 如同在用户手势中一样运行控制台命令, Value: 0
+						35 按钮 运行控制台片段…
+						36 按钮 收集垃圾
+						37 按钮 清空日志（⌘K或⌃L）
+						38 container
+							39 文本 控制台打开于：14:58:35
+							40 图像
+							41 文本 JSON.stringify({tag:'NF-UI08-font207',w:innerWidth,h:innerHeight,dpr:devicePixelRatio,root:getComputedStyle(document.documentElement).fontSize,scroll:document.documentElement.scrollWidth,fonts:Array.from(document.querySelectorAll('h1,label')).slice(1,4).map(e=>[e.textContent.trim(),getComputedStyle(e).fontSize,e.getBoundingClientRect().height])})
+							42 图像
+							43 文本 "{\"tag\":\"NF-UI08-font207\",\"w\":1324,\"h\":350,\"dpr\":2,\"root\":\"33.177601px\",\"scroll\":1324,\"fonts\":[[\"创建 小说\",\"58.060802px\",78.359375],[\"书名*\",\"29.030401px\",41.4375],[\"题材*\",\"29.030401px\",41.4375]]}" = $1
+					44 文本输入区 (settable) 控制台提示, Value: [文本输入区: 控制台提示], Secondary Actions: 显示写作工具
+					45 container
+			46 滚动区
+				47 HTML内容 Description: 创建 小说 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels/create
+					48 link 跳至主要内容, Value: 127.0.0.1:8770/admin/novels/create#fi-main-content
+					49 container 顶部栏
+						50 link NovelForge · 小说工坊, Value: 127.0.0.1:8770/admin
+						51 文本 全局搜索
+						52 搜索文本栏 (settable) 全局搜索, Placeholder: 搜索
+							53 文本 搜索
+						54 文本 Press Down arrow to browse results. Use Up and Down arrows to move between results, and Tab to reach result actions. Press Escape to close results.
+						55 弹出式按钮 用户菜单
+					56 container 侧边栏导航
+						57 内容列表
+							58 container
+								59 文本 创作工作台
+								60 按钮 (expanded) 创作工作台, Secondary Actions: Collapse
+								61 内容列表
+									62 link 创作总览, Value: 127.0.0.1:8770/admin
+									63 link 小说库, Value: 127.0.0.1:8770/admin/novels
+							64 container
+								65 文本 故事管理
+								66 按钮 (expanded) 故事管理, Secondary Actions: Collapse
+								67 内容列表
+									68 link 故事管理, Value: 127.0.0.1:8770/admin/story-hub
+									69 link 时间线与角色知识, Value: 127.0.0.1:8770/admin/story-timeline
+									70 link 伏笔与主支线账本, Value: 127.0.0.1:8770/admin/foreshadow-ledger
+							71 container
+								72 文本 生产与质量
+								73 按钮 (expanded) 生产与质量, Secondary Actions: Collapse
+								74 内容列表
+									75 link 生成运行中心, Value: 127.0.0.1:8770/admin/run-center
+									76 link 正文提取与硬约束, Value: 127.0.0.1:8770/admin/extraction-ledger
+									77 link 评审中心与策略, Value: 127.0.0.1:8770/admin/review-center
+									78 link 受限修订工作台, Value: 127.0.0.1:8770/admin/revision-desk
+									79 link 正式提交与基线, Value: 127.0.0.1:8770/admin/canonical-commit-center
+									80 link 上下文检查器, Value: 127.0.0.1:8770/admin/context-inspector
+									81 link 运行恢复台, Value: 127.0.0.1:8770/admin/recovery-desk
+							82 container
+								83 文本 检索与记忆
+								84 按钮 (expanded) 检索与记忆, Secondary Actions: Collapse
+								85 内容列表
+									86 link 分层记忆库, Value: 127.0.0.1:8770/admin/memory-library
+									87 link 正式记忆与索引, Value: 127.0.0.1:8770/admin/canonical-memory-center
+									88 link 检索实验室与索引, Value: 127.0.0.1:8770/admin/search-lab
+							89 container
+								90 文本 配置与运维
+								91 按钮 (expanded) 配置与运维, Secondary Actions: Collapse
+								92 内容列表
+									93 link Prompt 模板与发布, Value: 127.0.0.1:8770/admin/prompt-templates
+									94 link 供应商与模型, Value: 127.0.0.1:8770/admin/providers
+									95 link 模型主备路由, Value: 127.0.0.1:8770/admin/model-routes
+									96 link 文风与评分策略, Value: 127.0.0.1:8770/admin/style-profiles
+									97 link 价格与原子预算, Value: 127.0.0.1:8770/admin/billing
+									98 link 审计与系统健康, Value: 127.0.0.1:8770/admin/audit-center
+					99 container
+						100 container 当前位置
+							101 内容列表
+								102 link 小说, Value: 127.0.0.1:8770/admin/novels
+								103 文本 创建
+						104 标题 创建 小说, Value: 1
+							105 文本 创建 小说
+						106 内容列表
+							107 按钮 (disabled) 输入
+							108 按钮 (disabled) 提炼约束 未完成
+							109 按钮 (disabled) 确认歧义 未完成
+							110 按钮 (disabled) 保存 未完成
+						111 container 输入
+							112 container
+								113 文本 书名*
+							114 文本栏 (settable) 书名 *
+							115 container
+								116 文本 题材*
+							117 文本栏 (settable) 题材 *
+							118 文本 目标读者
+							119 文本栏 (settable) 目标读者
+							120 container
+								121 文本 原始背景*
+							122 文本输入区 (settable) 原始背景 *, Value: [文本输入区]
+							123 container
+								124 文本 剧情概述（原文保留）*
+							125 文本输入区 (settable) 剧情概述（原文保留） *, Value: [文本输入区]
+							126 文本 核心卖点
+							127 文本输入区 (settable) 核心卖点, Value: [文本输入区]
+							128 文本 禁用内容
+							129 文本输入区 (settable) 禁用内容, Value: [文本输入区]
+							130 container
+								131 文本 目标章节数*
+							132 数字栏 (settable) 目标章节数 *
+								133 步进器 0
+									134 未知
+									135 未知
+							136 container
+								137 文本 每章字数下限*
+							138 数字栏 (settable) 每章字数下限 *
+								139 步进器 0
+									140 未知
+									141 未知
+							142 container
+								143 文本 每章字数上限*
+							144 数字栏 (settable) 每章字数上限 *
+								145 步进器 0
+									146 未知
+									147 未知
+							148 文本 文风偏好
+							149 文本输入区 (settable) 文风偏好, Value: [文本输入区]
+							150 文本 结局偏好
+							151 文本输入区 (settable) 结局偏好, Value: [文本输入区]
+							152 文本 预算意向（尚非生效预算）
+							153 文本输入区 (settable) 预算意向（尚非生效预算）, Value: [文本输入区]
+							154 文本 正式预算与币种将在成本模块中确认。
+						155 按钮 取消
+						156 按钮 下一步
+				157 滚动条 (settable, float) 0
+	158 工具栏
+		159 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			160 按钮 Description: 显示边栏, ID: SidebarButton
+			161 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		162 container BackForwardSegmentedControl
+			163 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			164 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		165 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			166 按钮 页面菜单, ID: AssistantButton
+			167 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			168 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:8770/admin/novels/create, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			169 按钮 翻译可用, ID: TranslationButton
+			170 按钮 重新加载此页面, ID: ReloadButton
+		171 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		172 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		173 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	174 标签页组 Description: 标签页栏，2个标签页, ID: TabBar?isSeparate=false
+		175 标签 创建 小说 - NovelForge · 小说工坊, Help: 若要与此按钮中的项目交互，请按下Control-Option-Shift-下箭头键。, Value: on, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=true
+			176 图像 FaviconImageView
+			177 文本 Value: 创建 小说 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+		178 标签 正式提交与基线 - NovelForge · 小说工坊, Value: off, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=false
+			179 图像 FaviconImageView
+			180 文本 Value: 正式提交与基线 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+	181 关闭按钮
+	182 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	183 最小化按钮
+184 menu bar
+	185 Safari浏览器
+	186 文件
+	187 编辑
+	188 显示, ID: SafariViewMenu
+	189 历史记录
+	190 书签, ID: SafariBookmarksMenu
+	191 开发
+	192 窗口, ID: SafariWindowMenu
+	193 帮助, ID: SafariHelpMenu
+
+The focused UI element is 44 文本输入区 (settable) 控制台提示, Value: [文本输入区: 控制台提示], Secondary Actions: 显示写作工具

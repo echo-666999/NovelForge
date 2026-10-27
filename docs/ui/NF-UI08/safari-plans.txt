@@ -1,0 +1,353 @@
+Window: "滚动细化与章节场景计划 - NovelForge · 小说工坊", App: Safari浏览器.
+0 标准窗口 滚动细化与章节场景计划 - NovelForge · 小说工坊, ID: SafariWindow?IsSecure=false&UUID=1C91E0BE-FABC-4972-8AB6-02AB60E256E5, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: 滚动细化与章节场景计划 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels/36/plans
+					6 link 跳至主要内容, Value: 127.0.0.1:8770/admin/novels/36/plans#fi-main-content
+					7 container 顶部栏
+						8 link NovelForge · 小说工坊, Value: 127.0.0.1:8770/admin
+						9 文本 全局搜索
+						10 搜索文本栏 (settable) 全局搜索, Placeholder: 搜索
+							11 文本 搜索
+						12 文本 Press Down arrow to browse results. Use Up and Down arrows to move between results, and Tab to reach result actions. Press Escape to close results.
+						13 弹出式按钮 用户菜单
+					14 container 侧边栏导航
+						15 内容列表
+							16 container
+								17 文本 创作工作台
+								18 按钮 (expanded) 创作工作台, Secondary Actions: Collapse
+								19 内容列表
+									20 link 创作总览, Value: 127.0.0.1:8770/admin
+									21 link 小说库, Value: 127.0.0.1:8770/admin/novels
+							22 container
+								23 文本 故事管理
+								24 按钮 (expanded) 故事管理, Secondary Actions: Collapse
+								25 内容列表
+									26 link 故事管理, Value: 127.0.0.1:8770/admin/story-hub?novel=36
+									27 link 时间线与角色知识, Value: 127.0.0.1:8770/admin/story-timeline?novel=36
+									28 link 伏笔与主支线账本, Value: 127.0.0.1:8770/admin/foreshadow-ledger?novel=36
+							29 container
+								30 文本 生产与质量
+								31 按钮 (expanded) 生产与质量, Secondary Actions: Collapse
+								32 内容列表
+									33 link 生成运行中心, Value: 127.0.0.1:8770/admin/run-center?novel=36
+									34 link 正文提取与硬约束, Value: 127.0.0.1:8770/admin/extraction-ledger?novel=36
+									35 link 评审中心与策略, Value: 127.0.0.1:8770/admin/review-center?novel=36
+									36 link 受限修订工作台, Value: 127.0.0.1:8770/admin/revision-desk?novel=36
+									37 link 正式提交与基线, Value: 127.0.0.1:8770/admin/canonical-commit-center?novel=36
+									38 link 上下文检查器, Value: 127.0.0.1:8770/admin/context-inspector?novel=36
+									39 link 运行恢复台, Value: 127.0.0.1:8770/admin/recovery-desk?novel=36
+							40 container
+								41 文本 检索与记忆
+								42 按钮 (expanded) 检索与记忆, Secondary Actions: Collapse
+								43 内容列表
+									44 link 分层记忆库, Value: 127.0.0.1:8770/admin/memory-library?novel=36
+									45 link 正式记忆与索引, Value: 127.0.0.1:8770/admin/canonical-memory-center?novel=36
+									46 link 检索实验室与索引, Value: 127.0.0.1:8770/admin/search-lab?novel=36
+							47 container
+								48 文本 配置与运维
+								49 按钮 (expanded) 配置与运维, Secondary Actions: Collapse
+								50 内容列表
+									51 link Prompt 模板与发布, Value: 127.0.0.1:8770/admin/prompt-templates
+									52 link 供应商与模型, Value: 127.0.0.1:8770/admin/providers
+									53 link 模型主备路由, Value: 127.0.0.1:8770/admin/model-routes
+									54 link 文风与评分策略, Value: 127.0.0.1:8770/admin/style-profiles
+									55 link 价格与原子预算, Value: 127.0.0.1:8770/admin/billing
+									56 link 审计与系统健康, Value: 127.0.0.1:8770/admin/audit-center
+					57 container
+						58 container 当前位置
+							59 内容列表
+								60 link 小说, Value: 127.0.0.1:8770/admin/novels
+								61 文本 滚动细化与章节场景计划
+						62 标题 滚动细化与章节场景计划, Value: 1
+							63 文本 滚动细化与章节场景计划
+						64 标题 小说上下文, Value: 2
+							65 文本 小说上下文
+						66 文本 当前小说
+						67 弹出式按钮 当前小说：蓝图夹具
+						68 按钮 切换小说
+						69 link 小说库, Value: 127.0.0.1:8770/admin/novels
+						70 文本 当前小说：蓝图夹具 · #36
+						71 文本 正式基线：尚未初始化；当前内容仍按候选或规划身份展示。
+						72 摘要 本书创作入口 · 故事管理, Value: off
+							73 文本 本书创作入口 · 故事管理
+						74 标题 滚动细化与计划门禁, Value: 2
+							75 文本 滚动细化与计划门禁
+						76 文本 首窗为前十章，后续每窗五至十章。未来骨架不等于可生成计划；正文与正式历史使用独立入口，本页只处理规划窗口。
+						77 按钮 新增 / 修改结构节点
+						78 按钮 拆分 / 合并 / 排序场景
+						79 按钮 保存滚动计划版本
+						80 按钮 检查计划
+						81 按钮 (disabled) 冻结详细窗口
+						82 文本 当前查看
+						83 弹出式按钮 当前查看：可编辑工作草稿
+						84 link 卷弧树、主支线与结构版本比较, Value: 127.0.0.1:8770/admin/novels/36/structure
+						85 标题 章与场景（按全书章序 / 同章场景序）, Value: 2
+							86 文本 章与场景（按全书章序 / 同章场景序）
+						87 文本 层级
+						88 弹出式按钮 层级：全部
+						89 文本 主父级
+						90 弹出式按钮 主父级：全部
+						91 文本 成熟度
+						92 弹出式按钮 成熟度：全部
+						93 文本 序号从
+						94 数字栏 (settable) 序号从
+							95 步进器 0
+								96 未知
+								97 未知
+						98 文本 至
+						99 数字栏 (settable) 至
+							100 步进器 0
+								101 未知
+								102 未知
+						103 复选框 缺少 POV 或预算, Value: 0
+						104 文本 缺少 POV 或预算
+						105 container 故事资料列表
+							106 表格
+								107 row (selectable) 节点 / 父级
+目标 / 必填信息
+预算（下限 / 目标 / 上限）
+成熟度 / 操作
+								108 row (selectable)
+									109 单元格 (selectable) 卷 #35 · 1 铜钥匙旧档
+父级 #本书
+									110 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										111 摘要 计划细节与依赖, Value: off
+											112 文本 计划细节与依赖
+									113 单元格 (selectable) 缺失 / 2500 / 缺失
+									114 单元格 (selectable) 细节已填写（以门禁为准）
+								115 row (selectable)
+									116 单元格 (selectable) 故事弧 #35 · 1 铜钥匙旧档
+父级 #35
+									117 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										118 摘要 计划细节与依赖, Value: off
+											119 文本 计划细节与依赖
+									120 单元格 (selectable) 缺失 / 2500 / 缺失
+									121 单元格 (selectable) 细节已填写（以门禁为准）
+								122 row (selectable)
+									123 单元格 (selectable) 章 #44 · 1 铜钥匙线索推进1
+父级 #35
+									124 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										125 摘要 计划细节与依赖, Value: off
+											126 文本 计划细节与依赖
+									127 单元格 (selectable) 2000 / 2500 / 3000
+									128 单元格 (selectable) 细节已填写（以门禁为准）
+								129 row (selectable)
+									130 单元格 (selectable) 章 #45 · 2 铜钥匙线索推进2
+父级 #35
+									131 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										132 摘要 计划细节与依赖, Value: off
+											133 文本 计划细节与依赖
+									134 单元格 (selectable) 2000 / 2500 / 3000
+									135 单元格 (selectable) 细节已填写（以门禁为准）
+								136 row (selectable)
+									137 单元格 (selectable) 章 #46 · 3 铜钥匙线索推进3
+父级 #35
+									138 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										139 摘要 计划细节与依赖, Value: off
+											140 文本 计划细节与依赖
+									141 单元格 (selectable) 2000 / 2500 / 3000
+									142 单元格 (selectable) 细节已填写（以门禁为准）
+								143 row (selectable)
+									144 单元格 (selectable) 章 #47 · 4 铜钥匙线索推进4
+父级 #35
+									145 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										146 摘要 计划细节与依赖, Value: off
+											147 文本 计划细节与依赖
+									148 单元格 (selectable) 2000 / 2500 / 3000
+									149 单元格 (selectable) 细节已填写（以门禁为准）
+								150 row (selectable)
+									151 单元格 (selectable) 章 #48 · 5 铜钥匙线索推进5
+父级 #35
+									152 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										153 摘要 计划细节与依赖, Value: off
+											154 文本 计划细节与依赖
+									155 单元格 (selectable) 2000 / 2500 / 3000
+									156 单元格 (selectable) 细节已填写（以门禁为准）
+								157 row (selectable)
+									158 单元格 (selectable) 章 #49 · 6 铜钥匙线索推进6
+父级 #35
+									159 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										160 摘要 计划细节与依赖, Value: off
+											161 文本 计划细节与依赖
+									162 单元格 (selectable) 2000 / 2500 / 3000
+									163 单元格 (selectable) 细节已填写（以门禁为准）
+								164 row (selectable)
+									165 单元格 (selectable) 章 #50 · 7 铜钥匙线索推进7
+父级 #35
+									166 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										167 摘要 计划细节与依赖, Value: off
+											168 文本 计划细节与依赖
+									169 单元格 (selectable) 2000 / 2500 / 3000
+									170 单元格 (selectable) 细节已填写（以门禁为准）
+								171 row (selectable)
+									172 单元格 (selectable) 章 #51 · 8 铜钥匙线索推进8
+父级 #35
+									173 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										174 摘要 计划细节与依赖, Value: off
+											175 文本 计划细节与依赖
+									176 单元格 (selectable) 2000 / 2500 / 3000
+									177 单元格 (selectable) 细节已填写（以门禁为准）
+								178 row (selectable)
+									179 单元格 (selectable) 章 #52 · 9 铜钥匙线索推进9
+父级 #35
+									180 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										181 摘要 计划细节与依赖, Value: off
+											182 文本 计划细节与依赖
+									183 单元格 (selectable) 2000 / 2500 / 3000
+									184 单元格 (selectable) 细节已填写（以门禁为准）
+								185 row (selectable)
+									186 单元格 (selectable) 章 #53 · 10 铜钥匙线索推进10
+父级 #35
+									187 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										188 摘要 计划细节与依赖, Value: off
+											189 文本 计划细节与依赖
+									190 单元格 (selectable) 2000 / 2500 / 3000
+									191 单元格 (selectable) 细节已填写（以门禁为准）
+								192 row (selectable)
+									193 单元格 (selectable) 场景 #44 · 1 铜钥匙旧档
+父级 #44
+									194 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										195 摘要 计划细节与依赖, Value: off
+											196 文本 计划细节与依赖
+									197 单元格 (selectable) 2000 / 2500 / 3000
+									198 单元格 (selectable) 细节已填写（以门禁为准）
+								199 row (selectable)
+									200 单元格 (selectable) 场景 #45 · 1 铜钥匙旧档
+父级 #45
+									201 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										202 摘要 计划细节与依赖, Value: off
+											203 文本 计划细节与依赖
+									204 单元格 (selectable) 2000 / 2500 / 3000
+									205 单元格 (selectable) 细节已填写（以门禁为准）
+								206 row (selectable)
+									207 单元格 (selectable) 场景 #46 · 1 铜钥匙旧档
+父级 #46
+									208 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										209 摘要 计划细节与依赖, Value: off
+											210 文本 计划细节与依赖
+									211 单元格 (selectable) 2000 / 2500 / 3000
+									212 单元格 (selectable) 细节已填写（以门禁为准）
+								213 row (selectable)
+									214 单元格 (selectable) 场景 #47 · 1 铜钥匙旧档
+父级 #47
+									215 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										216 摘要 计划细节与依赖, Value: off
+											217 文本 计划细节与依赖
+									218 单元格 (selectable) 2000 / 2500 / 3000
+									219 单元格 (selectable) 细节已填写（以门禁为准）
+								220 row (selectable)
+									221 单元格 (selectable) 场景 #48 · 1 铜钥匙旧档
+父级 #48
+									222 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										223 摘要 计划细节与依赖, Value: off
+											224 文本 计划细节与依赖
+									225 单元格 (selectable) 2000 / 2500 / 3000
+									226 单元格 (selectable) 细节已填写（以门禁为准）
+								227 row (selectable)
+									228 单元格 (selectable) 场景 #49 · 1 铜钥匙旧档
+父级 #49
+									229 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										230 摘要 计划细节与依赖, Value: off
+											231 文本 计划细节与依赖
+									232 单元格 (selectable) 2000 / 2500 / 3000
+									233 单元格 (selectable) 细节已填写（以门禁为准）
+								234 row (selectable)
+									235 单元格 (selectable) 场景 #50 · 1 铜钥匙旧档
+父级 #50
+									236 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										237 摘要 计划细节与依赖, Value: off
+											238 文本 计划细节与依赖
+									239 单元格 (selectable) 2000 / 2500 / 3000
+									240 单元格 (selectable) 细节已填写（以门禁为准）
+								241 row (selectable)
+									242 单元格 (selectable) 场景 #51 · 1 铜钥匙旧档
+父级 #51
+									243 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										244 摘要 计划细节与依赖, Value: off
+											245 文本 计划细节与依赖
+									246 单元格 (selectable) 2000 / 2500 / 3000
+									247 单元格 (selectable) 细节已填写（以门禁为准）
+								248 row (selectable)
+									249 单元格 (selectable) 场景 #52 · 1 铜钥匙旧档
+父级 #52
+									250 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										251 摘要 计划细节与依赖, Value: off
+											252 文本 计划细节与依赖
+									253 单元格 (selectable) 2000 / 2500 / 3000
+									254 单元格 (selectable) 细节已填写（以门禁为准）
+								255 row (selectable)
+									256 单元格 (selectable) 场景 #53 · 1 铜钥匙旧档
+父级 #53
+									257 单元格 (selectable) 计划细节与依赖, Value: 以证据追查真相
+计划细节与依赖
+										258 摘要 计划细节与依赖, Value: off
+											259 文本 计划细节与依赖
+									260 单元格 (selectable) 2000 / 2500 / 3000
+									261 单元格 (selectable) 细节已填写（以门禁为准）
+						262 标题 不可变计划历史, Value: 2
+							263 文本 不可变计划历史
+						264 文本 计划状态
+						265 弹出式按钮 计划状态：全部
+						266 按钮 v1 · 第1—10章
+						267 文本  · 已冻结 · 正文验收计划 · 2026-10-27T05:52:14.000000Z
+				268 滚动条 (settable, float) 0
+	269 工具栏
+		270 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			271 按钮 Description: 显示边栏, ID: SidebarButton
+			272 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		273 container BackForwardSegmentedControl
+			274 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			275 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		276 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			277 按钮 页面菜单, ID: AssistantButton
+			278 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			279 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:8770/admin/novels/36/plans, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			280 按钮 重新加载此页面, ID: ReloadButton
+		281 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		282 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		283 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	284 标签页组 Description: 标签页栏，2个标签页, ID: TabBar?isSeparate=false
+		285 标签 滚动细化与章节场景计划 - NovelForge · 小说工坊, Help: 若要与此按钮中的项目交互，请按下Control-Option-Shift-下箭头键。, Value: on, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=true
+			286 图像 FaviconImageView
+			287 文本 Value: 滚动细化与章节场景计划 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+		288 标签 正式提交与基线 - NovelForge · 小说工坊, Value: off, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=false
+			289 图像 FaviconImageView
+			290 文本 Value: 正式提交与基线 - NovelForge · 小说工坊, ID: UnifiedTabBarButton._titleTextField
+	291 关闭按钮
+	292 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	293 最小化按钮
+294 menu bar
+	295 Safari浏览器
+	296 文件
+	297 编辑
+	298 显示, ID: SafariViewMenu
+	299 历史记录
+	300 书签, ID: SafariBookmarksMenu
+	301 窗口, ID: SafariWindowMenu
+	302 帮助, ID: SafariHelpMenu
+
+The focused UI element is 5 HTML内容 Description: 滚动细化与章节场景计划 - NovelForge · 小说工坊, URL: 127.0.0.1:8770/admin/novels/36/plans

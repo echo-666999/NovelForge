@@ -1,0 +1,189 @@
+{
+  "tool": "phpunit",
+  "result": "failed",
+  "tests": 457,
+  "passed": 430,
+  "assertions": 4950,
+  "duration_ms": 2611791,
+  "errors": 25,
+  "error_details": [
+    {
+      "test": "Tests\\Feature\\CanonicalMemoryRecoveryTest::test_scheduler_publication_is_consumed_by_real_memory_queue_worker",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/CanonicalMemoryRecoveryTest.php",
+      "line": 102,
+      "kind": "redis_missing",
+      "message": "No such file or directory [unix:/Users/webb/Herd/NovelForge/.local/redis-testing.sock]"
+    },
+    {
+      "test": "Tests\\Feature\\OutboxRecoveryTest::test_worker_restart_signal_releases_old_process_and_new_worker_continues",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/OutboxRecoveryTest.php",
+      "line": 96,
+      "kind": "redis_missing",
+      "message": "No such file or directory [unix:/Users/webb/Herd/NovelForge/.local/redis-testing.sock]"
+    },
+    {
+      "test": "Tests\\Feature\\OutboxRecoveryTest::test_redis_restart_loses_notification_but_database_recovers",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/OutboxRecoveryTest.php",
+      "line": 150,
+      "kind": "redis_missing",
+      "message": "No such file or directory [unix:/Users/webb/Herd/NovelForge/.local/redis-testing.sock]"
+    },
+    {
+      "test": "Tests\\Feature\\OutboxTest::test_run_and_intent_share_transaction_and_rollback",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/OutboxTest.php",
+      "line": 28,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\OutboxTest::test_duplicate_delivery_and_result_receipt_are_atomic",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/OutboxTest.php",
+      "line": 28,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\OutboxTest::test_expired_heartbeat_and_stale_worker_cannot_write",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/OutboxTest.php",
+      "line": 28,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\OutboxTest::test_reclaim_is_bounded_and_scanner_detects_expired_lease",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/OutboxTest.php",
+      "line": 28,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\OutboxTest::test_same_book_queued_runs_are_serial_until_run_finishes",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/OutboxTest.php",
+      "line": 28,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\OutboxTest::test_pause_and_cancel_are_rechecked_before_commit",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/OutboxTest.php",
+      "line": 28,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\OutboxTest::test_real_queue_publish_duplicate_and_republish_without_receipt",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/OutboxTest.php",
+      "line": 28,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\OutboxTest::test_delivery_failure_preserves_intent_and_can_retry",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/OutboxTest.php",
+      "line": 28,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\OutboxTest::test_retry_notice_cannot_create_first_attempt_and_stale_notice_cannot_reclaim_retry",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/OutboxTest.php",
+      "line": 28,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\OutboxTest::test_failed_run_replay_cannot_reacquire_released_book_slot",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/OutboxTest.php",
+      "line": 28,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\OutboxTest::test_unsafe_timing_and_immutable_intent_are_rejected",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/OutboxTest.php",
+      "line": 28,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\PlanningPipelineTest::test_intake_goes_through_gateway_and_requires_author_decision",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/PlanningPipelineTest.php",
+      "line": 32,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\PlanningPipelineTest::test_missing_special_detail_blocks_without_importing_and_resume_reuses_valid_artifact",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/PlanningPipelineTest.php",
+      "line": 52,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\PlanningPipelineTest::test_api_authentication_and_comment_coverage",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/PlanningPipelineTest.php",
+      "line": 74,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\PlanningPipelineTest::test_stale_source_blocks_and_database_preserves_history",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/PlanningPipelineTest.php",
+      "line": 88,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\PlanningPipelineTest::test_five_phase_candidates_keep_detail_and_existing_author_freeze_contract",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/PlanningPipelineTest.php",
+      "line": 104,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\PlanningPipelineTest::test_fresh_intake_has_no_outline_and_only_registered_offline_execution_works_outside_testing",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/PlanningPipelineTest.php",
+      "line": 177,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\PlanningPipelineTest::test_malformed_response_and_budget_defer_have_no_candidate_side_effects",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/PlanningPipelineTest.php",
+      "line": 197,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\PlanningPipelineTest::test_http_idempotency_and_ui_compare_use_persisted_candidates",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/PlanningPipelineTest.php",
+      "line": 216,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\PlanningPipelineTest::test_illegal_hierarchy_and_missing_layer_coverage_are_blocked",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/PlanningPipelineTest.php",
+      "line": 233,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\PlanningPipelineTest::test_successful_candidate_cannot_be_adopted_after_input_changes_and_evidence_survives",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/PlanningPipelineTest.php",
+      "line": 260,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    },
+    {
+      "test": "Tests\\Feature\\PlanningPipelineTest::test_unadopted_parent_and_skipped_phase_do_not_create_runs_or_requests",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/PlanningPipelineTest.php",
+      "line": 281,
+      "kind": "unique_admin",
+      "message": "SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint \"users_single_admin\"\nDETAIL:  Key (is_admin)=(t) already exists."
+    }
+  ],
+  "skipped": 2,
+  "raw_sha256": "37f8c8f4720f2120249dcf1b46ee50e53cdca576652b110c29562c51920224a6",
+  "redaction": "省略SQL、测试账户字段和完整堆栈，保留原测试状态与计数。"
+}
