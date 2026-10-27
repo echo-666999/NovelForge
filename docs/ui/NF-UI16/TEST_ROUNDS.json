@@ -1,0 +1,584 @@
+[
+  {
+    "round": "missing-redis",
+    "tests": 1,
+    "passed": 0,
+    "assertions": 0,
+    "duration_ms": 165,
+    "expected_negative": true,
+    "cases": [
+      {
+        "classname": "Tests.Feature.OutboxRecoveryTest",
+        "name": "test_worker_restart_signal_releases_old_process_and_new_worker_continues",
+        "assertions": 0,
+        "seconds": 0.0,
+        "status": "error",
+        "message": "Tests\\Feature\\OutboxRecoveryTest::test_worker_restart_signal_releases_old_process_and_new_worker_continues"
+      }
+    ],
+    "raw_junit_sha256": "3e4e12bb1e660c5b7c8ceeb7c71cb0ed36949a8751b43fed3c6a23a0bf57d348"
+  },
+  {
+    "round": "unit",
+    "tests": 6,
+    "passed": 6,
+    "assertions": 18,
+    "duration_ms": 8,
+    "expected_negative": false,
+    "cases": [
+      {
+        "classname": "Tests.Unit.RecoveryCleanupTest",
+        "name": "test_success_returns_body_value_after_all_steps",
+        "assertions": 2,
+        "seconds": 0.000446,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.RecoveryCleanupTest",
+        "name": "test_original_assertion_and_trace_survive_multiple_cleanup_failures",
+        "assertions": 5,
+        "seconds": 0.000717,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.RecoveryCleanupTest",
+        "name": "test_cleanup_only_failure_is_reported_and_keeps_all_causes",
+        "assertions": 3,
+        "seconds": 0.000615,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.RecoveryCleanupTest",
+        "name": "test_body_failure_without_cleanup_errors_is_unchanged",
+        "assertions": 2,
+        "seconds": 0.000318,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.RecoveryCleanupTest",
+        "name": "test_diagnostic_failure_cannot_mask_original_failure",
+        "assertions": 2,
+        "seconds": 0.000566,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.RecoveryCleanupTest",
+        "name": "test_every_live_process_is_stopped_even_when_one_stop_fails",
+        "assertions": 4,
+        "seconds": 0.004292,
+        "status": "passed"
+      }
+    ],
+    "raw_junit_sha256": "a43251f8da9a0cbc52623054eaf013527fbec3eaa929c5698abbb6d5097314ca"
+  },
+  {
+    "round": "feature",
+    "tests": 4,
+    "passed": 3,
+    "assertions": 21,
+    "duration_ms": 15735,
+    "expected_negative": false,
+    "cases": [
+      {
+        "classname": "Tests.Feature.RecoveryCleanupTest",
+        "name": "test_redis_cleanup_failure_preserves_primary_and_allows_the_next_outbox_fixture",
+        "assertions": 9,
+        "seconds": 5.934685,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.RecoveryCleanupTest",
+        "name": "test_cleanup_only_error_is_visible_and_allows_the_next_planning_fixture",
+        "assertions": 4,
+        "seconds": 6.152638,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.RecoveryCleanupTest",
+        "name": "test_database_and_redis_redirects_are_rejected_before_resetting_fixtures",
+        "assertions": 4,
+        "seconds": 3.436425,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.RecoveryCleanupTest",
+        "name": "test_phpunit_preserves_original_failure_classification_and_reports_cleanup_only_errors",
+        "assertions": 4,
+        "seconds": 0.208655,
+        "status": "failure",
+        "message": "Tests\\Feature\\RecoveryCleanupTest::test_phpunit_preserves_original_failure_classification_and_reports_cleanup_only_errors"
+      }
+    ],
+    "raw_junit_sha256": "5d4674fba114b353d24a9dafc084bab2add1a9b2fdeb3618c109844641d39f19"
+  },
+  {
+    "round": "feature-recheck",
+    "tests": 4,
+    "passed": 4,
+    "assertions": 24,
+    "duration_ms": 15439,
+    "expected_negative": false,
+    "cases": [
+      {
+        "classname": "Tests.Feature.RecoveryCleanupTest",
+        "name": "test_redis_cleanup_failure_preserves_primary_and_allows_the_next_outbox_fixture",
+        "assertions": 9,
+        "seconds": 5.584163,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.RecoveryCleanupTest",
+        "name": "test_cleanup_only_error_is_visible_and_allows_the_next_planning_fixture",
+        "assertions": 4,
+        "seconds": 5.962225,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.RecoveryCleanupTest",
+        "name": "test_database_and_redis_redirects_are_rejected_before_resetting_fixtures",
+        "assertions": 4,
+        "seconds": 3.474727,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.RecoveryCleanupTest",
+        "name": "test_phpunit_preserves_original_failure_classification_and_reports_cleanup_only_errors",
+        "assertions": 7,
+        "seconds": 0.415661,
+        "status": "passed"
+      }
+    ],
+    "raw_junit_sha256": "17a02684238bed7b73b209f404ea95c33095d16081821b8797603a4ee6e1e030"
+  },
+  {
+    "round": "ordered",
+    "tests": 60,
+    "passed": 60,
+    "assertions": 333,
+    "duration_ms": 174945,
+    "expected_negative": false,
+    "cases": [
+      {
+        "classname": "Tests.Unit.RecoveryCleanupTest",
+        "name": "test_success_returns_body_value_after_all_steps",
+        "assertions": 2,
+        "seconds": 0.000587,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.RecoveryCleanupTest",
+        "name": "test_original_assertion_and_trace_survive_multiple_cleanup_failures",
+        "assertions": 5,
+        "seconds": 0.000555,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.RecoveryCleanupTest",
+        "name": "test_cleanup_only_failure_is_reported_and_keeps_all_causes",
+        "assertions": 3,
+        "seconds": 0.000568,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.RecoveryCleanupTest",
+        "name": "test_body_failure_without_cleanup_errors_is_unchanged",
+        "assertions": 2,
+        "seconds": 0.00028,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.RecoveryCleanupTest",
+        "name": "test_diagnostic_failure_cannot_mask_original_failure",
+        "assertions": 2,
+        "seconds": 0.000431,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.RecoveryCleanupTest",
+        "name": "test_every_live_process_is_stopped_even_when_one_stop_fails",
+        "assertions": 4,
+        "seconds": 0.00431,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.TestIsolationTest",
+        "name": "test_approved_plain_and_url_connections_are_allowed",
+        "assertions": 3,
+        "seconds": 0.001693,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.TestIsolationTest",
+        "name": "test_unsafe_targets_fail_before_connecting with data set \"plain database\"",
+        "assertions": 1,
+        "seconds": 0.000315,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.TestIsolationTest",
+        "name": "test_unsafe_targets_fail_before_connecting with data set \"URL overrides database\"",
+        "assertions": 1,
+        "seconds": 0.000301,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.TestIsolationTest",
+        "name": "test_unsafe_targets_fail_before_connecting with data set \"URL query overrides path\"",
+        "assertions": 1,
+        "seconds": 0.000295,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.TestIsolationTest",
+        "name": "test_unsafe_targets_fail_before_connecting with data set \"URL changes host\"",
+        "assertions": 1,
+        "seconds": 0.000288,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.TestIsolationTest",
+        "name": "test_unsafe_targets_fail_before_connecting with data set \"URL changes port\"",
+        "assertions": 1,
+        "seconds": 0.000279,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.TestIsolationTest",
+        "name": "test_unsafe_targets_fail_before_connecting with data set \"wrong driver\"",
+        "assertions": 1,
+        "seconds": 0.000275,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.TestIsolationTest",
+        "name": "test_unsafe_targets_fail_before_connecting with data set \"read replica\"",
+        "assertions": 1,
+        "seconds": 0.000212,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.TestIsolationTest",
+        "name": "test_unsafe_targets_fail_before_connecting with data set \"write replica\"",
+        "assertions": 1,
+        "seconds": 0.000245,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.TestIsolationTest",
+        "name": "test_unsafe_targets_fail_before_connecting with data set \"URL write replica\"",
+        "assertions": 1,
+        "seconds": 0.000285,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Unit.TestIsolationTest",
+        "name": "test_unsafe_targets_fail_before_connecting with data set \"PDO options\"",
+        "assertions": 1,
+        "seconds": 0.000267,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.TestIsolationTest",
+        "name": "test_actual_database_and_all_resource_routes_are_isolated",
+        "assertions": 14,
+        "seconds": 0.268798,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.TestIsolationTest",
+        "name": "test_files_and_file_cache_use_only_testing_storage",
+        "assertions": 8,
+        "seconds": 0.052488,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.TestIsolationTest",
+        "name": "test_artisan_rejects_url_bypass_before_any_database_connection",
+        "assertions": 4,
+        "seconds": 0.161723,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.TestIsolationTest",
+        "name": "test_unverifiable_database_fails_closed_without_credentials_in_output",
+        "assertions": 3,
+        "seconds": 0.267432,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.TestIsolationTest",
+        "name": "test_conflicting_environment_is_rejected",
+        "assertions": 2,
+        "seconds": 0.158722,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.TestIsolationTest",
+        "name": "test_cached_configuration_is_rejected_without_loading_it",
+        "assertions": 18,
+        "seconds": 0.359968,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.TestIsolationTest",
+        "name": "test_normal_console_command_still_runs_termination_callbacks",
+        "assertions": 5,
+        "seconds": 0.324203,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.TestIsolationTest",
+        "name": "test_early_storage_symlink_gate_still_rejects_without_config_errors",
+        "assertions": 4,
+        "seconds": 0.14656,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.TestIsolationTest",
+        "name": "test_external_resource_settings_cannot_redirect_testing",
+        "assertions": 1,
+        "seconds": 0.272521,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.TestIsolationTest",
+        "name": "test_real_redis_and_explicit_queue_use_dedicated_process",
+        "assertions": 6,
+        "seconds": 0.097714,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Support.Probes.RecoveryWarmupTest",
+        "name": "test_warm_refresh_database_state_without_leaving_an_admin",
+        "assertions": 1,
+        "seconds": 1.782011,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.RecoveryCleanupTest",
+        "name": "test_redis_cleanup_failure_preserves_primary_and_allows_the_next_outbox_fixture",
+        "assertions": 9,
+        "seconds": 5.581622,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.RecoveryCleanupTest",
+        "name": "test_cleanup_only_error_is_visible_and_allows_the_next_planning_fixture",
+        "assertions": 4,
+        "seconds": 5.899835,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.RecoveryCleanupTest",
+        "name": "test_database_and_redis_redirects_are_rejected_before_resetting_fixtures",
+        "assertions": 4,
+        "seconds": 3.445013,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.RecoveryCleanupTest",
+        "name": "test_phpunit_preserves_original_failure_classification_and_reports_cleanup_only_errors",
+        "assertions": 7,
+        "seconds": 0.355316,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.CanonicalMemoryRecoveryTest",
+        "name": "test_new_worker_recovers_expired_lease_and_replayed_delivery_does_not_duplicate_outputs",
+        "assertions": 11,
+        "seconds": 25.825406,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.CanonicalMemoryRecoveryTest",
+        "name": "test_two_consumers_of_the_same_task_only_materialize_once",
+        "assertions": 6,
+        "seconds": 25.742076,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.CanonicalMemoryRecoveryTest",
+        "name": "test_scheduler_publication_is_consumed_by_real_memory_queue_worker",
+        "assertions": 7,
+        "seconds": 26.815638,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.OutboxRecoveryTest",
+        "name": "test_killed_worker_is_reclaimed_once_by_two_processes",
+        "assertions": 11,
+        "seconds": 4.501579,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.OutboxRecoveryTest",
+        "name": "test_worker_restart_signal_releases_old_process_and_new_worker_continues",
+        "assertions": 8,
+        "seconds": 8.875535,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.OutboxRecoveryTest",
+        "name": "test_redis_restart_loses_notification_but_database_recovers",
+        "assertions": 14,
+        "seconds": 7.395804,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.OutboxTest",
+        "name": "test_run_and_intent_share_transaction_and_rollback",
+        "assertions": 6,
+        "seconds": 0.494782,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.OutboxTest",
+        "name": "test_duplicate_delivery_and_result_receipt_are_atomic",
+        "assertions": 8,
+        "seconds": 0.656273,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.OutboxTest",
+        "name": "test_expired_heartbeat_and_stale_worker_cannot_write",
+        "assertions": 11,
+        "seconds": 0.918498,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.OutboxTest",
+        "name": "test_reclaim_is_bounded_and_scanner_detects_expired_lease",
+        "assertions": 10,
+        "seconds": 1.005797,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.OutboxTest",
+        "name": "test_same_book_queued_runs_are_serial_until_run_finishes",
+        "assertions": 4,
+        "seconds": 1.006084,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.OutboxTest",
+        "name": "test_pause_and_cancel_are_rechecked_before_commit",
+        "assertions": 5,
+        "seconds": 0.760868,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.OutboxTest",
+        "name": "test_real_queue_publish_duplicate_and_republish_without_receipt",
+        "assertions": 12,
+        "seconds": 1.081684,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.OutboxTest",
+        "name": "test_delivery_failure_preserves_intent_and_can_retry",
+        "assertions": 4,
+        "seconds": 0.794361,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.OutboxTest",
+        "name": "test_retry_notice_cannot_create_first_attempt_and_stale_notice_cannot_reclaim_retry",
+        "assertions": 5,
+        "seconds": 1.163055,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.OutboxTest",
+        "name": "test_failed_run_replay_cannot_reacquire_released_book_slot",
+        "assertions": 3,
+        "seconds": 0.956392,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.OutboxTest",
+        "name": "test_unsafe_timing_and_immutable_intent_are_rejected",
+        "assertions": 2,
+        "seconds": 0.771547,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.PlanningPipelineTest",
+        "name": "test_intake_goes_through_gateway_and_requires_author_decision",
+        "assertions": 10,
+        "seconds": 2.837474,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.PlanningPipelineTest",
+        "name": "test_missing_special_detail_blocks_without_importing_and_resume_reuses_valid_artifact",
+        "assertions": 6,
+        "seconds": 3.648908,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.PlanningPipelineTest",
+        "name": "test_api_authentication_and_comment_coverage",
+        "assertions": 7,
+        "seconds": 1.259552,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.PlanningPipelineTest",
+        "name": "test_stale_source_blocks_and_database_preserves_history",
+        "assertions": 3,
+        "seconds": 1.537756,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.PlanningPipelineTest",
+        "name": "test_five_phase_candidates_keep_detail_and_existing_author_freeze_contract",
+        "assertions": 16,
+        "seconds": 18.087793,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.PlanningPipelineTest",
+        "name": "test_fresh_intake_has_no_outline_and_only_registered_offline_execution_works_outside_testing",
+        "assertions": 5,
+        "seconds": 2.715072,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.PlanningPipelineTest",
+        "name": "test_malformed_response_and_budget_defer_have_no_candidate_side_effects",
+        "assertions": 7,
+        "seconds": 3.063671,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.PlanningPipelineTest",
+        "name": "test_http_idempotency_and_ui_compare_use_persisted_candidates",
+        "assertions": 12,
+        "seconds": 3.45638,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.PlanningPipelineTest",
+        "name": "test_illegal_hierarchy_and_missing_layer_coverage_are_blocked",
+        "assertions": 4,
+        "seconds": 5.350635,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.PlanningPipelineTest",
+        "name": "test_successful_candidate_cannot_be_adopted_after_input_changes_and_evidence_survives",
+        "assertions": 7,
+        "seconds": 2.723416,
+        "status": "passed"
+      },
+      {
+        "classname": "Tests.Feature.PlanningPipelineTest",
+        "name": "test_unadopted_parent_and_skipped_phase_do_not_create_runs_or_requests",
+        "assertions": 8,
+        "seconds": 2.289646,
+        "status": "passed"
+      }
+    ],
+    "raw_junit_sha256": "dc06a1bd1a0416877aae39ae9ef7ac1297b5ef49fe83d331ee22970eb12930b4"
+  }
+]

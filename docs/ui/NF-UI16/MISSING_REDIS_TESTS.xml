@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="NF-UI16-missing-redis">
+  <testcase classname="Tests.Feature.OutboxRecoveryTest" name="test_worker_restart_signal_releases_old_process_and_new_worker_continues" assertions="0" time="0.000000">
+    <error type="RuntimeException">Tests\Feature\OutboxRecoveryTest::test_worker_restart_signal_releases_old_process_and_new_worker_continues</error>
+  </testcase>
+</testsuite>

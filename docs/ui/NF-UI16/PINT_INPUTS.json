@@ -1,0 +1,12 @@
+[
+  "tests/Feature/CanonicalMemoryRecoveryTest.php",
+  "tests/Feature/OutboxRecoveryTest.php",
+  "tests/Feature/RecoveryCleanupTest.php",
+  "tests/Feature/TestIsolationTest.php",
+  "tests/Support/Probes/RecoveryFailureProbeTest.php",
+  "tests/Support/Probes/RecoveryWarmupTest.php",
+  "tests/Support/RecoveryCleanup.php",
+  "tests/Support/RecoveryCleanupFailure.php",
+  "tests/Support/RecoveryEnvironment.php",
+  "tests/Unit/RecoveryCleanupTest.php"
+]

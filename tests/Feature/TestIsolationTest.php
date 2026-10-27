@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Symfony\Component\Process\Process;
+use Tests\Support\RecoveryCleanup;
 use Tests\TestCase;
 
 class TestIsolationTest extends TestCase
@@ -205,7 +206,7 @@ class TestIsolationTest extends TestCase
         }
         $token = (string) Str::uuid();
         $queue = 'isolation-'.$token;
-        try {
+        (new RecoveryCleanup)->run(function () use ($token, $queue) {
             Redis::set('isolation-'.$token, 'ok');
             $this->assertSame('ok', Redis::get('isolation-'.$token));
             Cache::store('redis')->put('isolation-'.$token, 'cached', 60);
@@ -215,10 +216,10 @@ class TestIsolationTest extends TestCase
             $this->assertSame(0, Artisan::call('queue:work', ['connection' => 'redis', '--queue' => $queue, '--once' => true, '--tries' => 1]));
             $this->assertSame('ok', Cache::pull('novelforge-probe:'.$token));
             $this->assertSame(0, Queue::connection('redis')->size($queue));
-        } finally {
-            Redis::del('isolation-'.$token);
-            Cache::store('redis')->forget('isolation-'.$token);
-            Queue::connection('redis')->clear($queue);
-        }
+        }, [
+            'redis_key' => fn () => Redis::del('isolation-'.$token),
+            'cache_key' => fn () => Cache::store('redis')->forget('isolation-'.$token),
+            'probe_queue' => fn () => Queue::connection('redis')->clear($queue),
+        ]);
     }
 }

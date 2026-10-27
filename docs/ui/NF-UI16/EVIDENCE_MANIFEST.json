@@ -1,0 +1,90 @@
+[
+  {
+    "path": ".phpunit.result.cache",
+    "sha256": "de11493113c7438f7b488d331f0c52d981857052d93f33444dbe092b94fcda5d"
+  },
+  {
+    "path": "ACCEPTANCE.md",
+    "sha256": "365aca8b5013dc76cbfd843d8f94d75017f6020896c2a2c29eaaa26ab8083aa6"
+  },
+  {
+    "path": "BEFORE_REPRO.json",
+    "sha256": "5bdd8a6fc2a560717118522b9b220b8728d183f4487f9b8400387f46bb84bf62"
+  },
+  {
+    "path": "CLEANUP.json",
+    "sha256": "163f1ca0ab663b977c54cc48206433e1b0e15a46d4078ac43e8b116d3a185c4d"
+  },
+  {
+    "path": "FEATURE_RECHECK_TESTS.xml",
+    "sha256": "538347276fba36633d073913a0679430a376378348ea6a001e70f5f3790f20f7"
+  },
+  {
+    "path": "FEATURE_TESTS.xml",
+    "sha256": "5c0231dd302d9212f35707a3e88ecd2bb2db057bb45670b9be0773dc079ac112"
+  },
+  {
+    "path": "FILE_SCOPE.json",
+    "sha256": "da9efd87c52cf507d11ee539a74195c664fd48d81f78384f2756331b388c36b9"
+  },
+  {
+    "path": "FINAL_CHECKS.json",
+    "sha256": "467d25cbfd935df83e6975befe342fe0befea7f6eea079895b5c1e2e4b4e5505"
+  },
+  {
+    "path": "MISSING_REDIS_GATE.json",
+    "sha256": "9bb7cb0e711105c31265d19862a91934bc3869a1ce1130dcede363a68c41b0b0"
+  },
+  {
+    "path": "MISSING_REDIS_TESTS.xml",
+    "sha256": "764a6e3738bfb608185f3e3eddbefdafe85c89edc573414cb57183fd8407c4b2"
+  },
+  {
+    "path": "ORDERED_RESULTS.json",
+    "sha256": "26ed0e34e3d10bd6243c4732520436de9bf7cdd97c4a4be7624bc43ec7fe8c37"
+  },
+  {
+    "path": "ORDERED_SUITE.xml",
+    "sha256": "608d990b9d820b238f004723fe9dc6acbd8a27994ac1e5acef514b542845ee52"
+  },
+  {
+    "path": "ORDERED_TESTS.xml",
+    "sha256": "21aa56e68397083990b8970fbd1a9b2fa56b8425eab51d5a3e2f40433fd47bd3"
+  },
+  {
+    "path": "PINT_CHANGED.json",
+    "sha256": "cd1a94fc2cf6a965b86e1a4809d6c7fb9148b1ee374e1010ed2ac96ff4876ec2"
+  },
+  {
+    "path": "PINT_FULL.json",
+    "sha256": "155281b9d66415cdf1b64fb2cee624211cdadaa9c2e23674e486c9b3b56a1e9e"
+  },
+  {
+    "path": "PINT_INPUTS.json",
+    "sha256": "a8941352f5fc66abd13ac800cc361d55019a23eef940ec6a799d729af58447ac"
+  },
+  {
+    "path": "PREFLIGHT.log",
+    "sha256": "5d998f5d00aed1da30563c5a02a8db24b6dfc1ed0c4683eb31f597a4d4a52924"
+  },
+  {
+    "path": "TESTS.md",
+    "sha256": "c148eda6c8fbdb4548fa71bab96034cbeb1e9ab414cbd3ce49fc1023aa42d398"
+  },
+  {
+    "path": "TEST_ROUNDS.json",
+    "sha256": "078e62a354c6c2be698eb2491b93197586f9afc28a3fa9facb060539e5ded323"
+  },
+  {
+    "path": "UNIT_TESTS.xml",
+    "sha256": "277731915a8aa99f996b92c99987e2c9c975fbd0948bcb29c449af9ae5aa8a69"
+  },
+  {
+    "path": "scripts/before-repro.php",
+    "sha256": "35a37d642cf1f1c90c0aa2e74db1475a083d0a7966c7faa219274985d4abce90"
+  },
+  {
+    "path": "scripts/run.sh",
+    "sha256": "b9e5ee20933b3902623e4bd40e6b79a9651dc797f68cdaf37fc271f2b6bc3643"
+  }
+]

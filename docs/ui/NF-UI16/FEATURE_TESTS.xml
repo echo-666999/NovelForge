@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="NF-UI16-feature">
+  <testcase classname="Tests.Feature.RecoveryCleanupTest" name="test_redis_cleanup_failure_preserves_primary_and_allows_the_next_outbox_fixture" assertions="9" time="5.934685" />
+  <testcase classname="Tests.Feature.RecoveryCleanupTest" name="test_cleanup_only_error_is_visible_and_allows_the_next_planning_fixture" assertions="4" time="6.152638" />
+  <testcase classname="Tests.Feature.RecoveryCleanupTest" name="test_database_and_redis_redirects_are_rejected_before_resetting_fixtures" assertions="4" time="3.436425" />
+  <testcase classname="Tests.Feature.RecoveryCleanupTest" name="test_phpunit_preserves_original_failure_classification_and_reports_cleanup_only_errors" assertions="4" time="0.208655">
+    <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\RecoveryCleanupTest::test_phpunit_preserves_original_failure_classification_and_reports_cleanup_only_errors</failure>
+  </testcase>
+</testsuite>

@@ -1,0 +1,14 @@
+{
+  "changed_php_pint": "passed",
+  "protected_files": 945,
+  "business_sources_unchanged": true,
+  "diff_check": "passed",
+  "runner_shell_syntax": "passed",
+  "other_task_cards_unchanged": true,
+  "real_models_called": false,
+  "chinese_segmentation": false,
+  "new_database_schema": false,
+  "secret_scan": "passed; actual values not recorded",
+  "document_links": "passed",
+  "test_services_stopped": true
+}

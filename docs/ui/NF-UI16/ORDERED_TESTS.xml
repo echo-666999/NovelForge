@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="NF-UI16-ordered">
+  <testcase classname="Tests.Unit.RecoveryCleanupTest" name="test_success_returns_body_value_after_all_steps" assertions="2" time="0.000587" />
+  <testcase classname="Tests.Unit.RecoveryCleanupTest" name="test_original_assertion_and_trace_survive_multiple_cleanup_failures" assertions="5" time="0.000555" />
+  <testcase classname="Tests.Unit.RecoveryCleanupTest" name="test_cleanup_only_failure_is_reported_and_keeps_all_causes" assertions="3" time="0.000568" />
+  <testcase classname="Tests.Unit.RecoveryCleanupTest" name="test_body_failure_without_cleanup_errors_is_unchanged" assertions="2" time="0.000280" />
+  <testcase classname="Tests.Unit.RecoveryCleanupTest" name="test_diagnostic_failure_cannot_mask_original_failure" assertions="2" time="0.000431" />
+  <testcase classname="Tests.Unit.RecoveryCleanupTest" name="test_every_live_process_is_stopped_even_when_one_stop_fails" assertions="4" time="0.004310" />
+  <testcase classname="Tests.Unit.TestIsolationTest" name="test_approved_plain_and_url_connections_are_allowed" assertions="3" time="0.001693" />
+  <testcase classname="Tests.Unit.TestIsolationTest" name="test_unsafe_targets_fail_before_connecting with data set &quot;plain database&quot;" assertions="1" time="0.000315" />
+  <testcase classname="Tests.Unit.TestIsolationTest" name="test_unsafe_targets_fail_before_connecting with data set &quot;URL overrides database&quot;" assertions="1" time="0.000301" />
+  <testcase classname="Tests.Unit.TestIsolationTest" name="test_unsafe_targets_fail_before_connecting with data set &quot;URL query overrides path&quot;" assertions="1" time="0.000295" />
+  <testcase classname="Tests.Unit.TestIsolationTest" name="test_unsafe_targets_fail_before_connecting with data set &quot;URL changes host&quot;" assertions="1" time="0.000288" />
+  <testcase classname="Tests.Unit.TestIsolationTest" name="test_unsafe_targets_fail_before_connecting with data set &quot;URL changes port&quot;" assertions="1" time="0.000279" />
+  <testcase classname="Tests.Unit.TestIsolationTest" name="test_unsafe_targets_fail_before_connecting with data set &quot;wrong driver&quot;" assertions="1" time="0.000275" />
+  <testcase classname="Tests.Unit.TestIsolationTest" name="test_unsafe_targets_fail_before_connecting with data set &quot;read replica&quot;" assertions="1" time="0.000212" />
+  <testcase classname="Tests.Unit.TestIsolationTest" name="test_unsafe_targets_fail_before_connecting with data set &quot;write replica&quot;" assertions="1" time="0.000245" />
+  <testcase classname="Tests.Unit.TestIsolationTest" name="test_unsafe_targets_fail_before_connecting with data set &quot;URL write replica&quot;" assertions="1" time="0.000285" />
+  <testcase classname="Tests.Unit.TestIsolationTest" name="test_unsafe_targets_fail_before_connecting with data set &quot;PDO options&quot;" assertions="1" time="0.000267" />
+  <testcase classname="Tests.Feature.TestIsolationTest" name="test_actual_database_and_all_resource_routes_are_isolated" assertions="14" time="0.268798" />
+  <testcase classname="Tests.Feature.TestIsolationTest" name="test_files_and_file_cache_use_only_testing_storage" assertions="8" time="0.052488" />
+  <testcase classname="Tests.Feature.TestIsolationTest" name="test_artisan_rejects_url_bypass_before_any_database_connection" assertions="4" time="0.161723" />
+  <testcase classname="Tests.Feature.TestIsolationTest" name="test_unverifiable_database_fails_closed_without_credentials_in_output" assertions="3" time="0.267432" />
+  <testcase classname="Tests.Feature.TestIsolationTest" name="test_conflicting_environment_is_rejected" assertions="2" time="0.158722" />
+  <testcase classname="Tests.Feature.TestIsolationTest" name="test_cached_configuration_is_rejected_without_loading_it" assertions="18" time="0.359968" />
+  <testcase classname="Tests.Feature.TestIsolationTest" name="test_normal_console_command_still_runs_termination_callbacks" assertions="5" time="0.324203" />
+  <testcase classname="Tests.Feature.TestIsolationTest" name="test_early_storage_symlink_gate_still_rejects_without_config_errors" assertions="4" time="0.146560" />
+  <testcase classname="Tests.Feature.TestIsolationTest" name="test_external_resource_settings_cannot_redirect_testing" assertions="1" time="0.272521" />
+  <testcase classname="Tests.Feature.TestIsolationTest" name="test_real_redis_and_explicit_queue_use_dedicated_process" assertions="6" time="0.097714" />
+  <testcase classname="Tests.Support.Probes.RecoveryWarmupTest" name="test_warm_refresh_database_state_without_leaving_an_admin" assertions="1" time="1.782011" />
+  <testcase classname="Tests.Feature.RecoveryCleanupTest" name="test_redis_cleanup_failure_preserves_primary_and_allows_the_next_outbox_fixture" assertions="9" time="5.581622" />
+  <testcase classname="Tests.Feature.RecoveryCleanupTest" name="test_cleanup_only_error_is_visible_and_allows_the_next_planning_fixture" assertions="4" time="5.899835" />
+  <testcase classname="Tests.Feature.RecoveryCleanupTest" name="test_database_and_redis_redirects_are_rejected_before_resetting_fixtures" assertions="4" time="3.445013" />
+  <testcase classname="Tests.Feature.RecoveryCleanupTest" name="test_phpunit_preserves_original_failure_classification_and_reports_cleanup_only_errors" assertions="7" time="0.355316" />
+  <testcase classname="Tests.Feature.CanonicalMemoryRecoveryTest" name="test_new_worker_recovers_expired_lease_and_replayed_delivery_does_not_duplicate_outputs" assertions="11" time="25.825406" />
+  <testcase classname="Tests.Feature.CanonicalMemoryRecoveryTest" name="test_two_consumers_of_the_same_task_only_materialize_once" assertions="6" time="25.742076" />
+  <testcase classname="Tests.Feature.CanonicalMemoryRecoveryTest" name="test_scheduler_publication_is_consumed_by_real_memory_queue_worker" assertions="7" time="26.815638" />
+  <testcase classname="Tests.Feature.OutboxRecoveryTest" name="test_killed_worker_is_reclaimed_once_by_two_processes" assertions="11" time="4.501579" />
+  <testcase classname="Tests.Feature.OutboxRecoveryTest" name="test_worker_restart_signal_releases_old_process_and_new_worker_continues" assertions="8" time="8.875535" />
+  <testcase classname="Tests.Feature.OutboxRecoveryTest" name="test_redis_restart_loses_notification_but_database_recovers" assertions="14" time="7.395804" />
+  <testcase classname="Tests.Feature.OutboxTest" name="test_run_and_intent_share_transaction_and_rollback" assertions="6" time="0.494782" />
+  <testcase classname="Tests.Feature.OutboxTest" name="test_duplicate_delivery_and_result_receipt_are_atomic" assertions="8" time="0.656273" />
+  <testcase classname="Tests.Feature.OutboxTest" name="test_expired_heartbeat_and_stale_worker_cannot_write" assertions="11" time="0.918498" />
+  <testcase classname="Tests.Feature.OutboxTest" name="test_reclaim_is_bounded_and_scanner_detects_expired_lease" assertions="10" time="1.005797" />
+  <testcase classname="Tests.Feature.OutboxTest" name="test_same_book_queued_runs_are_serial_until_run_finishes" assertions="4" time="1.006084" />
+  <testcase classname="Tests.Feature.OutboxTest" name="test_pause_and_cancel_are_rechecked_before_commit" assertions="5" time="0.760868" />
+  <testcase classname="Tests.Feature.OutboxTest" name="test_real_queue_publish_duplicate_and_republish_without_receipt" assertions="12" time="1.081684" />
+  <testcase classname="Tests.Feature.OutboxTest" name="test_delivery_failure_preserves_intent_and_can_retry" assertions="4" time="0.794361" />
+  <testcase classname="Tests.Feature.OutboxTest" name="test_retry_notice_cannot_create_first_attempt_and_stale_notice_cannot_reclaim_retry" assertions="5" time="1.163055" />
+  <testcase classname="Tests.Feature.OutboxTest" name="test_failed_run_replay_cannot_reacquire_released_book_slot" assertions="3" time="0.956392" />
+  <testcase classname="Tests.Feature.OutboxTest" name="test_unsafe_timing_and_immutable_intent_are_rejected" assertions="2" time="0.771547" />
+  <testcase classname="Tests.Feature.PlanningPipelineTest" name="test_intake_goes_through_gateway_and_requires_author_decision" assertions="10" time="2.837474" />
+  <testcase classname="Tests.Feature.PlanningPipelineTest" name="test_missing_special_detail_blocks_without_importing_and_resume_reuses_valid_artifact" assertions="6" time="3.648908" />
+  <testcase classname="Tests.Feature.PlanningPipelineTest" name="test_api_authentication_and_comment_coverage" assertions="7" time="1.259552" />
+  <testcase classname="Tests.Feature.PlanningPipelineTest" name="test_stale_source_blocks_and_database_preserves_history" assertions="3" time="1.537756" />
+  <testcase classname="Tests.Feature.PlanningPipelineTest" name="test_five_phase_candidates_keep_detail_and_existing_author_freeze_contract" assertions="16" time="18.087793" />
+  <testcase classname="Tests.Feature.PlanningPipelineTest" name="test_fresh_intake_has_no_outline_and_only_registered_offline_execution_works_outside_testing" assertions="5" time="2.715072" />
+  <testcase classname="Tests.Feature.PlanningPipelineTest" name="test_malformed_response_and_budget_defer_have_no_candidate_side_effects" assertions="7" time="3.063671" />
+  <testcase classname="Tests.Feature.PlanningPipelineTest" name="test_http_idempotency_and_ui_compare_use_persisted_candidates" assertions="12" time="3.456380" />
+  <testcase classname="Tests.Feature.PlanningPipelineTest" name="test_illegal_hierarchy_and_missing_layer_coverage_are_blocked" assertions="4" time="5.350635" />
+  <testcase classname="Tests.Feature.PlanningPipelineTest" name="test_successful_candidate_cannot_be_adopted_after_input_changes_and_evidence_survives" assertions="7" time="2.723416" />
+  <testcase classname="Tests.Feature.PlanningPipelineTest" name="test_unadopted_parent_and_skipped_phase_do_not_create_runs_or_requests" assertions="8" time="2.289646" />
+</testsuite>

@@ -1,0 +1,12 @@
+{
+  "database": {
+    "database": "novel_forge_test",
+    "users_after_ordered_suite": 0,
+    "preflight_marker_count": 0
+  },
+  "own_private_redis_tcp_port": 0,
+  "own_private_redis_stopped": true,
+  "temporary_child_junit_files_left": 0,
+  "extra_database_cleanup_after_suite": false,
+  "development_database_or_redis_cleaned": false
+}
