@@ -1,0 +1,6 @@
+{
+  "result": "baseline assumption failed",
+  "assertion": "direct-script unsafe DB_URL output does not echo dummy probe URL",
+  "observed": "dummy marker present in original-version diagnostic before any formatted-version comparison",
+  "scope": "not changed in format-only task; compare and record original/formatted behavior"
+}

@@ -32,6 +32,6 @@ final class RunCenterController extends Controller
             return response(json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT), 200, ['Content-Type' => 'application/json', 'Content-Disposition' => 'attachment; filename=novelforge-audit-page.json', 'Cache-Control' => 'private, no-store']);
         }
 
-        return response()->json(['data' => $data, 'trace_id' => $request->attributes->get('trace_id'), 'request_id' => (string) Str::uuid(), 'version' => 'v1'])->header('Cache-Control','private, no-store');
+        return response()->json(['data' => $data, 'trace_id' => $request->attributes->get('trace_id'), 'request_id' => (string) Str::uuid(), 'version' => 'v1'])->header('Cache-Control', 'private, no-store');
     }
 }

@@ -1,0 +1,10 @@
+{
+  "database": {
+    "database": "novel_forge_test",
+    "users_after_regression": 0
+  },
+  "own_private_redis_stopped": true,
+  "own_redis_port": 0,
+  "development_database_or_redis_cleaned": false,
+  "extra_database_cleanup_after_regression": false
+}

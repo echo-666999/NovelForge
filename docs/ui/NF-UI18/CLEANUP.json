@@ -1,0 +1,13 @@
+{
+  "database": {
+    "database": "novel_forge_test",
+    "users": 0,
+    "guard_marker": 0
+  },
+  "own_private_redis_pid": 36417,
+  "own_private_redis_port": 0,
+  "own_private_redis_stopped": true,
+  "temporary_original_script_removed": true,
+  "extra_database_cleanup_after_tests": false,
+  "development_database_or_redis_cleaned": false
+}

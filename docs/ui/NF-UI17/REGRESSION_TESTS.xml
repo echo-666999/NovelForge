@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="/Users/webb/Herd/NovelForge/phpunit.xml" tests="26" assertions="267" errors="0" failures="0" skipped="0" time="21.516869">
+    <testsuite name="Feature" tests="26" assertions="267" errors="0" failures="0" skipped="0" time="21.516869">
+      <testsuite name="Tests\Feature\CreateAdminCommandTest" file="/Users/webb/Herd/NovelForge/tests/Feature/CreateAdminCommandTest.php" tests="5" assertions="33" errors="0" failures="0" skipped="0" time="2.218503">
+        <testcase name="test_valid_input_creates_one_admin_with_a_hashed_password" file="/Users/webb/Herd/NovelForge/tests/Feature/CreateAdminCommandTest.php" line="17" class="Tests\Feature\CreateAdminCommandTest" classname="Tests.Feature.CreateAdminCommandTest" assertions="12" time="2.036245"/>
+        <testcase name="test_existing_admin_is_rejected_without_creating_a_second_user" file="/Users/webb/Herd/NovelForge/tests/Feature/CreateAdminCommandTest.php" line="36" class="Tests\Feature\CreateAdminCommandTest" classname="Tests.Feature.CreateAdminCommandTest" assertions="3" time="0.051269"/>
+        <testsuite name="Tests\Feature\CreateAdminCommandTest::test_invalid_input_does_not_create_an_admin" tests="3" assertions="18" errors="0" failures="0" skipped="0" time="0.130989">
+          <testcase name="test_invalid_input_does_not_create_an_admin with data set &quot;invalid email&quot;" file="/Users/webb/Herd/NovelForge/tests/Feature/CreateAdminCommandTest.php" line="56" class="Tests\Feature\CreateAdminCommandTest" classname="Tests.Feature.CreateAdminCommandTest" assertions="6" time="0.043520"/>
+          <testcase name="test_invalid_input_does_not_create_an_admin with data set &quot;missing name&quot;" file="/Users/webb/Herd/NovelForge/tests/Feature/CreateAdminCommandTest.php" line="56" class="Tests\Feature\CreateAdminCommandTest" classname="Tests.Feature.CreateAdminCommandTest" assertions="6" time="0.043574"/>
+          <testcase name="test_invalid_input_does_not_create_an_admin with data set &quot;short password&quot;" file="/Users/webb/Herd/NovelForge/tests/Feature/CreateAdminCommandTest.php" line="56" class="Tests\Feature\CreateAdminCommandTest" classname="Tests.Feature.CreateAdminCommandTest" assertions="6" time="0.043895"/>
+        </testsuite>
+      </testsuite>
+      <testsuite name="Tests\Feature\RecoveryConcurrencyTest" file="/Users/webb/Herd/NovelForge/tests/Feature/RecoveryConcurrencyTest.php" tests="1" assertions="7" errors="0" failures="0" skipped="0" time="4.133647">
+        <testcase name="test_conflicting_decisions_are_serialized_and_replay_is_stable" file="/Users/webb/Herd/NovelForge/tests/Feature/RecoveryConcurrencyTest.php" line="15" class="Tests\Feature\RecoveryConcurrencyTest" classname="Tests.Feature.RecoveryConcurrencyTest" assertions="7" time="4.133647"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\RecoveryTest" file="/Users/webb/Herd/NovelForge/tests/Feature/RecoveryTest.php" tests="11" assertions="103" errors="0" failures="0" skipped="0" time="8.643766">
+        <testcase name="test_pause_resume_fences_inflight_result_and_records_late_evidence_once" file="/Users/webb/Herd/NovelForge/tests/Feature/RecoveryTest.php" line="55" class="Tests\Feature\RecoveryTest" classname="Tests.Feature.RecoveryTest" assertions="8" time="0.729586"/>
+        <testcase name="test_cancel_stops_new_publication_consumption_and_cannot_resume" file="/Users/webb/Herd/NovelForge/tests/Feature/RecoveryTest.php" line="75" class="Tests\Feature\RecoveryTest" classname="Tests.Feature.RecoveryTest" assertions="7" time="0.653195"/>
+        <testcase name="test_preview_idempotency_stale_conflict_and_immutable_decisions" file="/Users/webb/Herd/NovelForge/tests/Feature/RecoveryTest.php" line="92" class="Tests\Feature\RecoveryTest" classname="Tests.Feature.RecoveryTest" assertions="4" time="0.555725"/>
+        <testcase name="test_checkpoint_and_success_preserved_and_changed_descendants_are_stale" file="/Users/webb/Herd/NovelForge/tests/Feature/RecoveryTest.php" line="109" class="Tests\Feature\RecoveryTest" classname="Tests.Feature.RecoveryTest" assertions="11" time="0.959993"/>
+        <testcase name="test_error_classification_auto_backoff_and_three_attempt_limit" file="/Users/webb/Herd/NovelForge/tests/Feature/RecoveryTest.php" line="148" class="Tests\Feature\RecoveryTest" classname="Tests.Feature.RecoveryTest" assertions="11" time="0.783903"/>
+        <testcase name="test_unknown_request_blocks_expired_reclaim_and_manual_resume" file="/Users/webb/Herd/NovelForge/tests/Feature/RecoveryTest.php" line="172" class="Tests\Feature\RecoveryTest" classname="Tests.Feature.RecoveryTest" assertions="6" time="1.318972"/>
+        <testcase name="test_api_ownership_ui_empty_state_and_livewire_control" file="/Users/webb/Herd/NovelForge/tests/Feature/RecoveryTest.php" line="189" class="Tests\Feature\RecoveryTest" classname="Tests.Feature.RecoveryTest" assertions="9" time="0.933491"/>
+        <testcase name="test_provider_retry_hint_is_persisted_and_applied_to_outbox" file="/Users/webb/Herd/NovelForge/tests/Feature/RecoveryTest.php" line="203" class="Tests\Feature\RecoveryTest" classname="Tests.Feature.RecoveryTest" assertions="4" time="1.012948"/>
+        <testcase name="test_pause_during_provider_response_quarantines_but_accounts_usage" file="/Users/webb/Herd/NovelForge/tests/Feature/RecoveryTest.php" line="215" class="Tests\Feature\RecoveryTest" classname="Tests.Feature.RecoveryTest" assertions="5" time="1.042580"/>
+        <testcase name="test_finished_run_can_ack_missing_receipts_without_new_execution" file="/Users/webb/Herd/NovelForge/tests/Feature/RecoveryTest.php" line="239" class="Tests\Feature\RecoveryTest" classname="Tests.Feature.RecoveryTest" assertions="4" time="0.586434"/>
+        <testcase name="test_new_tables_and_every_column_have_chinese_comments" file="/Users/webb/Herd/NovelForge/tests/Feature/RecoveryTest.php" line="256" class="Tests\Feature\RecoveryTest" classname="Tests.Feature.RecoveryTest" assertions="34" time="0.066938"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\RunCenterFormatRegressionTest" file="/Users/webb/Herd/NovelForge/tests/Feature/RunCenterFormatRegressionTest.php" tests="1" assertions="41" errors="0" failures="0" skipped="0" time="0.534263">
+        <testcase name="test_read_only_dispatch_preserves_json_envelopes_and_audit_export" file="/Users/webb/Herd/NovelForge/tests/Feature/RunCenterFormatRegressionTest.php" line="15" class="Tests\Feature\RunCenterFormatRegressionTest" classname="Tests.Feature.RunCenterFormatRegressionTest" assertions="41" time="0.534263"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\RunCenterTest" file="/Users/webb/Herd/NovelForge/tests/Feature/RunCenterTest.php" tests="8" assertions="83" errors="0" failures="0" skipped="0" time="5.986691">
+        <testcase name="test_trace_links_run_step_request_artifact_cost_and_control" file="/Users/webb/Herd/NovelForge/tests/Feature/RunCenterTest.php" line="29" class="Tests\Feature\RunCenterTest" classname="Tests.Feature.RunCenterTest" assertions="15" time="1.137173"/>
+        <testcase name="test_page_return_reads_real_progress_without_triggering_execution" file="/Users/webb/Herd/NovelForge/tests/Feature/RunCenterTest.php" line="56" class="Tests\Feature\RunCenterTest" classname="Tests.Feature.RunCenterTest" assertions="6" time="0.719456"/>
+        <testcase name="test_truncated_preview_has_full_private_download_and_escaped_view" file="/Users/webb/Herd/NovelForge/tests/Feature/RunCenterTest.php" line="71" class="Tests\Feature\RunCenterTest" classname="Tests.Feature.RunCenterTest" assertions="11" time="0.593166"/>
+        <testcase name="test_unknown_cost_and_expired_lease_cannot_be_hidden_by_success_counts" file="/Users/webb/Herd/NovelForge/tests/Feature/RunCenterTest.php" line="91" class="Tests\Feature\RunCenterTest" classname="Tests.Feature.RunCenterTest" assertions="6" time="0.996383"/>
+        <testcase name="test_private_provider_evidence_and_same_run_scope" file="/Users/webb/Herd/NovelForge/tests/Feature/RunCenterTest.php" line="107" class="Tests\Feature\RunCenterTest" classname="Tests.Feature.RunCenterTest" assertions="4" time="1.004789"/>
+        <testcase name="test_rejected_command_records_safe_failure_trace_and_no_false_success" file="/Users/webb/Herd/NovelForge/tests/Feature/RunCenterTest.php" line="118" class="Tests\Feature\RunCenterTest" classname="Tests.Feature.RunCenterTest" assertions="8" time="0.507879"/>
+        <testcase name="test_failed_command_preserves_trace_for_full_bigint_run_identifier" file="/Users/webb/Herd/NovelForge/tests/Feature/RunCenterTest.php" line="133" class="Tests\Feature\RunCenterTest" classname="Tests.Feature.RunCenterTest" assertions="2" time="0.523473"/>
+        <testcase name="test_audit_append_only_transaction_rollback_filters_and_export" file="/Users/webb/Herd/NovelForge/tests/Feature/RunCenterTest.php" line="145" class="Tests\Feature\RunCenterTest" classname="Tests.Feature.RunCenterTest" assertions="31" time="0.504372"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

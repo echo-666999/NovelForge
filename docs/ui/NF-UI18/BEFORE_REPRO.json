@@ -1,0 +1,7 @@
+{
+    "original_exception_preserved": false,
+    "caught_class": "Predis\\Connection\\Resource\\Exception\\StreamInitException",
+    "users_left_after_legacy_finally": 1,
+    "private_redis_absent": true,
+    "users_after_probe_cleanup": 0
+}

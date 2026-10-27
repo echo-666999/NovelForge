@@ -1,0 +1,1 @@
+{"tool":"pint","result":"fail","files":[{"path":"docs\/ui\/NF-UI16\/scripts\/before-repro.php","fixers":["method_argument_space","fully_qualified_strict_types","blank_line_after_opening_tag","whitespace_after_comma_in_array","not_operator_with_successor_space","single_line_after_imports","ordered_imports","binary_operator_spaces"]}]}

@@ -1,0 +1,8 @@
+{
+  "stage": "first automatic Pint revision",
+  "script_sha256": "02e0a1fd079609ce666c26bb2fe2cc9e428b06b8c73e99d1e648f255c9fdeeaa",
+  "result": "runtime failure",
+  "observed_error": "Target class [Kernel] does not exist",
+  "cause": "短名Kernel在use声明之前使用",
+  "initial_ast_check": "invalidated; incorrect import hoisting masked this difference"
+}

@@ -1,0 +1,54 @@
+[
+  {
+    "path": "ACCEPTANCE.md",
+    "sha256": "7a6562129db42a2786ea6970de2da9bbd61bcf143248396bdbf476797d25651f"
+  },
+  {
+    "path": "CLEANUP.json",
+    "sha256": "89bef46ce3744d6900bc5b396337eb006f88c4168efa75a5d3abe1e81fe2eb82"
+  },
+  {
+    "path": "FILE_SCOPE.json",
+    "sha256": "1b951813e1a07730b9bc8ac67a2b9f8fce93577b9c1aa2e4865073ba81e4b24a"
+  },
+  {
+    "path": "FINAL_CHECKS.json",
+    "sha256": "ecb2625f10e1a610392f43b0d1e40766c6caa75e9ae4c18892ed12a2ccb28687"
+  },
+  {
+    "path": "FORMAT_APPLIED.json",
+    "sha256": "cfed066780dee553e92c4a38b100eb57404ea9d00ae1f68f89d0a52ee6eb407d"
+  },
+  {
+    "path": "PINT_BEFORE.json",
+    "sha256": "9fca93b764be55c87e813a645a39ebac2dbd4dc8f07f72db63407255b1cf09d1"
+  },
+  {
+    "path": "PINT_FULL.json",
+    "sha256": "441bce43b105e46a7efcd2e72bf2c83a84f1c94a964ff44cda9a2451ee72ef7b"
+  },
+  {
+    "path": "PINT_TARGETED.json",
+    "sha256": "cd1a94fc2cf6a965b86e1a4809d6c7fb9148b1ee374e1010ed2ac96ff4876ec2"
+  },
+  {
+    "path": "PREFLIGHT.log",
+    "sha256": "5d998f5d00aed1da30563c5a02a8db24b6dfc1ed0c4683eb31f597a4d4a52924"
+  },
+  {
+    "path": "REGRESSION_TESTS.xml",
+    "sha256": "18a973ef1633e2a07b5dcfdd7c9edc20de5529a93914065e045ba90b9dc45a9d"
+  },
+  {
+    "path": "TESTS.md",
+    "sha256": "3daf2309bbd5870acfcf663f75a9fdb9d6eef8a84514c75f1747884c9e6ded9f"
+  },
+  {
+    "path": "TEST_RESULTS.json",
+    "sha256": "1887ce80c9f5bbee67fb5214777f169d23a4657d28e42756e8a49d35a1f9d9e1"
+  },
+  {
+    "path": "TOKEN_EQUIVALENCE.json",
+    "sha256": "ae8ea01095d4ba4cadd3d1326007846698d2819472b0864cc26047a96a690fb0"
+  }
+]

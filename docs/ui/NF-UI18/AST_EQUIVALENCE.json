@@ -1,0 +1,11 @@
+{
+    "before_sha256": "35a37d642cf1f1c90c0aa2e74db1475a083d0a7966c7faa219274985d4abce90",
+    "after_sha256": "0e289f6a1098be40b0e1c276c3f508408ed5bb8da121dae7e89d451bf17303d2",
+    "normalized_ast_equal": true,
+    "late_import_negative_control_detected": true,
+    "ast_sha256": "70b1effe109c8642e7475348ffce8f304cff042e620344d212b148ddb56bae92",
+    "statement_order_preserved": true,
+    "array_order_preserved": true,
+    "comments_unchanged": true,
+    "method": "按原始节点顺序解析名称，再去除use节点和节点位置属性；不提前登记导入，不排序语句或数组"
+}

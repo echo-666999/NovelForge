@@ -1,0 +1,50 @@
+[
+  {
+    "case": "private_redis_present",
+    "versions": [
+      {
+        "version": "before",
+        "exit_code": 0,
+        "refusal_message": "拒绝在未确认的环境执行复现。",
+        "probe_credential_echoed": false,
+        "sqlstate_reported": false
+      },
+      {
+        "version": "after",
+        "exit_code": 0,
+        "refusal_message": "拒绝在未确认的环境执行复现。",
+        "probe_credential_echoed": false,
+        "sqlstate_reported": false
+      }
+    ],
+    "marker_after_both": {
+      "marker_count": 1,
+      "users": 0
+    },
+    "marker_removed": true
+  },
+  {
+    "case": "unsafe_database_url",
+    "versions": [
+      {
+        "version": "before",
+        "exit_code": 255,
+        "refusal_message": "Refusing unsafe testing database configuration.",
+        "probe_credential_echoed": true,
+        "sqlstate_reported": false
+      },
+      {
+        "version": "after",
+        "exit_code": 255,
+        "refusal_message": "Refusing unsafe testing database configuration.",
+        "probe_credential_echoed": true,
+        "sqlstate_reported": false
+      }
+    ],
+    "marker_after_both": {
+      "marker_count": 1,
+      "users": 0
+    },
+    "marker_removed": true
+  }
+]

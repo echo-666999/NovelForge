@@ -42,7 +42,7 @@ class RecoveryConcurrencyTest extends TestCase
                     $p->stop();
                 }
             }
-            Artisan::call('migrate:fresh',['--force' => true]);
+            Artisan::call('migrate:fresh', ['--force' => true]);
         }
     }
 }

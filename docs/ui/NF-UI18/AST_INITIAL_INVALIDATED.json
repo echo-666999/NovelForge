@@ -1,0 +1,14 @@
+{
+  "valid_evidence": false,
+  "reason": "首版错误提前登记导入，掩盖调用先于use声明的差异；本记录作废，不能计入通过",
+  "discarded_record": {
+    "before_sha256": "35a37d642cf1f1c90c0aa2e74db1475a083d0a7966c7faa219274985d4abce90",
+    "after_sha256": "02e0a1fd079609ce666c26bb2fe2cc9e428b06b8c73e99d1e648f255c9fdeeaa",
+    "normalized_ast_equal": true,
+    "ast_sha256": "70b1effe109c8642e7475348ffce8f304cff042e620344d212b148ddb56bae92",
+    "statement_order_preserved": true,
+    "array_order_preserved": true,
+    "comments_unchanged": true,
+    "method": "先登记编译期导入并解析名称；仅去除use节点和节点位置属性，不排序可执行语句或数组"
+  }
+}

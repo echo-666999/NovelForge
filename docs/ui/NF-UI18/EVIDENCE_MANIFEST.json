@@ -1,0 +1,90 @@
+[
+  {
+    "path": "ACCEPTANCE.md",
+    "sha256": "9d0a2f6769f17a43ed70eb44eb8ad27a71332c960dbb4dd85d7fe3aa8ee9ee9b"
+  },
+  {
+    "path": "AFTER_REPRO.json",
+    "sha256": "5bdd8a6fc2a560717118522b9b220b8728d183f4487f9b8400387f46bb84bf62"
+  },
+  {
+    "path": "AST_EQUIVALENCE.json",
+    "sha256": "f2829db0001d98c6eec6260df53f728543b3e015280acdcc2bdf81fe230f477a"
+  },
+  {
+    "path": "AST_INITIAL_INVALIDATED.json",
+    "sha256": "fd9dee7d084e900d5b99b60eb8b7b37f9afa389edeb2373d1286f84d85615128"
+  },
+  {
+    "path": "AST_METHOD.md",
+    "sha256": "9690139289a5e3a83f695606c901d13edaab76dadca11a6856509ffcb00d8a9a"
+  },
+  {
+    "path": "BEFORE_REPRO.json",
+    "sha256": "5bdd8a6fc2a560717118522b9b220b8728d183f4487f9b8400387f46bb84bf62"
+  },
+  {
+    "path": "BEFORE_REPRO.php.txt",
+    "sha256": "35a37d642cf1f1c90c0aa2e74db1475a083d0a7966c7faa219274985d4abce90"
+  },
+  {
+    "path": "CLEANUP.json",
+    "sha256": "a3a1109bbcb5c5f8a1f90b123be20ecf3e23e534965c03b88c2e952073faae1e"
+  },
+  {
+    "path": "FILE_SCOPE.json",
+    "sha256": "fc9515bdba00ad1b89927e72382a047bdf9ae4bb7b1e4cbffe2179d18b647429"
+  },
+  {
+    "path": "FINAL_CHECKS.json",
+    "sha256": "ba5f7f835bbd99f3e4be5b99c508fe642ccb60a3cfbeb8ae3a8e23e83fe27aaf"
+  },
+  {
+    "path": "FINAL_FORMAT.json",
+    "sha256": "cd1a94fc2cf6a965b86e1a4809d6c7fb9148b1ee374e1010ed2ac96ff4876ec2"
+  },
+  {
+    "path": "FIRST_FORMAT_APPLIED.json",
+    "sha256": "2aa09b66691261604cb896b7540a4f2591b97f7b9e4ca964b75c7247337eacb8"
+  },
+  {
+    "path": "FIRST_FORMAT_FAILURE.json",
+    "sha256": "62f1e40ea08c199b549fe03877494edfd035ec7bf39f712f53c42512c3087bae"
+  },
+  {
+    "path": "FIRST_GUARD_CHECK_ASSUMPTION.json",
+    "sha256": "f2332137384dd05663b10325cbc7c7e4901c2b018d81855f393aa8f1bca16e92"
+  },
+  {
+    "path": "GUARDS.json",
+    "sha256": "1d86de6d2be6439e247458dc421b788f8ebd1bb36fe622988220118f607f576a"
+  },
+  {
+    "path": "ISOLATION_TESTS.xml",
+    "sha256": "0b27836be6057fc31af8580b8577a7251e55e440b882b94d9f1d2350af171239"
+  },
+  {
+    "path": "PHP_LINT.txt",
+    "sha256": "571e1591f97d6b83c66a0cc3dbe93768a4cbb0b388a5b8e703b6363d52335d40"
+  },
+  {
+    "path": "PINT_BEFORE.json",
+    "sha256": "441bce43b105e46a7efcd2e72bf2c83a84f1c94a964ff44cda9a2451ee72ef7b"
+  },
+  {
+    "path": "PINT_FULL.json",
+    "sha256": "9fa3c401d4d7dcf9d616a4e847f09d73bafe2397e5f1b5b77531e2516436ed5a"
+  },
+  {
+    "path": "PREFLIGHT.log",
+    "sha256": "5d998f5d00aed1da30563c5a02a8db24b6dfc1ed0c4683eb31f597a4d4a52924"
+  },
+  {
+    "path": "TESTS.md",
+    "sha256": "a2cfd7b9fbd0b34d8487d10ff26e59d0a437835a07767eed6d634091b965fb15"
+  },
+  {
+    "path": "TEST_RESULTS.json",
+    "sha256": "8b0896f4099ff34b0ec056d7eb74ec8c38ca54faedaec0a21e49c726a4fb3445"
+  }
+]

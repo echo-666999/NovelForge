@@ -1,0 +1,19 @@
+{
+  "ast_equivalence": "passed; original node order",
+  "ast_negative_control": "passed",
+  "reproduction_before_after_identical": true,
+  "isolation_tests": 21,
+  "assertions": 78,
+  "php_lint": "passed",
+  "full_pint": "passed; exit 0; final PHP content unchanged",
+  "other_existing_task_statuses_unchanged": true,
+  "prior_uncommitted_changes_preserved": true,
+  "new_task": "NF-UI19 todo",
+  "diff_check": "passed",
+  "real_models_called": false,
+  "chinese_segmentation": false,
+  "protected_files_verified": 1459,
+  "document_links": "passed",
+  "actual_secret_scan": "passed; values not recorded",
+  "test_resources_stopped": true
+}

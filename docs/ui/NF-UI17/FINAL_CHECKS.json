@@ -1,0 +1,16 @@
+{
+  "targeted_pint": "passed",
+  "full_pint": "failed; one separate NF-UI18 follow-up",
+  "token_equivalence": "passed; only T_WHITESPACE ignored",
+  "tests": 26,
+  "assertions": 267,
+  "diff_check": "passed",
+  "other_existing_task_statuses_unchanged": true,
+  "new_task": "NF-UI18 todo",
+  "database_schema_changed": false,
+  "real_models_called": false,
+  "chinese_segmentation": false,
+  "secret_scan": "passed; actual values not recorded",
+  "links": "passed",
+  "test_resources_stopped": true
+}

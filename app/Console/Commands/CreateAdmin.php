@@ -28,7 +28,7 @@ class CreateAdmin extends Command
                 $this->error($error);
             }
 
-return self::FAILURE;
+            return self::FAILURE;
         }
         $user = new User(compact('email', 'name', 'password'));
         $user->is_admin = true;
