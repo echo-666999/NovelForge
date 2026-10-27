@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Tests\Support\Probes\DocumentReproductionSuccessTest" file="/Users/webb/Herd/NovelForge/tests/Support/Probes/DocumentReproductionSuccessTest.php" tests="1" assertions="6" errors="0" failures="0" skipped="0" time="4.263160">
+    <testcase name="test_legal_reproduction_matches_frozen_result_and_cleans_the_test_database" file="/Users/webb/Herd/NovelForge/tests/Support/Probes/DocumentReproductionSuccessTest.php" line="12" class="Tests\Support\Probes\DocumentReproductionSuccessTest" classname="Tests.Support.Probes.DocumentReproductionSuccessTest" assertions="6" time="4.263160"/>
+  </testsuite>
+</testsuites>

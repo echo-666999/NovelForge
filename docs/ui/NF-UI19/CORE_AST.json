@@ -1,0 +1,8 @@
+{
+    "bootstrap_sequence_unchanged": true,
+    "guard_condition_unchanged": true,
+    "legal_reproduction_and_cleanup_unchanged": true,
+    "core_ast_sha256": "93267901b91e205b4e59d33930e2aa6e00e2f0a7788908d16d5baf8d4396b9b6",
+    "after_sha256": "d08bc2e81a302f408d23550a65ac376dc09d9bc11751b9c9462633646944b27d",
+    "method": "按原顺序解析名称，保留语句\/数组顺序，仅忽略节点位置和注释属性；分别比较bootstrap、守卫条件和守卫之后全部合法复现语句"
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "case": "private_redis_present",
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "NF_REPRO_REFUSED：仅允许测试环境、批准测试库且私有Redis缺失时执行。\n",
+    "probe_credential_echoed": false,
+    "full_trace_echoed": false
+  },
+  {
+    "case": "unsafe_database_url",
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "NF_REPRO_FAILED：文档复现启动或执行失败，请核对测试环境。\n",
+    "probe_credential_echoed": false,
+    "full_trace_echoed": false
+  }
+]

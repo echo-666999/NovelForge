@@ -1,0 +1,72 @@
+{
+  "baseline_script_sha256": "0e289f6a1098be40b0e1c276c3f508408ed5bb8da121dae7e89d451bf17303d2",
+  "baseline_source": "NF-UI18 GUARDS.json; 脚本SHA与本轮开工一致",
+  "baseline_cases": [
+    {
+      "case": "private_redis_present",
+      "versions": [
+        {
+          "version": "before",
+          "exit_code": 0,
+          "refusal_message": "拒绝在未确认的环境执行复现。",
+          "probe_credential_echoed": false,
+          "sqlstate_reported": false
+        },
+        {
+          "version": "after",
+          "exit_code": 0,
+          "refusal_message": "拒绝在未确认的环境执行复现。",
+          "probe_credential_echoed": false,
+          "sqlstate_reported": false
+        }
+      ],
+      "marker_after_both": {
+        "marker_count": 1,
+        "users": 0
+      },
+      "marker_removed": true
+    },
+    {
+      "case": "unsafe_database_url",
+      "versions": [
+        {
+          "version": "before",
+          "exit_code": 255,
+          "refusal_message": "Refusing unsafe testing database configuration.",
+          "probe_credential_echoed": true,
+          "sqlstate_reported": false
+        },
+        {
+          "version": "after",
+          "exit_code": 255,
+          "refusal_message": "Refusing unsafe testing database configuration.",
+          "probe_credential_echoed": true,
+          "sqlstate_reported": false
+        }
+      ],
+      "marker_after_both": {
+        "marker_count": 1,
+        "users": 0
+      },
+      "marker_removed": true
+    }
+  ],
+  "current_cases": [
+    {
+      "case": "private_redis_present",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "NF_REPRO_REFUSED：仅允许测试环境、批准测试库且私有Redis缺失时执行。\n",
+      "probe_credential_echoed": false,
+      "full_trace_echoed": false
+    },
+    {
+      "case": "unsafe_database_url",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "NF_REPRO_FAILED：文档复现启动或执行失败，请核对测试环境。\n",
+      "probe_credential_echoed": false,
+      "full_trace_echoed": false
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "tests": 29,
+  "assertions": 158,
+  "core_ast": "passed",
+  "guard_condition": "unchanged",
+  "legal_reproduction_and_cleanup": "unchanged",
+  "php_lint": "passed",
+  "diff_check": "passed",
+  "full_pint": "passed; exit 0",
+  "other_task_statuses_unchanged": true,
+  "business_code_unchanged": true,
+  "real_models_called": false,
+  "chinese_segmentation": false,
+  "protected_files_verified": 1481,
+  "document_links": "passed",
+  "secret_scan": "passed; values not recorded",
+  "test_resources_stopped": true
+}
