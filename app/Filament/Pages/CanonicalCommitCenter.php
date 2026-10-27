@@ -4,6 +4,8 @@ namespace App\Filament\Pages;
 
 use App\Exceptions\NovelProblem;
 use App\Filament\Concerns\HasNovelNavigation;
+use App\Filament\Concerns\HasProductionChoices;
+use App\Filament\Concerns\ReadsProductionFrames;
 use App\Services\CanonicalCommitService;
 use App\Services\NovelIntentService;
 use Filament\Pages\Page;
@@ -16,6 +18,8 @@ use Livewire\Attributes\Locked;
 class CanonicalCommitCenter extends Page
 {
     use HasNovelNavigation;
+    use HasProductionChoices;
+    use ReadsProductionFrames;
 
     // UI03：分组与顺序显式固定，不依赖页面发现次序。
     protected static string|\UnitEnum|null $navigationGroup = '生产与质量';
@@ -180,7 +184,18 @@ class CanonicalCommitCenter extends Page
         try {
             $fn();
         } catch (NovelProblem|ValidationException $e) {
+            if ($e instanceof ValidationException) {
+                $this->productionErrors($e);
+            }
             $this->notice = $e instanceof NovelProblem ? $e->getMessage() : implode(' ', $e->validator->errors()->all());
         }
+    }
+
+    /** 切换正文后先重新载入来源，不能提交旧候选的表单。 */
+    public function updatedCandidate(): void
+    {
+        $this->form = [];
+        $this->preflight = $this->receipt = null;
+        $this->commandKey = (string) Str::uuid();
     }
 }

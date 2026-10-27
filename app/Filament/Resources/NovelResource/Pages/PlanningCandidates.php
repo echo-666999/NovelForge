@@ -3,6 +3,10 @@
 namespace App\Filament\Resources\NovelResource\Pages;
 
 use App\Exceptions\NovelProblem;
+use App\Filament\Concerns\EditsProductionPayloads;
+use App\Filament\Concerns\HasProductionChoices;
+use App\Filament\Concerns\ReadsProductionFrames;
+use App\Filament\Concerns\WritesProductionCommands;
 use App\Filament\Resources\NovelResource;
 use App\Planning\PlanningContract;
 use App\Services\NovelIntentService;
@@ -10,13 +14,17 @@ use App\Services\OutboxService;
 use App\Services\PlanningPipelineService;
 use Filament\Resources\Pages\Page;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Locked;
 
 /** UI05–08 共用候选工作区；旧版与当前版并列显示，采纳和批准明确分开。 */
 class PlanningCandidates extends Page
 {
+    use EditsProductionPayloads;
+    use HasProductionChoices;
+    use ReadsProductionFrames;
+    use WritesProductionCommands;
+
     protected static string $resource = NovelResource::class;
 
     protected static ?string $title = '离线规划候选';
@@ -42,7 +50,7 @@ class PlanningCandidates extends Page
 
     public string $prices = '';
 
-    public string $offlineOutput = '{}';
+    public string $offlineOutput = '';
 
     public string $reason = '';
 
@@ -78,10 +86,10 @@ class PlanningCandidates extends Page
     public function startCandidate(): void
     {
         $this->attempt(function () {
-            $output = json_decode($this->offlineOutput, true, 64, JSON_THROW_ON_ERROR);
+            $output = $this->productionValue('offlineOutput');
             $cfg = preg_match('/^[1-9][0-9]{0,17}$/D', $this->route) ? DB::table('route_versions')->find($this->route) : null;
             $parameters = $cfg ? json_decode($cfg->content, true)['parameters'] : [];
-            $result = app(PlanningPipelineService::class)->start(auth()->user(), $this->novelId, ['start_chapter' => in_array($this->phase, ['chapter_plan', 'scene_plan'], true) ? $this->startChapter : null, 'end_chapter' => in_array($this->phase, ['chapter_plan', 'scene_plan'], true) ? $this->endChapter : null, 'phase' => $this->phase, 'parent_id' => $this->parent ?: null, 'route_version_id' => $this->route, 'billing' => ['policy_id' => $this->policy, 'price_version_ids' => array_values(array_filter(array_map('trim', explode(',', $this->prices)))), 'category' => 'planning', 'max_output_tokens' => $parameters['max_output_tokens'] ?? 0, 'max_reasoning_tokens' => 0], 'offline_output' => $output, 'expected_version' => app(NovelIntentService::class)->novel(auth()->user(), $this->novelId)->row_version, 'reason' => $this->reason], (string) Str::uuid());
+            $result = $this->productionWrite('PlanningPipelineService.start', [], ['start_chapter' => in_array($this->phase, ['chapter_plan', 'scene_plan'], true) ? $this->startChapter : null, 'end_chapter' => in_array($this->phase, ['chapter_plan', 'scene_plan'], true) ? $this->endChapter : null, 'phase' => $this->phase, 'parent_id' => $this->parent ?: null, 'route_version_id' => $this->route, 'billing' => ['policy_id' => $this->policy, 'price_version_ids' => array_values(array_filter(array_map('trim', explode(',', $this->prices)))), 'category' => 'planning', 'max_output_tokens' => $parameters['max_output_tokens'] ?? 0, 'max_reasoning_tokens' => 0], 'offline_output' => $output, 'expected_version' => app(NovelIntentService::class)->novel(auth()->user(), $this->novelId)->row_version, 'reason' => $this->reason], fn ($frozenPayload, $commandKey) => app(PlanningPipelineService::class)->start(auth()->user(), $this->novelId, $frozenPayload, $commandKey));
             $this->selected = $result['id'];
             $this->inspect();
             $this->notice = '离线任务已保存，可执行回放或由专用规划队列继续；没有调用真实模型。';
@@ -115,7 +123,7 @@ class PlanningCandidates extends Page
         $this->attempt(function () {
             $detail = app(PlanningPipelineService::class)->read(auth()->user(), $this->novelId, $this->selected);
             $artifact = collect($detail['data']['artifacts'])->last(fn ($a) => $a['type'] === 'planning_candidate');
-            $this->detail = app(PlanningPipelineService::class)->adopt(auth()->user(), $this->novelId, $this->selected, ['artifact_id' => $artifact['id'] ?? null, 'expected_version' => app(NovelIntentService::class)->novel(auth()->user(), $this->novelId)->row_version, 'reason' => $this->reason], (string) Str::uuid());
+            $this->detail = $this->productionWrite('PlanningPipelineService.adopt', [$this->selected], ['artifact_id' => $artifact['id'] ?? null, 'expected_version' => app(NovelIntentService::class)->novel(auth()->user(), $this->novelId)->row_version, 'reason' => $this->reason], fn ($frozenPayload, $commandKey) => app(PlanningPipelineService::class)->adopt(auth()->user(), $this->novelId, $this->selected, $frozenPayload, $commandKey));
             $this->notice = '候选已采纳为规划草稿；要求决定、蓝图批准和计划冻结仍须在对应页面完成。';
         });
     }
@@ -126,7 +134,7 @@ class PlanningCandidates extends Page
             return '请选择合法的规划阶段。';
         }
 
-        return json_encode(PlanningContract::schema($this->phase), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        return json_encode(PlanningContract::schema(in_array($this->phase, PlanningContract::PHASES, true) ? $this->phase : 'intake'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
     private function attempt(callable $fn): void
@@ -135,7 +143,21 @@ class PlanningCandidates extends Page
         try {
             $fn();
         } catch (NovelProblem|ValidationException|\JsonException $e) {
+            if ($e instanceof ValidationException) {
+                $this->productionErrors($e);
+            }
             $this->notice = $e instanceof ValidationException ? implode(' ', $e->validator->errors()->all()) : $e->getMessage();
         }
+    }
+
+    /** 固定阶段契约只创建空字段，不伪造规划结果。 */
+    protected function productionPayloads(): array
+    {
+        return ['offlineOutput' => PlanningContract::schema(in_array($this->phase, PlanningContract::PHASES, true) ? $this->phase : 'intake')];
+    }
+
+    public function updatedSelected(): void
+    {
+        $this->detail = $this->previous = null;
     }
 }

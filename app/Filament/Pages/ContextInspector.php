@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Exceptions\NovelProblem;
 use App\Filament\Concerns\HasNovelNavigation;
+use App\Filament\Concerns\HasProductionChoices;
 use App\Services\ContextAssemblyService;
 use App\Services\NovelIntentService;
 use App\Services\NovelNavigationService;
@@ -18,6 +19,7 @@ use Livewire\Attributes\Url;
 class ContextInspector extends Page
 {
     use HasNovelNavigation;
+    use HasProductionChoices;
 
     // UI03：分组与顺序显式固定，不依赖页面发现次序。
     protected static string|\UnitEnum|null $navigationGroup = '生产与质量';
@@ -138,6 +140,9 @@ class ContextInspector extends Page
         try {
             $fn();
         } catch (NovelProblem|ValidationException $e) {
+            if ($e instanceof ValidationException) {
+                $this->productionErrors($e);
+            }
             $this->notice = $e instanceof NovelProblem ? $e->getMessage() : implode(' ', $e->validator->errors()->all());
         }
     }

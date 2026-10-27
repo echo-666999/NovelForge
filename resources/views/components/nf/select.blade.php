@@ -1,4 +1,4 @@
-@props(['id', 'label', 'model' => null, 'name' => null, 'value' => '', 'options' => [], 'disabled' => false])
+@props(['id', 'label', 'model' => null, 'name' => null, 'value' => '', 'options' => [], 'disabled' => false, 'error' => null])
 @php
     // Livewire筛选沿用原更新链；GET导航仅改变隐藏表单值，确认切书后才重建整页上下文。
     $live = $model !== null;
@@ -8,13 +8,13 @@
     }
     $selectedLabel = $options[(string) $value] ?? '请选择';
 @endphp
-<x-nf.field :id="$id" :label="$label">
+<x-nf.field :id="$id" :label="$label" :error="$error">
     <div @if(!$live) x-data="{ selection: @js((string) $value), labels: @js($options) }" @endif>
         @if(!$live)<input type="hidden" name="{{ $name }}" value="{{ $value }}" x-bind:value="selection">@endif
         <x-filament::dropdown placement="bottom-start" :shift="true" max-height="18rem"
             {{ $attributes->class(['nf-select']) }} wire:key="nf-select-{{ $id }}">
             <x-slot:trigger>
-                <button type="button" id="{{ $id }}" class="nf-select-trigger" aria-label="{{ $label }}：{{ $selectedLabel }}" @disabled($disabled)
+                <button type="button" id="{{ $id }}" class="nf-select-trigger" @if($error) aria-invalid="true" aria-describedby="{{ $id }}-error" @endif aria-label="{{ $label }}：{{ $selectedLabel }}" @disabled($disabled)
                     @if(!$live) x-bind:aria-label="@js($label.'：') + (labels[selection] ?? '请选择')" @endif>
                     <span class="nf-select-value" @if(!$live) x-text="labels[selection] ?? '请选择'" @endif>{{ $selectedLabel }}</span>
                     <x-filament::icon icon="heroicon-m-chevron-down" class="nf-select-chevron" />

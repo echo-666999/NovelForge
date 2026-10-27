@@ -2,6 +2,8 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Concerns\HasProductionChoices;
+use App\Filament\Concerns\ReadsProductionFrames;
 use App\Services\RunCenterService;
 use Filament\Pages\Page;
 use Livewire\Attributes\Url;
@@ -9,6 +11,9 @@ use Livewire\Attributes\Url;
 /** 审计只追加；后台没有删除或重写历史动作。 */
 class AuditCenter extends Page
 {
+    use HasProductionChoices;
+    use ReadsProductionFrames;
+
     // UI03：分组与顺序显式固定，不依赖页面发现次序。
     protected static string|\UnitEnum|null $navigationGroup = '配置与运维';
 

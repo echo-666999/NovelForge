@@ -4,6 +4,9 @@ namespace App\Filament\Resources\NovelResource\Pages;
 
 use App\Drafting\BodyContract;
 use App\Exceptions\NovelProblem;
+use App\Filament\Concerns\HasProductionChoices;
+use App\Filament\Concerns\ReadsProductionFrames;
+use App\Filament\Concerns\WritesProductionCommands;
 use App\Filament\Resources\NovelResource;
 use App\Services\DraftingService;
 use App\Services\GenerationService;
@@ -11,13 +14,16 @@ use App\Services\NovelIntentService;
 use App\Services\OutboxService;
 use Filament\Resources\Pages\Page;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Locked;
 
 /** UI09 只编辑候选；自动保存与手动保存共用乐观锁，失败时保留用户输入。 */
 class DraftEditor extends Page
 {
+    use HasProductionChoices;
+    use ReadsProductionFrames;
+    use WritesProductionCommands;
+
     protected static string $resource = NovelResource::class;
 
     protected static ?string $title = '候选正文';
@@ -127,7 +133,7 @@ class DraftEditor extends Page
         }
         $this->attempt(function () use ($automatic) {
             $d = $this->detail;
-            $version = app(DraftingService::class)->save(auth()->user(), $this->novelId, $this->loadedKind, $d['node_id'], ['plan_id' => $d['plan_id'], 'source_version_id' => $d['id'], 'expected_version' => $d['version'], 'title' => $this->bodyTitle, 'body' => $this->body, 'reason' => $automatic ? '候选自动保存：'.$this->reason : $this->reason], (string) Str::uuid());
+            $version = $this->productionWrite('DraftingService.save', [$this->loadedKind, $d['node_id']], ['plan_id' => $d['plan_id'], 'source_version_id' => $d['id'], 'expected_version' => $d['version'], 'title' => $this->bodyTitle, 'body' => $this->body, 'reason' => $automatic ? '候选自动保存：'.$this->reason : $this->reason], fn ($frozenPayload, $commandKey) => app(DraftingService::class)->save(auth()->user(), $this->novelId, $this->loadedKind, $d['node_id'], $frozenPayload, $commandKey));
             $this->selected = $version['id'];
             $this->detail = $version;
             $this->savedBody = $this->body;
@@ -163,7 +169,7 @@ class DraftEditor extends Page
             }
             $cfg = preg_match('/^[1-9][0-9]{0,17}$/D', $this->route) ? DB::table('route_versions')->find($this->route) : null;
             $parameters = $cfg ? json_decode($cfg->content, true)['parameters'] : [];
-            $result = app(DraftingService::class)->start(auth()->user(), $this->novelId, ['plan_id' => $this->plan, 'scene_id' => $this->scene, 'pov_id' => $this->pov, 'route_version_id' => $this->route, 'expected_version' => app(NovelIntentService::class)->novel(auth()->user(), $this->novelId)->row_version, 'expected_candidate_version' => $scene['candidate']['version'] ?? 0, 'billing' => ['policy_id' => $this->policy, 'price_version_ids' => array_filter(array_map('trim', explode(',', $this->prices))), 'category' => 'generation', 'chapter_id' => $chapter['id'] ?? null, 'max_output_tokens' => $parameters['max_output_tokens'] ?? 0, 'max_reasoning_tokens' => 0], 'offline_output' => ['body' => $this->offlineBody], 'reason' => $this->reason], (string) Str::uuid());
+            $result = $this->productionWrite('DraftingService.start', [], ['plan_id' => $this->plan, 'scene_id' => $this->scene, 'pov_id' => $this->pov, 'route_version_id' => $this->route, 'expected_version' => app(NovelIntentService::class)->novel(auth()->user(), $this->novelId)->row_version, 'expected_candidate_version' => $scene['candidate']['version'] ?? 0, 'billing' => ['policy_id' => $this->policy, 'price_version_ids' => array_filter(array_map('trim', explode(',', $this->prices))), 'category' => 'generation', 'chapter_id' => $chapter['id'] ?? null, 'max_output_tokens' => $parameters['max_output_tokens'] ?? 0, 'max_reasoning_tokens' => 0], 'offline_output' => ['body' => $this->offlineBody], 'reason' => $this->reason], fn ($frozenPayload, $commandKey) => app(DraftingService::class)->start(auth()->user(), $this->novelId, $frozenPayload, $commandKey));
             $this->run = $result['run_id'];
             $this->notice = '离线场景任务已保存，请执行回放或由专用生成队列处理。';
         });
@@ -186,7 +192,7 @@ class DraftEditor extends Page
     {
         $this->attempt(function () {
             $chapter = collect(app(DraftingService::class)->listing(auth()->user(), $this->novelId)['items'])->firstWhere('id', $this->chapter);
-            $result = app(DraftingService::class)->assemble(auth()->user(), $this->novelId, $this->chapter, ['plan_id' => $this->plan, 'scene_version_ids' => array_column(array_column($chapter['scenes'] ?? [], 'candidate'), 'id'), 'expected_version' => $chapter['candidate']['version'] ?? 0, 'title' => $this->assemblyTitle, 'reason' => $this->reason], (string) Str::uuid());
+            $result = $this->productionWrite('DraftingService.assemble', [$this->chapter], ['plan_id' => $this->plan, 'scene_version_ids' => array_column(array_column($chapter['scenes'] ?? [], 'candidate'), 'id'), 'expected_version' => $chapter['candidate']['version'] ?? 0, 'title' => $this->assemblyTitle, 'reason' => $this->reason], fn ($frozenPayload, $commandKey) => app(DraftingService::class)->assemble(auth()->user(), $this->novelId, $this->chapter, $frozenPayload, $commandKey));
             $this->kind = 'chapter';
             $this->selected = $result['id'];
             $this->inspect();
@@ -200,6 +206,9 @@ class DraftEditor extends Page
         try {
             $fn();
         } catch (NovelProblem|ValidationException $e) {
+            if ($e instanceof ValidationException) {
+                $this->productionErrors($e);
+            }
             $this->notice = $e instanceof ValidationException ? implode(' ', $e->validator->errors()->all()) : $e->getMessage();
         }
     }

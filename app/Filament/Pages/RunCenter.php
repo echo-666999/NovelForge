@@ -3,6 +3,8 @@
 namespace App\Filament\Pages;
 
 use App\Filament\Concerns\HasNovelNavigation;
+use App\Filament\Concerns\HasProductionChoices;
+use App\Filament\Concerns\ReadsProductionFrames;
 use App\Services\RunCenterService;
 use Filament\Pages\Page;
 use Livewire\Attributes\Url;
@@ -11,6 +13,8 @@ use Livewire\Attributes\Url;
 class RunCenter extends Page
 {
     use HasNovelNavigation;
+    use HasProductionChoices;
+    use ReadsProductionFrames;
 
     // UI03：分组与顺序显式固定，不依赖页面发现次序。
     protected static string|\UnitEnum|null $navigationGroup = '生产与质量';

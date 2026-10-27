@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-27",
+  "protected_changes": [],
+  "baseline_existing_changed_files": [
+    "DESIGN.md",
+    "app/Filament/Pages/AuditCenter.php",
+    "app/Filament/Pages/Billing.php",
+    "app/Filament/Pages/CanonicalCommitCenter.php",
+    "app/Filament/Pages/CanonicalMemoryCenter.php",
+    "app/Filament/Pages/ContextInspector.php",
+    "app/Filament/Pages/MemoryLibrary.php",
+    "app/Filament/Pages/RecoveryDesk.php",
+    "app/Filament/Pages/ReviewCenter.php",
+    "app/Filament/Pages/RevisionDesk.php",
+    "app/Filament/Pages/RunCenter.php",
+    "app/Filament/Pages/SearchLab.php",
+    "app/Filament/Resources/NovelResource/Pages/DraftEditor.php",
+    "app/Filament/Resources/NovelResource/Pages/PlanningCandidates.php",
+    "docs/DEVELOPMENT_TASKS.md",
+    "docs/ui/PLAN.md",
+    "resources/css/filament/admin/theme.css",
+    "resources/views/components/nf/select.blade.php",
+    "resources/views/filament/audit-center.blade.php",
+    "resources/views/filament/billing.blade.php",
+    "resources/views/filament/canonical-commit-center.blade.php",
+    "resources/views/filament/canonical-memory-center.blade.php",
+    "resources/views/filament/context-inspector.blade.php",
+    "resources/views/filament/draft-editor.blade.php",
+    "resources/views/filament/memory-library.blade.php",
+    "resources/views/filament/planning-candidates.blade.php",
+    "resources/views/filament/recovery-desk.blade.php",
+    "resources/views/filament/review-center.blade.php",
+    "resources/views/filament/revision-desk.blade.php",
+    "resources/views/filament/run-center.blade.php",
+    "resources/views/filament/search-lab.blade.php"
+  ],
+  "only_ui07_status_changed_in_existing_content": {
+    "docs/DEVELOPMENT_TASKS.md": true,
+    "docs/ui/PLAN.md": true
+  },
+  "new_tasks": [],
+  "database_schema_changed": false,
+  "business_services_changed": false,
+  "api_changed": false,
+  "pint_dirty": {
+    "tool": "pint",
+    "result": "passed"
+  },
+  "pint_explicit_new_files": {
+    "tool": "pint",
+    "result": "passed"
+  },
+  "build_passed": true,
+  "build_note": "既有可选fontaine提示；未修改依赖",
+  "git_diff_check_exit": 0,
+  "final_special_tests": {
+    "tool": "phpunit",
+    "result": "passed",
+    "tests": 12,
+    "passed": 12,
+    "assertions": 171,
+    "duration_ms": 147847
+  },
+  "related_regression_tests": 34,
+  "navigation_native_tests": 16,
+  "extra_tests": 4,
+  "extra_overlap_tests": 2,
+  "database_final": {
+    "database": "novel_forge_test",
+    "counts": {
+      "users": 0,
+      "novels": 0,
+      "ai_requests": 0,
+      "canonical_commits": 0,
+      "context_manifests": 0
+    }
+  },
+  "preview_process_stopped": true,
+  "own_browser_tab_closed": true,
+  "viewport_reset": true,
+  "private_credential_files_removed": true,
+  "real_models_called": false,
+  "chinese_segmentation_changed": false,
+  "broad_cleanup_executed": false,
+  "remaining_acceptance": "NF-UI08跨浏览器及全状态验收独立保留",
+  "final_context_recheck": {
+    "tool": "phpunit",
+    "result": "passed",
+    "tests": 1,
+    "passed": 1,
+    "assertions": 11,
+    "duration_ms": 9404
+  }
+}

@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Exceptions\NovelProblem;
 use App\Filament\Concerns\HasNovelNavigation;
+use App\Filament\Concerns\HasProductionChoices;
 use App\Services\RecoveryService;
 use Filament\Pages\Page;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +17,7 @@ use Livewire\Attributes\Url;
 class RecoveryDesk extends Page
 {
     use HasNovelNavigation;
+    use HasProductionChoices;
 
     // UI03：分组与顺序显式固定，不依赖页面发现次序。
     protected static string|\UnitEnum|null $navigationGroup = '生产与质量';
@@ -58,6 +60,13 @@ class RecoveryDesk extends Page
         return DB::table('generation_runs')->whereIn('novel_id', DB::table('novels')->where('owner_id', auth()->id())->select('id'))->orderByDesc('id')->limit(100)->get(['id', 'novel_id', 'status'])->all();
     }
 
+    /** 切换运行后必须重新核对恢复预览，旧决定不能落到新运行。 */
+    public function updatedRun(): void
+    {
+        $this->preview = null;
+        $this->commandKey = '';
+    }
+
     public function inspect(): void
     {
         $this->preview = null;
@@ -94,7 +103,17 @@ class RecoveryDesk extends Page
             $this->inspect();
             $this->notice = $result['outcome'] === 'applied' ? '操作已保存，原产物及费用记录保留。' : '决策及来源已保存；相关业务执行器尚未实现，未执行提取或改写。';
         } catch (NovelProblem|ValidationException $e) {
+            if ($e instanceof ValidationException) {
+                $this->productionErrors($e);
+            }
             $this->notice = $e instanceof NovelProblem ? $e->getMessage() : '请填写原因，并检查动作和字段。';
         }
+    }
+
+    /** 新书必须重新读取该书的运行与恢复预览。 */
+    public function updatedNovel(): void
+    {
+        $this->run = $this->commandKey = '';
+        $this->preview = null;
     }
 }

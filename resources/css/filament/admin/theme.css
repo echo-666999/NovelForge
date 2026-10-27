@@ -381,3 +381,27 @@
 .nf-story-tree { display:grid; gap:.75rem; padding-inline-start:1rem; border-inline-start:1px solid var(--nf-rule); }
 .nf-story-tree .nf-story-tree { margin-block-start:.75rem; }
 @media(min-width:768px) { .nf-story-fields, .nf-story-screen details[open]:has(> .nf-field) { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+
+/* UI07沿用纸白/墨色/书签色；编辑与核对跨全宽，短字段遵循2→1列。 */
+.nf-production-layout { display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;min-width:0; }
+.nf-production-layout > * { min-width:0;grid-column:1 / -1; }
+.nf-production-layout > .fi-btn { justify-self:start; }
+.nf-production-fields { display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;min-width:0; }
+.nf-production-row { min-width:0;padding:.75rem;border:1px solid var(--nf-rule);border-radius:.5rem; }
+.nf-production-node > fieldset { min-width:0;margin-block:.75rem; }
+.nf-production-node legend { font-weight:600;margin-block:.5rem; }
+.nf-production-editor { min-width:0; }
+.nf-production-screen .nf-manuscript { white-space:pre-wrap;overflow-wrap:anywhere;font-size:1.125rem;line-height:1.8;max-inline-size:44em;max-block-size:36rem;overflow:auto;padding:.75rem;border:1px solid var(--nf-rule);border-radius:.5rem; }
+.nf-production-screen .nf-field:has(textarea),.nf-production-layout > .nf-production-editor { grid-column:1 / -1; }
+.nf-production-screen td { vertical-align:top;overflow-wrap:anywhere; }
+@media(min-width:768px){.nf-production-layout{grid-template-columns:repeat(2,minmax(0,1fr));}.nf-production-layout > .nf-field{grid-column:auto;}.nf-production-layout > .nf-field:has(textarea){grid-column:1 / -1;}}
+
+/* 固定对象短字段并列；七维评分卡与长引文保持清晰的阅读层级。 */
+@media(min-width:768px){
+ .nf-production-node[data-node-type="object"] > fieldset > .nf-production-fields{grid-template-columns:repeat(2,minmax(0,1fr));}
+ .nf-production-fields > .nf-production-row-wide,.nf-production-fields > .nf-production-row:has(> .nf-production-node > .nf-field textarea){grid-column:1 / -1;}
+ .nf-production-node[data-field="scores"] > fieldset > .nf-production-fields > .nf-production-row-wide{grid-column:auto;}
+}
+
+/* 普通属性只保留控件边界，容器行才分组，避免多重边框吞掉小屏空间。 */
+.nf-production-row:not(.nf-production-row-wide){padding:0;border:0;}

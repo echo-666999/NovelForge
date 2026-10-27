@@ -1,0 +1,444 @@
+{
+  "observations": [
+    {
+      "name": "planning",
+      "view": "desktop",
+      "overflow": 0,
+      "scroll": 1709,
+      "title": "\n                离线规划候选\n            ",
+      "width": 1709,
+      "readError": false
+    },
+    {
+      "name": "draft",
+      "view": "desktop",
+      "overflow": 0,
+      "scroll": 1709,
+      "title": "\n                候选正文\n            ",
+      "width": 1709,
+      "readError": false
+    },
+    {
+      "name": "review",
+      "view": "desktop",
+      "overflow": 0,
+      "scroll": 1709,
+      "title": "\n                评审中心与文风策略\n            ",
+      "width": 1709,
+      "readError": false
+    },
+    {
+      "name": "revision",
+      "view": "desktop",
+      "overflow": 0,
+      "scroll": 1709,
+      "title": "\n                受限修订与完整章节复评\n            ",
+      "width": 1709,
+      "readError": false
+    },
+    {
+      "name": "commit",
+      "view": "desktop",
+      "overflow": 0,
+      "scroll": 1709,
+      "title": "\n                正式提交与基线\n            ",
+      "width": 1709,
+      "readError": false
+    },
+    {
+      "name": "memory",
+      "view": "desktop",
+      "overflow": 0,
+      "scroll": 1709,
+      "title": "\n                分层记忆库\n            ",
+      "width": 1709,
+      "readError": false
+    },
+    {
+      "name": "canonical-memory",
+      "view": "desktop",
+      "overflow": 0,
+      "scroll": 1709,
+      "title": "\n                正式记忆与索引\n            ",
+      "width": 1709,
+      "readError": false
+    },
+    {
+      "name": "search",
+      "view": "desktop",
+      "overflow": 0,
+      "scroll": 1709,
+      "title": "\n                检索实验室与索引\n            ",
+      "width": 1709,
+      "readError": false
+    },
+    {
+      "name": "context",
+      "view": "desktop",
+      "overflow": 0,
+      "scroll": 1709,
+      "title": "\n                上下文检查器\n            ",
+      "width": 1709,
+      "readError": false
+    },
+    {
+      "name": "run",
+      "view": "desktop",
+      "overflow": 0,
+      "scroll": 1709,
+      "title": "\n                生成运行中心\n            ",
+      "width": 1709,
+      "readError": false
+    },
+    {
+      "name": "recovery",
+      "view": "desktop",
+      "overflow": 0,
+      "scroll": 1709,
+      "title": "\n                运行恢复台\n            ",
+      "width": 1709,
+      "readError": false
+    },
+    {
+      "name": "billing",
+      "view": "desktop",
+      "overflow": 0,
+      "scroll": 1709,
+      "title": "\n                价格与原子预算\n            ",
+      "width": 1709,
+      "readError": false
+    },
+    {
+      "name": "audit",
+      "view": "desktop",
+      "overflow": 0,
+      "scroll": 1709,
+      "title": "\n                审计与系统健康\n            ",
+      "width": 1709,
+      "readError": false
+    },
+    {
+      "name": "planning",
+      "view": "mobile",
+      "overflow": 0,
+      "scroll": 390,
+      "title": "\n                离线规划候选\n            ",
+      "width": 390,
+      "readError": false
+    },
+    {
+      "name": "draft",
+      "view": "mobile",
+      "overflow": 0,
+      "scroll": 390,
+      "title": "\n                候选正文\n            ",
+      "width": 390,
+      "readError": false
+    },
+    {
+      "name": "review",
+      "view": "mobile",
+      "overflow": 0,
+      "scroll": 390,
+      "title": "\n                评审中心与文风策略\n            ",
+      "width": 390,
+      "readError": false
+    },
+    {
+      "name": "revision",
+      "view": "mobile",
+      "overflow": 0,
+      "scroll": 390,
+      "title": "\n                受限修订与完整章节复评\n            ",
+      "width": 390,
+      "readError": false
+    },
+    {
+      "name": "commit",
+      "view": "mobile",
+      "overflow": 0,
+      "scroll": 390,
+      "title": "\n                正式提交与基线\n            ",
+      "width": 390,
+      "readError": false
+    },
+    {
+      "name": "memory",
+      "view": "mobile",
+      "overflow": 0,
+      "scroll": 390,
+      "title": "\n                分层记忆库\n            ",
+      "width": 390,
+      "readError": false
+    },
+    {
+      "name": "canonical-memory",
+      "view": "mobile",
+      "overflow": 0,
+      "scroll": 390,
+      "title": "\n                正式记忆与索引\n            ",
+      "width": 390,
+      "readError": false
+    },
+    {
+      "name": "search",
+      "view": "mobile",
+      "overflow": 0,
+      "scroll": 390,
+      "title": "\n                检索实验室与索引\n            ",
+      "width": 390,
+      "readError": false
+    },
+    {
+      "name": "context",
+      "view": "mobile",
+      "overflow": 0,
+      "scroll": 390,
+      "title": "\n                上下文检查器\n            ",
+      "width": 390,
+      "readError": false
+    },
+    {
+      "name": "run",
+      "view": "mobile",
+      "overflow": 0,
+      "scroll": 390,
+      "title": "\n                生成运行中心\n            ",
+      "width": 390,
+      "readError": false
+    },
+    {
+      "name": "recovery",
+      "view": "mobile",
+      "overflow": 0,
+      "scroll": 390,
+      "title": "\n                运行恢复台\n            ",
+      "width": 390,
+      "readError": false
+    },
+    {
+      "name": "billing",
+      "view": "mobile",
+      "overflow": 0,
+      "scroll": 390,
+      "title": "\n                价格与原子预算\n            ",
+      "width": 390,
+      "readError": false
+    },
+    {
+      "name": "audit",
+      "view": "mobile",
+      "overflow": 0,
+      "scroll": 390,
+      "title": "\n                审计与系统健康\n            ",
+      "width": 390,
+      "readError": false
+    }
+  ],
+  "manual": {
+    "reviewSavedId": "5",
+    "sameInputRetryId": "5",
+    "quoteRange": [
+      0,
+      12
+    ],
+    "revisionPatchKeys": [
+      "first",
+      "second"
+    ],
+    "revisionInitiallyChecked": 0,
+    "contextManifest": "1",
+    "contextItems": 13,
+    "formalBody": "5",
+    "formalMemoryLayers": 4
+  },
+  "counts_before": {
+    "novels": 3,
+    "novel_commands": 162,
+    "ai_requests": 3,
+    "story_events": 1,
+    "canonical_commits": 1,
+    "story_context_versions": 2,
+    "outline_versions": 7,
+    "blueprint_versions": 2,
+    "rolling_plans": 2,
+    "plan_freezes": 2
+  },
+  "counts_after": {
+    "novels": 3,
+    "novel_commands": 163,
+    "ai_requests": 3,
+    "story_events": 1,
+    "canonical_commits": 1,
+    "story_context_versions": 2,
+    "outline_versions": 7,
+    "blueprint_versions": 2,
+    "rolling_plans": 2,
+    "plan_freezes": 2
+  },
+  "browser": "Chrome",
+  "screenshots": [
+    {
+      "file": "screenshots/audit-desktop.jpg",
+      "sha256": "4390de7c4b9e1bcc119959fe609eddd61ab4f767eb572c6626b224654512d805"
+    },
+    {
+      "file": "screenshots/audit-mobile.jpg",
+      "sha256": "6272cae58a4fd49fbb5642a546f0c1e224df07bdbcb389df9e215130e4a7487a"
+    },
+    {
+      "file": "screenshots/before-billing.jpg",
+      "sha256": "f906eeaf04abc0d25359f9896e1de77a029efae90f3a90103ee36704bc6c4637"
+    },
+    {
+      "file": "screenshots/before-review.jpg",
+      "sha256": "53d21f4dcced52764d78cb2100554167905df9a07132979efbd816fbde384b5f"
+    },
+    {
+      "file": "screenshots/before-run.jpg",
+      "sha256": "930e538d46638b562cd7f6aef780d036d2d7c4513abb2a16e7376cd3d10eec0e"
+    },
+    {
+      "file": "screenshots/billing-desktop.jpg",
+      "sha256": "265122f7494eff61598533fed9742f6b854cfbe9c757281cd8a8a96efd845a00"
+    },
+    {
+      "file": "screenshots/billing-mobile.jpg",
+      "sha256": "c60df15e1c6e8f9d4d4b042a8e91faf4737b6e83128c4e126378eeb8800c4922"
+    },
+    {
+      "file": "screenshots/canonical-memory-desktop.jpg",
+      "sha256": "d5c06eab6e34b1f9fac2c510b31a9b6481844784fc8cbd4b64e9fef4d0db51e2"
+    },
+    {
+      "file": "screenshots/canonical-memory-detail-desktop.jpg",
+      "sha256": "b93e18a73367b63072d920637bd7bbc45ac00adc585ec7e669c4e18f56d58d9c"
+    },
+    {
+      "file": "screenshots/canonical-memory-mobile.jpg",
+      "sha256": "9e159b9a451baf1ba7fb2c87e4f7416ef59ac5c9c4b473304c3904c8e5866b36"
+    },
+    {
+      "file": "screenshots/commit-desktop.jpg",
+      "sha256": "9ebeafe41c422fbeeb9552f65c5a713951085ca3d0b33ddba9bfa506c80662f7"
+    },
+    {
+      "file": "screenshots/commit-mobile.jpg",
+      "sha256": "10c24cb46f189e187ccbc732eabb4f06f6c0d488eba1855e9aa0c56de8bf0891"
+    },
+    {
+      "file": "screenshots/context-desktop.jpg",
+      "sha256": "bac6ff35f8bf61a56e13f33e1fa858d66786422ad424df46dcb71fd4b8962fe3"
+    },
+    {
+      "file": "screenshots/context-detail-desktop.jpg",
+      "sha256": "6eafd9b9b42d00966acef4ac793154a4ac5e5ef96ee34b8b9152a3d44ee3b335"
+    },
+    {
+      "file": "screenshots/context-detail-mobile.jpg",
+      "sha256": "4e37d7ad53eecfaed31a64e423eda8b3437d60ec36f02c795734c4555b6eca79"
+    },
+    {
+      "file": "screenshots/context-mobile.jpg",
+      "sha256": "aa297dbdf6091bc47ea5c34ac42d7debebc37e7516d08ce98f84c0845f0cde38"
+    },
+    {
+      "file": "screenshots/draft-desktop.jpg",
+      "sha256": "124a9f4190aaaebff17a9ad272ad45947beb1bde2d8fd6f72dced84a5b40eb77"
+    },
+    {
+      "file": "screenshots/draft-formal-desktop.jpg",
+      "sha256": "66e7fcd39864ee682705888af3e264e9eee4c222573af14437a1783bd58cb4f8"
+    },
+    {
+      "file": "screenshots/draft-mobile.jpg",
+      "sha256": "ee1bc8a35843e37ade8684df9f621b6e80e0758850c47ea7c9a8b73fa062b3b0"
+    },
+    {
+      "file": "screenshots/memory-desktop.jpg",
+      "sha256": "36d06956222eecf42f26899363ae09f588a539e0e5d74b91b16286073e6a816b"
+    },
+    {
+      "file": "screenshots/memory-mobile.jpg",
+      "sha256": "1859b10773e973d4ce25495fdb3a83e32159d9867993001ff57cbec5edb5b2a5"
+    },
+    {
+      "file": "screenshots/planning-desktop.jpg",
+      "sha256": "5d8c2232768727579ccdc0b4110954fc3beb7c88e77ac36823de9fa0ecd0e136"
+    },
+    {
+      "file": "screenshots/planning-mobile.jpg",
+      "sha256": "af36b9e1dcd80b790d7fdc3dd35c05377f7f2ecea33949db2a346d4e61b95ee2"
+    },
+    {
+      "file": "screenshots/recovery-desktop.jpg",
+      "sha256": "4f0a3498ff876bf8b6ab7abaffe9d7bfbeae43d07f2d091966e6111b63e82bd9"
+    },
+    {
+      "file": "screenshots/recovery-mobile.jpg",
+      "sha256": "26444c19d495deecfcbd175213e89a85dab5e934fc555412bded3c167ed191ca"
+    },
+    {
+      "file": "screenshots/review-desktop.jpg",
+      "sha256": "e0b07e40b039f704b781ae3dfe0985a79335465b20888d283706a0990597fc00"
+    },
+    {
+      "file": "screenshots/review-error-mobile.jpg",
+      "sha256": "f0c92f64b3cbb8fa9d3f66732d9c982907928d7f890163d9fb642195228d16ef"
+    },
+    {
+      "file": "screenshots/review-fields-desktop.jpg",
+      "sha256": "dd83bbda3f7c893f4354f4ec6769f2e4882dfc3e10df52a656770fa4f7b5c6a2"
+    },
+    {
+      "file": "screenshots/review-fields-mobile.jpg",
+      "sha256": "ec4b72b5a51adac327a5067115337174660f06f35dd87d4daf5271bf017b7e92"
+    },
+    {
+      "file": "screenshots/review-mobile.jpg",
+      "sha256": "cc9b3556f5d3bd7f9e7f79e98daa982e7d7fd43a2acb5371ab6218d2f9813213"
+    },
+    {
+      "file": "screenshots/review-saved-desktop.jpg",
+      "sha256": "2e0d0e0f8811f2fdb50cb69148c5ce027577907925857142369c2f96eb7c69c0"
+    },
+    {
+      "file": "screenshots/revision-desktop.jpg",
+      "sha256": "e582f83ed8d6110be22d509180a6cc160c986a44f3e5fdee5d3d45fee0828e81"
+    },
+    {
+      "file": "screenshots/revision-detail-desktop.jpg",
+      "sha256": "0dc52244500ce77bbb0fd545b55814090a01ec579b650264625be43b01452796"
+    },
+    {
+      "file": "screenshots/revision-mobile.jpg",
+      "sha256": "06e4d0e471a3099b35f94db3bf683687584775d87e3e34b73bba7c29809b8898"
+    },
+    {
+      "file": "screenshots/run-artifact-desktop.jpg",
+      "sha256": "674254e75b838911a9bd97a4da4dda5fc528994784c6fc4cb4538ed19990f764"
+    },
+    {
+      "file": "screenshots/run-desktop.jpg",
+      "sha256": "9c5c8f1617b3bbc1ae1dc25447a7f31c64212875803c83290da7ebe055b8785b"
+    },
+    {
+      "file": "screenshots/run-mobile.jpg",
+      "sha256": "45bb03c4dde34cfd49249cdd315e8373249dc9d913b0ffa30df1778cb2b2d947"
+    },
+    {
+      "file": "screenshots/search-desktop.jpg",
+      "sha256": "ddc3bae9690c3019bd2ac8aaf25a070d9d5bc34559337648ad4b0a12d2ec47d2"
+    },
+    {
+      "file": "screenshots/search-mobile.jpg",
+      "sha256": "8c5feaa71613b16e849e518cfa8fd6f580d362c104f8c9bd11057f87db4a1143"
+    }
+  ],
+  "limits": [
+    "只含合成隔离数据",
+    "before截图仅旧视图模板",
+    "未穷举全部交互",
+    "未验收Safari及纯字体缩放"
+  ]
+}

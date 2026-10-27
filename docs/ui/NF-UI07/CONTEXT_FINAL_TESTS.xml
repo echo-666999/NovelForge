@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Tests\Feature\ContextAssemblyTest" file="/Users/webb/Herd/NovelForge/tests/Feature/ContextAssemblyTest.php" tests="1" assertions="11" errors="0" failures="0" skipped="0" time="9.401598">
+    <testcase name="test_authorized_api_ui_compare_and_reassembly" file="/Users/webb/Herd/NovelForge/tests/Feature/ContextAssemblyTest.php" line="129" class="Tests\Feature\ContextAssemblyTest" classname="Tests.Feature.ContextAssemblyTest" assertions="11" time="9.401598"/>
+  </testsuite>
+</testsuites>
