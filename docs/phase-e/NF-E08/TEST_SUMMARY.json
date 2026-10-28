@@ -1,0 +1,21 @@
+{
+  "core": {
+    "tool": "phpunit",
+    "result": "passed",
+    "tests": 73,
+    "passed": 73,
+    "assertions": 1333,
+    "duration_ms": 1364920
+  },
+  "supplement": {
+    "tool": "phpunit",
+    "result": "passed",
+    "tests": 1,
+    "passed": 1,
+    "assertions": 8,
+    "duration_ms": 34463
+  },
+  "distinct_tests": 74,
+  "assertions": 1341,
+  "note": "新增整卷/全书/单章补验在最终关联套件加载后追加，单独运行；应用源码未在关联回归期间修改。"
+}

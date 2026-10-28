@@ -1,0 +1,381 @@
+{
+  "date": "2026-10-28",
+  "browser": "Chrome",
+  "environment": "testing / novel_forge_test / 127.0.0.1:8779",
+  "cases": [
+    {
+      "case": "reader_1440",
+      "createButton": [],
+      "dialogs": [],
+      "duplicateIds": [],
+      "exportForms": 0,
+      "focus": "跳至主要内容\n    \n\n            \n\n        \n    \n    \n    ",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "read_mark",
+      "marked": true,
+      "createButton": [],
+      "dialogs": [],
+      "duplicateIds": [],
+      "exportForms": 0,
+      "focus": "标记本版本已读",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "quote_rejected",
+      "createButton": [],
+      "dialogs": [
+        {
+          "client": 1024,
+          "focusInside": true,
+          "id": "nf-reading-issue",
+          "scroll": 1024,
+          "width": 1024
+        }
+      ],
+      "duplicateIds": [],
+      "exportForms": 0,
+      "focus": "reading-quote",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "quote_saved",
+      "createButton": [],
+      "dialogs": [],
+      "duplicateIds": [],
+      "exportForms": 0,
+      "focus": "报告阅读问题",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "exports_default_1440",
+      "createButton": [
+        {
+          "height": 40,
+          "width": 80
+        }
+      ],
+      "dialogs": [],
+      "duplicateIds": [],
+      "exportForms": 0,
+      "focus": "跳至主要内容\n    \n\n            \n\n        \n    \n    \n    ",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "export_editor_1440",
+      "createButton": [
+        {
+          "height": 40,
+          "width": 80
+        }
+      ],
+      "dialogs": [
+        {
+          "client": 1024,
+          "focusInside": true,
+          "id": "nf-export-editor",
+          "scroll": 1024,
+          "width": 1024
+        }
+      ],
+      "duplicateIds": [],
+      "exportForms": 1,
+      "focus": "e08-form-scope",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "missing_rejected",
+      "message": true,
+      "createButton": [
+        {
+          "height": 40,
+          "width": 80
+        }
+      ],
+      "dialogs": [
+        {
+          "client": 1024,
+          "focusInside": true,
+          "id": "nf-export-editor",
+          "scroll": 1024,
+          "width": 1024
+        }
+      ],
+      "duplicateIds": [],
+      "exportForms": 1,
+      "focus": "导出未创建，输入仍保留\n    缺少可导出的精确版本：2",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "preflight_missing",
+      "preview": false,
+      "createButton": [
+        {
+          "height": 40,
+          "width": 80
+        }
+      ],
+      "dialogs": [
+        {
+          "client": 1024,
+          "focusInside": true,
+          "id": "nf-export-editor",
+          "scroll": 1024,
+          "width": 1024
+        }
+      ],
+      "duplicateIds": [],
+      "exportForms": 1,
+      "focus": "预检目录",
+      "scroll": 1440,
+      "width": 1440,
+      "phase": "before_ui_state_fix"
+    },
+    {
+      "case": "export_queued",
+      "text": "任务 / 基线 / 范围\t格式 / 状态\t大小 / 到期\t操作\n#9 · 正式 #5 · 第1—1章\n\n2026-10-28 10:48:38.947385+00\n\n\tTXT / 排队中\n\n\t尚未生成 字节\n\n—\n\n\t\n查看清单\n下载清单\n按原清单重建",
+      "createButton": [
+        {
+          "height": 40,
+          "width": 80
+        }
+      ],
+      "dialogs": [],
+      "duplicateIds": [],
+      "exportForms": 0,
+      "focus": "nf-export-create",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "preflight_settled",
+      "text": "新建冻结版本导出\n正文身份\n正式（默认）\n正式基线\n当前活动基线（草稿留空）\n导出范围\n连续范围\n起始章\n结束章\n文件格式\nTXT（UTF-8）\n包含目录\n包含卷名\n作者署名\n简介\n文件名（危险字符自动清理）\n分隔规则\n空行\n预检目录\n冻结并排队导出\n取消",
+      "createButton": [
+        {
+          "height": 40,
+          "width": 80
+        }
+      ],
+      "dialogs": [
+        {
+          "client": 1024,
+          "focusInside": true,
+          "id": "nf-export-editor",
+          "scroll": 1024,
+          "width": 1024
+        }
+      ],
+      "duplicateIds": [],
+      "exportForms": 1,
+      "focus": "预检目录",
+      "scroll": 1440,
+      "width": 1440,
+      "phase": "before_ui_state_fix"
+    },
+    {
+      "case": "preflight_fixed_390",
+      "preview": true,
+      "createButton": [
+        {
+          "height": 40,
+          "width": 80
+        }
+      ],
+      "dialogs": [
+        {
+          "client": 358,
+          "focusInside": true,
+          "id": "nf-export-editor",
+          "scroll": 358,
+          "width": 358
+        }
+      ],
+      "duplicateIds": [],
+      "exportForms": 1,
+      "focus": "预检目录",
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "case": "exports_ready_390",
+      "text": "任务 / 基线 / 范围\t格式 / 状态\t大小 / 到期\t操作\n#9 · 正式 #5 · 第1—1章\n\n2026-10-28 10:48:38.947385+00\n\n\tTXT / 可下载\n\n\t8687 字节\n\n2026-11-27 10:49:32+00\n\n\t\n查看清单\n下载正文\n下载清单\n按原清单重建\n删除派生文件",
+      "createButton": [
+        {
+          "height": 40,
+          "width": 80
+        }
+      ],
+      "dialogs": [],
+      "duplicateIds": [],
+      "exportForms": 0,
+      "focus": "nf-export-create",
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "case": "delete_confirm_390",
+      "confirmVisible": false,
+      "createButton": [
+        {
+          "height": 40,
+          "width": 80
+        }
+      ],
+      "dialogs": [],
+      "duplicateIds": [],
+      "exportForms": 0,
+      "focus": "取消",
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "case": "manifest_390",
+      "createButton": [
+        {
+          "height": 40,
+          "width": 80
+        }
+      ],
+      "dialogs": [
+        {
+          "client": 358,
+          "focusInside": true,
+          "id": "nf-export-detail",
+          "scroll": 358,
+          "width": 358
+        }
+      ],
+      "duplicateIds": [],
+      "exportForms": 0,
+      "focus": "冻结版本及校验清单",
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "case": "manifest_return",
+      "createButton": [
+        {
+          "height": 40,
+          "width": 80
+        }
+      ],
+      "dialogs": [],
+      "duplicateIds": [],
+      "exportForms": 0,
+      "focus": "查看清单",
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "case": "reader_390",
+      "createButton": [],
+      "dialogs": [],
+      "duplicateIds": [],
+      "exportForms": 0,
+      "focus": "跳至主要内容\n    \n\n            \n\n        \n    \n    \n    ",
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "case": "diff_390",
+      "added": true,
+      "createButton": [],
+      "dialogs": [
+        {
+          "client": 358,
+          "focusInside": true,
+          "id": "nf-reading-diff",
+          "scroll": 358,
+          "width": 358
+        }
+      ],
+      "duplicateIds": [],
+      "exportForms": 0,
+      "focus": "版本差异（保守行区间比较）\n                            \n\n      ",
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "case": "diff_final_390",
+      "createButton": [],
+      "dialogs": [
+        {
+          "client": 358,
+          "focusInside": true,
+          "id": "nf-reading-diff",
+          "scroll": 358,
+          "width": 358
+        }
+      ],
+      "duplicateIds": [],
+      "exportForms": 0,
+      "focus": "展开未变化的前文",
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "case": "exports_ready_1440",
+      "createButton": [
+        {
+          "height": 40,
+          "width": 80
+        }
+      ],
+      "dialogs": [],
+      "duplicateIds": [],
+      "exportForms": 0,
+      "focus": "跳至主要内容\n    \n\n            \n\n        \n    \n    \n    ",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "rebuild_queued",
+      "text": "任务 / 基线 / 范围\t格式 / 状态\t大小 / 到期\t操作\n#10 · 正式 #5 · 第1—1章\n\n2026-10-28 11:00:10.678494+00\n\n\tTXT / 排队中\n\n\t尚未生成 字节\n\n—\n\n\t\n查看清单\n下载清单\n按原清单重建\n\n#9 · 正式 #5 · 第1—1章\n\n2026-10-28 10:48:38.947385+00\n\n\tTXT / 可下载\n\n\t8687 字节\n\n2026-11-27 10:49:32+00\n\n\t\n查看清单\n下载正文\n下载清单\n按原清单重建\n删除派生文件",
+      "createButton": [
+        {
+          "height": 40,
+          "width": 80
+        }
+      ],
+      "dialogs": [],
+      "duplicateIds": [],
+      "exportForms": 0,
+      "focus": "跳至主要内容\n    \n\n            \n\n        \n    \n    \n    ",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "rebuild_ready_final",
+      "text": "任务 / 基线 / 范围\t格式 / 状态\t大小 / 到期\t操作\n#10 · 正式 #5 · 第1—1章\n\n2026-10-28 11:00:10.678494+00\n\n\tTXT / 可下载\n\n\t8687 字节\n\n2026-11-27 11:00:51+00\n\n\t\n查看清单\n下载正文\n下载清单\n按原清单重建\n删除派生文件\n\n#9 · 正式 #5 · 第1—1章\n\n2026-10-28 10:48:38.947385+00\n\n\tTXT / 可下载\n\n\t8687 字节\n\n2026-11-27 10:49:32+00\n\n\t\n查看清单\n下载正文\n下载清单\n按原清单重建\n删除派生文件",
+      "createButton": [
+        {
+          "height": 40,
+          "width": 80
+        }
+      ],
+      "dialogs": [],
+      "duplicateIds": [],
+      "exportForms": 0,
+      "focus": "刷新任务列表",
+      "scroll": 1440,
+      "width": 1440
+    }
+  ],
+  "console_errors": [],
+  "screenshot_note": "部分早期默认截图被工具缩成390×202，仅作早期记录；交付窄屏截图以explicit clip的verified文件为准，已核对390×844。",
+  "verified_capture_metrics": {
+    "height": 844,
+    "outerHeight": 844,
+    "outerWidth": 390,
+    "scale": 1,
+    "width": 390
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "assertions": {
+    "no_page_horizontal_overflow": true,
+    "unique_ids": true,
+    "modal_no_horizontal_overflow": true,
+    "modal_focus_inside": true,
+    "default_no_form": true,
+    "normal_create_button": true,
+    "quote_reject_focus": true,
+    "quote_save_returns_trigger": true,
+    "missing_rejected": true,
+    "missing_preview_fixed": true,
+    "save_returns_create": true,
+    "mobile_modal_358": true,
+    "confirmation_cancel_focus": true,
+    "detail_returns_trigger": true,
+    "unicode_diff_visible": true,
+    "rebuilt_ready": true
+  },
+  "transition_note": "删除确认的即时isVisible采样为false；后续焦点在原生确认的取消按钮、实际取消成功，未以过渡采样声明稳定可见性通过。"
+}

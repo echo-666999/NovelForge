@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="/Users/webb/Herd/NovelForge/phpunit.xml" tests="1" assertions="8" errors="0" failures="0" skipped="0" time="34.451727">
+    <testsuite name="Feature" tests="1" assertions="8" errors="0" failures="0" skipped="0" time="34.451727">
+      <testsuite name="Tests\Feature\ReadingExportTest" file="/Users/webb/Herd/NovelForge/tests/Feature/ReadingExportTest.php" tests="1" assertions="8" errors="0" failures="0" skipped="0" time="34.451727">
+        <testcase name="test_book_and_volume_missing_ranges_are_complete_and_single_chapter_can_export" file="/Users/webb/Herd/NovelForge/tests/Feature/ReadingExportTest.php" line="354" class="Tests\Feature\ReadingExportTest" classname="Tests.Feature.ReadingExportTest" assertions="8" time="34.451727"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,35 @@
+{
+    "published": {
+        "published": 1,
+        "failed": 0,
+        "recovered": 0
+    },
+    "counts": {
+        "users": 1,
+        "novels": 2,
+        "ai_requests": 1,
+        "canonical_commits": 1,
+        "chapter_versions": 2,
+        "export_jobs": 2,
+        "export_items": 2,
+        "export_files": 2,
+        "reading_observations": 2
+    },
+    "checks": {
+        "jobs_ready": true,
+        "same_frozen_manifest": true,
+        "same_file_checksum": true,
+        "file_hashes_verified": true,
+        "formal_versions": [
+            [
+                "7"
+            ],
+            [
+                "7"
+            ]
+        ],
+        "formal_pointer": "7",
+        "fake_request_delta": 0
+    },
+    "credential_removed": true
+}

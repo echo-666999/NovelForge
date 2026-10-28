@@ -13,7 +13,12 @@ class ValidateNovelNavigation
 {
     public function handle(Request $request, Closure $next): Response
     {
-        foreach (['novel', 'run', 'step', 'version', 'review'] as $key) {
+        // E08在类型化阅读URL挂载前拒绝数组参数，避免异常形态变成500。
+        $keys = ['novel', 'run', 'step', 'version', 'review'];
+        if ($request->is('admin/formal-reader')) {
+            $keys = array_merge($keys, ['chapter', 'revision', 'scope']);
+        }
+        foreach ($keys as $key) {
             if ($request->query->has($key) && ! is_string($request->query($key))) {
                 throw new NovelProblem('NOT_FOUND', '导航来源不存在。', 404);
             }

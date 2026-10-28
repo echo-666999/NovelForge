@@ -230,3 +230,11 @@ UI15 `/admin/canonical-commit-center?novel=…`复用同一服务；E07消费、
 原GET memories及`/{memory}`在scope=formal时需revision_id，可选chapter/kind/page；ID属于正式命名空间，source hash和截止章验证，不回退候选。原POST search正式范围需要scope=formal、活动revision_id、query、已提交chapter、audience=author/pov，pov须合法pov_id，可选limit≤100/vector。正式请求拒绝候选branch/build/profile/context参数；结果含degraded/degradation_reason、memory_pending与semantic_model=false。缺revision继续保护拒绝，错基线STALE_REVISION、未来章FORMAL_PREFIX_INCOMPLETE；旧候选协议不变。
 
 上下文组装formal增加revision_id，拒绝候选context_id；新正文运行在已有正式状态时自动绑定最新前缀，只处理下一章。formal_usable必须来源完整且容量组装成功，memory_pending不代表硬状态可以省略。UI22/23/24从`/admin/canonical-memory-center`查看正式任务、保守摘要、恢复与POV检索，原候选工作区保留。详见[NF-E07验收](../phase-e/NF-E07_ACCEPTANCE.md)。
+
+## NF-E08 已实现阅读与导出接口（2026-10-28）
+
+新增 GET `/api/v1/novels/{novel}/reading`、`/reading/compare`、`/reading/observations`；POST `/reading/observations`；GET `/novels/{novel}/exports`；POST `/exports`；GET `/exports/{export}`、`/download`、`/manifest`；POST `/rebuild`、`/delete-file`。
+
+导出输入将原设计的revision细化为revision_id；scope默认formal，显式draft不允许携带正式基线。range.type=chapter/range/volume/book；创建和重建返回202、独立export run_id、run_type及status_url，不是generation_run。下载清单含manifest_hash和文件校验证据。所有写入要求Idempotency-Key，同源会话/CSRF、管理员和所有权、私有no-store下载沿用A04；阅读记录和导出均不改变正式提交或成品认可。
+
+字段、错误、队列/租约、原清单重建、页面及覆盖边界见[NF-E08实施契约](../phase-e/NF-E08/CONTRACT.md)及[验收](../phase-e/NF-E08/ACCEPTANCE.md)。当前验证E06根正式基线；后续G01新增历史基线能力仍需复核读取契约，不能据本项宣布G01完成。

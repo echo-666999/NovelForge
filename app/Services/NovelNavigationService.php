@@ -23,6 +23,9 @@ class NovelNavigationService
     ];
 
     public const PAGES = [
+        // E08新增书级阅读和导出入口，切书仍经既有白名单清理参数。
+        'FormalReader' => ['formal-reader', '连续阅读与版本比较', '创作工作台'],
+        'ExportCenter' => ['export-center', '导出中心', '配置与运维'],
         'StoryHub' => ['story-hub', '故事管理', '故事管理'],
         'StoryTimeline' => ['story-timeline', '时间线与角色知识', '故事管理'],
         'ForeshadowLedger' => ['foreshadow-ledger', '伏笔与主支线账本', '故事管理'],

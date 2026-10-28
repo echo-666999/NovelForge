@@ -16,6 +16,7 @@ use App\Http\Controllers\NovelIntentController;
 use App\Http\Controllers\NovelNavigationController;
 use App\Http\Controllers\PlanningPipelineController;
 use App\Http\Controllers\ProviderConfigurationController;
+use App\Http\Controllers\ReadingExportController;
 use App\Http\Controllers\RecoveryController;
 use App\Http\Controllers\RevisionController;
 use App\Http\Controllers\RollingPlanController;
@@ -222,3 +223,19 @@ Route::get('api/v1/novels/{novel}/state/replay', CanonicalCommitController::clas
 // 正式派生中心只暴露状态和人工重试，不授予写正式剧情的权限。
 Route::get('api/v1/novels/{novel}/canonical-memory', CanonicalMemoryController::class);
 Route::post('api/v1/novels/{novel}/canonical-memory/tasks/{task}/retry', CanonicalMemoryController::class);
+
+// E08正文与导出均经同源会话及书级授权；下载地址不接收任何客户端路径。
+Route::prefix('api/v1/novels/{novel}')->whereNumber('novel')->group(function (): void {
+    foreach (['reading' => 'read', 'reading/compare' => 'compare', 'reading/observations' => 'observations', 'exports' => 'list'] as $path => $action) {
+        Route::get($path, ReadingExportController::class)->defaults('readingAction', $action);
+    }
+    Route::post('reading/observations', ReadingExportController::class)->defaults('readingAction', 'observe');
+});
+Route::post('api/v1/exports', ReadingExportController::class)->defaults('readingAction', 'create');
+Route::prefix('api/v1/exports/{export}')->whereNumber('export')->group(function (): void {
+    foreach (['' => 'detail', 'download' => 'download', 'manifest' => 'manifest'] as $path => $action) {
+        Route::get($path, ReadingExportController::class)->defaults('readingAction', $action);
+    }
+    Route::post('rebuild', ReadingExportController::class)->defaults('readingAction', 'rebuild');
+    Route::post('delete-file', ReadingExportController::class)->defaults('readingAction', 'delete');
+});

@@ -1,6 +1,7 @@
 <?php
 
 use App\Services\CanonicalMemoryService;
+use App\Services\ExportService;
 use App\Services\OutboxService;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
@@ -23,3 +24,9 @@ Artisan::command('novelforge:canonical-memory {--limit=100}', function () {
     $this->line(json_encode(app(CanonicalMemoryService::class)->publish((int) $this->option('limit')), JSON_UNESCAPED_UNICODE));
 })->purpose('补投正式提交后的记忆索引任务');
 Schedule::command('novelforge:canonical-memory')->everyMinute();
+
+// E08只补投持久导出意图；无需模型或生成任务，重复通知由任务锁去重。
+Artisan::command('novelforge:exports {--limit=100}', function () {
+    $this->line(json_encode(app(ExportService::class)->publish((int) $this->option('limit')), JSON_UNESCAPED_UNICODE));
+})->purpose('补投冻结清单导出到export队列');
+Schedule::command('novelforge:exports')->everyMinute();

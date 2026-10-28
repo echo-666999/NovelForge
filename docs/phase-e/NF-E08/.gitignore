@@ -1,0 +1,4 @@
+# 仅纳入本轮已脱敏的验证日志。
+!BUILD.log
+!PINT.log
+!PHPUNIT.log
