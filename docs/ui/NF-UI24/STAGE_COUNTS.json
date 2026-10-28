@@ -1,0 +1,10 @@
+{
+    "users": 1,
+    "novels": 0,
+    "ai_requests": 0,
+    "price_versions": 0,
+    "budget_policies": 1,
+    "billing_commands": 1,
+    "audit_events": 1,
+    "credential_removed": true
+}

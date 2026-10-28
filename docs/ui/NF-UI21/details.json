@@ -1,0 +1,4196 @@
+[
+  {
+    "case": "hosts_added",
+    "groups": [
+      {
+        "class": "nf-filter-grid",
+        "gap": "16px",
+        "index": 0,
+        "items": [
+          {
+            "center": -355.8046875,
+            "field": true,
+            "height": 40,
+            "label": "供应商名称筛选",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 376,
+            "y": -375.8046875
+          },
+          {
+            "center": -355.8046875,
+            "field": true,
+            "height": 40,
+            "label": "接口",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 632,
+            "y": -375.8046875
+          },
+          {
+            "center": -355.8046875,
+            "field": true,
+            "height": 40,
+            "label": "配置状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 888,
+            "y": -375.8046875
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "12px",
+        "index": 1,
+        "items": [
+          {
+            "center": -225.0078125,
+            "field": false,
+            "height": 40,
+            "label": "共 0 个供应商 · 第 1 页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 167.984375,
+            "x": 376,
+            "y": -245.0078125
+          },
+          {
+            "center": -225.0078125,
+            "field": false,
+            "height": 40,
+            "label": "上一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 66,
+            "x": 555.984375,
+            "y": -245.0078125
+          },
+          {
+            "center": -225.0078125,
+            "field": false,
+            "height": 40,
+            "label": "下一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 66,
+            "x": 633.984375,
+            "y": -245.0078125
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": -28.0078125,
+            "field": true,
+            "height": 40,
+            "label": "供应商名称*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": -48.0078125
+          },
+          {
+            "center": -28.0078125,
+            "field": true,
+            "height": 40,
+            "label": "接口类型",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 888,
+            "y": -48.0078125
+          },
+          {
+            "center": 55.9921875,
+            "field": true,
+            "height": 40,
+            "label": "HTTPS端点*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 35.9921875
+          },
+          {
+            "center": 55.9921875,
+            "field": true,
+            "height": 40,
+            "label": "新密钥",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 35.9921875
+          },
+          {
+            "center": 177.4375,
+            "field": true,
+            "height": 40,
+            "label": "总超时（秒）*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 157.4375
+          },
+          {
+            "center": 177.4375,
+            "field": true,
+            "height": 40,
+            "label": "连接超时（秒）*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 157.4375
+          },
+          {
+            "center": 261.4375,
+            "field": true,
+            "height": 40,
+            "label": "每分钟请求上限*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 241.4375
+          },
+          {
+            "center": 261.4375,
+            "field": true,
+            "height": 40,
+            "label": "并发上限*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 241.4375
+          },
+          {
+            "center": 345.4375,
+            "field": true,
+            "height": 40,
+            "label": "配置状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 325.4375
+          },
+          {
+            "center": 345.4375,
+            "field": true,
+            "height": 40,
+            "label": "变更原因*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 325.4375
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions nf-host-row",
+        "gap": "12px",
+        "index": 3,
+        "items": [
+          {
+            "center": 459.83203125,
+            "field": false,
+            "height": 26.3984375,
+            "label": "主机 1",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "LABEL",
+            "width": 43.75,
+            "x": 389,
+            "y": 446.6328125
+          },
+          {
+            "center": 459.8359375,
+            "field": false,
+            "height": 40,
+            "label": "allowed_hosts[]",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "INPUT",
+            "width": 862.25,
+            "x": 444.75,
+            "y": 439.8359375
+          },
+          {
+            "center": 459.8359375,
+            "field": false,
+            "height": 40,
+            "label": "移除",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 52,
+            "x": 1319,
+            "y": 439.8359375
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions nf-host-row",
+        "gap": "12px",
+        "index": 4,
+        "items": [
+          {
+            "center": 499.83203125,
+            "field": false,
+            "height": 26.3984375,
+            "label": "主机 2",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "LABEL",
+            "width": 46.9296875,
+            "x": 389,
+            "y": 486.6328125
+          },
+          {
+            "center": 499.8359375,
+            "field": false,
+            "height": 40,
+            "label": "allowed_hosts[]",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "INPUT",
+            "width": 859.0703125,
+            "x": 447.9296875,
+            "y": 479.8359375
+          },
+          {
+            "center": 499.8359375,
+            "field": false,
+            "height": 40,
+            "label": "移除",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 52,
+            "x": 1319,
+            "y": 479.8359375
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 5,
+        "items": [
+          {
+            "center": 1140.03125,
+            "field": true,
+            "height": 40,
+            "label": "供应商",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 1120.03125
+          },
+          {
+            "center": 1140.03125,
+            "field": true,
+            "height": 40,
+            "label": "模型标识*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 1120.03125
+          },
+          {
+            "center": 1224.03125,
+            "field": true,
+            "height": 40,
+            "label": "声明上下文 Token 上限",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 1204.03125
+          },
+          {
+            "center": 1224.03125,
+            "field": true,
+            "height": 40,
+            "label": "声明输出 Token 上限",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 1204.03125
+          },
+          {
+            "center": 1345.4765625,
+            "field": true,
+            "height": 40,
+            "label": "结构化输出声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 1325.4765625
+          },
+          {
+            "center": 1345.4765625,
+            "field": true,
+            "height": 40,
+            "label": "流式输出声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 888,
+            "y": 1325.4765625
+          },
+          {
+            "center": 1429.4765625,
+            "field": true,
+            "height": 40,
+            "label": "推理 Token 计量声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 1409.4765625
+          },
+          {
+            "center": 1429.4765625,
+            "field": true,
+            "height": 40,
+            "label": "能力声明来源说明*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 1409.4765625
+          },
+          {
+            "center": 1513.4765625,
+            "field": true,
+            "height": 40,
+            "label": "变更原因*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 1493.4765625
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "供应商与模型",
+    "width": 1440
+  },
+  {
+    "case": "host_removed",
+    "remaining": 1,
+    "disabled": true
+  },
+  {
+    "case": "prompt_expanded_1440",
+    "groups": [
+      {
+        "class": "nf-json-row-actions",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 1352.7890625,
+            "field": true,
+            "height": 40,
+            "label": "属性名",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 534.6328125,
+            "x": 389,
+            "y": 1332.7890625
+          },
+          {
+            "center": 1352.7890625,
+            "field": false,
+            "height": 40,
+            "label": "必填 ✓（切换为选填）",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 161.3671875,
+            "x": 935.6328125,
+            "y": 1332.7890625
+          },
+          {
+            "center": 1352.7890625,
+            "field": false,
+            "height": 40,
+            "label": "插入正文变量",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 104,
+            "x": 1109,
+            "y": 1332.7890625
+          },
+          {
+            "center": 1352.7890625,
+            "field": false,
+            "height": 40,
+            "label": "移除属性及必填标记",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 146,
+            "x": 1225,
+            "y": 1332.7890625
+          }
+        ]
+      },
+      {
+        "class": "nf-json-row-actions",
+        "gap": "12px",
+        "index": 1,
+        "items": [
+          {
+            "center": 2102.1796875,
+            "field": true,
+            "height": 40,
+            "label": "属性名",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 650.6328125,
+            "x": 389,
+            "y": 2082.1796875
+          },
+          {
+            "center": 2102.1796875,
+            "field": false,
+            "height": 40,
+            "label": "必填 ✓（切换为选填）",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 161.3671875,
+            "x": 1051.6328125,
+            "y": 2082.1796875
+          },
+          {
+            "center": 2102.1796875,
+            "field": false,
+            "height": 40,
+            "label": "移除属性及必填标记",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 146,
+            "x": 1225,
+            "y": 2082.1796875
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": 2758.7734375,
+            "field": true,
+            "height": 40,
+            "label": "值的类型",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 483,
+            "x": 389,
+            "y": 2738.7734375
+          }
+        ]
+      },
+      {
+        "class": "nf-json-row-actions",
+        "gap": "12px",
+        "index": 3,
+        "items": [
+          {
+            "center": 2810.7734375,
+            "field": false,
+            "height": 40,
+            "label": "第 1 项",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "STRONG",
+            "width": 49.21875,
+            "x": 389,
+            "y": 2790.7734375
+          },
+          {
+            "center": 2810.7734375,
+            "field": false,
+            "height": 40,
+            "label": "上移",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 48,
+            "x": 450.21875,
+            "y": 2790.7734375
+          },
+          {
+            "center": 2810.7734375,
+            "field": false,
+            "height": 40,
+            "label": "下移",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 48,
+            "x": 510.21875,
+            "y": 2790.7734375
+          },
+          {
+            "center": 2810.7734375,
+            "field": false,
+            "height": 40,
+            "label": "移除此字段",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 90,
+            "x": 570.21875,
+            "y": 2790.7734375
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "12px",
+        "index": 4,
+        "items": [
+          {
+            "center": 3003.7734375,
+            "field": false,
+            "height": 40,
+            "label": "保存新草稿",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 94,
+            "x": 352,
+            "y": 2983.7734375
+          },
+          {
+            "center": 3003.7734375,
+            "field": false,
+            "height": 40,
+            "label": "取消编辑",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 458,
+            "y": 2983.7734375
+          },
+          {
+            "center": 3003.7734375,
+            "field": false,
+            "height": 40,
+            "label": "导出当前内容",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 108,
+            "x": 550,
+            "y": 2983.7734375
+          }
+        ]
+      },
+      {
+        "class": "nf-filter-grid",
+        "gap": "16px",
+        "index": 5,
+        "items": [
+          {
+            "center": 3227.171875,
+            "field": true,
+            "height": 40,
+            "label": "配置键",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 376,
+            "y": 3207.171875
+          },
+          {
+            "center": 3227.171875,
+            "field": true,
+            "height": 40,
+            "label": "阶段",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 632,
+            "y": 3207.171875
+          },
+          {
+            "center": 3227.171875,
+            "field": true,
+            "height": 40,
+            "label": "语言",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 888,
+            "y": 3207.171875
+          },
+          {
+            "center": 3227.171875,
+            "field": true,
+            "height": 40,
+            "label": "状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 1144,
+            "y": 3207.171875
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "12px",
+        "index": 6,
+        "items": [
+          {
+            "center": 3369.96875,
+            "field": false,
+            "height": 40,
+            "label": "共 0 个版本 · 第 1 页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 151.984375,
+            "x": 376,
+            "y": 3349.96875
+          },
+          {
+            "center": 3369.96875,
+            "field": false,
+            "height": 40,
+            "label": "上一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 62,
+            "x": 539.984375,
+            "y": 3349.96875
+          },
+          {
+            "center": 3369.96875,
+            "field": false,
+            "height": 40,
+            "label": "下一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 62,
+            "x": 613.984375,
+            "y": 3349.96875
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 7,
+        "items": [
+          {
+            "center": 3566.96875,
+            "field": true,
+            "height": 40,
+            "label": "旧版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 3546.96875
+          },
+          {
+            "center": 3566.96875,
+            "field": true,
+            "height": 40,
+            "label": "新版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 888,
+            "y": 3546.96875
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "Prompt 模板与发布",
+    "width": 1440
+  },
+  {
+    "case": "prompt_expanded_390",
+    "groups": [
+      {
+        "class": "nf-json-row-actions",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 866.3828125,
+            "field": true,
+            "height": 40,
+            "label": "属性名",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 284,
+            "x": 53,
+            "y": 846.3828125
+          },
+          {
+            "center": 918.3828125,
+            "field": false,
+            "height": 40,
+            "label": "必填 ✓（切换为选填）",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 161.3671875,
+            "x": 53,
+            "y": 898.3828125
+          },
+          {
+            "center": 918.3828125,
+            "field": false,
+            "height": 40,
+            "label": "插入正文变量",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 104,
+            "x": 226.3671875,
+            "y": 898.3828125
+          },
+          {
+            "center": 970.3828125,
+            "field": false,
+            "height": 40,
+            "label": "移除属性及必填标记",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 146,
+            "x": 53,
+            "y": 950.3828125
+          }
+        ]
+      },
+      {
+        "class": "nf-json-row-actions",
+        "gap": "12px",
+        "index": 1,
+        "items": [
+          {
+            "center": 1825.3671875,
+            "field": true,
+            "height": 40,
+            "label": "属性名",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 284,
+            "x": 53,
+            "y": 1805.3671875
+          },
+          {
+            "center": 1877.3671875,
+            "field": false,
+            "height": 40,
+            "label": "必填 ✓（切换为选填）",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 161.3671875,
+            "x": 53,
+            "y": 1857.3671875
+          },
+          {
+            "center": 1929.3671875,
+            "field": false,
+            "height": 40,
+            "label": "移除属性及必填标记",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 146,
+            "x": 53,
+            "y": 1909.3671875
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": 2612.359375,
+            "field": true,
+            "height": 40,
+            "label": "值的类型",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 284,
+            "x": 53,
+            "y": 2592.359375
+          }
+        ]
+      },
+      {
+        "class": "nf-json-row-actions",
+        "gap": "12px",
+        "index": 3,
+        "items": [
+          {
+            "center": 2664.359375,
+            "field": false,
+            "height": 40,
+            "label": "第 1 项",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "STRONG",
+            "width": 49.21875,
+            "x": 53,
+            "y": 2644.359375
+          },
+          {
+            "center": 2664.359375,
+            "field": false,
+            "height": 40,
+            "label": "上移",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 48,
+            "x": 114.21875,
+            "y": 2644.359375
+          },
+          {
+            "center": 2664.359375,
+            "field": false,
+            "height": 40,
+            "label": "下移",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 48,
+            "x": 174.21875,
+            "y": 2644.359375
+          },
+          {
+            "center": 2664.359375,
+            "field": false,
+            "height": 40,
+            "label": "移除此字段",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 90,
+            "x": 234.21875,
+            "y": 2644.359375
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "12px",
+        "index": 4,
+        "items": [
+          {
+            "center": 2857.359375,
+            "field": false,
+            "height": 40,
+            "label": "保存新草稿",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 94,
+            "x": 16,
+            "y": 2837.359375
+          },
+          {
+            "center": 2857.359375,
+            "field": false,
+            "height": 40,
+            "label": "取消编辑",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 122,
+            "y": 2837.359375
+          },
+          {
+            "center": 2857.359375,
+            "field": false,
+            "height": 40,
+            "label": "导出当前内容",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 108,
+            "x": 214,
+            "y": 2837.359375
+          }
+        ]
+      },
+      {
+        "class": "nf-filter-grid",
+        "gap": "16px",
+        "index": 5,
+        "items": [
+          {
+            "center": 3107.15625,
+            "field": true,
+            "height": 40,
+            "label": "配置键",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 3087.15625
+          },
+          {
+            "center": 3191.15625,
+            "field": true,
+            "height": 40,
+            "label": "阶段",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 3171.15625
+          },
+          {
+            "center": 3275.15625,
+            "field": true,
+            "height": 40,
+            "label": "语言",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 3255.15625
+          },
+          {
+            "center": 3359.15625,
+            "field": true,
+            "height": 40,
+            "label": "状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 3339.15625
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "12px",
+        "index": 6,
+        "items": [
+          {
+            "center": 3633.9453125,
+            "field": false,
+            "height": 40,
+            "label": "共 0 个版本 · 第 1 页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 151.984375,
+            "x": 40,
+            "y": 3613.9453125
+          },
+          {
+            "center": 3633.9453125,
+            "field": false,
+            "height": 40,
+            "label": "上一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 62,
+            "x": 203.984375,
+            "y": 3613.9453125
+          },
+          {
+            "center": 3633.9453125,
+            "field": false,
+            "height": 40,
+            "label": "下一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 62,
+            "x": 277.984375,
+            "y": 3613.9453125
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 7,
+        "items": [
+          {
+            "center": 3830.9453125,
+            "field": true,
+            "height": 40,
+            "label": "旧版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 3810.9453125
+          },
+          {
+            "center": 3914.9453125,
+            "field": true,
+            "height": 40,
+            "label": "新版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 3894.9453125
+          }
+        ]
+      }
+    ],
+    "scroll": 390,
+    "title": "Prompt 模板与发布",
+    "width": 390
+  },
+  {
+    "case": "host_mobile",
+    "groups": [
+      {
+        "class": "nf-filter-grid",
+        "gap": "16px",
+        "index": 0,
+        "items": [
+          {
+            "center": -1081.3046875,
+            "field": true,
+            "height": 40,
+            "label": "供应商名称筛选",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": -1101.3046875
+          },
+          {
+            "center": -997.3046875,
+            "field": true,
+            "height": 40,
+            "label": "接口",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": -1017.3046875
+          },
+          {
+            "center": -913.3046875,
+            "field": true,
+            "height": 40,
+            "label": "配置状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": -933.3046875
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "12px",
+        "index": 1,
+        "items": [
+          {
+            "center": -756.109375,
+            "field": false,
+            "height": 40,
+            "label": "共 0 个供应商 · 第 1 页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 167.984375,
+            "x": 40,
+            "y": -776.109375
+          },
+          {
+            "center": -756.109375,
+            "field": false,
+            "height": 40,
+            "label": "上一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 66,
+            "x": 219.984375,
+            "y": -776.109375
+          },
+          {
+            "center": -704.109375,
+            "field": false,
+            "height": 40,
+            "label": "下一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 66,
+            "x": 40,
+            "y": -724.109375
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": -507.109375,
+            "field": true,
+            "height": 40,
+            "label": "供应商名称*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": -527.109375
+          },
+          {
+            "center": -423.109375,
+            "field": true,
+            "height": 40,
+            "label": "接口类型",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": -443.109375
+          },
+          {
+            "center": -339.109375,
+            "field": true,
+            "height": 40,
+            "label": "HTTPS端点*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": -359.109375
+          },
+          {
+            "center": -255.109375,
+            "field": true,
+            "height": 40,
+            "label": "新密钥",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": -275.109375
+          },
+          {
+            "center": -112.21875,
+            "field": true,
+            "height": 40,
+            "label": "总超时（秒）*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": -132.21875
+          },
+          {
+            "center": -28.21875,
+            "field": true,
+            "height": 40,
+            "label": "连接超时（秒）*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": -48.21875
+          },
+          {
+            "center": 55.78125,
+            "field": true,
+            "height": 40,
+            "label": "每分钟请求上限*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 35.78125
+          },
+          {
+            "center": 139.78125,
+            "field": true,
+            "height": 40,
+            "label": "并发上限*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 119.78125
+          },
+          {
+            "center": 223.78125,
+            "field": true,
+            "height": 40,
+            "label": "配置状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 203.78125
+          },
+          {
+            "center": 307.78125,
+            "field": true,
+            "height": 40,
+            "label": "变更原因*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 287.78125
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions nf-host-row",
+        "gap": "12px",
+        "index": 3,
+        "items": [
+          {
+            "center": 422.17578125,
+            "field": false,
+            "height": 26.3984375,
+            "label": "主机 1",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "LABEL",
+            "width": 43.75,
+            "x": 53,
+            "y": 408.9765625
+          },
+          {
+            "center": 422.1796875,
+            "field": false,
+            "height": 40,
+            "label": "allowed_hosts[]",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "INPUT",
+            "width": 164.25,
+            "x": 108.75,
+            "y": 402.1796875
+          },
+          {
+            "center": 422.1796875,
+            "field": false,
+            "height": 40,
+            "label": "移除",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 52,
+            "x": 285,
+            "y": 402.1796875
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 4,
+        "items": [
+          {
+            "center": 1141.5703125,
+            "field": true,
+            "height": 40,
+            "label": "供应商",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 1121.5703125
+          },
+          {
+            "center": 1225.5703125,
+            "field": true,
+            "height": 40,
+            "label": "模型标识*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 1205.5703125
+          },
+          {
+            "center": 1309.5703125,
+            "field": true,
+            "height": 40,
+            "label": "声明上下文 Token 上限",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 1289.5703125
+          },
+          {
+            "center": 1431.015625,
+            "field": true,
+            "height": 40,
+            "label": "声明输出 Token 上限",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 1411.015625
+          },
+          {
+            "center": 1552.4609375,
+            "field": true,
+            "height": 40,
+            "label": "结构化输出声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 1532.4609375
+          },
+          {
+            "center": 1636.4609375,
+            "field": true,
+            "height": 40,
+            "label": "流式输出声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 1616.4609375
+          },
+          {
+            "center": 1720.4609375,
+            "field": true,
+            "height": 40,
+            "label": "推理 Token 计量声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 1700.4609375
+          },
+          {
+            "center": 1804.4609375,
+            "field": true,
+            "height": 40,
+            "label": "能力声明来源说明*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 1784.4609375
+          },
+          {
+            "center": 1888.4609375,
+            "field": true,
+            "height": 40,
+            "label": "变更原因*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 1868.4609375
+          }
+        ]
+      }
+    ],
+    "scroll": 390,
+    "title": "供应商与模型",
+    "width": 390
+  },
+  {
+    "case": "workspace_checkbox",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": -464.703125,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": -484.703125
+          },
+          {
+            "center": -464.703125,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": -484.703125
+          },
+          {
+            "center": -464.703125,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": -484.703125
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "12px",
+        "index": 1,
+        "items": [
+          {
+            "center": -235.5078125,
+            "field": false,
+            "height": 40,
+            "label": "刷新状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 352,
+            "y": -255.5078125
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "12px",
+        "index": 2,
+        "items": [
+          {
+            "center": 573.0703125,
+            "field": true,
+            "height": 40,
+            "label": "起始章",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 210.75,
+            "x": 376,
+            "y": 553.0703125
+          },
+          {
+            "center": 573.0703125,
+            "field": true,
+            "height": 40,
+            "label": "结束章",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 210.75,
+            "x": 598.75,
+            "y": 553.0703125
+          },
+          {
+            "center": 573.0703125,
+            "field": true,
+            "height": 40,
+            "label": "规划状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 210.75,
+            "x": 821.5,
+            "y": 553.0703125
+          },
+          {
+            "center": 573.0703125,
+            "field": false,
+            "height": 40,
+            "label": "仅有规划问题",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "LABEL",
+            "width": 117,
+            "x": 1044.25,
+            "y": 553.0703125
+          },
+          {
+            "center": 573.0703125,
+            "field": true,
+            "height": 40,
+            "label": "每页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 210.75,
+            "x": 1173.25,
+            "y": 553.0703125
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "12px",
+        "index": 3,
+        "items": [
+          {
+            "center": 924.0625,
+            "field": false,
+            "height": 40,
+            "label": "生成下一章",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 94,
+            "x": 376,
+            "y": 904.0625
+          },
+          {
+            "center": 924.0625,
+            "field": false,
+            "height": 40,
+            "label": "生成连续范围",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 108,
+            "x": 482,
+            "y": 904.0625
+          },
+          {
+            "center": 924.0625,
+            "field": false,
+            "height": 40,
+            "label": "暂停",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 52,
+            "x": 602,
+            "y": 904.0625
+          },
+          {
+            "center": 924.0625,
+            "field": false,
+            "height": 40,
+            "label": "继续",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 52,
+            "x": 666,
+            "y": 904.0625
+          },
+          {
+            "center": 924.0625,
+            "field": false,
+            "height": 40,
+            "label": "打开阅读器",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 94,
+            "x": 730,
+            "y": 904.0625
+          },
+          {
+            "center": 924.0625,
+            "field": false,
+            "height": 40,
+            "label": "导出",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 52,
+            "x": 836,
+            "y": 904.0625
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "创作工作台",
+    "width": 1440,
+    "checked": true
+  },
+  {
+    "case": "provider_dark_1440",
+    "dark": true,
+    "groups": [
+      {
+        "class": "nf-filter-grid",
+        "gap": "16px",
+        "index": 0,
+        "items": [
+          {
+            "center": -315.8046875,
+            "field": true,
+            "height": 40,
+            "label": "供应商名称筛选",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 376,
+            "y": -335.8046875
+          },
+          {
+            "center": -315.8046875,
+            "field": true,
+            "height": 40,
+            "label": "接口",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 632,
+            "y": -335.8046875
+          },
+          {
+            "center": -315.8046875,
+            "field": true,
+            "height": 40,
+            "label": "配置状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 888,
+            "y": -335.8046875
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "12px",
+        "index": 1,
+        "items": [
+          {
+            "center": -185.0078125,
+            "field": false,
+            "height": 40,
+            "label": "共 0 个供应商 · 第 1 页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 167.984375,
+            "x": 376,
+            "y": -205.0078125
+          },
+          {
+            "center": -185.0078125,
+            "field": false,
+            "height": 40,
+            "label": "上一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 66,
+            "x": 555.984375,
+            "y": -205.0078125
+          },
+          {
+            "center": -185.0078125,
+            "field": false,
+            "height": 40,
+            "label": "下一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 66,
+            "x": 633.984375,
+            "y": -205.0078125
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": 11.9921875,
+            "field": true,
+            "height": 40,
+            "label": "供应商名称*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": -8.0078125
+          },
+          {
+            "center": 11.9921875,
+            "field": true,
+            "height": 40,
+            "label": "接口类型",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 888,
+            "y": -8.0078125
+          },
+          {
+            "center": 95.9921875,
+            "field": true,
+            "height": 40,
+            "label": "HTTPS端点*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 75.9921875
+          },
+          {
+            "center": 95.9921875,
+            "field": true,
+            "height": 40,
+            "label": "新密钥",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 75.9921875
+          },
+          {
+            "center": 217.4375,
+            "field": true,
+            "height": 40,
+            "label": "总超时（秒）*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 197.4375
+          },
+          {
+            "center": 217.4375,
+            "field": true,
+            "height": 40,
+            "label": "连接超时（秒）*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 197.4375
+          },
+          {
+            "center": 301.4375,
+            "field": true,
+            "height": 40,
+            "label": "每分钟请求上限*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 281.4375
+          },
+          {
+            "center": 301.4375,
+            "field": true,
+            "height": 40,
+            "label": "并发上限*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 281.4375
+          },
+          {
+            "center": 385.4375,
+            "field": true,
+            "height": 40,
+            "label": "配置状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 365.4375
+          },
+          {
+            "center": 385.4375,
+            "field": true,
+            "height": 40,
+            "label": "变更原因*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 365.4375
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions nf-host-row",
+        "gap": "12px",
+        "index": 3,
+        "items": [
+          {
+            "center": 499.83203125,
+            "field": false,
+            "height": 26.3984375,
+            "label": "主机 1",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "LABEL",
+            "width": 43.75,
+            "x": 389,
+            "y": 486.6328125
+          },
+          {
+            "center": 499.8359375,
+            "field": false,
+            "height": 40,
+            "label": "allowed_hosts[]",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "INPUT",
+            "width": 862.25,
+            "x": 444.75,
+            "y": 479.8359375
+          },
+          {
+            "center": 499.8359375,
+            "field": false,
+            "height": 40,
+            "label": "移除",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 52,
+            "x": 1319,
+            "y": 479.8359375
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 4,
+        "items": [
+          {
+            "center": 1140.03125,
+            "field": true,
+            "height": 40,
+            "label": "供应商",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 1120.03125
+          },
+          {
+            "center": 1140.03125,
+            "field": true,
+            "height": 40,
+            "label": "模型标识*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 1120.03125
+          },
+          {
+            "center": 1224.03125,
+            "field": true,
+            "height": 40,
+            "label": "声明上下文 Token 上限",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 1204.03125
+          },
+          {
+            "center": 1224.03125,
+            "field": true,
+            "height": 40,
+            "label": "声明输出 Token 上限",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 1204.03125
+          },
+          {
+            "center": 1345.4765625,
+            "field": true,
+            "height": 40,
+            "label": "结构化输出声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 1325.4765625
+          },
+          {
+            "center": 1345.4765625,
+            "field": true,
+            "height": 40,
+            "label": "流式输出声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 888,
+            "y": 1325.4765625
+          },
+          {
+            "center": 1429.4765625,
+            "field": true,
+            "height": 40,
+            "label": "推理 Token 计量声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 1409.4765625
+          },
+          {
+            "center": 1429.4765625,
+            "field": true,
+            "height": 40,
+            "label": "能力声明来源说明*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 1409.4765625
+          },
+          {
+            "center": 1513.4765625,
+            "field": true,
+            "height": 40,
+            "label": "变更原因*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 1493.4765625
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "供应商与模型",
+    "width": 1440
+  },
+  {
+    "case": "provider_dark_390",
+    "dark": true,
+    "groups": [
+      {
+        "class": "nf-filter-grid",
+        "gap": "16px",
+        "index": 0,
+        "items": [
+          {
+            "center": -294.8046875,
+            "field": true,
+            "height": 40,
+            "label": "供应商名称筛选",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": -314.8046875
+          },
+          {
+            "center": -210.8046875,
+            "field": true,
+            "height": 40,
+            "label": "接口",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": -230.8046875
+          },
+          {
+            "center": -126.8046875,
+            "field": true,
+            "height": 40,
+            "label": "配置状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": -146.8046875
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "12px",
+        "index": 1,
+        "items": [
+          {
+            "center": 30.390625,
+            "field": false,
+            "height": 40,
+            "label": "共 0 个供应商 · 第 1 页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 167.984375,
+            "x": 40,
+            "y": 10.390625
+          },
+          {
+            "center": 30.390625,
+            "field": false,
+            "height": 40,
+            "label": "上一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 66,
+            "x": 219.984375,
+            "y": 10.390625
+          },
+          {
+            "center": 82.390625,
+            "field": false,
+            "height": 40,
+            "label": "下一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 66,
+            "x": 40,
+            "y": 62.390625
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": 279.390625,
+            "field": true,
+            "height": 40,
+            "label": "供应商名称*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 259.390625
+          },
+          {
+            "center": 363.390625,
+            "field": true,
+            "height": 40,
+            "label": "接口类型",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 343.390625
+          },
+          {
+            "center": 447.390625,
+            "field": true,
+            "height": 40,
+            "label": "HTTPS端点*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 427.390625
+          },
+          {
+            "center": 531.390625,
+            "field": true,
+            "height": 40,
+            "label": "新密钥",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 511.390625
+          },
+          {
+            "center": 674.28125,
+            "field": true,
+            "height": 40,
+            "label": "总超时（秒）*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 654.28125
+          },
+          {
+            "center": 758.28125,
+            "field": true,
+            "height": 40,
+            "label": "连接超时（秒）*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 738.28125
+          },
+          {
+            "center": 842.28125,
+            "field": true,
+            "height": 40,
+            "label": "每分钟请求上限*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 822.28125
+          },
+          {
+            "center": 926.28125,
+            "field": true,
+            "height": 40,
+            "label": "并发上限*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 906.28125
+          },
+          {
+            "center": 1010.28125,
+            "field": true,
+            "height": 40,
+            "label": "配置状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 990.28125
+          },
+          {
+            "center": 1094.28125,
+            "field": true,
+            "height": 40,
+            "label": "变更原因*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 1074.28125
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions nf-host-row",
+        "gap": "12px",
+        "index": 3,
+        "items": [
+          {
+            "center": 1208.67578125,
+            "field": false,
+            "height": 26.3984375,
+            "label": "主机 1",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "LABEL",
+            "width": 43.75,
+            "x": 53,
+            "y": 1195.4765625
+          },
+          {
+            "center": 1208.6796875,
+            "field": false,
+            "height": 40,
+            "label": "allowed_hosts[]",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "INPUT",
+            "width": 164.25,
+            "x": 108.75,
+            "y": 1188.6796875
+          },
+          {
+            "center": 1208.6796875,
+            "field": false,
+            "height": 40,
+            "label": "移除",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 52,
+            "x": 285,
+            "y": 1188.6796875
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 4,
+        "items": [
+          {
+            "center": 1928.0703125,
+            "field": true,
+            "height": 40,
+            "label": "供应商",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 1908.0703125
+          },
+          {
+            "center": 2012.0703125,
+            "field": true,
+            "height": 40,
+            "label": "模型标识*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 1992.0703125
+          },
+          {
+            "center": 2096.0703125,
+            "field": true,
+            "height": 40,
+            "label": "声明上下文 Token 上限",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 2076.0703125
+          },
+          {
+            "center": 2217.515625,
+            "field": true,
+            "height": 40,
+            "label": "声明输出 Token 上限",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 2197.515625
+          },
+          {
+            "center": 2338.9609375,
+            "field": true,
+            "height": 40,
+            "label": "结构化输出声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 2318.9609375
+          },
+          {
+            "center": 2422.9609375,
+            "field": true,
+            "height": 40,
+            "label": "流式输出声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 2402.9609375
+          },
+          {
+            "center": 2506.9609375,
+            "field": true,
+            "height": 40,
+            "label": "推理 Token 计量声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 2486.9609375
+          },
+          {
+            "center": 2590.9609375,
+            "field": true,
+            "height": 40,
+            "label": "能力声明来源说明*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 2570.9609375
+          },
+          {
+            "center": 2674.9609375,
+            "field": true,
+            "height": 40,
+            "label": "变更原因*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 2654.9609375
+          }
+        ]
+      }
+    ],
+    "scroll": 390,
+    "title": "供应商与模型",
+    "width": 390
+  },
+  {
+    "case": "context_dark_1440",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 274.796875
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "12px",
+        "index": 1,
+        "items": [
+          {
+            "center": 586.390625,
+            "field": false,
+            "height": 40,
+            "label": "阶段",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SELECT",
+            "width": 409,
+            "x": 352,
+            "y": 566.390625
+          },
+          {
+            "center": 586.390625,
+            "field": true,
+            "height": 40,
+            "label": "清单编号",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 409,
+            "x": 773,
+            "y": 566.390625
+          },
+          {
+            "center": 586.390625,
+            "field": false,
+            "height": 40,
+            "label": "查看清单",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 1194,
+            "y": 566.390625
+          },
+          {
+            "center": 586.390625,
+            "field": false,
+            "height": 40,
+            "label": "重新组装新清单",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 122,
+            "x": 1286,
+            "y": 566.390625
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "上下文检查器",
+    "width": 1440
+  },
+  {
+    "case": "prompt_rejected_1440",
+    "groups": [
+      {
+        "class": "nf-json-row-actions",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 1603.5859375,
+            "field": true,
+            "height": 40,
+            "label": "属性名",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 550,
+            "x": 389,
+            "y": 1583.5859375
+          },
+          {
+            "center": 1603.5859375,
+            "field": false,
+            "height": 40,
+            "label": "选填（切换为必填）",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 146,
+            "x": 951,
+            "y": 1583.5859375
+          },
+          {
+            "center": 1603.5859375,
+            "field": false,
+            "height": 40,
+            "label": "插入正文变量",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 104,
+            "x": 1109,
+            "y": 1583.5859375
+          },
+          {
+            "center": 1603.5859375,
+            "field": false,
+            "height": 40,
+            "label": "移除属性及必填标记",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 146,
+            "x": 1225,
+            "y": 1583.5859375
+          }
+        ]
+      },
+      {
+        "class": "nf-json-row-actions",
+        "gap": "12px",
+        "index": 1,
+        "items": [
+          {
+            "center": 2379.375,
+            "field": true,
+            "height": 40,
+            "label": "属性名",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 650.6328125,
+            "x": 389,
+            "y": 2359.375
+          },
+          {
+            "center": 2379.375,
+            "field": false,
+            "height": 40,
+            "label": "必填 ✓（切换为选填）",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 161.3671875,
+            "x": 1051.6328125,
+            "y": 2359.375
+          },
+          {
+            "center": 2379.375,
+            "field": false,
+            "height": 40,
+            "label": "移除属性及必填标记",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 146,
+            "x": 1225,
+            "y": 2359.375
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": 3035.96875,
+            "field": true,
+            "height": 40,
+            "label": "值的类型",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 483,
+            "x": 389,
+            "y": 3015.96875
+          }
+        ]
+      },
+      {
+        "class": "nf-json-row-actions",
+        "gap": "12px",
+        "index": 3,
+        "items": [
+          {
+            "center": 3087.96875,
+            "field": false,
+            "height": 40,
+            "label": "第 1 项",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "STRONG",
+            "width": 49.21875,
+            "x": 389,
+            "y": 3067.96875
+          },
+          {
+            "center": 3087.96875,
+            "field": false,
+            "height": 40,
+            "label": "上移",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 48,
+            "x": 450.21875,
+            "y": 3067.96875
+          },
+          {
+            "center": 3087.96875,
+            "field": false,
+            "height": 40,
+            "label": "下移",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 48,
+            "x": 510.21875,
+            "y": 3067.96875
+          },
+          {
+            "center": 3087.96875,
+            "field": false,
+            "height": 40,
+            "label": "移除此字段",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 90,
+            "x": 570.21875,
+            "y": 3067.96875
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "12px",
+        "index": 4,
+        "items": [
+          {
+            "center": 3280.96875,
+            "field": false,
+            "height": 40,
+            "label": "保存新草稿",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 94,
+            "x": 352,
+            "y": 3260.96875
+          },
+          {
+            "center": 3280.96875,
+            "field": false,
+            "height": 40,
+            "label": "取消编辑",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 458,
+            "y": 3260.96875
+          },
+          {
+            "center": 3280.96875,
+            "field": false,
+            "height": 40,
+            "label": "导出当前内容",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 108,
+            "x": 550,
+            "y": 3260.96875
+          }
+        ]
+      },
+      {
+        "class": "nf-filter-grid",
+        "gap": "16px",
+        "index": 5,
+        "items": [
+          {
+            "center": 3504.3671875,
+            "field": true,
+            "height": 40,
+            "label": "配置键",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 376,
+            "y": 3484.3671875
+          },
+          {
+            "center": 3504.3671875,
+            "field": true,
+            "height": 40,
+            "label": "阶段",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 632,
+            "y": 3484.3671875
+          },
+          {
+            "center": 3504.3671875,
+            "field": true,
+            "height": 40,
+            "label": "语言",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 888,
+            "y": 3484.3671875
+          },
+          {
+            "center": 3504.3671875,
+            "field": true,
+            "height": 40,
+            "label": "状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 1144,
+            "y": 3484.3671875
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "12px",
+        "index": 6,
+        "items": [
+          {
+            "center": 3647.1640625,
+            "field": false,
+            "height": 40,
+            "label": "共 0 个版本 · 第 1 页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 151.984375,
+            "x": 376,
+            "y": 3627.1640625
+          },
+          {
+            "center": 3647.1640625,
+            "field": false,
+            "height": 40,
+            "label": "上一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 62,
+            "x": 539.984375,
+            "y": 3627.1640625
+          },
+          {
+            "center": 3647.1640625,
+            "field": false,
+            "height": 40,
+            "label": "下一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 62,
+            "x": 613.984375,
+            "y": 3627.1640625
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 7,
+        "items": [
+          {
+            "center": 3844.1640625,
+            "field": true,
+            "height": 40,
+            "label": "旧版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 3824.1640625
+          },
+          {
+            "center": 3844.1640625,
+            "field": true,
+            "height": 40,
+            "label": "新版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 888,
+            "y": 3824.1640625
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "Prompt 模板与发布",
+    "width": 1440,
+    "state": {
+      "alerts": [
+        "尚未保存，请核对字段\n    属性名不能为空、重复或超过200字节。",
+        "必填名“topic”尚未对应属性；请在高级字段区移除旧名称，或恢复属性名。"
+      ],
+      "key": "ui21.layout",
+      "property": ""
+    }
+  },
+  {
+    "case": "prompt_rejected_390",
+    "groups": [
+      {
+        "class": "nf-json-row-actions",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 486.1796875,
+            "field": true,
+            "height": 40,
+            "label": "属性名",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 284,
+            "x": 53,
+            "y": 466.1796875
+          },
+          {
+            "center": 538.1796875,
+            "field": false,
+            "height": 40,
+            "label": "选填（切换为必填）",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 146,
+            "x": 53,
+            "y": 518.1796875
+          },
+          {
+            "center": 538.1796875,
+            "field": false,
+            "height": 40,
+            "label": "插入正文变量",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 104,
+            "x": 211,
+            "y": 518.1796875
+          },
+          {
+            "center": 590.1796875,
+            "field": false,
+            "height": 40,
+            "label": "移除属性及必填标记",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 146,
+            "x": 53,
+            "y": 570.1796875
+          }
+        ]
+      },
+      {
+        "class": "nf-json-row-actions",
+        "gap": "12px",
+        "index": 1,
+        "items": [
+          {
+            "center": 1497.9609375,
+            "field": true,
+            "height": 40,
+            "label": "属性名",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 284,
+            "x": 53,
+            "y": 1477.9609375
+          },
+          {
+            "center": 1549.9609375,
+            "field": false,
+            "height": 40,
+            "label": "必填 ✓（切换为选填）",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 161.3671875,
+            "x": 53,
+            "y": 1529.9609375
+          },
+          {
+            "center": 1601.9609375,
+            "field": false,
+            "height": 40,
+            "label": "移除属性及必填标记",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 146,
+            "x": 53,
+            "y": 1581.9609375
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": 2284.953125,
+            "field": true,
+            "height": 40,
+            "label": "值的类型",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 284,
+            "x": 53,
+            "y": 2264.953125
+          }
+        ]
+      },
+      {
+        "class": "nf-json-row-actions",
+        "gap": "12px",
+        "index": 3,
+        "items": [
+          {
+            "center": 2336.953125,
+            "field": false,
+            "height": 40,
+            "label": "第 1 项",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "STRONG",
+            "width": 49.21875,
+            "x": 53,
+            "y": 2316.953125
+          },
+          {
+            "center": 2336.953125,
+            "field": false,
+            "height": 40,
+            "label": "上移",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 48,
+            "x": 114.21875,
+            "y": 2316.953125
+          },
+          {
+            "center": 2336.953125,
+            "field": false,
+            "height": 40,
+            "label": "下移",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 48,
+            "x": 174.21875,
+            "y": 2316.953125
+          },
+          {
+            "center": 2336.953125,
+            "field": false,
+            "height": 40,
+            "label": "移除此字段",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 90,
+            "x": 234.21875,
+            "y": 2316.953125
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "12px",
+        "index": 4,
+        "items": [
+          {
+            "center": 2529.953125,
+            "field": false,
+            "height": 40,
+            "label": "保存新草稿",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 94,
+            "x": 16,
+            "y": 2509.953125
+          },
+          {
+            "center": 2529.953125,
+            "field": false,
+            "height": 40,
+            "label": "取消编辑",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 122,
+            "y": 2509.953125
+          },
+          {
+            "center": 2529.953125,
+            "field": false,
+            "height": 40,
+            "label": "导出当前内容",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 108,
+            "x": 214,
+            "y": 2509.953125
+          }
+        ]
+      },
+      {
+        "class": "nf-filter-grid",
+        "gap": "16px",
+        "index": 5,
+        "items": [
+          {
+            "center": 2779.75,
+            "field": true,
+            "height": 40,
+            "label": "配置键",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 2759.75
+          },
+          {
+            "center": 2863.75,
+            "field": true,
+            "height": 40,
+            "label": "阶段",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 2843.75
+          },
+          {
+            "center": 2947.75,
+            "field": true,
+            "height": 40,
+            "label": "语言",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 2927.75
+          },
+          {
+            "center": 3031.75,
+            "field": true,
+            "height": 40,
+            "label": "状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 3011.75
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "12px",
+        "index": 6,
+        "items": [
+          {
+            "center": 3306.5390625,
+            "field": false,
+            "height": 40,
+            "label": "共 0 个版本 · 第 1 页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 151.984375,
+            "x": 40,
+            "y": 3286.5390625
+          },
+          {
+            "center": 3306.5390625,
+            "field": false,
+            "height": 40,
+            "label": "上一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 62,
+            "x": 203.984375,
+            "y": 3286.5390625
+          },
+          {
+            "center": 3306.5390625,
+            "field": false,
+            "height": 40,
+            "label": "下一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 62,
+            "x": 277.984375,
+            "y": 3286.5390625
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 7,
+        "items": [
+          {
+            "center": 3503.5390625,
+            "field": true,
+            "height": 40,
+            "label": "旧版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 3483.5390625
+          },
+          {
+            "center": 3587.5390625,
+            "field": true,
+            "height": 40,
+            "label": "新版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 3567.5390625
+          }
+        ]
+      }
+    ],
+    "scroll": 390,
+    "title": "Prompt 模板与发布",
+    "width": 390
+  },
+  {
+    "case": "overview_keyboard",
+    "escapeFocus": "",
+    "tabFocus": "overview-from"
+  },
+  {
+    "case": "overview_keyboard_settled",
+    "escapeFocus": "overview-status",
+    "expanded": "false",
+    "tabFocus": "overview-from"
+  },
+  {
+    "case": "native_novels_1440",
+    "native": [
+      {
+        "class": "fi-input-wrp",
+        "height": 40,
+        "y": 205.796875
+      },
+      {
+        "class": "fi-fo-select fi-fo-select-native fi-input-wrp",
+        "height": 0,
+        "y": 0
+      },
+      {
+        "class": "fi-fo-select fi-fo-select-native fi-input-wrp",
+        "height": 0,
+        "y": 0
+      },
+      {
+        "class": "fi-fo-select fi-fo-select-native fi-input-wrp",
+        "height": 0,
+        "y": 0
+      },
+      {
+        "class": "fi-fo-date-time-picker fi-input-wrp",
+        "height": 0,
+        "y": 0
+      },
+      {
+        "class": "fi-fo-date-time-picker fi-input-wrp",
+        "height": 0,
+        "y": 0
+      },
+      {
+        "class": "fi-input-wrp",
+        "height": 0,
+        "y": 0
+      },
+      {
+        "class": "fi-input-wrp",
+        "height": 40,
+        "y": 433.796875
+      }
+    ]
+  },
+  {
+    "case": "host_final_390",
+    "groups": [
+      {
+        "class": "nf-filter-grid",
+        "gap": "16px",
+        "index": 0,
+        "items": [
+          {
+            "center": -1081.3046875,
+            "field": true,
+            "height": 40,
+            "label": "供应商名称筛选",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": -1101.3046875
+          },
+          {
+            "center": -997.3046875,
+            "field": true,
+            "height": 40,
+            "label": "接口",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": -1017.3046875
+          },
+          {
+            "center": -913.3046875,
+            "field": true,
+            "height": 40,
+            "label": "配置状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": -933.3046875
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "12px",
+        "index": 1,
+        "items": [
+          {
+            "center": -756.109375,
+            "field": false,
+            "height": 40,
+            "label": "共 0 个供应商 · 第 1 页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 167.984375,
+            "x": 40,
+            "y": -776.109375
+          },
+          {
+            "center": -756.109375,
+            "field": false,
+            "height": 40,
+            "label": "上一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 66,
+            "x": 219.984375,
+            "y": -776.109375
+          },
+          {
+            "center": -704.109375,
+            "field": false,
+            "height": 40,
+            "label": "下一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 66,
+            "x": 40,
+            "y": -724.109375
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": -507.109375,
+            "field": true,
+            "height": 40,
+            "label": "供应商名称*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": -527.109375
+          },
+          {
+            "center": -423.109375,
+            "field": true,
+            "height": 40,
+            "label": "接口类型",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": -443.109375
+          },
+          {
+            "center": -339.109375,
+            "field": true,
+            "height": 40,
+            "label": "HTTPS端点*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": -359.109375
+          },
+          {
+            "center": -255.109375,
+            "field": true,
+            "height": 40,
+            "label": "新密钥",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": -275.109375
+          },
+          {
+            "center": -112.21875,
+            "field": true,
+            "height": 40,
+            "label": "总超时（秒）*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": -132.21875
+          },
+          {
+            "center": -28.21875,
+            "field": true,
+            "height": 40,
+            "label": "连接超时（秒）*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": -48.21875
+          },
+          {
+            "center": 55.78125,
+            "field": true,
+            "height": 40,
+            "label": "每分钟请求上限*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 35.78125
+          },
+          {
+            "center": 139.78125,
+            "field": true,
+            "height": 40,
+            "label": "并发上限*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 119.78125
+          },
+          {
+            "center": 223.78125,
+            "field": true,
+            "height": 40,
+            "label": "配置状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 203.78125
+          },
+          {
+            "center": 307.78125,
+            "field": true,
+            "height": 40,
+            "label": "变更原因*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 287.78125
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions nf-host-row",
+        "gap": "12px",
+        "index": 3,
+        "items": [
+          {
+            "center": 422.17578125,
+            "field": false,
+            "height": 26.3984375,
+            "label": "主机 1",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "LABEL",
+            "width": 43.75,
+            "x": 53,
+            "y": 408.9765625
+          },
+          {
+            "center": 422.1796875,
+            "field": false,
+            "height": 40,
+            "label": "allowed_hosts[]",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "INPUT",
+            "width": 164.25,
+            "x": 108.75,
+            "y": 402.1796875
+          },
+          {
+            "center": 422.1796875,
+            "field": false,
+            "height": 40,
+            "label": "移除",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 52,
+            "x": 285,
+            "y": 402.1796875
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 4,
+        "items": [
+          {
+            "center": 1153.5703125,
+            "field": true,
+            "height": 40,
+            "label": "供应商",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 1133.5703125
+          },
+          {
+            "center": 1237.5703125,
+            "field": true,
+            "height": 40,
+            "label": "模型标识*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 1217.5703125
+          },
+          {
+            "center": 1321.5703125,
+            "field": true,
+            "height": 40,
+            "label": "声明上下文 Token 上限",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 1301.5703125
+          },
+          {
+            "center": 1443.015625,
+            "field": true,
+            "height": 40,
+            "label": "声明输出 Token 上限",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 1423.015625
+          },
+          {
+            "center": 1564.4609375,
+            "field": true,
+            "height": 40,
+            "label": "结构化输出声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 1544.4609375
+          },
+          {
+            "center": 1648.4609375,
+            "field": true,
+            "height": 40,
+            "label": "流式输出声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 1628.4609375
+          },
+          {
+            "center": 1732.4609375,
+            "field": true,
+            "height": 40,
+            "label": "推理 Token 计量声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 310,
+            "x": 40,
+            "y": 1712.4609375
+          },
+          {
+            "center": 1816.4609375,
+            "field": true,
+            "height": 40,
+            "label": "能力声明来源说明*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 1796.4609375
+          },
+          {
+            "center": 1900.4609375,
+            "field": true,
+            "height": 40,
+            "label": "变更原因*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 310,
+            "x": 40,
+            "y": 1880.4609375
+          }
+        ]
+      }
+    ],
+    "scroll": 390,
+    "title": "供应商与模型",
+    "width": 390,
+    "spacing": {
+      "columnGap": "12px",
+      "nextButtonGap": 12,
+      "overlay": "none",
+      "rowHeight": 40
+    }
+  },
+  {
+    "case": "host_final_1440",
+    "groups": [
+      {
+        "class": "nf-filter-grid",
+        "gap": "16px",
+        "index": 0,
+        "items": [
+          {
+            "center": -315.8046875,
+            "field": true,
+            "height": 40,
+            "label": "供应商名称筛选",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 376,
+            "y": -335.8046875
+          },
+          {
+            "center": -315.8046875,
+            "field": true,
+            "height": 40,
+            "label": "接口",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 632,
+            "y": -335.8046875
+          },
+          {
+            "center": -315.8046875,
+            "field": true,
+            "height": 40,
+            "label": "配置状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 888,
+            "y": -335.8046875
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "12px",
+        "index": 1,
+        "items": [
+          {
+            "center": -185.0078125,
+            "field": false,
+            "height": 40,
+            "label": "共 0 个供应商 · 第 1 页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 167.984375,
+            "x": 376,
+            "y": -205.0078125
+          },
+          {
+            "center": -185.0078125,
+            "field": false,
+            "height": 40,
+            "label": "上一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 66,
+            "x": 555.984375,
+            "y": -205.0078125
+          },
+          {
+            "center": -185.0078125,
+            "field": false,
+            "height": 40,
+            "label": "下一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 66,
+            "x": 633.984375,
+            "y": -205.0078125
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": 11.9921875,
+            "field": true,
+            "height": 40,
+            "label": "供应商名称*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": -8.0078125
+          },
+          {
+            "center": 11.9921875,
+            "field": true,
+            "height": 40,
+            "label": "接口类型",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 888,
+            "y": -8.0078125
+          },
+          {
+            "center": 95.9921875,
+            "field": true,
+            "height": 40,
+            "label": "HTTPS端点*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 75.9921875
+          },
+          {
+            "center": 95.9921875,
+            "field": true,
+            "height": 40,
+            "label": "新密钥",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 75.9921875
+          },
+          {
+            "center": 217.4375,
+            "field": true,
+            "height": 40,
+            "label": "总超时（秒）*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 197.4375
+          },
+          {
+            "center": 217.4375,
+            "field": true,
+            "height": 40,
+            "label": "连接超时（秒）*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 197.4375
+          },
+          {
+            "center": 301.4375,
+            "field": true,
+            "height": 40,
+            "label": "每分钟请求上限*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 281.4375
+          },
+          {
+            "center": 301.4375,
+            "field": true,
+            "height": 40,
+            "label": "并发上限*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 281.4375
+          },
+          {
+            "center": 385.4375,
+            "field": true,
+            "height": 40,
+            "label": "配置状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 365.4375
+          },
+          {
+            "center": 385.4375,
+            "field": true,
+            "height": 40,
+            "label": "变更原因*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 365.4375
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions nf-host-row",
+        "gap": "12px",
+        "index": 3,
+        "items": [
+          {
+            "center": 499.83203125,
+            "field": false,
+            "height": 26.3984375,
+            "label": "主机 1",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "LABEL",
+            "width": 43.75,
+            "x": 389,
+            "y": 486.6328125
+          },
+          {
+            "center": 499.8359375,
+            "field": false,
+            "height": 40,
+            "label": "allowed_hosts[]",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "INPUT",
+            "width": 862.25,
+            "x": 444.75,
+            "y": 479.8359375
+          },
+          {
+            "center": 499.8359375,
+            "field": false,
+            "height": 40,
+            "label": "移除",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 52,
+            "x": 1319,
+            "y": 479.8359375
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 4,
+        "items": [
+          {
+            "center": 1152.03125,
+            "field": true,
+            "height": 40,
+            "label": "供应商",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 1132.03125
+          },
+          {
+            "center": 1152.03125,
+            "field": true,
+            "height": 40,
+            "label": "模型标识*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 1132.03125
+          },
+          {
+            "center": 1236.03125,
+            "field": true,
+            "height": 40,
+            "label": "声明上下文 Token 上限",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 1216.03125
+          },
+          {
+            "center": 1236.03125,
+            "field": true,
+            "height": 40,
+            "label": "声明输出 Token 上限",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 1216.03125
+          },
+          {
+            "center": 1357.4765625,
+            "field": true,
+            "height": 40,
+            "label": "结构化输出声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 1337.4765625
+          },
+          {
+            "center": 1357.4765625,
+            "field": true,
+            "height": 40,
+            "label": "流式输出声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 888,
+            "y": 1337.4765625
+          },
+          {
+            "center": 1441.4765625,
+            "field": true,
+            "height": 40,
+            "label": "推理 Token 计量声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 1421.4765625
+          },
+          {
+            "center": 1441.4765625,
+            "field": true,
+            "height": 40,
+            "label": "能力声明来源说明*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 1421.4765625
+          },
+          {
+            "center": 1525.4765625,
+            "field": true,
+            "height": 40,
+            "label": "变更原因*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 1505.4765625
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "供应商与模型",
+    "width": 1440,
+    "spacing": {
+      "columnGap": "12px",
+      "nextButtonGap": 12,
+      "rowHeight": 40
+    }
+  },
+  {
+    "case": "native_create_390",
+    "native": [
+      {
+        "class": "fi-fo-text-input fi-input-wrp",
+        "height": 40,
+        "inputType": "text"
+      },
+      {
+        "class": "fi-fo-text-input fi-input-wrp",
+        "height": 40,
+        "inputType": "text"
+      },
+      {
+        "class": "fi-fo-text-input fi-input-wrp",
+        "height": 40,
+        "inputType": "text"
+      },
+      {
+        "class": "fi-fo-textarea fi-input-wrp",
+        "height": 132
+      },
+      {
+        "class": "fi-fo-textarea fi-input-wrp",
+        "height": 204
+      },
+      {
+        "class": "fi-fo-textarea fi-input-wrp",
+        "height": 60
+      },
+      {
+        "class": "fi-fo-textarea fi-input-wrp",
+        "height": 60
+      },
+      {
+        "class": "fi-fo-text-input fi-input-wrp",
+        "height": 40,
+        "inputType": "number"
+      },
+      {
+        "class": "fi-fo-text-input fi-input-wrp",
+        "height": 40,
+        "inputType": "number"
+      },
+      {
+        "class": "fi-fo-text-input fi-input-wrp",
+        "height": 40,
+        "inputType": "number"
+      },
+      {
+        "class": "fi-fo-textarea fi-input-wrp",
+        "height": 60
+      },
+      {
+        "class": "fi-fo-textarea fi-input-wrp",
+        "height": 60
+      },
+      {
+        "class": "fi-fo-textarea fi-input-wrp",
+        "height": 60
+      }
+    ],
+    "dark": false
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "baseline_files_checked": 1549,
+  "modified_existing_files": [
+    "DESIGN.md",
+    "app/Filament/Pages/ExtractionLedger.php",
+    "app/Filament/Pages/Overview.php",
+    "app/Filament/Pages/ReviewCenter.php",
+    "app/Filament/Pages/RevisionDesk.php",
+    "app/Filament/Pages/StoryHub.php",
+    "app/Providers/Filament/AdminPanelProvider.php",
+    "docs/DEVELOPMENT_TASKS.md",
+    "docs/ui/PLAN.md",
+    "resources/css/filament/admin/theme.css",
+    "tests/Feature/NovelNavigationTest.php"
+  ],
+  "all_other_baseline_files_unchanged": true,
+  "previous_task_cards_byte_prefix_preserved": true,
+  "previous_ui20_ui21_evidence_unchanged": true,
+  "new_files_only_under": "docs/ui/NF-UI22",
+  "document_links_passed": true,
+  "secret_scan_passed": true,
+  "git_diff_check_passed": true,
+  "preview_port_8776_closed": true,
+  "temporary_credential_removed": true,
+  "final_test_database_counts": {
+    "users": 0,
+    "novels": 0,
+    "ai_requests": 0
+  }
+}

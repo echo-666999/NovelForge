@@ -1,0 +1,25 @@
+{
+  "tool": "phpunit",
+  "result": "failed",
+  "tests": 70,
+  "passed": 69,
+  "assertions": 877,
+  "duration_ms": 311808,
+  "failed": 1,
+  "failures": [
+    {
+      "test": "Tests\\Feature\\UiFoundationTest::test_panel_registers_independent_compiled_theme",
+      "file": "/Users/webb/Herd/NovelForge/tests/Feature/UiFoundationTest.php",
+      "line": 34,
+      "theme_names": [
+        "theme-CjebEqut.css",
+        "theme-umldeUcU.css"
+      ],
+      "diagnosis": "测试过程中重建资源；当前清单与进程静态缓存的旧主题路径不一致。构建固定后UI基础7例均通过。"
+    }
+  ],
+  "original_sha256": {
+    "/tmp/nf-ui21-regression.log": "a3642ddfd9cbd9c044aa912076b1accf699355700b10c8be5079b4adf8975dad",
+    "/tmp/nf-ui21-regression.xml": "b72090ad0582589b654d6ece3c6f8d6d8c3bfa3bfb2659789bfd7001d8d5a2d8"
+  }
+}

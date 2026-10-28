@@ -1,0 +1,4 @@
+# 仅收录本轮已核对且无凭据的通过日志。
+!BUILD.log
+!PINT.log
+!PHPUNIT.log

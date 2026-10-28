@@ -1,0 +1,35 @@
+{
+  "baseline_files_checked": 1520,
+  "modified_existing_files": [
+    "DESIGN.md",
+    "docs/DEVELOPMENT_TASKS.md",
+    "docs/ui/PLAN.md",
+    "resources/css/filament/admin/theme.css",
+    "resources/views/filament/provider-form.blade.php",
+    "resources/views/filament/workspace.blade.php"
+  ],
+  "all_other_baseline_files_unchanged": true,
+  "previous_task_cards_byte_prefix_preserved": true,
+  "previous_ui20_evidence_unchanged": true,
+  "new_files_only_under": "docs/ui/NF-UI21",
+  "bindings_checked": {
+    "resources/views/filament/provider-form.blade.php": {
+      "form_names_actions_bindings_and_conditions_unchanged": true
+    },
+    "resources/views/filament/workspace.blade.php": {
+      "form_names_actions_bindings_and_conditions_unchanged": true
+    }
+  },
+  "document_links_passed": true,
+  "secret_scan_passed": true,
+  "git_diff_check_passed": true,
+  "preview_port_8775_closed": true,
+  "temporary_credential_removed": true,
+  "final_test_database_counts": {
+    "users": 0,
+    "novels": 0,
+    "ai_requests": 0,
+    "prompt_versions": 0
+  },
+  "manifest": "assets/theme-CjebEqut.css"
+}

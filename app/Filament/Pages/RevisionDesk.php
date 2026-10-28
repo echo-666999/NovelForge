@@ -38,7 +38,8 @@ class RevisionDesk extends Page
 
     protected static ?int $navigationSort = 40;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-pencil-square';
+    // UI22：二级菜单使用原生圆点，仅一级分组显示图标。
+    protected static string|\BackedEnum|null $navigationIcon = null;
 
     protected static ?string $navigationLabel = '受限修订工作台';
 

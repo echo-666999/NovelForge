@@ -1,0 +1,14 @@
+{
+  "tests": 61,
+  "passed": 60,
+  "assertions": 856,
+  "errors": 1,
+  "duration_ms": 199669,
+  "classification": "新增夹具错误创建第二管理员，触发 users_single_admin；已改普通用户，生产约束不变",
+  "error_test": "test_audit_is_read_only_and_detail_cannot_read_foreign_actor_record",
+  "raw_artifacts_not_copied": "原失败SQL含随机夹具认证字段，仅保留摘要和原始产物SHA256，不归档SQL或凭据",
+  "sha256": {
+    "nf-ui24-first.log": "3bf9e192910e5c82bda6be9524927e8aa584799dd97a7c16f7084bea14ec850f",
+    "nf-ui24-first.xml": "4630f8010651b5fee515492f8d2d913b3bee889058b639345fb39ad1626a6872"
+  }
+}

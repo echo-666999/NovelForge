@@ -290,9 +290,10 @@
     color: var(--nf-ink);
     text-align: start;
     cursor: pointer;
+    line-height: 1.25;
 }
 .nf-select-trigger:disabled { opacity: .6; cursor: not-allowed; }
-.nf-select-value { min-width: 0; overflow-wrap: anywhere; }
+.nf-select-value { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .nf-select-chevron { width: 20px; height: 20px; flex-shrink: 0; color: var(--nf-pencil); }
 .nf-select .fi-dropdown-panel {
     width: 100%;
@@ -322,17 +323,47 @@
 /* 切书选择器复用统一单选菜单，GET表单布局不拉伸相邻动作。 */
 .nf-book-picker { flex: 1 1 16rem; max-width: 28rem; min-width: 0; }
 
+/* 同排控件使用单行行高，避免正文1.65行高将选择器撑高而按钮仍为40px。 */
+.nf-book-switch .nf-select-trigger,
+.nf-story-toolbar .nf-select-trigger,
+.fi-panel-admin .nf-story-toolbar :is(input:not([type='hidden'], [type='checkbox'], [type='radio']), select) {
+    line-height: 1.25;
+}
+
+/* 只移除同排字段的额外外边距，保留普通编辑字段及错误说明的正常间距。 */
+.nf-book-switch .nf-book-picker > .nf-field,
+.nf-story-screen .nf-story-toolbar > .nf-field {
+    margin-block: 0;
+}
+
+/* 链接与按钮共享控件行的中心；保持原生链接语义和宽度不足时的自然换行。 */
+.nf-book-switch > a,
+.nf-story-toolbar > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--nf-control-height);
+    max-width: 100%;
+}
+
+/* 单行选择值不挤走相邻动作；完整文本仍保留在菜单、DOM与可访问名称中。 */
+.nf-book-switch .nf-select-value,
+.nf-story-toolbar .nf-select-value {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 /* 书级辅助入口默认收起，当前任务的正文与表单保持靠前。 */
 .nf-book-navigation-drawer { margin-top: 1rem; }
 .nf-book-navigation-drawer > summary { cursor: pointer; font-weight: 600; }
 
 /* UI04：复杂字段按当前层级展开，轻边界区分行，窄屏操作自然换行。 */
 .nf-config-editor { display: grid; gap: 1.5rem; }
-.nf-config-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.nf-config-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .nf-json-node { min-width: 0; margin-block: .75rem; padding: .75rem; border: 1px solid var(--nf-rule); border-radius: .5rem; }
 .nf-json-node > legend { padding-inline: .25rem; font-weight: 600; overflow-wrap: anywhere; }
 .nf-json-row { min-width: 0; margin-top: .75rem; }
-.nf-json-row-actions { display: flex; flex-wrap: wrap; align-items: end; gap: .5rem; }
+.nf-json-row-actions { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; }
 .nf-json-row-actions > .nf-field { flex: 1 1 12rem; }
 .nf-config-text { white-space: pre-wrap; overflow-wrap: anywhere; min-width: 12rem; }
 .nf-json-empty { color: var(--nf-pencil); margin-block: .5rem; }
@@ -364,7 +395,7 @@
 
 /* UI06：故事工作区统一密度，正文与版本证据保留阅读层次。 */
 .nf-story-screen { --nf-story-gap: 1rem; }
-.nf-story-toolbar { display:flex; flex-wrap:wrap; align-items:end; gap:1rem; }
+.nf-story-toolbar { display:flex; flex-wrap:wrap; align-items:end; gap:12px; }
 .nf-story-toolbar > .nf-field { flex:1 1 12rem; min-width:0; }
 .nf-story-fields { display:grid; grid-template-columns:minmax(0,1fr); gap:1rem; }
 .nf-story-screen .nf-field { min-width:0; margin-block:.5rem; }
@@ -412,3 +443,54 @@
 }
 /* 错误定位避让固定顶部栏，焦点样式继续沿用既有单层边界。 */
 .fi-panel-admin [aria-invalid="true"] { scroll-margin-top: 6rem; }
+
+
+/* UI21：所有单行原生控件与公共选择器同高；多行正文继续沿用阅读行高。 */
+.fi-panel-admin .fi-page-content :where(input, select):not(.fi-input, .fi-select-input, .fi-input-wrp *, [type='hidden'], [type='checkbox'], [type='radio'], [type='file']) {
+    line-height: 1.25;
+}
+
+/* 同排说明、链接及复选项共享控件行中心，不把正文或表格里的链接变成按钮。 */
+:is(.nf-config-actions, .nf-json-row-actions, .nf-state-actions) > a,
+:is(.nf-story-toolbar, .nf-config-actions, .nf-json-row-actions, .nf-state-actions) > :is(span, strong, .nf-story-check) {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--nf-control-height);
+    max-width: 100%;
+    margin-block: 0;
+}
+
+/* 行内字段不叠加页级边距；不触碰帮助、错误和普通编辑区的独立间距。 */
+.nf-json-row-actions > .nf-field,
+.nf-config-actions > .nf-field { margin-block: 0; }
+
+/* 未包字段外壳的阶段筛选也参与工具栏伸缩，避免默认100%宽度挤走动作。 */
+.fi-panel-admin .fi-page-content .nf-story-toolbar > :is(input:not([type='hidden'], [type='checkbox'], [type='radio'], [type='file']), select) {
+    flex: 1 1 12rem;
+    width: auto;
+    min-width: 0;
+    margin-top: 0;
+}
+
+/* 主机名、输入、移除是同一行；中列允许缩小，不遮盖文字或改变表单顺序。 */
+.nf-config-actions.nf-host-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.fi-panel-admin .fi-page-content .nf-host-row > input { margin-top: 0; }
+
+
+/* UI22：独立筛选或筛选网格与紧邻的空态/错误块保持区块间距，不挤成一个控件。 */
+.nf-section .fi-section-content > :is(.nf-field, .nf-form-grid, .nf-filter-grid) + .nf-state {
+    margin-block-start: 16px;
+}
+
+
+/* UI23：新建/编辑弹窗里的独立保存按钮不随表单网格拉伸；高度继续沿用40px。 */
+.nf-editor-modal .nf-config-editor > .fi-btn { justify-self: start; max-inline-size: 100%; }
+.nf-editor-modal .nf-config-editor { min-width: 0; }
+
+/* 列表结果与前面的独立筛选保持既定16px区块间距。 */
+.nf-catalog-results { margin-block-start: 16px; }

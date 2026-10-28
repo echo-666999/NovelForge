@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-28",
+  "baseline_file_count": 1588,
+  "changed_baseline_files": [
+    "DESIGN.md",
+    "app/Filament/Pages/AuditCenter.php",
+    "app/Filament/Pages/Billing.php",
+    "docs/DEVELOPMENT_TASKS.md",
+    "docs/ui/PLAN.md",
+    "resources/views/filament/audit-center.blade.php",
+    "resources/views/filament/billing.blade.php"
+  ],
+  "missing_baseline_files": [],
+  "unexpected_changes": [],
+  "new_files": [
+    "docs/ui/NF-UI24/.gitignore",
+    "docs/ui/NF-UI24/ACCEPTANCE.md",
+    "docs/ui/NF-UI24/BROWSER.json",
+    "docs/ui/NF-UI24/BUILD.log",
+    "docs/ui/NF-UI24/CHECKS.json",
+    "docs/ui/NF-UI24/FIRST_REGRESSION.json",
+    "docs/ui/NF-UI24/PAGES.md",
+    "docs/ui/NF-UI24/PHPUNIT.log",
+    "docs/ui/NF-UI24/PHPUNIT.xml",
+    "docs/ui/NF-UI24/PINT.log",
+    "docs/ui/NF-UI24/SCOPE.json",
+    "docs/ui/NF-UI24/STAGE_COUNTS.json",
+    "docs/ui/NF-UI24/screenshots/audit-detail-mobile-390.jpg",
+    "docs/ui/NF-UI24/screenshots/audit-list-1440.jpg",
+    "docs/ui/NF-UI24/screenshots/audit-list-mobile-390.jpg",
+    "docs/ui/NF-UI24/screenshots/billing-list-1440.jpg",
+    "docs/ui/NF-UI24/screenshots/billing-list-mobile-390.jpg",
+    "docs/ui/NF-UI24/screenshots/billing-populated-1440.jpg",
+    "docs/ui/NF-UI24/screenshots/budget-detail-1440.jpg",
+    "docs/ui/NF-UI24/screenshots/budget-editor-1440.jpg",
+    "docs/ui/NF-UI24/screenshots/health-mobile-390.jpg",
+    "docs/ui/NF-UI24/screenshots/reconcile-mobile-390.jpg",
+    "tests/Feature/RemainingConfigurationModalUiTest.php"
+  ],
+  "prior_task_docs_preserved_as_prefix": {
+    "DESIGN.md": true,
+    "docs/DEVELOPMENT_TASKS.md": true,
+    "docs/ui/PLAN.md": true
+  },
+  "billing_parse_hash_key_execute_unchanged": true,
+  "business_services_controllers_routes_models_migrations_and_prior_evidence_unchanged": true,
+  "shared_modal_css_unchanged": true,
+  "source_sha256": {
+    "DESIGN.md": "b82eb60b1bd55397f71b524500948a940804fd2a5cb2d4bce7b4d4bf51425620",
+    "app/Filament/Pages/AuditCenter.php": "3afa4174906d0a7ae1e5ead97a0b07725194f1ed27a2c291e46e90e449d4806f",
+    "app/Filament/Pages/Billing.php": "d81821d9cd8049bf4066215aadec1ece1ec39c2261e29557f1f013559b11f9ac",
+    "docs/DEVELOPMENT_TASKS.md": "1a150a1d77a5ee908ddbf6d3d5f3353bef7e42bcce668b98bb153452d18c4f1c",
+    "docs/ui/PLAN.md": "540bbe62ec829490e199b05d700a222dc78f34d8ea098b8f6ec4a9081be26823",
+    "resources/views/filament/audit-center.blade.php": "cc2db71c976a2469aed2861ae7dd11b59e828da9fd1065f74dc6e464ef928ef2",
+    "resources/views/filament/billing.blade.php": "57cf855c259dbc5f5f2276cc247a79b5a1ca584147a7ca955625c0fb53eb12f5",
+    "tests/Feature/RemainingConfigurationModalUiTest.php": "b1e9c378f9ee9583c8893ca88b297430b390496101a327620972263dcd1f3954"
+  },
+  "final_test_database_counts": {
+    "users": 0,
+    "novels": 0,
+    "ai_requests": 0,
+    "price_versions": 0,
+    "budget_policies": 0,
+    "billing_commands": 0,
+    "audit_events": 0
+  },
+  "temporary_credential_removed": true,
+  "preview_port_8778_stopped": true,
+  "viewport_restored_and_own_tab_closed": true,
+  "secrets_found_in_text_evidence": [],
+  "git_diff_check": "passed",
+  "build_manifest_sha256": "54ced2be534aa8a220607c7931936b0a99d7fcb11d992d74fe3c609913d82ae1"
+}

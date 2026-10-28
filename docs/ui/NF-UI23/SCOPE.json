@@ -1,0 +1,46 @@
+{
+  "baseline_files_checked": 1563,
+  "modified_existing_files": [
+    "DESIGN.md",
+    "app/Filament/Concerns/EditsAuthoringConfigurations.php",
+    "app/Filament/Pages/Providers.php",
+    "docs/DEVELOPMENT_TASKS.md",
+    "docs/ui/PLAN.md",
+    "resources/css/filament/admin/theme.css",
+    "resources/views/filament/authoring-configurations.blade.php",
+    "resources/views/filament/model-form.blade.php",
+    "resources/views/filament/provider-form.blade.php",
+    "resources/views/filament/providers.blade.php"
+  ],
+  "all_other_baseline_files_unchanged": true,
+  "previous_tasks_and_evidence_unchanged": true,
+  "previous_task_cards_byte_prefix_preserved": true,
+  "new_source_files": [
+    "resources/views/components/nf/editor-modal.blade.php",
+    "tests/Feature/ConfigurationModalUiTest.php"
+  ],
+  "new_documentation_under": "docs/ui/NF-UI23",
+  "original_native_post_forms_checked": {
+    "resources/views/filament/provider-form.blade.php": {
+      "all_original_fields_attributes_bindings_and_post_payload_preserved": true
+    },
+    "resources/views/filament/model-form.blade.php": {
+      "all_original_fields_attributes_bindings_and_post_payload_preserved": true
+    }
+  },
+  "application_services_controllers_routes_database_jobs_unchanged": true,
+  "document_links_passed": true,
+  "secret_scan_passed": true,
+  "git_diff_check_passed": true,
+  "preview_port_8777_closed": true,
+  "temporary_credential_removed": true,
+  "final_test_database_counts": {
+    "users": 0,
+    "novels": 0,
+    "ai_requests": 0,
+    "prompt_versions": 0,
+    "providers": 0,
+    "model_profiles": 0
+  },
+  "stable_build_manifest": true
+}

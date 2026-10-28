@@ -52,6 +52,41 @@ class NovelNavigationTest extends TestCase
         $this->get('/admin/project-status')->assertOk()->assertSee('实施状态');
     }
 
+    /** UI22以真实目录和渲染验证层级标记，防止默认首页或新页面重新混入二级图标。 */
+    public function test_group_icons_and_child_dots_keep_native_sidebar_semantics(): void
+    {
+        $this->actor();
+        $count = 0;
+        foreach (Filament::getNavigation() as $group) {
+            $this->assertNotEmpty($group->getIcon());
+            foreach ($group->getItems() as $item) {
+                $this->assertNull($item->getIcon());
+                $this->assertNull($item->getActiveIcon());
+                $this->assertNotEmpty($item->getUrl());
+                $count++;
+            }
+        }
+
+        // 同时渲染首页和供应商激活态，捕获分组/子项图标冲突及活动图标回退。
+        foreach (['/admin', '/admin/providers'] as $url) {
+            $html = $this->get($url)->assertOk()->getContent();
+            $dom = new \DOMDocument;
+            $previous = libxml_use_internal_errors(true);
+            try {
+                $dom->loadHTML('<?xml encoding="utf-8" ?>'.$html);
+            } finally {
+                libxml_clear_errors();
+                libxml_use_internal_errors($previous);
+            }
+            $xpath = new \DOMXPath($dom);
+            $sidebar = '//nav[@aria-label="侧边栏导航"]';
+            $this->assertSame(count(NovelNavigationService::GROUPS), $xpath->query($sidebar.'//div[contains(concat(" ", normalize-space(@class), " "), " fi-sidebar-group-btn ")]/*[local-name()="svg"]')->length);
+            $this->assertSame(0, $xpath->query($sidebar.'//*[contains(concat(" ", normalize-space(@class), " "), " fi-sidebar-item-icon ")]')->length);
+            $this->assertSame($count, $xpath->query($sidebar.'//div[contains(concat(" ", normalize-space(@class), " "), " fi-sidebar-item-grouped-border-part ")]')->length);
+            $this->assertSame(1, $xpath->query($sidebar.'//a[@aria-current="page"]')->length);
+        }
+    }
+
     public function test_empty_book_context_does_not_select_first_book_or_previous_tab(): void
     {
         $this->actor();

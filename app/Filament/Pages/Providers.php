@@ -56,7 +56,7 @@ class Providers extends Page
     public function mount(): void
     {
         $form = session('provider_form', '');
-        if (is_string($form) && preg_match('/^(provider|model)-([1-9][0-9]{0,17})$/D', $form, $m)) {
+        if (is_string($form) && preg_match('/^(provider|model)-(new|[1-9][0-9]{0,17})$/D', $form, $m)) {
             if ($m[1] === 'provider') {
                 $this->providerEditor = $m[2];
             } else {
@@ -70,6 +70,7 @@ class Providers extends Page
         $catalog = $this->catalog();
         abort_unless(collect($catalog['providers'])->contains('id', $id), 404);
         $this->providerEditor = $id;
+        $this->dispatch('provider-editor-opened', kind: 'provider');
     }
 
     public function openModelEditor(string $id): void
@@ -77,6 +78,30 @@ class Providers extends Page
         $catalog = $this->catalog();
         abort_unless(collect($catalog['models'])->contains('version_id', $id), 404);
         $this->modelEditor = $id;
+        $this->dispatch('provider-editor-opened', kind: 'model');
+    }
+
+    /** UI23：仅切换展示状态；原生POST及服务契约不变，密钥不进入Livewire。 */
+    public function beginProviderCreation(string $kind): void
+    {
+        app(NovelIntentService::class)->authorize(auth()->user());
+        abort_unless(in_array($kind, ['provider', 'model'], true), 404);
+        if ($kind === 'provider') {
+            $this->providerEditor = 'new';
+        } else {
+            $this->modelEditor = 'new';
+        }
+        $this->dispatch('provider-editor-opened', kind: $kind);
+    }
+
+    /** 弹窗关闭只卸载对应编辑器，避免取消后残留未提交的密钥输入。 */
+    public function closeProviderEditor(string $kind): void
+    {
+        if ($kind === 'provider') {
+            $this->providerEditor = '';
+        } elseif ($kind === 'model') {
+            $this->modelEditor = '';
+        }
     }
 
     public static function canAccess(): bool

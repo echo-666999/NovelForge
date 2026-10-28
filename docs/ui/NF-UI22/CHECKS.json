@@ -1,0 +1,39 @@
+{
+  "geometry_and_navigation": {
+    "after_1440": {
+      "groups_with_icons": 5,
+      "children_with_dots": 21,
+      "child_icons": 0,
+      "model_gap_px": 16,
+      "no_page_overflow": true,
+      "labels_order_urls_unchanged": true
+    },
+    "after_390": {
+      "groups_with_icons": 5,
+      "children_with_dots": 21,
+      "child_icons": 0,
+      "model_gap_px": 16,
+      "no_page_overflow": true,
+      "labels_order_urls_unchanged": true
+    },
+    "mobile_drawer_open": {
+      "groups_with_icons": 5,
+      "children_with_dots": 21,
+      "child_icons": 0,
+      "model_gap_px": 16,
+      "no_page_overflow": true,
+      "labels_order_urls_unchanged": true
+    }
+  },
+  "group_collapse_restore": true,
+  "mobile_navigation_closes_drawer": true,
+  "overview_active_dot": true,
+  "phpunit": {
+    "tool": "phpunit",
+    "result": "passed",
+    "tests": 16,
+    "passed": 16,
+    "assertions": 342,
+    "duration_ms": 37337
+  }
+}

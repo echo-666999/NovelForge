@@ -6,6 +6,7 @@ use App\Filament\Concerns\HasProductionChoices;
 use App\Filament\Concerns\ReadsProductionFrames;
 use App\Services\RunCenterService;
 use Filament\Pages\Page;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\Url;
 
 /** 审计只追加；后台没有删除或重写历史动作。 */
@@ -46,6 +47,18 @@ class AuditCenter extends Page
 
     #[Url]
     public int $page = 1;
+
+    /** UI24只保存当前授权页中已脱敏的只读投影，不提供审计新增或改写。 */
+    #[Locked]
+    public ?array $auditDetail = null;
+
+    public function inspectAudit(string $id): void
+    {
+        $row = collect($this->catalog()['rows'])->firstWhere('id', $id);
+        abort_unless($row, 404);
+        $this->auditDetail = $row;
+        $this->dispatch('open-modal', id: 'nf-audit-detail-modal');
+    }
 
     public static function canAccess(): bool
     {

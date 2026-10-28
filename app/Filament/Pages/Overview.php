@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Exceptions\NovelProblem;
 use App\Services\WorkspaceService;
 use Filament\Pages\Dashboard;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Url;
 
@@ -37,6 +38,12 @@ class Overview extends Dashboard
 
     #[Url]
     public int $limit = 25;
+
+    // UI22：覆盖Dashboard的默认首页图标，保持与其余二级菜单相同的圆点。
+    public static function getNavigationIcon(): string|\BackedEnum|Htmlable|null
+    {
+        return null;
+    }
 
     public function updated(string $property): void
     {

@@ -36,7 +36,8 @@
 </x-nf.section>
 <x-nf.section heading="正文生产">
 <p id="production-unavailable">{{ $data['novel']['status']==='archived'?$data['unavailable_reason']:'本页尚未提供生产操作与运行读模型，以下按钮保持禁用；请从本书导航进入对应页面核对实际能力。' }}</p>
-<div class="nf-story-toolbar">@foreach(['生成下一章','生成连续范围','暂停','继续','打开阅读器','导出'] as $label)<button type="button" disabled aria-describedby="production-unavailable">{{ $label }}</button>@endforeach</div>
+{{-- 禁用操作沿用原说明与状态，仅复用统一按钮外观。 --}}
+<div class="nf-story-toolbar">@foreach(['生成下一章','生成连续范围','暂停','继续','打开阅读器','导出'] as $label)<x-filament::button color="gray" type="button" disabled aria-describedby="production-unavailable">{{ $label }}</x-filament::button>@endforeach</div>
 </x-nf.section>
 @endif
 </x-filament-panels::page>

@@ -22,5 +22,8 @@
         <x-nf.input :id="$formId.'-source'" label="能力声明来源说明" name="source_note" :value="$val('source_note',$cap['source_note']??'')" :required="true" maxlength="2000" :error="$err('source_note')" />
         <x-nf.input :id="$formId.'-reason'" label="变更原因" name="reason" :value="$val('reason','')" :required="true" maxlength="2000" :error="$err('reason')" />
     </x-nf.form-grid>
-    <x-filament::button type="submit" :disabled="count($providerOptions)===0">保存模型新版本</x-filament::button>
+    {{-- UI23：保存仍是原生POST；取消仅关闭弹窗，不提交表单。 --}}
+    <div class="nf-config-actions"><x-filament::button type="submit" :disabled="count($providerOptions)===0">保存模型新版本</x-filament::button>
+        <x-filament::button type="button" color="gray" x-on:click="$dispatch('close-modal',{id:'nf-model-editor-modal'})">取消编辑</x-filament::button>
+    </div>
 </form>

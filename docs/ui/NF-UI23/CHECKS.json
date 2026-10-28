@@ -1,0 +1,20 @@
+{
+  "list_only_cases": 10,
+  "modal_geometry_focus_cases": 9,
+  "buttons_height_px": 40,
+  "prompt_create_width_px": 137.7109375,
+  "provider_create_width_px": 94,
+  "mobile_modal_width_px": 358,
+  "secret_not_in_livewire_snapshot": true,
+  "failed_post_password_empty": true,
+  "first_and_repeated_error_focus_inside": true,
+  "final_console_errors": 0,
+  "phpunit": {
+    "tool": "phpunit",
+    "result": "passed",
+    "tests": 34,
+    "passed": 34,
+    "assertions": 556,
+    "duration_ms": 58995
+  }
+}

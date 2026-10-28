@@ -29,7 +29,8 @@ class ExtractionLedger extends Page
 
     protected static ?int $navigationSort = 20;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-document-magnifying-glass';
+    // UI22：二级菜单使用原生圆点，仅一级分组显示图标。
+    protected static string|\BackedEnum|null $navigationIcon = null;
 
     protected static ?string $navigationLabel = '正文提取与硬约束';
 

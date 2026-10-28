@@ -1,0 +1,3842 @@
+[
+  {
+    "phase": "before",
+    "label": "创作总览",
+    "url": "http://127.0.0.1:8775/admin",
+    "groups": [
+      {
+        "class": "nf-config-actions",
+        "gap": "8px",
+        "index": 0,
+        "items": [
+          {
+            "center": 185.796875,
+            "field": false,
+            "height": 40,
+            "label": "创建小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 80,
+            "x": 352,
+            "y": 165.796875
+          },
+          {
+            "center": 185.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库 / 归档与恢复",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 152.328125,
+            "x": 440,
+            "y": 165.796875
+          },
+          {
+            "center": 185.796875,
+            "field": false,
+            "height": 40,
+            "label": "刷新列表",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 600.328125,
+            "y": 165.796875
+          }
+        ]
+      },
+      {
+        "class": "nf-filter-grid",
+        "gap": "16px",
+        "index": 1,
+        "items": [
+          {
+            "center": 387.39453125,
+            "field": true,
+            "height": 44.3984375,
+            "label": "小说状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 376,
+            "y": 365.1953125
+          },
+          {
+            "center": 385.1953125,
+            "field": true,
+            "height": 40,
+            "label": "更新日期从（上海时间）",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 632,
+            "y": 365.1953125
+          },
+          {
+            "center": 385.1953125,
+            "field": true,
+            "height": 40,
+            "label": "更新日期至（上海时间）",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 888,
+            "y": 365.1953125
+          },
+          {
+            "center": 387.39453125,
+            "field": true,
+            "height": 44.3984375,
+            "label": "每页数量",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 1144,
+            "y": 365.1953125
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "8px",
+        "index": 2,
+        "items": [
+          {
+            "center": 689.37890625,
+            "field": false,
+            "height": 26.3984375,
+            "label": "第 1 / 1 页 · 2 本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 123.734375,
+            "x": 376,
+            "y": 676.1796875
+          },
+          {
+            "center": 689.3828125,
+            "field": false,
+            "height": 40,
+            "label": "上一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 66,
+            "x": 507.734375,
+            "y": 669.3828125
+          },
+          {
+            "center": 689.3828125,
+            "field": false,
+            "height": 40,
+            "label": "下一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 66,
+            "x": 581.734375,
+            "y": 669.3828125
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "创作总览",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "关于与实施状态",
+    "url": "http://127.0.0.1:8775/admin/project-status",
+    "groups": [],
+    "scroll": 1440,
+    "title": "实施状态",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "小说库",
+    "url": "http://127.0.0.1:8775/admin/novels",
+    "groups": [],
+    "scroll": 1440,
+    "title": "小说",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "故事管理",
+    "url": "http://127.0.0.1:8775/admin/story-hub?novel=12",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 274.796875
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "故事管理",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "时间线与角色知识",
+    "url": "http://127.0.0.1:8775/admin/story-timeline?novel=12",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 274.796875
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "时间线与角色知识",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "伏笔与主支线账本",
+    "url": "http://127.0.0.1:8775/admin/foreshadow-ledger?novel=12",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 274.796875
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "伏笔与主支线账本",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "生成运行中心",
+    "url": "http://127.0.0.1:8775/admin/run-center?novel=12",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 274.796875
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 1,
+        "items": [
+          {
+            "center": 594.390625,
+            "field": true,
+            "height": 40,
+            "label": "查看运行ID",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 198.3984375,
+            "x": 352,
+            "y": 574.390625
+          },
+          {
+            "center": 594.390625,
+            "field": true,
+            "height": 40,
+            "label": "运行状态",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 198.40625,
+            "x": 566.3984375,
+            "y": 574.390625
+          },
+          {
+            "center": 594.390625,
+            "field": true,
+            "height": 40,
+            "label": "错误码",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 198.3984375,
+            "x": 780.8046875,
+            "y": 574.390625
+          },
+          {
+            "center": 594.390625,
+            "field": true,
+            "height": 40,
+            "label": "追踪号",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 198.3984375,
+            "x": 995.203125,
+            "y": 574.390625
+          },
+          {
+            "center": 594.390625,
+            "field": true,
+            "height": 40,
+            "label": "开始日期 UTC",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 198.3984375,
+            "x": 1209.6015625,
+            "y": 574.390625
+          },
+          {
+            "center": 686.390625,
+            "field": true,
+            "height": 40,
+            "label": "结束日期 UTC",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 1056,
+            "x": 352,
+            "y": 666.390625
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "生成运行中心",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "正文提取与硬约束",
+    "url": "http://127.0.0.1:8775/admin/extraction-ledger?novel=12",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 274.796875
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 1,
+        "items": [
+          {
+            "center": 659.58984375,
+            "field": true,
+            "height": 44.3984375,
+            "label": "章节正文版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 637.390625
+          },
+          {
+            "center": 659.58984375,
+            "field": true,
+            "height": 44.3984375,
+            "label": "紧邻前章有效候选",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 888,
+            "y": 637.390625
+          },
+          {
+            "center": 747.98828125,
+            "field": true,
+            "height": 44.3984375,
+            "label": "同正文重新提取来源",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 725.7890625
+          },
+          {
+            "center": 747.98828125,
+            "field": true,
+            "height": 44.3984375,
+            "label": "作者时间线与规则上下文",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 888,
+            "y": 725.7890625
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "8px",
+        "index": 2,
+        "items": [
+          {
+            "center": 1153.17578125,
+            "field": false,
+            "height": 26.3984375,
+            "label": "0 项 · 逐行编辑，顺序会保留",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 209.5859375,
+            "x": 389,
+            "y": 1139.9765625
+          },
+          {
+            "center": 1153.1796875,
+            "field": false,
+            "height": 40,
+            "label": "添加条目",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 76,
+            "x": 606.5859375,
+            "y": 1133.1796875
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "8px",
+        "index": 3,
+        "items": [
+          {
+            "center": 1310.97265625,
+            "field": false,
+            "height": 26.3984375,
+            "label": "0 项 · 逐行编辑，顺序会保留",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 209.5859375,
+            "x": 389,
+            "y": 1297.7734375
+          },
+          {
+            "center": 1310.9765625,
+            "field": false,
+            "height": 40,
+            "label": "添加条目",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 76,
+            "x": 606.5859375,
+            "y": 1290.9765625
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "8px",
+        "index": 4,
+        "items": [
+          {
+            "center": 1468.76953125,
+            "field": false,
+            "height": 26.3984375,
+            "label": "0 项 · 逐行编辑，顺序会保留",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 209.5859375,
+            "x": 389,
+            "y": 1455.5703125
+          },
+          {
+            "center": 1468.7734375,
+            "field": false,
+            "height": 40,
+            "label": "添加条目",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 76,
+            "x": 606.5859375,
+            "y": 1448.7734375
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "8px",
+        "index": 5,
+        "items": [
+          {
+            "center": 1626.56640625,
+            "field": false,
+            "height": 26.3984375,
+            "label": "0 项 · 逐行编辑，顺序会保留",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 209.5859375,
+            "x": 389,
+            "y": 1613.3671875
+          },
+          {
+            "center": 1626.5703125,
+            "field": false,
+            "height": 40,
+            "label": "添加条目",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 76,
+            "x": 606.5859375,
+            "y": 1606.5703125
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "8px",
+        "index": 6,
+        "items": [
+          {
+            "center": 1784.36328125,
+            "field": false,
+            "height": 26.3984375,
+            "label": "0 项 · 逐行编辑，顺序会保留",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 209.5859375,
+            "x": 389,
+            "y": 1771.1640625
+          },
+          {
+            "center": 1784.3671875,
+            "field": false,
+            "height": 40,
+            "label": "添加条目",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 76,
+            "x": 606.5859375,
+            "y": 1764.3671875
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions nf-full-row",
+        "gap": "8px",
+        "index": 7,
+        "items": []
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "8px",
+        "index": 8,
+        "items": [
+          {
+            "center": 1959.765625,
+            "field": false,
+            "height": 40,
+            "label": "验证并保存候选（不建模型请求）",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 234,
+            "x": 376,
+            "y": 1939.765625
+          },
+          {
+            "center": 1959.765625,
+            "field": false,
+            "height": 40,
+            "label": "导出当前候选草稿",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 136,
+            "x": 618,
+            "y": 1939.765625
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "8px",
+        "index": 9,
+        "items": [
+          {
+            "center": 2545.75390625,
+            "field": false,
+            "height": 26.3984375,
+            "label": "第1/1页 · 最近记录范围匹配0条",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 225.09375,
+            "x": 376,
+            "y": 2532.5546875
+          },
+          {
+            "center": 2545.7578125,
+            "field": false,
+            "height": 40,
+            "label": "上一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 66,
+            "x": 609.09375,
+            "y": 2525.7578125
+          },
+          {
+            "center": 2545.7578125,
+            "field": false,
+            "height": 40,
+            "label": "下一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 66,
+            "x": 683.09375,
+            "y": 2525.7578125
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 10,
+        "items": [
+          {
+            "center": 2797.75390625,
+            "field": true,
+            "height": 44.3984375,
+            "label": "已发布提取路由",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 2775.5546875
+          },
+          {
+            "center": 2797.75390625,
+            "field": true,
+            "height": 44.3984375,
+            "label": "预算政策版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 888,
+            "y": 2775.5546875
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "正文提取与候选事件账本",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "评审中心与策略",
+    "url": "http://127.0.0.1:8775/admin/review-center?novel=12",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 274.796875
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 1,
+        "items": [
+          {
+            "center": 515.9921875,
+            "field": false,
+            "height": 40,
+            "label": "开始新一轮操作",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 122,
+            "x": 352,
+            "y": 495.9921875
+          },
+          {
+            "center": 522.79296875,
+            "field": false,
+            "height": 26.3984375,
+            "label": "相同输入重复保存复用原记录；新一轮请先明确开始。",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 384,
+            "x": 490,
+            "y": 509.59375
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 2,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 3,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 4,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 5,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 6,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 7,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 8,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 9,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 10,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 11,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 12,
+        "items": []
+      }
+    ],
+    "scroll": 1440,
+    "title": "评审中心与文风策略",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "受限修订工作台",
+    "url": "http://127.0.0.1:8775/admin/revision-desk?novel=12",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 274.796875
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 1,
+        "items": [
+          {
+            "center": 515.9921875,
+            "field": false,
+            "height": 40,
+            "label": "开始新一轮操作",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 122,
+            "x": 352,
+            "y": 495.9921875
+          },
+          {
+            "center": 522.79296875,
+            "field": false,
+            "height": 26.3984375,
+            "label": "相同输入重复保存复用原记录；新一轮请先明确开始。",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 384,
+            "x": 490,
+            "y": 509.59375
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": 1324.2265625,
+            "field": false,
+            "height": 40,
+            "label": "添加来源场景版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 132,
+            "x": 376,
+            "y": 1304.2265625
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 3,
+        "items": [
+          {
+            "center": 1665.0625,
+            "field": false,
+            "height": 40,
+            "label": "添加额外保留引文条目",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 160,
+            "x": 376,
+            "y": 1645.0625
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 4,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 5,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 6,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 7,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 8,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 9,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 10,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 11,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 12,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 13,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 14,
+        "items": []
+      }
+    ],
+    "scroll": 1440,
+    "title": "受限修订与完整章节复评",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "正式提交与基线",
+    "url": "http://127.0.0.1:8775/admin/canonical-commit-center?novel=12",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 274.796875
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 1,
+        "items": [
+          {
+            "center": 974.1875,
+            "field": true,
+            "height": 40,
+            "label": "章",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 198.3984375,
+            "x": 352,
+            "y": 954.1875
+          },
+          {
+            "center": 974.1875,
+            "field": true,
+            "height": 40,
+            "label": "基线",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 198.40625,
+            "x": 566.3984375,
+            "y": 954.1875
+          },
+          {
+            "center": 974.1875,
+            "field": true,
+            "height": 40,
+            "label": "状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 198.3984375,
+            "x": 780.8046875,
+            "y": 954.1875
+          },
+          {
+            "center": 974.1875,
+            "field": true,
+            "height": 40,
+            "label": "预检错误码",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 198.3984375,
+            "x": 995.203125,
+            "y": 954.1875
+          },
+          {
+            "center": 974.1875,
+            "field": true,
+            "height": 40,
+            "label": "开始日期",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 198.3984375,
+            "x": 1209.6015625,
+            "y": 954.1875
+          },
+          {
+            "center": 1066.1875,
+            "field": true,
+            "height": 40,
+            "label": "结束日期",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 1056,
+            "x": 352,
+            "y": 1046.1875
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "正式提交与基线",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "上下文检查器",
+    "url": "http://127.0.0.1:8775/admin/context-inspector?novel=12",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 274.796875
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 1,
+        "items": [
+          {
+            "center": 566.390625,
+            "field": false,
+            "height": 40,
+            "label": "阶段",
+            "margin": "8px 0px",
+            "mt": "8px",
+            "tag": "SELECT",
+            "width": 1056,
+            "x": 352,
+            "y": 546.390625
+          },
+          {
+            "center": 650.390625,
+            "field": true,
+            "height": 40,
+            "label": "清单编号",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 822,
+            "x": 352,
+            "y": 630.390625
+          },
+          {
+            "center": 650.390625,
+            "field": false,
+            "height": 40,
+            "label": "查看清单",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 1190,
+            "y": 630.390625
+          },
+          {
+            "center": 650.390625,
+            "field": false,
+            "height": 40,
+            "label": "重新组装新清单",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 122,
+            "x": 1286,
+            "y": 630.390625
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "上下文检查器",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "运行恢复台",
+    "url": "http://127.0.0.1:8775/admin/recovery-desk?novel=12",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 274.796875
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "运行恢复台",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "分层记忆库",
+    "url": "http://127.0.0.1:8775/admin/memory-library?novel=12",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 274.796875
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "分层记忆库",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "正式记忆与索引",
+    "url": "http://127.0.0.1:8775/admin/canonical-memory-center?novel=12",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 274.796875
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "正式记忆与索引",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "检索实验室与索引",
+    "url": "http://127.0.0.1:8775/admin/search-lab?novel=12",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 274.796875
+          },
+          {
+            "center": 294.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 274.796875
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "检索实验室与索引",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "Prompt 模板与发布",
+    "url": "http://127.0.0.1:8775/admin/prompt-templates",
+    "groups": [
+      {
+        "class": "nf-filter-grid",
+        "gap": "16px",
+        "index": 0,
+        "items": [
+          {
+            "center": 409.1953125,
+            "field": true,
+            "height": 40,
+            "label": "配置键",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 376,
+            "y": 389.1953125
+          },
+          {
+            "center": 409.1953125,
+            "field": true,
+            "height": 40,
+            "label": "阶段",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 632,
+            "y": 389.1953125
+          },
+          {
+            "center": 409.1953125,
+            "field": true,
+            "height": 40,
+            "label": "语言",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 888,
+            "y": 389.1953125
+          },
+          {
+            "center": 411.39453125,
+            "field": true,
+            "height": 44.3984375,
+            "label": "状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 1144,
+            "y": 389.1953125
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "8px",
+        "index": 1,
+        "items": [
+          {
+            "center": 556.38671875,
+            "field": false,
+            "height": 26.3984375,
+            "label": "共 0 个版本 · 第 1 页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 151.984375,
+            "x": 376,
+            "y": 543.1875
+          },
+          {
+            "center": 556.390625,
+            "field": false,
+            "height": 40,
+            "label": "上一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 62,
+            "x": 535.984375,
+            "y": 536.390625
+          },
+          {
+            "center": 556.390625,
+            "field": false,
+            "height": 40,
+            "label": "下一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 62,
+            "x": 605.984375,
+            "y": 536.390625
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": 755.58984375,
+            "field": true,
+            "height": 44.3984375,
+            "label": "旧版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 733.390625
+          },
+          {
+            "center": 755.58984375,
+            "field": true,
+            "height": 44.3984375,
+            "label": "新版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 888,
+            "y": 733.390625
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "Prompt 模板与发布",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "供应商与模型",
+    "url": "http://127.0.0.1:8775/admin/providers",
+    "groups": [
+      {
+        "class": "nf-filter-grid",
+        "gap": "16px",
+        "index": 0,
+        "items": [
+          {
+            "center": 345.1953125,
+            "field": true,
+            "height": 40,
+            "label": "供应商名称筛选",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 376,
+            "y": 325.1953125
+          },
+          {
+            "center": 347.39453125,
+            "field": true,
+            "height": 44.3984375,
+            "label": "接口",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 632,
+            "y": 325.1953125
+          },
+          {
+            "center": 347.39453125,
+            "field": true,
+            "height": 44.3984375,
+            "label": "配置状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 888,
+            "y": 325.1953125
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "8px",
+        "index": 1,
+        "items": [
+          {
+            "center": 480.38671875,
+            "field": false,
+            "height": 26.3984375,
+            "label": "共 0 个供应商 · 第 1 页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 167.984375,
+            "x": 376,
+            "y": 467.1875
+          },
+          {
+            "center": 480.390625,
+            "field": false,
+            "height": 40,
+            "label": "上一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 66,
+            "x": 551.984375,
+            "y": 460.390625
+          },
+          {
+            "center": 480.390625,
+            "field": false,
+            "height": 40,
+            "label": "下一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 66,
+            "x": 625.984375,
+            "y": 460.390625
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": 677.390625,
+            "field": true,
+            "height": 40,
+            "label": "供应商名称*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 657.390625
+          },
+          {
+            "center": 679.58984375,
+            "field": true,
+            "height": 44.3984375,
+            "label": "接口类型",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 888,
+            "y": 657.390625
+          },
+          {
+            "center": 765.7890625,
+            "field": true,
+            "height": 40,
+            "label": "HTTPS端点*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 745.7890625
+          },
+          {
+            "center": 765.7890625,
+            "field": true,
+            "height": 40,
+            "label": "新密钥",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 745.7890625
+          },
+          {
+            "center": 887.234375,
+            "field": true,
+            "height": 40,
+            "label": "总超时（秒）*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 867.234375
+          },
+          {
+            "center": 887.234375,
+            "field": true,
+            "height": 40,
+            "label": "连接超时（秒）*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 867.234375
+          },
+          {
+            "center": 971.234375,
+            "field": true,
+            "height": 40,
+            "label": "每分钟请求上限*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 951.234375
+          },
+          {
+            "center": 971.234375,
+            "field": true,
+            "height": 40,
+            "label": "并发上限*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 951.234375
+          },
+          {
+            "center": 1057.43359375,
+            "field": true,
+            "height": 44.3984375,
+            "label": "配置状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 1035.234375
+          },
+          {
+            "center": 1055.234375,
+            "field": true,
+            "height": 40,
+            "label": "变更原因*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 1035.234375
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "8px",
+        "index": 3,
+        "items": [
+          {
+            "center": 1167.23046875,
+            "field": false,
+            "height": 26.3984375,
+            "label": "主机 1",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "LABEL",
+            "width": 43.75,
+            "x": 389,
+            "y": 1154.03125
+          },
+          {
+            "center": 1218.62890625,
+            "field": false,
+            "height": 44.3984375,
+            "label": "allowed_hosts[]",
+            "margin": "8px 0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 982,
+            "x": 389,
+            "y": 1196.4296875
+          },
+          {
+            "center": 1262.02734375,
+            "field": false,
+            "height": 26.3984375,
+            "label": "移除",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 32,
+            "x": 389,
+            "y": 1248.828125
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 4,
+        "items": [
+          {
+            "center": 1902.01953125,
+            "field": true,
+            "height": 44.3984375,
+            "label": "供应商",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 1879.8203125
+          },
+          {
+            "center": 1899.8203125,
+            "field": true,
+            "height": 40,
+            "label": "模型标识*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 1879.8203125
+          },
+          {
+            "center": 1988.21875,
+            "field": true,
+            "height": 40,
+            "label": "声明上下文 Token 上限",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 1968.21875
+          },
+          {
+            "center": 1988.21875,
+            "field": true,
+            "height": 40,
+            "label": "声明输出 Token 上限",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 1968.21875
+          },
+          {
+            "center": 2111.86328125,
+            "field": true,
+            "height": 44.3984375,
+            "label": "结构化输出声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 2089.6640625
+          },
+          {
+            "center": 2111.86328125,
+            "field": true,
+            "height": 44.3984375,
+            "label": "流式输出声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 888,
+            "y": 2089.6640625
+          },
+          {
+            "center": 2200.26171875,
+            "field": true,
+            "height": 44.3984375,
+            "label": "推理 Token 计量声明",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 2178.0625
+          },
+          {
+            "center": 2198.0625,
+            "field": true,
+            "height": 40,
+            "label": "能力声明来源说明*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 888,
+            "y": 2178.0625
+          },
+          {
+            "center": 2286.4609375,
+            "field": true,
+            "height": 40,
+            "label": "变更原因*",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 496,
+            "x": 376,
+            "y": 2266.4609375
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "供应商与模型",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "模型主备路由",
+    "url": "http://127.0.0.1:8775/admin/model-routes",
+    "groups": [
+      {
+        "class": "nf-filter-grid",
+        "gap": "16px",
+        "index": 0,
+        "items": [
+          {
+            "center": 409.1953125,
+            "field": true,
+            "height": 40,
+            "label": "配置键",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 376,
+            "y": 389.1953125
+          },
+          {
+            "center": 409.1953125,
+            "field": true,
+            "height": 40,
+            "label": "阶段",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 632,
+            "y": 389.1953125
+          },
+          {
+            "center": 409.1953125,
+            "field": true,
+            "height": 40,
+            "label": "语言",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 888,
+            "y": 389.1953125
+          },
+          {
+            "center": 411.39453125,
+            "field": true,
+            "height": 44.3984375,
+            "label": "状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 1144,
+            "y": 389.1953125
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "8px",
+        "index": 1,
+        "items": [
+          {
+            "center": 556.38671875,
+            "field": false,
+            "height": 26.3984375,
+            "label": "共 0 个版本 · 第 1 页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 151.984375,
+            "x": 376,
+            "y": 543.1875
+          },
+          {
+            "center": 556.390625,
+            "field": false,
+            "height": 40,
+            "label": "上一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 62,
+            "x": 535.984375,
+            "y": 536.390625
+          },
+          {
+            "center": 556.390625,
+            "field": false,
+            "height": 40,
+            "label": "下一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 62,
+            "x": 605.984375,
+            "y": 536.390625
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": 755.58984375,
+            "field": true,
+            "height": 44.3984375,
+            "label": "旧版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 733.390625
+          },
+          {
+            "center": 755.58984375,
+            "field": true,
+            "height": 44.3984375,
+            "label": "新版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 888,
+            "y": 733.390625
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "模型主备路由",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "文风与评分策略",
+    "url": "http://127.0.0.1:8775/admin/style-profiles",
+    "groups": [
+      {
+        "class": "nf-filter-grid",
+        "gap": "16px",
+        "index": 0,
+        "items": [
+          {
+            "center": 409.1953125,
+            "field": true,
+            "height": 40,
+            "label": "配置键",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 376,
+            "y": 389.1953125
+          },
+          {
+            "center": 409.1953125,
+            "field": true,
+            "height": 40,
+            "label": "阶段",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 632,
+            "y": 389.1953125
+          },
+          {
+            "center": 409.1953125,
+            "field": true,
+            "height": 40,
+            "label": "语言",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "DIV",
+            "width": 240,
+            "x": 888,
+            "y": 389.1953125
+          },
+          {
+            "center": 411.39453125,
+            "field": true,
+            "height": 44.3984375,
+            "label": "状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 1144,
+            "y": 389.1953125
+          }
+        ]
+      },
+      {
+        "class": "nf-config-actions",
+        "gap": "8px",
+        "index": 1,
+        "items": [
+          {
+            "center": 556.38671875,
+            "field": false,
+            "height": 26.3984375,
+            "label": "共 0 个版本 · 第 1 页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 151.984375,
+            "x": 376,
+            "y": 543.1875
+          },
+          {
+            "center": 556.390625,
+            "field": false,
+            "height": 40,
+            "label": "上一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 62,
+            "x": 535.984375,
+            "y": 536.390625
+          },
+          {
+            "center": 556.390625,
+            "field": false,
+            "height": 40,
+            "label": "下一页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 62,
+            "x": 605.984375,
+            "y": 536.390625
+          }
+        ]
+      },
+      {
+        "class": "nf-form-grid",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": 755.58984375,
+            "field": true,
+            "height": 44.3984375,
+            "label": "旧版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 376,
+            "y": 733.390625
+          },
+          {
+            "center": 755.58984375,
+            "field": true,
+            "height": 44.3984375,
+            "label": "新版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 496,
+            "x": 888,
+            "y": 733.390625
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "文风与评分策略",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "价格与原子预算",
+    "url": "http://127.0.0.1:8775/admin/billing",
+    "groups": [
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 0,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 1,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 2,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 3,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 4,
+        "items": [
+          {
+            "center": 1094.578125,
+            "field": false,
+            "height": 40,
+            "label": "明确用量未知",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 104,
+            "x": 352,
+            "y": 1074.578125
+          },
+          {
+            "center": 1094.578125,
+            "field": false,
+            "height": 40,
+            "label": "录入已知Token用量",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 144.6015625,
+            "x": 472,
+            "y": 1074.578125
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 5,
+        "items": [
+          {
+            "center": 1299.7734375,
+            "field": false,
+            "height": 40,
+            "label": "添加仅金额对账明细",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 146,
+            "x": 352,
+            "y": 1279.7734375
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "价格与原子预算",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "审计与系统健康",
+    "url": "http://127.0.0.1:8775/admin/audit-center",
+    "groups": [
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 0,
+        "items": [
+          {
+            "center": 1228.3359375,
+            "field": true,
+            "height": 40,
+            "label": "小说ID",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 198.3984375,
+            "x": 352,
+            "y": 1208.3359375
+          },
+          {
+            "center": 1228.3359375,
+            "field": true,
+            "height": 40,
+            "label": "根/操作追踪号",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 198.40625,
+            "x": 566.3984375,
+            "y": 1208.3359375
+          },
+          {
+            "center": 1228.3359375,
+            "field": true,
+            "height": 40,
+            "label": "动作",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 198.3984375,
+            "x": 780.8046875,
+            "y": 1208.3359375
+          },
+          {
+            "center": 1228.3359375,
+            "field": true,
+            "height": 40,
+            "label": "结果或失败码",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 198.3984375,
+            "x": 995.203125,
+            "y": 1208.3359375
+          },
+          {
+            "center": 1228.3359375,
+            "field": true,
+            "height": 40,
+            "label": "开始日期 UTC",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 198.3984375,
+            "x": 1209.6015625,
+            "y": 1208.3359375
+          },
+          {
+            "center": 1320.3359375,
+            "field": true,
+            "height": 40,
+            "label": "结束日期 UTC",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 955,
+            "x": 352,
+            "y": 1300.3359375
+          },
+          {
+            "center": 1316.3359375,
+            "field": false,
+            "height": 40,
+            "label": "仅高风险",
+            "margin": "4px",
+            "mt": "4px",
+            "tag": "LABEL",
+            "width": 85,
+            "x": 1323,
+            "y": 1296.3359375
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "审计与系统健康",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "创作工作台",
+    "url": "http://127.0.0.1:8775/admin/novels/12/workspace",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 302.796875
+          },
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 302.796875
+          },
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 302.796875
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 1,
+        "items": [
+          {
+            "center": 551.9921875,
+            "field": false,
+            "height": 40,
+            "label": "刷新状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 352,
+            "y": 531.9921875
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": 1360.5703125,
+            "field": true,
+            "height": 40,
+            "label": "起始章",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 206.75,
+            "x": 376,
+            "y": 1340.5703125
+          },
+          {
+            "center": 1360.5703125,
+            "field": true,
+            "height": 40,
+            "label": "结束章",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 206.75,
+            "x": 598.75,
+            "y": 1340.5703125
+          },
+          {
+            "center": 1360.5703125,
+            "field": true,
+            "height": 40,
+            "label": "规划状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 206.75,
+            "x": 821.5,
+            "y": 1340.5703125
+          },
+          {
+            "center": 1356.5703125,
+            "field": false,
+            "height": 40,
+            "label": "仅有规划问题",
+            "margin": "4px",
+            "mt": "4px",
+            "tag": "LABEL",
+            "width": 117,
+            "x": 1044.25,
+            "y": 1336.5703125
+          },
+          {
+            "center": 1360.5703125,
+            "field": true,
+            "height": 40,
+            "label": "每页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 206.75,
+            "x": 1177.25,
+            "y": 1340.5703125
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 3,
+        "items": [
+          {
+            "center": 1704.76171875,
+            "field": false,
+            "height": 26.3984375,
+            "label": "生成下一章",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 376,
+            "y": 1691.5625
+          },
+          {
+            "center": 1704.76171875,
+            "field": false,
+            "height": 26.3984375,
+            "label": "生成连续范围",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 96,
+            "x": 472,
+            "y": 1691.5625
+          },
+          {
+            "center": 1704.76171875,
+            "field": false,
+            "height": 26.3984375,
+            "label": "暂停",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 32,
+            "x": 584,
+            "y": 1691.5625
+          },
+          {
+            "center": 1704.76171875,
+            "field": false,
+            "height": 26.3984375,
+            "label": "继续",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 32,
+            "x": 632,
+            "y": 1691.5625
+          },
+          {
+            "center": 1704.76171875,
+            "field": false,
+            "height": 26.3984375,
+            "label": "打开阅读器",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 680,
+            "y": 1691.5625
+          },
+          {
+            "center": 1704.76171875,
+            "field": false,
+            "height": 26.3984375,
+            "label": "导出",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 32,
+            "x": 776,
+            "y": 1691.5625
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "创作工作台",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "候选正文",
+    "url": "http://127.0.0.1:8775/admin/novels/12/draft-editor",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 302.796875
+          },
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 302.796875
+          },
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 302.796875
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 1,
+        "items": [
+          {
+            "center": 543.9921875,
+            "field": false,
+            "height": 40,
+            "label": "开始新一轮操作",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 122,
+            "x": 352,
+            "y": 523.9921875
+          },
+          {
+            "center": 550.79296875,
+            "field": false,
+            "height": 26.3984375,
+            "label": "相同输入重复保存复用原记录；新一轮请先明确开始。",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 384,
+            "x": 490,
+            "y": 537.59375
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "候选正文",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "前往处理",
+    "url": "http://127.0.0.1:8775/admin/novels/12/intent",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 302.796875
+          },
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 302.796875
+          },
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 302.796875
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 1,
+        "items": [
+          {
+            "center": 738.5859375,
+            "field": false,
+            "height": 40,
+            "label": "追加原始输入版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 136,
+            "x": 376,
+            "y": 718.5859375
+          },
+          {
+            "center": 738.5859375,
+            "field": false,
+            "height": 40,
+            "label": "新增 / 修正要求",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 124.328125,
+            "x": 528,
+            "y": 718.5859375
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": 1116.984375,
+            "field": true,
+            "height": 40,
+            "label": "强度",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 376,
+            "y": 1096.984375
+          },
+          {
+            "center": 1116.984375,
+            "field": true,
+            "height": 40,
+            "label": "决定",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 632,
+            "y": 1096.984375
+          },
+          {
+            "center": 1116.984375,
+            "field": true,
+            "height": 40,
+            "label": "覆盖",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 888,
+            "y": 1096.984375
+          },
+          {
+            "center": 1116.984375,
+            "field": true,
+            "height": 40,
+            "label": "来源",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 1144,
+            "y": 1096.984375
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "原始要求与覆盖矩阵",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "前往处理",
+    "url": "http://127.0.0.1:8775/admin/novels/12/blueprints",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 302.796875
+          },
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 302.796875
+          },
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 302.796875
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "蓝图与终局契约",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "建立卷、故事弧与章节",
+    "url": "http://127.0.0.1:8775/admin/novels/12/structure",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 302.796875
+          },
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 302.796875
+          },
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 302.796875
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 1,
+        "items": [
+          {
+            "center": 712.1875,
+            "field": false,
+            "height": 40,
+            "label": "新增 / 修改结构节点",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 152.328125,
+            "x": 376,
+            "y": 692.1875
+          },
+          {
+            "center": 712.1875,
+            "field": false,
+            "height": 40,
+            "label": "全书线索标识",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 108,
+            "x": 544.328125,
+            "y": 692.1875
+          },
+          {
+            "center": 712.1875,
+            "field": false,
+            "height": 40,
+            "label": "保存不可变结构版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 150,
+            "x": 668.328125,
+            "y": 692.1875
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": 1297.78125,
+            "field": true,
+            "height": 40,
+            "label": "层级",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 376,
+            "y": 1277.78125
+          },
+          {
+            "center": 1297.78125,
+            "field": true,
+            "height": 40,
+            "label": "主父级",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 632,
+            "y": 1277.78125
+          },
+          {
+            "center": 1297.78125,
+            "field": true,
+            "height": 40,
+            "label": "线索",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 888,
+            "y": 1277.78125
+          },
+          {
+            "center": 1297.78125,
+            "field": true,
+            "height": 40,
+            "label": "成熟度",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 1144,
+            "y": 1277.78125
+          },
+          {
+            "center": 1389.78125,
+            "field": true,
+            "height": 40,
+            "label": "序号从",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 265,
+            "x": 376,
+            "y": 1369.78125
+          },
+          {
+            "center": 1389.78125,
+            "field": true,
+            "height": 40,
+            "label": "至",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 265,
+            "x": 657,
+            "y": 1369.78125
+          },
+          {
+            "center": 1385.78125,
+            "field": false,
+            "height": 40,
+            "label": "缺少视角或目标字数",
+            "margin": "4px",
+            "mt": "4px",
+            "tag": "LABEL",
+            "width": 165,
+            "x": 938,
+            "y": 1365.78125
+          },
+          {
+            "center": 1389.78125,
+            "field": true,
+            "height": 40,
+            "label": "每页",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 265,
+            "x": 1119,
+            "y": 1369.78125
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "五层结构与版本",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "前往处理",
+    "url": "http://127.0.0.1:8775/admin/novels/12/plans",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 302.796875
+          },
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 302.796875
+          },
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 302.796875
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 1,
+        "items": [
+          {
+            "center": 659.390625,
+            "field": false,
+            "height": 40,
+            "label": "新增 / 修改结构节点",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 152.328125,
+            "x": 376,
+            "y": 639.390625
+          },
+          {
+            "center": 659.390625,
+            "field": false,
+            "height": 40,
+            "label": "拆分 / 合并 / 排序场景",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 168.6484375,
+            "x": 544.328125,
+            "y": 639.390625
+          },
+          {
+            "center": 659.390625,
+            "field": false,
+            "height": 40,
+            "label": "保存滚动计划版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 136,
+            "x": 728.9765625,
+            "y": 639.390625
+          },
+          {
+            "center": 659.390625,
+            "field": false,
+            "height": 40,
+            "label": "检查计划",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 880.9765625,
+            "y": 639.390625
+          },
+          {
+            "center": 659.390625,
+            "field": false,
+            "height": 40,
+            "label": "冻结详细窗口",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 108,
+            "x": 976.9765625,
+            "y": 639.390625
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": 979.1875,
+            "field": true,
+            "height": 40,
+            "label": "层级",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 376,
+            "y": 959.1875
+          },
+          {
+            "center": 979.1875,
+            "field": true,
+            "height": 40,
+            "label": "主父级",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 632,
+            "y": 959.1875
+          },
+          {
+            "center": 979.1875,
+            "field": true,
+            "height": 40,
+            "label": "成熟度",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 888,
+            "y": 959.1875
+          },
+          {
+            "center": 979.1875,
+            "field": true,
+            "height": 40,
+            "label": "序号从",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 240,
+            "x": 1144,
+            "y": 959.1875
+          },
+          {
+            "center": 1071.1875,
+            "field": true,
+            "height": 40,
+            "label": "至",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 847.5703125,
+            "x": 376,
+            "y": 1051.1875
+          },
+          {
+            "center": 1067.1875,
+            "field": false,
+            "height": 40,
+            "label": "缺少 POV 或预算",
+            "margin": "4px",
+            "mt": "4px",
+            "tag": "LABEL",
+            "width": 144.4296875,
+            "x": 1239.5703125,
+            "y": 1047.1875
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "滚动细化与章节场景计划",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "前往处理",
+    "url": "http://127.0.0.1:8775/admin/novels/12/world",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 302.796875
+          },
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 302.796875
+          },
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 302.796875
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 1,
+        "items": [
+          {
+            "center": 659.390625,
+            "field": false,
+            "height": 40,
+            "label": "新增 / 修订候选设定",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 152.328125,
+            "x": 376,
+            "y": 639.390625
+          },
+          {
+            "center": 659.390625,
+            "field": false,
+            "height": 40,
+            "label": "批准新引入策略版本",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 150,
+            "x": 544.328125,
+            "y": 639.390625
+          },
+          {
+            "center": 659.390625,
+            "field": false,
+            "height": 40,
+            "label": "按冻结策略接纳路人",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 150,
+            "x": 710.328125,
+            "y": 639.390625
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 2,
+        "items": [
+          {
+            "center": 864.390625,
+            "field": true,
+            "height": 40,
+            "label": "类型",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 376,
+            "y": 844.390625
+          },
+          {
+            "center": 864.390625,
+            "field": true,
+            "height": 40,
+            "label": "状态",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 632,
+            "y": 844.390625
+          },
+          {
+            "center": 864.390625,
+            "field": true,
+            "height": 40,
+            "label": "名称 / 当前别名",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 240,
+            "x": 888,
+            "y": 844.390625
+          },
+          {
+            "center": 864.390625,
+            "field": true,
+            "height": 40,
+            "label": "角色",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 240,
+            "x": 1144,
+            "y": 844.390625
+          },
+          {
+            "center": 956.390625,
+            "field": true,
+            "height": 40,
+            "label": "阵营",
+            "margin": "0px",
+            "mt": "8px",
+            "tag": "INPUT",
+            "width": 859,
+            "x": 376,
+            "y": 936.390625
+          },
+          {
+            "center": 952.390625,
+            "field": false,
+            "height": 40,
+            "label": "无初始关系引用",
+            "margin": "4px",
+            "mt": "4px",
+            "tag": "LABEL",
+            "width": 133,
+            "x": 1251,
+            "y": 932.390625
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "世界实体与人物设定",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "离线规划候选",
+    "url": "http://127.0.0.1:8775/admin/novels/12/planning-candidates",
+    "groups": [
+      {
+        "class": "nf-book-switch",
+        "gap": "12px",
+        "index": 0,
+        "items": [
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "当前小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 448,
+            "x": 376,
+            "y": 302.796875
+          },
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "切换小说",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 80,
+            "x": 836,
+            "y": 302.796875
+          },
+          {
+            "center": 322.796875,
+            "field": false,
+            "height": 40,
+            "label": "小说库",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "A",
+            "width": 48,
+            "x": 928,
+            "y": 302.796875
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 1,
+        "items": [
+          {
+            "center": 543.9921875,
+            "field": false,
+            "height": 40,
+            "label": "开始新一轮操作",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 122,
+            "x": 352,
+            "y": 523.9921875
+          },
+          {
+            "center": 550.79296875,
+            "field": false,
+            "height": 26.3984375,
+            "label": "相同输入重复保存复用原记录；新一轮请先明确开始。",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "SPAN",
+            "width": 384,
+            "x": 490,
+            "y": 537.59375
+          }
+        ]
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 2,
+        "items": []
+      },
+      {
+        "class": "nf-story-toolbar",
+        "gap": "16px",
+        "index": 3,
+        "items": [
+          {
+            "center": 1352.625,
+            "field": true,
+            "height": 40,
+            "label": "当前候选",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 332.8359375,
+            "x": 352,
+            "y": 1332.625
+          },
+          {
+            "center": 1352.625,
+            "field": true,
+            "height": 40,
+            "label": "对比候选",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 332.8359375,
+            "x": 700.8359375,
+            "y": 1332.625
+          },
+          {
+            "center": 1352.625,
+            "field": false,
+            "height": 40,
+            "label": "查看 / 比较",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 96.328125,
+            "x": 1049.671875,
+            "y": 1332.625
+          },
+          {
+            "center": 1352.625,
+            "field": false,
+            "height": 40,
+            "label": "执行离线回放",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 108,
+            "x": 1162,
+            "y": 1332.625
+          },
+          {
+            "center": 1352.625,
+            "field": false,
+            "height": 40,
+            "label": "确认采纳为草稿",
+            "margin": "0px",
+            "mt": "0px",
+            "tag": "BUTTON",
+            "width": 122,
+            "x": 1286,
+            "y": 1332.625
+          }
+        ]
+      }
+    ],
+    "scroll": 1440,
+    "title": "离线规划候选",
+    "width": 1440
+  },
+  {
+    "phase": "before",
+    "label": "创建小说",
+    "url": "http://127.0.0.1:8775/admin/novels/create",
+    "groups": [],
+    "scroll": 1440,
+    "title": "创建 小说",
+    "width": 1440
+  }
+]

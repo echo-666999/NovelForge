@@ -1,0 +1,98 @@
+[
+  {
+    "page": "创作总览",
+    "issues": [
+      "center",
+      "height"
+    ]
+  },
+  {
+    "page": "正文提取与候选事件账本",
+    "issues": [
+      "height"
+    ]
+  },
+  {
+    "page": "评审中心与文风策略",
+    "issues": [
+      "center"
+    ]
+  },
+  {
+    "page": "受限修订与完整章节复评",
+    "issues": [
+      "center"
+    ]
+  },
+  {
+    "page": "Prompt 模板与发布",
+    "issues": [
+      "center",
+      "height"
+    ]
+  },
+  {
+    "page": "供应商与模型",
+    "issues": [
+      "center",
+      "height"
+    ]
+  },
+  {
+    "page": "模型主备路由",
+    "issues": [
+      "center",
+      "height"
+    ]
+  },
+  {
+    "page": "文风与评分策略",
+    "issues": [
+      "center",
+      "height"
+    ]
+  },
+  {
+    "page": "审计与系统健康",
+    "issues": [
+      "center"
+    ]
+  },
+  {
+    "page": "创作工作台",
+    "issues": [
+      "center",
+      "height"
+    ]
+  },
+  {
+    "page": "候选正文",
+    "issues": [
+      "center"
+    ]
+  },
+  {
+    "page": "五层结构与版本",
+    "issues": [
+      "center"
+    ]
+  },
+  {
+    "page": "滚动细化与章节场景计划",
+    "issues": [
+      "center"
+    ]
+  },
+  {
+    "page": "世界实体与人物设定",
+    "issues": [
+      "center"
+    ]
+  },
+  {
+    "page": "离线规划候选",
+    "issues": [
+      "center"
+    ]
+  }
+]

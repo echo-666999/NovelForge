@@ -1,19 +1,56 @@
-<x-filament-panels::page x-data="{}" x-on:configuration-result.window="$el.scrollIntoView({block:'start'})"
-    x-on:configuration-editor-opened.window="$nextTick(()=>{const form=document.getElementById('nf-configuration-editor');form?.scrollIntoView({block:'start'});form?.querySelector('input:not([disabled]):not([readonly]):not([type=hidden]),textarea:not([disabled])')?.focus({preventScroll:true})})"
-    x-on:configuration-detail-opened.window="$nextTick(()=>document.getElementById('nf-configuration-detail')?.scrollIntoView({block:'start'}))">
+<x-filament-panels::page x-data="{ editorTrigger: null }"
+    x-on:configuration-result.window="if (!$wire.editorOpen) $el.scrollIntoView({block:'start'})"
+    x-on:configuration-editor-opened.window="$nextTick(()=>{editorTrigger?.focus({preventScroll:true});$dispatch('open-modal',{id:'nf-configuration-editor-modal'})})"
+    x-on:configuration-detail-opened.window="$nextTick(()=>$dispatch('open-modal',{id:'nf-configuration-detail-modal'}))"
+    x-on:modal-closed.window="if ($event.detail.id === 'nf-configuration-editor-modal') { if ($wire.editorOpen) $wire.cancelConfiguration(); $nextTick(()=>(editorTrigger?.isConnected ? editorTrigger : document.getElementById('nf-configuration-create'))?.focus({preventScroll:true})); }">
     {{-- 固定字段使用Filament Schema，递归结构仅处理Schema和样例；发布历史始终只读。 --}}
     @php($kind=$this->configurationKind())
     @php($catalog=$this->catalog())
     <p>编辑创建新草稿，离线回归、发布和退役分别执行；旧运行继续引用原版本。</p>
     @if($notice)<x-nf.state state="success" title="操作结果">{{ $notice }}</x-nf.state>@endif
-    @if($errors->any())<x-nf.state state="error" title="尚未保存，请核对字段">
+    @if($errors->any() && !$editorOpen)<x-nf.state state="error" title="尚未保存，请核对字段">
         <ul>@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>
     </x-nf.state>@endif
     @if(session('configuration_error'))<x-nf.state state="error" title="操作失败">{{ session('configuration_error') }}</x-nf.state>@endif
-    <x-filament::button wire:click="beginConfiguration" wire:loading.attr="disabled" :disabled="$editorOpen">新建{{ ['prompt'=>' Prompt 模板','route'=>'模型路由','style'=>'文风策略'][$kind] }}</x-filament::button>
+    {{-- 工具栏使用内容宽度，列表页不再铺开新建、比较或详情表单。 --}}
+    <div class="nf-config-actions">
+        <x-filament::button id="nf-configuration-create" x-on:click="editorTrigger=$el" wire:click="beginConfiguration" wire:loading.attr="disabled">新建{{ ['prompt'=>' Prompt 模板','route'=>'模型路由','style'=>'文风策略'][$kind] }}</x-filament::button>
+        <x-filament::button color="gray" x-on:click="$dispatch('open-modal',{id:'nf-configuration-comparison-modal'})">比较版本</x-filament::button>
+    </div>
 
+
+    <x-nf.section heading="配置版本">
+        <x-nf.form-grid :filters="true">
+            <x-nf.input id="config-filter-key" label="配置键" wire:model.live.debounce.400ms="q" />
+            <x-nf.input id="config-filter-stage" label="阶段" wire:model.live.debounce.400ms="stage" />
+            <x-nf.input id="config-filter-language" label="语言" wire:model.live.debounce.400ms="language" />
+            <x-nf.select id="config-filter-status" label="状态" model="status" :value="$status" :options="[''=>'全部','draft'=>'草稿','tested'=>'离线通过','published'=>'已发布','retired'=>'已退役']" />
+        </x-nf.form-grid>
+        <x-nf.table label="配置版本列表"><table><thead><tr><th>配置 / 版本</th><th>阶段 / 语言</th><th>状态 / 默认</th><th>离线回归</th><th>引用运行</th><th>操作</th></tr></thead><tbody>
+            @forelse($catalog['items'] as $v)<tr>
+                <td>{{ $v['key'] }} · v{{ $v['version'] }} · #{{ $v['id'] }}</td><td>{{ $v['stage'] }} / {{ $v['language'] }}</td>
+                <td>{{ ['draft'=>'草稿','tested'=>'离线通过','published'=>'已发布','retired'=>'已退役'][$v['status']] }}{{ $v['default_version_id']===$v['id']?' · 默认':'' }}</td>
+                <td>{{ $v['regression']===null?'未测试':($v['regression']['passed']?'离线通过':'离线失败') }}</td><td>{{ $v['run_count'] }}</td>
+                <td><div class="nf-config-actions"><x-filament::button size="sm" color="gray" wire:click="showConfiguration('{{ $v['id'] }}')">只读详情</x-filament::button>
+                    <x-filament::button size="sm" color="gray" x-on:click="editorTrigger=$el" wire:click="beginConfiguration('{{ $v['id'] }}')">复制为新版本</x-filament::button>
+                    @foreach(['test'=>'draft','publish'=>'tested','retire'=>'published'] as $action=>$state)
+                        @if($v['status']===$state)<x-filament::button size="sm" color="gray" wire:click="mountAction('configurationLifecycle', {operation: '{{ $action }}', version: '{{ $v['id'] }}'})" wire:loading.attr="disabled">{{ ['test'=>'离线回归','publish'=>'发布','retire'=>'退役'][$action] }}</x-filament::button>@endif
+                    @endforeach
+                </div></td>
+            </tr>@empty<tr><td colspan="6">暂无配置版本。可先建立 Prompt 与文风，离线回归发布后再配置引用它们的路由。</td></tr>@endforelse
+        </tbody></table></x-nf.table>
+        <div class="nf-config-actions"><span>共 {{ $catalog['total'] }} 个版本 · 第 {{ $catalog['page'] }} 页</span>
+            <x-filament::button color="gray" size="sm" wire:click="$set('page', {{ max(1,$page-1) }})" :disabled="$page<=1">上一页</x-filament::button>
+            <x-filament::button color="gray" size="sm" wire:click="$set('page', {{ $page+1 }})" :disabled="$page*20 >= $catalog['total']">下一页</x-filament::button>
+        </div>
+    </x-nf.section>
+    <x-nf.editor-modal id="nf-configuration-editor-modal" :heading="$sourceVersion !== '' ? '复制为配置新版本' : '新建'.['prompt'=>' Prompt 模板','route'=>'模型路由','style'=>'文风策略'][$kind]">
     @if($editorOpen)
-        <form id="nf-configuration-editor" wire:submit="saveConfiguration" class="nf-config-editor">
+        {{-- UI23：错误首次呈现时只定位当前弹窗，避免提交按钮禁用导致焦点落到背景。 --}}
+        @if($errors->any())<x-nf.state state="error" title="尚未保存，请核对字段" tabindex="-1" wire:key="configuration-modal-errors-{{ md5(json_encode($errors->all())) }}"
+            x-init="$nextTick(()=>requestAnimationFrame(()=>{const target=$el.closest('[role=dialog]')?.querySelector('[aria-invalid=true]')??$el;target.focus({preventScroll:true});target.scrollIntoView({block:'nearest'});} ))"><ul>@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></x-nf.state>@endif
+        <form id="nf-configuration-editor" wire:submit="saveConfiguration" class="nf-config-editor"
+            x-on:submit="const error=$el.closest('[role=dialog]')?.querySelector('[role=alert]');if(error){const target=$el.querySelector('[aria-invalid=true]')??error;target.focus({preventScroll:true});}">
             {{ $this->configurationForm }}
             @foreach($trees as $treeKey=>$treeNode)
                 <x-nf.section :heading="['variable_schema'=>'变量结构','output_schema'=>'输出结构','examples'=>$kind==='style'?'样章与人工评分':'离线样例','rubric'=>'评分维度与阈值'][$treeKey]">
@@ -50,31 +87,8 @@
         </form>
     @endif
 
-    <x-nf.section heading="配置版本">
-        <x-nf.form-grid :filters="true">
-            <x-nf.input id="config-filter-key" label="配置键" wire:model.live.debounce.400ms="q" />
-            <x-nf.input id="config-filter-stage" label="阶段" wire:model.live.debounce.400ms="stage" />
-            <x-nf.input id="config-filter-language" label="语言" wire:model.live.debounce.400ms="language" />
-            <x-nf.select id="config-filter-status" label="状态" model="status" :value="$status" :options="[''=>'全部','draft'=>'草稿','tested'=>'离线通过','published'=>'已发布','retired'=>'已退役']" />
-        </x-nf.form-grid>
-        <x-nf.table label="配置版本列表"><table><thead><tr><th>配置 / 版本</th><th>阶段 / 语言</th><th>状态 / 默认</th><th>离线回归</th><th>引用运行</th><th>操作</th></tr></thead><tbody>
-            @forelse($catalog['items'] as $v)<tr>
-                <td>{{ $v['key'] }} · v{{ $v['version'] }} · #{{ $v['id'] }}</td><td>{{ $v['stage'] }} / {{ $v['language'] }}</td>
-                <td>{{ ['draft'=>'草稿','tested'=>'离线通过','published'=>'已发布','retired'=>'已退役'][$v['status']] }}{{ $v['default_version_id']===$v['id']?' · 默认':'' }}</td>
-                <td>{{ $v['regression']===null?'未测试':($v['regression']['passed']?'离线通过':'离线失败') }}</td><td>{{ $v['run_count'] }}</td>
-                <td><div class="nf-config-actions"><x-filament::button size="sm" color="gray" wire:click="showConfiguration('{{ $v['id'] }}')">只读详情</x-filament::button>
-                    <x-filament::button size="sm" color="gray" wire:click="beginConfiguration('{{ $v['id'] }}')">复制为新版本</x-filament::button>
-                    @foreach(['test'=>'draft','publish'=>'tested','retire'=>'published'] as $action=>$state)
-                        @if($v['status']===$state)<x-filament::button size="sm" color="gray" wire:click="mountAction('configurationLifecycle', {operation: '{{ $action }}', version: '{{ $v['id'] }}'})" wire:loading.attr="disabled">{{ ['test'=>'离线回归','publish'=>'发布','retire'=>'退役'][$action] }}</x-filament::button>@endif
-                    @endforeach
-                </div></td>
-            </tr>@empty<tr><td colspan="6">暂无配置版本。可先建立 Prompt 与文风，离线回归发布后再配置引用它们的路由。</td></tr>@endforelse
-        </tbody></table></x-nf.table>
-        <div class="nf-config-actions"><span>共 {{ $catalog['total'] }} 个版本 · 第 {{ $catalog['page'] }} 页</span>
-            <x-filament::button color="gray" size="sm" wire:click="$set('page', {{ max(1,$page-1) }})" :disabled="$page<=1">上一页</x-filament::button>
-            <x-filament::button color="gray" size="sm" wire:click="$set('page', {{ $page+1 }})" :disabled="$page*20 >= $catalog['total']">下一页</x-filament::button>
-        </div>
-    </x-nf.section>
+    </x-nf.editor-modal>
+    <x-nf.editor-modal id="nf-configuration-detail-modal" heading="配置版本详情">
     @if($configurationDetail)
         <div id="nf-configuration-detail"><x-nf.section :heading="'只读版本 · '.$configurationDetail['key'].' v'.$configurationDetail['version']">
             <p>说明：{{ $configurationDetail['reason'] }} · 状态 {{ $configurationDetail['status'] }} · 摘要 {{ $configurationDetail['content_hash'] }}</p>
@@ -82,7 +96,10 @@
             @if($configurationDetail['regression'])@include('filament.value-table',['value'=>$configurationDetail['regression'],'label'=>'离线回归逐字段结果'])@else<p>尚未进行离线回归。</p>@endif
         </x-nf.section></div>
     @endif
-    <x-nf.section heading="同一配置的版本比较">
+    </x-nf.editor-modal>
+    <x-nf.editor-modal id="nf-configuration-comparison-modal" heading="同一配置的版本比较"
+        x-init="if ({{ $compareLeft !== '' && $compareRight !== '' ? 'true' : 'false' }}) $nextTick(()=>$dispatch('open-modal',{id:'nf-configuration-comparison-modal'}))">
+    <x-nf.section heading="选择版本">
         <x-nf.form-grid>
             <x-nf.select id="compare-old" label="旧版本" model="compareLeft" :value="$compareLeft" :options="[''=>'请选择']+$this->configurationOptions($kind)" />
             <x-nf.select id="compare-new" label="新版本" model="compareRight" :value="$compareRight" :options="[''=>'请选择']+$this->configurationOptions($kind)" />
@@ -93,4 +110,5 @@
             @include('filament.value-comparison',['leftValue'=>['content'=>$comparison['left']['content'],'regression'=>$comparison['left']['regression']],'rightValue'=>['content'=>$comparison['right']['content'],'regression'=>$comparison['right']['regression']],'comparisonLabel'=>'版本字段比较'])
         @else<p>选择两个真实版本；仅允许同一配置身份。未知 Token 仍显示空值，不代表零成本。</p>@endif
     </x-nf.section>
+    </x-nf.editor-modal>
 </x-filament-panels::page>

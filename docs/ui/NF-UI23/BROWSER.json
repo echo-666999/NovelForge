@@ -1,0 +1,630 @@
+[
+  {
+    "case": "prompt_list_1440",
+    "button": {
+      "height": 40,
+      "width": 137.7109375
+    },
+    "dialogs": [],
+    "focus": "跳至主要内容\n    \n\n            \n\n        \n    \n    \n    ",
+    "forms": [],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "prompt_editor_1440",
+    "button": {
+      "height": 40,
+      "width": 137.7109375
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 968,
+        "id": "nf-configuration-editor-modal",
+        "label": "新建 Prompt 模板",
+        "width": 1024
+      }
+    ],
+    "focus": "configurationForm.key",
+    "forms": [
+      "nf-configuration-editor"
+    ],
+    "scroll": 1440,
+    "width": 1440,
+    "phase": "intermediate_before_all_browser_fixes"
+  },
+  {
+    "case": "prompt_validation",
+    "button": {
+      "height": 40,
+      "width": 137.7109375
+    },
+    "dialogs": [
+      {
+        "focusInside": false,
+        "height": 851,
+        "id": "nf-configuration-editor-modal",
+        "label": "新建 Prompt 模板",
+        "width": 1024
+      }
+    ],
+    "focus": "跳至主要内容\n    \n\n            \n\n        \n    \n    \n    ",
+    "forms": [
+      "nf-configuration-editor"
+    ],
+    "scroll": 1709,
+    "width": 1709,
+    "retained": {
+      "key": "ui23.browser.prompt",
+      "reason": "弹窗浏览器验收"
+    },
+    "phase": "intermediate_before_all_browser_fixes"
+  },
+  {
+    "case": "prompt_saved",
+    "button": {
+      "height": 40,
+      "width": 137.7109375
+    },
+    "dialogs": [],
+    "focus": "nf-configuration-create",
+    "forms": [],
+    "scroll": 1709,
+    "width": 1709
+  },
+  {
+    "case": "copy_editor",
+    "button": {
+      "height": 40,
+      "width": 137.7109375
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 968,
+        "id": "nf-configuration-editor-modal",
+        "label": "复制为配置新版本",
+        "width": 1024
+      }
+    ],
+    "focus": "configurationForm.key",
+    "forms": [
+      "nf-configuration-editor"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "copy_cancelled",
+    "button": {
+      "height": 40,
+      "width": 137.7109375
+    },
+    "dialogs": [],
+    "focus": "复制为新版本",
+    "forms": [],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "readonly_detail",
+    "button": {
+      "height": 40,
+      "width": 137.7109375
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 968,
+        "id": "nf-configuration-detail-modal",
+        "label": "配置版本详情",
+        "width": 1024
+      }
+    ],
+    "focus": "版本逐字段只读内容",
+    "forms": [],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "comparison",
+    "button": {
+      "height": 40,
+      "width": 137.7109375
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 320.3984375,
+        "id": "nf-configuration-comparison-modal",
+        "label": "同一配置的版本比较",
+        "width": 1024
+      }
+    ],
+    "focus": "compare-old",
+    "forms": [],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "model-routes_list",
+    "button": {
+      "height": 40,
+      "width": 108
+    },
+    "dialogs": [],
+    "focus": "跳至主要内容\n    \n\n            \n\n        \n    \n    \n    ",
+    "forms": [],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "model-routes_editor",
+    "button": {
+      "height": 40,
+      "width": 108
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 927.52197265625,
+        "id": "nf-configuration-editor-modal",
+        "label": "新建模型路由",
+        "width": 981.18017578125
+      }
+    ],
+    "focus": "configurationForm.key",
+    "forms": [
+      "nf-configuration-editor"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "style-profiles_list",
+    "button": {
+      "height": 40,
+      "width": 108
+    },
+    "dialogs": [],
+    "focus": "跳至主要内容\n    \n\n            \n\n        \n    \n    \n    ",
+    "forms": [],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "style-profiles_editor",
+    "button": {
+      "height": 40,
+      "width": 108
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 945.0771484375,
+        "id": "nf-configuration-editor-modal",
+        "label": "新建文风策略",
+        "width": 999.7509765625
+      }
+    ],
+    "focus": "configurationForm.key",
+    "forms": [
+      "nf-configuration-editor"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "providers_list_1440",
+    "button": {
+      "height": 40,
+      "width": 94
+    },
+    "dialogs": [],
+    "focus": "跳至主要内容\n    \n\n            \n\n        \n    \n    \n    ",
+    "forms": [],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "provider_editor_1440",
+    "button": {
+      "height": 40,
+      "width": 94
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 817.84375,
+        "id": "nf-provider-editor-modal",
+        "label": "新建供应商",
+        "width": 1024
+      }
+    ],
+    "focus": "provider-new-name",
+    "forms": [
+      "provider-new"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "secret_not_in_snapshot",
+    "present": false
+  },
+  {
+    "case": "provider_post_failed",
+    "button": {
+      "height": 40,
+      "width": 94
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 968,
+        "id": "nf-provider-editor-modal",
+        "label": "新建供应商",
+        "width": 1024
+      }
+    ],
+    "focus": "provider-new-name",
+    "forms": [
+      "provider-new"
+    ],
+    "scroll": 1440,
+    "width": 1440,
+    "retained": {
+      "connect": "30",
+      "endpoint": "https://api.example.com/v1/generate",
+      "name": "弹窗验收供应商",
+      "passwordEmpty": true
+    }
+  },
+  {
+    "case": "provider_saved",
+    "button": {
+      "height": 40,
+      "width": 94
+    },
+    "dialogs": [],
+    "focus": "跳至主要内容\n    \n\n            \n\n        \n    \n    \n    ",
+    "forms": [],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "model_post_failed",
+    "button": {
+      "height": 40,
+      "width": 94
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 741.2421875,
+        "id": "nf-model-editor-modal",
+        "label": "新建模型声明",
+        "width": 1024
+      }
+    ],
+    "focus": "model-new-provider",
+    "forms": [
+      "model-new"
+    ],
+    "scroll": 1440,
+    "width": 1440,
+    "retained": {
+      "context": "100",
+      "model": "ui23-test-model",
+      "output": "101"
+    }
+  },
+  {
+    "case": "model_saved",
+    "button": {
+      "height": 40,
+      "width": 94
+    },
+    "dialogs": [],
+    "focus": "跳至主要内容\n    \n\n            \n\n        \n    \n    \n    ",
+    "forms": [],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "provider_history",
+    "button": {
+      "height": 40,
+      "width": 94
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 968,
+        "id": "nf-provider-history-modal",
+        "label": "配置历史与版本比较",
+        "width": 1024
+      }
+    ],
+    "focus": "provider-history-old",
+    "forms": [],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "prompt_list_390",
+    "button": {
+      "height": 40,
+      "width": 137.7109375
+    },
+    "dialogs": [],
+    "focus": "跳至主要内容\n    \n\n            \n\n        \n    \n    \n    ",
+    "forms": [],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "case": "prompt_editor_390",
+    "button": {
+      "height": 40,
+      "width": 137.7109375
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 812,
+        "id": "nf-configuration-editor-modal",
+        "label": "新建 Prompt 模板",
+        "width": 358
+      }
+    ],
+    "focus": "configurationForm.key",
+    "forms": [
+      "nf-configuration-editor"
+    ],
+    "scroll": 390,
+    "width": 390,
+    "window": {
+      "overlay": "none",
+      "scroll": 358,
+      "width": 358
+    }
+  },
+  {
+    "case": "focus_trap_390",
+    "button": {
+      "height": 40,
+      "width": 137.7109375
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 812,
+        "id": "nf-configuration-editor-modal",
+        "label": "新建 Prompt 模板",
+        "width": 358
+      }
+    ],
+    "focus": "高级导入（仅内容，不改变身份；错误不覆盖表单）",
+    "forms": [
+      "nf-configuration-editor"
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "case": "prompt_cancelled_390",
+    "button": {
+      "height": 40,
+      "width": 137.7109375
+    },
+    "dialogs": [],
+    "focus": "nf-configuration-create",
+    "forms": [],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "case": "providers_list_390",
+    "button": {
+      "height": 40,
+      "width": 94
+    },
+    "dialogs": [],
+    "focus": "跳至主要内容\n    \n\n            \n\n        \n    \n    \n    ",
+    "forms": [],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "case": "provider_editor_390",
+    "button": {
+      "height": 40,
+      "width": 94
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 812,
+        "id": "nf-provider-editor-modal",
+        "label": "新建供应商",
+        "width": 358
+      }
+    ],
+    "focus": "provider-new-name",
+    "forms": [
+      "provider-new"
+    ],
+    "scroll": 390,
+    "width": 390,
+    "window": {
+      "scroll": 358,
+      "width": 358
+    }
+  },
+  {
+    "case": "route_editor_390",
+    "button": {
+      "height": 40,
+      "width": 108
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 812,
+        "id": "nf-configuration-editor-modal",
+        "label": "新建模型路由",
+        "width": 358
+      }
+    ],
+    "focus": "configurationForm.key",
+    "forms": [
+      "nf-configuration-editor"
+    ],
+    "scroll": 390,
+    "width": 390,
+    "window": {
+      "scroll": 358,
+      "width": 358
+    }
+  },
+  {
+    "case": "style_editor_390",
+    "button": {
+      "height": 40,
+      "width": 108
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 812,
+        "id": "nf-configuration-editor-modal",
+        "label": "新建文风策略",
+        "width": 358
+      }
+    ],
+    "focus": "configurationForm.key",
+    "forms": [
+      "nf-configuration-editor"
+    ],
+    "scroll": 390,
+    "width": 390,
+    "window": {
+      "scroll": 358,
+      "width": 358
+    }
+  },
+  {
+    "case": "validation_focus_final_1440",
+    "button": {
+      "height": 40,
+      "width": 137.7109375
+    },
+    "dialogs": [
+      {
+        "focusInside": false,
+        "height": 968,
+        "id": "nf-configuration-editor-modal",
+        "label": "新建 Prompt 模板",
+        "width": 1024
+      }
+    ],
+    "focus": "跳至主要内容\n    \n\n            \n\n        \n    \n    \n    ",
+    "forms": [
+      "nf-configuration-editor"
+    ],
+    "scroll": 1440,
+    "width": 1440,
+    "phase": "intermediate_before_all_browser_fixes"
+  },
+  {
+    "case": "validation_focus_fixed",
+    "button": {
+      "height": 40,
+      "width": 137.7109375
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 968,
+        "id": "nf-configuration-editor-modal",
+        "label": "新建 Prompt 模板",
+        "width": 1024
+      }
+    ],
+    "focus": "尚未保存，请核对字段\n    属性名不能为空、重复或超过200字节。",
+    "forms": [
+      "nf-configuration-editor"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "validation_repeat_fixed",
+    "button": {
+      "height": 40,
+      "width": 137.7109375
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 968,
+        "id": "nf-configuration-editor-modal",
+        "label": "新建 Prompt 模板",
+        "width": 1024
+      }
+    ],
+    "focus": "尚未保存，请核对字段\n    属性名不能为空、重复或超过200字节。",
+    "forms": [
+      "nf-configuration-editor"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "dark_editor_1440",
+    "button": {
+      "height": 40,
+      "width": 137.7109375
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 968,
+        "id": "nf-configuration-editor-modal",
+        "label": "新建 Prompt 模板",
+        "width": 1024
+      }
+    ],
+    "focus": "configurationForm.key",
+    "forms": [
+      "nf-configuration-editor"
+    ],
+    "scroll": 1440,
+    "width": 1440,
+    "dark": true
+  },
+  {
+    "case": "final_editor_1440",
+    "button": {
+      "height": 40,
+      "width": 137.7109375
+    },
+    "dialogs": [
+      {
+        "focusInside": true,
+        "height": 968,
+        "id": "nf-configuration-editor-modal",
+        "label": "新建 Prompt 模板",
+        "width": 1024
+      }
+    ],
+    "focus": "configurationForm.key",
+    "forms": [
+      "nf-configuration-editor"
+    ],
+    "scroll": 1440,
+    "width": 1440
+  }
+]

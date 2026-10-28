@@ -24,15 +24,19 @@
     </x-nf.form-grid>
     <fieldset x-data="{ hosts: @js($val('allowed_hosts',[''])) }" class="nf-json-node">
         <legend>允许的精确主机 · 每行一个</legend>
-        <template x-for="(host,index) in hosts" :key="index"><div class="nf-config-actions">
+        {{-- 同行主机编辑只调整布局与按钮外观；名称、绑定和增删条件保持原样。 --}}
+        <template x-for="(host,index) in hosts" :key="index"><div class="nf-config-actions nf-host-row">
             <label :for="@js($formId.'-host-')+index">主机 <span x-text="index+1"></span></label>
             <input :id="@js($formId.'-host-')+index" name="allowed_hosts[]" x-model="hosts[index]" required maxlength="253">
-            <button type="button" x-on:click="hosts.splice(index,1)" :disabled="hosts.length===1">移除</button>
+            <x-filament::button color="gray" type="button" x-on:click="hosts.splice(index,1)" x-bind:disabled="hosts.length===1">移除</x-filament::button>
         </div></template>
         <x-filament::button color="gray" type="button" x-on:click="hosts.push('')" x-bind:disabled="hosts.length>=20">添加主机</x-filament::button>
         @if($failed)@foreach($errors->get('allowed_hosts.*') as $messages)@foreach($messages as $message)<p role="alert">{{ $message }}</p>@endforeach
 @endforeach
 @endif
     </fieldset>
-    <x-filament::button type="submit">保存供应商新版本</x-filament::button>
+    {{-- UI23：保存仍是原生POST；取消仅关闭弹窗，不提交表单。 --}}
+    <div class="nf-config-actions"><x-filament::button type="submit">保存供应商新版本</x-filament::button>
+        <x-filament::button type="button" color="gray" x-on:click="$dispatch('close-modal',{id:'nf-provider-editor-modal'})">取消编辑</x-filament::button>
+    </div>
 </form>

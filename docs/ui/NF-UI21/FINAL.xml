@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="/Users/webb/Herd/NovelForge/phpunit.xml" tests="7" assertions="60" errors="0" failures="0" skipped="0" time="2.753926">
+    <testsuite name="Feature" tests="7" assertions="60" errors="0" failures="0" skipped="0" time="2.753926">
+      <testsuite name="Tests\Feature\UiFoundationTest" file="/Users/webb/Herd/NovelForge/tests/Feature/UiFoundationTest.php" tests="7" assertions="60" errors="0" failures="0" skipped="0" time="2.753926">
+        <testcase name="test_panel_registers_independent_compiled_theme" file="/Users/webb/Herd/NovelForge/tests/Feature/UiFoundationTest.php" line="26" class="Tests\Feature\UiFoundationTest" classname="Tests.Feature.UiFoundationTest" assertions="5" time="2.157939"/>
+        <testcase name="test_read_only_pages_keep_authentication_and_have_no_business_side_effects" file="/Users/webb/Herd/NovelForge/tests/Feature/UiFoundationTest.php" line="37" class="Tests\Feature\UiFoundationTest" classname="Tests.Feature.UiFoundationTest" assertions="15" time="0.374814"/>
+        <testcase name="test_input_connects_native_label_help_error_and_preserves_attributes" file="/Users/webb/Herd/NovelForge/tests/Feature/UiFoundationTest.php" line="51" class="Tests\Feature\UiFoundationTest" classname="Tests.Feature.UiFoundationTest" assertions="7" time="0.046392"/>
+        <testcase name="test_readonly_and_disabled_are_native_control_states" file="/Users/webb/Herd/NovelForge/tests/Feature/UiFoundationTest.php" line="67" class="Tests\Feature\UiFoundationTest" classname="Tests.Feature.UiFoundationTest" assertions="4" time="0.044653"/>
+        <testcase name="test_section_form_and_table_use_native_semantics_and_escaped_labels" file="/Users/webb/Herd/NovelForge/tests/Feature/UiFoundationTest.php" line="77" class="Tests\Feature\UiFoundationTest" classname="Tests.Feature.UiFoundationTest" assertions="6" time="0.043382"/>
+        <testcase name="test_common_states_have_explicit_accessible_feedback" file="/Users/webb/Herd/NovelForge/tests/Feature/UiFoundationTest.php" line="88" class="Tests\Feature\UiFoundationTest" classname="Tests.Feature.UiFoundationTest" assertions="22" time="0.043938"/>
+        <testcase name="test_unknown_visual_state_is_not_silently_treated_as_success" file="/Users/webb/Herd/NovelForge/tests/Feature/UiFoundationTest.php" line="101" class="Tests\Feature\UiFoundationTest" classname="Tests.Feature.UiFoundationTest" assertions="1" time="0.042807"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

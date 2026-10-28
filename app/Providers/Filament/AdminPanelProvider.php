@@ -12,6 +12,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -36,7 +37,17 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             // 五组目录及次级关于入口统一维护，旧状态页URL继续可访问。
-            ->navigationGroups(NovelNavigationService::GROUPS)
+            ->navigationGroups(array_map(
+                // UI22：一级目录显示图标；顺序仍由既有目录契约决定。
+                static fn (string $label): NavigationGroup => NavigationGroup::make($label)->icon(match ($label) {
+                    '创作工作台' => 'heroicon-o-home',
+                    '故事管理' => 'heroicon-o-book-open',
+                    '生产与质量' => 'heroicon-o-pencil-square',
+                    '检索与记忆' => 'heroicon-o-magnifying-glass',
+                    '配置与运维' => 'heroicon-o-cog-6-tooth',
+                }),
+                NovelNavigationService::GROUPS,
+            ))
             ->userMenuItems([Action::make('implementation-status')->label('关于与实施状态')->icon('heroicon-o-information-circle')->url(fn (): string => ProjectStatus::getUrl())])
             // UI02 仅接入主题与本机字体，不修改导航、页面数据或业务动作。
             ->viteTheme('resources/css/filament/admin/theme.css')

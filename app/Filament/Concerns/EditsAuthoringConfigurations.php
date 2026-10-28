@@ -263,13 +263,18 @@ trait EditsAuthoringConfigurations
             $p = $this->configurationPayload($this->configurationForm->getState());
             $v = app(AuthoringConfigurationService::class)->execute(auth()->user(), $this->configurationKind(), 'save', $p, $this->saveKey);
             $this->editorOpen = false;
+            // UI23：仅保存成功后关闭原生弹窗，失败继续保留同一编辑器及幂等键。
+            $this->dispatch('close-modal', id: 'nf-configuration-editor-modal');
             $this->dispatch('configuration-result');
             $this->notice = '草稿 v'.$v['version'].' 已保存（#'.$v['id'].'）；旧版本未改变。';
         } catch (ValidationException $e) {
             $this->dispatch('configuration-result');
+            // UI23：复用既有作用域错误定位，将焦点留在新增弹窗内。
+            $this->dispatch('nf-validation-failed', sourceId: $this->getId());
             throw ValidationException::withMessages($this->configurationErrors($e->errors()));
         } catch (NovelProblem $e) {
             $this->dispatch('configuration-result');
+            $this->dispatch('nf-validation-failed', sourceId: $this->getId());
             $this->addError('configuration', $e->getMessage());
         }
     }
@@ -315,6 +320,8 @@ trait EditsAuthoringConfigurations
     {
         $this->editorOpen = false;
         $this->resetValidation();
+        // UI23：取消、关闭按钮和Escape共用原有取消状态，不执行任何保存。
+        $this->dispatch('close-modal', id: 'nf-configuration-editor-modal');
     }
 
     public function importConfigurationContent(): void

@@ -1,0 +1,25 @@
+{
+  "geometry_cases_passed": [
+    "after_empty_1440",
+    "after_empty_390",
+    "selected_short_1440",
+    "pending_long_1440",
+    "long_light_1440",
+    "long_light_390",
+    "long_dark_1440",
+    "long_dark_390",
+    "run_toolbar_final_1440",
+    "run_toolbar_final_390",
+    "run_toolbar_focus_390",
+    "short_final_1440"
+  ],
+  "keyboard_order_passed": true,
+  "long_title_preserved": true,
+  "cleanup": {
+    "ownTabClosed": true,
+    "viewportReset": true,
+    "themeSystemRestored": true,
+    "previewPort8774Closed": true,
+    "temporaryCredentialRemoved": true
+  }
+}

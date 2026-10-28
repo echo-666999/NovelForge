@@ -4,8 +4,9 @@
 @else
     {{-- 健康状态只表示已经观测的数据库事实，不推断外部供应商或Worker在线。 --}}
     @php($health=$this->health())
-    <h2>数据库观测：{{ $health['state'] }}</h2><p>{{ $health['scope'] }}</p>
-    @include('filament.value-table',['value'=>$health,'label'=>'逐字段只读证据'])
+    {{-- UI24：保留真实健康摘要，完整投影按需查看，不挤占默认审计列表。 --}}
+    <p>数据库观测：{{ $health['state'] }} · {{ $health['scope'] }}</p>
+    <div class="nf-config-actions"><x-filament::button color="gray" x-on:click="$dispatch('open-modal',{id:'nf-audit-health-modal'})">查看数据库观测详情</x-filament::button></div>
 <div wire:loading role="status">正在读取或保存，请稍候…</div>
 @if($errors->any())<x-nf.state state="error" title="请核对字段，输入仍保留"><ul>@foreach($errors->all() as $message)<li>{{ $message }}</li>@endforeach</ul></x-nf.state>@endif
     <div class="nf-story-toolbar">
@@ -18,13 +19,23 @@
     <p>{{ $catalog['total'] }} 条 / 第 {{ $catalog['page'] }} 页；审计只追加，没有删除动作。</p>
     <a href="{{ '/api/v1/audit/export?'.http_build_query(array_filter($this->filters(),fn($v)=>$v!==null)) }}">下载当前页脱敏审计记录</a>
     <x-nf.field id="ui07-audit-center-2-{{ md5('page') }}" label="页码" :error="$errors->first('page')"><x-nf.control id="ui07-audit-center-2-{{ md5('page') }}" type="number" min="1" wire:model.live="page"  /></x-nf.field>
+    <x-nf.table label="审计记录列表"><table><thead><tr><th>时间 / 对象</th><th>动作 / 结果</th><th>操作人</th><th>原因</th><th>操作</th></tr></thead><tbody>
     @forelse($catalog['rows'] as $row)
-        <details wire:ignore.self><summary>{{ $row['created_at'] }} / {{ $row['object_type'] }} #{{ $row['object_id'] }} / {{ $row['action'] }} / {{ $row['outcome'] }}</summary>
-            <p>操作人 {{ $row['actor_id']??'系统' }}；原因：{{ $row['reason'] }}；根追踪：{{ $row['trace_id'] }}；操作追踪：{{ $row['operation_trace_id'] }}</p>
-            @if($row['run_id'])<a href="{{ '/admin/run-center?novel='.$row['novel_id'].'&run='.$row['run_id'] }}">查看运行及outbox</a>@endif
-            @if($row['artifact_url'])<a href="{{ $row['artifact_url'] }}">下载完整受控产物</a>@endif
-            @include('filament.value-table',['value'=>['before'=>$row['before_state'],'after'=>$row['after_state']],'label'=>'逐字段只读证据'])
-        </details>
-    @empty <p>暂无符合条件的审计；历史补建追踪号不代表补造历史操作。</p> @endforelse
+        <tr><td>{{ $row['created_at'] }}<p>{{ $row['object_type'] }} #{{ $row['object_id'] }}</p></td><td>{{ $row['action'] }} / {{ $row['outcome'] }}</td><td>{{ $row['actor_id']??'系统' }}</td><td>{{ $row['reason'] }}</td><td><x-filament::button color="gray" wire:click="inspectAudit('{{ $row['id'] }}')">查看审计详情</x-filament::button></td></tr>
+    @empty<tr><td colspan="5">暂无符合条件的审计；历史补建追踪号不代表补造历史操作。</td></tr>@endforelse
+    </tbody></table></x-nf.table>
+    <x-nf.editor-modal id="nf-audit-health-modal" heading="数据库观测详情">
+        <p>{{ $health['scope'] }}</p>@include('filament.value-table',['value'=>$health,'label'=>'逐字段只读证据'])
+    </x-nf.editor-modal>
+    <x-nf.editor-modal id="nf-audit-detail-modal" heading="审计记录只读详情">
+        @if($auditDetail)
+        <div class="nf-production-layout">
+            <p>操作人 {{ $auditDetail['actor_id']??'系统' }}；原因：{{ $auditDetail['reason'] }}；根追踪：{{ $auditDetail['trace_id'] }}；操作追踪：{{ $auditDetail['operation_trace_id'] }}</p>
+            @if($auditDetail['run_id'])<a href="{{ '/admin/run-center?novel='.$auditDetail['novel_id'].'&run='.$auditDetail['run_id'] }}">查看运行及outbox</a>@endif
+            @if($auditDetail['artifact_url'])<a href="{{ $auditDetail['artifact_url'] }}">下载完整受控产物</a>@endif
+            @include('filament.value-table',['value'=>['before'=>$auditDetail['before_state'],'after'=>$auditDetail['after_state']],'label'=>'逐字段只读证据'])
+        </div>
+        @endif
+    </x-nf.editor-modal>
 @endif
 </div></x-filament-panels::page>

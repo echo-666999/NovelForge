@@ -1,0 +1,768 @@
+[
+  {
+    "case": "before",
+    "dark": false,
+    "groups": [
+      {
+        "groupIcons": 0,
+        "items": [
+          {
+            "active": null,
+            "dot": false,
+            "href": "http://127.0.0.1:8776/admin",
+            "icon": true,
+            "label": "创作总览"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/novels",
+            "icon": false,
+            "label": "小说库"
+          }
+        ],
+        "label": "创作工作台"
+      },
+      {
+        "groupIcons": 0,
+        "items": [
+          {
+            "active": null,
+            "dot": false,
+            "href": "http://127.0.0.1:8776/admin/story-hub",
+            "icon": true,
+            "label": "故事管理"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/story-timeline",
+            "icon": false,
+            "label": "时间线与角色知识"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/foreshadow-ledger",
+            "icon": false,
+            "label": "伏笔与主支线账本"
+          }
+        ],
+        "label": "故事管理"
+      },
+      {
+        "groupIcons": 0,
+        "items": [
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/run-center",
+            "icon": false,
+            "label": "生成运行中心"
+          },
+          {
+            "active": null,
+            "dot": false,
+            "href": "http://127.0.0.1:8776/admin/extraction-ledger",
+            "icon": true,
+            "label": "正文提取与硬约束"
+          },
+          {
+            "active": null,
+            "dot": false,
+            "href": "http://127.0.0.1:8776/admin/review-center",
+            "icon": true,
+            "label": "评审中心与策略"
+          },
+          {
+            "active": null,
+            "dot": false,
+            "href": "http://127.0.0.1:8776/admin/revision-desk",
+            "icon": true,
+            "label": "受限修订工作台"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/canonical-commit-center",
+            "icon": false,
+            "label": "正式提交与基线"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/context-inspector",
+            "icon": false,
+            "label": "上下文检查器"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/recovery-desk",
+            "icon": false,
+            "label": "运行恢复台"
+          }
+        ],
+        "label": "生产与质量"
+      },
+      {
+        "groupIcons": 0,
+        "items": [
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/memory-library",
+            "icon": false,
+            "label": "分层记忆库"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/canonical-memory-center",
+            "icon": false,
+            "label": "正式记忆与索引"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/search-lab",
+            "icon": false,
+            "label": "检索实验室与索引"
+          }
+        ],
+        "label": "检索与记忆"
+      },
+      {
+        "groupIcons": 0,
+        "items": [
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/prompt-templates",
+            "icon": false,
+            "label": "Prompt 模板与发布"
+          },
+          {
+            "active": "page",
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/providers",
+            "icon": false,
+            "label": "供应商与模型"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/model-routes",
+            "icon": false,
+            "label": "模型主备路由"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/style-profiles",
+            "icon": false,
+            "label": "文风与评分策略"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/billing",
+            "icon": false,
+            "label": "价格与原子预算"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/audit-center",
+            "icon": false,
+            "label": "审计与系统健康"
+          }
+        ],
+        "label": "配置与运维"
+      }
+    ],
+    "modelGap": 0,
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "after_1440",
+    "dark": false,
+    "groups": [
+      {
+        "groupIcons": 1,
+        "items": [
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin",
+            "icon": false,
+            "label": "创作总览"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/novels",
+            "icon": false,
+            "label": "小说库"
+          }
+        ],
+        "label": "创作工作台"
+      },
+      {
+        "groupIcons": 1,
+        "items": [
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/story-hub",
+            "icon": false,
+            "label": "故事管理"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/story-timeline",
+            "icon": false,
+            "label": "时间线与角色知识"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/foreshadow-ledger",
+            "icon": false,
+            "label": "伏笔与主支线账本"
+          }
+        ],
+        "label": "故事管理"
+      },
+      {
+        "groupIcons": 1,
+        "items": [
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/run-center",
+            "icon": false,
+            "label": "生成运行中心"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/extraction-ledger",
+            "icon": false,
+            "label": "正文提取与硬约束"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/review-center",
+            "icon": false,
+            "label": "评审中心与策略"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/revision-desk",
+            "icon": false,
+            "label": "受限修订工作台"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/canonical-commit-center",
+            "icon": false,
+            "label": "正式提交与基线"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/context-inspector",
+            "icon": false,
+            "label": "上下文检查器"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/recovery-desk",
+            "icon": false,
+            "label": "运行恢复台"
+          }
+        ],
+        "label": "生产与质量"
+      },
+      {
+        "groupIcons": 1,
+        "items": [
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/memory-library",
+            "icon": false,
+            "label": "分层记忆库"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/canonical-memory-center",
+            "icon": false,
+            "label": "正式记忆与索引"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/search-lab",
+            "icon": false,
+            "label": "检索实验室与索引"
+          }
+        ],
+        "label": "检索与记忆"
+      },
+      {
+        "groupIcons": 1,
+        "items": [
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/prompt-templates",
+            "icon": false,
+            "label": "Prompt 模板与发布"
+          },
+          {
+            "active": "page",
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/providers",
+            "icon": false,
+            "label": "供应商与模型"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/model-routes",
+            "icon": false,
+            "label": "模型主备路由"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/style-profiles",
+            "icon": false,
+            "label": "文风与评分策略"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/billing",
+            "icon": false,
+            "label": "价格与原子预算"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/audit-center",
+            "icon": false,
+            "label": "审计与系统健康"
+          }
+        ],
+        "label": "配置与运维"
+      }
+    ],
+    "modelGap": 16,
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "group_collapsed",
+    "expanded": "false"
+  },
+  {
+    "case": "group_restored",
+    "expanded": "true"
+  },
+  {
+    "case": "after_390",
+    "dark": false,
+    "groups": [
+      {
+        "groupIcons": 1,
+        "items": [
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin",
+            "icon": false,
+            "label": "创作总览"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/novels",
+            "icon": false,
+            "label": "小说库"
+          }
+        ],
+        "label": "创作工作台"
+      },
+      {
+        "groupIcons": 1,
+        "items": [
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/story-hub",
+            "icon": false,
+            "label": "故事管理"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/story-timeline",
+            "icon": false,
+            "label": "时间线与角色知识"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/foreshadow-ledger",
+            "icon": false,
+            "label": "伏笔与主支线账本"
+          }
+        ],
+        "label": "故事管理"
+      },
+      {
+        "groupIcons": 1,
+        "items": [
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/run-center",
+            "icon": false,
+            "label": "生成运行中心"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/extraction-ledger",
+            "icon": false,
+            "label": "正文提取与硬约束"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/review-center",
+            "icon": false,
+            "label": "评审中心与策略"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/revision-desk",
+            "icon": false,
+            "label": "受限修订工作台"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/canonical-commit-center",
+            "icon": false,
+            "label": "正式提交与基线"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/context-inspector",
+            "icon": false,
+            "label": "上下文检查器"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/recovery-desk",
+            "icon": false,
+            "label": "运行恢复台"
+          }
+        ],
+        "label": "生产与质量"
+      },
+      {
+        "groupIcons": 1,
+        "items": [
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/memory-library",
+            "icon": false,
+            "label": "分层记忆库"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/canonical-memory-center",
+            "icon": false,
+            "label": "正式记忆与索引"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/search-lab",
+            "icon": false,
+            "label": "检索实验室与索引"
+          }
+        ],
+        "label": "检索与记忆"
+      },
+      {
+        "groupIcons": 1,
+        "items": [
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/prompt-templates",
+            "icon": false,
+            "label": "Prompt 模板与发布"
+          },
+          {
+            "active": "page",
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/providers",
+            "icon": false,
+            "label": "供应商与模型"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/model-routes",
+            "icon": false,
+            "label": "模型主备路由"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/style-profiles",
+            "icon": false,
+            "label": "文风与评分策略"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/billing",
+            "icon": false,
+            "label": "价格与原子预算"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/audit-center",
+            "icon": false,
+            "label": "审计与系统健康"
+          }
+        ],
+        "label": "配置与运维"
+      }
+    ],
+    "modelGap": 16,
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "case": "mobile_drawer_open",
+    "dark": false,
+    "groups": [
+      {
+        "groupIcons": 1,
+        "items": [
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin",
+            "icon": false,
+            "label": "创作总览"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/novels",
+            "icon": false,
+            "label": "小说库"
+          }
+        ],
+        "label": "创作工作台"
+      },
+      {
+        "groupIcons": 1,
+        "items": [
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/story-hub",
+            "icon": false,
+            "label": "故事管理"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/story-timeline",
+            "icon": false,
+            "label": "时间线与角色知识"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/foreshadow-ledger",
+            "icon": false,
+            "label": "伏笔与主支线账本"
+          }
+        ],
+        "label": "故事管理"
+      },
+      {
+        "groupIcons": 1,
+        "items": [
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/run-center",
+            "icon": false,
+            "label": "生成运行中心"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/extraction-ledger",
+            "icon": false,
+            "label": "正文提取与硬约束"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/review-center",
+            "icon": false,
+            "label": "评审中心与策略"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/revision-desk",
+            "icon": false,
+            "label": "受限修订工作台"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/canonical-commit-center",
+            "icon": false,
+            "label": "正式提交与基线"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/context-inspector",
+            "icon": false,
+            "label": "上下文检查器"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/recovery-desk",
+            "icon": false,
+            "label": "运行恢复台"
+          }
+        ],
+        "label": "生产与质量"
+      },
+      {
+        "groupIcons": 1,
+        "items": [
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/memory-library",
+            "icon": false,
+            "label": "分层记忆库"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/canonical-memory-center",
+            "icon": false,
+            "label": "正式记忆与索引"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/search-lab",
+            "icon": false,
+            "label": "检索实验室与索引"
+          }
+        ],
+        "label": "检索与记忆"
+      },
+      {
+        "groupIcons": 1,
+        "items": [
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/prompt-templates",
+            "icon": false,
+            "label": "Prompt 模板与发布"
+          },
+          {
+            "active": "page",
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/providers",
+            "icon": false,
+            "label": "供应商与模型"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/model-routes",
+            "icon": false,
+            "label": "模型主备路由"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/style-profiles",
+            "icon": false,
+            "label": "文风与评分策略"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/billing",
+            "icon": false,
+            "label": "价格与原子预算"
+          },
+          {
+            "active": null,
+            "dot": true,
+            "href": "http://127.0.0.1:8776/admin/audit-center",
+            "icon": false,
+            "label": "审计与系统健康"
+          }
+        ],
+        "label": "配置与运维"
+      }
+    ],
+    "modelGap": 16,
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "case": "mobile_navigation",
+    "url": "http://127.0.0.1:8776/admin/extraction-ledger",
+    "drawerExpanded": "false"
+  },
+  {
+    "case": "overview_active",
+    "active": [
+      "创作总览"
+    ],
+    "childIcons": 0,
+    "dots": 21,
+    "groupIcons": 5
+  }
+]

@@ -16,7 +16,8 @@ class StoryHub extends Page
 
     protected static ?int $navigationSort = 10;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-book-open';
+    // UI22：二级菜单使用原生圆点，仅一级分组显示图标。
+    protected static string|\BackedEnum|null $navigationIcon = null;
 
     protected string $view = 'filament.story-hub';
 

@@ -1,0 +1,14 @@
+{
+  "root_no_horizontal_overflow": true,
+  "modal_no_horizontal_overflow": true,
+  "modal_focus_inside": true,
+  "default_no_editor": true,
+  "lazy_one_editor": true,
+  "normal_buttons": true,
+  "exact_decimal": true,
+  "same_input_still_v1": true,
+  "save_returns_trigger": true,
+  "cancel_returns_trigger": true,
+  "detail_returns_trigger": true,
+  "mobile_modal_358": true
+}

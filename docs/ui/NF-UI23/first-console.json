@@ -1,0 +1,8 @@
+[
+  {
+    "level": "error",
+    "message": "SyntaxError: Invalid or unexpected token\n    at new AsyncFunction (<anonymous>)\n    at http://127.0.0.1:8777/livewire-13f66f8e/livewire.min.js?id=a964a3c8:5:749\n    at Hp (http://127.0.0.1:8777/livewire-13f66f8e/livewire.min.js?id=a964a3c8:5:973)\n    at Up (http://127.0.0.1:8777/livewire-13f66f8e/livewire.min.js?id=a964a3c8:5:1018)\n    at jp (http://127.0.0.1:8777/livewire-13f66f8e/livewire.min.js?id=a964a3c8:5:337)\n    at he (http://127.0.0.1:8777/livewire-13f66f8e/livewire.min.js?id=a964a3c8:5:183)\n    at Ot (http://127.0.0.1:8777/livewire-13f66f8e/livewire.min.js?id=a964a3c8:5:138)\n    at http://127.0.0.1:8777/livewire-13f66f8e/livewire.min.js?id=a964a3c8:5:42518\n    at Function.<anonymous> (http://127.0.0.1:8777/livewire-13f66f8e/livewire.min.js?id=a964a3c8:5:4713)\n    at r (http://127.0.0.1:8777/livewire-13f66f8e/livewire.min.js?id=a964a3c8:5:3090)",
+    "timestamp": "2026-10-27T13:58:37.908Z",
+    "url": "http://127.0.0.1:8777/livewire-13f66f8e/livewire.min.js?id=a964a3c8"
+  }
+]

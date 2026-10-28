@@ -1,0 +1,426 @@
+{
+  "date": "2026-10-28",
+  "environment": "testing / novel_forge_test / 127.0.0.1:8778",
+  "cases": [
+    {
+      "case": "billing_default_1440",
+      "buttons": [
+        {
+          "height": 40,
+          "id": "nf-price-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-policy-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-reconcile-create",
+          "width": 108
+        }
+      ],
+      "dialogs": [],
+      "editors": 0,
+      "focus": "跳至主要内容\n    \n\n            \n\n        \n    \n    \n        \n\n              ",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "budget_editor_1440",
+      "buttons": [
+        {
+          "height": 40,
+          "id": "nf-price-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-policy-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-reconcile-create",
+          "width": 108
+        }
+      ],
+      "dialogs": [
+        {
+          "client": 1024,
+          "focusInside": true,
+          "height": 968,
+          "id": "nf-billing-editor-modal",
+          "scroll": 1024,
+          "width": 1024
+        }
+      ],
+      "editors": 1,
+      "focus": "nf-prod-bfa74cbdf6d264e4efc9",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "budget_failed",
+      "buttons": [
+        {
+          "height": 40,
+          "id": "nf-price-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-policy-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-reconcile-create",
+          "width": 108
+        }
+      ],
+      "dialogs": [
+        {
+          "client": 1024,
+          "focusInside": true,
+          "height": 968,
+          "id": "nf-billing-editor-modal",
+          "scroll": 1024,
+          "width": 1024
+        }
+      ],
+      "editors": 1,
+      "focus": "nf-prod-bfa74cbdf6d264e4efc9",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "budget_saved",
+      "buttons": [
+        {
+          "height": 40,
+          "id": "nf-price-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-policy-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-reconcile-create",
+          "width": 108
+        }
+      ],
+      "dialogs": [],
+      "editors": 0,
+      "focus": "nf-policy-create",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "budget_retried",
+      "buttons": [
+        {
+          "height": 40,
+          "id": "nf-price-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-policy-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-reconcile-create",
+          "width": 108
+        }
+      ],
+      "dialogs": [],
+      "editors": 0,
+      "focus": "nf-policy-create",
+      "scroll": 1440,
+      "width": 1440,
+      "rows": "政策键 / 版本\t币种 / 时区\t预警 / 停止阈值\t操作\nui24.browser.budget / v1\tUSD / UTC\t80% / 100%\t查看预算详情"
+    },
+    {
+      "case": "budget_detail",
+      "decimalPreserved": true,
+      "buttons": [
+        {
+          "height": 40,
+          "id": "nf-price-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-policy-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-reconcile-create",
+          "width": 108
+        }
+      ],
+      "dialogs": [
+        {
+          "client": 1024,
+          "focusInside": true,
+          "height": 968,
+          "id": "nf-billing-detail-modal",
+          "scroll": 1024,
+          "width": 1024
+        }
+      ],
+      "editors": 0,
+      "focus": "只读账本证据",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "detail_escape",
+      "buttons": [
+        {
+          "height": 40,
+          "id": "nf-price-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-policy-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-reconcile-create",
+          "width": 108
+        }
+      ],
+      "dialogs": [],
+      "editors": 0,
+      "focus": "查看预算详情",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "price_open",
+      "buttons": [
+        {
+          "height": 40,
+          "id": "nf-price-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-policy-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-reconcile-create",
+          "width": 108
+        }
+      ],
+      "dialogs": [
+        {
+          "client": 1024,
+          "focusInside": true,
+          "height": 968,
+          "id": "nf-billing-editor-modal",
+          "scroll": 1024,
+          "width": 1024
+        }
+      ],
+      "editors": 1,
+      "focus": "nf-prod-6ac0ad38a9aaa4efb03a",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "price_cancel",
+      "buttons": [
+        {
+          "height": 40,
+          "id": "nf-price-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-policy-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-reconcile-create",
+          "width": 108
+        }
+      ],
+      "dialogs": [],
+      "editors": 0,
+      "focus": "nf-price-create",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "reconcile_unknown",
+      "text": "录入对账凭证\n凭证对账或核销更正\n费用请求\n请选择实际记录\n供应商计费凭证号\n明确用量未知\n录入已知Token用量\n\n明确空值（未知），不是零或空文本。\n\n可核验凭证说明\n添加仅金额对账明细\n高级导入（可选，不代替逐字段编辑）\n\n金额按十进制文本填写，未知Token明确使用空值；只有实际凭证才能对账。相同输入重试保留原幂等键；关闭不写入并保留当前字段供重试。\n\n保存版本或凭证记录\n取消编辑",
+      "buttons": [
+        {
+          "height": 40,
+          "id": "nf-price-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-policy-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-reconcile-create",
+          "width": 108
+        }
+      ],
+      "dialogs": [
+        {
+          "client": 1024,
+          "focusInside": true,
+          "height": 699.7890625,
+          "id": "nf-billing-editor-modal",
+          "scroll": 1024,
+          "width": 1024
+        }
+      ],
+      "editors": 1,
+      "focus": "nf-prod-76c6e5371ca91e4a73c5",
+      "scroll": 1440,
+      "width": 1440
+    },
+    {
+      "case": "reconcile_390",
+      "buttons": [
+        {
+          "height": 40,
+          "id": "nf-price-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-policy-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-reconcile-create",
+          "width": 108
+        }
+      ],
+      "dialogs": [
+        {
+          "client": 358,
+          "focusInside": true,
+          "height": 812,
+          "id": "nf-billing-editor-modal",
+          "scroll": 358,
+          "width": 358
+        }
+      ],
+      "editors": 1,
+      "focus": "nf-prod-76c6e5371ca91e4a73c5",
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "case": "billing_list_390",
+      "buttons": [
+        {
+          "height": 40,
+          "id": "nf-price-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-policy-create",
+          "width": 108
+        },
+        {
+          "height": 40,
+          "id": "nf-reconcile-create",
+          "width": 108
+        }
+      ],
+      "dialogs": [],
+      "editors": 0,
+      "focus": "nf-reconcile-create",
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "case": "audit_list_390",
+      "buttons": [],
+      "dialogs": [],
+      "editors": 0,
+      "focus": "跳至主要内容\n    \n\n            \n\n        \n    \n    \n        \n\n              ",
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "case": "audit_detail_390",
+      "buttons": [],
+      "dialogs": [
+        {
+          "client": 358,
+          "focusInside": true,
+          "height": 721.1640625,
+          "id": "nf-audit-detail-modal",
+          "scroll": 358,
+          "width": 358
+        }
+      ],
+      "editors": 0,
+      "focus": "逐字段只读证据",
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "case": "audit_detail_return",
+      "buttons": [],
+      "dialogs": [],
+      "editors": 0,
+      "focus": "查看审计详情",
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "case": "health_390_tab_trap",
+      "buttons": [],
+      "dialogs": [
+        {
+          "client": 358,
+          "focusInside": true,
+          "height": 812,
+          "id": "nf-audit-health-modal",
+          "scroll": 358,
+          "width": 358
+        }
+      ],
+      "editors": 0,
+      "focus": "逐字段只读证据",
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "case": "audit_list_1440",
+      "buttons": [],
+      "dialogs": [],
+      "editors": 0,
+      "focus": "查看数据库观测详情",
+      "scroll": 1440,
+      "width": 1440
+    }
+  ]
+}

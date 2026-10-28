@@ -72,12 +72,53 @@ class Billing extends Page
     #[Locked]
     public array $billingCommandKeys = [];
 
+    /** UI24仅控制弹窗展示，不重置字段、价格版本或既有幂等键。 */
+    #[Locked]
+    public string $billingEditor = '';
+
+    #[Locked]
+    public bool $billingSaveFailed = false;
+
+    #[Locked]
+    public ?array $billingDetail = null;
+
+    public function beginBillingEditor(string $action): void
+    {
+        app(NovelIntentService::class)->authorize(auth()->user());
+        abort_unless(in_array($action, ['price', 'policy', 'reconcile'], true), 422);
+        $this->resetValidation();
+        $this->billingSaveFailed = false;
+        $this->billingEditor = $action;
+        $this->productionEditor($action.'Payload');
+        $this->dispatch('billing-editor-opened');
+    }
+
+    /** 关闭只是原折叠编辑区的展示替代；保留相同输入及重试身份。 */
+    public function closeBillingEditor(): void
+    {
+        $this->billingEditor = '';
+        $this->resetValidation();
+        $this->dispatch('close-modal', id: 'nf-billing-editor-modal');
+    }
+
+    /** 详情只取当前授权目录中的既有投影，不扩大账本或版本读取范围。 */
+    public function inspectBilling(string $kind, string $id): void
+    {
+        $key = ['price' => 'prices', 'policy' => 'policies', 'request' => 'requests'][$kind] ?? null;
+        abort_unless($key, 404);
+        $row = collect($this->catalog()[$key])->firstWhere($kind === 'request' ? 'request_id' : 'id', $id);
+        abort_unless($row, 404);
+        $this->billingDetail = ['kind' => $kind, 'record' => $row];
+        $this->dispatch('open-modal', id: 'nf-billing-detail-modal');
+    }
+
     /** 同一动作与完全相同的输入复用幂等键，不因重复点击新增价格或费用。 */
     public function saveBilling(string $action): void
     {
         $property = ['price' => 'pricePayload', 'policy' => 'policyPayload', 'reconcile' => 'reconcilePayload'][$action] ?? null;
         abort_unless($property, 422);
         $this->billingNotice = '';
+        $this->billingSaveFailed = false;
         $this->beginProductionAction();
         try {
             $data = $this->productionValue($property);
@@ -85,7 +126,11 @@ class Billing extends Page
             $key = $this->billingCommandKeys[$hash] ??= (string) Str::uuid();
             app(BillingConfigurationService::class)->execute(auth()->user(), $action, $data, $key);
             $this->billingNotice = '已保存版本或凭证；相同输入重试复用原记录，不调用模型。';
+            // UI24只在既有服务成功后关闭弹窗，保存与幂等过程保持原样。
+            $this->billingEditor = '';
+            $this->dispatch('close-modal', id: 'nf-billing-editor-modal');
         } catch (NovelProblem|ValidationException $e) {
+            $this->billingSaveFailed = true;
             if ($e instanceof ValidationException) {
                 $this->productionErrors($e);
             }

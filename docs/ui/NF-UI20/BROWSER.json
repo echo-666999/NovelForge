@@ -1,0 +1,722 @@
+[
+  {
+    "case": "before_empty_1440",
+    "fieldMargin": "0px",
+    "formWidth": 1008,
+    "items": [
+      {
+        "bottom": 319.1953125,
+        "center": 296.99609375,
+        "height": 44.3984375,
+        "margin": "0px",
+        "name": "select",
+        "width": 448,
+        "x": 376,
+        "y": 274.796875
+      },
+      {
+        "bottom": 319.1953125,
+        "center": 299.1953125,
+        "height": 40,
+        "margin": "0px",
+        "name": "button",
+        "width": 80,
+        "x": 836,
+        "y": 279.1953125
+      },
+      {
+        "bottom": 319.1953125,
+        "center": 305.99609375,
+        "height": 26.3984375,
+        "margin": "0px",
+        "name": "link",
+        "width": 48,
+        "x": 928,
+        "y": 292.796875
+      }
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "after_empty_1440",
+    "fieldMargin": "0px",
+    "formWidth": 1008,
+    "items": [
+      {
+        "bottom": 314.796875,
+        "center": 294.796875,
+        "height": 40,
+        "margin": "0px",
+        "name": "select",
+        "width": 448,
+        "x": 376,
+        "y": 274.796875
+      },
+      {
+        "bottom": 314.796875,
+        "center": 294.796875,
+        "height": 40,
+        "margin": "0px",
+        "name": "button",
+        "width": 80,
+        "x": 836,
+        "y": 274.796875
+      },
+      {
+        "bottom": 314.796875,
+        "center": 294.796875,
+        "height": 40,
+        "margin": "0px",
+        "name": "link",
+        "width": 48,
+        "x": 928,
+        "y": 274.796875
+      }
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "after_empty_390",
+    "fieldMargin": "0px",
+    "formWidth": 310,
+    "items": [
+      {
+        "bottom": 309.3984375,
+        "center": 289.3984375,
+        "height": 40,
+        "margin": "0px",
+        "name": "select",
+        "width": 310,
+        "x": 40,
+        "y": 269.3984375
+      },
+      {
+        "bottom": 361.3984375,
+        "center": 341.3984375,
+        "height": 40,
+        "margin": "0px",
+        "name": "button",
+        "width": 80,
+        "x": 40,
+        "y": 321.3984375
+      },
+      {
+        "bottom": 361.3984375,
+        "center": 341.3984375,
+        "height": 40,
+        "margin": "0px",
+        "name": "link",
+        "width": 48,
+        "x": 132,
+        "y": 321.3984375
+      }
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "case": "selected_short_1440",
+    "url": "http://127.0.0.1:8774/admin/story-hub?novel=12",
+    "fieldMargin": "0px",
+    "formWidth": 1008,
+    "items": [
+      {
+        "bottom": 314.796875,
+        "center": 294.796875,
+        "height": 40,
+        "margin": "0px",
+        "name": "select",
+        "width": 448,
+        "x": 376,
+        "y": 274.796875
+      },
+      {
+        "bottom": 314.796875,
+        "center": 294.796875,
+        "height": 40,
+        "margin": "0px",
+        "name": "button",
+        "width": 80,
+        "x": 836,
+        "y": 274.796875
+      },
+      {
+        "bottom": 314.796875,
+        "center": 294.796875,
+        "height": 40,
+        "margin": "0px",
+        "name": "link",
+        "width": 48,
+        "x": 928,
+        "y": 274.796875
+      }
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "pending_long_1440",
+    "fieldMargin": "0px",
+    "formWidth": 1008,
+    "items": [
+      {
+        "bottom": 314.796875,
+        "center": 294.796875,
+        "height": 40,
+        "margin": "0px",
+        "name": "select",
+        "width": 448,
+        "x": 376,
+        "y": 274.796875
+      },
+      {
+        "bottom": 314.796875,
+        "center": 294.796875,
+        "height": 40,
+        "margin": "0px",
+        "name": "button",
+        "width": 80,
+        "x": 836,
+        "y": 274.796875
+      },
+      {
+        "bottom": 314.796875,
+        "center": 294.796875,
+        "height": 40,
+        "margin": "0px",
+        "name": "link",
+        "width": 48,
+        "x": 928,
+        "y": 274.796875
+      }
+    ],
+    "scroll": 1440,
+    "width": 1440,
+    "longValue": {
+      "accessibleName": "当前小说：长书名排版验收𠮷😀长书名排版验收𠮷😀长书名排版验收𠮷😀长书名排版验收𠮷😀长书名排版验收𠮷😀长书名排版验收𠮷😀长书名排版验收𠮷😀长书名排版验收𠮷😀长书名排版验收𠮷😀长书名排版验收𠮷😀",
+      "clientWidth": 388,
+      "overflow": "ellipsis",
+      "scrollWidth": 1440,
+      "textLength": 110,
+      "whiteSpace": "nowrap"
+    }
+  },
+  {
+    "case": "keyboard",
+    "next": "切换小说",
+    "back": "nf-navigation-novel"
+  },
+  {
+    "case": "long_light_1440",
+    "dark": false,
+    "fieldMargin": "0px",
+    "formWidth": 1008,
+    "items": [
+      {
+        "bottom": 314.796875,
+        "center": 294.796875,
+        "height": 40,
+        "margin": "0px",
+        "name": "select",
+        "width": 448,
+        "x": 376,
+        "y": 274.796875
+      },
+      {
+        "bottom": 314.796875,
+        "center": 294.796875,
+        "height": 40,
+        "margin": "0px",
+        "name": "button",
+        "width": 80,
+        "x": 836,
+        "y": 274.796875
+      },
+      {
+        "bottom": 314.796875,
+        "center": 294.796875,
+        "height": 40,
+        "margin": "0px",
+        "name": "link",
+        "width": 48,
+        "x": 928,
+        "y": 274.796875
+      }
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "long_light_390",
+    "dark": false,
+    "fieldMargin": "0px",
+    "formWidth": 310,
+    "items": [
+      {
+        "bottom": 309.3984375,
+        "center": 289.3984375,
+        "height": 40,
+        "margin": "0px",
+        "name": "select",
+        "width": 310,
+        "x": 40,
+        "y": 269.3984375
+      },
+      {
+        "bottom": 361.3984375,
+        "center": 341.3984375,
+        "height": 40,
+        "margin": "0px",
+        "name": "button",
+        "width": 80,
+        "x": 40,
+        "y": 321.3984375
+      },
+      {
+        "bottom": 361.3984375,
+        "center": 341.3984375,
+        "height": 40,
+        "margin": "0px",
+        "name": "link",
+        "width": 48,
+        "x": 132,
+        "y": 321.3984375
+      }
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "case": "long_dark_1440",
+    "dark": true,
+    "fieldMargin": "0px",
+    "formWidth": 1008,
+    "items": [
+      {
+        "bottom": 314.796875,
+        "center": 294.796875,
+        "height": 40,
+        "margin": "0px",
+        "name": "select",
+        "width": 448,
+        "x": 376,
+        "y": 274.796875
+      },
+      {
+        "bottom": 314.796875,
+        "center": 294.796875,
+        "height": 40,
+        "margin": "0px",
+        "name": "button",
+        "width": 80,
+        "x": 836,
+        "y": 274.796875
+      },
+      {
+        "bottom": 314.796875,
+        "center": 294.796875,
+        "height": 40,
+        "margin": "0px",
+        "name": "link",
+        "width": 48,
+        "x": 928,
+        "y": 274.796875
+      }
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "long_dark_390",
+    "dark": true,
+    "fieldMargin": "0px",
+    "formWidth": 310,
+    "items": [
+      {
+        "bottom": 309.3984375,
+        "center": 289.3984375,
+        "height": 40,
+        "margin": "0px",
+        "name": "select",
+        "width": 310,
+        "x": 40,
+        "y": 269.3984375
+      },
+      {
+        "bottom": 361.3984375,
+        "center": 341.3984375,
+        "height": 40,
+        "margin": "0px",
+        "name": "button",
+        "width": 80,
+        "x": 40,
+        "y": 321.3984375
+      },
+      {
+        "bottom": 361.3984375,
+        "center": 341.3984375,
+        "height": 40,
+        "margin": "0px",
+        "name": "link",
+        "width": 48,
+        "x": 132,
+        "y": 321.3984375
+      }
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "case": "timeline_toolbar_1440",
+    "book": 40,
+    "rows": [],
+    "scroll": 1440,
+    "width": 1440,
+    "coverage_note": "仅验证story-screen内公共小说上下文；空夹具无story-toolbar，不计入工具栏覆盖。"
+  },
+  {
+    "case": "timeline_toolbar_390",
+    "book": 40,
+    "rows": [],
+    "scroll": 390,
+    "width": 390,
+    "coverage_note": "仅验证story-screen内公共小说上下文；空夹具无story-toolbar，不计入工具栏覆盖。"
+  },
+  {
+    "case": "run_toolbar_1440",
+    "book": 40,
+    "rows": [
+      [
+        {
+          "center": 667.5859375,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "BUTTON",
+          "text": "请选择实际记录",
+          "y": 647.5859375
+        },
+        {
+          "center": 665.38671875,
+          "fieldMargin": "0px",
+          "height": 44.3984375,
+          "tag": "INPUT",
+          "text": "",
+          "y": 643.1875
+        },
+        {
+          "center": 665.38671875,
+          "fieldMargin": "0px",
+          "height": 44.3984375,
+          "tag": "INPUT",
+          "text": "",
+          "y": 643.1875
+        },
+        {
+          "center": 665.38671875,
+          "fieldMargin": "0px",
+          "height": 44.3984375,
+          "tag": "INPUT",
+          "text": "",
+          "y": 643.1875
+        },
+        {
+          "center": 665.38671875,
+          "fieldMargin": "0px",
+          "height": 44.3984375,
+          "tag": "INPUT",
+          "text": "",
+          "y": 643.1875
+        },
+        {
+          "center": 761.78515625,
+          "fieldMargin": "0px",
+          "height": 44.3984375,
+          "tag": "INPUT",
+          "text": "",
+          "y": 739.5859375
+        }
+      ]
+    ],
+    "scroll": 1440,
+    "width": 1440,
+    "phase": "intermediate_before_native_input_specificity_fix"
+  },
+  {
+    "case": "run_toolbar_390",
+    "book": 40,
+    "rows": [
+      [
+        {
+          "center": 886.578125,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "BUTTON",
+          "text": "请选择实际记录",
+          "y": 866.578125
+        },
+        {
+          "center": 980.77734375,
+          "fieldMargin": "0px",
+          "height": 44.3984375,
+          "tag": "INPUT",
+          "text": "",
+          "y": 958.578125
+        },
+        {
+          "center": 1077.17578125,
+          "fieldMargin": "0px",
+          "height": 44.3984375,
+          "tag": "INPUT",
+          "text": "",
+          "y": 1054.9765625
+        },
+        {
+          "center": 1173.57421875,
+          "fieldMargin": "0px",
+          "height": 44.3984375,
+          "tag": "INPUT",
+          "text": "",
+          "y": 1151.375
+        },
+        {
+          "center": 1269.97265625,
+          "fieldMargin": "0px",
+          "height": 44.3984375,
+          "tag": "INPUT",
+          "text": "",
+          "y": 1247.7734375
+        },
+        {
+          "center": 1366.37109375,
+          "fieldMargin": "0px",
+          "height": 44.3984375,
+          "tag": "INPUT",
+          "text": "",
+          "y": 1344.171875
+        }
+      ]
+    ],
+    "scroll": 390,
+    "width": 390,
+    "phase": "intermediate_before_native_input_specificity_fix"
+  },
+  {
+    "case": "run_toolbar_final_1440",
+    "book": 40,
+    "rows": [
+      [
+        {
+          "center": 620.7890625,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "BUTTON",
+          "text": "请选择实际记录",
+          "y": 600.7890625
+        },
+        {
+          "center": 620.7890625,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "INPUT",
+          "text": "",
+          "y": 600.7890625
+        },
+        {
+          "center": 620.7890625,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "INPUT",
+          "text": "",
+          "y": 600.7890625
+        },
+        {
+          "center": 620.7890625,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "INPUT",
+          "text": "",
+          "y": 600.7890625
+        },
+        {
+          "center": 620.7890625,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "INPUT",
+          "text": "",
+          "y": 600.7890625
+        },
+        {
+          "center": 712.7890625,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "INPUT",
+          "text": "",
+          "y": 692.7890625
+        }
+      ]
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "run_toolbar_final_390",
+    "book": 40,
+    "rows": [
+      [
+        {
+          "center": 844.1796875,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "BUTTON",
+          "text": "请选择实际记录",
+          "y": 824.1796875
+        },
+        {
+          "center": 936.1796875,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "INPUT",
+          "text": "",
+          "y": 916.1796875
+        },
+        {
+          "center": 1028.1796875,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "INPUT",
+          "text": "",
+          "y": 1008.1796875
+        },
+        {
+          "center": 1120.1796875,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "INPUT",
+          "text": "",
+          "y": 1100.1796875
+        },
+        {
+          "center": 1212.1796875,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "INPUT",
+          "text": "",
+          "y": 1192.1796875
+        },
+        {
+          "center": 1304.1796875,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "INPUT",
+          "text": "",
+          "y": 1284.1796875
+        }
+      ]
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "case": "run_toolbar_focus_390",
+    "book": 40,
+    "rows": [
+      [
+        {
+          "center": 394.1796875,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "BUTTON",
+          "text": "请选择实际记录",
+          "y": 374.1796875
+        },
+        {
+          "center": 486.1796875,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "INPUT",
+          "text": "",
+          "y": 466.1796875
+        },
+        {
+          "center": 578.1796875,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "INPUT",
+          "text": "",
+          "y": 558.1796875
+        },
+        {
+          "center": 670.1796875,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "INPUT",
+          "text": "",
+          "y": 650.1796875
+        },
+        {
+          "center": 762.1796875,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "INPUT",
+          "text": "",
+          "y": 742.1796875
+        },
+        {
+          "center": 854.1796875,
+          "fieldMargin": "0px",
+          "height": 40,
+          "tag": "INPUT",
+          "text": "",
+          "y": 834.1796875
+        }
+      ]
+    ],
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "case": "short_final_1440",
+    "fieldMargin": "0px",
+    "formWidth": 1008,
+    "items": [
+      {
+        "bottom": 314.796875,
+        "center": 294.796875,
+        "height": 40,
+        "margin": "0px",
+        "name": "select",
+        "width": 448,
+        "x": 376,
+        "y": 274.796875
+      },
+      {
+        "bottom": 314.796875,
+        "center": 294.796875,
+        "height": 40,
+        "margin": "0px",
+        "name": "button",
+        "width": 80,
+        "x": 836,
+        "y": 274.796875
+      },
+      {
+        "bottom": 314.796875,
+        "center": 294.796875,
+        "height": 40,
+        "margin": "0px",
+        "name": "link",
+        "width": 48,
+        "x": 928,
+        "y": 274.796875
+      }
+    ],
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "case": "cleanup_theme",
+    "systemChecked": "true"
+  }
+]

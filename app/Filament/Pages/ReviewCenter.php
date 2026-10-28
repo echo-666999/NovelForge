@@ -38,7 +38,8 @@ class ReviewCenter extends Page
 
     protected static ?int $navigationSort = 30;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-clipboard-document-check';
+    // UI22：二级菜单使用原生圆点，仅一级分组显示图标。
+    protected static string|\BackedEnum|null $navigationIcon = null;
 
     protected static ?string $navigationLabel = '评审中心与策略';
 
