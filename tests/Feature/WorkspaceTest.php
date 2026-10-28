@@ -59,9 +59,11 @@ class WorkspaceTest extends TestCase
         $this->assertContains('BLUEPRINT_REQUIRED', array_column($d['blockers'], 'code'));
         $this->assertContains('PLAN_REQUIRED', array_column($d['blockers'], 'code'));
         $this->assertFalse($d['generation_eligible']);
-        foreach ($d['production'] as $value) {
-            $this->assertNull($value);
-        }
+        $this->assertSame('uninitialized', $d['production_state']);
+        $this->assertNull($d['production']['committed_chapters']);
+        $this->assertNull($d['production']['budget_remaining']);
+        $this->assertSame('empty', $d['production']['today_cost']['state']);
+        $this->assertNotEmpty($d['capabilities']);
         $this->assertSame($before, Novel::find($id)->toArray());
         $this->assertDatabaseCount('novel_commands', $commands);
         $this->assertArrayNotHasKey('settings', $d['novel']);

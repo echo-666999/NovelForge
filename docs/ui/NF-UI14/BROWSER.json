@@ -1,0 +1,65 @@
+[
+  {
+    "case": "desktop",
+    "disabled": [
+      "生成下一章",
+      "生成连续范围"
+    ],
+    "headings": [
+      "小说上下文",
+      "正式进度与生产状态",
+      "真实规划进度",
+      "下一步与规划缺项",
+      "近期章节规划",
+      "正文生产"
+    ],
+    "scrollWidth": 1440,
+    "width": 1440
+  },
+  {
+    "case": "mobile",
+    "detailsOpen": [
+      false
+    ],
+    "scrollWidth": 390,
+    "width": 390
+  },
+  {
+    "case": "reader_link",
+    "url": "http://127.0.0.1:8784/admin/formal-reader?novel=34",
+    "formalChapterVisible": true
+  },
+  {
+    "case": "export_link",
+    "url": "http://127.0.0.1:8784/admin/export-center?novel=34",
+    "empty": true
+  },
+  {
+    "case": "dark_mobile",
+    "dark": true,
+    "scrollWidth": 390,
+    "width": 390
+  },
+  {
+    "case": "invalid_filter",
+    "url": "http://127.0.0.1:8784/admin/novels/34/workspace?from=9&until=2",
+    "error": true
+  },
+  {
+    "case": "switch_empty",
+    "links": [
+      "/admin/formal-reader?novel=35",
+      "/admin/export-center?novel=35",
+      "/admin/run-center?novel=35",
+      "/admin/review-center?novel=35",
+      "/admin/canonical-commit-center?novel=35",
+      "/admin/canonical-memory-center?novel=35",
+      "/admin/recovery-desk?novel=35"
+    ],
+    "previousCount": false,
+    "scrollWidth": 390,
+    "uninitialized": true,
+    "url": "http://127.0.0.1:8784/admin/novels/35/workspace",
+    "width": 390
+  }
+]

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="/Users/webb/Herd/NovelForge/phpunit.xml" tests="16" assertions="170" errors="0" failures="0" skipped="0" time="80.487327">
+    <testsuite name="Feature" tests="16" assertions="170" errors="0" failures="0" skipped="0" time="80.487327">
+      <testsuite name="Tests\Feature\WorkspaceProductionTest" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceProductionTest.php" tests="6" assertions="73" errors="0" failures="0" skipped="0" time="73.588998">
+        <testcase name="test_empty_root_then_commit_reads_exact_formal_version_and_retains_it_after_candidate_edit" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceProductionTest.php" line="32" class="Tests\Feature\WorkspaceProductionTest" classname="Tests.Feature.WorkspaceProductionTest" assertions="20" time="29.951727"/>
+        <testcase name="test_cross_book_reads_and_archived_navigation_do_not_reuse_formal_progress" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceProductionTest.php" line="64" class="Tests\Feature\WorkspaceProductionTest" classname="Tests.Feature.WorkspaceProductionTest" assertions="19" time="18.419612"/>
+        <testcase name="test_unknown_cost_and_reconciled_zero_are_distinct_with_precise_budget_reference" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceProductionTest.php" line="93" class="Tests\Feature\WorkspaceProductionTest" classname="Tests.Feature.WorkspaceProductionTest" assertions="12" time="0.740918"/>
+        <testcase name="test_currencies_are_not_added_and_reference_policy_is_explicit" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceProductionTest.php" line="120" class="Tests\Feature\WorkspaceProductionTest" classname="Tests.Feature.WorkspaceProductionTest" assertions="6" time="0.977270"/>
+        <testcase name="test_projection_excludes_old_revision_and_fails_closed_on_incomplete_active_prefix" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceProductionTest.php" line="145" class="Tests\Feature\WorkspaceProductionTest" classname="Tests.Feature.WorkspaceProductionTest" assertions="11" time="22.975995"/>
+        <testcase name="test_production_read_failure_is_retryable_and_never_rendered_as_zero_or_empty" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceProductionTest.php" line="177" class="Tests\Feature\WorkspaceProductionTest" classname="Tests.Feature.WorkspaceProductionTest" assertions="5" time="0.523477"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\WorkspaceTest" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" tests="10" assertions="97" errors="0" failures="0" skipped="0" time="6.898329">
+        <testcase name="test_empty_overview_and_no_match_are_distinct" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="44" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="6" time="0.127671"/>
+        <testcase name="test_summary_has_real_missing_items_unknown_metrics_and_no_side_effects" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="52" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="18" time="0.172006"/>
+        <testcase name="test_all_planning_pages_keep_book_context_and_return_link" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="74" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="28" time="0.549334"/>
+        <testcase name="test_auth_ownership_and_invalid_filters" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="85" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="5" time="0.076774"/>
+        <testcase name="test_real_ready_frozen_and_stale_plans_are_not_generation_readiness" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="98" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="10" time="4.835757"/>
+        <testcase name="test_invalid_filters_and_read_failure_do_not_render_empty_state" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="125" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="5" time="0.155196"/>
+        <testcase name="test_archived_workbench_and_overview_filters_are_read_only" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="133" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="4" time="0.127130"/>
+        <testcase name="test_overview_pagination_is_stable_and_has_only_owned_books" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="143" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="4" time="0.370974"/>
+        <testcase name="test_single_sided_ranges_and_filter_reset" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="156" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="6" time="0.239784"/>
+        <testcase name="test_creation_and_copy_redirect_to_the_correct_workspace" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="164" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="11" time="0.243703"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="/Users/webb/Herd/NovelForge/phpunit.xml" tests="14" assertions="0" errors="14" failures="0" skipped="0" time="0.000000">
+    <testsuite name="Feature" tests="14" assertions="0" errors="14" failures="0" skipped="0" time="0.000000">
+      <testsuite name="Tests\Feature\WorkspaceProductionTest" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceProductionTest.php" tests="4" assertions="0" errors="4" failures="0" skipped="0" time="0.000000">
+        <testcase name="test_empty_root_then_commit_reads_exact_formal_version_and_retains_it_after_candidate_edit" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceProductionTest.php" line="30" class="Tests\Feature\WorkspaceProductionTest" classname="Tests.Feature.WorkspaceProductionTest" assertions="0" time="0.000000">
+          <error type="RuntimeException">Tests\Feature\WorkspaceProductionTest::test_empty_root_then_commit_reads_exact_formal_version_and_retains_it_after_candidate_edit
+RuntimeException: Cannot verify the isolated testing database.
+
+/Users/webb/Herd/NovelForge/app/Providers/AppServiceProvider.php:29
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:36
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Util.php:43
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:96
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:35
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Container.php:803
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1159
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1140
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1139
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php:17
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:350
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:510
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:59
+/Users/webb/Herd/NovelForge/tests/TestCase.php:9
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:85
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/InteractsWithTestCaseLifecycle.php:102
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:75</error>
+        </testcase>
+        <testcase name="test_cross_book_reads_and_archived_navigation_do_not_reuse_formal_progress" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceProductionTest.php" line="62" class="Tests\Feature\WorkspaceProductionTest" classname="Tests.Feature.WorkspaceProductionTest" assertions="0" time="0.000000">
+          <error type="RuntimeException">Tests\Feature\WorkspaceProductionTest::test_cross_book_reads_and_archived_navigation_do_not_reuse_formal_progress
+RuntimeException: Cannot verify the isolated testing database.
+
+/Users/webb/Herd/NovelForge/app/Providers/AppServiceProvider.php:29
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:36
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Util.php:43
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:96
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:35
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Container.php:803
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1159
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1140
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1139
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php:17
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:350
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:510
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:59
+/Users/webb/Herd/NovelForge/tests/TestCase.php:9
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:85
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/InteractsWithTestCaseLifecycle.php:102
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:75</error>
+        </testcase>
+        <testcase name="test_unknown_cost_and_reconciled_zero_are_distinct_with_precise_budget_reference" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceProductionTest.php" line="91" class="Tests\Feature\WorkspaceProductionTest" classname="Tests.Feature.WorkspaceProductionTest" assertions="0" time="0.000000">
+          <error type="RuntimeException">Tests\Feature\WorkspaceProductionTest::test_unknown_cost_and_reconciled_zero_are_distinct_with_precise_budget_reference
+RuntimeException: Cannot verify the isolated testing database.
+
+/Users/webb/Herd/NovelForge/app/Providers/AppServiceProvider.php:29
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:36
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Util.php:43
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:96
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:35
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Container.php:803
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1159
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1140
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1139
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php:17
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:350
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:510
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:59
+/Users/webb/Herd/NovelForge/tests/TestCase.php:9
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:85
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/InteractsWithTestCaseLifecycle.php:102
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:75</error>
+        </testcase>
+        <testcase name="test_production_read_failure_is_retryable_and_never_rendered_as_zero_or_empty" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceProductionTest.php" line="118" class="Tests\Feature\WorkspaceProductionTest" classname="Tests.Feature.WorkspaceProductionTest" assertions="0" time="0.000000">
+          <error type="RuntimeException">Tests\Feature\WorkspaceProductionTest::test_production_read_failure_is_retryable_and_never_rendered_as_zero_or_empty
+RuntimeException: Cannot verify the isolated testing database.
+
+/Users/webb/Herd/NovelForge/app/Providers/AppServiceProvider.php:29
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:36
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Util.php:43
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:96
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:35
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Container.php:803
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1159
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1140
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1139
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php:17
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:350
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:510
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:59
+/Users/webb/Herd/NovelForge/tests/TestCase.php:9
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:85
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/InteractsWithTestCaseLifecycle.php:102
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:75</error>
+        </testcase>
+      </testsuite>
+      <testsuite name="Tests\Feature\WorkspaceTest" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" tests="10" assertions="0" errors="10" failures="0" skipped="0" time="0.000000">
+        <testcase name="test_empty_overview_and_no_match_are_distinct" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="44" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="0" time="0.000000">
+          <error type="RuntimeException">Tests\Feature\WorkspaceTest::test_empty_overview_and_no_match_are_distinct
+RuntimeException: Cannot verify the isolated testing database.
+
+/Users/webb/Herd/NovelForge/app/Providers/AppServiceProvider.php:29
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:36
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Util.php:43
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:96
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:35
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Container.php:803
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1159
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1140
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1139
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php:17
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:350
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:510
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:59
+/Users/webb/Herd/NovelForge/tests/TestCase.php:9
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:85
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/InteractsWithTestCaseLifecycle.php:102
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:75
+/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php:32</error>
+        </testcase>
+        <testcase name="test_summary_has_real_missing_items_unknown_metrics_and_no_side_effects" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="52" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="0" time="0.000000">
+          <error type="RuntimeException">Tests\Feature\WorkspaceTest::test_summary_has_real_missing_items_unknown_metrics_and_no_side_effects
+RuntimeException: Cannot verify the isolated testing database.
+
+/Users/webb/Herd/NovelForge/app/Providers/AppServiceProvider.php:29
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:36
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Util.php:43
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:96
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:35
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Container.php:803
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1159
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1140
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1139
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php:17
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:350
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:510
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:59
+/Users/webb/Herd/NovelForge/tests/TestCase.php:9
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:85
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/InteractsWithTestCaseLifecycle.php:102
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:75
+/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php:32</error>
+        </testcase>
+        <testcase name="test_all_planning_pages_keep_book_context_and_return_link" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="74" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="0" time="0.000000">
+          <error type="RuntimeException">Tests\Feature\WorkspaceTest::test_all_planning_pages_keep_book_context_and_return_link
+RuntimeException: Cannot verify the isolated testing database.
+
+/Users/webb/Herd/NovelForge/app/Providers/AppServiceProvider.php:29
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:36
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Util.php:43
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:96
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:35
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Container.php:803
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1159
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1140
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1139
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php:17
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:350
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:510
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:59
+/Users/webb/Herd/NovelForge/tests/TestCase.php:9
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:85
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/InteractsWithTestCaseLifecycle.php:102
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:75
+/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php:32</error>
+        </testcase>
+        <testcase name="test_auth_ownership_and_invalid_filters" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="85" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="0" time="0.000000">
+          <error type="RuntimeException">Tests\Feature\WorkspaceTest::test_auth_ownership_and_invalid_filters
+RuntimeException: Cannot verify the isolated testing database.
+
+/Users/webb/Herd/NovelForge/app/Providers/AppServiceProvider.php:29
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:36
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Util.php:43
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:96
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:35
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Container.php:803
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1159
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1140
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1139
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php:17
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:350
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:510
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:59
+/Users/webb/Herd/NovelForge/tests/TestCase.php:9
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:85
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/InteractsWithTestCaseLifecycle.php:102
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:75
+/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php:32</error>
+        </testcase>
+        <testcase name="test_real_ready_frozen_and_stale_plans_are_not_generation_readiness" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="98" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="0" time="0.000000">
+          <error type="RuntimeException">Tests\Feature\WorkspaceTest::test_real_ready_frozen_and_stale_plans_are_not_generation_readiness
+RuntimeException: Cannot verify the isolated testing database.
+
+/Users/webb/Herd/NovelForge/app/Providers/AppServiceProvider.php:29
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:36
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Util.php:43
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:96
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:35
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Container.php:803
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1159
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1140
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1139
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php:17
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:350
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:510
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:59
+/Users/webb/Herd/NovelForge/tests/TestCase.php:9
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:85
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/InteractsWithTestCaseLifecycle.php:102
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:75
+/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php:32</error>
+        </testcase>
+        <testcase name="test_invalid_filters_and_read_failure_do_not_render_empty_state" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="125" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="0" time="0.000000">
+          <error type="RuntimeException">Tests\Feature\WorkspaceTest::test_invalid_filters_and_read_failure_do_not_render_empty_state
+RuntimeException: Cannot verify the isolated testing database.
+
+/Users/webb/Herd/NovelForge/app/Providers/AppServiceProvider.php:29
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:36
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Util.php:43
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:96
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:35
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Container.php:803
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1159
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1140
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1139
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php:17
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:350
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:510
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:59
+/Users/webb/Herd/NovelForge/tests/TestCase.php:9
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:85
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/InteractsWithTestCaseLifecycle.php:102
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:75
+/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php:32</error>
+        </testcase>
+        <testcase name="test_archived_workbench_and_overview_filters_are_read_only" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="133" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="0" time="0.000000">
+          <error type="RuntimeException">Tests\Feature\WorkspaceTest::test_archived_workbench_and_overview_filters_are_read_only
+RuntimeException: Cannot verify the isolated testing database.
+
+/Users/webb/Herd/NovelForge/app/Providers/AppServiceProvider.php:29
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:36
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Util.php:43
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:96
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:35
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Container.php:803
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1159
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1140
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1139
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php:17
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:350
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:510
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:59
+/Users/webb/Herd/NovelForge/tests/TestCase.php:9
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:85
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/InteractsWithTestCaseLifecycle.php:102
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:75
+/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php:32</error>
+        </testcase>
+        <testcase name="test_overview_pagination_is_stable_and_has_only_owned_books" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="143" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="0" time="0.000000">
+          <error type="RuntimeException">Tests\Feature\WorkspaceTest::test_overview_pagination_is_stable_and_has_only_owned_books
+RuntimeException: Cannot verify the isolated testing database.
+
+/Users/webb/Herd/NovelForge/app/Providers/AppServiceProvider.php:29
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:36
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Util.php:43
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:96
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:35
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Container.php:803
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1159
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1140
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1139
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php:17
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:350
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:510
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:59
+/Users/webb/Herd/NovelForge/tests/TestCase.php:9
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:85
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/InteractsWithTestCaseLifecycle.php:102
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:75
+/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php:32</error>
+        </testcase>
+        <testcase name="test_single_sided_ranges_and_filter_reset" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="156" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="0" time="0.000000">
+          <error type="RuntimeException">Tests\Feature\WorkspaceTest::test_single_sided_ranges_and_filter_reset
+RuntimeException: Cannot verify the isolated testing database.
+
+/Users/webb/Herd/NovelForge/app/Providers/AppServiceProvider.php:29
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:36
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Util.php:43
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:96
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:35
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Container.php:803
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1159
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1140
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1139
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php:17
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:350
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:510
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:59
+/Users/webb/Herd/NovelForge/tests/TestCase.php:9
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:85
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/InteractsWithTestCaseLifecycle.php:102
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:75
+/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php:32</error>
+        </testcase>
+        <testcase name="test_creation_and_copy_redirect_to_the_correct_workspace" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="164" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="0" time="0.000000">
+          <error type="RuntimeException">Tests\Feature\WorkspaceTest::test_creation_and_copy_redirect_to_the_correct_workspace
+RuntimeException: Cannot verify the isolated testing database.
+
+/Users/webb/Herd/NovelForge/app/Providers/AppServiceProvider.php:29
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:36
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Util.php:43
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:96
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:35
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Container/Container.php:803
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1159
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1140
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:1139
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php:17
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:350
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:510
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:59
+/Users/webb/Herd/NovelForge/tests/TestCase.php:9
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:85
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/InteractsWithTestCaseLifecycle.php:102
+/Users/webb/Herd/NovelForge/vendor/laravel/framework/src/Illuminate/Foundation/Testing/TestCase.php:75
+/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php:32</error>
+        </testcase>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

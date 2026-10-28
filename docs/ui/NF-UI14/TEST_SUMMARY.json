@@ -1,0 +1,213 @@
+{
+  "distinct_tests": 41,
+  "assertions": 627,
+  "passed": 41,
+  "note": "每项取最后执行结果；最终定向覆盖小说所属作者锁定条件补强及新增临时基线用例。",
+  "cases": {
+    "Tests.Feature.NovelNavigationTest::test_navigation_groups_order_orphans_and_status_secondary_entry": {
+      "assertions": 7,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.NovelNavigationTest::test_group_icons_and_child_dots_keep_native_sidebar_semantics": {
+      "assertions": 84,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.NovelNavigationTest::test_empty_book_context_does_not_select_first_book_or_previous_tab": {
+      "assertions": 7,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.NovelNavigationTest::test_all_book_entries_keep_identity_and_unique_links_without_writes": {
+      "assertions": 95,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.NovelNavigationTest::test_switch_drops_previous_book_object_parameters_and_keeps_target": {
+      "assertions": 59,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.NovelNavigationTest::test_foreign_missing_and_malformed_contexts_are_rejected": {
+      "assertions": 11,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.NovelNavigationTest::test_switch_and_new_story_page_preserve_authentication": {
+      "assertions": 6,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.NovelNavigationTest::test_actual_canonical_cursor_and_legacy_references_are_same_book": {
+      "assertions": 25,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.NovelNavigationTest::test_book_title_is_escaped_and_sidebar_keeps_explicit_context": {
+      "assertions": 6,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.StoryUiTest::test_option_adapter_keeps_unicode_zero_escaping_and_selected_multi_values": {
+      "assertions": 7,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.StoryUiTest::test_story_pages_use_structured_readonly_views_and_do_not_write_on_render": {
+      "assertions": 19,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.StoryUiTest::test_hierarchy_expansion_focus_and_immutable_version_are_readonly": {
+      "assertions": 11,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.StoryUiTest::test_blueprint_tabs_copy_to_new_version_without_mutating_history": {
+      "assertions": 6,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.StoryUiTest::test_formal_evidence_is_read_from_active_baseline_and_structure_is_readonly": {
+      "assertions": 9,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.StoryUiTest::test_create_wizard_keeps_original_fields_and_never_calls_model": {
+      "assertions": 7,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.StoryUiTest::test_native_plan_fields_freeze_gate_and_no_overwrite": {
+      "assertions": 21,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.StoryUiTest::test_native_scene_selector_resolves_repeater_parent_chapter": {
+      "assertions": 7,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.StoryUiTest::test_pov_options_keep_approved_history_and_native_edit_keeps_reference": {
+      "assertions": 10,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.UiFoundationTest::test_panel_registers_independent_compiled_theme": {
+      "assertions": 5,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.UiFoundationTest::test_read_only_pages_keep_authentication_and_have_no_business_side_effects": {
+      "assertions": 15,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.UiFoundationTest::test_input_connects_native_label_help_error_and_preserves_attributes": {
+      "assertions": 7,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.UiFoundationTest::test_readonly_and_disabled_are_native_control_states": {
+      "assertions": 4,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.UiFoundationTest::test_section_form_and_table_use_native_semantics_and_escaped_labels": {
+      "assertions": 6,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.UiFoundationTest::test_common_states_have_explicit_accessible_feedback": {
+      "assertions": 22,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.UiFoundationTest::test_unknown_visual_state_is_not_silently_treated_as_success": {
+      "assertions": 1,
+      "evidence": "REGRESSION_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.WorkspaceProductionTest::test_empty_root_then_commit_reads_exact_formal_version_and_retains_it_after_candidate_edit": {
+      "assertions": 20,
+      "evidence": "FINAL_TARGET_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.WorkspaceProductionTest::test_cross_book_reads_and_archived_navigation_do_not_reuse_formal_progress": {
+      "assertions": 19,
+      "evidence": "FINAL_TARGET_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.WorkspaceProductionTest::test_unknown_cost_and_reconciled_zero_are_distinct_with_precise_budget_reference": {
+      "assertions": 12,
+      "evidence": "FINAL_TARGET_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.WorkspaceProductionTest::test_currencies_are_not_added_and_reference_policy_is_explicit": {
+      "assertions": 6,
+      "evidence": "FINAL_TARGET_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.WorkspaceProductionTest::test_production_read_failure_is_retryable_and_never_rendered_as_zero_or_empty": {
+      "assertions": 5,
+      "evidence": "FINAL_TARGET_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.WorkspaceTest::test_empty_overview_and_no_match_are_distinct": {
+      "assertions": 6,
+      "evidence": "FINAL_TARGET_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.WorkspaceTest::test_summary_has_real_missing_items_unknown_metrics_and_no_side_effects": {
+      "assertions": 18,
+      "evidence": "FINAL_TARGET_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.WorkspaceTest::test_all_planning_pages_keep_book_context_and_return_link": {
+      "assertions": 28,
+      "evidence": "FINAL_TARGET_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.WorkspaceTest::test_auth_ownership_and_invalid_filters": {
+      "assertions": 5,
+      "evidence": "FINAL_TARGET_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.WorkspaceTest::test_real_ready_frozen_and_stale_plans_are_not_generation_readiness": {
+      "assertions": 10,
+      "evidence": "FINAL_TARGET_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.WorkspaceTest::test_invalid_filters_and_read_failure_do_not_render_empty_state": {
+      "assertions": 5,
+      "evidence": "FINAL_TARGET_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.WorkspaceTest::test_archived_workbench_and_overview_filters_are_read_only": {
+      "assertions": 4,
+      "evidence": "FINAL_TARGET_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.WorkspaceTest::test_overview_pagination_is_stable_and_has_only_owned_books": {
+      "assertions": 4,
+      "evidence": "FINAL_TARGET_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.WorkspaceTest::test_single_sided_ranges_and_filter_reset": {
+      "assertions": 6,
+      "evidence": "FINAL_TARGET_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.WorkspaceTest::test_creation_and_copy_redirect_to_the_correct_workspace": {
+      "assertions": 11,
+      "evidence": "FINAL_TARGET_TESTS.xml",
+      "passed": true
+    },
+    "Tests.Feature.WorkspaceProductionTest::test_projection_excludes_old_revision_and_fails_closed_on_incomplete_active_prefix": {
+      "assertions": 11,
+      "evidence": "FINAL_TARGET_TESTS.xml",
+      "passed": true
+    }
+  }
+}

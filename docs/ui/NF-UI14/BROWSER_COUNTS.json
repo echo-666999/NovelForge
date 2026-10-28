@@ -1,0 +1,8 @@
+{
+    "database": "novel_forge_test",
+    "users": 1,
+    "novels": 3,
+    "canonical_commits": 1,
+    "ai_requests": 1,
+    "export_jobs": 0
+}

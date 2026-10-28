@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="/Users/webb/Herd/NovelForge/phpunit.xml" tests="1" assertions="5" errors="0" failures="0" skipped="0" time="2.036685">
+    <testsuite name="Feature" tests="1" assertions="5" errors="0" failures="0" skipped="0" time="2.036685">
+      <testsuite name="Tests\Feature\WorkspaceTest" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" tests="1" assertions="5" errors="0" failures="0" skipped="0" time="2.036685">
+        <testcase name="test_auth_ownership_and_invalid_filters" file="/Users/webb/Herd/NovelForge/tests/Feature/WorkspaceTest.php" line="85" class="Tests\Feature\WorkspaceTest" classname="Tests.Feature.WorkspaceTest" assertions="5" time="2.036685"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

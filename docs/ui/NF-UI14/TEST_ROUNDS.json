@@ -1,0 +1,49 @@
+{
+  "initial": {
+    "tool": "phpunit",
+    "result": "failed",
+    "tests": 14,
+    "passed": 0,
+    "assertions": 0,
+    "duration_ms": 283,
+    "errors": 14,
+    "raw_sha256": "74045a9f6b34fff750273721012ea77fdd5b1d038246e8c78f66bde97100ac61",
+    "note": "沙箱禁止本机数据库访问，隔离守卫在夹具及迁移前拒绝；获执行权限后重跑。"
+  },
+  "target": {
+    "tool": "phpunit",
+    "result": "passed",
+    "tests": 14,
+    "passed": 14,
+    "assertions": 153,
+    "duration_ms": 55558,
+    "raw_sha256": "733ba6f42db09bd86b39efd09dbab0dfd73add629e854761cc6017c75892bdfd"
+  },
+  "regression": {
+    "tool": "phpunit",
+    "result": "passed",
+    "tests": 40,
+    "passed": 40,
+    "assertions": 616,
+    "duration_ms": 142046,
+    "raw_sha256": "5a7f4c752eff6c2811979272e0130629a675488fbb237b64915504417d31a1ab"
+  },
+  "final-target": {
+    "tool": "phpunit",
+    "result": "passed",
+    "tests": 16,
+    "passed": 16,
+    "assertions": 170,
+    "duration_ms": 80492,
+    "raw_sha256": "1026ea9c916e790d4ca59bc7376d051b86cdbaff83fe16937473ed88eeccc6c8"
+  },
+  "cleanup-test": {
+    "tool": "phpunit",
+    "result": "passed",
+    "tests": 1,
+    "passed": 1,
+    "assertions": 5,
+    "duration_ms": 2040,
+    "raw_sha256": "0887799ccafeaafdf1a081ece93934d7ac9a5119311dbdaad43f124c7a5f6571"
+  }
+}

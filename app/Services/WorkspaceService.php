@@ -54,7 +54,7 @@ class WorkspaceService
             $intent = app(NovelIntentService::class);
             $intent->novel($actor, $id);
             // 只读共享锁与各写服务的小说行锁配合，防止同一摘要混入两次规划修改。
-            $novel = Novel::whereKey($id)->sharedLock()->firstOrFail();
+            $novel = Novel::whereKey($id)->where('owner_id', $actor->id)->sharedLock()->firstOrFail();
             $requirements = $intent->requirements($novel);
             $pending = collect($requirements)->filter(fn ($r) => ! in_array($r['decision_status'], ['accepted', 'waived']))->count();
             $problems = [];
@@ -118,15 +118,23 @@ class WorkspaceService
             $page = (int) ($d['page'] ?? 1);
             $state = $novel->status === 'archived' ? 'archived' : ($pending ? 'needs_decision' : ($problems ? 'planning_blocked' : 'planning_frozen'));
 
+            $pageRows = $rows->slice(($page - 1) * $limit, $limit)->values()->all();
+            $production = app(WorkspaceProductionService::class)->read($actor, $id, array_column($pageRows, 'id'));
+            foreach ($pageRows as &$row) {
+                $row['formal_version'] = $production['formal_versions'][(string) $row['id']] ?? null;
+                $row['review'] = $row['formal_version']['review'] ?? null;
+            }
+            unset($row);
+
             return [
                 'novel' => $novel->only(['id', 'title', 'genre', 'status', 'target_chapters', 'chapter_length_policy', 'row_version']),
                 'navigation' => $this->navigation($actor, $id), 'planning_status' => $state, 'pending_decisions' => $pending,
                 'blueprint' => $blueprint?->only(['id', 'version', 'content_hash']), 'plan' => $plan ? ['id' => $plan['id'], 'version' => $plan['version'], 'status' => $plan['display_status'], 'start_chapter' => $plan['start_chapter'], 'end_chapter' => $plan['end_chapter'], 'passed' => $plan['report']['passed']] : null,
                 'planning_counts' => ['chapters' => $chapters->count(), 'target' => $novel->target_chapters, 'valid_frozen_chapters' => count($frozen), 'entities' => $entityCount],
-                'blockers' => $problems, 'chapters' => ['items' => $rows->slice(($page - 1) * $limit, $limit)->values()->all(), 'total' => $rows->count(), 'page' => $page, 'last_page' => max(1, (int) ceil($rows->count() / $limit))],
-                // 尚未接入的真实生产指标保持 null，不把规划章数或 state_version 当正式章数。
-                'production' => array_fill_keys(['canonical_baseline', 'committed_chapters', 'next_chapter', 'review_issues', 'today_cost', 'budget_remaining', 'worker_heartbeat', 'index_lag', 'ending_readiness', 'recent_run'], null),
-                'generation_eligible' => false, 'unavailable_reason' => $novel->status === 'archived' ? '小说已归档，请从小说列表恢复后继续规划。' : '生成、运行、评审、正式提交、阅读器与导出尚未接入。',
+                'blockers' => $problems, 'chapters' => ['items' => $pageRows, 'total' => $rows->count(), 'page' => $page, 'last_page' => max(1, (int) ceil($rows->count() / $limit))],
+                'production' => $production['production'], 'production_state' => $production['production_state'], 'capabilities' => $production['capabilities'],
+                // UI14只开放已有页面入口，真实生产仍须F01接入并获运行授权。
+                'generation_eligible' => false, 'unavailable_reason' => $novel->status === 'archived' ? '小说已归档，请先恢复；真实生产启动尚未接入。' : '真实生产启动尚未接入；规划冻结不会开放生成。',
             ];
         });
     }

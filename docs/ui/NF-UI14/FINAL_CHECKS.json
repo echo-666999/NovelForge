@@ -1,0 +1,18 @@
+{
+  "diff_check": "passed",
+  "build": "passed",
+  "pint_full": "passed",
+  "database_migration_added": false,
+  "real_model_calls": false,
+  "chinese_segmentation": false,
+  "git_commit_created": false,
+  "browser_tab_closed": true,
+  "viewport_reset": true,
+  "preview_theme_restored": "system",
+  "preview_server_stopped": true,
+  "private_testing_redis_stopped": true,
+  "temporary_credentials_removed": true,
+  "task_status_changed": [
+    "NF-UI14"
+  ]
+}

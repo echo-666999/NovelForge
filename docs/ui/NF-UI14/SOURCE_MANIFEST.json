@@ -1,0 +1,8 @@
+{
+  "app/Services/WorkspaceService.php": "78913ac34dd2827cb1a9167bcebebfd3e45e2ce2957a594f8425196a2f6af690",
+  "app/Services/WorkspaceProductionService.php": "8109d915336989a02854b1ac8ad35db47d40d0e1a9d48e2941f31310772f1f18",
+  "app/Filament/Support/WorkspacePresentation.php": "f72eff2849019d2e2d729e6eb5a97fb90f5cef5f58d6df2ff703b8405d89dce0",
+  "resources/views/filament/workspace.blade.php": "6ff1ff9fbe05d71d6a03a9d52e8bf952a904cbf937495ffc8144942f4d18b1b4",
+  "tests/Feature/WorkspaceTest.php": "54b5350100eddc00950024dbf2dde1204a643423bdf054a39c373310387fbaee",
+  "tests/Feature/WorkspaceProductionTest.php": "91717f08885f3582f253506574d662ec655d99a31eaf3663c2d519d8a6904f6f"
+}
