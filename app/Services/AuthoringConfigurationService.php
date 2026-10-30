@@ -7,6 +7,7 @@ use App\Models\User;
 use App\ProvidersGateway\StructuredOutput;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 /** C04 配置版本与确定性离线回归；不调用任何供应商。 */
 final class AuthoringConfigurationService
@@ -233,6 +234,49 @@ final class AuthoringConfigurationService
         return ['passed' => count($cases) > 0 && ! in_array(false, array_column($cases, 'passed'), true), 'mode' => 'offline_fixture', 'real_model_verified' => false, 'actual_tokens' => null, 'cases' => $cases];
     }
 
+    /** 只读检查草稿完整性与当前运行门禁；不改写历史回归、发布状态或默认指针。 */
+    private function routeChecks(array $route): array
+    {
+        try {
+            $c = $route['content'];
+            $this->validateContent('route', $c);
+            $prompt = $this->version('prompt', (string) $c['prompt_version_id']);
+            $style = $this->version('style', (string) $c['style_version_id']);
+            $shared = in_array($prompt['stage'], ['review.chapter', 'revision.propose'], true) && $style['stage'] === 'drafting.scene';
+            if ($route['stage'] !== $prompt['stage'] || (! $shared && $prompt['stage'] !== $style['stage']) || $route['language'] !== $prompt['language'] || $prompt['language'] !== $style['language']) {
+                throw new NovelProblem('CONTRACT_MISMATCH', '路由、提示词与文风的阶段或语言不匹配。');
+            }
+            // 声明容量属于草稿校验；供应商启用与真实能力验证属于运行门禁。
+            foreach ([$c['primary_model_version_id'], ...array_column($c['fallbacks'], 'model_version_id')] as $id) {
+                $model = DB::table('model_profile_versions')->find($id);
+                $cap = json_decode($model->declared_capabilities, true);
+                if (! is_int($cap['context_tokens'] ?? null) || ! is_int($cap['max_output_tokens'] ?? null) || $cap['context_tokens'] <= $c['parameters']['max_output_tokens'] || $cap['max_output_tokens'] < $c['parameters']['max_output_tokens'] || ($prompt['content']['capability_requirements']['structured_output'] && ($cap['structured_output'] ?? null) !== 'supported')) {
+                    throw new NovelProblem('CAPABILITY_MISMATCH', '主模型或备用模型的声明容量、结构化能力不满足路由。');
+                }
+            }
+        } catch (ValidationException $e) {
+            return ['draft' => '配置有误', 'draft_reason' => implode('；', $e->validator->errors()->all()), 'runtime' => '未就绪', 'runtime_reason' => '先修正草稿配置。'];
+        } catch (NovelProblem $e) {
+            return ['draft' => '配置有误', 'draft_reason' => $e->getMessage(), 'runtime' => '未就绪', 'runtime_reason' => $e->errorCode.'：'.$e->getMessage()];
+        }
+        try {
+            // 沿用实际运行的引用与供应商门禁，避免页面给出虚假的可运行结论。
+            $this->routeSnapshot($c);
+            $runtime = $route['status'] === 'published' ? '仅离线就绪' : ($route['status'] === 'retired' ? '路由已退役' : '待发布路由');
+            $reason = '当前实现仅支持离线模拟运行，不代表真实模型可用。';
+        } catch (NovelProblem $e) {
+            $runtime = match ($e->errorCode) {
+                'UNPUBLISHED_REFERENCE' => '待发布引用',
+                'PROVIDER_DISABLED' => '供应商未启用',
+                'CAPABILITY_UNVERIFIED' => '生产能力未就绪',
+                default => '未就绪',
+            };
+            $reason = $e->errorCode.'：'.$e->getMessage().' 当前显示首个阻断原因，解除后仍需重新检查。';
+        }
+
+        return ['draft' => '校验通过', 'draft_reason' => '字段、引用阶段与语言、模型声明能力符合要求；未验证真实能力。', 'runtime' => $runtime, 'runtime_reason' => $reason];
+    }
+
     /** 解析路由时冻结真实标识与声明能力；未验证的生产能力不能通过发布门禁。 */
     private function routeSnapshot(array $c): array
     {
@@ -342,6 +386,9 @@ final class AuthoringConfigurationService
             $path = match ($kind) {
                 'prompt' => 'prompt','route' => 'route','style' => 'style'
             };
+            if ($kind === 'route') {
+                $v['route_checks'] = $this->routeChecks($v);
+            }
             $v['run_count'] = DB::table('generation_runs')->whereRaw("frozen_config->'configuration'->?->>'id' = ?", [$path, $v['id']])->count();
         }
 

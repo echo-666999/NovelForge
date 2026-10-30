@@ -1,0 +1,7 @@
+# 必须放在宽泛规则之前；替换目标库名，远端部署另行配置 TLS 与精确网段。
+# 本 Mac 方案只允许 Unix socket，不开启 PostgreSQL TCP 监听。
+local novel_forge novel_forge_app,novel_forge_migrator scram-sha-256
+local all novel_forge_app,novel_forge_migrator reject
+host all novel_forge_app,novel_forge_migrator 0.0.0.0/0 reject
+host all novel_forge_app,novel_forge_migrator ::/0 reject
+# 管理员规则由专用实例维护者配置，不在共享 PostgreSQL 上自动写入或重载。

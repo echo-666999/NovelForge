@@ -4,18 +4,51 @@ namespace Tests\Feature;
 
 use App\Filament\Pages\Billing;
 use App\Models\User;
+use App\Services\ProviderConfigurationService;
 use Filament\Facades\Filament;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\ViewException;
 use Livewire\Livewire;
+use Tests\Support\ProviderFixture;
 use Tests\TestCase;
 
 /** UI10 只改变展示；筛选、页码和导出参数仍使用既有公共属性。 */
 class BillingSelectTest extends TestCase
 {
     use RefreshDatabase;
+
+    /** 同供应商的不同模型与同模型的历史能力版本均可辨识，选项值仍为能力版本ID。 */
+    public function test_model_options_identify_provider_model_and_capability_version(): void
+    {
+        $f = ProviderFixture::create();
+        $service = app(ProviderConfigurationService::class);
+        $second = $service->execute($f['actor'], 'model', array_replace($f['model_payload'], [
+            'provider_model_id' => 'review-model',
+        ]), 'review-model');
+        $newVersion = $service->execute($f['actor'], 'model', array_replace($f['model_payload'], [
+            'expected_version' => 1, 'reason' => '更新能力来源声明',
+        ]), 'generation-v2');
+        $this->actingAs($f['actor']);
+        Filament::setCurrentPanel(Filament::getPanel('admin'));
+        $options = app(Billing::class)->productionChoices('model');
+        $this->assertSame('离线供应商 / fixture-model · 能力 v1 · #'.$f['model']['version_id'], $options[$f['model']['version_id']]);
+        $this->assertSame('离线供应商 / fixture-model · 能力 v2 · #'.$newVersion['version_id'], $options[$newVersion['version_id']]);
+        $this->assertSame('离线供应商 / review-model · 能力 v1 · #'.$second['version_id'], $options[$second['version_id']]);
+        $this->assertCount(3, $options);
+        // 价格目录展示模型名称，详情仍使用原始能力版本标识。
+        $catalog = app(Billing::class)->catalog();
+        $this->assertSame('fixture-model', $catalog['model_names'][$f['model']['version_id']]);
+        $page = Livewire::test(Billing::class)->assertSee('版本ID / 模型名称')
+            ->assertSee('#'.$f['payload']['billing']['price_version_ids'][0].' / fixture-model')
+            ->call('beginBillingEditor', 'price');
+        foreach ($options as $label) {
+            $page->assertSee($label);
+        }
+        $page->assertDontSee('fixture-secret-key-123');
+        $this->assertDatabaseCount('ai_requests', 0);
+    }
 
     public function test_billing_filters_preserve_values_pagination_and_export_scope(): void
     {

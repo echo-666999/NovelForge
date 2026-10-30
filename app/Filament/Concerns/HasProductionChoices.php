@@ -33,6 +33,16 @@ trait HasProductionChoices
         if ($kind === 'policy') {
             return $this->productionChoiceCache[$key] = collect(app(ReviewPolicyService::class)->listing(auth()->user()))->mapWithKeys(fn ($p) => [(string) $p['id'] => $p['key'].' · v'.$p['version'].' · '.$p['status'].' · #'.$p['id']])->all();
         }
+        // 模型能力选项展示完整业务身份；保留所有历史版本及原版本ID，避免价格关联错模型。
+        if ($kind === 'model') {
+            return $this->productionChoiceCache[$key] = DB::table('model_profile_versions as v')
+                ->join('model_profiles as m', 'm.id', '=', 'v.model_profile_id')
+                ->join('providers as p', 'p.id', '=', 'm.provider_id')
+                ->orderByDesc('v.id')
+                ->get(['v.id', 'v.version', 'm.provider_model_id', 'p.name'])
+                ->mapWithKeys(fn ($v) => [(string) $v->id => $v->name.' / '.$v->provider_model_id.' · 能力 v'.$v->version.' · #'.$v->id])
+                ->all();
+        }
         $spec = match ($kind) {
             'volume' => ['volumes', ['sequence', 'title']], 'story_arc' => ['story_arcs', ['sequence', 'title']], 'requirement' => ['requirement_versions', ['content']],
             'chapter' => ['chapters', ['sequence', 'title']], 'scene' => ['scenes', ['sequence', 'title', 'parent_id']],

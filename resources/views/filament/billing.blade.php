@@ -24,8 +24,8 @@
     @if($billingNotice && $billingEditor === '')<p role="{{ $billingSaveFailed ? 'alert' : 'status' }}">{{ $billingNotice }}</p>@endif
     <x-nf.section heading="价格版本列表">
         <p>最近100个版本，只读；范围沿用现有目录，不代表费用筛选后的完整历史。</p>
-        <x-nf.table label="价格版本列表"><table><thead><tr><th>版本ID / 模型能力版本</th><th>版本 / 币种</th><th>生效时间</th><th>操作</th></tr></thead><tbody>
-        @forelse($data['prices'] as $price)<tr><td>#{{ $price['id'] }} / #{{ $price['model_version_id'] }}</td><td>v{{ $price['version'] }} / {{ $price['currency'] }}</td><td>{{ $price['effective_at'] }}</td><td><x-filament::button color="gray" wire:click="inspectBilling('price','{{ $price['id'] }}')">查看价格详情</x-filament::button></td></tr>
+        <x-nf.table label="价格版本列表"><table><thead><tr><th>版本ID / 模型名称</th><th>版本 / 币种</th><th>生效时间</th><th>操作</th></tr></thead><tbody>
+        @forelse($data['prices'] as $price)<tr><td>#{{ $price['id'] }} / {{ $data['model_names'][$price['model_version_id']] ?? '模型名称不可用' }}</td><td>v{{ $price['version'] }} / {{ $price['currency'] }}</td><td>{{ $price['effective_at'] }}</td><td><x-filament::button color="gray" wire:click="inspectBilling('price','{{ $price['id'] }}')">查看价格详情</x-filament::button></td></tr>
         @empty<tr><td colspan="4">暂无价格版本。</td></tr>@endforelse
         </tbody></table></x-nf.table>
     </x-nf.section>
@@ -81,7 +81,7 @@
         @endif
     </x-nf.editor-modal>
     <x-nf.editor-modal id="nf-billing-detail-modal" heading="配置与账本只读详情">
-        @if($billingDetail)@include('filament.value-table',['value'=>$billingDetail['record'],'label'=>'只读账本证据'])@endif
+        @if($billingDetail)@include('filament.value-table',['value'=>$billingDetail['record'],'label'=>'只读账本证据','billingLabels'=>true])@endif
     </x-nf.editor-modal>
 @endif
 </div></x-filament-panels::page>

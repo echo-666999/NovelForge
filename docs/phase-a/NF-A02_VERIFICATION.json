@@ -1,0 +1,123 @@
+{
+  "task": "NF-A02",
+  "date": "2026-10-29",
+  "scope": "Mac/Herd isolated deployment preparation",
+  "postgresql_checks": [
+    "迁移账户建表与增列，中文备注完整",
+    "应用账户真实 CRUD 与 identity 序列",
+    "拒绝应用账户安装扩展",
+    "拒绝应用账户创建表",
+    "拒绝应用账户修改表",
+    "拒绝应用账户清空表",
+    "拒绝应用账户伪造迁移",
+    "拒绝应用账户切换运维身份",
+    "拒绝应用账户创建数据库",
+    "拒绝应用账户创建临时表",
+    "应用与运维账户均不能连接其他数据库",
+    "应用可使用运维预装的 vector 与 pg_trgm",
+    "当前业务结构由运维账户完整导入",
+    "应用账户在真实 users/novels 表完成 CRUD",
+    "专用 PostgreSQL 重启后数据与账户可用",
+    "私有备份 0700/0600 与真实恢复内容核对"
+  ],
+  "launchd": {
+    "checks": 3,
+    "environment": "testing",
+    "worker_pid_changed": true,
+    "scheduler_pid_changed": true
+  },
+  "phpunit": {
+    "tests": 24,
+    "assertions": 111,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "backup": {
+    "synthetic_only": true,
+    "retention_days": 7,
+    "sha256": "9d63b4b310544bb8320dd99e3a212d1dfdc59302176dcd52b2a936079b8e42f2"
+  },
+  "runtime_switched": true,
+  "production_backup_verified": false,
+  "runtime": {
+    "least_privilege_and_cross_database_rejection": true,
+    "app_key_preserved": true,
+    "dedicated_postgres_and_redis_restarted": true,
+    "worker_restart_and_consumption": true,
+    "scheduled_commands_done": 3,
+    "restore_tables": 151,
+    "restore_sequences": 135,
+    "restore_rows": 32,
+    "private_files_restored": 1,
+    "backup": "nf-runtime-20261028T173808Z",
+    "backup_sha256": {
+      "database.dump": "a7823851bc7140ad21c3b1f669e2449e60dda622bae2e01f485ce39ab53e348c",
+      "private.tar.gz": "2431fd8e96af001ab28b3a633388828744ad349f9bbcb8f27daf9cb6b0a419b6"
+    },
+    "service_pids": {
+      "postgres": 26915,
+      "redis": 26933,
+      "worker-production": 27154,
+      "worker-derived": 27155,
+      "scheduler": 26943
+    },
+    "date": "2026-10-29",
+    "timezone": "Asia/Shanghai",
+    "persistent_services": [
+      "postgres",
+      "redis",
+      "worker-production",
+      "worker-derived",
+      "scheduler",
+      "backup"
+    ],
+    "source_manifest_unchanged": true,
+    "table_and_column_comments_preserved": true,
+    "herd_login_http": 200,
+    "herd_health_http": 200,
+    "backup_launchagent_exit_code": 0,
+    "backup_schedule": "03:15 Asia/Shanghai daily and RunAtLoad",
+    "retention_days": 7,
+    "retention_boundary_test": "passed",
+    "os_login_reboot_tested": false
+  },
+  "hardening": {
+    "date": "2026-10-29",
+    "scope": "NF-A02 only; no F01",
+    "database_wait_seconds_per_attempt": 60,
+    "max_attempts": 3,
+    "retry_delays_seconds": [
+      10,
+      30
+    ],
+    "unit_tests": {
+      "backup_controls": 12,
+      "retention": 1,
+      "failed": 0
+    },
+    "isolated_postgresql_checks": 6,
+    "launchagent": {
+      "runs_before": 3,
+      "runs_after": 4,
+      "last_exit_code": 0,
+      "attempts": 1,
+      "retention_ok": true
+    },
+    "restore": {
+      "backup": "nf-runtime-20261029T085243Z",
+      "restore_tables": 151,
+      "restore_sequences": 135,
+      "restore_rows": 32,
+      "private_files_restored": 1,
+      "backup_sha256": {
+        "database.dump": "bb7514b548b1f4cc1c957a538a73ecdcdd1eb0523c6f4d7d86eb20d4764ba07c",
+        "private.tar.gz": "9ce31e8201169d72f31efa492fe2579b58036bbe7eef94c442a68c939a320e91"
+      },
+      "reference": "frozen_backup_manifest_v2"
+    },
+    "shared_database_accessed": false,
+    "application_services_restarted": false,
+    "business_ddl_added": false
+  }
+}

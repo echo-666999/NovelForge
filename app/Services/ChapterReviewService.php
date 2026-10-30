@@ -36,6 +36,10 @@ final class ChapterReviewService
             throw new NovelProblem('STALE_REVIEW_INPUT', '小说版本或策略发布状态已变化。');
         }
         $style = app(AuthoringConfigurationService::class)->version('style', $p['style_version_id']);
+        // 新评审仍要求正文文风已发布；旧运行和历史核验继续使用冻结版本。
+        if ($new && ($style['stage'] !== 'drafting.scene' || $style['status'] !== 'published')) {
+            throw new NovelProblem('POLICY_STYLE_MISMATCH', '新评审须引用已发布的正文文风版本。');
+        }
         // 发布默认指针或退役状态不改变旧运行冻结的文风内容。
         $style = array_intersect_key($style, array_flip(['id', 'content', 'content_hash', 'stage', 'language']));
         $styles = [];

@@ -6,7 +6,9 @@
     {{-- 固定字段使用Filament Schema，递归结构仅处理Schema和样例；发布历史始终只读。 --}}
     @php($kind=$this->configurationKind())
     @php($catalog=$this->catalog())
-    <p>编辑创建新草稿，离线回归、发布和退役分别执行；旧运行继续引用原版本。</p>
+    {{-- 路由只读检查不改写历史回归，配置完整不等于运行就绪。 --}}
+    @if($kind==='route')<p>草稿配置校验与运行就绪检查分别展示，刷新时只读检查当前配置。检查不发布配置、不启用供应商、不请求模型；历史回归记录保留在只读详情。</p>
+    @else<p>编辑创建新草稿，离线回归、发布和退役分别执行；旧运行继续引用原版本。</p>@endif
     @if($notice)<x-nf.state state="success" title="操作结果">{{ $notice }}</x-nf.state>@endif
     @if($errors->any() && !$editorOpen)<x-nf.state state="error" title="尚未保存，请核对字段">
         <ul>@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>
@@ -26,18 +28,33 @@
             <x-nf.input id="config-filter-language" label="语言" wire:model.live.debounce.400ms="language" />
             <x-nf.select id="config-filter-status" label="状态" model="status" :value="$status" :options="[''=>'全部','draft'=>'草稿','tested'=>'离线通过','published'=>'已发布','retired'=>'已退役']" />
         </x-nf.form-grid>
-        <x-nf.table label="配置版本列表"><table><thead><tr><th>配置 / 版本</th><th>阶段 / 语言</th><th>状态 / 默认</th><th>离线回归</th><th>引用运行</th><th>操作</th></tr></thead><tbody>
+        <x-nf.table label="配置版本列表"><table><thead><tr><th>配置 / 版本</th><th>阶段 / 语言</th><th>状态 / 默认</th>@if($kind==='route')<th>草稿配置校验</th><th>运行就绪检查</th>@else<th>离线回归</th>@endif<th>引用运行</th><th>操作</th></tr></thead><tbody>
             @forelse($catalog['items'] as $v)<tr>
                 <td>{{ $v['key'] }} · v{{ $v['version'] }} · #{{ $v['id'] }}</td><td>{{ $v['stage'] }} / {{ $v['language'] }}</td>
                 <td>{{ ['draft'=>'草稿','tested'=>'离线通过','published'=>'已发布','retired'=>'已退役'][$v['status']] }}{{ $v['default_version_id']===$v['id']?' · 默认':'' }}</td>
-                <td>{{ $v['regression']===null?'未测试':($v['regression']['passed']?'离线通过':'离线失败') }}</td><td>{{ $v['run_count'] }}</td>
+                @if($kind==='route')
+                    {{-- 说明移入点击提示，保留完整文本且不参与表格列宽计算。 --}}
+                    @foreach(['draft' => '草稿配置校验', 'runtime' => '运行就绪检查'] as $check => $label)
+                        <td style="white-space: nowrap">
+                            {{ $v['route_checks'][$check] }}
+                            <x-filament::icon-button
+                                icon="heroicon-o-information-circle"
+                                size="sm"
+                                color="gray"
+                                :label="$label.'说明：'.$v['key']"
+                                :x-tooltip="'{ content: '.\Illuminate\Support\Js::from($v['route_checks'][$check.'_reason']).', theme: $store.theme, trigger: &quot;click&quot;, allowHTML: false, maxWidth: 360, appendTo: () => document.body }'"
+                            />
+                        </td>
+                    @endforeach
+                @else<td>{{ $v['regression']===null?'未测试':($v['regression']['passed']?'离线通过':'离线失败') }}</td>@endif<td>{{ $v['run_count'] }}</td>
                 <td><div class="nf-config-actions"><x-filament::button size="sm" color="gray" wire:click="showConfiguration('{{ $v['id'] }}')">只读详情</x-filament::button>
                     <x-filament::button size="sm" color="gray" x-on:click="editorTrigger=$el" wire:click="beginConfiguration('{{ $v['id'] }}')">复制为新版本</x-filament::button>
                     @foreach(['test'=>'draft','publish'=>'tested','retire'=>'published'] as $action=>$state)
-                        @if($v['status']===$state)<x-filament::button size="sm" color="gray" wire:click="mountAction('configurationLifecycle', {operation: '{{ $action }}', version: '{{ $v['id'] }}'})" wire:loading.attr="disabled">{{ ['test'=>'离线回归','publish'=>'发布','retire'=>'退役'][$action] }}</x-filament::button>@endif
+                        @if($kind==='route' && $action==='test')<x-filament::button size="sm" color="gray" wire:click="$refresh" wire:loading.attr="disabled">重新检查</x-filament::button>
+                        @elseif($v['status']===$state)<x-filament::button size="sm" color="gray" wire:click="mountAction('configurationLifecycle', {operation: '{{ $action }}', version: '{{ $v['id'] }}'})" wire:loading.attr="disabled">{{ ['test'=>'离线回归','publish'=>'发布','retire'=>'退役'][$action] }}</x-filament::button>@endif
                     @endforeach
                 </div></td>
-            </tr>@empty<tr><td colspan="6">暂无配置版本。可先建立 Prompt 与文风，离线回归发布后再配置引用它们的路由。</td></tr>@endforelse
+            </tr>@empty<tr><td colspan="{{ $kind==='route'?7:6 }}">暂无配置版本。可先保存提示词、文风和路由草稿；配置校验与运行门禁分别检查。</td></tr>@endforelse
         </tbody></table></x-nf.table>
         <div class="nf-config-actions"><span>共 {{ $catalog['total'] }} 个版本 · 第 {{ $catalog['page'] }} 页</span>
             <x-filament::button color="gray" size="sm" wire:click="$set('page', {{ max(1,$page-1) }})" :disabled="$page<=1">上一页</x-filament::button>

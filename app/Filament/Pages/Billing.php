@@ -10,6 +10,7 @@ use App\Filament\Support\ProductionSchemas;
 use App\Services\BillingConfigurationService;
 use App\Services\NovelIntentService;
 use Filament\Pages\Page;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Locked;
@@ -152,7 +153,14 @@ class Billing extends Page
 
     public function catalog(): array
     {
-        return app(BillingConfigurationService::class)->listing(auth()->user(), ['novel_id' => $this->novel ?: null, 'status' => $this->status ?: null, 'currency' => $this->currency ?: null, 'category' => $this->category ?: null, 'page' => $this->page, 'run_id' => $this->run ?: null, 'model_profile_version_id' => $this->model ?: null, 'request_status' => $this->requestStatus ?: null, 'date_from' => $this->dateFrom ?: null, 'date_to' => $this->dateTo ?: null]);
+        $catalog = app(BillingConfigurationService::class)->listing(auth()->user(), ['novel_id' => $this->novel ?: null, 'status' => $this->status ?: null, 'currency' => $this->currency ?: null, 'category' => $this->category ?: null, 'page' => $this->page, 'run_id' => $this->run ?: null, 'model_profile_version_id' => $this->model ?: null, 'request_status' => $this->requestStatus ?: null, 'date_from' => $this->dateFrom ?: null, 'date_to' => $this->dateTo ?: null]);
+        // 按价格实际关联的能力版本批量读取模型名称，历史价格仍保留原始关联。
+        $catalog['model_names'] = DB::table('model_profile_versions as v')
+            ->join('model_profiles as m', 'm.id', '=', 'v.model_profile_id')
+            ->whereIn('v.id', array_column($catalog['prices'], 'model_version_id'))
+            ->pluck('m.provider_model_id', 'v.id')->all();
+
+        return $catalog;
     }
 
     /** 编辑字段结构来自已实现契约。 */

@@ -494,3 +494,12 @@
 
 /* 列表结果与前面的独立筛选保持既定16px区块间距。 */
 .nf-catalog-results { margin-block-start: 16px; }
+
+/* 模型能力选项保留完整供应商、模型与版本身份，避免省略号隐藏版本差异。 */
+.nf-model-capability-select .fi-dropdown-list-item-label,
+.nf-model-capability-select .nf-select-value {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    overflow: visible;
+    text-overflow: clip;
+}

@@ -2,6 +2,8 @@
     <div class="nf-config-actions">
         <x-filament::button tag="a" href="/admin/novels/create">创建小说</x-filament::button>
         <x-filament::button color="gray" tag="a" href="/admin/novels">小说库 / 归档与恢复</x-filament::button>
+        {{-- NF-F01：把准备入口与小说入口放在一起，缺少配置时无需猜测导航路径。 --}}
+        <x-filament::button color="gray" tag="a" :href="\App\Filament\Pages\SingleChapterSetup::getUrl()">单章验收准备</x-filament::button>
         <x-filament::button color="gray" wire:click="$refresh" wire:loading.attr="disabled">刷新列表</x-filament::button>
     </div>
     <div wire:loading role="status">正在读取小说列表…</div>

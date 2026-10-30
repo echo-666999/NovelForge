@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Exceptions\NovelProblem;
+use App\Filament\Pages\ModelRoutes;
 use App\Filament\Pages\PromptTemplates;
 use App\Generation\StageResult;
 use App\Models\User;
@@ -26,6 +27,61 @@ use Tests\TestCase;
 class AuthoringConfigurationTest extends TestCase
 {
     use RefreshDatabase;
+
+    /** 草稿与运行门禁独立展示；只读刷新必须保留既有失败报告及配置状态。 */
+    public function test_route_page_separates_draft_validation_from_runtime_readiness(): void
+    {
+        Http::preventStrayRequests();
+        $f = $this->fixture();
+        $service = app(AuthoringConfigurationService::class);
+        $promptPayload = ConfigurationExamples::all()['prompt'];
+        $promptPayload['key'] = 'pending.prompt';
+        $prompt = $this->command($f['actor'], 'prompt', 'save', $promptPayload);
+        $payload = $f['route_payload'];
+        $payload['content']['prompt_version_id'] = $prompt['id'];
+        $payload['key'] = 'pending.route';
+        $route = $this->command($f['actor'], 'route', 'save', $payload);
+        $this->command($f['actor'], 'route', 'test', ['version_id' => $route['id']]);
+        $before = $service->version('route', $route['id']);
+        $checks = fn () => $service->listing($f['actor'], 'route', ['q' => 'pending.route'])['items'][0]['route_checks'];
+        $this->assertSame('校验通过', $checks()['draft']);
+        $this->assertSame('待发布引用', $checks()['runtime']);
+        $this->actingAs($f['actor']);
+        Livewire::test(ModelRoutes::class)->set('q', 'pending.route')
+            ->assertSee('草稿配置校验')->assertSee('运行就绪检查')->assertSee('待发布引用')
+            ->assertSee('UNPUBLISHED_REFERENCE')->assertDontSee('离线失败');
+        $this->assertSame($before, $service->version('route', $route['id']));
+        // 以下状态切换仅发生在受保护测试库，用于覆盖后续门禁与真正的草稿错误。
+        $this->command($f['actor'], 'prompt', 'test', ['version_id' => $prompt['id']]);
+        $this->command($f['actor'], 'prompt', 'publish', ['version_id' => $prompt['id']]);
+        $this->assertSame('待发布路由', $checks()['runtime']);
+        $providerPayload = $f['provider_payload'];
+        $providerPayload['provider_id'] = $f['provider']['id'];
+        $providerPayload['expected_version'] = 1;
+        $providerPayload['enabled'] = false;
+        app(ProviderConfigurationService::class)->execute($f['actor'], 'provider', $providerPayload, 'disable-check');
+        $this->assertSame('供应商未启用', $checks()['runtime']);
+        $providerPayload['expected_version'] = 2;
+        $providerPayload['enabled'] = true;
+        app(ProviderConfigurationService::class)->execute($f['actor'], 'provider', $providerPayload, 'enable-check');
+        $payload['key'] = 'production.check';
+        $payload['content']['mode'] = 'production';
+        $this->command($f['actor'], 'route', 'save', $payload);
+        $production = $service->listing($f['actor'], 'route', ['q' => 'production.check'])['items'][0];
+        $this->assertSame('生产能力未就绪', $production['route_checks']['runtime']);
+        $payload['key'] = 'bad.capacity';
+        $payload['content']['parameters']['max_output_tokens'] = 100000;
+        $this->command($f['actor'], 'route', 'save', $payload);
+        $bad = $service->listing($f['actor'], 'route', ['q' => 'bad.capacity'])['items'][0];
+        $this->assertSame('配置有误', $bad['route_checks']['draft']);
+        $payload['key'] = 'bad.stage';
+        $payload['stage'] = 'different.stage';
+        $this->command($f['actor'], 'route', 'save', $payload);
+        $bad = $service->listing($f['actor'], 'route', ['q' => 'bad.stage'])['items'][0];
+        $this->assertStringContainsString('阶段或语言不匹配', $bad['route_checks']['draft_reason']);
+        $this->assertDatabaseCount('ai_requests', 0);
+        Http::assertNothingSent();
+    }
 
     private function command(User $actor, string $kind, string $action, array $p, ?string $key = null): array
     {

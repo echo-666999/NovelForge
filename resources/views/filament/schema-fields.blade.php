@@ -49,9 +49,12 @@
     @endif
     @foreach(['maxLength'=>'文本长度上限','maxItems'=>'列表项数上限'] as $keyword=>$text)
         @php($index=$lookup($keyword))
-        @if($index!==false)<x-nf.input :id="$id.'-'.$keyword" :label="$text" wire:model="{{ \App\Filament\Support\JsonFields::binding($path.'.children.'.$index.'.node.value') }}" :error="$errors->first($path.'.children.'.$index.'.node.value')" />
+        {{-- 限制按钮替换为输入框时，先将焦点留在稳定容器，避免焦点陷阱退回弹窗顶部。 --}}
+        <div wire:key="{{ $id.'-limit-'.$keyword }}" x-data="{ focusNewLimit: false }" tabindex="-1">
+        @if($index!==false)<x-nf.input x-init="$nextTick(()=>{if(focusNewLimit){$el.focus({preventScroll:true});focusNewLimit=false;}})" :id="$id.'-'.$keyword" :label="$text" wire:model="{{ \App\Filament\Support\JsonFields::binding($path.'.children.'.$index.'.node.value') }}" :error="$errors->first($path.'.children.'.$index.'.node.value')" />
         @elseif(($schemaType==='string' && $keyword==='maxLength')||($schemaType==='array' && $keyword==='maxItems'))
-            <x-filament::button size="sm" color="gray" wire:click="addSchemaLimit('{{ $path }}','{{ $keyword }}')">设置{{ $text }}</x-filament::button>
+            <x-filament::button size="sm" color="gray" x-on:click="focusNewLimit=true;$el.parentElement.focus({preventScroll:true})" wire:click="addSchemaLimit('{{ $path }}','{{ $keyword }}')">设置{{ $text }}</x-filament::button>
         @endif
+        </div>
     @endforeach
 </fieldset>

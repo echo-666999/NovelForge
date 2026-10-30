@@ -43,8 +43,9 @@ final class ReviewPolicyService
                     throw new NovelProblem('STALE_VERSION', '策略版本已更新。');
                 }
                 $style = app(AuthoringConfigurationService::class)->version('style', (string) $d['style_version_id']);
-                if ($style['status'] !== 'published' || $style['stage'] !== 'drafting.scene') {
-                    throw new NovelProblem('POLICY_STYLE_MISMATCH', '评审策略须复用正文生成的已发布文风版本。');
+                // 草稿仅要求引用有效正文文风，发布状态在发布和新运行时检查。
+                if ($style['stage'] !== 'drafting.scene') {
+                    throw new NovelProblem('POLICY_STYLE_MISMATCH', '评审策略须复用正文生成的文风版本。');
                 }
                 $id = (string) DB::table('review_policy_versions')->insertGetId(['key' => $d['key'], 'version' => $d['expected_version'] + 1, 'style_version_id' => $d['style_version_id'], 'content' => NovelIntentService::canonical($c), 'content_hash' => hash('sha256', NovelIntentService::canonical($c)), 'actor_id' => $actor->id, 'reason' => $d['reason']]);
             } else {
@@ -56,6 +57,14 @@ final class ReviewPolicyService
                 $p = $this->read($actor, $id);
                 if (($action === 'publish' && $p['status'] !== 'draft') || ($action === 'retire' && $p['status'] !== 'published')) {
                     throw new NovelProblem('INVALID_TRANSITION', '策略状态不允许此操作。');
+                }
+                if ($action === 'publish') {
+                    // 与文风生命周期共用锁，防止核对之后文风同时退役。
+                    DB::select("SELECT pg_advisory_xact_lock(hashtext('c04-configuration'))");
+                    $style = app(AuthoringConfigurationService::class)->version('style', $p['style_version_id']);
+                    if ($style['stage'] !== 'drafting.scene' || $style['status'] !== 'published') {
+                        throw new NovelProblem('POLICY_STYLE_MISMATCH', '发布评审策略须引用已发布的正文文风版本。');
+                    }
                 }
                 DB::table('review_policy_states')->insert(['policy_version_id' => $id, 'status' => $action === 'publish' ? 'published' : 'retired', 'actor_id' => $actor->id, 'reason' => $d['reason']]);
             }

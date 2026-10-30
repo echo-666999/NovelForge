@@ -39,7 +39,7 @@
 @elseif($node['type']==='boolean')
     <x-nf.select :id="$id" :label="$label" :model="\App\Filament\Support\JsonFields::binding($path.'.value')" :value="$node['value']" :error="$errors->first($path.'.value')" :options="['0'=>'否','1'=>'是']" />
 @elseif(($references=$this->productionFieldChoices($path,$fieldKey))!==null)
-    <x-nf.select :id="$id" :label="$label" :model="\App\Filament\Support\JsonFields::binding($path.'.value')" :value="$node['value']" :error="$errors->first($path.'.value')" :options="[''=>'请选择实际记录']+$references" />
+    <x-nf.select :id="$id" :label="$label" :model="\App\Filament\Support\JsonFields::binding($path.'.value')" :value="$node['value']" :error="$errors->first($path.'.value')" :options="[''=>'请选择实际记录']+$references" :class="$fieldKey === 'model_version_id' ? 'nf-model-capability-select' : ''" />
 @elseif($fieldKey==='type' && class_basename($this)==='PlanningCandidates')
     <x-nf.select :id="$id" :label="$label" :model="\App\Filament\Support\JsonFields::binding($path.'.value')" :value="$node['value']" :error="$errors->first($path.'.value')" :options="[''=>'请选择层级','volume'=>'卷','story_arc'=>'故事弧','chapter'=>'章节','scene'=>'场景']" />
 @elseif($fieldKey==='severity')
