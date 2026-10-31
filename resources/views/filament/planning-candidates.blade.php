@@ -6,18 +6,21 @@
 <div class="nf-story-toolbar"><x-filament::button color="gray" wire:click="newProductionOperation" wire:confirm="保留当前字段并开始新一轮操作？相同输入将不再作为上一次操作的重试。">开始新一轮操作</x-filament::button><span>相同输入重复保存复用原记录；新一轮请先明确开始。</span></div>
 <div wire:loading role="status">正在读取或保存，请稍候…</div>
 @if($errors->any())<x-nf.state state="error" title="请核对字段，输入仍保留"><ul>@foreach($errors->all() as $message)<li>{{ $message }}</li>@endforeach</ul></x-nf.state>@endif
-<p>当前仅回放明确提供的离线响应，用于检查规划流程；不是实际 AI 创作。候选不会自动批准或推进正式剧情。</p>
+<p>离线模式回放填写的响应；真实模式使用冻结路由并检查运行门禁。候选不会自动批准或推进正式剧情。</p>
 @php($options = $this->options())
-<x-nf.section heading="准备离线规划"><div class="nf-production-layout">
+<x-nf.section heading="准备规划运行"><div class="nf-production-layout">
 <x-nf.story-select id="ui07-planning-candidates-1-{{ md5('phase') }}" label="阶段" model="phase" :value="data_get($__livewire,'phase')" >@foreach($this::LABELS as $key=>$label)<option value="{{ $key }}">{{ $label }}</option>@endforeach</x-nf.story-select>
 @if(in_array($phase,['chapter_plan','scene_plan']))<x-nf.field id="ui07-planning-candidates-2-{{ md5('startChapter') }}" label="起章" :error="$errors->first('startChapter')"><x-nf.control id="ui07-planning-candidates-2-{{ md5('startChapter') }}" type="number" min="1" wire:model="startChapter" /></x-nf.field><x-nf.field id="ui07-planning-candidates-3-{{ md5('endChapter') }}" label="止章（每次最多十章）" :error="$errors->first('endChapter')"><x-nf.control id="ui07-planning-candidates-3-{{ md5('endChapter') }}" type="number" min="1" wire:model="endChapter" /></x-nf.field>@endif
 <x-nf.story-select id="ui07-planning-candidates-4-{{ md5('parent') }}" label="前阶段" model="parent" :value="data_get($__livewire,'parent')" ><option value="">无（输入提炼）</option>@foreach($pageRead['data']['listing'] as $s)<option value="{{ $s['id'] }}">{{ $this::LABELS[$s['phase']] }} · {{ $s['id'] }}</option>@endforeach</x-nf.story-select>
 <x-nf.story-select id="ui07-planning-candidates-5-{{ md5('route') }}" label="已发布离线路由" model="route" :value="data_get($__livewire,'route')" ><option value="">请选择</option>@foreach($options['routes'] as $r)<option value="{{ $r->id }}">{{ $r->key }} · {{ $r->id }}</option>@endforeach</x-nf.story-select>
 <x-nf.story-select id="ui07-planning-candidates-6-{{ md5('policy') }}" label="预算政策" model="policy" :value="data_get($__livewire,'policy')" ><option value="">请选择</option>@foreach($options['policies'] as $p)<option value="{{ $p->id }}">{{ $p->key }} · {{ $p->id }}</option>@endforeach</x-nf.story-select>
 @include('filament.production-reference',['label'=>'价格版本','model'=>'prices','kind'=>'price','multiple'=>true])
+@if($executionMode === 'offline_fake')
 <details wire:ignore.self><summary>离线验收资料与固定结构（开发验证用）</summary><p>供应商配置必须为 fake，路由必须为 offline_fake，模板变量只含 context。未知或缺失价格、容量和结构契约均不能发送。</p>@include('filament.value-table',['value'=>(in_array($phase,\App\Planning\PlanningContract::PHASES,true)?\App\Planning\PlanningContract::schema($phase):['error'=>'阶段无效']),'label'=>'规划输出契约只读'])@include('filament.production-editor',['property'=>'offlineOutput','label'=>'离线规划响应字段'])</details>
+@endif
 <x-nf.field id="ui07-planning-candidates-8-{{ md5('reason') }}" label="说明" :error="$errors->first('reason')"><x-nf.control tag="textarea" id="ui07-planning-candidates-8-{{ md5('reason') }}" wire:model="reason" class="w-full"></x-nf.control></x-nf.field>
-<x-filament::button wire:loading.attr="disabled" wire:click="startCandidate">保存离线任务</x-filament::button>
+@include('filament.stage-execution-mode')
+<x-filament::button wire:loading.attr="disabled" wire:click="startCandidate">冻结并启动规划</x-filament::button>
 </div></x-nf.section>
 @if($notice)<p role="status">{{ $notice }}</p>@endif
 <div class="nf-story-toolbar"><x-nf.story-select id="ui07-planning-candidates-9-{{ md5('selected') }}" label="当前候选" model="selected" :value="data_get($__livewire,'selected')" ><option value="">选择候选</option>@foreach($pageRead['data']['listing'] as $s)<option value="{{ $s['id'] }}">{{ $this::LABELS[$s['phase']] }} · {{ $s['id'] }}</option>@endforeach</x-nf.story-select><x-nf.story-select id="ui07-planning-candidates-10-{{ md5('comparison') }}" label="对比候选" model="comparison" :value="data_get($__livewire,'comparison')" ><option value="">不对比</option>@foreach($pageRead['data']['listing'] as $s)<option value="{{ $s['id'] }}">{{ $this::LABELS[$s['phase']] }} · {{ $s['id'] }}</option>@endforeach</x-nf.story-select><x-filament::button wire:loading.attr="disabled" wire:click="inspect">查看 / 比较</x-filament::button><x-filament::button wire:loading.attr="disabled" wire:click="replay">执行离线回放</x-filament::button><x-filament::button wire:loading.attr="disabled" wire:click="adopt">确认采纳为草稿</x-filament::button></div>

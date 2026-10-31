@@ -1,6 +1,8 @@
 <?php
 
 return [
+    // 仅部署明确启用后开放真实执行，仍须逐请求校验预算和冻结来源。
+    'real_execution_enabled' => (bool) env('NF_REAL_EXECUTION_ENABLED', false),
     'search' => [
         'driver' => env('NOVELFORGE_SEARCH_DRIVER', 'pg_jieba'),
         'configuration' => env('NOVELFORGE_SEARCH_CONFIG', 'novelforge_zh'),

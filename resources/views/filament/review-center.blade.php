@@ -20,9 +20,10 @@
         <details wire:ignore.self><summary>响应格式</summary>@include('filament.value-table',['value'=>\App\Review\ReviewContract::schema(),'label'=>'逐字段只读证据'])</details>
         <x-nf.field id="ui07-review-center-6-{{ md5('reason') }}" label="操作原因" :error="$errors->first('reason')"><x-nf.control tag="textarea" id="ui07-review-center-6-{{ md5('reason') }}" class="w-full" wire:model="reason"></x-nf.control></x-nf.field>
         <x-filament::button wire:loading.attr="disabled" wire:click="review">保存评分并验证</x-filament::button>
-        <details wire:ignore.self><summary>通过离线路由评审</summary>
+        <details wire:ignore.self><summary>通过模型路由评审</summary>
             @include('filament.production-reference',['label'=>'路由版本','model'=>'route','kind'=>'route','multiple'=>false])@include('filament.production-reference',['label'=>'预算策略','model'=>'budget','kind'=>'budget','multiple'=>false])@include('filament.production-reference',['label'=>'报价版本','model'=>'prices','kind'=>'price','multiple'=>true])
-            <x-filament::button wire:loading.attr="disabled" wire:click="startPipeline">冻结并启动离线评审</x-filament::button>
+            @include('filament.stage-execution-mode')
+<x-filament::button wire:loading.attr="disabled" wire:click="startPipeline">冻结并启动评审</x-filament::button>
             @include('filament.production-reference',['label'=>'运行 ','model'=>'run','kind'=>'run','multiple'=>false])<x-filament::button wire:loading.attr="disabled" wire:click="replayPipeline">执行离线回放</x-filament::button>
         </details>
     </div></x-nf.section>

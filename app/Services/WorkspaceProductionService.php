@@ -71,12 +71,13 @@ class WorkspaceProductionService
     {
         $start = CarbonImmutable::now('UTC')->startOfDay();
         $requests = DB::table('ai_requests')->where('novel_id', $id)->where('created_at', '>=', $start)->where('created_at', '<', $start->addDay());
-        $rows = DB::table('budget_reservations as b')->joinSub($requests->select('id'), 'r', 'r.id', '=', 'b.request_id')
-            ->selectRaw("b.currency, count(*)::int AS requests, count(*) FILTER (WHERE b.status <> 'settled')::int AS unknown_count, sum(b.actual_cost)::numeric(24,10)::text AS settled_cost, coalesce(sum(b.amount) FILTER (WHERE b.status <> 'settled'),0)::numeric(24,10)::text AS risk_reserved")
-            ->groupBy('b.currency')->orderBy('b.currency')->get()->map(fn ($r) => (array) $r)->all();
+        // 同币种仍按来源分组，离线模拟不得混入真实费用。
+        $rows = DB::table('budget_reservations as b')->joinSub($requests->select('id', 'evidence_kind'), 'r', 'r.id', '=', 'b.request_id')
+            ->selectRaw("r.evidence_kind, b.currency, count(*)::int AS requests, count(*) FILTER (WHERE b.status <> 'settled')::int AS unknown_count, sum(b.actual_cost)::numeric(24,10)::text AS settled_cost, coalesce(sum(b.amount) FILTER (WHERE b.status <> 'settled'),0)::numeric(24,10)::text AS risk_reserved")
+            ->groupBy('r.evidence_kind', 'b.currency')->orderBy('b.currency')->get()->map(fn ($r) => (array) $r)->all();
         $missing = (clone $requests)->whereNotIn('id', DB::table('budget_reservations')->select('request_id'))->count();
 
-        return ['day' => $start->toDateString(), 'timezone' => 'UTC', 'rows' => $rows, 'unbudgeted_requests' => $missing, 'state' => $missing || collect($rows)->sum('unknown_count') ? 'unknown' : ($rows ? 'known' : 'empty'), 'evidence_kind' => 'offline_simulation'];
+        return ['day' => $start->toDateString(), 'timezone' => 'UTC', 'rows' => $rows, 'unbudgeted_requests' => $missing, 'state' => $missing || collect($rows)->sum('unknown_count') ? 'unknown' : ($rows ? 'known' : 'empty'), 'evidence_kind' => 'per_request'];
     }
 
     /** 没有全书默认政策：仅展示最近预留所用政策的全书风险余量，不能当作新运行授权。 */

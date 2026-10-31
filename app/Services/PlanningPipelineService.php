@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Context\ContextComposer;
 use App\Exceptions\NovelProblem;
+use App\Generation\StageExecutionMode;
 use App\Models\Novel;
 use App\Models\PremiseVersion;
 use App\Models\User;
@@ -23,9 +24,14 @@ final class PlanningPipelineService
 
     public function start(User $actor, string $novel, array $d, string $key): array
     {
+        StageExecutionMode::validate($d);
+        if (isset($d['capability_probe']) && (! is_bool($d['capability_probe']) || ($d['capability_probe'] && (($d['phase'] ?? null) !== 'intake' || StageExecutionMode::mode($d) !== 'production')))) {
+            throw new NovelProblem('INVALID_CAPABILITY_PROBE', '首次能力请求仅允许真实输入提炼阶段。', 422);
+        }
+
         return DB::transaction(function () use ($actor, $novel, $d, $key) {
             $book = app(NovelIntentService::class)->novel($actor, $novel, true);
-            Validator::make(['data' => $d, 'key' => $key], ['data' => 'array:phase,parent_id,route_version_id,billing,offline_output,start_chapter,end_chapter,expected_version,reason', 'key' => ['required', 'string', 'max:128', 'regex:/^[\x20-\x7E]+$/D']])->validate();
+            Validator::make(['data' => $d, 'key' => $key], ['data' => 'array:phase,parent_id,route_version_id,billing,capability_probe,execution_mode,offline_output,start_chapter,end_chapter,expected_version,reason', 'key' => ['required', 'string', 'max:128', 'regex:/^[\x20-\x7E]+$/D']])->validate();
             $command = ['actor_id' => $actor->id, 'novel_scope' => $novel, 'command' => 'planning.start', 'key' => $key];
             $old = DB::table('novel_commands')->where($command)->first();
             if ($old) {
@@ -35,7 +41,7 @@ final class PlanningPipelineService
 
                 return json_decode($old->response, true, flags: JSON_THROW_ON_ERROR);
             }
-            Validator::make($d, ['phase' => 'required|in:'.implode(',', PlanningContract::PHASES), 'parent_id' => 'nullable|integer|min:1', 'route_version_id' => 'required|integer|min:1', 'billing' => 'required|array', 'offline_output' => 'present|array', 'expected_version' => 'required|integer|min:1', 'reason' => 'required|string|max:2000'])->validate();
+            Validator::make($d, ['phase' => 'required|in:'.implode(',', PlanningContract::PHASES), 'parent_id' => 'nullable|integer|min:1', 'route_version_id' => 'required|integer|min:1', 'billing' => 'required|array', 'offline_output' => 'sometimes|array', 'expected_version' => 'required|integer|min:1', 'reason' => 'required|string|max:2000'])->validate();
             if ($book->row_version !== (int) $d['expected_version'] || $book->status === 'archived' || strlen(NovelIntentService::canonical($d)) > 180000) {
                 throw new NovelProblem('STALE_STATE', '小说已变化、归档或离线资料过大。');
             }
@@ -106,10 +112,12 @@ final class PlanningPipelineService
             if ($index > 0 && collect($requirements)->contains(fn ($r) => $r['decision_status'] !== 'accepted' && ! ($r['decision_status'] === 'waived' && $r['strength'] === 'preference'))) {
                 throw new NovelProblem('REQUIREMENT_UNRESOLVED', '先由作者确认输入提炼建议，不能由模型代替决定。');
             }
-            $context = ['requested_range' => $range, 'approved_blueprint' => $approvedBlueprint, 'source' => $source->toArray(), 'requirements' => $requirements, 'structure' => app(StructureService::class)->working($actor, $novel), 'approved_entities' => DB::table('entities as e')->join('entity_definition_versions as v', 'v.id', '=', 'e.approved_version_id')->where('e.novel_id', $novel)->where('e.retired', false)->orderBy('e.id')->get(['e.id', 'e.type', 'e.name', 'v.id as version_id', 'v.definition', 'v.content_hash'])->toArray(), 'parent_receipt' => $receipt ? ['id' => (string) $receipt->id, 'result' => json_decode($receipt->result, true)] : null];
+            // 输入提炼只需原始创意与要求；不携带整书结构和人物历史，避免无关资料挤满模板与计费边界。
+            $context = ['requested_range' => $range, 'approved_blueprint' => $approvedBlueprint, 'source' => $source->toArray(), 'requirements' => $requirements, 'structure' => $phase === 'intake' ? null : app(StructureService::class)->working($actor, $novel), 'approved_entities' => $phase === 'intake' ? [] : DB::table('entities as e')->join('entity_definition_versions as v', 'v.id', '=', 'e.approved_version_id')->where('e.novel_id', $novel)->where('e.retired', false)->orderBy('e.id')->get(['e.id', 'e.type', 'e.name', 'v.id as version_id', 'v.definition', 'v.content_hash'])->toArray(), 'parent_receipt' => $receipt ? ['id' => (string) $receipt->id, 'result' => json_decode($receipt->result, true)] : null];
             // 前置规划没有场景/正式正文；复用 D06 组装器保护原始输入、要求及规划依赖，不伪造场景上下文。
             $variables = ['context' => NovelIntentService::canonical($context)];
-            $cfg = app(AuthoringConfigurationService::class)->freeze($actor, ['route_version_id' => $d['route_version_id'], 'variables' => $variables], 'planning.'.$phase);
+            $cfg = app(AuthoringConfigurationService::class)->freeze($actor, ['route_version_id' => $d['route_version_id'], 'variables' => $variables, 'capability_probe' => $d['capability_probe'] ?? false], 'planning.'.$phase);
+            StageExecutionMode::assertRoute($d, $cfg);
             if ($this->hash($cfg['prompt']['content']['output_schema']) !== $this->hash(PlanningContract::schema($phase))) {
                 throw new NovelProblem('CONTRACT_MISMATCH', '路由输出必须匹配本阶段的固定规划 Schema。');
             }
@@ -131,7 +139,7 @@ final class PlanningPipelineService
                 throw new NovelProblem('CONTEXT_CAPACITY_EXCEEDED', '原始创意和强制规划依赖放不下；请调整已批准的离线路由容量。');
             }
             $cfg['rendered_prompt'] = $manifest['final_prompt'];
-            $frozen = ['schema_version' => 'planning-v1', 'executor_version' => 'planning.'.$phase.'-v1', 'goal' => 'candidate_only', 'outline_version_id' => null, 'outline_hash' => null, 'expected_state_version' => (string) $book->state_version, 'configuration' => $cfg, 'billing' => $billing, 'planning_context' => $manifest, 'planning_range' => $range, 'source_id' => $source->id, 'source_hash' => $source->content_hash, 'requirements_hash' => $this->hash($requirements), 'book_version' => $book->row_version, 'parent_artifact_hash' => $receipt ? DB::table('generation_artifacts')->where('id', $receipt->artifact_id)->value('content_hash') : null, 'nodes' => [['key' => $phase, 'stage' => 'planning.'.$phase, 'depends_on' => [], 'input' => ['offline_output' => $d['offline_output']]]]];
+            $frozen = ['capability_probe' => $d['capability_probe'] ?? false, 'execution_mode' => StageExecutionMode::mode($d), 'schema_version' => 'planning-v1', 'executor_version' => 'planning.'.$phase.'-v1', 'goal' => 'candidate_only', 'outline_version_id' => null, 'outline_hash' => null, 'expected_state_version' => (string) $book->state_version, 'configuration' => $cfg, 'billing' => $billing, 'planning_context' => $manifest, 'planning_range' => $range, 'source_id' => $source->id, 'source_hash' => $source->content_hash, 'requirements_hash' => $this->hash($requirements), 'book_version' => $book->row_version, 'parent_artifact_hash' => $receipt ? DB::table('generation_artifacts')->where('id', $receipt->artifact_id)->value('content_hash') : null, 'nodes' => [['key' => $phase, 'stage' => 'planning.'.$phase, 'depends_on' => [], 'input' => StageExecutionMode::node($d)]]];
             $run = (string) DB::table('generation_runs')->insertGetId(['novel_id' => $novel, 'actor_id' => $actor->id, 'outline_version_id' => null, 'expected_state_version' => $book->state_version, 'configuration_route_version_id' => $cfg['route']['id'], 'command_key' => 'e01:'.Str::uuid(), 'request_hash' => $this->hash($d), 'frozen_config' => NovelIntentService::canonical($frozen), 'input_hash' => $this->hash($frozen), 'status' => 'queued', 'created_at' => now(), 'updated_at' => now()]);
             $id = (string) DB::table('planning_stages')->insertGetId(['novel_id' => $novel, 'run_id' => $run, 'phase' => $phase, 'parent_id' => $parent?->id, 'parent_receipt_id' => $receipt?->id]);
             app(OutboxService::class)->enqueue($actor, $novel, $run, $phase);
@@ -174,7 +182,7 @@ final class PlanningPipelineService
         $data = app(GenerationService::class)->read($actor, $novel, (string) $stage->run_id);
         $adoption = DB::table('planning_adoptions')->where('stage_id', $id)->first();
 
-        return ['id' => $id, 'phase' => $stage->phase, 'parent_id' => $stage->parent_id === null ? null : (string) $stage->parent_id, 'data' => $data, 'adoption' => $adoption ? ['id' => (string) $adoption->id, 'result' => json_decode($adoption->result, true), 'reason' => $adoption->reason] : null, 'mode' => 'offline_response_replay', 'canonical_state_changed' => false];
+        return ['id' => $id, 'phase' => $stage->phase, 'parent_id' => $stage->parent_id === null ? null : (string) $stage->parent_id, 'data' => $data, 'adoption' => $adoption ? ['id' => (string) $adoption->id, 'result' => json_decode($adoption->result, true), 'reason' => $adoption->reason] : null, 'mode' => StageExecutionMode::mode(json_decode(DB::table('generation_runs')->where('id', $stage->run_id)->value('frozen_config'), true)) === 'production' ? 'production' : 'offline_response_replay', 'canonical_state_changed' => false];
     }
 
     /** 候选以现有服务做事务内预演，所有草稿/审计写入回滚；模型声明不等于作者批准。 */

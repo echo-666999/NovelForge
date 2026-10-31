@@ -25,9 +25,9 @@
 <p>本书最近历史运行：<a href="{{ $p['recent_run']['url'] }}">#{{ $p['recent_run']['id'] }} · {{ \App\Filament\Support\WorkspacePresentation::runStatus($p['recent_run']['status']) }}</a>。历史状态不代表当前基线可继续运行。</p>
 @else<p>本书尚无运行记录。</p>@endif
 <details wire:ignore.self><summary>费用与能力说明</summary>
-<p>今日请求费用（{{ $p['today_cost']['day'] }}，UTC自然日）：当前为离线模拟账本，不是真实供应商支出。按币种分别统计，包含本书历史运行。</p>
+<p>今日请求费用（{{ $p['today_cost']['day'] }}，UTC自然日）：按真实供应商/离线模拟来源及币种分别统计，包含本书历史运行。</p>
 @forelse($p['today_cost']['rows'] as $cost)
-<p>{{ $cost['currency'] }} · 已核销 {{ $cost['settled_cost'] ?? '未知' }} · 未核销 {{ $cost['unknown_count'] }} 笔 · 风险预留 {{ $cost['risk_reserved'] }}。@if($cost['unknown_count'])完整实际费用未知。@endif</p>
+<p>{{ $cost['evidence_kind'] === 'real_provider' ? '真实供应商' : '离线模拟' }} · {{ $cost['currency'] }} · 已核销 {{ $cost['settled_cost'] ?? '未知' }} · 未核销 {{ $cost['unknown_count'] }} 笔 · 风险预留 {{ $cost['risk_reserved'] }}。@if($cost['unknown_count'])完整实际费用未知。@endif</p>
 @empty<p>今日无已登记预算的请求；未设置币种时不显示金额零。</p>@endforelse
 @if($p['today_cost']['unbudgeted_requests'])<p role="status">另有 {{ $p['today_cost']['unbudgeted_requests'] }} 笔请求缺少预算记录，费用未知。</p>@endif
 @if($p['budget_remaining'])

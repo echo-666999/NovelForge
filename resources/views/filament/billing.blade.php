@@ -10,7 +10,7 @@
     @if($novel !== '' && $run !== '')<a href="{{ '/admin/run-center?novel='.$novel.'&run='.$run }}">返回运行、请求与审计详情</a>@endif
     {{-- 金额按十进制字符串展示，不在浏览器用浮点数汇总。 --}}
     @php($data=$pageRead['data']['catalog'])
-    <p>当前为离线模拟账本，真实调用保持关闭。金额保留原币，不自动换汇；日预算按 UTC 切日。</p>
+    <p>账本区分真实供应商与离线模拟来源。金额保留原币，不自动换汇；日预算按 UTC 切日。</p>
     <p>新版本只影响显式采用它的新运行。未知实际费用保持空值并保留风险预留；HTTP失败不等于免费。超预算不发请求。</p>
     @if(session('billing_error'))<p role="alert">{{session('billing_error')}}</p>@endif
     @if(session('billing_notice'))<p role="status">{{session('billing_notice')}}</p>@endif
@@ -20,7 +20,7 @@
         <x-filament::button id="nf-policy-create" color="gray" x-on:click="billingTrigger=$el" wire:click="beginBillingEditor('policy')">新建预算政策</x-filament::button>
         <x-filament::button id="nf-reconcile-create" color="gray" x-on:click="billingTrigger=$el" wire:click="beginBillingEditor('reconcile')">录入对账凭证</x-filament::button>
     </div>
-    @foreach($data['totals'] as $t)<p>{{$t['currency']}} · 已核销 {{$t['settled_cost']}} · 风险预留 {{$t['risk_reserved']}} · 未核销 {{$t['unknown_count']}} 笔。{{(int)$t['unknown_count']>0?'总实际费用未知':'全部已核销（模拟）'}}</p>@endforeach
+    @foreach($data['totals'] as $t)<p>{{$t['evidence_kind']==='real_provider'?'真实供应商':'离线模拟'}} · {{$t['currency']}} · 已核销 {{$t['settled_cost']}} · 风险预留 {{$t['risk_reserved']}} · 未核销 {{$t['unknown_count']}} 笔。{{(int)$t['unknown_count']>0?'总实际费用未知':'全部已核销'}}</p>@endforeach
     @if($billingNotice && $billingEditor === '')<p role="{{ $billingSaveFailed ? 'alert' : 'status' }}">{{ $billingNotice }}</p>@endif
     <x-nf.section heading="价格版本列表">
         <p>最近100个版本，只读；范围沿用现有目录，不代表费用筛选后的完整历史。</p>
@@ -54,7 +54,7 @@
         </details>
     <div><x-nf.table label="生产资料列表"><table class="w-full text-left"><thead><tr><th>请求 / 用途</th><th>币种 / 价格版本</th><th>状态</th><th>最坏预留</th><th>实际费用</th><th>风险预留</th><th>详情</th></tr></thead><tbody>
         @forelse($data['requests'] as $r)
-            <tr><td>{{$r['request_id']}} / {{$r['category']}}</td><td>{{$r['currency']}} / {{$r['price_version_id']}}</td><td>{{$r['status']}} {{$r['issue_code']}}</td><td>{{$r['amount']}}</td><td>{{$r['actual_cost']??'未知，待对账'}}</td><td>{{$r['risk_reserved']}}</td><td><x-filament::button color="gray" wire:click="inspectBilling('request','{{ $r['request_id'] }}')">查看账本证据</x-filament::button></td></tr>
+            <tr><td>{{$r['request_id']}} / {{$r['category']}} · {{$r['evidence_kind']==='real_provider'?'真实供应商':'离线模拟'}}</td><td>{{$r['currency']}} / {{$r['price_version_id']}}</td><td>{{$r['status']}} {{$r['issue_code']}}</td><td>{{$r['amount']}}</td><td>{{$r['actual_cost']??'未知，待对账'}}</td><td>{{$r['risk_reserved']}}</td><td><x-filament::button color="gray" wire:click="inspectBilling('request','{{ $r['request_id'] }}')">查看账本证据</x-filament::button></td></tr>
 
         @empty <tr><td colspan="7">暂无费用记录。先录入有凭证的价格和预算版本；配置保存不会调用模型。</td></tr>@endforelse
     </tbody></table></x-nf.table></div>

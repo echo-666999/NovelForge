@@ -105,7 +105,8 @@
         <fieldset><legend>报价版本 · 按所选路由模型填写</legend>
             @forelse($options['prices'] as $p)<label class="nf-price-choice"><input type="checkbox" wire:model.live="priceSelections" value="{{ $p->id }}">能力版本 #{{ $p->model_version_id }} · 报价 v{{ $p->version }} · {{ $p->currency }} · #{{ $p->id }}</label>@empty<p>请先选择路由；如仍为空，需先配置对应模型报价。未知费用不代表免费。</p>@endforelse
         </fieldset>
-        <x-filament::button wire:click="startPipeline" wire:loading.attr="disabled" :disabled="!$body || $reason==='' || $route==='' || $policy==='' || !$priceSelections">冻结并启动离线提取</x-filament::button>
+        @include('filament.stage-execution-mode')
+<x-filament::button wire:click="startPipeline" wire:loading.attr="disabled" :disabled="!$body || $reason==='' || $route==='' || $policy==='' || !$priceSelections">冻结并启动提取</x-filament::button>
         <x-nf.select id="extraction-run" label="本书离线提取运行" model="run" :value="$run" :options="[''=>'请选择实际运行']+$selections['runs']" />
         <x-filament::button color="gray" wire:click="replayPipeline" :disabled="$run===''">执行离线阶段回放</x-filament::button>
         @if(ctype_digit($run))<a href="/admin/recovery-desk?novel={{ $novel }}&run={{ $run }}">查看恢复与请求证据</a>@endif

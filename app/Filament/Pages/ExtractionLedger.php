@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Exceptions\NovelProblem;
 use App\Filament\Concerns\EditsExtractionFields;
 use App\Filament\Concerns\HasNovelNavigation;
+use App\Filament\Concerns\HasStageExecutionMode;
 use App\Filament\Support\JsonFields;
 use App\Services\DraftingService;
 use App\Services\ExtractionPipelineService;
@@ -23,6 +24,7 @@ class ExtractionLedger extends Page
 {
     use EditsExtractionFields;
     use HasNovelNavigation;
+    use HasStageExecutionMode;
 
     // UI03：分组与顺序显式固定，不依赖页面发现次序。
     protected static string|\UnitEnum|null $navigationGroup = '生产与质量';
@@ -181,7 +183,7 @@ class ExtractionLedger extends Page
             }
         }
 
-        return ['prices' => DB::table('price_versions')->whereIn('model_version_id', $modelIds)->orderByDesc('version')->get(['id', 'model_version_id', 'version', 'currency'])->all(), 'routes' => DB::table('route_versions as v')->join('model_routes as r', 'r.id', '=', 'v.parent_id')->where('v.status', 'published')->where('r.stage', 'extraction.events')->where('v.content->mode', 'offline_fake')->get(['v.id', 'r.key'])->all(), 'policies' => DB::table('budget_policies')->get(['id', 'key'])->all()];
+        return ['prices' => DB::table('price_versions')->whereIn('model_version_id', $modelIds)->orderByDesc('version')->get(['id', 'model_version_id', 'version', 'currency'])->all(), 'routes' => DB::table('route_versions as v')->join('model_routes as r', 'r.id', '=', 'v.parent_id')->where('v.status', 'published')->where('r.stage', 'extraction.events')->where('v.content->mode', $this->executionMode)->get(['v.id', 'r.key'])->all(), 'policies' => DB::table('budget_policies')->get(['id', 'key'])->all()];
     }
 
     /** 与纯验证明确分开；该入口经过冻结路由、预算与持久请求证据。 */
@@ -192,10 +194,11 @@ class ExtractionLedger extends Page
             $book = app(NovelIntentService::class)->novel(auth()->user(), $this->novel);
             $cfg = preg_match('/^[1-9][0-9]{0,17}$/D', $this->route) ? DB::table('route_versions')->find($this->route) : null;
             $params = $cfg ? json_decode($cfg->content, true)['parameters'] : [];
-            $payload = ['chapter_version_id' => $this->version, 'body_hash' => $body['body_hash'], 'expected_version' => $this->loadedVersions['row'] ?? $book->row_version, 'expected_state_version' => $this->loadedVersions['state'] ?? $book->state_version, 'parent_id' => $this->parent ?: null, 'baseline_id' => $this->baseline ?: null, 'rule_context_id' => $this->ruleContext ?: null, 'offline_output' => $this->draftResponse(), 'reason' => $this->reason, 'route_version_id' => $this->route, 'billing' => ['policy_id' => $this->policy, 'price_version_ids' => array_values(array_filter(array_map('trim', explode(',', $this->prices)))), 'category' => 'generation', 'chapter_id' => $body['node_id'], 'max_output_tokens' => $params['max_output_tokens'] ?? 0, 'max_reasoning_tokens' => 0]];
+            $payload = ['chapter_version_id' => $this->version, 'body_hash' => $body['body_hash'], 'expected_version' => $this->loadedVersions['row'] ?? $book->row_version, 'expected_state_version' => $this->loadedVersions['state'] ?? $book->state_version, 'parent_id' => $this->parent ?: null, 'baseline_id' => $this->baseline ?: null, 'rule_context_id' => $this->ruleContext ?: null, 'offline_output' => $this->executionMode === 'production' ? null : $this->draftResponse(), 'reason' => $this->reason, 'route_version_id' => $this->route, 'billing' => ['policy_id' => $this->policy, 'price_version_ids' => array_values(array_filter(array_map('trim', explode(',', $this->prices)))), 'category' => 'generation', 'chapter_id' => $body['node_id'], 'max_output_tokens' => $params['max_output_tokens'] ?? 0, 'max_reasoning_tokens' => 0]];
+            $payload = $this->stagePayload($payload);
             $result = app(ExtractionPipelineService::class)->start(auth()->user(), $this->novel, $payload, 'ui05:'.hash('sha256', NovelIntentService::canonical($payload)));
             $this->run = $result['run_id'];
-            $this->notice = '离线提取运行已冻结，可执行回放或由专用队列继续；没有调用真实模型。';
+            $this->notice = '提取运行已冻结，可在运行中心查看执行模式与结果；不会提交正式剧情。';
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App\Review;
 
 use App\Exceptions\NovelProblem;
+use App\Generation\StageExecutionMode;
 use App\Generation\StageExecutor;
 use App\Generation\StageResult;
 use App\Models\User;
@@ -26,12 +27,13 @@ final class ReviewExecutor implements StageExecutor
             throw new NovelProblem('CONTEXT_CAPACITY_EXCEEDED', '冻结评审上下文超过所选模型容量。');
         }
         $actor = User::findOrFail($run->actor_id);
-        $request = app(ProviderGateway::class)->execute($actor, (string) $run->novel_id, (string) $step->id, $selected['model_version_id'], ['prompt' => $cfg['rendered_prompt'], 'output_schema' => ReviewContract::schema()], 'review-chapter', new ReviewReplayAdapter($input['node']['input']['offline_output']));
+        $request = app(ProviderGateway::class)->execute($actor, (string) $run->novel_id, (string) $step->id, $selected['model_version_id'], ['prompt' => $cfg['rendered_prompt'], 'output_schema' => ReviewContract::schema()], 'review-chapter', StageExecutionMode::adapter($frozen, $input['node']['stage'], $input['configuration_selection']['model_version_id']));
         if ($request['status'] !== 'succeeded') {
             return new StageResult('blocked', ['text' => '评审响应未通过网关，请保留原正文并检查请求证据。'], $request['error_code'] ?? 'REVIEW_REQUEST_BLOCKED');
         }
-        $reply = json_decode(app(ProviderGateway::class)->evidenceText($actor, (string) $run->novel_id, $request['id'], 'response'), true, flags: JSON_THROW_ON_ERROR);
+        // 业务产物通过统一协议边界还原；不把原始响应改写成内部格式。
+        $output = app(ProviderGateway::class)->businessOutput($actor, (string) $run->novel_id, $request['id'], ['prompt' => $cfg['rendered_prompt'], 'output_schema' => ReviewContract::schema()]);
 
-        return new StageResult('succeeded', $reply['output']);
+        return new StageResult('succeeded', $output);
     }
 }

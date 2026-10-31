@@ -116,12 +116,13 @@ final class BillingConfigurationService
         app(NovelIntentService::class)->authorize($actor);
         Validator::make($filters, ['novel_id' => 'nullable|integer|min:1', 'run_id' => 'nullable|integer|min:1', 'model_profile_version_id' => 'nullable|integer|min:1', 'request_status' => 'nullable|in:pending,succeeded,failed,unknown,quarantined', 'date_from' => 'nullable|date_format:Y-m-d', 'date_to' => 'nullable|date_format:Y-m-d', 'status' => 'nullable|in:reserved,unknown,settled', 'currency' => 'nullable|string|size:3', 'category' => 'nullable|in:generation,review,revision,summary,embedding,planning', 'page' => 'nullable|integer|min:1|max:100000'])->validate();
         $q = $this->query($actor, $filters);
-        $totals = (clone $q)->selectRaw("b.currency, count(*) AS requests, count(*) FILTER(WHERE b.status<>'settled') AS unknown_count, coalesce(sum(b.actual_cost),0)::text AS settled_cost, coalesce(sum(b.amount) FILTER(WHERE b.status<>'settled'),0)::text AS risk_reserved")->groupBy('b.currency')->get()->map(fn ($v) => (array) $v)->all();
+        // 真实供应商费用与历史离线模拟按来源分组，不能合并冒充实际支出。
+        $totals = (clone $q)->selectRaw("r.evidence_kind, b.currency, count(*) AS requests, count(*) FILTER(WHERE b.status<>'settled') AS unknown_count, coalesce(sum(b.actual_cost),0)::text AS settled_cost, coalesce(sum(b.amount) FILTER(WHERE b.status<>'settled'),0)::text AS risk_reserved")->groupBy('r.evidence_kind', 'b.currency')->get()->map(fn ($v) => (array) $v)->all();
         $total = (clone $q)->count();
         $page = (int) ($filters['page'] ?? 1);
         $requests = $q->orderByDesc('b.id')->forPage($page, 25)->pluck('b.request_id')->map(fn ($id) => app(BudgetService::class)->read((string) $id))->all();
 
-        return ['requests' => $requests, 'total' => $total, 'page' => $page, 'totals' => $totals, 'prices' => DB::table('price_versions')->orderByDesc('id')->limit(100)->pluck('id')->map(fn ($id) => $this->row('price_versions', (string) $id))->all(), 'policies' => DB::table('budget_policies')->orderByDesc('id')->limit(100)->pluck('id')->map(fn ($id) => $this->row('budget_policies', (string) $id))->all(), 'catalog_limit' => 100, 'evidence_kind' => 'offline_simulation'];
+        return ['requests' => $requests, 'total' => $total, 'page' => $page, 'totals' => $totals, 'prices' => DB::table('price_versions')->orderByDesc('id')->limit(100)->pluck('id')->map(fn ($id) => $this->row('price_versions', (string) $id))->all(), 'policies' => DB::table('budget_policies')->orderByDesc('id')->limit(100)->pluck('id')->map(fn ($id) => $this->row('budget_policies', (string) $id))->all(), 'catalog_limit' => 100, 'evidence_kind' => 'per_request'];
     }
 
     /** 导出当前筛选的请求费用摘要；行级未知金额为空，不混成零费用。 */
@@ -133,13 +134,13 @@ final class BillingConfigurationService
         }
         // 先固定本次导出的请求ID，后续新增请求不会混入结果。
         $q = $this->query($actor, $filters);
-        $rows = $q->orderBy('b.id')->limit(10001)->select('b.request_id', 'b.category', 'b.currency', 'b.price_version_id', 'b.policy_id', 'b.status', 'b.amount', 'b.actual_cost', 'b.issue_code')->get();
+        $rows = $q->orderBy('b.id')->limit(10001)->select('b.request_id', 'b.category', 'b.currency', 'b.price_version_id', 'b.policy_id', 'b.status', 'b.amount', 'b.actual_cost', 'b.issue_code', 'r.evidence_kind')->get();
         if ($rows->count() > 10000) {
             throw new NovelProblem('EXPORT_TOO_LARGE', '导出范围变化，请缩小筛选范围。', 422);
         }
         $stream = fopen('php://temp', 'w+');
         fwrite($stream, "\xEF\xBB\xBF");
-        fputcsv($stream, ['请求', '用途', '币种', '价格版本', '政策版本', '状态', '最坏预留', '实际费用（空为未知）', '问题码'], ',', '"', '');
+        fputcsv($stream, ['请求', '用途', '币种', '价格版本', '政策版本', '状态', '最坏预留', '实际费用（空为未知）', '问题码', '证据来源'], ',', '"', '');
         foreach ($rows as $row) {
             fputcsv($stream, array_values((array) $row), ',', '"', '');
         }

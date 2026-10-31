@@ -5,12 +5,13 @@ namespace App\Services;
 use App\Context\ContextComposer;
 use App\Exceptions\NovelProblem;
 use App\Extraction\ExtractionContract;
+use App\Generation\StageExecutionMode;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-/** E03 注册离线提取阶段；模型请求与数据库完成事务分离，不开放真实模型。 */
+/** E03注册提取阶段；来源准备、模型请求与数据库完成事务分离。 */
 final class ExtractionPipelineService
 {
     private function hash(mixed $v): string
@@ -20,9 +21,10 @@ final class ExtractionPipelineService
 
     public function start(User $actor, string $novel, array $data, string $key): array
     {
-        Validator::make(['data' => $data, 'key' => $key], ['data' => 'required|array:chapter_version_id,body_hash,expected_version,expected_state_version,parent_id,baseline_id,rule_context_id,offline_output,reason,route_version_id,billing', 'key' => ['required', 'string', 'max:128', 'regex:/^[\x20-\x7E]+$/D']])->validate();
+        StageExecutionMode::validate($data);
+        Validator::make(['data' => $data, 'key' => $key], ['data' => 'required|array:chapter_version_id,body_hash,expected_version,expected_state_version,parent_id,baseline_id,rule_context_id,execution_mode,offline_output,reason,route_version_id,billing', 'key' => ['required', 'string', 'max:128', 'regex:/^[\x20-\x7E]+$/D']])->validate();
         Validator::make($data, ['route_version_id' => 'required|integer|min:1', 'billing' => 'required|array'])->validate();
-        $d = array_diff_key($data, array_flip(['route_version_id', 'billing']));
+        $d = array_diff_key($data, array_flip(['route_version_id', 'billing', 'execution_mode']));
 
         return DB::transaction(function () use ($actor, $novel, $data, $d, $key) {
             $book = app(NovelIntentService::class)->novel($actor, $novel, true);
@@ -34,12 +36,22 @@ final class ExtractionPipelineService
 
                 return json_decode($old->response, true, flags: JSON_THROW_ON_ERROR);
             }
-            // 复用确定性入口做来源预演；所有临时事件、记录和审计一并回滚。
-            DB::beginTransaction();
-            try {
-                $preview = app(ExtractionService::class)->extract($actor, $novel, $d, 'preview:'.Str::uuid());
-            } finally {
-                DB::rollBack();
+            if (StageExecutionMode::mode($data) === 'production') {
+                // 真实阶段只准备来源，不用虚构空响应调用提取器。
+                $prepared = app(ExtractionService::class)->prepareInput($actor, $novel, $d);
+                $baseline = $prepared['baseline'];
+                if (($prepared['chapter']->sequence > 1 && ! $baseline) || ($baseline && (! $baseline['baseline_eligible'] || $baseline['chapter_sequence'] !== $prepared['chapter']->sequence - 1))) {
+                    throw new NovelProblem('INVALID_CANDIDATE_BASELINE', '真实提取同样要求紧邻前章有效基线。');
+                }
+                $preview = ['frozen_input' => $prepared['frozen'], 'report' => ['issues' => []]];
+            } else {
+                // 离线回放继续预演原响应；临时事件和审计全部回滚。
+                DB::beginTransaction();
+                try {
+                    $preview = app(ExtractionService::class)->extract($actor, $novel, $d, 'preview:'.Str::uuid());
+                } finally {
+                    DB::rollBack();
+                }
             }
             $body = app(DraftingService::class)->read($actor, $novel, 'chapter', (string) $d['chapter_version_id']);
             $chapter = DB::table('chapters')->where('novel_id', $novel)->find($body['node_id']);
@@ -60,8 +72,9 @@ final class ExtractionPipelineService
             }
             $context = ['body' => $body['body'], 'source' => ['chapter_version_id' => $body['id'], 'body_hash' => $body['body_hash']], 'author_constraints' => $admission, 'approved_definitions' => $definitions, 'baseline_events' => $baseline['events'] ?? [], 'author_rules' => $rules['payload']['rules'] ?? [], 'requirements' => app(NovelIntentService::class)->requirements($book), 'instructions' => '仅提议事件及引文；按实际码点偏移定位。隐藏真相不等于角色知情；不得输出规则或批准字段。'];
             $cfg = app(AuthoringConfigurationService::class)->freeze($actor, ['route_version_id' => (string) $data['route_version_id'], 'variables' => ['context' => NovelIntentService::canonical($context)]], 'extraction.events');
-            if ($this->hash($cfg['prompt']['content']['output_schema']) !== $this->hash(ExtractionContract::schema()) || $cfg['route']['content']['mode'] !== 'offline_fake') {
-                throw new NovelProblem('EXTRACTION_SCHEMA_MISMATCH', '提取路由须为offline_fake并采用注册的事件提取契约。');
+            StageExecutionMode::assertRoute($data, $cfg);
+            if ($this->hash($cfg['prompt']['content']['output_schema']) !== $this->hash(ExtractionContract::schema())) {
+                throw new NovelProblem('EXTRACTION_SCHEMA_MISMATCH', '提取路由须采用注册的事件提取契约。');
             }
             if (($data['billing']['category'] ?? '') !== 'generation' || (string) ($data['billing']['chapter_id'] ?? '') !== (string) $chapter->id) {
                 throw new NovelProblem('INVALID_BILLING_SCOPE', '提取预算必须归属当前章节及generation用途。', 422);
@@ -75,11 +88,11 @@ final class ExtractionPipelineService
             }
             $cfg['rendered_prompt'] = $manifest['final_prompt'];
             $source = app(StoryStateService::class)->registerChapter($actor, $novel, $body['id']);
-            $frozen = ['schema_version' => 'extraction-v1', 'row_version' => $book->row_version, 'chapter_version_id' => $body['id'], 'body_hash' => $body['body_hash'], 'source_id' => $source, 'baseline_id' => $baseline['id'] ?? null, 'baseline_hash' => $baseline['input_hash'] ?? null, 'configuration' => $cfg, 'billing' => $billing, 'context' => $manifest, 'request' => array_diff_key($d, ['offline_output' => true]), 'nodes' => [['key' => 'extract', 'stage' => 'extraction.events', 'depends_on' => [], 'input' => ['offline_output' => $d['offline_output']]]]];
+            $frozen = ['execution_mode' => StageExecutionMode::mode($data), 'schema_version' => 'extraction-v1', 'row_version' => $book->row_version, 'chapter_version_id' => $body['id'], 'body_hash' => $body['body_hash'], 'source_id' => $source, 'baseline_id' => $baseline['id'] ?? null, 'baseline_hash' => $baseline['input_hash'] ?? null, 'configuration' => $cfg, 'billing' => $billing, 'context' => $manifest, 'request' => array_diff_key($d, ['offline_output' => true]), 'nodes' => [['key' => 'extract', 'stage' => 'extraction.events', 'depends_on' => [], 'input' => StageExecutionMode::node($data)]]];
             $outline = DB::table('rolling_plans')->where('novel_id', $novel)->where('id', $body['plan_id'])->value('outline_version_id');
             $id = (string) DB::table('generation_runs')->insertGetId(['novel_id' => $novel, 'actor_id' => $actor->id, 'outline_version_id' => $outline, 'configuration_route_version_id' => $cfg['route']['id'], 'expected_state_version' => $book->state_version, 'command_key' => 'e03:'.hash('sha256', $key), 'request_hash' => $this->hash($data), 'frozen_config' => NovelIntentService::canonical($frozen), 'input_hash' => $this->hash($frozen), 'created_at' => now(), 'updated_at' => now()]);
             app(OutboxService::class)->enqueue($actor, $novel, $id, 'extract');
-            $response = ['run_id' => $id, 'status_url' => '/api/v1/novels/'.$novel.'/runs/'.$id, 'mode' => 'offline_response_replay'];
+            $response = ['run_id' => $id, 'status_url' => '/api/v1/novels/'.$novel.'/runs/'.$id, 'mode' => StageExecutionMode::mode($data) === 'production' ? 'production' : 'offline_response_replay'];
             DB::table('novel_commands')->insert($where + ['request_hash' => $this->hash($data), 'response' => NovelIntentService::canonical($response), 'created_at' => now()]);
 
             return $response;

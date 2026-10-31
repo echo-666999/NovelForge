@@ -5,6 +5,7 @@ namespace App\Filament\Resources\NovelResource\Pages;
 use App\Exceptions\NovelProblem;
 use App\Filament\Concerns\EditsProductionPayloads;
 use App\Filament\Concerns\HasProductionChoices;
+use App\Filament\Concerns\HasStageExecutionMode;
 use App\Filament\Concerns\ReadsProductionFrames;
 use App\Filament\Concerns\WritesProductionCommands;
 use App\Filament\Resources\NovelResource;
@@ -22,12 +23,13 @@ class PlanningCandidates extends Page
 {
     use EditsProductionPayloads;
     use HasProductionChoices;
+    use HasStageExecutionMode;
     use ReadsProductionFrames;
     use WritesProductionCommands;
 
     protected static string $resource = NovelResource::class;
 
-    protected static ?string $title = '离线规划候选';
+    protected static ?string $title = '规划候选';
 
     protected string $view = 'filament.planning-candidates';
 
@@ -80,19 +82,19 @@ class PlanningCandidates extends Page
     {
         app(NovelIntentService::class)->novel(auth()->user(), $this->novelId);
 
-        return ['routes' => DB::table('route_versions as v')->join('model_routes as r', 'r.id', '=', 'v.parent_id')->where('v.status', 'published')->where('r.stage', 'planning.'.$this->phase)->get(['v.id', 'r.key', 'v.content'])->all(), 'policies' => DB::table('budget_policies')->orderByDesc('id')->get(['id', 'key'])->all(), 'prices' => DB::table('price_versions')->orderByDesc('id')->get(['id', 'model_version_id', 'currency'])->all()];
+        return ['routes' => DB::table('route_versions as v')->join('model_routes as r', 'r.id', '=', 'v.parent_id')->where('v.status', 'published')->where('v.content->mode', $this->executionMode)->where('r.stage', 'planning.'.$this->phase)->get(['v.id', 'r.key', 'v.content'])->all(), 'policies' => DB::table('budget_policies')->orderByDesc('id')->get(['id', 'key'])->all(), 'prices' => DB::table('price_versions')->orderByDesc('id')->get(['id', 'model_version_id', 'currency'])->all()];
     }
 
     public function startCandidate(): void
     {
         $this->attempt(function () {
-            $output = $this->productionValue('offlineOutput', 'offline_output');
+            $output = $this->executionMode === 'production' ? null : $this->productionValue('offlineOutput', 'offline_output');
             $cfg = preg_match('/^[1-9][0-9]{0,17}$/D', $this->route) ? DB::table('route_versions')->find($this->route) : null;
             $parameters = $cfg ? json_decode($cfg->content, true)['parameters'] : [];
             $result = $this->productionWrite('PlanningPipelineService.start', [], ['start_chapter' => in_array($this->phase, ['chapter_plan', 'scene_plan'], true) ? $this->startChapter : null, 'end_chapter' => in_array($this->phase, ['chapter_plan', 'scene_plan'], true) ? $this->endChapter : null, 'phase' => $this->phase, 'parent_id' => $this->parent ?: null, 'route_version_id' => $this->route, 'billing' => ['policy_id' => $this->policy, 'price_version_ids' => array_values(array_filter(array_map('trim', explode(',', $this->prices)))), 'category' => 'planning', 'max_output_tokens' => $parameters['max_output_tokens'] ?? 0, 'max_reasoning_tokens' => 0], 'offline_output' => $output, 'expected_version' => app(NovelIntentService::class)->novel(auth()->user(), $this->novelId)->row_version, 'reason' => $this->reason], fn ($frozenPayload, $commandKey) => app(PlanningPipelineService::class)->start(auth()->user(), $this->novelId, $frozenPayload, $commandKey));
             $this->selected = $result['id'];
             $this->inspect();
-            $this->notice = '离线任务已保存，可执行回放或由专用规划队列继续；没有调用真实模型。';
+            $this->notice = '规划任务已冻结，可在运行中心查看执行模式与结果；候选不会自动采纳。';
         });
     }
 

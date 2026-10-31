@@ -48,7 +48,7 @@ final class BudgetService
             }
         }
 
-        return ['policy' => $policy, 'prices' => $prices, 'chapter_id' => isset($p['chapter_id']) ? (string) $p['chapter_id'] : null, 'category' => $p['category'], 'max_output_tokens' => $p['max_output_tokens'], 'max_reasoning_tokens' => $p['max_reasoning_tokens'], 'evidence_kind' => 'offline_simulation'];
+        return ['policy' => $policy, 'prices' => $prices, 'chapter_id' => isset($p['chapter_id']) ? (string) $p['chapter_id'] : null, 'category' => $p['category'], 'max_output_tokens' => $p['max_output_tokens'], 'max_reasoning_tokens' => $p['max_reasoning_tokens'], 'evidence_kind' => ($configuration['route']['content']['mode'] ?? 'offline_fake') === 'production' ? 'real_provider' : 'offline_simulation'];
     }
 
     /** 仅在网关创建请求的同一事务中调用；任何桶不足都回滚请求与全部预留。 */
@@ -232,7 +232,7 @@ final class BudgetService
         }
         $row['frozen_bounds'] = json_decode($r->frozen_bounds, true);
         $row['risk_reserved'] = $r->status === 'settled' ? '0.0000000000' : $r->amount;
-        $row['evidence_kind'] = 'offline_simulation';
+        $row['evidence_kind'] = DB::table('ai_requests')->where('id', $requestId)->value('evidence_kind');
         $policy = DB::table('budget_policies')->find($r->policy_id);
         $limits = json_decode($policy->limits, true);
         $meter = app(TokenMeter::class);

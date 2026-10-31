@@ -57,7 +57,8 @@
         @include('filament.production-reference',['label'=>'报价版本 ','model'=>'prices','kind'=>'price','multiple'=>true])
         <x-nf.field id="ui07-draft-editor-13-{{ md5('offlineBody') }}" label="离线完整场景正文" :error="$errors->first('offlineBody')"><x-nf.control tag="textarea" id="ui07-draft-editor-13-{{ md5('offlineBody') }}" class="w-full" rows="8" wire:model="offlineBody"></x-nf.control></x-nf.field>
         <x-nf.field id="ui07-draft-editor-14-{{ md5('reason') }}" label="备注 / 原因" :error="$errors->first('reason')"><x-nf.control id="ui07-draft-editor-14-{{ md5('reason') }}" wire:model="reason" /></x-nf.field>
-        <x-filament::button wire:loading.attr="disabled" wire:click="startScene">冻结并启动离线场景</x-filament::button>
+        @include('filament.stage-execution-mode')
+<x-filament::button wire:loading.attr="disabled" wire:click="startScene">冻结并启动场景</x-filament::button>
         @include('filament.production-reference',['label'=>'运行 ','model'=>'run','kind'=>'run','multiple'=>false])<x-filament::button wire:loading.attr="disabled" wire:click="replay">执行离线回放</x-filament::button>
         @if(ctype_digit($run))<a href="/admin/recovery-desk?novel={{ $novelId }}&run={{ $run }}">查看恢复与证据</a>@endif
         <h3>章节组装</h3>@include('filament.production-reference',['label'=>'章节 ','model'=>'chapter','kind'=>'chapter','multiple'=>false])<x-nf.field id="ui07-draft-editor-17-{{ md5('assemblyTitle') }}" label="具体章名" :error="$errors->first('assemblyTitle')"><x-nf.control id="ui07-draft-editor-17-{{ md5('assemblyTitle') }}" wire:model="assemblyTitle" /></x-nf.field>

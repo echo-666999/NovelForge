@@ -15,7 +15,7 @@ trait HasProductionChoices
     public function productionChoices(string $kind): array
     {
         $book = (string) ($this->novelId ?? $this->novel ?? '');
-        $key = $book.':'.$kind.':'.($this->version ?? '').':'.($this->review ?? '').':'.($this->selected ?? '');
+        $key = ($this->executionMode ?? 'offline_fake').':'.$book.':'.$kind.':'.($this->version ?? '').':'.($this->review ?? '').':'.($this->selected ?? '');
         if (isset($this->productionChoiceCache[$key])) {
             return $this->productionChoiceCache[$key];
         }
@@ -58,7 +58,7 @@ trait HasProductionChoices
             default => null,
         };
         if ($kind === 'route') {
-            $q = DB::table('route_versions as v')->join('model_routes as r', 'r.id', '=', 'v.parent_id')->where('v.status', 'published')->whereRaw("v.content->>'mode' = 'offline_fake'");
+            $q = DB::table('route_versions as v')->join('model_routes as r', 'r.id', '=', 'v.parent_id')->where('v.status', 'published')->where('v.content->mode', $this->executionMode ?? 'offline_fake');
             $stage = match (class_basename($this)) {
                 'ReviewCenter' => 'review.chapter','RevisionDesk' => 'revision.propose',default => null
             };

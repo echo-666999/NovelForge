@@ -21,6 +21,37 @@ final class ExtractionService
         return hash('sha256', NovelIntentService::canonical($v));
     }
 
+    /** 只准备来源与约束，不需要模型输出，也不创建候选事件或提取记录。 */
+    public function prepareInput(User $actor, string $novel, array $d, ?array $origin = null): array
+    {
+        Validator::make($d, ['chapter_version_id' => 'required|integer|min:1', 'body_hash' => 'required|string|size:64', 'expected_version' => 'required|integer|min:1', 'expected_state_version' => 'required|integer|min:0', 'parent_id' => 'nullable|integer|min:1', 'baseline_id' => 'nullable|integer|min:1', 'rule_context_id' => 'nullable|integer|min:1', 'reason' => 'required|string|max:2000'])->validate();
+        ExtractionContract::transport($d);
+        $book = app(NovelIntentService::class)->novel($actor, $novel, true);
+        if ($book->status === 'archived' || $book->row_version !== (int) $d['expected_version'] || $book->state_version !== (int) $d['expected_state_version']) {
+            throw new NovelProblem('STALE_STATE', '小说输入或正式状态版本已改变。');
+        }
+        $body = app(DraftingService::class)->read($actor, $novel, 'chapter', (string) $d['chapter_version_id']);
+        if (! hash_equals($body['body_hash'], $d['body_hash'])) {
+            throw new NovelProblem('STALE_EXTRACTION', '请求的正文哈希不对应此版本。');
+        }
+        $chapter = DB::table('chapters')->where('novel_id', $novel)->find($body['node_id']);
+        $source = app(StoryStateService::class)->registerChapter($actor, $novel, $body['id']);
+        $parent = empty($d['parent_id']) ? null : $this->read($actor, $novel, (string) $d['parent_id']);
+        if ($parent && ($parent['chapter_version_id'] !== $body['id'] || $parent['body_hash'] !== $body['body_hash'] || ($parent['baseline_id'] ?? null) !== (isset($d['baseline_id']) ? (string) $d['baseline_id'] : null))) {
+            throw new NovelProblem('REEXTRACTION_SOURCE_MISMATCH', '重新提取只能修正同一正文及同一前章基线；正文换版需新提取。');
+        }
+        $baseline = empty($d['baseline_id']) ? null : $this->baseline($actor, $novel, (string) $d['baseline_id']);
+        $rulesContext = empty($d['rule_context_id']) ? null : app(StoryConsistencyService::class)->read($actor, $novel, (string) $d['rule_context_id']);
+        $inventory = DB::table('entities')->where('novel_id', $novel)->orderBy('id')->get(['id', 'name', 'type', 'approved_version_id', 'retired'])->map(fn ($e) => ['id' => (string) $e->id, 'name' => $e->name, 'type' => $e->type, 'approved_version_id' => $e->approved_version_id === null ? null : (string) $e->approved_version_id, 'definition_hash' => $e->approved_version_id === null ? null : DB::table('entity_definition_versions')->where('id', $e->approved_version_id)->value('content_hash'), 'retired' => $e->retired])->all();
+        $blueprint = DB::table('rolling_plans')->where('novel_id', $novel)->where('id', $body['plan_id'])->value('blueprint_version_id');
+        $foreshadows = app(ForeshadowLedgerService::class)->ledger($actor, $novel, ['chapter' => $chapter->sequence, 'blueprint_version_id' => $blueprint])['items'];
+        // 由已冻结运行派生来源标签，不能把真实提取标为手填离线回放。
+        $real = $origin && DB::table('generation_runs')->where('id', $origin['run_id'])->where('novel_id', $novel)->where('frozen_config->execution_mode', 'production')->exists();
+        $frozen = ['schema' => 'extraction-offline-v1', 'validator_version' => 'e03-hard-constraints-v1', 'execution_mode' => $real ? 'production' : 'explicit_offline_replay', 'row_version' => $book->row_version, 'state_version' => $book->state_version, 'parent_id' => $parent['id'] ?? null, 'chapter_sequence' => $chapter->sequence, 'chapter_version_id' => $body['id'], 'body_hash' => $body['body_hash'], 'source_id' => $source, 'generation_origin' => $origin, 'plan_id' => $body['plan_id'], 'baseline_id' => $baseline['id'] ?? null, 'baseline_input_hash' => $baseline['input_hash'] ?? null, 'rule_context_id' => $rulesContext['id'] ?? null, 'rule_context_hash' => $rulesContext['content_hash'] ?? null, 'approved_inventory' => $inventory, 'foreshadow_plans' => array_map(fn ($p) => array_intersect_key($p, array_flip(['id', 'content_hash', 'frozen', 'lifecycle'])), $foreshadows), 'real_model_eligible' => false];
+
+        return compact('body', 'chapter', 'source', 'parent', 'baseline', 'rulesContext', 'inventory', 'frozen');
+    }
+
     /** 请求级鉴权/并发失败直接拒绝；提取内容失败保存为可定位的不可变记录。 */
     public function extract(User $actor, string $novel, array $d, string $key, ?array $origin = null): array
     {
@@ -44,22 +75,8 @@ final class ExtractionService
             if ($book->status === 'archived' || $book->row_version !== (int) $d['expected_version'] || $book->state_version !== (int) $d['expected_state_version']) {
                 throw new NovelProblem('STALE_STATE', '小说输入或正式状态版本已改变。');
             }
-            $body = app(DraftingService::class)->read($actor, $novel, 'chapter', (string) $d['chapter_version_id']);
-            if (! hash_equals($body['body_hash'], $d['body_hash'])) {
-                throw new NovelProblem('STALE_EXTRACTION', '请求的正文哈希不对应此版本。');
-            }
-            $chapter = DB::table('chapters')->where('novel_id', $novel)->find($body['node_id']);
-            $source = app(StoryStateService::class)->registerChapter($actor, $novel, $body['id']);
-            $parent = empty($d['parent_id']) ? null : $this->read($actor, $novel, (string) $d['parent_id']);
-            if ($parent && ($parent['chapter_version_id'] !== $body['id'] || $parent['body_hash'] !== $body['body_hash'] || ($parent['baseline_id'] ?? null) !== (isset($d['baseline_id']) ? (string) $d['baseline_id'] : null))) {
-                throw new NovelProblem('REEXTRACTION_SOURCE_MISMATCH', '重新提取只能修正同一正文及同一前章基线；正文换版需新提取。');
-            }
-            $baseline = empty($d['baseline_id']) ? null : $this->baseline($actor, $novel, (string) $d['baseline_id']);
-            $rulesContext = empty($d['rule_context_id']) ? null : app(StoryConsistencyService::class)->read($actor, $novel, (string) $d['rule_context_id']);
-            $inventory = DB::table('entities')->where('novel_id', $novel)->orderBy('id')->get(['id', 'name', 'type', 'approved_version_id', 'retired'])->map(fn ($e) => ['id' => (string) $e->id, 'name' => $e->name, 'type' => $e->type, 'approved_version_id' => $e->approved_version_id === null ? null : (string) $e->approved_version_id, 'definition_hash' => $e->approved_version_id === null ? null : DB::table('entity_definition_versions')->where('id', $e->approved_version_id)->value('content_hash'), 'retired' => $e->retired])->all();
-            $blueprint = DB::table('rolling_plans')->where('novel_id', $novel)->where('id', $body['plan_id'])->value('blueprint_version_id');
-            $foreshadows = app(ForeshadowLedgerService::class)->ledger($actor, $novel, ['chapter' => $chapter->sequence, 'blueprint_version_id' => $blueprint])['items'];
-            $frozen = ['schema' => 'extraction-offline-v1', 'validator_version' => 'e03-hard-constraints-v1', 'execution_mode' => 'explicit_offline_replay', 'row_version' => $book->row_version, 'state_version' => $book->state_version, 'parent_id' => $parent['id'] ?? null, 'chapter_sequence' => $chapter->sequence, 'chapter_version_id' => $body['id'], 'body_hash' => $body['body_hash'], 'source_id' => $source, 'generation_origin' => $origin, 'plan_id' => $body['plan_id'], 'baseline_id' => $baseline['id'] ?? null, 'baseline_input_hash' => $baseline['input_hash'] ?? null, 'rule_context_id' => $rulesContext['id'] ?? null, 'rule_context_hash' => $rulesContext['content_hash'] ?? null, 'approved_inventory' => $inventory, 'foreshadow_plans' => array_map(fn ($p) => array_intersect_key($p, array_flip(['id', 'content_hash', 'frozen', 'lifecycle'])), $foreshadows), 'real_model_eligible' => false];
+            // 离线回放与真实阶段共用来源准备，保留原有候选验证流程。
+            ['body' => $body, 'chapter' => $chapter, 'source' => $source, 'parent' => $parent, 'baseline' => $baseline, 'rulesContext' => $rulesContext, 'inventory' => $inventory, 'frozen' => $frozen] = $this->prepareInput($actor, $novel, $d, $origin);
             $report = ['status' => 'blocked', 'eligible' => false, 'canonical' => false, 'issues' => []];
             $context = null;
             $events = [];

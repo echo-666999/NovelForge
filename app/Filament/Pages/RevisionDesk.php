@@ -7,6 +7,7 @@ use App\Extraction\ExtractionContract;
 use App\Filament\Concerns\EditsProductionPayloads;
 use App\Filament\Concerns\HasNovelNavigation;
 use App\Filament\Concerns\HasProductionChoices;
+use App\Filament\Concerns\HasStageExecutionMode;
 use App\Filament\Concerns\ReadsProductionFrames;
 use App\Filament\Concerns\WritesProductionCommands;
 use App\Filament\Support\ProductionSchemas;
@@ -30,6 +31,7 @@ class RevisionDesk extends Page
     use EditsProductionPayloads;
     use HasNovelNavigation;
     use HasProductionChoices;
+    use HasStageExecutionMode;
     use ReadsProductionFrames;
     use WritesProductionCommands;
 
@@ -215,7 +217,7 @@ class RevisionDesk extends Page
             $t = app(RevisionService::class)->read(auth()->user(), $this->novel, $this->selected);
             $route = preg_match('/^[1-9][0-9]{0,17}$/D', $this->route) ? DB::table('route_versions')->find($this->route) : null;
             $params = $route ? json_decode($route->content, true)['parameters'] : [];
-            $r = $this->productionWrite('RevisionPipelineService.start', [$this->selected], ['route_version_id' => $this->route, 'offline_output' => $this->productionValue('patchJson', 'offline_output'), 'billing' => ['policy_id' => $this->budget, 'price_version_ids' => array_values(array_filter(array_map('trim', explode(',', $this->prices)))), 'category' => 'generation', 'chapter_id' => $t['chapter_node_id'], 'max_output_tokens' => $params['max_output_tokens'] ?? 0, 'max_reasoning_tokens' => 0], 'reason' => $this->reason], fn ($frozenPayload, $commandKey) => app(RevisionPipelineService::class)->start(auth()->user(), $this->novel, $this->selected, $frozenPayload, $commandKey));
+            $r = $this->productionWrite('RevisionPipelineService.start', [$this->selected], ['route_version_id' => $this->route, 'offline_output' => $this->executionMode === 'production' ? null : $this->productionValue('patchJson', 'offline_output'), 'billing' => ['policy_id' => $this->budget, 'price_version_ids' => array_values(array_filter(array_map('trim', explode(',', $this->prices)))), 'category' => 'generation', 'chapter_id' => $t['chapter_node_id'], 'max_output_tokens' => $params['max_output_tokens'] ?? 0, 'max_reasoning_tokens' => 0], 'reason' => $this->reason], fn ($frozenPayload, $commandKey) => app(RevisionPipelineService::class)->start(auth()->user(), $this->novel, $this->selected, $frozenPayload, $commandKey));
             $this->run = $r['run_id'];
             $this->notice = '离线补丁运行已冻结；不会自动采纳。';
         });

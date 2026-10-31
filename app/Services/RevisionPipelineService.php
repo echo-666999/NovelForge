@@ -5,19 +5,21 @@ namespace App\Services;
 use App\Context\ContextComposer;
 use App\Exceptions\NovelProblem;
 use App\Extraction\ExtractionContract;
+use App\Generation\StageExecutionMode;
 use App\Models\User;
 use App\Revision\RevisionContract;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-/** E05离线补丁阶段复用租约、网关和预算，执行结果不自动采纳。 */
+/** E05补丁阶段复用租约、网关和预算，执行结果不自动采纳。 */
 final class RevisionPipelineService
 {
     public function start(User $actor, string $novel, string $task, array $d, string $key): array
     {
+        StageExecutionMode::validate($d);
         ExtractionContract::transport($d);
-        Validator::make(['d' => $d, 'key' => $key], ['d' => 'required|array:route_version_id,billing,offline_output,reason', 'key' => ['required', 'string', 'max:128', 'regex:/^[\x20-\x7E]+$/D']])->validate();
-        Validator::make($d, ['route_version_id' => 'required|integer|min:1', 'billing' => 'required|array', 'offline_output' => 'required|array', 'reason' => 'required|string|max:2000'])->validate();
+        Validator::make(['d' => $d, 'key' => $key], ['d' => 'required|array:route_version_id,billing,execution_mode,offline_output,reason', 'key' => ['required', 'string', 'max:128', 'regex:/^[\x20-\x7E]+$/D']])->validate();
+        Validator::make($d, ['route_version_id' => 'required|integer|min:1', 'billing' => 'required|array', 'offline_output' => 'sometimes|array', 'reason' => 'required|string|max:2000'])->validate();
         $s = app(RevisionService::class);
         if (strlen(NovelIntentService::canonical($d)) > 1000000) {
             throw new NovelProblem('REQUEST_TOO_LARGE', '修订运行输入过大。', 422);
@@ -35,12 +37,13 @@ final class RevisionPipelineService
             }
             $t = $s->verifySource($actor, $novel, $task);
             $r = $s->read($actor, $novel, $task);
-            if ($t['mode'] !== 'offline' || $r['status'] !== 'draft' || $r['run_id']) {
+            if ($t['mode'] !== (StageExecutionMode::mode($d) === 'production' ? 'production' : 'offline') || $r['status'] !== 'draft' || $r['run_id']) {
                 throw new NovelProblem('REVISION_MANUAL_REQUIRED', '本轮不允许再启动自动文学修订。');
             }
             $cfg = app(AuthoringConfigurationService::class)->freeze($actor, ['route_version_id' => (string) $d['route_version_id'], 'variables' => ['context' => NovelIntentService::canonical($t['input'])]], 'revision.propose');
-            if ($s->hash($cfg['prompt']['content']['output_schema']) !== $s->hash(RevisionContract::schema()) || $cfg['style']['id'] !== $t['input']['style_version_id'] || $cfg['route']['content']['mode'] !== 'offline_fake') {
-                throw new NovelProblem('REVISION_CONFIGURATION_MISMATCH', '补丁须使用注册离线协议和正文同一文风版本。');
+            StageExecutionMode::assertRoute($d, $cfg);
+            if ($s->hash($cfg['prompt']['content']['output_schema']) !== $s->hash(RevisionContract::schema()) || $cfg['style']['id'] !== $t['input']['style_version_id']) {
+                throw new NovelProblem('REVISION_CONFIGURATION_MISMATCH', '补丁须使用注册协议和正文同一文风版本。');
             }
             if (($d['billing']['category'] ?? '') !== 'generation' || (string) ($d['billing']['chapter_id'] ?? '') !== $t['chapter_node_id']) {
                 throw new NovelProblem('INVALID_BILLING_SCOPE', '修订预算须属于本章generation用途。', 422);
@@ -52,7 +55,7 @@ final class RevisionPipelineService
             if ($manifest['status'] !== 'assembled') {
                 throw new NovelProblem('CONTEXT_CAPACITY_EXCEEDED', '原文与必须保留事实不能裁剪。');
             }$cfg['rendered_prompt'] = $manifest['final_prompt'];
-            $f = ['schema_version' => 'revision-v1', 'row_version' => $book->row_version, 'task_id' => $task, 'task_hash' => $t['input_hash'], 'chapter_version_id' => $t['source_version_id'], 'body_hash' => $t['input']['source']['body_hash'], 'configuration' => $cfg, 'billing' => $billing, 'context' => $manifest, 'nodes' => [['key' => 'revise', 'stage' => 'revision.propose', 'depends_on' => [], 'input' => ['offline_output' => $d['offline_output']]]]];
+            $f = ['execution_mode' => StageExecutionMode::mode($d), 'schema_version' => 'revision-v1', 'row_version' => $book->row_version, 'task_id' => $task, 'task_hash' => $t['input_hash'], 'chapter_version_id' => $t['source_version_id'], 'body_hash' => $t['input']['source']['body_hash'], 'configuration' => $cfg, 'billing' => $billing, 'context' => $manifest, 'nodes' => [['key' => 'revise', 'stage' => 'revision.propose', 'depends_on' => [], 'input' => StageExecutionMode::node($d)]]];
             $outline = DB::table('rolling_plans')->where('id', $t['input']['source']['plan_id'])->value('outline_version_id');
             $id = (string) DB::table('generation_runs')->insertGetId(['novel_id' => $novel, 'actor_id' => $actor->id, 'outline_version_id' => $outline, 'configuration_route_version_id' => $cfg['route']['id'], 'expected_state_version' => $book->state_version, 'command_key' => 'e05:'.hash('sha256', $task.':'.$key), 'request_hash' => $s->hash($d), 'frozen_config' => NovelIntentService::canonical($f), 'input_hash' => $s->hash($f), 'created_at' => now(), 'updated_at' => now()]);
             app(OutboxService::class)->enqueue($actor, $novel, $id, 'revise');
@@ -78,6 +81,6 @@ final class RevisionPipelineService
     {
         $f = json_decode($run->frozen_config, true);
 
-        return app(RevisionService::class)->propose(User::findOrFail($run->actor_id), (string) $run->novel_id, $f['task_id'], ['offline_output' => $output, 'reason' => 'E05注册离线补丁回放'], 'artifact:'.$artifact, ['run_id' => (string) $run->id, 'artifact_id' => $artifact]);
+        return app(RevisionService::class)->propose(User::findOrFail($run->actor_id), (string) $run->novel_id, $f['task_id'], ['offline_output' => $output, 'reason' => StageExecutionMode::mode($f) === 'production' ? '真实模型受限修订产物' : 'E05注册离线补丁回放'], 'artifact:'.$artifact, app(RealResultOrigin::class)->forArtifact($run, $artifact));
     }
 }

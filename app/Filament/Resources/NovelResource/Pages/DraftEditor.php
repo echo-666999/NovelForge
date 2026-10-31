@@ -5,6 +5,7 @@ namespace App\Filament\Resources\NovelResource\Pages;
 use App\Drafting\BodyContract;
 use App\Exceptions\NovelProblem;
 use App\Filament\Concerns\HasProductionChoices;
+use App\Filament\Concerns\HasStageExecutionMode;
 use App\Filament\Concerns\ReadsProductionFrames;
 use App\Filament\Concerns\WritesProductionCommands;
 use App\Filament\Resources\NovelResource;
@@ -21,6 +22,7 @@ use Livewire\Attributes\Locked;
 class DraftEditor extends Page
 {
     use HasProductionChoices;
+    use HasStageExecutionMode;
     use ReadsProductionFrames;
     use WritesProductionCommands;
 
@@ -106,7 +108,7 @@ class DraftEditor extends Page
     {
         app(NovelIntentService::class)->novel(auth()->user(), $this->novelId);
 
-        return ['plans' => DB::table('rolling_plans')->where('novel_id', $this->novelId)->orderByDesc('id')->get(['id', 'version'])->all(), 'routes' => DB::table('route_versions as v')->join('model_routes as r', 'r.id', '=', 'v.parent_id')->where('v.status', 'published')->where('r.stage', 'drafting.scene')->get(['v.id', 'r.key'])->all(), 'policies' => DB::table('budget_policies')->get(['id', 'key'])->all(), 'prices' => DB::table('price_versions')->get(['id', 'model_version_id'])->all(), 'povs' => DB::table('entities')->where('novel_id', $this->novelId)->where('type', 'character')->whereNotNull('approved_version_id')->get(['id', 'name'])->all()];
+        return ['plans' => DB::table('rolling_plans')->where('novel_id', $this->novelId)->orderByDesc('id')->get(['id', 'version'])->all(), 'routes' => DB::table('route_versions as v')->join('model_routes as r', 'r.id', '=', 'v.parent_id')->where('v.status', 'published')->where('v.content->mode', $this->executionMode)->where('r.stage', 'drafting.scene')->get(['v.id', 'r.key'])->all(), 'policies' => DB::table('budget_policies')->get(['id', 'key'])->all(), 'prices' => DB::table('price_versions')->get(['id', 'model_version_id'])->all(), 'povs' => DB::table('entities')->where('novel_id', $this->novelId)->where('type', 'character')->whereNotNull('approved_version_id')->get(['id', 'name'])->all()];
     }
 
     public function inspect(): void

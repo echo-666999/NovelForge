@@ -278,7 +278,7 @@ final class AuthoringConfigurationService
     }
 
     /** 解析路由时冻结真实标识与声明能力；未验证的生产能力不能通过发布门禁。 */
-    private function routeSnapshot(array $c): array
+    private function routeSnapshot(array $c, bool $probe = false): array
     {
         $prompt = $this->version('prompt', (string) $c['prompt_version_id']);
         $style = $this->version('style', (string) $c['style_version_id']);
@@ -298,8 +298,12 @@ final class AuthoringConfigurationService
                 throw new NovelProblem('PROVIDER_DISABLED', '路由模型所属供应商不可用。');
             }
             $cap = json_decode($m->declared_capabilities, true);
-            if ($c['mode'] !== 'offline_fake' || $p->interface_type !== 'fake') {
-                throw new NovelProblem('CAPABILITY_UNVERIFIED', '目前仅允许离线模拟发布，生产能力与价格尚未验证。');
+            if ($c['mode'] === 'production') {
+                if ($p->interface_type !== 'json_http' || (! $probe && ! DB::table('model_capability_evidence')->where('model_profile_version_id', $id)->where('provider_version_id', $p->id)->exists())) {
+                    throw new NovelProblem('CAPABILITY_UNVERIFIED', '当前供应商和模型版本缺少真实能力证据。');
+                }
+            } elseif ($p->interface_type !== 'fake') {
+                throw new NovelProblem('CAPABILITY_UNVERIFIED', '离线路由只能使用Fake供应商。');
             }
             if (! is_int($cap['context_tokens'] ?? null) || ! is_int($cap['max_output_tokens'] ?? null) || $cap['context_tokens'] <= $c['parameters']['max_output_tokens'] || $cap['max_output_tokens'] < $c['parameters']['max_output_tokens'] || ($prompt['content']['capability_requirements']['structured_output'] && ($cap['structured_output'] ?? null) !== 'supported')) {
                 throw new NovelProblem('CAPABILITY_MISMATCH', '声明容量或结构化能力不满足路由。');
@@ -307,7 +311,7 @@ final class AuthoringConfigurationService
             $models[] = ['model_version_id' => $id, 'provider_version_id' => (string) $p->id, 'provider_id' => (string) $p->provider_id, 'provider_model_id' => DB::table('model_profiles')->where('id', $m->model_profile_id)->value('provider_model_id'), 'declared_capabilities' => $cap, 'verification_status' => $m->verification_status, 'price_version_id' => null, 'price_status' => 'unknown'];
         }
 
-        return ['prompt' => $prompt, 'style' => $style, 'models' => $models, 'parameters' => $c['parameters'], 'real_model_eligible' => false];
+        return ['prompt' => $prompt, 'style' => $style, 'models' => $models, 'parameters' => $c['parameters'], 'real_model_eligible' => $c['mode'] === 'production' && ! $probe];
     }
 
     public function freeze(User $actor, array $input, string $stage): array
@@ -317,7 +321,7 @@ final class AuthoringConfigurationService
             throw new NovelProblem('INVALID_CONFIGURATION', '路由键和版本标识只能提供一种。', 422);
         }
         Validator::make($input, ['route_version_id' => 'required_without:route_key|integer|min:1', 'route_key' => 'required_without:route_version_id|string|max:100', 'variables' => 'present|array'])->validate();
-        if (array_diff(array_keys($input), ['route_version_id', 'route_key', 'variables'])) {
+        if (array_diff(array_keys($input), ['route_version_id', 'route_key', 'variables', 'capability_probe'])) {
             throw new NovelProblem('INVALID_CONFIGURATION', '运行配置含未知字段。', 422);
         }
         // 与发布/退役同锁，冻结读取到一致的默认指针和版本状态。
@@ -328,10 +332,15 @@ final class AuthoringConfigurationService
             throw new NovelProblem('UNPUBLISHED_REFERENCE', '路由没有可用的默认发布版本。');
         }
         $route = $this->version('route', (string) $routeId);
-        if ($route['status'] !== 'published' || $route['stage'] !== $stage) {
+        $probe = ($input['capability_probe'] ?? false) === true && $stage === 'planning.intake' && $route['content']['mode'] === 'production' && $route['status'] !== 'retired';
+        if (($route['status'] !== 'published' && ! $probe) || $route['stage'] !== $stage) {
             throw new NovelProblem('UNPUBLISHED_REFERENCE', '路由未发布或阶段不匹配。');
         }
-        $snapshot = $this->routeSnapshot($route['content']);
+        // 首次能力探测只允许单模型、小输出，不允许借探测绕过整条流水线门禁。
+        if ($probe && ($route['content']['fallbacks'] !== [] || $route['content']['parameters']['max_output_tokens'] > 4096)) {
+            throw new NovelProblem('CAPABILITY_PROBE_LIMIT', '能力探测不得带备用模型，输出上限不得超过4096。');
+        }
+        $snapshot = $this->routeSnapshot($route['content'], $probe);
         if ($snapshot['prompt']['stage'] !== $stage || $snapshot['prompt']['language'] !== $route['language'] || $snapshot['style']['language'] !== $route['language']) {
             throw new NovelProblem('CONTRACT_MISMATCH', '模板、文风与路由阶段或语言不匹配。');
         }

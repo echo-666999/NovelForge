@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Drafting\BodyContract;
 use App\Exceptions\NovelProblem;
+use App\Generation\StageExecutionMode;
 use App\Models\User;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\DB;
@@ -101,11 +102,15 @@ final class DraftingService
     /** 一个场景一个持久运行；前场景不完整、过期或尚未生成时禁止跳序。 */
     public function start(User $actor, string $novel, array $d, string $key): array
     {
+        StageExecutionMode::validate($d);
+
         return $this->command($actor, $novel, 'start', $d, $key, function ($book) use ($actor, $novel, $d, $key) {
-            Validator::make($d, ['plan_id' => 'required|integer|min:1', 'scene_id' => 'required|integer|min:1', 'pov_id' => 'required|integer|min:1', 'route_version_id' => 'required|integer|min:1', 'billing' => 'required|array', 'offline_output' => 'required|array:body', 'offline_output.body' => 'required|string|max:100000', 'expected_version' => 'required|integer|min:1', 'expected_candidate_version' => 'required|integer|min:0', 'reason' => 'required|string|max:2000'])->validate();
+            Validator::make($d, ['plan_id' => 'required|integer|min:1', 'scene_id' => 'required|integer|min:1', 'pov_id' => 'required|integer|min:1', 'route_version_id' => 'required|integer|min:1', 'billing' => 'required|array', 'offline_output' => 'sometimes|array:body', 'offline_output.body' => 'required_with:offline_output|string|max:100000', 'expected_version' => 'required|integer|min:1', 'expected_candidate_version' => 'required|integer|min:0', 'reason' => 'required|string|max:2000'])->validate();
             // 提前拒绝数据库无法保存的正文，避免完成事务才发现零字节。
-            BodyContract::normalize($d['offline_output']['body']);
-            $this->fields($d, ['plan_id', 'scene_id', 'pov_id', 'route_version_id', 'billing', 'offline_output', 'expected_version', 'expected_candidate_version', 'reason']);
+            if (StageExecutionMode::mode($d) === 'offline_fake') {
+                BodyContract::normalize($d['offline_output']['body']);
+            }
+            $this->fields($d, ['plan_id', 'scene_id', 'pov_id', 'route_version_id', 'billing', 'execution_mode', 'offline_output', 'expected_version', 'expected_candidate_version', 'reason']);
             if ((int) $d['expected_version'] !== $book->row_version) {
                 throw new NovelProblem('STALE_STATE', '小说输入已改变。');
             }
@@ -131,8 +136,9 @@ final class DraftingService
                 }
             }
             $config = app(AuthoringConfigurationService::class)->freeze($actor, ['route_version_id' => (string) $d['route_version_id'], 'variables' => ['context' => '按冻结计划生成完整场景正文，保留作者原始约束；仅离线回放。']], 'drafting.scene');
-            if ($this->hash($config['prompt']['content']['output_schema']) !== $this->hash(BodyContract::schema()) || $config['route']['content']['mode'] !== 'offline_fake') {
-                throw new NovelProblem('DRAFT_SCHEMA_MISMATCH', '正文路由须为离线模式并采用正文协议。');
+            StageExecutionMode::assertRoute($d, $config);
+            if ($this->hash($config['prompt']['content']['output_schema']) !== $this->hash(BodyContract::schema())) {
+                throw new NovelProblem('DRAFT_SCHEMA_MISMATCH', '正文路由须采用注册的正文协议。');
             }
             $billingInput = $d['billing'];
             if (($billingInput['category'] ?? '') !== 'generation' || (string) ($billingInput['chapter_id'] ?? '') !== (string) $chapter['chapter_id']) {
@@ -147,7 +153,7 @@ final class DraftingService
             }
             $config['rendered_prompt'] = $context['final_prompt'];
             $config['token_measurement'] = 'utf8_bytes_upper_estimate_v1';
-            $frozen = ['schema_version' => 'drafting-v1', 'outline_hash' => DB::table('outline_versions')->where('id', $plan['outline_version_id'])->value('content_hash'), 'plan_id' => (string) $plan['id'], 'scene_id' => (string) $d['scene_id'], 'chapter_id' => (string) $chapter['chapter_id'], 'expected_row_version' => $book->row_version, 'expected_candidate_version' => (int) $d['expected_candidate_version'], 'previous' => $previous ? ['id' => $previous['id'], 'body_hash' => $previous['body_hash']] : null, 'configuration' => $config, 'billing' => $billing, 'context' => $context, 'nodes' => [['key' => 'scene', 'stage' => 'drafting.scene', 'depends_on' => [], 'input' => ['offline_output' => $d['offline_output']]]]];
+            $frozen = ['execution_mode' => StageExecutionMode::mode($d), 'schema_version' => 'drafting-v1', 'outline_hash' => DB::table('outline_versions')->where('id', $plan['outline_version_id'])->value('content_hash'), 'plan_id' => (string) $plan['id'], 'scene_id' => (string) $d['scene_id'], 'chapter_id' => (string) $chapter['chapter_id'], 'expected_row_version' => $book->row_version, 'expected_candidate_version' => (int) $d['expected_candidate_version'], 'previous' => $previous ? ['id' => $previous['id'], 'body_hash' => $previous['body_hash']] : null, 'configuration' => $config, 'billing' => $billing, 'context' => $context, 'nodes' => [['key' => 'scene', 'stage' => 'drafting.scene', 'depends_on' => [], 'input' => StageExecutionMode::node($d)]]];
             DB::table('generation_runs')->insert(['id' => $id, 'novel_id' => $novel, 'actor_id' => $actor->id, 'outline_version_id' => $plan['outline_version_id'], 'configuration_route_version_id' => $config['route']['id'], 'expected_state_version' => $book->state_version, 'command_key' => 'draft:'.hash('sha256', $key), 'request_hash' => $this->hash($d), 'frozen_config' => NovelIntentService::canonical($frozen), 'input_hash' => $this->hash($frozen), 'created_at' => now(), 'updated_at' => now()]);
             app(OutboxService::class)->enqueue($actor, $novel, $id, 'scene');
 

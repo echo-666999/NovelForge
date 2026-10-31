@@ -109,7 +109,7 @@ final class RevisionService
     public function create(User $actor, string $novel, array $d, string $key): array
     {
         $this->fields($d, ['review_id', 'issue_ids', 'allowed_scope', 'preserve_facts', 'preserve_quotes', 'mode', 'expected_version', 'expected_state_version', 'reason']);
-        Validator::make($d, ['review_id' => 'required|integer|min:1', 'issue_ids' => 'required|array|min:1|max:100', 'issue_ids.*' => 'required|string|distinct', 'allowed_scope' => 'required|array:kind,ranges,scene_version_id', 'allowed_scope.kind' => 'required|in:paragraph,scene,chapter', 'allowed_scope.ranges' => 'required|array|min:1|max:5', 'allowed_scope.ranges.*' => 'required|array:start,end,quote', 'preserve_facts' => 'present|array|max:200', 'preserve_facts.*' => 'required|string|distinct', 'preserve_quotes' => 'present|array|max:100', 'preserve_quotes.*' => 'required|array:start,end,quote', 'mode' => 'required|in:offline,manual', 'expected_version' => 'required|integer|min:1', 'expected_state_version' => 'required|integer|min:0', 'reason' => 'required|string|max:2000'])->validate();
+        Validator::make($d, ['review_id' => 'required|integer|min:1', 'issue_ids' => 'required|array|min:1|max:100', 'issue_ids.*' => 'required|string|distinct', 'allowed_scope' => 'required|array:kind,ranges,scene_version_id', 'allowed_scope.kind' => 'required|in:paragraph,scene,chapter', 'allowed_scope.ranges' => 'required|array|min:1|max:5', 'allowed_scope.ranges.*' => 'required|array:start,end,quote', 'preserve_facts' => 'present|array|max:200', 'preserve_facts.*' => 'required|string|distinct', 'preserve_quotes' => 'present|array|max:100', 'preserve_quotes.*' => 'required|array:start,end,quote', 'mode' => 'required|in:offline,manual,production', 'expected_version' => 'required|integer|min:1', 'expected_state_version' => 'required|integer|min:0', 'reason' => 'required|string|max:2000'])->validate();
 
         return $this->command($actor, $novel, 'create', $d, $key, function ($book) use ($actor, $novel, $d) {
             if ($book->row_version !== (int) $d['expected_version'] || $book->state_version !== (int) $d['expected_state_version']) {
@@ -132,10 +132,10 @@ final class RevisionService
             if ($lastState && ! $lastState['stale'] && in_array($lastState['status'], ['draft', 'running', 'awaiting_selection', 'reviewing'], true)) {
                 throw new NovelProblem('REVISION_IN_PROGRESS', '本章已有未完成修订，请先采纳、复评或放弃。');
             }
-            $first = DB::table('revision_tasks')->where('novel_id', $novel)->where('chapter_node_id', $body['node_id'])->where('mode', 'offline')->orderBy('id')->first();
+            $first = DB::table('revision_tasks')->where('novel_id', $novel)->where('chapter_node_id', $body['node_id'])->whereIn('mode', ['offline', 'production'])->orderBy('id')->first();
             $limit = $first ? $first->max_rounds : min(3, $r['frozen_input']['policy']['content']['max_revision_rounds']);
-            $round = (int) DB::table('revision_tasks')->where('novel_id', $novel)->where('chapter_node_id', $body['node_id'])->where('mode', 'offline')->where('initial_status', 'draft')->count() + ($d['mode'] === 'offline' ? 1 : 0);
-            $manual = $d['mode'] === 'offline' && ($round > $limit || ! $r['report']['hard_pass'] || ($lastState && ($lastState['manual_required'] || $lastState['stale'])) || ($first && json_decode($first->input, true)['policy_id'] !== $r['policy_version_id']));
+            $round = (int) DB::table('revision_tasks')->where('novel_id', $novel)->where('chapter_node_id', $body['node_id'])->whereIn('mode', ['offline', 'production'])->where('initial_status', 'draft')->count() + (in_array($d['mode'], ['offline', 'production'], true) ? 1 : 0);
+            $manual = in_array($d['mode'], ['offline', 'production'], true) && ($round > $limit || ! $r['report']['hard_pass'] || ($lastState && ($lastState['manual_required'] || $lastState['stale'])) || ($first && json_decode($first->input, true)['policy_id'] !== $r['policy_version_id']));
             if (! $e['context_id']) {
                 throw new NovelProblem('INVALID_REVISION_SOURCE', '先修正原文的无效提取并建立完整评审，再启动文学修订。');
             }
@@ -208,7 +208,7 @@ final class RevisionService
 
         return $this->command($actor, $novel, 'propose.'.$id, $d, $key, function () use ($actor, $novel, $id, $d, $origin) {
             $t = $this->verifySource($actor, $novel, $id);
-            if ($t['mode'] !== 'offline' || $t['initial_status'] !== 'draft' || DB::table('revision_proposals')->where('task_id', $id)->exists() || DB::table('revision_decisions')->where('task_id', $id)->exists()) {
+            if ((! in_array($t['mode'], ['offline', 'production'], true) || ($t['mode'] === 'production' && empty($origin['source_request_id']))) || $t['initial_status'] !== 'draft' || DB::table('revision_proposals')->where('task_id', $id)->exists() || DB::table('revision_decisions')->where('task_id', $id)->exists()) {
                 throw new NovelProblem('REVISION_MANUAL_REQUIRED', '此任务不能再生成自动提案，请人工处理或明确结束本轮。');
             }
             // 同一轮只能选择纯回放或已冻结网关运行，不能用旁路提案抢先覆盖请求。
@@ -221,7 +221,7 @@ final class RevisionService
             } catch (NovelProblem|ValidationException $e) {
                 $report = ['valid' => false, 'issues' => [['code' => $e instanceof NovelProblem ? $e->errorCode : 'INVALID_REVISION', 'message' => $e->getMessage(), 'claimed_output' => $d['offline_output']]]];
             }
-            DB::table('revision_proposals')->insert(['novel_id' => $novel, 'task_id' => $id, 'run_id' => $origin['run_id'] ?? null, 'artifact_id' => $origin['artifact_id'] ?? null, 'output' => NovelIntentService::canonical($d['offline_output']), 'output_hash' => $this->hash($d['offline_output']), 'report' => NovelIntentService::canonical($report)]);
+            DB::table('revision_proposals')->insert(['source_request_id' => $origin['source_request_id'] ?? null, 'novel_id' => $novel, 'task_id' => $id, 'run_id' => $origin['run_id'] ?? null, 'artifact_id' => $origin['artifact_id'] ?? null, 'output' => NovelIntentService::canonical($d['offline_output']), 'output_hash' => $this->hash($d['offline_output']), 'report' => NovelIntentService::canonical($report)]);
 
             return $this->read($actor, $novel, $id);
         });

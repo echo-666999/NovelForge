@@ -6,6 +6,7 @@ use App\Exceptions\NovelProblem;
 use App\Filament\Concerns\EditsProductionPayloads;
 use App\Filament\Concerns\HasNovelNavigation;
 use App\Filament\Concerns\HasProductionChoices;
+use App\Filament\Concerns\HasStageExecutionMode;
 use App\Filament\Concerns\ReadsProductionFrames;
 use App\Filament\Concerns\WritesProductionCommands;
 use App\Filament\Support\JsonFields;
@@ -30,6 +31,7 @@ class ReviewCenter extends Page
     use EditsProductionPayloads;
     use HasNovelNavigation;
     use HasProductionChoices;
+    use HasStageExecutionMode;
     use ReadsProductionFrames;
     use WritesProductionCommands;
 
@@ -145,12 +147,12 @@ class ReviewCenter extends Page
         return array_values(array_filter($this->detail['issues'] ?? [], fn ($i) => ($this->severity === '' || $i['severity'] === $this->severity) && ($this->category === '' || $i['category'] === $this->category)));
     }
 
-    private function payload(): array
+    private function payload(bool $pipeline = false): array
     {
         $b = app(DraftingService::class)->read(auth()->user(), $this->novel, 'chapter', $this->version);
         $n = app(NovelIntentService::class)->novel(auth()->user(), $this->novel);
 
-        return ['chapter_version_id' => $this->version, 'body_hash' => $b['body_hash'], 'extraction_id' => $this->extraction, 'policy_version_id' => $this->policy, 'expected_version' => $n->row_version, 'expected_state_version' => $n->state_version, 'offline_output' => $this->productionValue('output', 'offline_output'), 'reviewer_type' => $this->reviewer, 'reason' => $this->reason];
+        return ['chapter_version_id' => $this->version, 'body_hash' => $b['body_hash'], 'extraction_id' => $this->extraction, 'policy_version_id' => $this->policy, 'expected_version' => $n->row_version, 'expected_state_version' => $n->state_version, 'offline_output' => $pipeline && $this->executionMode === 'production' ? null : $this->productionValue('output', 'offline_output'), 'reviewer_type' => $this->reviewer, 'reason' => $this->reason];
     }
 
     public function review(): void
@@ -209,14 +211,14 @@ class ReviewCenter extends Page
     public function startPipeline(): void
     {
         $this->attempt(function () {
-            $d = $this->payload();
+            $d = $this->payload(true);
             unset($d['reviewer_type']);
             $b = app(DraftingService::class)->read(auth()->user(), $this->novel, 'chapter', $this->version);
             $route = preg_match('/^[1-9][0-9]{0,17}$/D', $this->route) ? DB::table('route_versions')->find($this->route) : null;
             $params = $route ? json_decode($route->content, true)['parameters'] : [];
             $r = $this->productionWrite('ReviewPipelineService.start', [], $d + ['route_version_id' => $this->route, 'billing' => ['policy_id' => $this->budget, 'price_version_ids' => array_values(array_filter(array_map('trim', explode(',', $this->prices)))), 'category' => 'review', 'chapter_id' => $b['node_id'], 'max_output_tokens' => $params['max_output_tokens'] ?? 0, 'max_reasoning_tokens' => 0]], fn ($frozenPayload, $commandKey) => app(ReviewPipelineService::class)->start(auth()->user(), $this->novel, $frozenPayload, $commandKey));
             $this->run = $r['run_id'];
-            $this->notice = '离线评审运行已冻结，尚未代表评审通过。';
+            $this->notice = '评审运行已冻结，尚未代表评审通过。';
         });
     }
 

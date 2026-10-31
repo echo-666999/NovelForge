@@ -28,6 +28,10 @@ trait WritesProductionCommands
 
     protected function productionWrite(string $action, array $identity, array $payload, callable $write): mixed
     {
+        // 模式进入命令摘要；相同字段切换模式不能复用旧离线命令身份。
+        if (method_exists($this, 'stagePayload') && in_array($action, ['PlanningPipelineService.start', 'DraftingService.start', 'ReviewPipelineService.start', 'RevisionPipelineService.start'], true)) {
+            $payload = $this->stagePayload($payload);
+        }
         $semantic = $payload;
         // 这些是书/当前候选的派生并发号，不能使成功后的同一次重试变成新命令。
         if (in_array($action, ['PlanningPipelineService.start', 'PlanningPipelineService.adopt', 'ChapterReviewService.review', 'ReviewPipelineService.start', 'RevisionService.create', 'DraftingService.start', 'DraftingService.assemble'], true)) {
